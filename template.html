@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Eindafrekening {{ gast_naam }}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap');
+
+        :root {
+            /* Brand Colors */
+            --color-primary: #E85D45;
+            --color-primary-light: #FFF5F2;
+            --color-secondary: #2C2C2C;
+
+            /* Semantic Colors */
+            --color-success: #2E7D32;
+            --color-success-bg: #E8F5E9;
+            --color-warning: #F9A825;
+            --color-warning-bg: #FFFDE7;
+            --color-error: #C62828;
+            --color-error-bg: #FFEBEE;
+
+            /* Bar Colors */
+            --color-bar-prepaid: #A5D6A7;
+            /* Start Green */
+            --color-bar-used: #FFCC80;
+            /* Used Yellow */
+            --color-bar-return: #A5D6A7;
+            /* Return Green (Same as prepaid for continuity) */
+            --color-bar-extra: #EF9A9A;
+            /* Extra Red */
+
+            /* Dimensions */
+            --bar-base-width: 220px;
+            /* The fixed width representing 100% budget */
+
+            /* Neutrals */
+            --color-text-main: #1A1A1A;
+            --color-text-muted: #616161;
+            --color-text-light: #9E9E9E;
+            --color-bg-page: #FFFFFF;
+            --color-bg-surface: #F8F9FA;
+            --color-border: #E0E0E0;
+
+            /* Spacing & Layout */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+
+            /* Effects */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        @page {
+            size: A4 portrait;
+            margin: 15mm;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--color-text-main);
+            background-color: var(--color-bg-page);
+            margin: 0;
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3,
+        .brand-logo,
+        .amount-huge {
+            font-family: 'Barlow', sans-serif;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .brand-logo {
+            width: 48px;
+            height: 48px;
+            background: var(--color-secondary);
+            color: white;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .brand-info h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-secondary);
+            line-height: 1.1;
+        }
+
+        .brand-info p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        .guest-details {
+            text-align: right;
+        }
+
+        .guest-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 2px;
+        }
+
+        .property-name {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            margin-bottom: 6px;
+        }
+
+        .period-badge {
+            display: inline-block;
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Intro Card */
+        .intro-card {
+            background: linear-gradient(135deg, #FFF5F2 0%, #FFFFFF 100%);
+            border: 1px solid #FFE0D6;
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-md);
+            text-align: center;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-xl);
+            font-size: 14px;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 280px 2px 1fr 2px 120px;
+            /* Fixed width for Start to match bar base + padding */
+            gap: 0;
+            margin-bottom: var(--spacing-xl);
+            align-items: stretch;
+        }
+
+        .col-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .col-title {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            margin-bottom: 4px;
+        }
+
+        .col-subtitle {
+            font-size: 12px;
+            color: var(--color-text-muted);
+        }
+
+        .divider {
+            background: var(--color-border);
+            width: 1px;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        .divider.dotted {
+            background: none;
+            border-right: 1px dashed var(--color-border);
+            width: 0;
+        }
+
+        /* Row Items */
+        .grid-cell {
+            padding: var(--spacing-md) var(--spacing-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Start Column Specifics */
+        .grid-cell.start-col {
+            align-items: flex-start;
+            padding-left: 0;
+        }
+
+        .label-category {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--color-secondary);
+            margin-bottom: 8px;
+            width: 100%;
+        }
+
+        .label-meta {
+            font-size: 11px;
+            color: var(--color-text-light);
+            margin-top: 6px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Bar Containers */
+        .bar-track {
+            /* This is the container for the bar */
+            height: 40px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Start Bar (Fixed Width) */
+        .bar-fixed {
+            width: var(--bar-base-width);
+            height: 100%;
+            background: var(--color-bar-prepaid);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #1B5E20;
+            font-size: 14px;
+        }
+
+        /* Stay Bar Reference (The 100% budget width) */
+        .bar-reference {
+            width: var(--bar-base-width);
+            height: 100%;
+            position: relative;
+            background: var(--color-bg-surface);
+            /* Optional: show empty track? No, clean */
+            border-radius: var(--radius-sm);
+            /* overflow: visible to allow extra to pop out */
+        }
+
+        /* The Budget Marker Line (Dashed line at end of budget) */
+        .budget-marker {
+            position: absolute;
+            right: 0;
+            top: -10px;
+            bottom: -10px;
+            border-right: 1px dashed var(--color-text-light);
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        /* Segments */
+        .segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            position: relative;
+            z-index: 1;
+            transition: width 0.3s ease;
+        }
+
+        /* Used Segment (Yellow) */
+        .segment.used {
+            background: var(--color-bar-used);
+            color: #E65100;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            position: absolute;
+            left: 0;
+            top: 0;
+            /* If return exists, round corners differently? */
+        }
+
+        /* Return Segment (Green) */
+        .segment.return {
+            background: var(--color-bar-return);
+            color: #1B5E20;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 0;
+            /* Left is set inline */
+        }
+
+        /* Extra Segment (Red) */
+        .segment.extra {
+            background: var(--color-bar-extra);
+            color: #B71C1C;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 0;
+            /* Left is set inline (usually 100%) */
+            /* Striped */
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255, 255, 255, 0.2) 5px, rgba(255, 255, 255, 0.2) 10px);
+            z-index: 2;
+            /* On top of marker */
+        }
+
+        /* Result Column */
+        .result-value {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            text-align: right;
+            padding-right: var(--spacing-sm);
+        }
+
+        .text-pos {
+            color: var(--color-success);
+        }
+
+        .text-neg {
+            color: var(--color-error);
+        }
+
+        /* Details Section */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+        }
+
+        .detail-card {
+            background: var(--color-bg-surface);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--color-primary);
+        }
+
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            font-size: 13px;
+            color: var(--color-secondary);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 4px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-bottom: 4px;
+        }
+
+        /* Settlement Table */
+        .settlement-container {
+            margin-top: var(--spacing-xl);
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+
+        .settlement-header {
+            background: var(--color-primary);
+            color: white;
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .settlement-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .settlement-table th {
+            text-align: left;
+            padding: var(--spacing-md) var(--spacing-lg);
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            border-bottom: 1px solid var(--color-border);
+            font-weight: 600;
+        }
+
+        .settlement-table td {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+            font-size: 14px;
+            color: var(--color-secondary);
+        }
+
+        .settlement-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .row-total {
+            background-color: var(--color-primary-light);
+        }
+
+        .row-total td {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--color-primary);
+        }
+
+        .footer {
+            margin-top: var(--spacing-xl);
+            text-align: center;
+            font-size: 11px;
+            color: var(--color-text-light);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--color-border);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="brand">
+            <div class="brand-logo">RR</div>
+            <div class="brand-info">
+                <h1>RyanRent</h1>
+                <p>Eindoverzicht Verblijf</p>
+            </div>
+        </div>
+        <div class="guest-details">
+            <div class="guest-name">{{ gast_naam }}</div>
+            <div class="property-name">{{ property_naam }}</div>
+            <div class="period-badge">{{ periode_start }} - {{ periode_eind }}</div>
+        </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro-card">
+        <strong>Uw persoonlijke overzicht.</strong><br>
+        Hieronder ziet u precies wat u vooraf betaalde, hoe dit is gebruikt, en wat het netto resultaat is.
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="main-grid">
+        <!-- HEADERS -->
+        <div class="col-header">
+            <div class="col-title">Start</div>
+            <div class="col-subtitle">Vooraf betaald</div>
+        </div>
+        <div class="divider"></div>
+        <div class="col-header">
+            <div class="col-title">Verblijf</div>
+            <div class="col-subtitle">Gebruik & Kosten</div>
+        </div>
+        <div class="divider dotted"></div>
+        <div class="col-header">
+            <div class="col-title">Resultaat</div>
+            <div class="col-subtitle">Netto effect</div>
+        </div>
+
+        <!-- ROW 1: BORG -->
+        <!-- Start -->
+        <div class="grid-cell start-col">
+            <div class="label-category">BORG</div>
+            <div class="bar-track">
+                <div class="bar-fixed">€{{ "%.0f"|format(borg_voorschot) }}</div>
+            </div>
+            <div class="label-meta">Gereserveerd</div>
+        </div>
+        <!-- Divider -->
+        <div class="divider"></div>
+        <!-- Stay -->
+        <div class="grid-cell">
+            <div class="bar-track">
+                <div class="bar-reference">
+                    <div class="budget-marker"></div>
+                    <!-- Used part -->
+                    <div class="segment used" style="width: {{ borg_gebruikt_pct }}%;">
+                        €{{ "%.0f"|format(borg_gebruikt) }}
+                    </div>
+                    <!-- Return part -->
+                    <div class="segment return" style="left: {{ borg_gebruikt_pct }}%; width: {{ borg_terug_pct }}%;">
+                        €{{ "%.0f"|format(borg_terug) }}
+                    </div>
+                </div>
+            </div>
+            <div class="label-meta">
+                Gebruikt: €{{ "%.0f"|format(borg_gebruikt) }} | Terug: €{{ "%.0f"|format(borg_terug) }}
+            </div>
+        </div>
+        <!-- Divider -->
+        <div class="divider dotted"></div>
+        <!-- Result -->
+        <div class="grid-cell">
+            <div class="result-value text-pos">+€{{ "%.0f"|format(borg_terug) }}</div>
+        </div>
+
+        <!-- ROW 2: GWE -->
+        <!-- Start -->
+        <div class="grid-cell start-col">
+            <div class="label-category">GWE</div>
+            <div class="bar-track">
+                <div class="bar-fixed">€{{ "%.0f"|format(gwe_voorschot) }}</div>
+            </div>
+            <div class="label-meta">Voorschot G/W/E</div>
+        </div>
+        <!-- Divider -->
+        <div class="divider"></div>
+        <!-- Stay -->
+        <div class="grid-cell">
+            <div class="bar-track">
+                <div class="bar-reference">
+                    <div class="budget-marker"></div>
+                    {% if gwe_is_overfilled %}
+                    <!-- Overfilled: Budget (Used) + Extra -->
+                    <div class="segment used" style="width: 100%;">
+                        €{{ "%.0f"|format(gwe_voorschot) }}
+                    </div>
+                    <!-- Extra pops out -->
+                    <div class="segment extra" style="left: 100%; width: {{ gwe_extra_pct }}%;">
+                        €{{ "%.0f"|format(gwe_extra) }}
+                    </div>
+                    {% else %}
+                    <!-- Normal -->
+                    <div class="segment used" style="width: {{ gwe_gebruikt_pct }}%;">
+                        €{{ "%.0f"|format(gwe_verbruik) }}
+                    </div>
+                    <div class="segment return" style="left: {{ gwe_gebruikt_pct }}%; width: {{ gwe_terug_pct }}%;">
+                        €{{ "%.0f"|format(gwe_terug) }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="label-meta">
+                {% if gwe_is_overfilled %}
+                Budget: €{{ "%.0f"|format(gwe_voorschot) }} | Extra: €{{ "%.0f"|format(gwe_extra) }}
+                {% else %}
+                Gebruikt: €{{ "%.0f"|format(gwe_verbruik) }} | Terug: €{{ "%.0f"|format(gwe_terug) }}
+                {% endif %}
+            </div>
+        </div>
+        <!-- Divider -->
+        <div class="divider dotted"></div>
+        <!-- Result -->
+        <div class="grid-cell">
+            {% if gwe_is_overfilled %}
+            <div class="result-value text-neg">-€{{ "%.0f"|format(gwe_extra) }}</div>
+            {% else %}
+            <div class="result-value text-pos">+€{{ "%.0f"|format(gwe_terug) }}</div>
+            {% endif %}
+        </div>
+
+        <!-- ROW 3: CLEANING -->
+        <!-- Start -->
+        <div class="grid-cell start-col">
+            <div class="label-category">CLEANING</div>
+            <div class="bar-track">
+                <div class="bar-fixed">€{{ "%.0f"|format(clean_voorschot) }}</div>
+            </div>
+            <div class="label-meta">Basis pakket</div>
+        </div>
+        <!-- Divider -->
+        <div class="divider"></div>
+        <!-- Stay -->
+        <div class="grid-cell">
+            <div class="bar-track">
+                <div class="bar-reference">
+                    <div class="budget-marker"></div>
+                    {% if clean_is_overfilled %}
+                    <div class="segment used" style="width: 100%;">
+                        €{{ "%.0f"|format(clean_voorschot) }}
+                    </div>
+                    <div class="segment extra" style="left: 100%; width: {{ clean_extra_pct }}%;">
+                        €{{ "%.0f"|format(clean_extra_calc) }}
+                    </div>
+                    {% else %}
+                    <div class="segment used" style="width: {{ clean_gebruikt_pct }}%;">
+                        €{{ "%.0f"|format(clean_gebruikt) }}
+                    </div>
+                    <div class="segment return" style="left: {{ clean_gebruikt_pct }}%; width: {{ clean_terug_pct }}%;">
+                        €{{ "%.0f"|format(clean_terug) }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="label-meta">
+                {% if clean_is_overfilled %}
+                Basis: €{{ "%.0f"|format(clean_voorschot) }} | Extra: €{{ "%.0f"|format(clean_extra_calc) }}
+                {% else %}
+                Gebruikt: €{{ "%.0f"|format(clean_gebruikt) }} | Terug: €{{ "%.0f"|format(clean_terug) }}
+                {% endif %}
+            </div>
+        </div>
+        <!-- Divider -->
+        <div class="divider dotted"></div>
+        <!-- Result -->
+        <div class="grid-cell">
+            {% if clean_is_overfilled %}
+            <div class="result-value text-neg">-€{{ "%.0f"|format(clean_extra_calc) }}</div>
+            {% else %}
+            <div class="result-value text-pos">+€{{ "%.0f"|format(clean_terug) }}</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- DETAILS SECTION -->
+    <div class="details-grid">
+        <!-- BORG DETAIL -->
+        <div class="detail-card">
+            <div class="detail-header">
+                <span>BORG SPECIFICATIE</span>
+                <span>€{{ "%.2f"|format(borg_gebruikt) }}</span>
+            </div>
+            {% if schades %}
+            {% for schade in schades %}
+            <div class="detail-item">
+                <span>{{ schade.omschrijving }}</span>
+                <span>€{{ "%.2f"|format(schade.bedrag) }}</span>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="detail-item">
+                <span>Algemene inhoudingen</span>
+                <span>€{{ "%.2f"|format(borg_gebruikt) }}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- GWE DETAIL -->
+        <div class="detail-card">
+            <div class="detail-header">
+                <span>GWE SPECIFICATIE</span>
+                <span>€{{ "%.2f"|format(gwe_verbruik) }}</span>
+            </div>
+            <div class="detail-item">
+                <span>Gas Verbruik</span>
+                <span>€{{ "%.2f"|format(gwe_gas) }}</span>
+            </div>
+            <div class="detail-item">
+                <span>Water Verbruik</span>
+                <span>€{{ "%.2f"|format(gwe_water) }}</span>
+            </div>
+            <div class="detail-item">
+                <span>Electra ({{ gwe_electra_kwh }} kWh)</span>
+                <span>€{{ "%.2f"|format(gwe_electra_euro) }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SETTLEMENT TABLE -->
+    <div class="settlement-container">
+        <div class="settlement-header">EINDAFREKENING</div>
+        <table class="settlement-table">
+            <thead>
+                <tr>
+                    <th>Onderdeel</th>
+                    <th>Voorschot</th>
+                    <th>Gebruikt</th>
+                    <th>Resultaat</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>🔒 Borg</td>
+                    <td>€{{ "%.2f"|format(borg_voorschot) }}</td>
+                    <td>€{{ "%.2f"|format(borg_gebruikt) }}</td>
+                    <td class="{{ 'text-pos' if borg_terug >= 0 else 'text-neg' }}">
+                        {{ "€%.2f terug"|format(borg_terug) if borg_terug >= 0 else "€%.2f
+                        bijbetalen"|format(abs(borg_terug)) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>⚡ G/W/E</td>
+                    <td>€{{ "%.2f"|format(gwe_voorschot) }}</td>
+                    <td>€{{ "%.2f"|format(gwe_verbruik) }}</td>
+                    <td class="{{ 'text-pos' if not gwe_is_overfilled else 'text-neg' }}">
+                        {{ "€%.2f terug"|format(gwe_terug) if not gwe_is_overfilled else "€%.2f
+                        bijbetalen"|format(gwe_extra) }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>🧹 Cleaning</td>
+                    <td>€{{ "%.2f"|format(clean_voorschot) }}</td>
+                    <td>€{{ "%.2f"|format(clean_gebruikt) }}</td>
+                    <td class="{{ 'text-pos' if not clean_is_overfilled else 'text-neg' }}">
+                        {{ "€%.2f terug"|format(clean_terug) if not clean_is_overfilled else "€%.2f
+                        bijbetalen"|format(clean_extra_calc) }}
+                    </td>
+                </tr>
+                <tr class="row-total">
+                    <td colspan="3" style="text-align: right;">TOTAAL NETTO:</td>
+                    <td class="{{ 'text-pos' if netto_is_positive else 'text-neg' }}">
+                        {{ "€%.2f TERUG"|format(netto) if netto_is_positive else "€%.2f BIJBETALEN"|format(abs(netto))
+                        }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        RyanRent | Gegenereerd op {{ generated_date }}<br>
+        Voor vragen: info@ryanrent.nl
+    </div>
+
+</body>
+
+</html>
