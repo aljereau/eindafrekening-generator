@@ -114,6 +114,14 @@
             box-shadow: var(--shadow-sm);
         }
 
+        .brand-logo-img {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            box-shadow: var(--shadow-sm);
+        }
+
         .brand-info h1 {
             margin: 0;
             font-size: 24px;
@@ -460,7 +468,11 @@
     <!-- HEADER -->
     <div class="header">
         <div class="brand">
+            {% if logo_b64 %}
+            <img src="{{ logo_b64 }}" class="brand-logo-img" alt="RyanRent Logo">
+            {% else %}
             <div class="brand-logo">RR</div>
+            {% endif %}
             <div class="brand-info">
                 <h1>RyanRent</h1>
                 <p>Eindoverzicht Verblijf</p>

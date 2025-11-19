@@ -162,6 +162,17 @@ def calculate_values(data):
     # Datum gegenereerd
     data['generated_date'] = datetime.now().strftime('%d-%m-%Y %H:%M')
     
+    # Logo encoding
+    import base64
+    logo_path = os.path.join('assets', 'ryanrent_co.jpg')
+    if os.path.exists(logo_path):
+        with open(logo_path, "rb") as image_file:
+            encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
+            data['logo_b64'] = f"data:image/jpeg;base64,{encoded_string}"
+    else:
+        data['logo_b64'] = None
+        print(f"⚠️  Waarschuwing: Logo niet gevonden op {logo_path}")
+    
     return data
 
 def generate_pdf(data, output_filename=None):
