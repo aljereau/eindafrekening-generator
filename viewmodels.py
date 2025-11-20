@@ -17,7 +17,7 @@ from entities import (
     GWEMeterstanden
 )
 from calculator import Calculator
-from svg_bars import generate_bar_svg, generate_start_bar_svg
+from svg_bars import generate_bar_svg, generate_start_bar_svg, generate_caption
 
 
 def date_to_str(d: date) -> str:
@@ -257,10 +257,19 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
         is_overfilled=False,  # Borg never overfills (restschade handled separately)
         label_gebruikt=f"€{borg['gebruikt']:.0f}",
         label_extra_or_terug=f"€{borg['terug']:.0f}",
-        width=400,
+        pot_width=400,
         height=40
     )
     financial['borg']['svg_bar'] = borg_svg
+    
+    # Generate human-readable caption
+    borg_caption = generate_caption(
+        pot=borg['voorschot'],
+        used=borg['gebruikt'],
+        refund=borg['terug'],
+        overflow=0
+    )
+    financial['borg']['caption'] = borg_caption
     
     # GWE - Bar percentages and SVG
     gwe = financial['gwe']
@@ -289,7 +298,7 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
             is_overfilled=True,
             label_gebruikt=f"€{gwe['voorschot']:.0f}",
             label_extra_or_terug=f"+€{gwe['extra']:.0f}",
-            width=400,
+            pot_width=400,
             height=40
         )
     else:
@@ -300,10 +309,27 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
             is_overfilled=False,
             label_gebruikt=f"€{gwe['totaal_incl']:.0f}",
             label_extra_or_terug=f"€{gwe['terug']:.0f}",
-            width=400,
+            pot_width=400,
             height=40
         )
     financial['gwe']['svg_bar'] = gwe_svg
+    
+    # Generate human-readable caption
+    if gwe['is_overfilled']:
+        gwe_caption = generate_caption(
+            pot=gwe['voorschot'],
+            used=gwe['totaal_incl'],
+            refund=0,
+            overflow=gwe['extra']
+        )
+    else:
+        gwe_caption = generate_caption(
+            pot=gwe['voorschot'],
+            used=gwe['totaal_incl'],
+            refund=gwe['terug'],
+            overflow=0
+        )
+    financial['gwe']['caption'] = gwe_caption
     
     # CLEANING - Bar percentages and SVG
     cleaning = financial['cleaning']
@@ -332,8 +358,15 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
             is_overfilled=True,
             label_gebruikt=f"€{cleaning['voorschot']:.0f}",
             label_extra_or_terug=f"+€{cleaning['extra_bedrag']:.0f}",
-            width=400,
+            pot_width=400,
             height=40
+        )
+        # Caption for overflow
+        cleaning_caption = generate_caption(
+            pot=cleaning['voorschot'],
+            used=cleaning_gebruikt,
+            refund=0,
+            overflow=cleaning['extra_bedrag']
         )
     else:
         # Underuse scenario
@@ -344,10 +377,18 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
             is_overfilled=False,
             label_gebruikt=f"€{cleaning_totaal_used:.0f}",
             label_extra_or_terug=f"€{cleaning['terug']:.0f}",
-            width=400,
+            pot_width=400,
             height=40
         )
+        # Caption for underuse
+        cleaning_caption = generate_caption(
+            pot=cleaning['voorschot'],
+            used=cleaning_totaal_used,
+            refund=cleaning['terug'],
+            overflow=0
+        )
     financial['cleaning']['svg_bar'] = cleaning_svg
+    financial['cleaning']['caption'] = cleaning_caption
     
     return onepager_vm
 

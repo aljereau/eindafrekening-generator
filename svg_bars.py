@@ -1,8 +1,9 @@
 """
-SVG Bar Generator - ALL BARS IDENTICAL SIZE
+SVG Bar Generator - POT-BASED VISUALIZATION
 
-Creates uniform pill-shaped bars with internal patterns to show usage.
-Every bar is exactly the same dimensions - only the internal fill pattern changes.
+Creates pot-based bars where voorschot (pot) = fixed 400px baseline.
+- Underuse: solid portion shows usage, stripe shows return (within 400px)
+- Overflow: pot fills 400px + small fixed extension indicator (50px)
 """
 
 from typing import Tuple
@@ -14,95 +15,106 @@ def generate_bar_svg(
     is_overfilled: bool,
     label_gebruikt: str = "",
     label_extra_or_terug: str = "",
-    width: int = 400,
+    pot_width: int = 400,
     height: int = 40
 ) -> str:
     """
-    Generate uniform SVG bar matching user's hand-drawn design.
+    Generate pot-based SVG bar.
     
-    ALL BARS ARE IDENTICAL SIZE - only internal pattern differs:
-    - Solid portion shows used/budget amount
-    - Striped portion shows return (underuse) or extra charge (overuse)
+    POT-BASED RULES:
+    - Pot (voorschot) = fixed 400px baseline (always)
+    - Underuse: solid = (used/pot) * 400px, stripe fills rest to 400px
+    - Overflow: solid fills 400px + small 50px extension with notch
     
     Args:
-        voorschot: The prepaid/budget amount
+        voorschot: The prepaid/budget amount (THE POT)
         gebruikt_or_totaal: Amount used
         is_overfilled: True if usage exceeded budget
         label_gebruikt: Text for used portion
         label_extra_or_terug: Text for stripe portion
-        width: FIXED width (all bars same)
-        height: FIXED height (all bars same)
+        pot_width: FIXED width representing the pot (400px)
+        height: Bar height (40px)
     
     Returns:
         SVG markup as string
     """
     
     border_radius = height / 2
+    extension_width = 50  # Fixed extension for overflow
     
-    # Calculate what percentage of bar to fill solid vs striped
+    # Prevent division by zero
     if voorschot <= 0:
-        voorschot = 1  # Prevent division by zero
+        voorschot = 1
     
     if is_overfilled:
-        # OVERUSE: Budget portion is solid, excess is striped
-        # Show ~70% solid (budget), ~30% stripe (extra charge)
-        solid_pct = 70
-        stripe_pct = 30
-        stripe_color = "#BDBDBD"  # Grey for charges
-        marker_x = (solid_pct / 100) * width
+        # OVERFLOW: Pot fills pot_width + small fixed extension
+        total_width = pot_width + extension_width
+        used_width = pot_width  # Usage fills entire base
+        show_extension = True
         show_marker = True
-    else:
-        # UNDERUSE: Used portion is solid, return portion is striped
-        if gebruikt_or_totaal >= voorschot:
-            # 100% usage
-            solid_pct = 100
-            stripe_pct = 0
-        else:
-            solid_pct = (gebruikt_or_totaal / voorschot) * 100
-            stripe_pct = 100 - solid_pct
         
-        stripe_color = "#81C784"  # Green for returns
-        marker_x = 0
+        # Labels
+        label_used = label_gebruikt if label_gebruikt else f"€{voorschot:.0f}"
+        label_overflow_text = label_extra_or_terug if label_extra_or_terug else f"+€{gebruikt_or_totaal - voorschot:.0f}"
+    else:
+        # UNDERUSE or PERFECT FIT: Usage within pot
+        total_width = pot_width
+        used_width = (gebruikt_or_totaal / voorschot) * pot_width
+        show_extension = False
         show_marker = False
+        
+        # Labels
+        label_used = label_gebruikt if label_gebruikt else f"€{gebruikt_or_totaal:.0f}"
+        label_return = label_extra_or_terug if label_extra_or_terug else f"€{voorschot - gebruikt_or_totaal:.0f}"
     
-    # Ensure visibility
-    if solid_pct > 0 and solid_pct < 5:
-        solid_pct = 5
-    if stripe_pct > 0 and stripe_pct < 5:
-        stripe_pct = 5
+    # Ensure minimum visibility
+    if used_width > 0 and used_width < 5:
+        used_width = 5
     
-    # Calculate pixel widths
-    solid_width = (solid_pct / 100) * width
-    stripe_x = solid_width
-    stripe_width = width - solid_width
+    # Build SVG with unique pattern ID
+    import random
+    pattern_id = f"stripes_{random.randint(1000, 9999)}"
     
-    # Build SVG
-    svg = f'''<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <pattern id="stripes" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+    svg_parts = [f'<svg width="{total_width}" height="{height}" viewBox="0 0 {total_width} {height}" xmlns="http://www.w3.org/2000/svg">']
+    
+    # Defs for stripe pattern
+    svg_parts.append(f'''    <defs>
+        <pattern id="{pattern_id}" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
             <rect width="4" height="8" fill="white" opacity="0.4"/>
         </pattern>
-    </defs>
+    </defs>''')
     
-    <!-- Background rounded pill -->
-    <rect x="0" y="0" width="{width}" height="{height}" rx="{border_radius}" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1"/>
+    # LAYER 1: Base bar - green background (represents full pot/return)
+    svg_parts.append(f'    <rect x="0" y="0" width="{pot_width}" height="{height}" rx="{border_radius}" fill="#81C784" stroke="#E0E0E0" stroke-width="1"/>')
     
-    <!-- Solid portion (used/budget) -->
-    <rect x="0" y="0" width="{solid_width}" height="{height}" rx="{border_radius}" fill="#FFE082"/>
+    # LAYER 2: Yellow overlay (used portion)
+    svg_parts.append(f'    <rect x="0" y="0" width="{used_width}" height="{height}" rx="{border_radius}" fill="#FFE082"/>')
     
-    <!-- Striped portion (return/extra) -->
-    {f'<rect x="{stripe_x}" y="0" width="{stripe_width}" height="{height}" rx="{border_radius}" fill="{stripe_color}"/>' if stripe_width > 5 else ''}
-    {f'<rect x="{stripe_x}" y="0" width="{stripe_width}" height="{height}" rx="{border_radius}" fill="url(#stripes)"/>' if stripe_width > 5 else ''}
+    if is_overfilled:
+        # LAYER 3: Overflow extension (red striped)
+        svg_parts.append(f'    <rect x="{pot_width}" y="0" width="{extension_width}" height="{height}" rx="{border_radius}" fill="#EF9A9A"/>')
+        svg_parts.append(f'    <rect x="{pot_width}" y="0" width="{extension_width}" height="{height}" rx="{border_radius}" fill="url(#{pattern_id})"/>')
+        
+        # Pot boundary marker
+        if show_marker:
+            svg_parts.append(f'    <line x1="{pot_width}" y1="-5" x2="{pot_width}" y2="{height + 5}" stroke="#D32F2F" stroke-width="2" stroke-dasharray="4,4" opacity="0.6"/>')
+        
+        # Labels
+        if used_width > 40:
+            svg_parts.append(f'    <text x="{used_width/2}" y="{height/2 + 5}" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600" font-family="Barlow, sans-serif">{label_used}</text>')
+        if extension_width > 30:
+            svg_parts.append(f'    <text x="{pot_width + extension_width/2}" y="{height/2 + 5}" text-anchor="middle" fill="#C62828" font-size="11" font-weight="600" font-family="Barlow, sans-serif">{label_overflow_text}</text>')
+    else:
+        # Labels for underuse/perfect fit
+        return_width = pot_width - used_width
+        if used_width > 40:
+            svg_parts.append(f'    <text x="{used_width/2}" y="{height/2 + 5}" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600" font-family="Barlow, sans-serif">{label_used}</text>')
+        if return_width > 40:
+            svg_parts.append(f'    <text x="{used_width + return_width/2}" y="{height/2 + 5}" text-anchor="middle" fill="#2C3E50" font-size="11" font-weight="600" font-family="Barlow, sans-serif">{label_return}</text>')
     
-    <!-- Budget marker (dashed line) -->
-    {f'<line x1="{marker_x}" y1="-5" x2="{marker_x}" y2="{height + 5}" stroke="#2C3E50" stroke-width="2" stroke-dasharray="4,4" opacity="0.4"/>' if show_marker else ''}
+    svg_parts.append('</svg>')
     
-    <!-- Text labels -->
-    {f'<text x="{solid_width/2}" y="{height/2 + 5}" text-anchor="middle" fill="#2C3E50" font-size="13" font-weight="600" font-family="Barlow, sans-serif">{label_gebruikt}</text>' if label_gebruikt and solid_width > 40 else ''}
-    {f'<text x="{stripe_x + stripe_width/2}" y="{height/2 + 5}" text-anchor="middle" fill="#2C3E50" font-size="13" font-weight="600" font-family="Barlow, sans-serif">{label_extra_or_terug}</text>' if label_extra_or_terug and stripe_width > 40 else ''}
-</svg>'''
-    
-    return svg
+    return '\n'.join(svg_parts)
 
 
 def generate_start_bar_svg(
@@ -132,6 +144,46 @@ def generate_start_bar_svg(
 </svg>'''
     
     return svg
+
+
+def generate_caption(
+    pot: float,
+    used: float,
+    refund: float = 0,
+    overflow: float = 0
+) -> str:
+    """
+    Generate human-readable caption for bar visualization.
+    
+    Args:
+        pot: The voorschot (prepaid amount / pot)
+        used: Amount used
+        refund: Amount to be refunded (if underuse)
+        overflow: Amount over budget (if overuse)
+    
+    Returns:
+        Human-readable caption string
+    """
+    
+    # Zero usage
+    if used <= 0:
+        return "Nog geen verbruik geregistreerd."
+    
+    # Perfect fit
+    if abs(used - pot) < 0.01:  # Account for float precision
+        return "Uw voorschot dekte uw volledige verbruik."
+    
+    # Overflow scenario
+    if overflow > 0 or used > pot:
+        actual_overflow = overflow if overflow > 0 else (used - pot)
+        return f"Uw verbruik (€{used:.2f}) ging over uw voorschot (€{pot:.2f}). U betaalt €{actual_overflow:.2f} bij."
+    
+    # Underuse scenario
+    if refund > 0:
+        return f"Van uw €{pot:.2f} voorschot is €{used:.2f} gebruikt. U krijgt €{refund:.2f} terug."
+    
+    # Fallback (shouldn't normally reach here)
+    return f"Verbruik: €{used:.2f} van €{pot:.2f} voorschot."
 
 
 if __name__ == "__main__":

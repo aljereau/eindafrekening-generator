@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Eindafrekening {{ client.name }}</title>
+    <title>Eindafrekening Test Case: Small Overflow</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap');
 
@@ -189,7 +189,7 @@
             display: grid;
             grid-template-columns: 200px 1fr 120px;
             gap: var(--spacing-lg);
-            align-items: center;
+            align-items: start;
             padding: var(--spacing-md) 0;
             border-bottom: 1px solid var(--color-border);
         }
@@ -201,6 +201,9 @@
         /* Column 1: START */
         .start-section {
             text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .category-label {
@@ -208,26 +211,38 @@
             font-weight: 700;
             font-size: 16px;
             color: var(--color-brand-dark);
-            margin-bottom: 8px;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .start-bar-wrapper {
+            height: 40px;
+            display: flex;
+            align-items: center;
         }
 
         .prepaid-label {
             font-size: 11px;
             color: var(--color-text-light);
-            margin-top: 6px;
+            height: 16px;
+            line-height: 16px;
         }
 
         /* Column 2: VERBLIJF (SVG Bars) */
         .usage-section {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
+        }
+
+        .usage-section-spacer {
+            height: 20px;
         }
 
         .svg-bar-wrapper {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             height: 40px;
         }
 
@@ -238,21 +253,35 @@
         .usage-info {
             font-size: 11px;
             color: var(--color-text-muted);
-            text-align: center;
+            text-align: left;
         }
 
         .bar-caption {
             font-size: 12px;
             color: var(--color-text-muted);
-            text-align: center;
-            margin-top: 8px;
+            text-align: left;
             line-height: 1.4;
             font-style: normal;
+            height: 32px;
         }
 
         /* Column 3: RESULT */
         .result-section {
             text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .result-section-spacer {
+            height: 20px;
+        }
+
+        .result-value-wrapper {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
         }
 
         .result-value {
@@ -448,17 +477,16 @@
         <!-- HEADER -->
         <div class="header">
             <div class="brand">
-                {% if logo_b64 %}
-                <img src="{{ logo_b64 }}" class="brand-logo-img" alt="RyanRent Logo">
-                {% else %}
                 <div class="brand-logo">RR</div>
-                {% endif %}
-                <h1 style="margin: 0; font-size: 22px; font-weight: 700; color: var(--color-brand-dark);">Eindoverzicht verblijf</h1>
+                <div class="brand-info">
+                    <h1>RyanRent</h1>
+                    <p>Eindoverzicht Verblijf</p>
+                </div>
             </div>
             <div class="guest-details">
-                <div class="guest-name">{{ client.name }}</div>
-                <div class="property-name">{{ object.address }}</div>
-                <div class="period-badge">{{ period.checkin_date }} - {{ period.checkout_date }} ({{ period.days }} dagen)</div>
+                <div class="guest-name">Test Case: Small Overflow</div>
+                <div class="property-name">Teststraat 123</div>
+                <div class="period-badge">2024-08-01 - 2024-08-15 (14 dagen)</div>
             </div>
         </div>
 
@@ -471,11 +499,11 @@
         <div class="section-headers">
             <div class="section-header">
                 <div class="header-title">Start</div>
-                <div class="header-subtitle">Vooraf betaald ({{ period.checkin_date }})</div>
+                <div class="header-subtitle">Vooraf betaald</div>
             </div>
             <div class="section-header">
                 <div class="header-title">Verblijf</div>
-                <div class="header-subtitle">Gebruik tijdens verblijf ({{ verblijfsperiode }})</div>
+                <div class="header-subtitle">Gebruik tijdens verblijf</div>
             </div>
             <div class="section-header">
                 <div class="header-title">Resultaat</div>
@@ -489,17 +517,35 @@
         <div class="budget-row">
             <div class="start-section">
                 <div class="category-label">BORG</div>
-                {{ financial.borg.svg_start_bar|safe }}
+                <div class="start-bar-wrapper">
+                    <svg width="200" height="40" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="200" height="40" rx="20.0" fill="#A5D6A7" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+    <text x="100.0" y="25.0" text-anchor="middle" fill="#1B5E20" font-size="15" font-weight="600" font-family="Barlow, sans-serif">€250</text>
+</svg>
+                </div>
                 <div class="prepaid-label">Gereserveerd</div>
             </div>
             <div class="usage-section">
+                <div class="usage-section-spacer"></div>
                 <div class="svg-bar-wrapper">
-                    {{ financial.borg.svg_bar|safe }}
+                    <svg width="400" height="40" viewBox="0 0 400 40" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <pattern id="stripes_2042" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+            <rect width="4" height="8" fill="white" opacity="0.4"/>
+        </pattern>
+    </defs>
+    <rect x="0" y="0" width="400" height="40" rx="20.0" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1"/>
+    <rect x="0" y="0" width="400" height="40" rx="20.0" fill="#FFE082"/>
+    <text x="200.0" y="25.0" text-anchor="middle" fill="#2C3E50" font-size="13" font-weight="600" font-family="Barlow, sans-serif">€250</text>
+</svg>
                 </div>
-                <div class="bar-caption">{{ financial.borg.caption }}</div>
+                <div class="bar-caption">Uw voorschot dekte uw volledige verbruik.</div>
             </div>
             <div class="result-section">
-                <div class="result-value text-return">+€{{ "%.0f"|format(financial.borg.terug) }}</div>
+                <div class="result-section-spacer"></div>
+                <div class="result-value-wrapper">
+                    <div class="result-value text-return">+€0</div>
+                </div>
             </div>
         </div>
 
@@ -507,21 +553,39 @@
         <div class="budget-row">
             <div class="start-section">
                 <div class="category-label">GWE</div>
-                {{ financial.gwe.svg_start_bar|safe }}
+                <div class="start-bar-wrapper">
+                    <svg width="200" height="40" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="200" height="40" rx="20.0" fill="#A5D6A7" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+    <text x="100.0" y="25.0" text-anchor="middle" fill="#1B5E20" font-size="15" font-weight="600" font-family="Barlow, sans-serif">€250</text>
+</svg>
+                </div>
                 <div class="prepaid-label">Voorschot G/W/E</div>
             </div>
             <div class="usage-section">
+                <div class="usage-section-spacer"></div>
                 <div class="svg-bar-wrapper">
-                    {{ financial.gwe.svg_bar|safe }}
+                    <svg width="500" height="40" viewBox="0 0 500 40" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <pattern id="stripes_2939" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+            <rect width="4" height="8" fill="white" opacity="0.4"/>
+        </pattern>
+    </defs>
+    <rect x="0" y="0" width="400" height="40" rx="20.0" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1"/>
+    <rect x="0" y="0" width="400" height="40" rx="20.0" fill="#FFE082"/>
+    <rect x="400" y="0" width="100" height="40" rx="20.0" fill="#EF9A9A"/>
+    <rect x="400" y="0" width="100" height="40" rx="20.0" fill="url(#stripes_2939)"/>
+    <line x1="400" y1="-5" x2="400" y2="45" stroke="#D32F2F" stroke-width="2" stroke-dasharray="4,4" opacity="0.6"/>
+    <text x="200.0" y="25.0" text-anchor="middle" fill="#2C3E50" font-size="13" font-weight="600" font-family="Barlow, sans-serif">€250</text>
+    <text x="450.0" y="25.0" text-anchor="middle" fill="#C62828" font-size="11" font-weight="600" font-family="Barlow, sans-serif">+€25</text>
+</svg>
                 </div>
-                <div class="bar-caption">{{ financial.gwe.caption }}</div>
+                <div class="bar-caption">Voorschot: €250 · Verbruik: €275 · Extra te betalen: €25</div>
             </div>
             <div class="result-section">
-                {% if financial.gwe.is_overfilled %}
-                    <div class="result-value text-charge">€{{ "%.0f"|format(financial.gwe.extra) }}</div>
-                {% else %}
-                    <div class="result-value text-return">+€{{ "%.0f"|format(financial.gwe.terug) }}</div>
-                {% endif %}
+                <div class="result-section-spacer"></div>
+                <div class="result-value-wrapper">
+                        <div class="result-value text-charge">€25</div>
+                </div>
             </div>
         </div>
 
@@ -529,21 +593,39 @@
         <div class="budget-row">
             <div class="start-section">
                 <div class="category-label">SCHOONMAAK</div>
-                {{ financial.cleaning.svg_start_bar|safe }}
+                <div class="start-bar-wrapper">
+                    <svg width="200" height="40" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="200" height="40" rx="20.0" fill="#A5D6A7" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+    <text x="100.0" y="25.0" text-anchor="middle" fill="#1B5E20" font-size="15" font-weight="600" font-family="Barlow, sans-serif">€250</text>
+</svg>
+                </div>
                 <div class="prepaid-label">Basis pakket</div>
             </div>
             <div class="usage-section">
+                <div class="usage-section-spacer"></div>
                 <div class="svg-bar-wrapper">
-                    {{ financial.cleaning.svg_bar|safe }}
+                    <svg width="500" height="40" viewBox="0 0 500 40" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <pattern id="stripes_2763" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+            <rect width="4" height="8" fill="white" opacity="0.4"/>
+        </pattern>
+    </defs>
+    <rect x="0" y="0" width="400" height="40" rx="20.0" fill="#F5F5F5" stroke="#E0E0E0" stroke-width="1"/>
+    <rect x="0" y="0" width="400" height="40" rx="20.0" fill="#FFE082"/>
+    <rect x="400" y="0" width="100" height="40" rx="20.0" fill="#EF9A9A"/>
+    <rect x="400" y="0" width="100" height="40" rx="20.0" fill="url(#stripes_2763)"/>
+    <line x1="400" y1="-5" x2="400" y2="45" stroke="#D32F2F" stroke-width="2" stroke-dasharray="4,4" opacity="0.6"/>
+    <text x="200.0" y="25.0" text-anchor="middle" fill="#2C3E50" font-size="13" font-weight="600" font-family="Barlow, sans-serif">€250</text>
+    <text x="450.0" y="25.0" text-anchor="middle" fill="#C62828" font-size="11" font-weight="600" font-family="Barlow, sans-serif">+€25</text>
+</svg>
                 </div>
-                <div class="bar-caption">{{ financial.cleaning.caption }}</div>
+                <div class="bar-caption">Voorschot: €250 · Verbruik: €275 · Extra te betalen: €25</div>
             </div>
             <div class="result-section">
-                {% if financial.cleaning.is_overfilled %}
-                    <div class="result-value text-charge">€{{ "%.0f"|format(financial.cleaning.extra_bedrag) }}</div>
-                {% else %}
-                    <div class="result-value text-return">+€{{ "%.0f"|format(financial.cleaning.terug) }}</div>
-                {% endif %}
+                <div class="result-section-spacer"></div>
+                <div class="result-value-wrapper">
+                        <div class="result-value text-charge">€25</div>
+                </div>
             </div>
         </div>
 
@@ -552,31 +634,22 @@
             <div class="detail-card">
                 <div class="detail-header">
                     <span>BORG SPECIFICATIE</span>
-                    <span>€{{ "%.2f"|format(financial.borg.gebruikt) }}</span>
+                    <span>€250.00</span>
                 </div>
-                {% if damage_details %}
-                {% for schade in damage_details %}
-                <div class="detail-item">
-                    <span>{{ schade.omschrijving }}</span>
-                    <span>€{{ "%.2f"|format(schade.bedrag) }}</span>
-                </div>
-                {% endfor %}
-                {% else %}
                 <div class="detail-item">
                     <span>Algemene inhoudingen</span>
-                    <span>€{{ "%.2f"|format(financial.borg.gebruikt) }}</span>
+                    <span>€250.00</span>
                 </div>
-                {% endif %}
             </div>
 
             <div class="detail-card">
                 <div class="detail-header">
                     <span>GWE SPECIFICATIE</span>
-                    <span>€{{ "%.2f"|format(financial.gwe.totaal_incl) }}</span>
+                    <span>€275.00</span>
                 </div>
                 <div class="detail-item">
                     <span>Totaal Gas/Water/Elektra verbruik</span>
-                    <span>€{{ "%.2f"|format(financial.gwe.totaal_incl) }}</span>
+                    <span>€275.00</span>
                 </div>
                 <div class="detail-item">
                     <span style="color: var(--color-text-light); font-size: 11px;">
@@ -608,10 +681,10 @@
                             </svg>
                             Borg
                         </td>
-                        <td>€{{ "%.2f"|format(financial.borg.voorschot) }}</td>
-                        <td>€{{ "%.2f"|format(financial.borg.gebruikt) }}</td>
-                        <td class="{{ 'text-return' if financial.borg.terug >= 0 else 'text-charge' }}">
-                            {{ "+€%.2f"|format(financial.borg.terug) if financial.borg.terug >= 0 else "€%.2f"|format(abs(financial.borg.terug)) }}
+                        <td>€250.00</td>
+                        <td>€250.00</td>
+                        <td class="text-return">
+                            +€0.00
                         </td>
                     </tr>
                     <tr>
@@ -621,10 +694,10 @@
                             </svg>
                             G/W/E
                         </td>
-                        <td>€{{ "%.2f"|format(financial.gwe.voorschot) }}</td>
-                        <td>€{{ "%.2f"|format(financial.gwe.totaal_incl) }}</td>
-                        <td class="{{ 'text-return' if not financial.gwe.is_overfilled else 'text-charge' }}">
-                            {{ "+€%.2f"|format(financial.gwe.terug) if not financial.gwe.is_overfilled else "€%.2f"|format(financial.gwe.extra) }}
+                        <td>€250.00</td>
+                        <td>€275.00</td>
+                        <td class="text-charge">
+                            €25.00
                         </td>
                     </tr>
                     <tr>
@@ -634,16 +707,16 @@
                             </svg>
                             Schoonmaak
                         </td>
-                        <td>€{{ "%.2f"|format(financial.cleaning.voorschot) }}</td>
-                        <td>€{{ "%.2f"|format(financial.cleaning.totaal_uren) }}</td>
-                        <td class="{{ 'text-return' if not financial.cleaning.is_overfilled else 'text-charge' }}">
-                            {{ "+€%.2f"|format(financial.cleaning.terug) if not financial.cleaning.is_overfilled else "€%.2f"|format(financial.cleaning.extra_bedrag) }}
+                        <td>€250.00</td>
+                        <td>€5.50</td>
+                        <td class="text-charge">
+                            €25.00
                         </td>
                     </tr>
                     <tr class="row-total">
                         <td colspan="3" style="text-align: right;">TOTAAL NETTO:</td>
                         <td>
-                            {{ "+€%.2f"|format(financial.totals.totaal_eindafrekening) if financial.totals.totaal_eindafrekening_is_positive else "€%.2f"|format(financial.totals.totaal_eindafrekening|abs) }}
+                            €50.00
                         </td>
                     </tr>
                 </tbody>
@@ -652,7 +725,7 @@
 
         <!-- FOOTER -->
         <div class="footer">
-            RyanRent | Gegenereerd op {{ generated_date }}<br>
+            RyanRent | Gegenereerd op 20-11-2025 13:03<br>
             Voor vragen: info@ryanrent.nl
         </div>
 
