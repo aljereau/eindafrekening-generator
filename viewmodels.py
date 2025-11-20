@@ -17,7 +17,7 @@ from entities import (
     GWEMeterstanden
 )
 from calculator import Calculator
-from svg_bars import generate_bar_svg, generate_start_bar_svg, generate_caption
+from svg_bars import generate_bar_svg, generate_start_bar_svg, generate_caption, generate_overflow_indicator_svg
 
 
 def date_to_str(d: date) -> str:
@@ -92,6 +92,7 @@ def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Di
             },
             "cleaning": {
                 "pakket_type": cleaning.pakket_type,
+                "pakket_naam": "Basis Schoonmaak" if cleaning.pakket_type == "5_uur" else "Intensief Schoonmaak",
                 "inbegrepen_uren": cleaning.inbegrepen_uren,
                 "totaal_uren": cleaning.totaal_uren,
                 "voorschot": cleaning.voorschot,
@@ -240,28 +241,29 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
         voorschot=borg['voorschot']
     )
     financial['borg']['bars'] = borg_bars
-    
+    financial['borg']['is_overfilled'] = False  # Borg never overfills (restschade handled separately)
+
     # Generate START bar SVG (solid prepaid amount)
     borg_start_svg = generate_start_bar_svg(
         amount=borg['voorschot'],
         label=f"€{borg['voorschot']:.0f}",
-        width=200,
-        height=40
+        width=280,
+        height=30
     )
     financial['borg']['svg_start_bar'] = borg_start_svg
-    
+
     # Generate VERBLIJF bar SVG (used vs return)
     borg_svg = generate_bar_svg(
         voorschot=borg['voorschot'],
         gebruikt_or_totaal=borg['gebruikt'],
-        is_overfilled=False,  # Borg never overfills (restschade handled separately)
+        is_overfilled=False,
         label_gebruikt=f"€{borg['gebruikt']:.0f}",
         label_extra_or_terug=f"€{borg['terug']:.0f}",
-        pot_width=400,
-        height=40
+        pot_width=280,
+        height=30
     )
     financial['borg']['svg_bar'] = borg_svg
-    
+
     # Generate human-readable caption
     borg_caption = generate_caption(
         pot=borg['voorschot'],
@@ -279,28 +281,35 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
         voorschot=gwe['voorschot']
     )
     financial['gwe']['bars'] = gwe_bars
-    
+
     # Generate START bar SVG
     gwe_start_svg = generate_start_bar_svg(
         amount=gwe['voorschot'],
         label=f"€{gwe['voorschot']:.0f}",
-        width=200,
-        height=40
+        width=280,
+        height=30
     )
     financial['gwe']['svg_start_bar'] = gwe_start_svg
-    
-    # Generate VERBLIJF bar SVG
+
+    # Generate VERBLIJF bar SVG (always matches START width)
     if gwe['is_overfilled']:
-        # Overuse scenario
+        # Overuse scenario - bar fills pot, overflow shows separately
         gwe_svg = generate_bar_svg(
             voorschot=gwe['voorschot'],
-            gebruikt_or_totaal=gwe['totaal_incl'],
-            is_overfilled=True,
+            gebruikt_or_totaal=gwe['voorschot'],  # Bar fills to pot limit
+            is_overfilled=False,  # Bar itself doesn't overflow
             label_gebruikt=f"€{gwe['voorschot']:.0f}",
-            label_extra_or_terug=f"+€{gwe['extra']:.0f}",
-            pot_width=400,
-            height=40
+            label_extra_or_terug="",
+            pot_width=280,
+            height=30
         )
+        # Generate overflow indicator
+        gwe_overflow_svg = generate_overflow_indicator_svg(
+            amount=gwe['extra'],
+            width=80,
+            height=24
+        )
+        financial['gwe']['overflow_svg'] = gwe_overflow_svg
     else:
         # Underuse scenario
         gwe_svg = generate_bar_svg(
@@ -309,11 +318,12 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
             is_overfilled=False,
             label_gebruikt=f"€{gwe['totaal_incl']:.0f}",
             label_extra_or_terug=f"€{gwe['terug']:.0f}",
-            pot_width=400,
-            height=40
+            pot_width=280,
+            height=30
         )
+        financial['gwe']['overflow_svg'] = ""  # No overflow
     financial['gwe']['svg_bar'] = gwe_svg
-    
+
     # Generate human-readable caption
     if gwe['is_overfilled']:
         gwe_caption = generate_caption(
@@ -332,62 +342,56 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
     financial['gwe']['caption'] = gwe_caption
     
     # CLEANING - Bar percentages and SVG
+    # NOTE: Cleaning packages are ALWAYS fully used (never refunded)
+    # The bar always shows the full package amount (yellow)
+    # Extra hours appear as overflow indicator
     cleaning = financial['cleaning']
-    cleaning_gebruikt = cleaning['voorschot'] + cleaning['extra_bedrag']
-    cleaning_bars = Calculator.calculate_bar_percentages(
-        gebruikt=cleaning_gebruikt,
-        voorschot=cleaning['voorschot']
-    )
-    financial['cleaning']['bars'] = cleaning_bars
-    
+
+    # Cleaning is always 100% used (the package is consumed)
+    financial['cleaning']['bars'] = {
+        'gebruikt_pct': 100.0,
+        'terug_pct': 0.0,
+        'extra_pct': 0.0 if cleaning['extra_bedrag'] == 0 else (cleaning['extra_bedrag'] / cleaning['voorschot']) * 100,
+        'is_overfilled': cleaning['extra_bedrag'] > 0
+    }
+
     # Generate START bar SVG
     cleaning_start_svg = generate_start_bar_svg(
         amount=cleaning['voorschot'],
         label=f"€{cleaning['voorschot']:.0f}",
-        width=200,
-        height=40
+        width=280,
+        height=30
     )
     financial['cleaning']['svg_start_bar'] = cleaning_start_svg
-    
-    # Generate VERBLIJF bar SVG
-    if cleaning['is_overfilled']:
-        # Overuse scenario
-        cleaning_svg = generate_bar_svg(
-            voorschot=cleaning['voorschot'],
-            gebruikt_or_totaal=cleaning_gebruikt,
-            is_overfilled=True,
-            label_gebruikt=f"€{cleaning['voorschot']:.0f}",
-            label_extra_or_terug=f"+€{cleaning['extra_bedrag']:.0f}",
-            pot_width=400,
-            height=40
-        )
-        # Caption for overflow
-        cleaning_caption = generate_caption(
-            pot=cleaning['voorschot'],
-            used=cleaning_gebruikt,
-            refund=0,
-            overflow=cleaning['extra_bedrag']
-        )
-    else:
-        # Underuse scenario
-        cleaning_totaal_used = cleaning['totaal_uren'] * (cleaning['voorschot'] / cleaning['inbegrepen_uren']) if cleaning['inbegrepen_uren'] > 0 else 0
-        cleaning_svg = generate_bar_svg(
-            voorschot=cleaning['voorschot'],
-            gebruikt_or_totaal=cleaning_totaal_used,
-            is_overfilled=False,
-            label_gebruikt=f"€{cleaning_totaal_used:.0f}",
-            label_extra_or_terug=f"€{cleaning['terug']:.0f}",
-            pot_width=400,
-            height=40
-        )
-        # Caption for underuse
-        cleaning_caption = generate_caption(
-            pot=cleaning['voorschot'],
-            used=cleaning_totaal_used,
-            refund=cleaning['terug'],
-            overflow=0
-        )
+
+    # Generate VERBLIJF bar SVG - ALWAYS shows full package as used (yellow)
+    # Cleaning package is always consumed, never returned
+    cleaning_svg = generate_bar_svg(
+        voorschot=cleaning['voorschot'],
+        gebruikt_or_totaal=cleaning['voorschot'],  # Always full package
+        is_overfilled=False,  # Bar itself doesn't overflow (shows full yellow)
+        label_gebruikt=f"€{cleaning['voorschot']:.0f}",
+        label_extra_or_terug="",  # No return label for cleaning
+        pot_width=280,
+        height=30
+    )
     financial['cleaning']['svg_bar'] = cleaning_svg
+
+    # Generate overflow indicator if extra hours were needed
+    if cleaning['extra_bedrag'] > 0:
+        cleaning_overflow_svg = generate_overflow_indicator_svg(
+            amount=cleaning['extra_bedrag'],
+            width=80,
+            height=24
+        )
+        financial['cleaning']['overflow_svg'] = cleaning_overflow_svg
+        # Caption showing extra hours cost
+        cleaning_caption = f"Pakket: €{cleaning['voorschot']:.0f} · Extra uren: €{cleaning['extra_bedrag']:.0f}"
+    else:
+        financial['cleaning']['overflow_svg'] = ""  # No overflow
+        # Caption showing package was sufficient
+        cleaning_caption = f"Pakket: €{cleaning['voorschot']:.0f} · Geen extra uren"
+
     financial['cleaning']['caption'] = cleaning_caption
     
     return onepager_vm

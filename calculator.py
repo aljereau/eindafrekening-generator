@@ -517,9 +517,13 @@ def recalculate_all(data: Dict[str, Any]) -> Dict[str, Any]:
                 regel.tarief_excl
             )
     
-    # Recalculate GWE totals
-    if 'gwe_regels' in data:
-        data['gwe_totalen'] = calc.calculate_gwe_totalen(data['gwe_regels'])
+    # Recalculate GWE totals - only if there are detail lines with actual costs
+    # If no detail lines with costs exist, preserve existing totals from Excel
+    if 'gwe_regels' in data and len(data['gwe_regels']) > 0:
+        # Check if any regels have non-zero costs (not just placeholder rows)
+        has_costs = any(regel.kosten_excl > 0 for regel in data['gwe_regels'])
+        if has_costs:
+            data['gwe_totalen'] = calc.calculate_gwe_totalen(data['gwe_regels'])
     
     # Recalculate damage regel bedragen
     if 'damage_regels' in data:
@@ -529,9 +533,13 @@ def recalculate_all(data: Dict[str, Any]) -> Dict[str, Any]:
                 regel.tarief_excl
             )
     
-    # Recalculate damage totals
-    if 'damage_regels' in data:
-        data['damage_totalen'] = calc.calculate_damage_totalen(data['damage_regels'])
+    # Recalculate damage totals - only if there are detail lines with actual amounts
+    # If no detail lines with amounts exist, preserve existing totals from Excel
+    if 'damage_regels' in data and len(data['damage_regels']) > 0:
+        # Check if any regels have non-zero amounts (not just placeholder rows)
+        has_amounts = any(regel.bedrag_excl > 0 for regel in data['damage_regels'])
+        if has_amounts:
+            data['damage_totalen'] = calc.calculate_damage_totalen(data['damage_regels'])
     
     # Recalculate cleaning
     if 'cleaning' in data:
@@ -543,13 +551,22 @@ def recalculate_all(data: Dict[str, Any]) -> Dict[str, Any]:
             cleaning.voorschot
         )
     
-    # Recalculate deposit
+    # Recalculate deposit - preserve gebruikt value from Excel
     if 'deposit' in data and 'damage_totalen' in data:
-        # Get voorschot from existing deposit or default
-        voorschot = data['deposit'].voorschot if 'deposit' in data else 0.0
-        data['deposit'] = calc.calculate_deposit(
-            voorschot,
-            data['damage_totalen'].totaal_incl
+        # NOTE: We preserve the 'gebruikt' value from Excel because deposits can be
+        # used for various purposes (damage, cleaning, other costs), not just damage.
+        # The Excel 'Borg_gebruikt' field is the source of truth.
+        existing_deposit = data['deposit']
+        voorschot = existing_deposit.voorschot
+        gebruikt = existing_deposit.gebruikt  # Preserve from Excel
+        terug = max(0, voorschot - gebruikt)
+
+        # Recalculate terug and restschade based on Excel's gebruikt value
+        data['deposit'] = Deposit(
+            voorschot=voorschot,
+            gebruikt=gebruikt,
+            terug=terug,
+            restschade=0  # Restschade would be handled separately if needed
         )
     
     return data

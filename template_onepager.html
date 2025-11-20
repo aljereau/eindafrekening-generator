@@ -36,12 +36,12 @@
             --color-bg-surface: #F8F9FA;
             --color-border: #E0E0E0;
 
-            /* Spacing */
-            --spacing-xs: 6px;
-            --spacing-sm: 12px;
-            --spacing-md: 20px;
-            --spacing-lg: 32px;
-            --spacing-xl: 48px;
+            /* Spacing - Compact for single-page print */
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 12px;
+            --spacing-lg: 16px;
+            --spacing-xl: 24px;
 
             --radius-sm: 6px;
             --radius-md: 12px;
@@ -184,12 +184,72 @@
             color: var(--color-brand-green);
         }
 
-        /* REDESIGNED BAR SYSTEM - Robust & Flexible */
+        /* Net Result Block */
+        .net-result-block {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 12px 16px;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--color-border);
+        }
+
+        .net-result-refund {
+            border-color: var(--color-positive);
+            background: var(--color-positive-bg);
+        }
+
+        .net-result-payment {
+            border-color: var(--color-neutral);
+            background: var(--color-neutral-bg);
+        }
+
+        .net-result-neutral {
+            border-color: var(--color-border);
+            background: var(--color-bg-surface);
+        }
+
+        .net-result-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text-muted);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .net-result-amount {
+            font-family: 'Barlow', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .net-result-refund .net-result-amount {
+            color: var(--color-positive);
+        }
+
+        .net-result-payment .net-result-amount {
+            color: var(--color-neutral);
+        }
+
+        .net-result-neutral .net-result-amount {
+            color: var(--color-text-main);
+        }
+
+        .net-result-text {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            line-height: 1.4;
+        }
+
+        /* UNIFIED BAR SYSTEM - Single continuous visual element */
         .budget-row {
             display: grid;
-            grid-template-columns: 200px 1fr 120px;
-            gap: var(--spacing-lg);
-            align-items: center;
+            grid-template-columns: 280px 1fr 120px;
+            gap: var(--spacing-md);
+            align-items: start;
             padding: var(--spacing-md) 0;
             border-bottom: 1px solid var(--color-border);
         }
@@ -201,6 +261,9 @@
         /* Column 1: START */
         .start-section {
             text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .category-label {
@@ -208,51 +271,93 @@
             font-weight: 700;
             font-size: 16px;
             color: var(--color-brand-dark);
-            margin-bottom: 8px;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .start-bar-wrapper {
+            height: 30px;
+            display: flex;
+            align-items: center;
         }
 
         .prepaid-label {
             font-size: 11px;
             color: var(--color-text-light);
-            margin-top: 6px;
+            height: 16px;
+            line-height: 16px;
         }
 
-        /* Column 2: VERBLIJF (SVG Bars) */
+        /* Column 2: UNIFIED USAGE + OVERFLOW SECTION */
         .usage-section {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
+        }
+
+        .usage-section-spacer {
+            height: 20px;
+        }
+
+        /* Unified bar container - holds both usage bar AND overflow extension */
+        .unified-bar-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 30px;
+            gap: 0;
         }
 
         .svg-bar-wrapper {
             display: flex;
             align-items: center;
-            justify-content: center;
-            height: 40px;
+            justify-content: flex-start;
+            height: 30px;
         }
 
         .svg-bar-wrapper svg {
             display: block;
         }
 
-        .usage-info {
-            font-size: 11px;
-            color: var(--color-text-muted);
-            text-align: center;
+        /* Overflow indicator - appears right after the bar */
+        .overflow-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            margin-left: 8px;
+        }
+
+        .overflow-indicator svg {
+            display: block;
         }
 
         .bar-caption {
             font-size: 12px;
             color: var(--color-text-muted);
-            text-align: center;
-            margin-top: 8px;
+            text-align: left;
             line-height: 1.4;
             font-style: normal;
+            height: 32px;
         }
 
         /* Column 3: RESULT */
         .result-section {
             text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .result-section-spacer {
+            height: 20px;
+        }
+
+        .result-value-wrapper {
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
         }
 
         .result-value {
@@ -272,15 +377,15 @@
         /* Section Headers */
         .section-headers {
             display: grid;
-            grid-template-columns: 200px 1fr 120px;
-            gap: var(--spacing-lg);
+            grid-template-columns: 280px 1fr 120px;
+            gap: var(--spacing-md);
             margin-bottom: var(--spacing-md);
             padding-bottom: var(--spacing-sm);
             border-bottom: 2px solid var(--color-border);
         }
 
         .section-header {
-            text-align: center;
+            text-align: left;
         }
 
         .section-header:first-child {
@@ -309,7 +414,7 @@
         /* Details Section */
         .details-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: var(--spacing-md);
             margin-top: var(--spacing-xl);
         }
@@ -397,13 +502,40 @@
             color: white;
         }
 
+        /* Meterstand Summary */
+        .meterstand-summary {
+            background: var(--color-bg-surface);
+            padding: 8px;
+            border-radius: 4px;
+            margin: 8px 0;
+            display: block;
+        }
+
+        /* Footer */
         .footer {
             margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 2px solid var(--color-border);
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 6px;
+            color: var(--color-text-muted);
+        }
+
+        .footer-label {
+            font-weight: 600;
+            color: var(--color-brand-dark);
+        }
+
+        .footer-contact {
+            margin-top: var(--spacing-md);
             text-align: center;
             font-size: 11px;
             color: var(--color-text-light);
-            padding-top: var(--spacing-md);
-            border-top: 1px solid var(--color-border);
         }
 
         /* Print Styles */
@@ -464,18 +596,39 @@
 
         <!-- INTRO -->
         <div class="intro-card">
-            <p><strong>Bedankt voor uw verblijf!</strong> Hieronder vindt u een duidelijk overzicht van uw voorschotten en de afrekening.</p>
+            <p>Bedankt voor uw verblijf. Hieronder vindt u een duidelijk overzicht van uw betaalde voorschotten en het daadwerkelijke verbruik tijdens uw verblijf.</p>
         </div>
+
+        <!-- NET RESULT BLOCK -->
+        {% if financial.totals.totaal_eindafrekening > 0 %}
+        <div class="net-result-block net-result-refund">
+            <div class="net-result-label">Netto resultaat</div>
+            <div class="net-result-amount">+€{{ "%.2f"|format(financial.totals.totaal_eindafrekening) }}</div>
+            <div class="net-result-text">U krijgt geld terug</div>
+        </div>
+        {% elif financial.totals.totaal_eindafrekening < 0 %}
+        <div class="net-result-block net-result-payment">
+            <div class="net-result-label">Netto resultaat</div>
+            <div class="net-result-amount">€{{ "%.2f"|format(financial.totals.totaal_eindafrekening|abs) }}</div>
+            <div class="net-result-text">Te betalen bedrag</div>
+        </div>
+        {% else %}
+        <div class="net-result-block net-result-neutral">
+            <div class="net-result-label">Netto resultaat</div>
+            <div class="net-result-amount">€0,00</div>
+            <div class="net-result-text">Uw afrekening is neutraal</div>
+        </div>
+        {% endif %}
 
         <!-- SECTION HEADERS -->
         <div class="section-headers">
             <div class="section-header">
                 <div class="header-title">Start</div>
-                <div class="header-subtitle">Vooraf betaald ({{ period.checkin_date }})</div>
+                <div class="header-subtitle">Vooraf betaald · {{ period.checkin_date }}</div>
             </div>
             <div class="section-header">
                 <div class="header-title">Verblijf</div>
-                <div class="header-subtitle">Gebruik tijdens verblijf ({{ verblijfsperiode }})</div>
+                <div class="header-subtitle">{{ period.checkin_date }} t/m {{ period.checkout_date }} ({{ period.days }} dagen)</div>
             </div>
             <div class="section-header">
                 <div class="header-title">Resultaat</div>
@@ -489,17 +642,30 @@
         <div class="budget-row">
             <div class="start-section">
                 <div class="category-label">BORG</div>
-                {{ financial.borg.svg_start_bar|safe }}
+                <div class="start-bar-wrapper">
+                    {{ financial.borg.svg_start_bar|safe }}
+                </div>
                 <div class="prepaid-label">Gereserveerd</div>
             </div>
             <div class="usage-section">
-                <div class="svg-bar-wrapper">
-                    {{ financial.borg.svg_bar|safe }}
+                <div class="usage-section-spacer"></div>
+                <div class="unified-bar-container">
+                    <div class="svg-bar-wrapper">
+                        {{ financial.borg.svg_bar|safe }}
+                    </div>
+                    {% if financial.borg.is_overfilled %}
+                    <div class="overflow-indicator">
+                        {{ financial.borg.overflow_svg|safe }}
+                    </div>
+                    {% endif %}
                 </div>
                 <div class="bar-caption">{{ financial.borg.caption }}</div>
             </div>
             <div class="result-section">
-                <div class="result-value text-return">+€{{ "%.0f"|format(financial.borg.terug) }}</div>
+                <div class="result-section-spacer"></div>
+                <div class="result-value-wrapper">
+                    <div class="result-value text-return">+€{{ "%.0f"|format(financial.borg.terug) }}</div>
+                </div>
             </div>
         </div>
 
@@ -507,21 +673,34 @@
         <div class="budget-row">
             <div class="start-section">
                 <div class="category-label">GWE</div>
-                {{ financial.gwe.svg_start_bar|safe }}
+                <div class="start-bar-wrapper">
+                    {{ financial.gwe.svg_start_bar|safe }}
+                </div>
                 <div class="prepaid-label">Voorschot G/W/E</div>
             </div>
             <div class="usage-section">
-                <div class="svg-bar-wrapper">
-                    {{ financial.gwe.svg_bar|safe }}
+                <div class="usage-section-spacer"></div>
+                <div class="unified-bar-container">
+                    <div class="svg-bar-wrapper">
+                        {{ financial.gwe.svg_bar|safe }}
+                    </div>
+                    {% if financial.gwe.is_overfilled %}
+                    <div class="overflow-indicator">
+                        {{ financial.gwe.overflow_svg|safe }}
+                    </div>
+                    {% endif %}
                 </div>
                 <div class="bar-caption">{{ financial.gwe.caption }}</div>
             </div>
             <div class="result-section">
-                {% if financial.gwe.is_overfilled %}
-                    <div class="result-value text-charge">€{{ "%.0f"|format(financial.gwe.extra) }}</div>
-                {% else %}
-                    <div class="result-value text-return">+€{{ "%.0f"|format(financial.gwe.terug) }}</div>
-                {% endif %}
+                <div class="result-section-spacer"></div>
+                <div class="result-value-wrapper">
+                    {% if financial.gwe.is_overfilled %}
+                        <div class="result-value text-charge">€{{ "%.0f"|format(financial.gwe.extra) }}</div>
+                    {% else %}
+                        <div class="result-value text-return">+€{{ "%.0f"|format(financial.gwe.terug) }}</div>
+                    {% endif %}
+                </div>
             </div>
         </div>
 
@@ -529,21 +708,34 @@
         <div class="budget-row">
             <div class="start-section">
                 <div class="category-label">SCHOONMAAK</div>
-                {{ financial.cleaning.svg_start_bar|safe }}
-                <div class="prepaid-label">Basis pakket</div>
+                <div class="start-bar-wrapper">
+                    {{ financial.cleaning.svg_start_bar|safe }}
+                </div>
+                <div class="prepaid-label">Gekozen pakket</div>
             </div>
             <div class="usage-section">
-                <div class="svg-bar-wrapper">
-                    {{ financial.cleaning.svg_bar|safe }}
+                <div class="usage-section-spacer"></div>
+                <div class="unified-bar-container">
+                    <div class="svg-bar-wrapper">
+                        {{ financial.cleaning.svg_bar|safe }}
+                    </div>
+                    {% if financial.cleaning.is_overfilled %}
+                    <div class="overflow-indicator">
+                        {{ financial.cleaning.overflow_svg|safe }}
+                    </div>
+                    {% endif %}
                 </div>
                 <div class="bar-caption">{{ financial.cleaning.caption }}</div>
             </div>
             <div class="result-section">
-                {% if financial.cleaning.is_overfilled %}
-                    <div class="result-value text-charge">€{{ "%.0f"|format(financial.cleaning.extra_bedrag) }}</div>
-                {% else %}
-                    <div class="result-value text-return">+€{{ "%.0f"|format(financial.cleaning.terug) }}</div>
-                {% endif %}
+                <div class="result-section-spacer"></div>
+                <div class="result-value-wrapper">
+                    {% if financial.cleaning.extra_bedrag > 0 %}
+                        <div class="result-value text-charge">-€{{ "%.0f"|format(financial.cleaning.extra_bedrag) }}</div>
+                    {% else %}
+                        <div class="result-value text-neutral">€0</div>
+                    {% endif %}
+                </div>
             </div>
         </div>
 
@@ -574,15 +766,35 @@
                     <span>GWE SPECIFICATIE</span>
                     <span>€{{ "%.2f"|format(financial.gwe.totaal_incl) }}</span>
                 </div>
+                <div class="detail-item meterstand-summary">
+                    <span style="font-family: monospace; font-size: 11px;">Meterstanden tijdens verblijf</span>
+                </div>
                 <div class="detail-item">
-                    <span>Totaal Gas/Water/Elektra verbruik</span>
-                    <span>€{{ "%.2f"|format(financial.gwe.totaal_incl) }}</span>
+                    <span style="color: var(--color-text-light); font-size: 11px;">
+                        Rapporteringsperiode G/W/E:
+                    </span>
+                    <span style="font-size: 11px;">{{ period.checkin_date }} t/m {{ period.checkout_date }}</span>
                 </div>
                 <div class="detail-item">
                     <span style="color: var(--color-text-light); font-size: 11px;">
                         Zie detail PDF voor volledige specificatie
                     </span>
                     <span></span>
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <div class="detail-header">
+                    <span>SCHOONMAAK PAKKET</span>
+                    <span>€{{ "%.2f"|format(financial.cleaning.voorschot) }}</span>
+                </div>
+                <div class="detail-item">
+                    <span>Gekozen pakket:</span>
+                    <span>{{ financial.cleaning.pakket_naam|default("Basis Schoonmaak") }}</span>
+                </div>
+                <div class="detail-item">
+                    <span>Inbegrepen uren:</span>
+                    <span>{{ financial.cleaning.inbegrepen_uren|default(5.0) }} uur</span>
                 </div>
             </div>
         </div>
@@ -636,8 +848,12 @@
                         </td>
                         <td>€{{ "%.2f"|format(financial.cleaning.voorschot) }}</td>
                         <td>€{{ "%.2f"|format(financial.cleaning.totaal_uren) }}</td>
-                        <td class="{{ 'text-return' if not financial.cleaning.is_overfilled else 'text-charge' }}">
-                            {{ "+€%.2f"|format(financial.cleaning.terug) if not financial.cleaning.is_overfilled else "€%.2f"|format(financial.cleaning.extra_bedrag) }}
+                        <td class="{{ 'text-neutral' if financial.cleaning.extra_bedrag == 0 else 'text-charge' }}">
+                            {% if financial.cleaning.extra_bedrag > 0 %}
+                                -€{{ "%.2f"|format(financial.cleaning.extra_bedrag) }}
+                            {% else %}
+                                €0.00
+                            {% endif %}
                         </td>
                     </tr>
                     <tr class="row-total">
@@ -652,8 +868,17 @@
 
         <!-- FOOTER -->
         <div class="footer">
-            RyanRent | Gegenereerd op {{ generated_date }}<br>
-            Voor vragen: info@ryanrent.nl
+            <div class="footer-row">
+                <span class="footer-label">Geverifieerd door:</span>
+                <span>RyanRent Team</span>
+            </div>
+            <div class="footer-row">
+                <span class="footer-label">Gegenereerd op:</span>
+                <span>{{ generated_date }}</span>
+            </div>
+            <div class="footer-contact">
+                Voor vragen: info@ryanrent.nl
+            </div>
         </div>
 
     </div>
