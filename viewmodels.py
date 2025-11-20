@@ -17,6 +17,7 @@ from entities import (
     GWEMeterstanden
 )
 from calculator import Calculator
+from svg_bars import generate_bar_svg, generate_start_bar_svg
 
 
 def date_to_str(d: date) -> str:
@@ -217,9 +218,9 @@ def build_detail_viewmodel(data: Dict[str, Any]) -> Dict[str, Any]:
 
 def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Add bar chart percentage data for visual rendering
+    Add bar chart percentage data and SVG markup for visual rendering
     
-    Adds calculated percentages for:
+    Adds calculated percentages and SVG bars for:
     - Borg bars (used/return)
     - GWE bars (used/extra)
     - Cleaning bars
@@ -228,11 +229,11 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
         onepager_vm: OnePager viewmodel dictionary
         
     Returns:
-        Enhanced viewmodel with bar chart data
+        Enhanced viewmodel with bar chart data and SVG markup
     """
     financial = onepager_vm['financial']
     
-    # Borg bar percentages
+    # BORG - Bar percentages and SVG
     borg = financial['borg']
     borg_bars = Calculator.calculate_bar_percentages(
         gebruikt=borg['gebruikt'],
@@ -240,7 +241,28 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
     )
     financial['borg']['bars'] = borg_bars
     
-    # GWE bar percentages
+    # Generate START bar SVG (solid prepaid amount)
+    borg_start_svg = generate_start_bar_svg(
+        amount=borg['voorschot'],
+        label=f"€{borg['voorschot']:.0f}",
+        width=200,
+        height=40
+    )
+    financial['borg']['svg_start_bar'] = borg_start_svg
+    
+    # Generate VERBLIJF bar SVG (used vs return)
+    borg_svg = generate_bar_svg(
+        voorschot=borg['voorschot'],
+        gebruikt_or_totaal=borg['gebruikt'],
+        is_overfilled=False,  # Borg never overfills (restschade handled separately)
+        label_gebruikt=f"€{borg['gebruikt']:.0f}",
+        label_extra_or_terug=f"€{borg['terug']:.0f}",
+        width=400,
+        height=40
+    )
+    financial['borg']['svg_bar'] = borg_svg
+    
+    # GWE - Bar percentages and SVG
     gwe = financial['gwe']
     gwe_gebruikt = gwe['totaal_incl']
     gwe_bars = Calculator.calculate_bar_percentages(
@@ -249,7 +271,41 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
     )
     financial['gwe']['bars'] = gwe_bars
     
-    # Cleaning bar percentages (based on cost, not hours)
+    # Generate START bar SVG
+    gwe_start_svg = generate_start_bar_svg(
+        amount=gwe['voorschot'],
+        label=f"€{gwe['voorschot']:.0f}",
+        width=200,
+        height=40
+    )
+    financial['gwe']['svg_start_bar'] = gwe_start_svg
+    
+    # Generate VERBLIJF bar SVG
+    if gwe['is_overfilled']:
+        # Overuse scenario
+        gwe_svg = generate_bar_svg(
+            voorschot=gwe['voorschot'],
+            gebruikt_or_totaal=gwe['totaal_incl'],
+            is_overfilled=True,
+            label_gebruikt=f"€{gwe['voorschot']:.0f}",
+            label_extra_or_terug=f"+€{gwe['extra']:.0f}",
+            width=400,
+            height=40
+        )
+    else:
+        # Underuse scenario
+        gwe_svg = generate_bar_svg(
+            voorschot=gwe['voorschot'],
+            gebruikt_or_totaal=gwe['totaal_incl'],
+            is_overfilled=False,
+            label_gebruikt=f"€{gwe['totaal_incl']:.0f}",
+            label_extra_or_terug=f"€{gwe['terug']:.0f}",
+            width=400,
+            height=40
+        )
+    financial['gwe']['svg_bar'] = gwe_svg
+    
+    # CLEANING - Bar percentages and SVG
     cleaning = financial['cleaning']
     cleaning_gebruikt = cleaning['voorschot'] + cleaning['extra_bedrag']
     cleaning_bars = Calculator.calculate_bar_percentages(
@@ -257,6 +313,41 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
         voorschot=cleaning['voorschot']
     )
     financial['cleaning']['bars'] = cleaning_bars
+    
+    # Generate START bar SVG
+    cleaning_start_svg = generate_start_bar_svg(
+        amount=cleaning['voorschot'],
+        label=f"€{cleaning['voorschot']:.0f}",
+        width=200,
+        height=40
+    )
+    financial['cleaning']['svg_start_bar'] = cleaning_start_svg
+    
+    # Generate VERBLIJF bar SVG
+    if cleaning['is_overfilled']:
+        # Overuse scenario
+        cleaning_svg = generate_bar_svg(
+            voorschot=cleaning['voorschot'],
+            gebruikt_or_totaal=cleaning_gebruikt,
+            is_overfilled=True,
+            label_gebruikt=f"€{cleaning['voorschot']:.0f}",
+            label_extra_or_terug=f"+€{cleaning['extra_bedrag']:.0f}",
+            width=400,
+            height=40
+        )
+    else:
+        # Underuse scenario
+        cleaning_totaal_used = cleaning['totaal_uren'] * (cleaning['voorschot'] / cleaning['inbegrepen_uren']) if cleaning['inbegrepen_uren'] > 0 else 0
+        cleaning_svg = generate_bar_svg(
+            voorschot=cleaning['voorschot'],
+            gebruikt_or_totaal=cleaning_totaal_used,
+            is_overfilled=False,
+            label_gebruikt=f"€{cleaning_totaal_used:.0f}",
+            label_extra_or_terug=f"€{cleaning['terug']:.0f}",
+            width=400,
+            height=40
+        )
+    financial['cleaning']['svg_bar'] = cleaning_svg
     
     return onepager_vm
 
