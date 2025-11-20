@@ -1,0 +1,123 @@
+{
+    "sheets": [
+      {
+        "name": "Algemeen",
+        "type": "single_record",
+        "description": "Basisgegevens klant, object, periode en voorschotten.",
+        "fields": [
+          { "key": "Klantnaam", "type": "string", "required": true },
+          { "key": "Contactpersoon", "type": "string", "required": false },
+          { "key": "Email", "type": "string", "required": true },
+          { "key": "Telefoonnummer", "type": "string", "required": false },
+  
+          { "key": "Object_adres", "type": "string", "required": true },
+          { "key": "Unit_nr", "type": "string", "required": false },
+          { "key": "Postcode", "type": "string", "required": false },
+          { "key": "Plaats", "type": "string", "required": false },
+          { "key": "Object_ID", "type": "string", "required": false },
+  
+          { "key": "Incheck_datum", "type": "date", "required": true },
+          { "key": "Uitcheck_datum", "type": "date", "required": true },
+          { "key": "Aantal_dagen", "type": "number", "required": true, "computed": true },
+  
+          { "key": "Voorschot_borg", "type": "number", "required": true },
+          { "key": "Voorschot_GWE", "type": "number", "required": true },
+          { "key": "Voorschot_schoonmaak", "type": "number", "required": true },
+          { "key": "Overige_voorschotten", "type": "number", "required": false, "default": 0 },
+  
+          { "key": "Schoonmaak_pakket", "type": "enum", "options": ["5_uur", "7_uur"], "required": true },
+          { "key": "Inbegrepen_uren", "type": "number", "required": true, "computed": true },
+          { "key": "Uurtarief_schoonmaak", "type": "number", "required": true, "default": 50 },
+  
+          { "key": "Meterbeheerder", "type": "string", "required": false },
+          { "key": "Energie_leverancier", "type": "string", "required": false },
+          { "key": "Contractnummer", "type": "string", "required": false },
+  
+          { "key": "RR_Klantnummer", "type": "string", "required": false },
+          { "key": "RR_Folder_link", "type": "string", "required": false },
+          { "key": "RR_Projectleider", "type": "string", "required": false },
+          { "key": "RR_Inspecteur", "type": "string", "required": false },
+          { "key": "RR_Factuurnummer", "type": "string", "required": false },
+  
+          { "key": "Borg_gebruikt", "type": "number", "required": false, "computed": true },
+          { "key": "Borg_terug", "type": "number", "required": false, "computed": true },
+          { "key": "Restschade", "type": "number", "required": false, "computed": true },
+  
+          { "key": "GWE_meer_minder", "type": "number", "required": false, "computed": true },
+          { "key": "Totaal_eindafrekening", "type": "number", "required": false, "computed": true }
+        ]
+      },
+      {
+        "name": "GWE_Detail",
+        "type": "composed",
+        "description": "Meterstanden + kostenregels voor gas, water en elektra.",
+        "blocks": [
+          {
+            "name": "Meterstanden",
+            "type": "single_record",
+            "fields": [
+              { "key": "KWh_begin", "type": "number", "required": true },
+              { "key": "KWh_eind", "type": "number", "required": true },
+              { "key": "KWh_verbruik", "type": "number", "required": true, "computed": true },
+  
+              { "key": "Gas_begin", "type": "number", "required": true },
+              { "key": "Gas_eind", "type": "number", "required": true },
+              { "key": "Gas_verbruik", "type": "number", "required": true, "computed": true }
+            ]
+          },
+          {
+            "name": "Kostenregels",
+            "type": "table",
+            "startRow": 5,
+            "columns": [
+              { "key": "Omschrijving", "type": "string" },
+              { "key": "Verbruik_of_dagen", "type": "number" },
+              { "key": "Tarief_excl", "type": "number" },
+              { "key": "Kosten_excl", "type": "number" }
+            ]
+          },
+          {
+            "name": "Totalen",
+            "type": "single_record",
+            "fields": [
+              { "key": "GWE_totaal_excl", "type": "number", "computed": true },
+              { "key": "GWE_BTW", "type": "number", "computed": true },
+              { "key": "GWE_totaal_incl", "type": "number", "computed": true }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Schoonmaak",
+        "type": "single_record",
+        "description": "Ingevulde schoonmaakuren t.o.v. pakket.",
+        "fields": [
+          { "key": "Schoonmaak_pakket", "type": "enum", "options": ["5_uur", "7_uur"], "required": true },
+          { "key": "Inbegrepen_uren", "type": "number", "required": true, "computed": true },
+          { "key": "Totaal_uren_gew", "type": "number", "required": true },
+          { "key": "Extra_uren", "type": "number", "required": true, "computed": true },
+          { "key": "Uurtarief_schoonmaak", "type": "number", "required": true },
+          { "key": "Extra_schoonmaak_bedrag", "type": "number", "required": true, "computed": true }
+        ]
+      },
+      {
+        "name": "Schade",
+        "type": "table+totals",
+        "description": "Gedetailleerde schadeposten.",
+        "table": {
+          "startRow": 5,
+          "columns": [
+            { "key": "Beschrijving", "type": "string" },
+            { "key": "Aantal", "type": "number" },
+            { "key": "Tarief_excl", "type": "number" },
+            { "key": "Bedrag_excl", "type": "number", "computed": true }
+          ]
+        },
+        "totals": [
+          { "key": "Schade_totaal_excl", "type": "number", "computed": true },
+          { "key": "Schade_BTW", "type": "number", "computed": true },
+          { "key": "Schade_totaal_incl", "type": "number", "computed": true }
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,45 @@
+{
+    "client": {
+      "name": "",
+      "contact_person": "",
+      "email": "",
+      "phone": ""
+    },
+    "object": {
+      "address": "",
+      "unit": "",
+      "postal_code": "",
+      "city": "",
+      "object_id": ""
+    },
+    "period": {
+      "checkin_date": "",
+      "checkout_date": "",
+      "days": 0
+    },
+    "financial": {
+      "borg": {
+        "voorschot": 0,
+        "gebruikt": 0,
+        "terug": 0
+      },
+      "gwe": {
+        "voorschot": 0,
+        "totaal_incl": 0,
+        "meer_minder": 0
+      },
+      "cleaning": {
+        "pakket_type": "5_uur",
+        "inbegrepen_uren": 0,
+        "voorschot": 0,
+        "extra_uren": 0,
+        "extra_bedrag": 0
+      },
+      "damage": {
+        "totaal_incl": 0
+      },
+      "totals": {
+        "totaal_eindafrekening": 0
+      }
+    }
+  }

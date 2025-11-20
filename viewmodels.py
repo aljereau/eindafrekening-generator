@@ -1,0 +1,418 @@
+#!/usr/bin/env python3
+"""
+ViewModels - Transform entity data to OnePager and Detail output formats
+
+Transforms raw entity data into the specific JSON structures needed for:
+- OnePager template (simplified one-page view)
+- Detail template (comprehensive breakdown with all line items)
+
+Output matches onepager.json and detail.json schemas.
+"""
+
+from typing import Dict, Any, List
+from datetime import date, datetime
+from entities import (
+    Client, Object, Period, Deposit, GWEMeterReading, GWERegel,
+    GWETotalen, Cleaning, DamageRegel, DamageTotalen, Settlement,
+    GWEMeterstanden
+)
+from calculator import Calculator
+
+
+def date_to_str(d: date) -> str:
+    """Convert date to string format YYYY-MM-DD"""
+    return d.strftime('%Y-%m-%d') if d else ""
+
+
+def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Dict[str, Any]:
+    """
+    Build OnePager view model for simplified one-page template
+    
+    Args:
+        data: Raw entity data from excel_reader
+        settlement: Calculated settlement entity
+        
+    Returns:
+        Dictionary matching onepager.json schema
+    """
+    client: Client = data['client']
+    obj: Object = data['object']
+    period: Period = data['period']
+    gwe_totalen: GWETotalen = data['gwe_totalen']
+    cleaning: Cleaning = data['cleaning']
+    damage_totalen: DamageTotalen = data['damage_totalen']
+    damage_regels: List[DamageRegel] = data.get('damage_regels', [])
+    
+    # Get voorschotten from various sources
+    gwe_voorschot = data.get('gwe_voorschot', 0.0)  # Should be passed in
+    
+    # Calculate GWE meer/minder and derived values
+    gwe_meer_minder = Calculator.calculate_gwe_meer_minder(gwe_voorschot, gwe_totalen.totaal_incl)
+    gwe_is_overfilled = gwe_meer_minder < 0
+    gwe_extra = abs(gwe_meer_minder) if gwe_is_overfilled else 0
+    gwe_terug = gwe_meer_minder if not gwe_is_overfilled else 0
+    
+    # Calculate cleaning derived values
+    clean_is_overfilled = cleaning.extra_bedrag > 0
+    clean_terug = 0 if clean_is_overfilled else (cleaning.voorschot - cleaning.extra_bedrag)
+    
+    return {
+        "client": {
+            "name": client.name,
+            "contact_person": client.contact_person,
+            "email": client.email,
+            "phone": client.phone or ""
+        },
+        "object": {
+            "address": obj.address,
+            "unit": obj.unit or "",
+            "postal_code": obj.postal_code or "",
+            "city": obj.city or "",
+            "object_id": obj.object_id or ""
+        },
+        "period": {
+            "checkin_date": date_to_str(period.checkin_date),
+            "checkout_date": date_to_str(period.checkout_date),
+            "days": period.days
+        },
+        "financial": {
+            "borg": {
+                "voorschot": settlement.borg.voorschot,
+                "gebruikt": settlement.borg.gebruikt,
+                "terug": settlement.borg.terug
+            },
+            "gwe": {
+                "voorschot": gwe_voorschot,
+                "totaal_incl": gwe_totalen.totaal_incl,
+                "meer_minder": gwe_meer_minder,
+                "is_overfilled": gwe_is_overfilled,
+                "extra": gwe_extra,
+                "terug": gwe_terug
+            },
+            "cleaning": {
+                "pakket_type": cleaning.pakket_type,
+                "inbegrepen_uren": cleaning.inbegrepen_uren,
+                "totaal_uren": cleaning.totaal_uren,
+                "voorschot": cleaning.voorschot,
+                "extra_uren": cleaning.extra_uren,
+                "extra_bedrag": cleaning.extra_bedrag,
+                "is_overfilled": clean_is_overfilled,
+                "terug": clean_terug
+            },
+            "damage": {
+                "totaal_incl": damage_totalen.totaal_incl
+            },
+            "totals": {
+                "totaal_eindafrekening": settlement.totaal_eindafrekening,
+                "totaal_eindafrekening_is_positive": settlement.totaal_eindafrekening >= 0
+            }
+        },
+        "damage_details": [
+            {"omschrijving": regel.beschrijving, "bedrag": regel.bedrag_excl}
+            for regel in damage_regels
+        ],
+        "generated_date": datetime.now().strftime('%d-%m-%Y %H:%M'),
+        "logo_b64": data.get('logo_b64', None)
+    }
+
+
+def build_detail_viewmodel(data: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Build Detail view model for comprehensive detail template
+    
+    Args:
+        data: Raw entity data from excel_reader
+        
+    Returns:
+        Dictionary matching detail.json schema
+    """
+    client: Client = data['client']
+    obj: Object = data['object']
+    period: Period = data['period']
+    gwe_meterstanden: GWEMeterstanden = data['gwe_meterstanden']
+    gwe_regels: List[GWERegel] = data['gwe_regels']
+    gwe_totalen: GWETotalen = data['gwe_totalen']
+    cleaning: Cleaning = data['cleaning']
+    damage_regels: List[DamageRegel] = data['damage_regels']
+    damage_totalen: DamageTotalen = data['damage_totalen']
+    deposit: Deposit = data['deposit']
+    
+    # Build full object address for detail view
+    object_address = obj.address
+    if obj.unit:
+        object_address += f", {obj.unit}"
+    if obj.postal_code and obj.city:
+        object_address += f", {obj.postal_code} {obj.city}"
+    
+    return {
+        "client": {
+            "name": client.name,
+            "object_address": object_address,
+            "period": {
+                "checkin_date": date_to_str(period.checkin_date),
+                "checkout_date": date_to_str(period.checkout_date)
+            }
+        },
+        "gwe": {
+            "meterstanden": {
+                "stroom": {
+                    "begin": gwe_meterstanden.stroom.begin,
+                    "eind": gwe_meterstanden.stroom.eind,
+                    "verbruik": gwe_meterstanden.stroom.verbruik
+                },
+                "gas": {
+                    "begin": gwe_meterstanden.gas.begin,
+                    "eind": gwe_meterstanden.gas.eind,
+                    "verbruik": gwe_meterstanden.gas.verbruik
+                }
+            },
+            "kostenregels": [
+                {
+                    "omschrijving": regel.omschrijving,
+                    "verbruik_of_dagen": regel.verbruik_of_dagen,
+                    "tarief_excl": regel.tarief_excl,
+                    "kosten_excl": regel.kosten_excl
+                }
+                for regel in gwe_regels
+            ],
+            "totalen": {
+                "totaal_excl": gwe_totalen.totaal_excl,
+                "btw": gwe_totalen.btw,
+                "totaal_incl": gwe_totalen.totaal_incl
+            }
+        },
+        "cleaning": {
+            "pakket_type": cleaning.pakket_type,
+            "inbegrepen_uren": cleaning.inbegrepen_uren,
+            "totaal_uren": cleaning.totaal_uren,
+            "extra_uren": cleaning.extra_uren,
+            "uurtarief": cleaning.uurtarief,
+            "extra_bedrag": cleaning.extra_bedrag,
+            "voorschot": cleaning.voorschot
+        },
+        "damage": {
+            "regels": [
+                {
+                    "beschrijving": regel.beschrijving,
+                    "aantal": regel.aantal,
+                    "tarief_excl": regel.tarief_excl,
+                    "bedrag_excl": regel.bedrag_excl
+                }
+                for regel in damage_regels
+            ],
+            "totalen": {
+                "totaal_excl": damage_totalen.totaal_excl,
+                "btw": damage_totalen.btw,
+                "totaal_incl": damage_totalen.totaal_incl
+            }
+        },
+        "borg": {
+            "voorschot": deposit.voorschot,
+            "gebruikt": deposit.gebruikt,
+            "terug": deposit.terug,
+            "restschade": deposit.restschade
+        }
+    }
+
+
+def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Add bar chart percentage data for visual rendering
+    
+    Adds calculated percentages for:
+    - Borg bars (used/return)
+    - GWE bars (used/extra)
+    - Cleaning bars
+    
+    Args:
+        onepager_vm: OnePager viewmodel dictionary
+        
+    Returns:
+        Enhanced viewmodel with bar chart data
+    """
+    financial = onepager_vm['financial']
+    
+    # Borg bar percentages
+    borg = financial['borg']
+    borg_bars = Calculator.calculate_bar_percentages(
+        gebruikt=borg['gebruikt'],
+        voorschot=borg['voorschot']
+    )
+    financial['borg']['bars'] = borg_bars
+    
+    # GWE bar percentages
+    gwe = financial['gwe']
+    gwe_gebruikt = gwe['totaal_incl']
+    gwe_bars = Calculator.calculate_bar_percentages(
+        gebruikt=gwe_gebruikt,
+        voorschot=gwe['voorschot']
+    )
+    financial['gwe']['bars'] = gwe_bars
+    
+    # Cleaning bar percentages (based on cost, not hours)
+    cleaning = financial['cleaning']
+    cleaning_gebruikt = cleaning['voorschot'] + cleaning['extra_bedrag']
+    cleaning_bars = Calculator.calculate_bar_percentages(
+        gebruikt=cleaning_gebruikt,
+        voorschot=cleaning['voorschot']
+    )
+    financial['cleaning']['bars'] = cleaning_bars
+    
+    return onepager_vm
+
+
+def build_viewmodels_from_data(data: Dict[str, Any]) -> tuple[Dict[str, Any], Dict[str, Any]]:
+    """
+    Build both OnePager and Detail viewmodels from raw entity data
+    
+    This is the main function to call - it handles all transformations.
+    
+    Args:
+        data: Raw entity data from excel_reader (with calculations applied)
+        
+    Returns:
+        Tuple of (onepager_viewmodel, detail_viewmodel)
+    """
+    # Need to get gwe_voorschot from somewhere - let's look for it in data
+    # or calculate it from named range if available
+    gwe_voorschot = data.get('gwe_voorschot', 0.0)
+    
+    # Calculate settlement
+    calc = Calculator()
+    settlement = calc.calculate_settlement(
+        borg=data['deposit'],
+        gwe_voorschot=gwe_voorschot,
+        gwe_totalen=data['gwe_totalen'],
+        cleaning=data['cleaning'],
+        damage_totalen=data['damage_totalen']
+    )
+    
+    # Build OnePager viewmodel
+    onepager_vm = build_onepager_viewmodel(data, settlement)
+    
+    # Add bar chart data for visual rendering
+    onepager_vm = add_bar_chart_data(onepager_vm)
+    
+    # Build Detail viewmodel
+    detail_vm = build_detail_viewmodel(data)
+    
+    return onepager_vm, detail_vm
+
+
+# ==================== JSON SERIALIZATION ====================
+
+def save_viewmodels_to_json(onepager_vm: Dict[str, Any], detail_vm: Dict[str, Any],
+                            onepager_path: str = "output/onepager.json",
+                            detail_path: str = "output/detail.json"):
+    """
+    Save viewmodels to JSON files
+    
+    Args:
+        onepager_vm: OnePager viewmodel
+        detail_vm: Detail viewmodel
+        onepager_path: Output path for onepager JSON
+        detail_path: Output path for detail JSON
+    """
+    import json
+    import os
+    
+    # Ensure output directory exists
+    os.makedirs(os.path.dirname(onepager_path), exist_ok=True)
+    os.makedirs(os.path.dirname(detail_path), exist_ok=True)
+    
+    # Save onepager
+    with open(onepager_path, 'w', encoding='utf-8') as f:
+        json.dump(onepager_vm, f, indent=2, ensure_ascii=False)
+    
+    # Save detail
+    with open(detail_path, 'w', encoding='utf-8') as f:
+        json.dump(detail_vm, f, indent=2, ensure_ascii=False)
+    
+    print(f"📝 Saved viewmodels:")
+    print(f"   OnePager: {onepager_path}")
+    print(f"   Detail: {detail_path}")
+
+
+if __name__ == "__main__":
+    """Test viewmodels with mock data"""
+    from datetime import date
+    
+    print("📊 Testing ViewModels")
+    print("=" * 60)
+    
+    # Create mock data
+    mock_data = {
+        'client': Client(
+            name="Fam. Jansen",
+            contact_person="Jan Jansen",
+            email="jan@example.com",
+            phone="06-12345678"
+        ),
+        'object': Object(
+            address="Strandweg 42",
+            unit="A3",
+            postal_code="1234AB",
+            city="Zandvoort",
+            object_id="OBJ-001"
+        ),
+        'period': Period(
+            checkin_date=date(2024, 8, 1),
+            checkout_date=date(2024, 8, 13),
+            days=12
+        ),
+        'deposit': Deposit(
+            voorschot=800,
+            gebruikt=600,
+            terug=200,
+            restschade=0
+        ),
+        'gwe_meterstanden': GWEMeterstanden(
+            stroom=GWEMeterReading(begin=10000, eind=10500, verbruik=500),
+            gas=GWEMeterReading(begin=5000, eind=5100, verbruik=100)
+        ),
+        'gwe_regels': [
+            GWERegel("Elektra verbruik", 500, 0.28, 140),
+            GWERegel("Gas verbruik", 100, 1.15, 115)
+        ],
+        'gwe_totalen': GWETotalen(totaal_excl=255, btw=53.55, totaal_incl=308.55),
+        'gwe_voorschot': 350,
+        'cleaning': Cleaning(
+            pakket_type="5_uur",
+            inbegrepen_uren=5,
+            totaal_uren=7.5,
+            extra_uren=2.5,
+            uurtarief=50,
+            extra_bedrag=125,
+            voorschot=250
+        ),
+        'damage_regels': [
+            DamageRegel("Reparatie deur", 1, 30, 30),
+            DamageRegel("Vervangen lamp", 2, 15, 30)
+        ],
+        'damage_totalen': DamageTotalen(totaal_excl=60, btw=12.6, totaal_incl=72.6)
+    }
+    
+    # Build viewmodels
+    onepager, detail = build_viewmodels_from_data(mock_data)
+    
+    print("\n✅ OnePager viewmodel:")
+    print(f"   Client: {onepager['client']['name']}")
+    print(f"   Period: {onepager['period']['days']} days")
+    print(f"   Borg terug: €{onepager['financial']['borg']['terug']}")
+    print(f"   GWE meer/minder: €{onepager['financial']['gwe']['meer_minder']:.2f}")
+    print(f"   Settlement: €{onepager['financial']['totals']['totaal_eindafrekening']:.2f}")
+    
+    print("\n✅ Detail viewmodel:")
+    print(f"   GWE regels: {len(detail['gwe']['kostenregels'])}")
+    print(f"   Damage regels: {len(detail['damage']['regels'])}")
+    print(f"   Stroom verbruik: {detail['gwe']['meterstanden']['stroom']['verbruik']} kWh")
+    
+    print("\n✅ Bar chart data (OnePager):")
+    print(f"   Borg bars: {onepager['financial']['borg']['bars']}")
+    print(f"   GWE bars: {onepager['financial']['gwe']['bars']}")
+    
+    # Save to JSON
+    save_viewmodels_to_json(onepager, detail)
+    
+    print("\n✅ ViewModels test completed!")
+

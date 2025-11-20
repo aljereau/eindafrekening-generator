@@ -1,0 +1,67 @@
+{
+    "client": {
+      "name": "",
+      "object_address": "",
+      "period": {
+        "checkin_date": "",
+        "checkout_date": ""
+      }
+    },
+    "gwe": {
+      "meterstanden": {
+        "stroom": {
+          "begin": 0,
+          "eind": 0,
+          "verbruik": 0
+        },
+        "gas": {
+          "begin": 0,
+          "eind": 0,
+          "verbruik": 0
+        }
+      },
+      "kostenregels": [
+        {
+          "omschrijving": "",
+          "verbruik_of_dagen": 0,
+          "tarief_excl": 0,
+          "kosten_excl": 0
+        }
+      ],
+      "totalen": {
+        "totaal_excl": 0,
+        "btw": 0,
+        "totaal_incl": 0
+      }
+    },
+    "cleaning": {
+      "pakket_type": "5_uur",
+      "inbegrepen_uren": 0,
+      "totaal_uren": 0,
+      "extra_uren": 0,
+      "uurtarief": 0,
+      "extra_bedrag": 0,
+      "voorschot": 0
+    },
+    "damage": {
+      "regels": [
+        {
+          "beschrijving": "",
+          "aantal": 0,
+          "tarief_excl": 0,
+          "bedrag_excl": 0
+        }
+      ],
+      "totalen": {
+        "totaal_excl": 0,
+        "btw": 0,
+        "totaal_incl": 0
+      }
+    },
+    "borg": {
+      "voorschot": 0,
+      "gebruikt": 0,
+      "terug": 0,
+      "restschade": 0
+    }
+  }

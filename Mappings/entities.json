@@ -1,0 +1,115 @@
+{
+    "entities": {
+      "Client": {
+        "fields": {
+          "name": "string",
+          "contact_person": "string",
+          "email": "string",
+          "phone": "string | null"
+        }
+      },
+      "Object": {
+        "fields": {
+          "address": "string",
+          "unit": "string | null",
+          "postal_code": "string | null",
+          "city": "string | null",
+          "object_id": "string | null"
+        }
+      },
+      "Period": {
+        "fields": {
+          "checkin_date": "date",
+          "checkout_date": "date",
+          "days": "number"
+        }
+      },
+      "Deposit": {
+        "fields": {
+          "voorschot": "number",
+          "gebruikt": "number",
+          "terug": "number",
+          "restschade": "number"
+        }
+      },
+      "GWEMeterReading": {
+        "fields": {
+          "begin": "number",
+          "eind": "number",
+          "verbruik": "number"
+        }
+      },
+      "GWERegel": {
+        "fields": {
+          "omschrijving": "string",
+          "verbruik_of_dagen": "number",
+          "tarief_excl": "number",
+          "kosten_excl": "number"
+        }
+      },
+      "GWETotalen": {
+        "fields": {
+          "totaal_excl": "number",
+          "btw": "number",
+          "totaal_incl": "number"
+        }
+      },
+      "Cleaning": {
+        "fields": {
+          "pakket_type": "\"5_uur\" | \"7_uur\"",
+          "inbegrepen_uren": "number",
+          "totaal_uren": "number",
+          "extra_uren": "number",
+          "uurtarief": "number",
+          "extra_bedrag": "number",
+          "voorschot": "number"
+        }
+      },
+      "DamageRegel": {
+        "fields": {
+          "beschrijving": "string",
+          "aantal": "number",
+          "tarief_excl": "number",
+          "bedrag_excl": "number"
+        }
+      },
+      "DamageTotalen": {
+        "fields": {
+          "totaal_excl": "number",
+          "btw": "number",
+          "totaal_incl": "number"
+        }
+      },
+      "Settlement": {
+        "fields": {
+          "borg": "Deposit",
+          "gwe_totalen": "GWETotalen",
+          "cleaning": "Cleaning",
+          "damage_totalen": "DamageTotalen",
+          "totaal_eindafrekening": "number"
+        }
+      },
+      "OnePagerViewModel": {
+        "fields": {
+          "client": "Client",
+          "object": "Object",
+          "period": "Period",
+          "settlement": "Settlement"
+        }
+      },
+      "DetailViewModel": {
+        "fields": {
+          "client": "Client",
+          "object": "Object",
+          "period": "Period",
+          "gwe_meterstanden": "{ stroom: GWEMeterReading, gas: GWEMeterReading }",
+          "gwe_regels": "GWERegel[]",
+          "gwe_totalen": "GWETotalen",
+          "cleaning": "Cleaning",
+          "damage_regels": "DamageRegel[]",
+          "damage_totalen": "DamageTotalen",
+          "borg": "Deposit"
+        }
+      }
+    }
+  }

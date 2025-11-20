@@ -1,281 +1,267 @@
 #!/usr/bin/env python3
 """
-RyanRent Eindafrekening Generator
-Genereert visuele eindafrekening PDF vanuit Excel input
+RyanRent Eindafrekening Generator - V2.0
+Generates visual eindafrekening PDFs from Excel template
+
+Complete rebuild with modular architecture:
+- excel_reader.py: Reads Excel using named ranges
+- calculator.py: Business logic calculations
+- viewmodels.py: Transform to OnePager and Detail formats
+- template_renderer.py: Jinja2 HTML rendering
+- pdf_generator.py: PDF conversion with HTML fallback
+
+Output: 2 PDFs (or HTML fallback) - OnePager + Detail
 """
 
-import openpyxl
-from jinja2 import Template, Environment, FileSystemLoader
-# from weasyprint import HTML  <-- Moved to inside function to avoid import error on Mac if libs missing
-from datetime import datetime
+import argparse
 import os
 import sys
+from datetime import datetime
 
-import argparse
+# Import modules
+from excel_reader import read_excel
+from calculator import recalculate_all
+from viewmodels import build_viewmodels_from_data, save_viewmodels_to_json
+from template_renderer import TemplateRenderer
+from pdf_generator import render_and_generate_pdfs
 
-def read_excel_data(filepath='input.xlsx'):
+
+def build_output_basename(client_name: str, checkin_date: str, checkout_date: str) -> str:
     """
-    Lees data uit Excel
-    Returns: dict met alle benodigde data
-    """
-    if not os.path.exists(filepath):
-        raise FileNotFoundError(f"Excel bestand '{filepath}' niet gevonden.")
-
-    try:
-        wb = openpyxl.load_workbook(filepath, data_only=True)
-    except Exception as e:
-        raise ValueError(f"Kon Excel bestand niet openen: {e}")
+    Build output filename base from client info
     
-    if 'Hoofdgegevens' not in wb.sheetnames:
-        raise ValueError("Excel bestand mist tabblad 'Hoofdgegevens'. Controleer het sjabloon.")
+    Args:
+        client_name: Client name
+        checkin_date: Check-in date string
+        checkout_date: Check-out date string
         
-    sheet = wb['Hoofdgegevens']
-    
-    # Helper to safely get float value
-    def get_float(cell):
-        val = cell.value
-        if val is None: return 0.0
-        try:
-            return float(val)
-        except (ValueError, TypeError):
-            print(f"⚠️  Waarschuwing: Kon waarde '{val}' in cel {cell.coordinate} niet lezen als getal. Gebruik 0.0")
-            return 0.0
-
-    # Helper to safely get string value
-    def get_str(cell):
-        val = cell.value
-        return str(val).strip() if val is not None else ""
-
-    data = {
-        # Basis info
-        'gast_naam': get_str(sheet['B1']),
-        'property_naam': get_str(sheet['B2']),
-        'property_adres': get_str(sheet['B3']),
-        'periode_start': get_str(sheet['B4']),
-        'periode_eind': get_str(sheet['B5']),
-        'aantal_dagen': get_str(sheet['B6']),
-        
-        # Borg
-        'borg_voorschot': get_float(sheet['B9']),
-        'borg_gebruikt': get_float(sheet['B10']),
-        
-        # GWE
-        'gwe_voorschot': get_float(sheet['B13']),
-        'gwe_verbruik': get_float(sheet['B14']),
-        'gwe_gas': get_float(sheet['B15']),
-        'gwe_water': get_float(sheet['B16']),
-        'gwe_electra_euro': get_float(sheet['B17']),
-        'gwe_electra_kwh': get_float(sheet['B18']),
-        
-        # Schoonmaak
-        'clean_voorschot': get_float(sheet['B21']),
-        'clean_gebruikt': get_float(sheet['B22']),
-        'clean_extra': get_float(sheet['B23']),
-    }
-    
-    # Probeer schades sheet te lezen
-    data['schades'] = []
-    if 'Schades Detail' in wb.sheetnames:
-        schades_sheet = wb['Schades Detail']
-        for row in schades_sheet.iter_rows(min_row=2, values_only=True):
-            if row[0] and row[1]:
-                try:
-                    bedrag = float(row[1])
-                    data['schades'].append({
-                        'omschrijving': row[0],
-                        'bedrag': bedrag
-                    })
-                except (ValueError, TypeError):
-                    continue
-    
-    wb.close()
-    return data
-
-def calculate_values(data):
+    Returns:
+        Safe filename base (e.g., "eindafrekening_jansen_2024-08-01_2024-08-13")
     """
-    Bereken afgeleide waardes
-    """
-    # Borg berekeningen
-    data['borg_terug'] = data['borg_voorschot'] - data['borg_gebruikt']
-    if data['borg_voorschot'] > 0:
-        data['borg_gebruikt_pct'] = min(100, (data['borg_gebruikt'] / data['borg_voorschot']) * 100)
-    else:
-        data['borg_gebruikt_pct'] = 0
-    data['borg_terug_pct'] = max(0, 100 - data['borg_gebruikt_pct'])
+    # Sanitize client name for filename
+    safe_name = client_name.lower().replace(' ', '_').replace('.', '').replace(',', '')
     
-    # GWE berekeningen
-    data['gwe_extra'] = data['gwe_verbruik'] - data['gwe_voorschot']
-    if data['gwe_extra'] > 0:
-        data['gwe_is_overfilled'] = True
-        if data['gwe_voorschot'] > 0:
-            # Extra percentage is relative to the budget width (100%)
-            data['gwe_extra_pct'] = (data['gwe_extra'] / data['gwe_voorschot']) * 100
-        else:
-            data['gwe_extra_pct'] = 100 # Fallback if no budget but usage exists
-    else:
-        data['gwe_is_overfilled'] = False
-        if data['gwe_voorschot'] > 0:
-            data['gwe_gebruikt_pct'] = (data['gwe_verbruik'] / data['gwe_voorschot']) * 100
-        else:
-            data['gwe_gebruikt_pct'] = 0
-        data['gwe_terug_pct'] = max(0, 100 - data['gwe_gebruikt_pct'])
-        data['gwe_terug'] = data['gwe_voorschot'] - data['gwe_verbruik']
+    # Remove "fam." prefix if present
+    if safe_name.startswith('fam_'):
+        safe_name = safe_name[4:]
     
-    # Schoonmaak berekeningen
-    data['clean_extra_calc'] = data['clean_gebruikt'] - data['clean_voorschot']
-    if data['clean_extra_calc'] > 0:
-        data['clean_is_overfilled'] = True
-        if data['clean_voorschot'] > 0:
-            data['clean_extra_pct'] = (data['clean_extra_calc'] / data['clean_voorschot']) * 100
-        else:
-            data['clean_extra_pct'] = 100
-    else:
-        data['clean_is_overfilled'] = False
-        if data['clean_voorschot'] > 0:
-            data['clean_gebruikt_pct'] = (data['clean_gebruikt'] / data['clean_voorschot']) * 100
-        else:
-            data['clean_gebruikt_pct'] = 0
-        data['clean_terug_pct'] = max(0, 100 - data['clean_gebruikt_pct'])
-        data['clean_terug'] = data['clean_voorschot'] - data['clean_gebruikt']
+    # Build filename
+    basename = f"eindafrekening_{safe_name}_{checkin_date}_{checkout_date}"
     
-    # Netto berekening
-    netto = 0
-    
-    # Borg
-    netto += data['borg_terug']
+    return basename
 
-    # GWE
-    if data.get('gwe_extra', 0) > 0:
-        netto -= data['gwe_extra']
-    elif data.get('gwe_terug', 0) > 0:
-        netto += data['gwe_terug']
-        
-    # Cleaning
-    if data.get('clean_extra_calc', 0) > 0:
-        netto -= data['clean_extra_calc']
-    elif data.get('clean_terug', 0) > 0:
-        netto += data['clean_terug']
-    
-    data['netto'] = netto
-    data['netto_is_positive'] = netto >= 0
-    
-    # Datum gegenereerd
-    data['generated_date'] = datetime.now().strftime('%d-%m-%Y %H:%M')
-    
-    # Logo encoding
-    import base64
-    logo_path = os.path.join('assets', 'ryanrent_co.jpg')
-    if os.path.exists(logo_path):
-        with open(logo_path, "rb") as image_file:
-            encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
-            data['logo_b64'] = f"data:image/jpeg;base64,{encoded_string}"
-    else:
-        data['logo_b64'] = None
-        print(f"⚠️  Waarschuwing: Logo niet gevonden op {logo_path}")
-    
-    return data
-
-def generate_pdf(data, output_filename=None):
-    """
-    Genereer PDF vanuit template
-    """
-    # Setup Jinja2 environment
-    env = Environment(loader=FileSystemLoader('.'))
-    template = env.get_template('template.html')
-    
-    # Add helper functions to data
-    data['abs'] = abs
-    
-    html_filled = template.render(**data)
-    
-    # Genereer output filename als niet gegeven
-    if not output_filename:
-        safe_name = str(data['gast_naam']).replace(' ', '_').replace('.', '')
-        output_filename = f"eindafrekening_{safe_name}_{data['periode_start']}-{data['periode_eind']}"
-    
-    # Ensure output directory exists
-    if not os.path.exists('output'):
-        os.makedirs('output')
-
-    # Save HTML first
-    html_path = os.path.join('output', output_filename + '.html')
-    with open(html_path, 'w', encoding='utf-8') as f:
-        f.write(html_filled)
-    
-    pdf_path = os.path.join('output', output_filename + '.pdf')
-    
-    # Genereer PDF met WeasyPrint
-    try:
-        from weasyprint import HTML
-        HTML(string=html_filled, base_url='.').write_pdf(pdf_path)
-        return pdf_path
-    except (OSError, ImportError) as e:
-        print(f"\n⚠️  Waarschuwing: Kon PDF niet genereren (systeembibliotheek ontbreekt: {e})")
-        print(f"   De HTML versie is wel bewaard: {html_path}")
-        return html_path
-    except Exception as e:
-        print(f"\n⚠️  Waarschuwing: Kon PDF niet genereren ({e})")
-        print(f"   De HTML versie is wel bewaard: {html_path}")
-        return html_path
 
 def main():
-    """
-    Main functie - run complete flow
-    """
-    parser = argparse.ArgumentParser(description='RyanRent Eindafrekening Generator')
-    parser.add_argument('--input', default='input.xlsx', help='Pad naar Excel bestand')
-    parser.add_argument('--no-pause', action='store_true', help='Voorkom pauze aan het einde (voor scripts)')
+    """Main generator function - orchestrates the complete flow"""
+    
+    # Parse arguments
+    parser = argparse.ArgumentParser(
+        description='RyanRent Eindafrekening Generator V2.0',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  python generate.py                           # Use default input_template.xlsx
+  python generate.py --input custom.xlsx       # Use custom Excel file
+  python generate.py --no-pause                # Non-interactive mode
+  python generate.py --save-json               # Save intermediate JSON files
+        """
+    )
+    parser.add_argument('--input', default='input_template.xlsx',
+                       help='Path to Excel input file (default: input_template.xlsx)')
+    parser.add_argument('--output-dir', default='output',
+                       help='Output directory for generated files (default: output)')
+    parser.add_argument('--no-pause', action='store_true',
+                       help='Skip pause at end (for scripts)')
+    parser.add_argument('--save-json', action='store_true',
+                       help='Save intermediate JSON viewmodels')
+    parser.add_argument('--html-only', action='store_true',
+                       help='Skip PDF generation, only create HTML')
+    
     args = parser.parse_args()
-
-    print("🏠 RyanRent Eindafrekening Generator")
-    print("=" * 50)
+    
+    # Print header
+    print("\n" + "=" * 70)
+    print("🏠 RyanRent Eindafrekening Generator V2.0")
+    print("=" * 70)
     
     try:
-        # Stap 1: Lees Excel
-        print(f"\n📊 Excel data inlezen van: {args.input}")
-        data = read_excel_data(args.input)
-        print(f"   ✓ Gast: {data['gast_naam']}")
-        print(f"   ✓ Property: {data['property_naam']}")
-        print(f"   ✓ Periode: {data['periode_start']} - {data['periode_eind']}")
+        # ==================== STEP 1: READ EXCEL ====================
+        print(f"\n📊 STAP 1: Excel data inlezen...")
+        print(f"   Bestand: {args.input}")
         
-        # Stap 2: Bereken waardes
-        print("\n🔢 Waardes berekenen...")
-        data = calculate_values(data)
-        print(f"   ✓ Borg: €{data['borg_terug']:.2f} terug")
+        if not os.path.exists(args.input):
+            raise FileNotFoundError(f"Excel bestand '{args.input}' niet gevonden.")
         
-        gwe_msg = f"€{abs(data.get('gwe_extra', 0)):.2f} extra" if data.get('gwe_is_overfilled') else f"€{data.get('gwe_terug', 0):.2f} terug"
-        print(f"   ✓ GWE: {gwe_msg}")
+        data = read_excel(args.input)
         
-        clean_msg = f"€{abs(data.get('clean_extra_calc', 0)):.2f} extra" if data.get('clean_is_overfilled') else f"€{data.get('clean_terug', 0):.2f} terug"
-        print(f"   ✓ Schoonmaak: {clean_msg}")
+        print(f"   ✓ Client: {data['client'].name}")
+        print(f"   ✓ Object: {data['object'].address}")
+        print(f"   ✓ Periode: {data['period'].checkin_date} → {data['period'].checkout_date}")
+        print(f"   ✓ GWE regels: {len(data['gwe_regels'])}")
+        print(f"   ✓ Schade regels: {len(data['damage_regels'])}")
         
-        netto_msg = "terug" if data['netto_is_positive'] else "bijbetalen"
-        print(f"   ✓ Netto: €{abs(data['netto']):.2f} {netto_msg}")
+        # ==================== STEP 2: CALCULATIONS ====================
+        print(f"\n🔢 STAP 2: Berekeningen uitvoeren...")
         
-        # Stap 3: Genereer PDF
-        print("\n📄 PDF genereren...")
-        output_path = generate_pdf(data)
+        # Get GWE voorschot from Excel (should be read by excel_reader)
+        # For now, we'll need to add this to the reader or pass it manually
+        # Let's read it from the Excel reader's get_named_value
+        from excel_reader import ExcelReader
+        with ExcelReader(args.input) as reader:
+            gwe_voorschot = reader.get_float('Voorschot_GWE', default=0.0)
         
-        if output_path.endswith('.pdf'):
-            print(f"   ✓ PDF opgeslagen: {output_path}")
-            print("\n✅ Klaar! PDF is gegenereerd.")
+        data['gwe_voorschot'] = gwe_voorschot
+        
+        # Add logo (base64 encoded)
+        import base64
+        logo_path = os.path.join('assets', 'ryanrent_co.jpg')
+        if os.path.exists(logo_path):
+            with open(logo_path, "rb") as image_file:
+                encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
+                data['logo_b64'] = f"data:image/jpeg;base64,{encoded_string}"
         else:
-            print(f"   ✓ HTML opgeslagen: {output_path}")
-            print("\n✅ Klaar! HTML is gegenereerd (PDF mislukt).")
-            
-        print(f"\n📂 Locatie: {os.path.abspath(output_path)}")
+            data['logo_b64'] = None
+            print(f"   ⚠️  Logo niet gevonden: {logo_path}")
+        
+        # Validate Excel calculations against Python logic
+        from calculator import validate_excel_calculations
+        validation_warnings = validate_excel_calculations(data)
+        
+        if validation_warnings:
+            print(f"\n   ⚠️  WAARSCHUWING: Excel formulas komen niet overeen met verwachte berekeningen:")
+            for warning in validation_warnings:
+                print(f"      • {warning}")
+            print(f"\n   Python zal alle waarden herberekenen en corrigeren...")
+        
+        # Recalculate everything to ensure consistency
+        data = recalculate_all(data)
+        
+        # Calculate net settlement amount for display
+        from calculator import Calculator
+        calc = Calculator()
+        settlement = calc.calculate_settlement(
+            borg=data['deposit'],
+            gwe_voorschot=gwe_voorschot,
+            gwe_totalen=data['gwe_totalen'],
+            cleaning=data['cleaning'],
+            damage_totalen=data['damage_totalen']
+        )
+        
+        print(f"   ✓ Borg terug: €{data['deposit'].terug:.2f}")
+        print(f"   ✓ GWE totaal: €{data['gwe_totalen'].totaal_incl:.2f}")
+        print(f"   ✓ Schoonmaak extra: €{data['cleaning'].extra_bedrag:.2f}")
+        print(f"   ✓ Schade totaal: €{data['damage_totalen'].totaal_incl:.2f}")
+        
+        netto_msg = "terug" if settlement.totaal_eindafrekening >= 0 else "bijbetalen"
+        print(f"   ✓ NETTO: €{abs(settlement.totaal_eindafrekening):.2f} {netto_msg}")
+        
+        # ==================== STEP 3: BUILD VIEWMODELS ====================
+        print(f"\n🏗️  STAP 3: ViewModels genereren...")
+        
+        onepager_vm, detail_vm = build_viewmodels_from_data(data)
+        
+        print(f"   ✓ OnePager viewmodel gebouwd")
+        print(f"   ✓ Detail viewmodel gebouwd")
+        
+        # Save JSON if requested
+        if args.save_json:
+            save_viewmodels_to_json(
+                onepager_vm, 
+                detail_vm,
+                onepager_path=os.path.join(args.output_dir, "onepager.json"),
+                detail_path=os.path.join(args.output_dir, "detail.json")
+            )
+        
+        # ==================== STEP 4: RENDER HTML ====================
+        print(f"\n🎨 STAP 4: HTML templates renderen...")
+        
+        renderer = TemplateRenderer(template_dir=".")
+        
+        try:
+            onepager_html = renderer.render_onepager(onepager_vm)
+            print(f"   ✓ OnePager HTML gegenereerd")
+        except Exception as e:
+            print(f"   ⚠️  OnePager template fout: {e}")
+            print(f"      Zorg dat 'template_onepager.html' bestaat.")
+            raise
+        
+        try:
+            detail_html = renderer.render_detail(detail_vm)
+            print(f"   ✓ Detail HTML gegenereerd")
+        except Exception as e:
+            print(f"   ⚠️  Detail template fout: {e}")
+            print(f"      Zorg dat 'template_detail.html' bestaat.")
+            raise
+        
+        # ==================== STEP 5: GENERATE OUTPUT ====================
+        print(f"\n📄 STAP 5: Output genereren...")
+        
+        # Build output basename
+        basename = build_output_basename(
+            data['client'].name,
+            str(data['period'].checkin_date),
+            str(data['period'].checkout_date)
+        )
+        
+        # Generate PDFs (or HTML fallback)
+        result = render_and_generate_pdfs(
+            onepager_html=onepager_html,
+            detail_html=detail_html,
+            output_dir=args.output_dir,
+            basename=basename,
+            base_url="."
+        )
+        
+        # ==================== SUMMARY ====================
+        print(f"\n" + "=" * 70)
+        print("✅ GENERATIE VOLTOOID!")
+        print("=" * 70)
+        
+        print(f"\n📂 Output bestanden:")
+        
+        # OnePager
+        if result['onepager']['is_pdf']:
+            print(f"   ✓ OnePager PDF: {result['onepager']['pdf']}")
+        else:
+            print(f"   ⚠️  OnePager HTML: {result['onepager']['html']} (PDF niet beschikbaar)")
+        
+        # Detail
+        if result['detail']['is_pdf']:
+            print(f"   ✓ Detail PDF: {result['detail']['pdf']}")
+        else:
+            print(f"   ⚠️  Detail HTML: {result['detail']['html']} (PDF niet beschikbaar)")
+        
+        # Show absolute paths
+        output_dir_abs = os.path.abspath(args.output_dir)
+        print(f"\n📍 Locatie: {output_dir_abs}")
+        
+        # Summary
+        print(f"\n💰 Eindafrekening samenvatting:")
+        print(f"   Client: {data['client'].name}")
+        print(f"   Periode: {data['period'].days} dagen")
+        netto = settlement.totaal_eindafrekening
+        if netto >= 0:
+            print(f"   ✓ Terug naar klant: €{netto:.2f}")
+        else:
+            print(f"   ✓ Bijbetaling klant: €{abs(netto):.2f}")
+        
+        print(f"\n✨ Gereed voor verzending naar klant!")
         
     except FileNotFoundError as e:
-        print(f"\n❌ Fout: {e}")
-    except ValueError as e:
-        print(f"\n❌ Fout in data: {e}")
+        print(f"\n❌ FOUT: {e}")
+        print(f"   Controleer of het bestand bestaat en het pad correct is.")
+        sys.exit(1)
+        
     except Exception as e:
-        print(f"\n❌ Onverwachte fout: {e}")
+        print(f"\n❌ ONVERWACHTE FOUT: {e}")
         import traceback
         traceback.print_exc()
+        sys.exit(1)
     
+    # Pause if interactive
     if not args.no_pause:
-        input("\nDruk op Enter om af te sluiten...")
+        input("\n👉 Druk op Enter om af te sluiten...")
+
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,168 @@
+{
+    "algemeen": {
+      "klant": {
+        "naam": "Algemeen!Klantnaam",
+        "contactpersoon": "Algemeen!Contactpersoon",
+        "email": "Algemeen!Email",
+        "telefoon": "Algemeen!Telefoonnummer"
+      },
+      "object": {
+        "adres": "Algemeen!Object_adres",
+        "unit": "Algemeen!Unit_nr",
+        "postcode": "Algemeen!Postcode",
+        "plaats": "Algemeen!Plaats",
+        "object_id": "Algemeen!Object_ID"
+      },
+      "periode": {
+        "incheck_datum": "Algemeen!Incheck_datum",
+        "uitcheck_datum": "Algemeen!Uitcheck_datum",
+        "aantal_dagen": "Algemeen!Aantal_dagen"
+      },
+      "voorschotten": {
+        "borg": "Algemeen!Voorschot_borg",
+        "gwe": "Algemeen!Voorschot_GWE",
+        "schoonmaak": "Algemeen!Voorschot_schoonmaak",
+        "overig": "Algemeen!Overige_voorschotten"
+      },
+      "contract": {
+        "schoonmaak_pakket": "Algemeen!Schoonmaak_pakket",
+        "inbegrepen_uren": "Algemeen!Inbegrepen_uren",
+        "uurtarief_schoonmaak": "Algemeen!Uurtarief_schoonmaak",
+        "meterbeheerder": "Algemeen!Meterbeheerder",
+        "energie_leverancier": "Algemeen!Energie_leverancier",
+        "contractnummer": "Algemeen!Contractnummer"
+      },
+      "intern": {
+        "klantnummer": "Algemeen!RR_Klantnummer",
+        "folder_link": "Algemeen!RR_Folder_link",
+        "projectleider": "Algemeen!RR_Projectleider",
+        "inspecteur": "Algemeen!RR_Inspecteur",
+        "factuurnummer": "Algemeen!RR_Factuurnummer"
+      }
+    },
+  
+    "gwe": {
+      "meterstanden": {
+        "stroom": {
+          "begin": "GWE_Detail!KWh_begin",
+          "eind": "GWE_Detail!KWh_eind",
+          "verbruik": "GWE_Detail!KWh_verbruik"
+        },
+        "gas": {
+          "begin": "GWE_Detail!Gas_begin",
+          "eind": "GWE_Detail!Gas_eind",
+          "verbruik": "GWE_Detail!Gas_verbruik"
+        }
+      },
+      "kostenregels": [
+        {
+          "omschrijving": "GWE_Detail!Omschrijving_1",
+          "verbruik_dagen": "GWE_Detail!Verbruik_1",
+          "tarief_excl": "GWE_Detail!Tarief_1",
+          "kosten_excl": "GWE_Detail!Kosten_1"
+        },
+        {
+          "omschrijving": "GWE_Detail!Omschrijving_2",
+          "verbruik_dagen": "GWE_Detail!Verbruik_2",
+          "tarief_excl": "GWE_Detail!Tarief_2",
+          "kosten_excl": "GWE_Detail!Kosten_2"
+        }
+      ],
+      "totalen": {
+        "totaal_excl": "GWE_Detail!GWE_totaal_excl",
+        "btw": "GWE_Detail!GWE_BTW",
+        "totaal_incl": "GWE_Detail!GWE_totaal_incl"
+      }
+    },
+  
+    "schoonmaak": {
+      "pakket": "Schoonmaak!Schoonmaak_pakket",
+      "inbegrepen_uren": "Schoonmaak!Inbegrepen_uren",
+      "totaal_uren_gew": "Schoonmaak!Totaal_uren_gew",
+      "extra_uren": "Schoonmaak!Extra_uren",
+      "uurtarief": "Schoonmaak!Uurtarief_schoonmaak",
+      "extra_bedrag": "Schoonmaak!Extra_schoonmaak_bedrag",
+      "voorschot_bedrag": "Algemeen!Voorschot_schoonmaak"
+    },
+  
+    "schade": {
+      "regels_range": "Schade!A5:D200",
+      "regels": [
+        {
+          "beschrijving": "Schade!A5",
+          "aantal": "Schade!B5",
+          "tarief_excl": "Schade!C5",
+          "bedrag_excl": "Schade!D5"
+        }
+      ],
+      "totalen": {
+        "totaal_excl": "Schade!Schade_totaal_excl",
+        "btw": "Schade!Schade_BTW",
+        "totaal_incl": "Schade!Schade_totaal_incl"
+      }
+    },
+  
+    "borg": {
+      "voorschot": "Algemeen!Voorschot_borg",
+      "gebruikt": "Algemeen!Borg_gebruikt",
+      "terug": "Algemeen!Borg_terug",
+      "restschade": "Algemeen!Restschade"
+    },
+  
+    "computed": {
+      "gwe_meer_minder": "Algemeen!GWE_meer_minder",
+      "schade_totaal_incl": "Schade!Schade_totaal_incl",
+      "schoonmaak_extra_bedrag": "Schoonmaak!Extra_schoonmaak_bedrag",
+      "totaal_eindafrekening": "Algemeen!Totaal_eindafrekening"
+    },
+  
+    "for_templates": {
+      "onepager": {
+        "borg_voorschot": "Algemeen!Voorschot_borg",
+        "borg_terug": "Algemeen!Borg_terug",
+        "borg_gebruikt": "Algemeen!Borg_gebruikt",
+  
+        "gwe_voorschot": "Algemeen!Voorschot_GWE",
+        "gwe_totaal_incl": "GWE_Detail!GWE_totaal_incl",
+        "gwe_meer_minder": "Algemeen!GWE_meer_minder",
+  
+        "schoonmaak_voorschot": "Algemeen!Voorschot_schoonmaak",
+        "schoonmaak_extra_uren": "Schoonmaak!Extra_uren",
+        "schoonmaak_extra_bedrag": "Schoonmaak!Extra_schoonmaak_bedrag",
+  
+        "schade_totaal_incl": "Schade!Schade_totaal_incl",
+  
+        "totaal_eindafrekening": "Algemeen!Totaal_eindafrekening"
+      },
+  
+      "detail": {
+        "meterstanden_stroom": {
+          "begin": "GWE_Detail!KWh_begin",
+          "eind": "GWE_Detail!KWh_eind",
+          "verbruik": "GWE_Detail!KWh_verbruik"
+        },
+        "meterstanden_gas": {
+          "begin": "GWE_Detail!Gas_begin",
+          "eind": "GWE_Detail!Gas_eind",
+          "verbruik": "GWE_Detail!Gas_verbruik"
+        },
+  
+        "gwe_regels": "GWE_Detail!Regels_tabel",
+  
+        "schoonmaak": {
+          "pakket": "Schoonmaak!Schoonmaak_pakket",
+          "inbegrepen_uren": "Schoonmaak!Inbegrepen_uren",
+          "totaal_uren": "Schoonmaak!Totaal_uren_gew",
+          "extra_uren": "Schoonmaak!Extra_uren",
+          "extra_bedrag": "Schoonmaak!Extra_schoonmaak_bedrag"
+        },
+  
+        "schade_regels": "Schade!A5:D200",
+        "schade_totalen": {
+          "totaal_excl": "Schade!Schade_totaal_excl",
+          "btw": "Schade!Schade_BTW",
+          "totaal_incl": "Schade!Schade_totaal_incl"
+        }
+      }
+    }
+  }

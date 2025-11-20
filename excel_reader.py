@@ -1,0 +1,398 @@
+#!/usr/bin/env python3
+"""
+Excel Reader - Reads data from Excel template using named ranges
+
+Reads the 4-sheet Excel template (Algemeen, GWE_Detail, Schoonmaak, Schade)
+using named ranges defined in developer-mapping.json and returns structured data.
+"""
+
+import openpyxl
+from typing import Optional, List, Dict, Any, Union
+from datetime import date, datetime
+from entities import (
+    Client, Object, Period, Deposit, GWEMeterReading, GWERegel, 
+    GWETotalen, Cleaning, DamageRegel, DamageTotalen, GWEMeterstanden
+)
+
+
+class ExcelReader:
+    """Reads Excel data using named ranges and returns entity objects"""
+    
+    def __init__(self, filepath: str):
+        """Initialize reader with Excel file path"""
+        self.filepath = filepath
+        self.wb = None
+        
+    def __enter__(self):
+        """Context manager entry - open workbook"""
+        self.wb = openpyxl.load_workbook(self.filepath, data_only=True)
+        return self
+        
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """Context manager exit - close workbook"""
+        if self.wb:
+            self.wb.close()
+    
+    def get_named_value(self, name: str) -> Any:
+        """
+        Get value from named range
+        
+        Args:
+            name: Named range name (e.g., 'Klantnaam')
+            
+        Returns:
+            Cell value or None if not found
+        """
+        if not self.wb:
+            raise RuntimeError("Workbook not opened. Use context manager.")
+            
+        try:
+            # Get defined name
+            if name not in self.wb.defined_names:
+                print(f"⚠️  Warning: Named range '{name}' not found")
+                return None
+                
+            defn = self.wb.defined_names[name]
+            
+            # Parse the reference (format: "SheetName!$A$1")
+            destinations = list(defn.destinations)
+            if not destinations:
+                return None
+                
+            sheet_name, cell_ref = destinations[0]
+            ws = self.wb[sheet_name]
+            
+            # Remove $ signs from cell reference
+            cell_ref = cell_ref.replace('$', '')
+            
+            return ws[cell_ref].value
+            
+        except Exception as e:
+            print(f"⚠️  Warning: Error reading named range '{name}': {e}")
+            return None
+    
+    def get_string(self, name: str, default: str = "") -> str:
+        """Get string value from named range"""
+        val = self.get_named_value(name)
+        if val is None:
+            return default
+        return str(val).strip()
+    
+    def get_float(self, name: str, default: float = 0.0) -> float:
+        """Get float value from named range"""
+        val = self.get_named_value(name)
+        if val is None:
+            return default
+        try:
+            return float(val)
+        except (ValueError, TypeError):
+            print(f"⚠️  Warning: Could not convert '{val}' to float for '{name}', using {default}")
+            return default
+    
+    def get_int(self, name: str, default: int = 0) -> int:
+        """Get integer value from named range"""
+        val = self.get_named_value(name)
+        if val is None:
+            return default
+        try:
+            return int(val)
+        except (ValueError, TypeError):
+            print(f"⚠️  Warning: Could not convert '{val}' to int for '{name}', using {default}")
+            return default
+    
+    def get_date(self, name: str, default: Optional[date] = None) -> Optional[date]:
+        """Get date value from named range"""
+        val = self.get_named_value(name)
+        if val is None:
+            return default
+            
+        # Handle datetime objects from Excel
+        if isinstance(val, datetime):
+            return val.date()
+        if isinstance(val, date):
+            return val
+            
+        # Try parsing string
+        if isinstance(val, str):
+            try:
+                return datetime.strptime(val, '%Y-%m-%d').date()
+            except ValueError:
+                try:
+                    return datetime.strptime(val, '%d-%m-%Y').date()
+                except ValueError:
+                    print(f"⚠️  Warning: Could not parse date '{val}' for '{name}'")
+                    return default
+        
+        return default
+    
+    def read_table_range(self, sheet_name: str, start_row: int, start_col: int = 1, 
+                        num_cols: int = 4, max_rows: int = 200) -> List[List[Any]]:
+        """
+        Read a dynamic table from Excel (stops at first empty row)
+        
+        Args:
+            sheet_name: Sheet name
+            start_row: Starting row number (1-indexed)
+            start_col: Starting column (1-indexed)
+            num_cols: Number of columns to read
+            max_rows: Maximum rows to scan
+            
+        Returns:
+            List of row lists
+        """
+        if not self.wb:
+            raise RuntimeError("Workbook not opened. Use context manager.")
+            
+        if sheet_name not in self.wb.sheetnames:
+            print(f"⚠️  Warning: Sheet '{sheet_name}' not found")
+            return []
+            
+        ws = self.wb[sheet_name]
+        rows = []
+        
+        for row_idx in range(start_row, start_row + max_rows):
+            # Read all columns in this row
+            row_values = []
+            is_empty = True
+            
+            for col_idx in range(start_col, start_col + num_cols):
+                cell_value = ws.cell(row=row_idx, column=col_idx).value
+                row_values.append(cell_value)
+                
+                # Check if any cell has data
+                if cell_value is not None and str(cell_value).strip():
+                    is_empty = False
+            
+            # Stop at first completely empty row
+            if is_empty:
+                break
+                
+            rows.append(row_values)
+        
+        return rows
+    
+    # ==================== ENTITY READERS ====================
+    
+    def read_client(self) -> Client:
+        """Read client information from Algemeen sheet"""
+        return Client(
+            name=self.get_string('Klantnaam'),
+            contact_person=self.get_string('Contactpersoon'),
+            email=self.get_string('Email'),
+            phone=self.get_string('Telefoonnummer') or None
+        )
+    
+    def read_object(self) -> Object:
+        """Read object (property) information from Algemeen sheet"""
+        return Object(
+            address=self.get_string('Object_adres'),
+            unit=self.get_string('Unit_nr') or None,
+            postal_code=self.get_string('Postcode') or None,
+            city=self.get_string('Plaats') or None,
+            object_id=self.get_string('Object_ID') or None
+        )
+    
+    def read_period(self) -> Period:
+        """Read rental period from Algemeen sheet"""
+        checkin = self.get_date('Incheck_datum')
+        checkout = self.get_date('Uitcheck_datum')
+        days = self.get_int('Aantal_dagen')
+        
+        # Calculate days if not provided
+        if days == 0 and checkin and checkout:
+            days = (checkout - checkin).days
+        
+        return Period(
+            checkin_date=checkin or date.today(),
+            checkout_date=checkout or date.today(),
+            days=days
+        )
+    
+    def read_deposit(self) -> Deposit:
+        """Read deposit (borg) information"""
+        voorschot = self.get_float('Voorschot_borg')
+        gebruikt = self.get_float('Borg_gebruikt')
+        terug = self.get_float('Borg_terug')
+        restschade = self.get_float('Restschade')
+        
+        return Deposit(
+            voorschot=voorschot,
+            gebruikt=gebruikt,
+            terug=terug,
+            restschade=restschade
+        )
+    
+    def read_gwe_meterstanden(self) -> GWEMeterstanden:
+        """Read GWE meter readings from GWE_Detail sheet"""
+        stroom = GWEMeterReading(
+            begin=self.get_float('KWh_begin'),
+            eind=self.get_float('KWh_eind'),
+            verbruik=self.get_float('KWh_verbruik')
+        )
+        
+        gas = GWEMeterReading(
+            begin=self.get_float('Gas_begin'),
+            eind=self.get_float('Gas_eind'),
+            verbruik=self.get_float('Gas_verbruik')
+        )
+        
+        return GWEMeterstanden(stroom=stroom, gas=gas)
+    
+    def read_gwe_regels(self) -> List[GWERegel]:
+        """Read GWE cost lines from GWE_Detail sheet table"""
+        # Read dynamic table starting at row 12 (after instructions)
+        rows = self.read_table_range('GWE_Detail', start_row=12, start_col=1, num_cols=4)
+        
+        regels = []
+        for row in rows:
+            omschrijving = str(row[0]).strip() if row[0] else ""
+            verbruik = row[1] if row[1] is not None else 0
+            tarief = row[2] if row[2] is not None else 0
+            kosten = row[3] if row[3] is not None else 0
+            
+            # Skip empty rows and header rows
+            if not omschrijving or omschrijving.lower() in ['omschrijving', 'beschrijving']:
+                continue
+            
+            try:
+                regels.append(GWERegel(
+                    omschrijving=omschrijving,
+                    verbruik_of_dagen=float(verbruik),
+                    tarief_excl=float(tarief),
+                    kosten_excl=float(kosten)
+                ))
+            except (ValueError, TypeError) as e:
+                print(f"⚠️  Warning: Could not parse GWE regel '{omschrijving}': {e}")
+                continue
+        
+        return regels
+    
+    def read_gwe_totalen(self) -> GWETotalen:
+        """Read GWE totals from GWE_Detail sheet"""
+        return GWETotalen(
+            totaal_excl=self.get_float('GWE_totaal_excl'),
+            btw=self.get_float('GWE_BTW'),
+            totaal_incl=self.get_float('GWE_totaal_incl')
+        )
+    
+    def read_cleaning(self) -> Cleaning:
+        """Read cleaning information from Schoonmaak sheet"""
+        pakket = self.get_string('Schoonmaak_pakket', default='5_uur')
+        
+        # Validate pakket type
+        if pakket not in ['5_uur', '7_uur']:
+            print(f"⚠️  Warning: Invalid pakket type '{pakket}', defaulting to '5_uur'")
+            pakket = '5_uur'
+        
+        return Cleaning(
+            pakket_type=pakket,  # type: ignore
+            inbegrepen_uren=self.get_float('Inbegrepen_uren'),
+            totaal_uren=self.get_float('Totaal_uren_gew'),
+            extra_uren=self.get_float('Extra_uren'),
+            uurtarief=self.get_float('Uurtarief_schoonmaak'),
+            extra_bedrag=self.get_float('Extra_schoonmaak_bedrag'),
+            voorschot=self.get_float('Voorschot_schoonmaak')
+        )
+    
+    def read_damage_regels(self) -> List[DamageRegel]:
+        """Read damage line items from Schade sheet table"""
+        # Read dynamic table starting at row 5
+        rows = self.read_table_range('Schade', start_row=5, start_col=1, num_cols=4)
+        
+        regels = []
+        for row in rows:
+            beschrijving = str(row[0]).strip() if row[0] else ""
+            aantal = row[1] if row[1] is not None else 0
+            tarief = row[2] if row[2] is not None else 0
+            bedrag = row[3] if row[3] is not None else 0
+            
+            # Skip empty rows and header rows (check for "beschrijving" text in description)
+            if not beschrijving or beschrijving.lower() in ['beschrijving', 'omschrijving']:
+                continue
+            
+            try:
+                regels.append(DamageRegel(
+                    beschrijving=beschrijving,
+                    aantal=float(aantal),
+                    tarief_excl=float(tarief),
+                    bedrag_excl=float(bedrag)
+                ))
+            except (ValueError, TypeError) as e:
+                print(f"⚠️  Warning: Could not parse damage regel '{beschrijving}': {e}")
+                continue
+        
+        return regels
+    
+    def read_damage_totalen(self) -> DamageTotalen:
+        """Read damage totals from Schade sheet"""
+        return DamageTotalen(
+            totaal_excl=self.get_float('Schade_totaal_excl'),
+            btw=self.get_float('Schade_BTW'),
+            totaal_incl=self.get_float('Schade_totaal_incl')
+        )
+    
+    def read_all(self) -> Dict[str, Any]:
+        """
+        Read all data from Excel and return as dictionary of entities
+        
+        Returns:
+            Dictionary with all entity objects
+        """
+        return {
+            'client': self.read_client(),
+            'object': self.read_object(),
+            'period': self.read_period(),
+            'deposit': self.read_deposit(),
+            'gwe_meterstanden': self.read_gwe_meterstanden(),
+            'gwe_regels': self.read_gwe_regels(),
+            'gwe_totalen': self.read_gwe_totalen(),
+            'cleaning': self.read_cleaning(),
+            'damage_regels': self.read_damage_regels(),
+            'damage_totalen': self.read_damage_totalen()
+        }
+
+
+def read_excel(filepath: str) -> Dict[str, Any]:
+    """
+    Convenience function to read Excel data
+    
+    Args:
+        filepath: Path to Excel file
+        
+    Returns:
+        Dictionary with all entity objects
+    """
+    with ExcelReader(filepath) as reader:
+        return reader.read_all()
+
+
+if __name__ == "__main__":
+    """Test the excel reader"""
+    import sys
+    
+    test_file = sys.argv[1] if len(sys.argv) > 1 else "input_template.xlsx"
+    
+    print(f"📖 Testing Excel Reader with: {test_file}")
+    print("=" * 60)
+    
+    try:
+        data = read_excel(test_file)
+        
+        print(f"\n✅ Successfully read Excel data:")
+        print(f"   Client: {data['client'].name}")
+        print(f"   Object: {data['object'].address}")
+        print(f"   Period: {data['period'].checkin_date} → {data['period'].checkout_date} ({data['period'].days} days)")
+        print(f"   Deposit: €{data['deposit'].voorschot} (€{data['deposit'].gebruikt} used, €{data['deposit'].terug} back)")
+        print(f"   GWE Regels: {len(data['gwe_regels'])} lines")
+        print(f"   GWE Total: €{data['gwe_totalen'].totaal_incl}")
+        print(f"   Cleaning: {data['cleaning'].pakket_type}, {data['cleaning'].totaal_uren} hours")
+        print(f"   Damage Regels: {len(data['damage_regels'])} items")
+        print(f"   Damage Total: €{data['damage_totalen'].totaal_incl}")
+        
+    except FileNotFoundError:
+        print(f"\n❌ Error: File '{test_file}' not found")
+    except Exception as e:
+        print(f"\n❌ Error: {e}")
+        import traceback
+        traceback.print_exc()
+
