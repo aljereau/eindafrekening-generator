@@ -76,6 +76,7 @@ class GWETotalen:
 class Cleaning:
     """Cleaning cost information"""
     pakket_type: Literal["5_uur", "7_uur"]  # Package type
+    pakket_naam: str                        # Display name (e.g. "Basis Schoonmaak")
     inbegrepen_uren: float                  # Hours included in package
     totaal_uren: float                      # Total hours worked
     extra_uren: float                       # Extra hours beyond package

@@ -137,7 +137,7 @@ class Calculator:
         return 5.0  # Default to 5_uur
     
     @staticmethod
-    def calculate_cleaning(pakket_type: str, totaal_uren: float, 
+    def calculate_cleaning(pakket_type: str, pakket_naam: str, totaal_uren: float, 
                           uurtarief: float, voorschot: float) -> Cleaning:
         """
         Calculate cleaning costs including extra hours
@@ -157,6 +157,7 @@ class Calculator:
         
         return Cleaning(
             pakket_type=pakket_type,  # type: ignore
+            pakket_naam=pakket_naam,
             inbegrepen_uren=inbegrepen_uren,
             totaal_uren=totaal_uren,
             extra_uren=extra_uren,
@@ -520,10 +521,8 @@ def recalculate_all(data: Dict[str, Any]) -> Dict[str, Any]:
     # Recalculate GWE totals - only if there are detail lines with actual costs
     # If no detail lines with costs exist, preserve existing totals from Excel
     if 'gwe_regels' in data and len(data['gwe_regels']) > 0:
-        # Check if any regels have non-zero costs (not just placeholder rows)
-        has_costs = any(regel.kosten_excl > 0 for regel in data['gwe_regels'])
-        if has_costs:
-            data['gwe_totalen'] = calc.calculate_gwe_totalen(data['gwe_regels'])
+        # Always recalculate if rules exist, as Excel formulas might not be calculated
+        data['gwe_totalen'] = calc.calculate_gwe_totalen(data['gwe_regels'])
     
     # Recalculate damage regel bedragen
     if 'damage_regels' in data:
@@ -536,16 +535,15 @@ def recalculate_all(data: Dict[str, Any]) -> Dict[str, Any]:
     # Recalculate damage totals - only if there are detail lines with actual amounts
     # If no detail lines with amounts exist, preserve existing totals from Excel
     if 'damage_regels' in data and len(data['damage_regels']) > 0:
-        # Check if any regels have non-zero amounts (not just placeholder rows)
-        has_amounts = any(regel.bedrag_excl > 0 for regel in data['damage_regels'])
-        if has_amounts:
-            data['damage_totalen'] = calc.calculate_damage_totalen(data['damage_regels'])
+        # Always recalculate if rules exist, as Excel formulas might not be calculated
+        data['damage_totalen'] = calc.calculate_damage_totalen(data['damage_regels'])
     
     # Recalculate cleaning
     if 'cleaning' in data:
         cleaning = data['cleaning']
         data['cleaning'] = calc.calculate_cleaning(
             cleaning.pakket_type,
+            cleaning.pakket_naam,
             cleaning.totaal_uren,
             cleaning.uurtarief,
             cleaning.voorschot
@@ -601,6 +599,7 @@ if __name__ == "__main__":
     print("\n3. Cleaning Calculation:")
     cleaning = Calculator.calculate_cleaning(
         pakket_type="5_uur",
+        pakket_naam="Basis Schoonmaak",
         totaal_uren=7.5,
         uurtarief=50,
         voorschot=250

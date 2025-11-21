@@ -277,15 +277,23 @@ class ExcelReader:
     
     def read_cleaning(self) -> Cleaning:
         """Read cleaning information from Schoonmaak sheet"""
-        pakket = self.get_string('Schoonmaak_pakket', default='5_uur')
+        pakket_raw = self.get_string('Schoonmaak_pakket', default='Basis Schoonmaak')
+        pakket_naam = pakket_raw
         
-        # Validate pakket type
-        if pakket not in ['5_uur', '7_uur']:
-            print(f"⚠️  Warning: Invalid pakket type '{pakket}', defaulting to '5_uur'")
+        # Map to internal type
+        if 'intensief' in pakket_raw.lower():
+            pakket = '7_uur'
+        elif 'basis' in pakket_raw.lower():
+            pakket = '5_uur'
+        elif pakket_raw in ['5_uur', '7_uur']:
+             pakket = pakket_raw
+        else:
+            print(f"⚠️  Warning: Unknown pakket type '{pakket_raw}', defaulting to '5_uur'")
             pakket = '5_uur'
         
         return Cleaning(
             pakket_type=pakket,  # type: ignore
+            pakket_naam=pakket_naam,
             inbegrepen_uren=self.get_float('Inbegrepen_uren'),
             totaal_uren=self.get_float('Totaal_uren_gew'),
             extra_uren=self.get_float('Extra_uren'),

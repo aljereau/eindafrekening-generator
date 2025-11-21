@@ -203,7 +203,6 @@ def create_algemeen_sheet(wb):
     ws[f'B{row}'].border = thin_border
     ws[f'B{row}'] = f'=IF(AND(B{incheck_row}<>"",B{uitcheck_row}<>""),B{uitcheck_row}-B{incheck_row},"")'
     ws[f'B{row}'].number_format = '0'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'Aantal_dagen', f'Algemeen!$B${row}')
     row += 2
 
@@ -269,7 +268,7 @@ def create_algemeen_sheet(wb):
     add_named_range(wb,'Schoonmaak_pakket', f'Algemeen!$B${row}')
 
     # Add dropdown validation
-    dv = DataValidation(type="list", formula1='"5_uur,7_uur"', allow_blank=False)
+    dv = DataValidation(type="list", formula1='"Basis Schoonmaak,Intensief Schoonmaak"', allow_blank=False)
     dv.error = 'Kies 5_uur of 7_uur'
     dv.errorTitle = 'Ongeldige invoer'
     ws.add_data_validation(dv)
@@ -282,9 +281,8 @@ def create_algemeen_sheet(wb):
     ws[f'A{row}'].font = label_font
     ws[f'B{row}'].fill = computed_fill
     ws[f'B{row}'].border = thin_border
-    ws[f'B{row}'] = f'=IF(B{schoonmaak_pakket_row}="5_uur",5,IF(B{schoonmaak_pakket_row}="7_uur",7,""))'
+    ws[f'B{row}'] = f'=IF(B{schoonmaak_pakket_row}="Basis Schoonmaak",5,IF(B{schoonmaak_pakket_row}="Intensief Schoonmaak",7,""))'
     ws[f'B{row}'].number_format = '0'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'Inbegrepen_uren', f'Algemeen!$B${row}')
     row += 1
 
@@ -381,7 +379,6 @@ def create_algemeen_sheet(wb):
     ws[f'B{row}'].border = thin_border
     ws[f'B{row}'].number_format = '€ #,##0.00'
     ws[f'B{row}'] = '=Schade!Schade_totaal_incl'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'Borg_gebruikt', f'Algemeen!$B${row}')
     borg_gebruikt_row = row
     row += 1
@@ -393,7 +390,6 @@ def create_algemeen_sheet(wb):
     ws[f'B{row}'].border = thin_border
     ws[f'B{row}'].number_format = '€ #,##0.00'
     ws[f'B{row}'] = f'=IF(Borg_gebruikt="","",Voorschot_borg-Borg_gebruikt)'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'Borg_terug', f'Algemeen!$B${row}')
     borg_terug_row = row
     row += 1
@@ -405,7 +401,6 @@ def create_algemeen_sheet(wb):
     ws[f'B{row}'].border = thin_border
     ws[f'B{row}'].number_format = '€ #,##0.00'
     ws[f'B{row}'] = f'=IF(Borg_gebruikt="","",MAX(0,Borg_gebruikt-Voorschot_borg))'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'Restschade', f'Algemeen!$B${row}')
     row += 1
 
@@ -416,7 +411,6 @@ def create_algemeen_sheet(wb):
     ws[f'B{row}'].border = thin_border
     ws[f'B{row}'].number_format = '€ #,##0.00'
     ws[f'B{row}'] = '=IF(GWE_Detail!GWE_totaal_incl="","",Voorschot_GWE-GWE_Detail!GWE_totaal_incl)'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'GWE_meer_minder', f'Algemeen!$B${row}')
     gwe_meer_minder_row = row
     row += 1
@@ -432,7 +426,6 @@ def create_algemeen_sheet(wb):
     ws[f'B{row}'].number_format = '€ #,##0.00'
     ws[f'B{row}'].font = Font(name='Arial', size=11, bold=True)
     ws[f'B{row}'] = f'=IF(OR(Borg_terug="",GWE_meer_minder="",Schoonmaak!Extra_schoonmaak_bedrag=""),"",Borg_terug+GWE_meer_minder-Schoonmaak!Extra_schoonmaak_bedrag)'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'Totaal_eindafrekening', f'Algemeen!$B${row}')
 
     # Freeze panes at A2 (freeze header row)
@@ -440,19 +433,19 @@ def create_algemeen_sheet(wb):
     
     # Enable sheet protection (no password, just UI lock)
     # Unlock all input cells first, then protect sheet
-    for row_cells in ws.iter_rows():
-        for cell in row_cells:
+    # for row_cells in ws.iter_rows():
+    # for cell in row_cells:
             # By default all cells are locked, but we need to unlock input cells
             # Computed cells are already set to locked=True above
             # Input cells (with required_fill or normal border) should be unlocked
-            if cell.fill and cell.fill.start_color and cell.fill.start_color.rgb == required_fill.start_color.rgb:
-                cell.protection = Protection(locked=False)
-            elif cell.fill and cell.fill.start_color and cell.fill.start_color.rgb != computed_fill.start_color.rgb:
+    # if cell.fill and cell.fill.start_color and cell.fill.start_color.rgb == required_fill.start_color.rgb:
+    # cell.protection = Protection(locked=False)
+    # elif cell.fill and cell.fill.start_color and cell.fill.start_color.rgb != computed_fill.start_color.rgb:
                 # Regular input cells (no fill or default fill)
-                if cell.value is None or (isinstance(cell.value, str) and not cell.value.startswith('=')):
-                    cell.protection = Protection(locked=False)
+    # if cell.value is None or (isinstance(cell.value, str) and not cell.value.startswith('=')):
+    # cell.protection = Protection(locked=False)
     
-    ws.protection.sheet = True
+    # ws.protection.sheet = True  # DISABLED - All cells unlocked
 
 
 def create_gwe_detail_sheet(wb):
@@ -528,7 +521,6 @@ def create_gwe_detail_sheet(wb):
     ws[f'B{row}'].border = thin_border
     ws[f'B{row}'] = f'=IF(AND(B{kwh_begin_row}<>"",B{kwh_eind_row}<>""),B{kwh_eind_row}-B{kwh_begin_row},"")'
     ws[f'B{row}'].number_format = '#,##0'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'KWh_verbruik', f'GWE_Detail!$B${row}')
     row += 1
 
@@ -557,7 +549,6 @@ def create_gwe_detail_sheet(wb):
     ws[f'B{row}'].border = thin_border
     ws[f'B{row}'] = f'=IF(AND(B{gas_begin_row}<>"",B{gas_eind_row}<>""),B{gas_eind_row}-B{gas_begin_row},"")'
     ws[f'B{row}'].number_format = '#,##0.00'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'Gas_verbruik', f'GWE_Detail!$B${row}')
     row += 2
 
@@ -668,7 +659,6 @@ def create_gwe_detail_sheet(wb):
     ws[f'B{row}'].number_format = '€ #,##0.00'
     # Sum from table_start_row+1 (first data row after header) to row-2 (before totals)
     ws[f'B{row}'] = f'=SUM(D{table_start_row+1}:D{row-2})'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'GWE_totaal_excl', f'GWE_Detail!$B${row}')
     gwe_totaal_excl_row = row
     row += 1
@@ -680,7 +670,6 @@ def create_gwe_detail_sheet(wb):
     ws[f'B{row}'].border = thin_border
     ws[f'B{row}'].number_format = '€ #,##0.00'
     ws[f'B{row}'] = f'=IF(B{gwe_totaal_excl_row}="","",B{gwe_totaal_excl_row}*0.21)'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'GWE_BTW', f'GWE_Detail!$B${row}')
     gwe_btw_row = row
     row += 1
@@ -696,22 +685,21 @@ def create_gwe_detail_sheet(wb):
     ws[f'B{row}'].number_format = '€ #,##0.00'
     ws[f'B{row}'].font = Font(name='Arial', size=10, bold=True)
     ws[f'B{row}'] = f'=IF(B{gwe_totaal_excl_row}="","",B{gwe_totaal_excl_row}+B{gwe_btw_row})'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'GWE_totaal_incl', f'GWE_Detail!$B${row}')
 
     # Freeze panes at A6 (freeze headers)
     ws.freeze_panes = 'A6'
     
     # Enable sheet protection (unlock input cells)
-    for row_cells in ws.iter_rows():
-        for cell in row_cells:
-            if cell.fill and cell.fill.start_color and cell.fill.start_color.rgb == required_fill.start_color.rgb:
-                cell.protection = Protection(locked=False)
-            elif cell.fill and cell.fill.start_color and cell.fill.start_color.rgb != computed_fill.start_color.rgb:
-                if cell.value is None or (isinstance(cell.value, str) and not cell.value.startswith('=')):
-                    cell.protection = Protection(locked=False)
+    # for row_cells in ws.iter_rows():
+    # for cell in row_cells:
+    # if cell.fill and cell.fill.start_color and cell.fill.start_color.rgb == required_fill.start_color.rgb:
+    # cell.protection = Protection(locked=False)
+    # elif cell.fill and cell.fill.start_color and cell.fill.start_color.rgb != computed_fill.start_color.rgb:
+    # if cell.value is None or (isinstance(cell.value, str) and not cell.value.startswith('=')):
+    # cell.protection = Protection(locked=False)
     
-    ws.protection.sheet = True
+    # ws.protection.sheet = True  # DISABLED - All cells unlocked
 
 
 def create_schoonmaak_sheet(wb):
@@ -774,7 +762,7 @@ def create_schoonmaak_sheet(wb):
     ws[f'A{row}'].font = label_font
     ws[f'B{row}'].fill = computed_fill
     ws[f'B{row}'].border = thin_border
-    ws[f'B{row}'] = f'=IF(B{schoonmaak_pakket_row}="5_uur",5,IF(B{schoonmaak_pakket_row}="7_uur",7,""))'
+    ws[f'B{row}'] = f'=IF(B{schoonmaak_pakket_row}="Basis Schoonmaak",5,IF(B{schoonmaak_pakket_row}="Intensief Schoonmaak",7,""))'
     ws[f'B{row}'].number_format = '0'
     inbegrepen_uren_row = row
     row += 1
@@ -822,7 +810,6 @@ def create_schoonmaak_sheet(wb):
     ws[f'B{row}'] = f'=IF(AND(B{extra_uren_row}<>"",B{uurtarief_row}<>""),B{extra_uren_row}*B{uurtarief_row},"")'
     ws[f'B{row}'].number_format = '€ #,##0.00'
     ws[f'B{row}'].font = Font(name='Arial', size=10, bold=True)
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'Extra_schoonmaak_bedrag', f'Schoonmaak!$B${row}')
 
     # Freeze panes
@@ -831,17 +818,15 @@ def create_schoonmaak_sheet(wb):
     # Enable sheet protection (unlock input cells, lock computed)
     # Specifically unlock Totaal_uren_gew (totaal_uren_row)
     # Lock Inbegrepen_uren (computed from pakket), Extra_uren (computed), and Extra_schoonmaak_bedrag (computed)
-    for row_cells in ws.iter_rows():
-        for cell in row_cells:
+    # for row_cells in ws.iter_rows():
+    # for cell in row_cells:
             # Only unlock specific input cell: Totaal_uren_gew
-            if cell.row == totaal_uren_row and cell.column == 2:  # B column
-                cell.protection = Protection(locked=False)
+    # if cell.row == totaal_uren_row and cell.column == 2:  # B column
+    # cell.protection = Protection(locked=False)
     
     # Also need to protect the computed cells explicitly
-    ws[f'B{inbegrepen_uren_row}'].protection = Protection(locked=True)
-    ws[f'B{extra_uren_row}'].protection = Protection(locked=True)
     
-    ws.protection.sheet = True
+    # ws.protection.sheet = True  # DISABLED - All cells unlocked
 
 
 def create_schade_sheet(wb):
@@ -947,7 +932,6 @@ def create_schade_sheet(wb):
     ws[f'B{row}'].border = thin_border
     ws[f'B{row}'].number_format = '€ #,##0.00'
     ws[f'B{row}'] = f'=SUM(D{table_start_row+1}:D{row-2})'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'Schade_totaal_excl', f'Schade!$B${row}')
     schade_totaal_excl_row = row
     row += 1
@@ -959,7 +943,6 @@ def create_schade_sheet(wb):
     ws[f'B{row}'].border = thin_border
     ws[f'B{row}'].number_format = '€ #,##0.00'
     ws[f'B{row}'] = f'=IF(B{schade_totaal_excl_row}="","",B{schade_totaal_excl_row}*0.21)'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'Schade_BTW', f'Schade!$B${row}')
     schade_btw_row = row
     row += 1
@@ -975,22 +958,21 @@ def create_schade_sheet(wb):
     ws[f'B{row}'].number_format = '€ #,##0.00'
     ws[f'B{row}'].font = Font(name='Arial', size=10, bold=True)
     ws[f'B{row}'] = f'=IF(B{schade_totaal_excl_row}="","",B{schade_totaal_excl_row}+B{schade_btw_row})'
-    ws[f'B{row}'].protection = Protection(locked=True)
     add_named_range(wb,'Schade_totaal_incl', f'Schade!$B${row}')
 
     # Freeze panes at A6 (freeze headers and instructions)
     ws.freeze_panes = 'A6'
     
     # Enable sheet protection (unlock input cells, lock computed)
-    for row_cells in ws.iter_rows():
-        for cell in row_cells:
+    # for row_cells in ws.iter_rows():
+    # for cell in row_cells:
             # Unlock input cells (columns A, B, C for damage items)
             # Column D is computed (already has formula), keep it locked
-            if cell.column in [1, 2, 3]:  # A, B, C
-                if cell.row >= table_start_row + 1 and cell.row <= table_start_row + 50:
-                    cell.protection = Protection(locked=False)
+    # if cell.column in [1, 2, 3]:  # A, B, C
+    # if cell.row >= table_start_row + 1 and cell.row <= table_start_row + 50:
+    # cell.protection = Protection(locked=False)
     
-    ws.protection.sheet = True
+    # ws.protection.sheet = True  # DISABLED - All cells unlocked
 
 
 if __name__ == "__main__":

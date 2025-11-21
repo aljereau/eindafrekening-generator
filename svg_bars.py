@@ -9,6 +9,57 @@ Creates pot-based bars where voorschot (pot) = fixed 400px baseline.
 from typing import Tuple
 
 
+def generate_rounded_rect_path(x: float, y: float, w: float, h: float, r: float, round_left: bool = True, round_right: bool = True) -> str:
+    """
+    Generate SVG path for a rectangle with selectively rounded corners.
+    """
+    # Clamp radius to half height/width
+    r = min(r, h/2, w/2)
+    
+    path = []
+    
+    # Top left
+    if round_left:
+        path.append(f"M {x+r},{y}")
+    else:
+        path.append(f"M {x},{y}")
+        
+    # Top edge
+    if round_right:
+        path.append(f"L {x+w-r},{y}")
+        # Top right corner
+        path.append(f"A {r},{r} 0 0 1 {x+w},{y+r}")
+    else:
+        path.append(f"L {x+w},{y}")
+        
+    # Right edge
+    if round_right:
+        path.append(f"L {x+w},{y+h-r}")
+        # Bottom right corner
+        path.append(f"A {r},{r} 0 0 1 {x+w-r},{y+h}")
+    else:
+        path.append(f"L {x+w},{y+h}")
+        
+    # Bottom edge
+    if round_left:
+        path.append(f"L {x+r},{y+h}")
+        # Bottom left corner
+        path.append(f"A {r},{r} 0 0 1 {x},{y+h-r}")
+    else:
+        path.append(f"L {x},{y+h}")
+        
+    # Left edge
+    if round_left:
+        path.append(f"L {x},{y+r}")
+        # Top left corner (close)
+        path.append(f"A {r},{r} 0 0 1 {x+r},{y}")
+    else:
+        path.append(f"L {x},{y}")
+        path.append("Z")
+        
+    return " ".join(path)
+
+
 def generate_bar_svg(
     voorschot: float,
     gebruikt_or_totaal: float,
@@ -16,27 +67,16 @@ def generate_bar_svg(
     label_gebruikt: str = "",
     label_extra_or_terug: str = "",
     pot_width: int = 400,
-    height: int = 40
+    height: int = 40,
+    show_limit_line: bool = False,
+    rounded_right: bool = True
 ) -> str:
     """
     Generate pot-based SVG bar.
     
-    POT-BASED RULES:
-    - Pot (voorschot) = fixed 400px baseline (always)
-    - Underuse: solid = (used/pot) * 400px, stripe fills rest to 400px
-    - Overflow: solid fills 400px + small 50px extension with notch
-    
     Args:
-        voorschot: The prepaid/budget amount (THE POT)
-        gebruikt_or_totaal: Amount used
-        is_overfilled: True if usage exceeded budget
-        label_gebruikt: Text for used portion
-        label_extra_or_terug: Text for stripe portion
-        pot_width: FIXED width representing the pot (400px)
-        height: Bar height (40px)
-    
-    Returns:
-        SVG markup as string
+        ...
+        rounded_right: If False, right corners will be sharp (for connecting to overflow bar)
     """
     
     border_radius = height / 2
@@ -61,7 +101,7 @@ def generate_bar_svg(
         total_width = pot_width
         used_width = (gebruikt_or_totaal / voorschot) * pot_width
         show_extension = False
-        show_marker = False
+        show_marker = show_limit_line  # Use the parameter
         
         # Labels
         label_used = label_gebruikt if label_gebruikt else f"€{gebruikt_or_totaal:.0f}"
@@ -85,10 +125,19 @@ def generate_bar_svg(
     </defs>''')
     
     # LAYER 1: Base bar - green background (represents full pot/return)
-    svg_parts.append(f'    <rect x="0" y="0" width="{pot_width}" height="{height}" rx="{border_radius}" fill="#81C784" stroke="#E0E0E0" stroke-width="1"/>')
+    # Use path if rounded_right is False, otherwise rect
+    if not rounded_right:
+        path_d = generate_rounded_rect_path(0, 0, pot_width, height, border_radius, round_left=True, round_right=False)
+        svg_parts.append(f'    <path d="{path_d}" fill="#81C784" stroke="#E0E0E0" stroke-width="1"/>')
+    else:
+        svg_parts.append(f'    <rect x="0" y="0" width="{pot_width}" height="{height}" rx="{border_radius}" fill="#81C784" stroke="#E0E0E0" stroke-width="1"/>')
     
     # LAYER 2: Yellow overlay (used portion)
-    svg_parts.append(f'    <rect x="0" y="0" width="{used_width}" height="{height}" rx="{border_radius}" fill="#FFE082"/>')
+    if not rounded_right and used_width >= pot_width: # Only flatten if it reaches the end
+        path_d = generate_rounded_rect_path(0, 0, used_width, height, border_radius, round_left=True, round_right=False)
+        svg_parts.append(f'    <path d="{path_d}" fill="#FFE082"/>')
+    else:
+        svg_parts.append(f'    <rect x="0" y="0" width="{used_width}" height="{height}" rx="{border_radius}" fill="#FFE082"/>')
     
     if is_overfilled:
         # LAYER 3: Overflow extension (red striped)
@@ -105,6 +154,11 @@ def generate_bar_svg(
         if extension_width > 30:
             svg_parts.append(f'    <text x="{pot_width + extension_width/2}" y="{height/2 + 5}" text-anchor="middle" fill="#C62828" font-size="11" font-weight="600" font-family="Barlow, sans-serif">{label_overflow_text}</text>')
     else:
+        # Pot boundary marker (for split design where overflow is separate)
+        if show_marker:
+            # Draw line at the end of the pot (which is also the end of the bar in this case)
+            svg_parts.append(f'    <line x1="{pot_width}" y1="-5" x2="{pot_width}" y2="{height + 5}" stroke="#D32F2F" stroke-width="2" stroke-dasharray="4,4" opacity="0.6"/>')
+
         # Labels for underuse/perfect fit
         return_width = pot_width - used_width
         if used_width > 40:
@@ -149,18 +203,17 @@ def generate_start_bar_svg(
 def generate_overflow_indicator_svg(
     amount: float,
     width: int = 80,
-    height: int = 24
+    height: int = 30,
+    rounded_left: bool = True
 ) -> str:
     """
     Generate small red overflow indicator badge.
 
-    This appears next to the main bar when usage exceeds budget,
-    showing the overflow amount in a compact red badge.
-
     Args:
         amount: The overflow amount (positive value)
         width: Badge width (default 80px)
-        height: Badge height (default 24px)
+        height: Badge height (default 30px - MATCHES MAIN BAR)
+        rounded_left: If False, left corners will be sharp (for connecting to main bar)
 
     Returns:
         SVG markup as string
@@ -168,12 +221,18 @@ def generate_overflow_indicator_svg(
 
     border_radius = height / 2.0
 
-    svg = f'''<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="{width}" height="{height}" rx="{border_radius}" fill="#EF9A9A" stroke="#C62828" stroke-width="1.5"/>
-    <text x="{width/2}" y="{height/2 + 4}" text-anchor="middle" fill="#C62828" font-size="10" font-weight="700" font-family="Barlow, sans-serif">+€{amount:.0f}</text>
-</svg>'''
+    svg_parts = [f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" xmlns="http://www.w3.org/2000/svg">']
+    
+    if not rounded_left:
+        path_d = generate_rounded_rect_path(0, 0, width, height, border_radius, round_left=False, round_right=True)
+        svg_parts.append(f'    <path d="{path_d}" fill="#EF9A9A"/>')
+    else:
+        svg_parts.append(f'    <rect x="0" y="0" width="{width}" height="{height}" rx="{border_radius}" fill="#EF9A9A"/>')
+        
+    svg_parts.append(f'    <text x="{width/2}" y="{height/2 + 4}" text-anchor="middle" fill="#C62828" font-size="10" font-weight="700" font-family="Barlow, sans-serif">€{amount:.0f}</text>')
+    svg_parts.append('</svg>')
 
-    return svg
+    return '\n'.join(svg_parts)
 
 
 def generate_caption(

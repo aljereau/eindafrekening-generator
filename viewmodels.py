@@ -21,8 +21,8 @@ from svg_bars import generate_bar_svg, generate_start_bar_svg, generate_caption,
 
 
 def date_to_str(d: date) -> str:
-    """Convert date to string format YYYY-MM-DD"""
-    return d.strftime('%Y-%m-%d') if d else ""
+    """Convert date to string format DD-MM-YYYY (Dutch format)"""
+    return d.strftime('%d-%m-%Y') if d else ""
 
 
 def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Dict[str, Any]:
@@ -80,7 +80,8 @@ def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Di
             "borg": {
                 "voorschot": settlement.borg.voorschot,
                 "gebruikt": settlement.borg.gebruikt,
-                "terug": settlement.borg.terug
+                "terug": settlement.borg.terug,
+                "restschade": settlement.borg.restschade
             },
             "gwe": {
                 "voorschot": gwe_voorschot,
@@ -92,7 +93,7 @@ def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Di
             },
             "cleaning": {
                 "pakket_type": cleaning.pakket_type,
-                "pakket_naam": "Basis Schoonmaak" if cleaning.pakket_type == "5_uur" else "Intensief Schoonmaak",
+                "pakket_naam": cleaning.pakket_naam,
                 "inbegrepen_uren": cleaning.inbegrepen_uren,
                 "totaal_uren": cleaning.totaal_uren,
                 "voorschot": cleaning.voorschot,
@@ -185,6 +186,7 @@ def build_detail_viewmodel(data: Dict[str, Any]) -> Dict[str, Any]:
         },
         "cleaning": {
             "pakket_type": cleaning.pakket_type,
+            "pakket_naam": "Basis Schoonmaak" if cleaning.pakket_type == "5_uur" else "Intensief Schoonmaak",
             "inbegrepen_uren": cleaning.inbegrepen_uren,
             "totaal_uren": cleaning.totaal_uren,
             "extra_uren": cleaning.extra_uren,
@@ -296,18 +298,21 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
         # Overuse scenario - bar fills pot, overflow shows separately
         gwe_svg = generate_bar_svg(
             voorschot=gwe['voorschot'],
-            gebruikt_or_totaal=gwe['voorschot'],  # Bar fills to pot limit
+            gebruikt_or_totaal=gwe['voorschot'],  # Show full bar
             is_overfilled=False,  # Bar itself doesn't overflow
             label_gebruikt=f"€{gwe['voorschot']:.0f}",
             label_extra_or_terug="",
             pot_width=280,
-            height=30
+            height=30,
+            show_limit_line=True,
+            rounded_right=False
         )
         # Generate overflow indicator
         gwe_overflow_svg = generate_overflow_indicator_svg(
             amount=gwe['extra'],
             width=80,
-            height=24
+            height=30,
+            rounded_left=False
         )
         financial['gwe']['overflow_svg'] = gwe_overflow_svg
     else:
@@ -351,7 +356,7 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
     financial['cleaning']['bars'] = {
         'gebruikt_pct': 100.0,
         'terug_pct': 0.0,
-        'extra_pct': 0.0 if cleaning['extra_bedrag'] == 0 else (cleaning['extra_bedrag'] / cleaning['voorschot']) * 100,
+        'extra_pct': 0.0 if (cleaning['extra_bedrag'] == 0 or cleaning['voorschot'] == 0) else (cleaning['extra_bedrag'] / cleaning['voorschot']) * 100,
         'is_overfilled': cleaning['extra_bedrag'] > 0
     }
 
@@ -373,7 +378,9 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
         label_gebruikt=f"€{cleaning['voorschot']:.0f}",
         label_extra_or_terug="",  # No return label for cleaning
         pot_width=280,
-        height=30
+        height=30,
+        show_limit_line=True if cleaning['extra_bedrag'] > 0 else False,
+        rounded_right=False if cleaning['extra_bedrag'] > 0 else True
     )
     financial['cleaning']['svg_bar'] = cleaning_svg
 
@@ -382,7 +389,8 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
         cleaning_overflow_svg = generate_overflow_indicator_svg(
             amount=cleaning['extra_bedrag'],
             width=80,
-            height=24
+            height=30,
+            rounded_left=False
         )
         financial['cleaning']['overflow_svg'] = cleaning_overflow_svg
         # Caption showing extra hours cost
