@@ -227,9 +227,11 @@ class Calculator:
         
         totaal_eindafrekening = 0.0
         
-        # Deposit refund (positive) or restschade charge (negative)
+        # Deposit refund (positive)
+        # NOTE: Restschade (overflow) is NOT charged to the tenant in this report.
+        # It is displayed visually but excluded from the settlement total.
         totaal_eindafrekening += borg.terug
-        totaal_eindafrekening -= borg.restschade
+        # totaal_eindafrekening -= borg.restschade  <-- REMOVED per user feedback
         
         # GWE: voorschot minus actual consumption
         gwe_meer_minder = gwe_voorschot - gwe_totalen.totaal_incl
@@ -559,12 +561,28 @@ def recalculate_all(data: Dict[str, Any]) -> Dict[str, Any]:
         gebruikt = existing_deposit.gebruikt  # Preserve from Excel
         terug = max(0, voorschot - gebruikt)
 
-        # Recalculate terug and restschade based on Excel's gebruikt value
+        # Recalculate terug and restschade based on Excel's gebruikt value (which is total damage)
+        # Logic:
+        # - Gebruikt (for display/calc) is the TOTAL damage amount (so client sees full cost)
+        # - Restschade is the overflow (Total Damage - Voorschot)
+        # - Terug is what's left (Voorschot - Total Damage, min 0)
+        
+        # Use damage_totalen if available, otherwise fallback to Excel value
+        total_damage = existing_deposit.gebruikt
+        if 'damage_totalen' in data:
+             total_damage = max(total_damage, data['damage_totalen'].totaal_incl)
+        
+        # We store the FULL damage as 'gebruikt' so it appears in the "Kosten" column of the table.
+        # For the bar chart (yellow bar), we will cap it in viewmodels.py.
+        gebruikt_full = total_damage
+        terug = max(0, voorschot - total_damage)
+        restschade = max(0, total_damage - voorschot)
+
         data['deposit'] = Deposit(
             voorschot=voorschot,
-            gebruikt=gebruikt,
+            gebruikt=gebruikt_full,
             terug=terug,
-            restschade=0  # Restschade would be handled separately if needed
+            restschade=restschade
         )
     
     return data

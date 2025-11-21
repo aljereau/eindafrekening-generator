@@ -254,6 +254,10 @@ class ExcelReader:
             if not omschrijving or omschrijving.lower() in ['omschrijving', 'beschrijving']:
                 continue
             
+            # Skip instruction rows (starting with emoji or containing instruction text)
+            if omschrijving.startswith('💡') or 'vul hier' in omschrijving.lower():
+                continue
+            
             try:
                 regels.append(GWERegel(
                     omschrijving=omschrijving,

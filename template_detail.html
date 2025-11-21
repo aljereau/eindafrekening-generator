@@ -384,7 +384,11 @@
 
             <div class="summary-box">
                 <div class="label">Schoonmaakpakket</div>
-                <div class="value">{{ cleaning.pakket_type.replace('_', ' ').title() }}</div>
+                <div class="value">
+                    {{ cleaning.pakket_naam|lower }}{% if cleaning.extra_uren > 0 %} + {{
+                    "%.0f"|format(cleaning.extra_uren) }} extra {% if cleaning.extra_uren == 1 %}uur{% else %}uren{%
+                    endif %}{% endif %}
+                </div>
             </div>
 
             <table>

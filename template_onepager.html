@@ -701,7 +701,11 @@
         <div class="result-section">
             <div class="result-section-spacer"></div>
             <div class="result-value-wrapper">
-                <div class="result-value text-return">€{{ "%.0f"|format(financial.borg.terug) }}</div>
+                {% if financial.borg.restschade > 0 %}
+                <div class="result-value text-neutral">€0</div>
+                {% else %}
+                <div class="result-value text-return">€{{ "%.0f"|format(financial.borg.terug) }} terug</div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -812,6 +816,16 @@
             <div class="detail-item meterstand-summary">
                 <span style="font-family: monospace; font-size: 11px;">Meterstanden tijdens verblijf</span>
             </div>
+            {% if financial.gwe.meterstanden %}
+            {% for type, stand in financial.gwe.meterstanden.items() %}
+            <div class="detail-item">
+                <span style="color: var(--color-text-light); font-size: 11px;">
+                    {{ type|capitalize }} (Start: {{ stand.begin }} - Eind: {{ stand.eind }})
+                </span>
+                <span style="font-size: 11px;">{{ stand.verbruik }}</span>
+            </div>
+            {% endfor %}
+            {% endif %}
             <div class="detail-item">
                 <span style="color: var(--color-text-light); font-size: 11px;">
                     Rapporteringsperiode G/W/E:
@@ -879,9 +893,9 @@
                     </td>
                     <td>€{{ "%.2f"|format(financial.borg.voorschot) }}</td>
                     <td>€{{ "%.2f"|format(financial.borg.gebruikt) }}</td>
-                    <td class="{{ 'text-return' if financial.borg.restschade == 0 else 'text-charge' }}">
+                    <td class="{{ 'text-return' if financial.borg.restschade == 0 else 'text-neutral' }}">
                         {% if financial.borg.restschade > 0 %}
-                        €{{ "%.0f"|format(financial.borg.restschade) }} bijbetalen
+                        €0
                         {% else %}
                         €{{ "%.0f"|format(financial.borg.terug) }} terug
                         {% endif %}

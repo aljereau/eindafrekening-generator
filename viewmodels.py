@@ -40,6 +40,7 @@ def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Di
     obj: Object = data['object']
     period: Period = data['period']
     gwe_totalen: GWETotalen = data['gwe_totalen']
+    gwe_meterstanden: GWEMeterstanden = data['gwe_meterstanden']
     cleaning: Cleaning = data['cleaning']
     damage_totalen: DamageTotalen = data['damage_totalen']
     damage_regels: List[DamageRegel] = data.get('damage_regels', [])
@@ -89,7 +90,20 @@ def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Di
                 "meer_minder": gwe_meer_minder,
                 "is_overfilled": gwe_is_overfilled,
                 "extra": gwe_extra,
-                "terug": gwe_terug
+                "extra": gwe_extra,
+                "terug": gwe_terug,
+                "meterstanden": {
+                    "stroom": {
+                        "begin": gwe_meterstanden.stroom.begin,
+                        "eind": gwe_meterstanden.stroom.eind,
+                        "verbruik": gwe_meterstanden.stroom.verbruik
+                    },
+                    "gas": {
+                        "begin": gwe_meterstanden.gas.begin,
+                        "eind": gwe_meterstanden.gas.eind,
+                        "verbruik": gwe_meterstanden.gas.verbruik
+                    }
+                }
             },
             "cleaning": {
                 "pakket_type": cleaning.pakket_type,
@@ -254,25 +268,42 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
     )
     financial['borg']['svg_start_bar'] = borg_start_svg
 
-    # Generate VERBLIJF bar SVG (used vs return)
+    # Generate Borg bar SVG (matches GWE style)
+    # Usage bar is always 280px, showing only the capped usage (no overflow extension)
+    # Overflow is a separate SVG in the extra-section
+    is_overfilled = borg['restschade'] > 0
+    
+    # Usage bar - always 280px, never shows overflow extension
     borg_svg = generate_bar_svg(
         voorschot=borg['voorschot'],
-        gebruikt_or_totaal=borg['gebruikt'],
-        is_overfilled=False,
-        label_gebruikt=f"€{borg['gebruikt']:.0f}",
+        gebruikt_or_totaal=min(borg['voorschot'], borg['gebruikt']),
+        is_overfilled=False,  # Always False so the bar stays 280px
+        label_gebruikt=f"€{min(borg['voorschot'], borg['gebruikt']):.0f}",
         label_extra_or_terug=f"€{borg['terug']:.0f}",
         pot_width=280,
-        height=30
+        height=30,
+        show_limit_line=is_overfilled,  # Show red dashed line if overfilled
+        rounded_right=not is_overfilled  # Sharp right edge if overfilled, to match overflow bar
     )
     financial['borg']['svg_bar'] = borg_svg
+    financial['borg']['is_overfilled'] = is_overfilled
+
+    # Generate separate overflow SVG if needed (goes in extra-section)
+    if is_overfilled:
+        overflow_svg = generate_overflow_indicator_svg(
+            amount=borg['restschade'],
+            height=30,
+            rounded_left=False  # Sharp left edge to match GWE style
+        )
+        financial['borg']['overflow_svg'] = overflow_svg
 
     # Generate human-readable caption
-    borg_caption = generate_caption(
-        pot=borg['voorschot'],
-        used=borg['gebruikt'],
-        refund=borg['terug'],
-        overflow=0
-    )
+    # Format matches GWE but with "Extra schade" instead of "Extra te betalen"
+    if is_overfilled:
+        borg_caption = f"Voorschot: €{borg['voorschot']:.0f} · Verbruik: €{borg['gebruikt']:.0f} · Extra schade: €{borg['restschade']:.0f}"
+    else:
+        borg_caption = f"Voorschot: €{borg['voorschot']:.0f} · Verbruik: €{borg['gebruikt']:.0f} · Terug: €{borg['terug']:.0f}"
+    
     financial['borg']['caption'] = borg_caption
     
     # GWE - Bar percentages and SVG
