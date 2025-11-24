@@ -10,7 +10,7 @@ import openpyxl
 from typing import Optional, List, Dict, Any, Union
 from datetime import date, datetime
 from entities import (
-    Client, Object, Period, Deposit, GWEMeterReading, GWERegel, 
+    Client, Object, Period, Deposit, ExtraVoorschot, GWEMeterReading, GWERegel, 
     GWETotalen, Cleaning, DamageRegel, DamageTotalen, GWEMeterstanden
 )
 
@@ -285,7 +285,10 @@ class ExcelReader:
         pakket_naam = pakket_raw
         
         # Map to internal type
-        if 'intensief' in pakket_raw.lower():
+        if 'geen' in pakket_raw.lower() or not pakket_raw.strip():
+            pakket = 'geen'
+            pakket_naam = 'Geen pakket'
+        elif 'intensief' in pakket_raw.lower():
             pakket = '7_uur'
         elif 'basis' in pakket_raw.lower():
             pakket = '5_uur'
@@ -343,6 +346,22 @@ class ExcelReader:
             totaal_incl=self.get_float('Schade_totaal_incl')
         )
     
+    def read_extra_voorschot(self) -> Optional[ExtraVoorschot]:
+        """Read extra voorschot information (furniture, garden, keys, etc.)"""
+        bedrag = self.get_float('Extra_voorschot_bedrag', default=0.0)
+        
+        # If no extra voorschot, return None
+        if bedrag <= 0:
+            return None
+        
+        return ExtraVoorschot(
+            voorschot=bedrag,
+            omschrijving=self.get_string('Extra_voorschot_omschrijving', default='Extra voorschot'),
+            gebruikt=self.get_float('Extra_voorschot_gebruikt', default=0.0),
+            terug=self.get_float('Extra_voorschot_terug', default=bedrag),
+            restschade=self.get_float('Extra_voorschot_restschade', default=0.0)
+        )
+    
     def read_all(self) -> Dict[str, Any]:
         """
         Read all data from Excel and return as dictionary of entities
@@ -360,7 +379,8 @@ class ExcelReader:
             'gwe_totalen': self.read_gwe_totalen(),
             'cleaning': self.read_cleaning(),
             'damage_regels': self.read_damage_regels(),
-            'damage_totalen': self.read_damage_totalen()
+            'damage_totalen': self.read_damage_totalen(),
+            'extra_voorschot': self.read_extra_voorschot()
         }
 
 

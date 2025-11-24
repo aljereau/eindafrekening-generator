@@ -48,6 +48,16 @@ class Deposit:
 
 
 @dataclass
+class ExtraVoorschot:
+    """Extra advance payment (furniture, garden, keys, etc.)"""
+    voorschot: float      # Advance amount
+    omschrijving: str     # Description (e.g., "meubilair", "tuinonderhoud")
+    gebruikt: float       # Amount used
+    terug: float          # Amount to return
+    restschade: float     # Damage exceeding deposit (if any)
+
+
+@dataclass
 class GWEMeterReading:
     """Utility meter reading (electricity or gas)"""
     begin: float      # Starting meter reading
@@ -75,14 +85,14 @@ class GWETotalen:
 @dataclass
 class Cleaning:
     """Cleaning cost information"""
-    pakket_type: Literal["5_uur", "7_uur"]  # Package type
-    pakket_naam: str                        # Display name (e.g. "Basis Schoonmaak")
-    inbegrepen_uren: float                  # Hours included in package
-    totaal_uren: float                      # Total hours worked
-    extra_uren: float                       # Extra hours beyond package
-    uurtarief: float                        # Hourly rate
-    extra_bedrag: float                     # Extra cost for extra hours
-    voorschot: float                        # Prepaid cleaning amount
+    pakket_type: Literal["geen", "5_uur", "7_uur"]  # Package type ("geen" = no package)
+    pakket_naam: str                                # Display name (e.g. "Basis Schoonmaak", "Geen pakket")
+    inbegrepen_uren: float                          # Hours included in package
+    totaal_uren: float                              # Total hours worked
+    extra_uren: float                               # Extra hours beyond package
+    uurtarief: float                                # Hourly rate
+    extra_bedrag: float                             # Extra cost for extra hours
+    voorschot: float                                # Prepaid cleaning amount
 
 
 @dataclass

@@ -44,6 +44,7 @@ def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Di
     cleaning: Cleaning = data['cleaning']
     damage_totalen: DamageTotalen = data['damage_totalen']
     damage_regels: List[DamageRegel] = data.get('damage_regels', [])
+    extra_voorschot = data.get('extra_voorschot')  # Optional extra advance payment
     
     # Get voorschotten from various sources
     gwe_voorschot = data.get('gwe_voorschot', 0.0)  # Should be passed in
@@ -119,6 +120,14 @@ def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Di
             "damage": {
                 "totaal_incl": damage_totalen.totaal_incl
             },
+            "extra_voorschot": {
+                "voorschot": extra_voorschot.voorschot if extra_voorschot else 0.0,
+                "gebruikt": extra_voorschot.gebruikt if extra_voorschot else 0.0,
+                "terug": extra_voorschot.terug if extra_voorschot else 0.0,
+                "restschade": extra_voorschot.restschade if extra_voorschot else 0.0,
+                "omschrijving": extra_voorschot.omschrijving if extra_voorschot else "",
+                "has_voorschot": extra_voorschot is not None
+            } if extra_voorschot else None,
             "totals": {
                 "totaal_eindafrekening": settlement.totaal_eindafrekening,
                 "totaal_eindafrekening_is_positive": settlement.totaal_eindafrekening >= 0
@@ -229,7 +238,15 @@ def build_detail_viewmodel(data: Dict[str, Any]) -> Dict[str, Any]:
             "gebruikt": deposit.gebruikt,
             "terug": deposit.terug,
             "restschade": deposit.restschade
-        }
+        },
+        "extra_voorschot": {
+            "voorschot": data.get('extra_voorschot').voorschot if data.get('extra_voorschot') else 0.0,
+            "gebruikt": data.get('extra_voorschot').gebruikt if data.get('extra_voorschot') else 0.0,
+            "terug": data.get('extra_voorschot').terug if data.get('extra_voorschot') else 0.0,
+            "restschade": data.get('extra_voorschot').restschade if data.get('extra_voorschot') else 0.0,
+            "omschrijving": data.get('extra_voorschot').omschrijving if data.get('extra_voorschot') else "",
+            "has_voorschot": data.get('extra_voorschot') is not None
+        } if data.get('extra_voorschot') else None
     }
 
 
@@ -433,6 +450,77 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
 
     financial['cleaning']['caption'] = cleaning_caption
     
+    # EXTRA VOORSCHOT - Bar percentages and SVG (if exists)
+    if financial.get('extra_voorschot') and financial['extra_voorschot']:
+        extra_v = financial['extra_voorschot']
+        extra_v_bars = Calculator.calculate_bar_percentages(
+            gebruikt=extra_v['gebruikt'],
+            voorschot=extra_v['voorschot']
+        )
+        financial['extra_voorschot']['bars'] = extra_v_bars
+        
+        # Generate START bar SVG
+        extra_v_start_svg = generate_start_bar_svg(
+            amount=extra_v['voorschot'],
+            label=f"€{extra_v['voorschot']:.0f}",
+            width=280,
+            height=30
+        )
+        financial['extra_voorschot']['svg_start_bar'] = extra_v_start_svg
+        
+        # Generate VERBLIJF bar SVG
+        if extra_v_bars['is_overfilled']:
+            # Overfilled - show 100% used + overflow
+            extra_v_svg = generate_bar_svg(
+                voorschot=extra_v['voorschot'],
+                gebruikt_or_totaal=extra_v['voorschot'],  # Cap at 100%
+                is_overfilled=True,
+                label_gebruikt=f"€{extra_v['voorschot']:.0f}",
+                label_extra_or_terug="",
+                pot_width=280,
+                height=30,
+                show_limit_line=True,
+                rounded_right=False  # Sharp edge for overflow
+            )
+            # Generate overflow indicator
+            extra_v_overflow_svg = generate_overflow_indicator_svg(
+                amount=extra_v['restschade'],
+                width=80,
+                height=30,
+                rounded_left=False
+            )
+            financial['extra_voorschot']['overflow_svg'] = extra_v_overflow_svg
+        else:
+            # Underfilled - show used + return
+            extra_v_svg = generate_bar_svg(
+                voorschot=extra_v['voorschot'],
+                gebruikt_or_totaal=extra_v['gebruikt'],
+                is_overfilled=False,
+                label_gebruikt=f"€{extra_v['gebruikt']:.0f}",
+                label_extra_or_terug=f"€{extra_v['terug']:.0f}",
+                pot_width=280,
+                height=30
+            )
+            financial['extra_voorschot']['overflow_svg'] = ""  # No overflow
+        financial['extra_voorschot']['svg_bar'] = extra_v_svg
+        
+        # Generate caption
+        if extra_v_bars['is_overfilled']:
+            extra_v_caption = generate_caption(
+                pot=extra_v['voorschot'],
+                used=extra_v['gebruikt'],
+                refund=0,
+                overflow=extra_v['restschade']
+            )
+        else:
+            extra_v_caption = generate_caption(
+                pot=extra_v['voorschot'],
+                used=extra_v['gebruikt'],
+                refund=extra_v['terug'],
+                overflow=0
+            )
+        financial['extra_voorschot']['caption'] = extra_v_caption
+    
     return onepager_vm
 
 
@@ -459,7 +547,8 @@ def build_viewmodels_from_data(data: Dict[str, Any]) -> tuple[Dict[str, Any], Di
         gwe_voorschot=gwe_voorschot,
         gwe_totalen=data['gwe_totalen'],
         cleaning=data['cleaning'],
-        damage_totalen=data['damage_totalen']
+        damage_totalen=data['damage_totalen'],
+        extra_voorschot=data.get('extra_voorschot')
     )
     
     # Build OnePager viewmodel

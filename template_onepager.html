@@ -748,7 +748,9 @@
         </div>
     </div>
 
-    <!-- ROW 3: SCHOONMAAK -->
+
+    <!-- ROW 3: SCHOONMAAK (only if package was purchased) -->
+    {% if financial.cleaning.pakket_type != 'geen' %}
     <div class="budget-row">
         <div class="start-section">
             <div class="category-label">SCHOONMAAK</div>
@@ -785,6 +787,47 @@
             </div>
         </div>
     </div>
+    {% endif %}
+
+    <!-- ROW 4: EXTRA VOORSCHOT (only if exists) -->
+    {% if financial.extra_voorschot %}
+    <div class="budget-row">
+        <div class="start-section">
+            <div class="category-label">{{ financial.extra_voorschot.omschrijving|upper }}</div>
+            <div class="start-bar-wrapper">
+                {{ financial.extra_voorschot.svg_start_bar|safe }}
+            </div>
+            <div class="prepaid-label">Extra voorschot</div>
+        </div>
+        <div class="usage-section">
+            <div class="usage-section-spacer"></div>
+            <div class="unified-bar-container">
+                <div class="svg-bar-wrapper">
+                    {{ financial.extra_voorschot.svg_bar|safe }}
+                </div>
+            </div>
+            <div class="bar-caption">{{ financial.extra_voorschot.caption }}</div>
+        </div>
+        <div class="extra-section">
+            <div class="extra-section-spacer"></div>
+            <div class="overflow-wrapper">
+                {% if financial.extra_voorschot.bars.is_overfilled %}
+                {{ financial.extra_voorschot.overflow_svg|safe }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="result-section">
+            <div class="result-section-spacer"></div>
+            <div class="result-value-wrapper">
+                {% if financial.extra_voorschot.restschade > 0 %}
+                <div class="result-value text-neutral">€0</div>
+                {% else %}
+                <div class="result-value text-return">€{{ "%.0f"|format(financial.extra_voorschot.terug) }} terug</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
 
     <!-- DETAILS SECTION -->
     <div class="details-grid">
@@ -840,6 +883,8 @@
             </div>
         </div>
 
+        <!-- Cleaning specification card (only if package was purchased) -->
+        {% if financial.cleaning.pakket_type != 'geen' %}
         <div class="detail-card">
             <div class="detail-header">
                 <span>SCHOONMAAK PAKKET</span>
@@ -868,6 +913,39 @@
             </div>
             {% endif %}
         </div>
+        {% endif %}
+
+        <!-- Extra voorschot specification card (only if exists) -->
+        {% if financial.extra_voorschot %}
+        <div class="detail-card">
+            <div class="detail-header">
+                <span>{{ financial.extra_voorschot.omschrijving|upper }}</span>
+                <span>€{{ "%.2f"|format(financial.extra_voorschot.voorschot) }}</span>
+            </div>
+            <div class="detail-item">
+                <span>Omschrijving:</span>
+                <span>{{ financial.extra_voorschot.omschrijving }}</span>
+            </div>
+            <div class="detail-item">
+                <span>Voorschot:</span>
+                <span>€{{ "%.2f"|format(financial.extra_voorschot.voorschot) }}</span>
+            </div>
+            <div class="detail-item">
+                <span>Gebruikt:</span>
+                <span>€{{ "%.2f"|format(financial.extra_voorschot.gebruikt) }}</span>
+            </div>
+            <div class="detail-item">
+                <span>Terug:</span>
+                <span>€{{ "%.2f"|format(financial.extra_voorschot.terug) }}</span>
+            </div>
+            {% if financial.extra_voorschot.restschade > 0 %}
+            <div class="detail-item">
+                <span>Restschade:</span>
+                <span>€{{ "%.2f"|format(financial.extra_voorschot.restschade) }}</span>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
     </div>
 
     <!-- SETTLEMENT TABLE -->
@@ -915,6 +993,8 @@
                         bijbetalen"|format(financial.gwe.extra) }}
                     </td>
                 </tr>
+                <!-- Cleaning row (only if package was purchased) -->
+                {% if financial.cleaning.pakket_type != 'geen' %}
                 <tr>
                     <td>
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -932,6 +1012,28 @@
                         {% endif %}
                     </td>
                 </tr>
+                {% endif %}
+                <!-- Extra voorschot row (only if exists) -->
+                {% if financial.extra_voorschot %}
+                <tr>
+                    <td>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 8v8M8 12h8" />
+                        </svg>
+                        {{ financial.extra_voorschot.omschrijving }}
+                    </td>
+                    <td>€{{ "%.2f"|format(financial.extra_voorschot.voorschot) }}</td>
+                    <td>€{{ "%.2f"|format(financial.extra_voorschot.gebruikt) }}</td>
+                    <td class="{{ 'text-return' if financial.extra_voorschot.restschade == 0 else 'text-neutral' }}">
+                        {% if financial.extra_voorschot.restschade > 0 %}
+                        €0
+                        {% else %}
+                        €{{ "%.0f"|format(financial.extra_voorschot.terug) }} terug
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endif %}
                 <tr class="row-total">
                     <td colspan="3" style="text-align: right;">TOTAAL NETTO:</td>
                     <td>

@@ -249,6 +249,22 @@ def create_algemeen_sheet(wb):
     ws[f'B{row}'].number_format = '€ #,##0.00'
     ws[f'B{row}'] = 0
     add_named_range(wb,'Overige_voorschotten', f'Algemeen!$B${row}')
+    row += 1
+
+    # Extra_voorschot_bedrag (optional, default 0)
+    ws[f'A{row}'] = "Extra Voorschot Bedrag"
+    ws[f'A{row}'].font = label_font
+    ws[f'B{row}'].border = thin_border
+    ws[f'B{row}'].number_format = '€ #,##0.00'
+    ws[f'B{row}'] = 0
+    add_named_range(wb,'Extra_voorschot_bedrag', f'Algemeen!$B${row}')
+    row += 1
+
+    # Extra_voorschot_omschrijving (optional)
+    ws[f'A{row}'] = "Extra Voorschot Omschrijving"
+    ws[f'A{row}'].font = label_font
+    ws[f'B{row}'].border = thin_border
+    add_named_range(wb,'Extra_voorschot_omschrijving', f'Algemeen!$B${row}')
     row += 2
 
     # ==================== CONTRACT INFO ====================
@@ -268,8 +284,8 @@ def create_algemeen_sheet(wb):
     add_named_range(wb,'Schoonmaak_pakket', f'Algemeen!$B${row}')
 
     # Add dropdown validation
-    dv = DataValidation(type="list", formula1='"Basis Schoonmaak,Intensief Schoonmaak"', allow_blank=False)
-    dv.error = 'Kies 5_uur of 7_uur'
+    dv = DataValidation(type="list", formula1='"geen,Basis Schoonmaak,Intensief Schoonmaak"', allow_blank=False)
+    dv.error = 'Kies geen, Basis Schoonmaak, of Intensief Schoonmaak'
     dv.errorTitle = 'Ongeldige invoer'
     ws.add_data_validation(dv)
     dv.add(f'B{row}')
@@ -415,7 +431,39 @@ def create_algemeen_sheet(wb):
     gwe_meer_minder_row = row
     row += 1
 
-    # Totaal_eindafrekening (computed)
+    # Extra_voorschot_gebruikt (required input - user fills this)
+    ws[f'A{row}'] = "Extra Voorschot Gebruikt *"
+    ws[f'A{row}'].font = label_font
+    ws[f'B{row}'].fill = required_fill
+    ws[f'B{row}'].border = thin_border
+    ws[f'B{row}'].number_format = '€ #,##0.00'
+    ws[f'B{row}'] = 0
+    add_named_range(wb,'Extra_voorschot_gebruikt', f'Algemeen!$B${row}')
+    extra_voorschot_gebruikt_row = row
+    row += 1
+
+    # Extra_voorschot_terug (computed)
+    ws[f'A{row}'] = "Extra Voorschot Terug (automatisch)"
+    ws[f'A{row}'].font = label_font
+    ws[f'B{row}'].fill = computed_fill
+    ws[f'B{row}'].border = thin_border
+    ws[f'B{row}'].number_format = '€ #,##0.00'
+    ws[f'B{row}'] = f'=IF(Extra_voorschot_bedrag=0,"",Extra_voorschot_bedrag-Extra_voorschot_gebruikt)'
+    add_named_range(wb,'Extra_voorschot_terug', f'Algemeen!$B${row}')
+    extra_voorschot_terug_row = row
+    row += 1
+
+    # Extra_voorschot_restschade (computed)
+    ws[f'A{row}'] = "Extra Voorschot Restschade (automatisch)"
+    ws[f'A{row}'].font = label_font
+    ws[f'B{row}'].fill = computed_fill
+    ws[f'B{row}'].border = thin_border
+    ws[f'B{row}'].number_format = '€ #,##0.00'
+    ws[f'B{row}'] = f'=IF(Extra_voorschot_bedrag=0,"",MAX(0,Extra_voorschot_gebruikt-Extra_voorschot_bedrag))'
+    add_named_range(wb,'Extra_voorschot_restschade', f'Algemeen!$B${row}')
+    row += 1
+
+    # Totaal_eindafrekening (computed - now includes extra voorschot)
     ws[f'A{row}'] = "Totaal Eindafrekening (automatisch)"
     ws[f'A{row}'].font = Font(name='Arial', size=11, bold=True)
     ws[f'B{row}'].fill = computed_fill
@@ -425,7 +473,7 @@ def create_algemeen_sheet(wb):
     )
     ws[f'B{row}'].number_format = '€ #,##0.00'
     ws[f'B{row}'].font = Font(name='Arial', size=11, bold=True)
-    ws[f'B{row}'] = f'=IF(OR(Borg_terug="",GWE_meer_minder="",Schoonmaak!Extra_schoonmaak_bedrag=""),"",Borg_terug+GWE_meer_minder-Schoonmaak!Extra_schoonmaak_bedrag)'
+    ws[f'B{row}'] = f'=IF(OR(Borg_terug="",GWE_meer_minder="",Schoonmaak!Extra_schoonmaak_bedrag=""),"",Borg_terug+GWE_meer_minder-Schoonmaak!Extra_schoonmaak_bedrag+IF(Extra_voorschot_bedrag=0,0,Extra_voorschot_terug))'
     add_named_range(wb,'Totaal_eindafrekening', f'Algemeen!$B${row}')
 
     # Freeze panes at A2 (freeze header row)

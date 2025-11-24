@@ -1,6 +1,31 @@
+# Python
 venv/
-output/
 __pycache__/
 *.pyc
+*.py[cod]
+*$py.class
+
+# Output
+output/
+output/*.html
+output/*.pdf
+
+# Database
+database/*.db
+database/*.db-shm
+database/*.db-wal
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Config
 .env
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary
+*.log
+*.tmp

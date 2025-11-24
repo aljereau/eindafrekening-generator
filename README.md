@@ -2,7 +2,24 @@
 
 Professionele eindafrekeningstool voor vakantieverhuur met visuele pot-gebaseerde overzichten.
 
-## 🚀 Snel Starten
+## 🚀 Snel Starten (Voor Gebruikers)
+
+**Geen Terminal kennis nodig!** Gebruik de **dubbelklik methode**:
+
+### Voor Eindgebruikers (Anna & Team):
+
+1. **Vul Excel in** - Open `input_template.xlsx` en vul alle gegevens in
+2. **Dubbelklik** op:
+   - **Mac**: `Genereer_Eindafrekening.command`
+   - **Windows**: `Genereer_Eindafrekening.bat`
+3. **Browser opent automatisch** met de HTML eindafrekeningen
+4. **Print naar PDF** met Cmd+P (Mac) of Ctrl+P (Windows)
+
+**📘 Zie `SNELSTART_GIDS.md` voor uitgebreide stap-voor-stap instructies**
+
+---
+
+## 🔧 Voor Developers
 
 ### 1. Installatie
 

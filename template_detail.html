@@ -373,9 +373,11 @@
             </table>
         </div>
 
-        <!-- CLEANING SECTION -->
+
+        <!-- CLEANING SECTION (only if package was purchased) -->
+        {% if cleaning.pakket_type != 'geen' %}
         <div class="section">
-            <h2 class="section-title">
+            <h2>
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M3 12h18M3 6h18M3 18h18" />
                 </svg>
@@ -425,6 +427,64 @@
                 </tbody>
             </table>
         </div>
+        {% endif %}
+
+        <!-- EXTRA VOORSCHOT SECTION (only if exists) -->
+        {% if extra_voorschot %}
+        <div class="section">
+            <h2>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 8v8M8 12h8" />
+                </svg>
+                {{ extra_voorschot.omschrijving }}
+            </h2>
+
+            <div class="summary-box">
+                <div class="label">Omschrijving</div>
+                <div class="value">{{ extra_voorschot.omschrijving }}</div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Omschrijving</th>
+                        <th class="text-right">Bedrag</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Voorschot betaald</td>
+                        <td class="text-right">€{{ "%.2f"|format(extra_voorschot.voorschot) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Gebruikt</td>
+                        <td class="text-right">€{{ "%.2f"|format(extra_voorschot.gebruikt) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Terug</td>
+                        <td class="text-right">€{{ "%.2f"|format(extra_voorschot.terug) }}</td>
+                    </tr>
+                    {% if extra_voorschot.restschade > 0 %}
+                    <tr>
+                        <td>Restschade (niet verrekend)</td>
+                        <td class="text-right">€{{ "%.2f"|format(extra_voorschot.restschade) }}</td>
+                    </tr>
+                    {% endif %}
+                    <tr class="totals-row">
+                        <td class="text-bold">Netto resultaat</td>
+                        <td class="text-right text-bold">
+                            {% if extra_voorschot.restschade > 0 %}
+                            €0.00
+                            {% else %}
+                            €{{ "%.2f"|format(extra_voorschot.terug) }} terug
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
 
         <!-- DAMAGE SECTION -->
         <div class="section">

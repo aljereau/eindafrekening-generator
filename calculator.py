@@ -12,7 +12,7 @@ Handles all calculations for:
 
 from typing import Dict, Any, List
 from entities import (
-    Deposit, GWEMeterReading, GWERegel, GWETotalen, Cleaning,
+    Deposit, ExtraVoorschot, GWEMeterReading, GWERegel, GWETotalen, Cleaning,
     DamageRegel, DamageTotalen, Settlement, GWEMeterstanden
 )
 
@@ -143,7 +143,7 @@ class Calculator:
         Calculate cleaning costs including extra hours
         
         Args:
-            pakket_type: Package type ('5_uur' or '7_uur')
+            pakket_type: Package type ('geen', '5_uur' or '7_uur')
             totaal_uren: Total hours worked
             uurtarief: Hourly rate
             voorschot: Prepaid cleaning amount
@@ -151,6 +151,19 @@ class Calculator:
         Returns:
             Cleaning entity with calculated extra hours and cost
         """
+        # Handle "geen" package - no cleaning package purchased
+        if pakket_type == 'geen':
+            return Cleaning(
+                pakket_type='geen',  # type: ignore
+                pakket_naam=pakket_naam,
+                inbegrepen_uren=0.0,
+                totaal_uren=0.0,
+                extra_uren=0.0,
+                uurtarief=0.0,
+                extra_bedrag=0.0,
+                voorschot=0.0
+            )
+        
         inbegrepen_uren = Calculator.calculate_inbegrepen_uren(pakket_type)
         extra_uren = max(0, totaal_uren - inbegrepen_uren)
         extra_bedrag = extra_uren * uurtarief
@@ -207,7 +220,8 @@ class Calculator:
     
     @staticmethod
     def calculate_settlement(borg: Deposit, gwe_voorschot: float, gwe_totalen: GWETotalen,
-                            cleaning: Cleaning, damage_totalen: DamageTotalen) -> Settlement:
+                            cleaning: Cleaning, damage_totalen: DamageTotalen,
+                            extra_voorschot: ExtraVoorschot = None) -> Settlement:
         """
         Calculate final settlement
         
@@ -217,6 +231,7 @@ class Calculator:
             gwe_totalen: GWE totals
             cleaning: Cleaning entity
             damage_totalen: Damage totals
+            extra_voorschot: Optional extra advance payment
             
         Returns:
             Settlement entity with final totals
@@ -237,8 +252,14 @@ class Calculator:
         gwe_meer_minder = gwe_voorschot - gwe_totalen.totaal_incl
         totaal_eindafrekening += gwe_meer_minder
         
-        # Cleaning extra cost (negative)
-        totaal_eindafrekening -= cleaning.extra_bedrag
+        # Cleaning extra cost (negative) - only if package was purchased
+        if cleaning.pakket_type != 'geen':
+            totaal_eindafrekening -= cleaning.extra_bedrag
+        
+        # Extra voorschot refund (positive) - if exists
+        # NOTE: Like borg, restschade is NOT charged in the settlement
+        if extra_voorschot:
+            totaal_eindafrekening += extra_voorschot.terug
         
         return Settlement(
             borg=borg,

@@ -76,7 +76,9 @@ Examples:
                        help='Save intermediate JSON viewmodels')
     parser.add_argument('--html-only', action='store_true',
                        help='Skip PDF generation, only create HTML')
-    
+    parser.add_argument('--auto-open', action='store_true',
+                       help='Auto-open generated HTML files in browser')
+
     args = parser.parse_args()
     
     # Print header
@@ -144,7 +146,8 @@ Examples:
             gwe_voorschot=gwe_voorschot,
             gwe_totalen=data['gwe_totalen'],
             cleaning=data['cleaning'],
-            damage_totalen=data['damage_totalen']
+            damage_totalen=data['damage_totalen'],
+            extra_voorschot=data.get('extra_voorschot')
         )
         
         print(f"   ✓ Borg terug: €{data['deposit'].terug:.2f}")
@@ -234,7 +237,7 @@ Examples:
         # Show absolute paths
         output_dir_abs = os.path.abspath(args.output_dir)
         print(f"\n📍 Locatie: {output_dir_abs}")
-        
+
         # Summary
         print(f"\n💰 Eindafrekening samenvatting:")
         print(f"   Client: {data['client'].name}")
@@ -244,8 +247,28 @@ Examples:
             print(f"   ✓ Terug naar klant: €{netto:.2f}")
         else:
             print(f"   ✓ Bijbetaling klant: €{abs(netto):.2f}")
-        
+
         print(f"\n✨ Gereed voor verzending naar klant!")
+
+        # Auto-open in browser if requested
+        if args.auto_open:
+            import webbrowser
+            print(f"\n🌐 Browser openen...")
+
+            # Open OnePager
+            if result['onepager']['html']:
+                onepager_path = os.path.abspath(result['onepager']['html'])
+                webbrowser.open(f'file://{onepager_path}')
+                print(f"   ✓ OnePager geopend")
+
+            # Open Detail
+            if result['detail']['html']:
+                detail_path = os.path.abspath(result['detail']['html'])
+                webbrowser.open(f'file://{detail_path}')
+                print(f"   ✓ Detail geopend")
+
+            print(f"\n💡 TIP: Gebruik Cmd+P (Mac) of Ctrl+P (Windows) om te printen")
+            print(f"         Kies 'Opslaan als PDF' in het printvenster")
         
     except FileNotFoundError as e:
         print(f"\n❌ FOUT: {e}")
