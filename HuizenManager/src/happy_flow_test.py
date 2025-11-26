@@ -145,13 +145,15 @@ def run_happy_flow():
     print(f"✅ Logged Deposit Refund: €450")
     
     # 5.2 Generate Eindafrekening (Database Record)
-    # Using the existing save_eindafrekening method in Database class (accessed via manager.db)
+    # Get next version
+    next_ver, is_new = manager.db.get_next_version("Tradiro Test", date(2024, 2, 1), date(2024, 2, 28))
+    
     eind_id = manager.db.save_eindafrekening(
         client_name="Tradiro Test",
         checkin_date=date(2024, 2, 1),
         checkout_date=date(2024, 2, 28),
-        version=1,
-        version_reason="Initial",
+        version=next_ver,
+        version_reason="Initial" if is_new else "Re-run Test",
         data_json={"dummy": "data"},
         totaal_eindafrekening=1500.0 + 40.0 # Rent + Params
     )
