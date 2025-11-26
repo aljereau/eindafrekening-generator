@@ -1,130 +1,73 @@
-# RyanRent Eindafrekening Generator
+# RyanRent - Multi-App Suite
 
-Professionele eindafrekeningstool voor vakantieverhuur met visuele pot-gebaseerde overzichten.
+A monorepo containing multiple applications for managing RyanRent's rental properties, all sharing a central database.
 
-## 🚀 Snel Starten (Voor Gebruikers)
+## Repository Structure
 
-**Geen Terminal kennis nodig!** Gebruik de **dubbelklik methode**:
+```
+RyanRent/
+├── Eindafrekening/          # Settlement Report Generator (✅ Complete)
+├── Manager/                 # Database Management Tool (✅ MVP)
+├── Huizeninventaris/        # Property Inventory (🚧 Planned)
+├── Contracten/              # Contract Management (🚧 Planned)
+├── Incheck/                 # Check-in/Check-out (🚧 Planned)
+├── Shared/                  # Core Database & Entities
+│   ├── database.py          # Database management
+│   ├── entities.py          # Data models
+│   ├── migrations/          # Schema migrations
+│   └── scripts/             # Utility scripts
+└── Archive/                 # Old/deprecated files
+```
 
-### Voor Eindgebruikers (Anna & Team):
+## Quick Start
 
-1. **Vul Excel in** - Open `input_template.xlsx` en vul alle gegevens in
-2. **Dubbelklik** op:
-   - **Mac**: `Genereer_Eindafrekening.command`
-   - **Windows**: `Genereer_Eindafrekening.bat`
-3. **Browser opent automatisch** met de HTML eindafrekeningen
-4. **Print naar PDF** met Cmd+P (Mac) of Ctrl+P (Windows)
-
-**📘 Zie `SNELSTART_GIDS.md` voor uitgebreide stap-voor-stap instructies**
-
----
-
-## 🔧 Voor Developers
-
-### 1. Installatie
-
+### Run the Settlement Generator
 ```bash
-# Activeer virtual environment
-source venv/bin/activate  # macOS/Linux
-# of
-venv\Scripts\activate  # Windows
+python3 Eindafrekening/src/generate.py --no-pause --auto-open
+```
 
-# Installeer dependencies (indien nodig)
+### View the Database
+```bash
+python3 Manager/manage.py
+```
+
+### Import Legacy Data
+```bash
+python3 Shared/scripts/import_legacy_data.py
+```
+
+## Database
+
+All apps share a single SQLite database: `Shared/database/ryanrent_core.db`
+
+**Tables:**
+- `properties` - Rental properties (381 imported)
+- `clients` - Customers (81 imported)
+- `contracts` - Rental agreements
+- `bookings` - Individual stays
+- `eindafrekeningen` - Settlement reports
+
+## Development
+
+**Requirements:**
+```bash
 pip install -r requirements.txt
 ```
 
-### 2. Excel Template Genereren
-
+**Build Standalone App:**
 ```bash
-python3 build_excel_template.py
+cd Eindafrekening
+python3 scripts/build_app.py
 ```
 
-Dit creëert `input_template.xlsx` met:
-- Vooringevulde formules
-- Data validatie
-- Beschermde cellen
-- 4 sheets: Algemeen, GWE_Detail, Schoonmaak, Schade
+## Files
 
-### 3. Eindafrekening Genereren
+- `requirements.txt` - Python dependencies
+- `Ryanrent Sales...xlsm` - Legacy Excel data source
+- `.gitignore` - Git ignore rules
 
-```bash
-python3 generate.py
-```
+## Notes
 
-Dit genereert twee HTML bestanden in `output/`:
-- **OnePager**: Visueel overzicht met pot-gebaseerde bars
-- **Detail**: Volledige specificatie met alle regels
-
-## 📊 Wat Krijg Je?
-
-### Pot-Gebaseerde Visualisatie
-- **Voorschot = Vaste 400px pot** (altijd zelfde breedte)
-- **Underuse**: Proportionele weergave + groen gestreept retour
-- **Overflow**: Volle pot + vaste 100px rode indicator (25%)
-
-### Duidelijke Captions
-- Underuse: `Voorschot: €350 · Verbruik: €180 · Terug: €170`
-- Perfect: `Uw voorschot dekte uw volledige verbruik.`
-- Overflow: `Voorschot: €250 · Verbruik: €450 · Extra te betalen: €200`
-
-### Drie Categorieën
-1. **BORG** - Borgstelling en schade
-2. **GWE** - Gas/Water/Elektra verbruik
-3. **SCHOONMAAK** - Schoonmaakkosten en extra uren
-
-## 📁 Bestandsstructuur
-
-```
-Eindafrekening Generator/
-├── generate.py              # Hoofdscript
-├── input_template.xlsx      # Excel invoer template
-├── output/                  # Gegenereerde eindafrekeningen
-├── assets/                  # Logo bestanden
-├── venv/                    # Virtual environment
-└── Archive/                 # Ontwikkelingsbestanden
-    ├── documentation/       # Technische documentatie
-    ├── testing/            # Test scripts
-    ├── samples/            # Voorbeeld bestanden
-    └── test-outputs/       # Test outputs
-```
-
-## 🔧 Core Modules
-
-- `excel_reader.py` - Leest Excel met named ranges
-- `calculator.py` - Berekent borg, GWE, schoonmaak, schade
-- `viewmodels.py` - Transformeert data naar templates
-- `svg_bars.py` - Genereert pot-gebaseerde bar visualisaties
-- `template_renderer.py` - Rendert Jinja2 templates
-- `pdf_generator.py` - Converteert HTML naar PDF (optioneel)
-
-## 📖 Documentatie
-
-Zie `GEBRUIKERSHANDLEIDING.md` voor volledige handleiding.
-
-Technische documentatie in `Archive/documentation/`:
-- PROJECT.md - Volledig project overzicht
-- Bar Design.md - UX/design principes
-- FORMULA_IMPLEMENTATION.md - Excel formule implementatie
-
-## ✅ Productie-Ready
-
-Alle essentiële bestanden aanwezig:
-- ✓ 9 Core Python scripts
-- ✓ 2 HTML templates
-- ✓ Excel template met formules
-- ✓ Dependencies geïnstalleerd
-- ✓ Handleiding voor gebruikers
-
-## 🎨 Design Principes
-
-- **Pot-metaphor**: Voorschot = vaste baseline
-- **Consistent sizing**: Alle bars 400px breed (pot)
-- **Smart overflow**: Vaste 25% indicator (niet proportioneel)
-- **Positive framing**: Groen voor retour, neutraal voor bijbetaling
-- **Concise captions**: Bullet-style met middot (·) separator
-
----
-
-**Versie**: 2.0  
-**Status**: Production Ready  
-**Laatste update**: November 2025
+- Each app folder is self-contained with its own `src/`, `templates/`, `assets/`
+- The `Shared/` folder contains code used by multiple apps
+- Old files have been moved to `Archive/`

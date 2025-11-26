@@ -1,7 +1,0 @@
-# Exclude SQLite database files from git (too large, binary format)
-*.db
-*.db-shm
-*.db-wal
-
-# Keep Excel database (text-based, smaller, team-viewable)
-!eindafrekeningen_database.xlsx
