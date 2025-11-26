@@ -20,6 +20,7 @@ class RyanRentBot:
         self.api = IntelligenceAPI(db_path)
         self.model = "claude-sonnet-4-5-20250929"
         self.api_url = "https://api.anthropic.com/v1/messages"
+        self.history = []
         
         # Define Tools for Claude
         self.tools = [
@@ -84,6 +85,63 @@ class RyanRentBot:
                         "query": {"type": "string", "description": "The SQL SELECT query to execute"}
                     },
                     "required": ["query"]
+                }
+            },
+            {
+                "name": "add_house",
+                "description": "Add a new house to the system.",
+                "input_schema": {
+                    "type": "object",
+                    "properties": {
+                        "adres": {"type": "string", "description": "Full address (e.g. 'Street 1, City')"},
+                        "plaats": {"type": "string", "description": "City"},
+                        "postcode": {"type": "string", "description": "Postal code"},
+                        "woning_type": {"type": "string", "description": "Type (Appartement, Eengezinswoning)"},
+                        "aantal_sk": {"type": "integer", "description": "Number of bedrooms"},
+                        "aantal_pers": {"type": "integer", "description": "Max capacity"}
+                    },
+                    "required": ["adres", "plaats", "postcode", "woning_type", "aantal_sk", "aantal_pers"]
+                }
+            },
+            {
+                "name": "add_supplier",
+                "description": "Add a new supplier or owner.",
+                "input_schema": {
+                    "type": "object",
+                    "properties": {
+                        "naam": {"type": "string", "description": "Name of supplier/owner"},
+                        "email": {"type": "string", "description": "Email address (optional)"},
+                        "telefoon": {"type": "string", "description": "Phone number (optional)"},
+                        "iban": {"type": "string", "description": "IBAN (optional)"}
+                    },
+                    "required": ["naam"]
+                }
+            },
+            {
+                "name": "add_client",
+                "description": "Add a new client.",
+                "input_schema": {
+                    "type": "object",
+                    "properties": {
+                        "naam": {"type": "string", "description": "Name of client"},
+                        "email": {"type": "string", "description": "Email address (optional)"}
+                    },
+                    "required": ["naam"]
+                }
+            },
+            {
+                "name": "add_inhuur_contract",
+                "description": "Add a new inhuur contract (owner contract).",
+                "input_schema": {
+                    "type": "object",
+                    "properties": {
+                        "house_id": {"type": "integer", "description": "ID of the house"},
+                        "supplier_id": {"type": "integer", "description": "ID of the supplier/owner"},
+                        "start_date": {"type": "string", "description": "YYYY-MM-DD"},
+                        "rent_price": {"type": "number", "description": "Monthly rent (kale huur)"},
+                        "end_date": {"type": "string", "description": "YYYY-MM-DD (optional)"}
+                    },
+                    "required": ["house_id", "supplier_id", "start_date", "rent_price"]
                 }
             },
             {
@@ -180,7 +238,14 @@ class RyanRentBot:
             "model": self.model,
             "max_tokens": 1024,
             "messages": messages,
-            "system": "You are the RyanRent Operational Assistant. You speak Dutch. You help manage a fleet of 250+ houses. Use the available tools to answer questions accurately. If a user asks a question that requires data aggregation not covered by specific tools, use 'run_sql_query' to fetch the data directly from the database. If you use a tool, summarize the results clearly in Dutch."
+            "messages": messages,
+            "system": """You are the RyanRent Operational Assistant. You speak Dutch. You help manage a fleet of 250+ houses. 
+
+**Core Rules:**
+1. **Data Integrity**: When adding a new house, ALWAYS check if the owner/supplier exists first using `find_client` or `run_sql_query`. If not, ask the user for owner details and add the owner FIRST using `add_supplier`.
+2. **Memory**: Remember context from previous messages. If a user refers to "that house" or "the contract", use the IDs from the recent conversation history.
+3. **Tools**: Use available tools to answer questions. If a specific tool doesn't exist, use `run_sql_query` to fetch data.
+4. **Language**: Summarize all results clearly in Dutch."""
         }
         if tools:
             payload["tools"] = tools
@@ -195,17 +260,18 @@ class RyanRentBot:
         """
         Process a user message, call tools if needed, and return the response.
         """
-        messages = [{"role": "user", "content": user_message}]
+        # Append user message to history
+        self.history.append({"role": "user", "content": user_message})
         
         # 1. Initial call to Claude
-        response_data = self._call_claude(messages, self.tools)
+        response_data = self._call_claude(self.history, self.tools)
         
         # Loop to handle multiple tool calls
         while response_data['stop_reason'] == "tool_use":
             content_block = response_data['content']
             
             # Add assistant response to history
-            messages.append({"role": "assistant", "content": content_block})
+            self.history.append({"role": "assistant", "content": content_block})
             
             tool_results = []
             
@@ -229,16 +295,18 @@ class RyanRentBot:
                     })
             
             # Add ALL tool results in a single user message
-            messages.append({
+            self.history.append({
                 "role": "user",
                 "content": tool_results
             })
             
             # Call Claude again with the tool results
-            response_data = self._call_claude(messages, self.tools)
+            response_data = self._call_claude(self.history, self.tools)
 
         # Final response (text)
         content_block = response_data['content']
+        self.history.append({"role": "assistant", "content": content_block})
+        
         text_block = next((block for block in content_block if block['type'] == "text"), None)
         return text_block['text'] if text_block else "No response text."
 
@@ -257,6 +325,22 @@ class RyanRentBot:
             return self.api.get_active_houses(limit)
         elif name == "run_sql_query":
             return self.api.run_sql_query(args['query'])
+        elif name == "add_house":
+            return self.api.add_house(
+                args['adres'], args['plaats'], args['postcode'], 
+                args['woning_type'], args['aantal_sk'], args['aantal_pers']
+            )
+        elif name == "add_supplier":
+            return self.api.add_supplier(
+                args['naam'], args.get('email'), args.get('telefoon'), args.get('iban')
+            )
+        elif name == "add_client":
+            return self.api.add_client(args['naam'], args.get('email'))
+        elif name == "add_inhuur_contract":
+            return self.api.add_inhuur_contract(
+                args['house_id'], args['supplier_id'], args['start_date'], 
+                args['rent_price'], args.get('end_date')
+            )
         elif name == "find_house":
             return self.api.find_house(args['query'])
         elif name == "find_client":
