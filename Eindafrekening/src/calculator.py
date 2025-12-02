@@ -96,7 +96,10 @@ class Calculator:
             GWETotalen with calculated totals and VAT
         """
         totaal_excl = sum(regel.kosten_excl for regel in regels)
-        btw = totaal_excl * Calculator.BTW_PERCENTAGE
+        
+        # Calculate VAT per line
+        btw = sum(regel.kosten_excl * regel.btw_percentage for regel in regels)
+        
         totaal_incl = totaal_excl + btw
         
         return GWETotalen(
@@ -134,6 +137,8 @@ class Calculator:
         """
         if pakket_type == '7_uur':
             return 7.0
+        elif pakket_type == 'achteraf':
+            return 0.0
         return 5.0  # Default to 5_uur
     
     @staticmethod
@@ -207,7 +212,10 @@ class Calculator:
             DamageTotalen with calculated totals and VAT
         """
         totaal_excl = sum(regel.bedrag_excl for regel in regels)
-        btw = totaal_excl * Calculator.BTW_PERCENTAGE
+        
+        # Calculate VAT per line
+        btw = sum(regel.bedrag_excl * regel.btw_percentage for regel in regels)
+        
         totaal_incl = totaal_excl + btw
         
         return DamageTotalen(
@@ -384,6 +392,15 @@ def validate_excel_calculations(data: Dict[str, Any]) -> List[str]:
                 f"Gas verbruik komt niet overeen: "
                 f"Verwacht {expected_gas:.2f}, maar Excel heeft {meters.gas.verbruik:.2f}"
             )
+            
+        # Water verbruik (if present)
+        if meters.water:
+            expected_water = meters.water.eind - meters.water.begin
+            if abs(expected_water - meters.water.verbruik) > 0.01:
+                warnings.append(
+                    f"Water verbruik komt niet overeen: "
+                    f"Verwacht {expected_water:.2f}, maar Excel heeft {meters.water.verbruik:.2f}"
+                )
     
     # Check GWE regel kosten (individual line items)
     if 'gwe_regels' in data:
@@ -404,7 +421,7 @@ def validate_excel_calculations(data: Dict[str, Any]) -> List[str]:
                 f"Verwacht {expected_gwe_excl:.2f}, maar Excel heeft {data['gwe_totalen'].totaal_excl:.2f}"
             )
         
-        expected_gwe_btw = expected_gwe_excl * 0.21
+        expected_gwe_btw = sum(r.kosten_excl * r.btw_percentage for r in data['gwe_regels'])
         if abs(expected_gwe_btw - data['gwe_totalen'].btw) > 0.01:
             warnings.append(
                 f"GWE BTW komt niet overeen: "
@@ -463,7 +480,7 @@ def validate_excel_calculations(data: Dict[str, Any]) -> List[str]:
                 f"Verwacht €{expected_damage_excl:.2f}, maar Excel heeft €{data['damage_totalen'].totaal_excl:.2f}"
             )
         
-        expected_damage_btw = expected_damage_excl * 0.21
+        expected_damage_btw = sum(r.bedrag_excl * r.btw_percentage for r in data['damage_regels'])
         if abs(expected_damage_btw - data['damage_totalen'].btw) > 0.01:
             warnings.append(
                 f"Schade BTW komt niet overeen: "
@@ -532,6 +549,12 @@ def recalculate_all(data: Dict[str, Any]) -> Dict[str, Any]:
             meters.gas.begin,
             meters.gas.eind
         )
+        # Recalculate Water if present
+        if meters.water:
+            meters.water = calc.calculate_meter_reading(
+                meters.water.begin,
+                meters.water.eind
+            )
     
     # Recalculate GWE regel kosten
     if 'gwe_regels' in data:

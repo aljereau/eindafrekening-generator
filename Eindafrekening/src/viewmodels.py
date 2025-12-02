@@ -103,7 +103,12 @@ def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Di
                         "begin": gwe_meterstanden.gas.begin,
                         "eind": gwe_meterstanden.gas.eind,
                         "verbruik": gwe_meterstanden.gas.verbruik
-                    }
+                    },
+                    "water": {
+                        "begin": gwe_meterstanden.water.begin,
+                        "eind": gwe_meterstanden.water.eind,
+                        "verbruik": gwe_meterstanden.water.verbruik
+                    } if gwe_meterstanden.water else None
                 }
             },
             "cleaning": {
@@ -190,7 +195,12 @@ def build_detail_viewmodel(data: Dict[str, Any]) -> Dict[str, Any]:
                     "begin": gwe_meterstanden.gas.begin,
                     "eind": gwe_meterstanden.gas.eind,
                     "verbruik": gwe_meterstanden.gas.verbruik
-                }
+                },
+                "water": {
+                    "begin": gwe_meterstanden.water.begin,
+                    "eind": gwe_meterstanden.water.eind,
+                    "verbruik": gwe_meterstanden.water.verbruik
+                } if gwe_meterstanden.water else None
             },
             "kostenregels": [
                 {
@@ -209,7 +219,7 @@ def build_detail_viewmodel(data: Dict[str, Any]) -> Dict[str, Any]:
         },
         "cleaning": {
             "pakket_type": cleaning.pakket_type,
-            "pakket_naam": "Basis Schoonmaak" if cleaning.pakket_type == "5_uur" else "Intensief Schoonmaak",
+            "pakket_naam": cleaning.pakket_naam,
             "inbegrepen_uren": cleaning.inbegrepen_uren,
             "totaal_uren": cleaning.totaal_uren,
             "extra_uren": cleaning.extra_uren,
@@ -409,44 +419,69 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
     }
 
     # Generate START bar SVG
-    cleaning_start_svg = generate_start_bar_svg(
-        amount=cleaning['voorschot'],
-        label=f"€{cleaning['voorschot']:.0f}",
-        width=280,
-        height=30
-    )
+    if cleaning['pakket_naam'] == "Achteraf Betaald":
+        cleaning_start_svg = generate_start_bar_svg(
+            amount=0,
+            label="Geen voorschot",
+            width=280,
+            height=30
+        )
+    else:
+        cleaning_start_svg = generate_start_bar_svg(
+            amount=cleaning['voorschot'],
+            label=f"€{cleaning['voorschot']:.0f}",
+            width=280,
+            height=30
+        )
     financial['cleaning']['svg_start_bar'] = cleaning_start_svg
 
-    # Generate VERBLIJF bar SVG - ALWAYS shows full package as used (yellow)
-    # Cleaning package is always consumed, never returned
-    cleaning_svg = generate_bar_svg(
-        voorschot=cleaning['voorschot'],
-        gebruikt_or_totaal=cleaning['voorschot'],  # Always full package
-        is_overfilled=False,  # Bar itself doesn't overflow (shows full yellow)
-        label_gebruikt=f"€{cleaning['voorschot']:.0f}",
-        label_extra_or_terug="",  # No return label for cleaning
-        pot_width=280,
-        height=30,
-        show_limit_line=True if cleaning['extra_bedrag'] > 0 else False,
-        rounded_right=False if cleaning['extra_bedrag'] > 0 else True
-    )
-    financial['cleaning']['svg_bar'] = cleaning_svg
-
-    # Generate overflow indicator if extra hours were needed
-    if cleaning['extra_bedrag'] > 0:
-        cleaning_overflow_svg = generate_overflow_indicator_svg(
-            amount=cleaning['extra_bedrag'],
-            width=80,
+    # Generate VERBLIJF bar SVG
+    if cleaning['pakket_naam'] == "Achteraf Betaald":
+        # Post-paid: Show total cost as usage (yellow), no overflow
+        cleaning_svg = generate_bar_svg(
+            voorschot=cleaning['extra_bedrag'], # Use total cost as "pot" size for visualization
+            gebruikt_or_totaal=cleaning['extra_bedrag'],
+            is_overfilled=False,
+            label_gebruikt=f"€{cleaning['extra_bedrag']:.0f}",
+            label_extra_or_terug="",
+            pot_width=280,
             height=30,
-            rounded_left=False
+            show_limit_line=False,
+            rounded_right=True
         )
-        financial['cleaning']['overflow_svg'] = cleaning_overflow_svg
-        # Caption showing extra hours cost
-        cleaning_caption = f"Pakket: €{cleaning['voorschot']:.0f} · Extra uren: €{cleaning['extra_bedrag']:.0f}"
+        financial['cleaning']['svg_bar'] = cleaning_svg
+        financial['cleaning']['overflow_svg'] = "" # No overflow
+        cleaning_caption = f"Schoonmaak kosten: €{cleaning['extra_bedrag']:.0f}"
     else:
-        financial['cleaning']['overflow_svg'] = ""  # No overflow
-        # Caption showing package was sufficient
-        cleaning_caption = f"Pakket: €{cleaning['voorschot']:.0f} · Geen extra uren"
+        # Pre-paid: Always shows full package as used (yellow)
+        cleaning_svg = generate_bar_svg(
+            voorschot=cleaning['voorschot'],
+            gebruikt_or_totaal=cleaning['voorschot'],  # Always full package
+            is_overfilled=False,  # Bar itself doesn't overflow (shows full yellow)
+            label_gebruikt=f"€{cleaning['voorschot']:.0f}",
+            label_extra_or_terug="",  # No return label for cleaning
+            pot_width=280,
+            height=30,
+            show_limit_line=True if cleaning['extra_bedrag'] > 0 else False,
+            rounded_right=False if cleaning['extra_bedrag'] > 0 else True
+        )
+        financial['cleaning']['svg_bar'] = cleaning_svg
+
+        # Generate overflow indicator if extra hours were needed
+        if cleaning['extra_bedrag'] > 0:
+            cleaning_overflow_svg = generate_overflow_indicator_svg(
+                amount=cleaning['extra_bedrag'],
+                width=80,
+                height=30,
+                rounded_left=False
+            )
+            financial['cleaning']['overflow_svg'] = cleaning_overflow_svg
+            # Caption showing extra hours cost
+            cleaning_caption = f"Pakket: €{cleaning['voorschot']:.0f} · Extra uren: €{cleaning['extra_bedrag']:.0f}"
+        else:
+            financial['cleaning']['overflow_svg'] = ""  # No overflow
+            # Caption showing package was sufficient
+            cleaning_caption = f"Pakket: €{cleaning['voorschot']:.0f} · Geen extra uren"
 
     financial['cleaning']['caption'] = cleaning_caption
     

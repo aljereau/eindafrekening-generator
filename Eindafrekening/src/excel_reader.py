@@ -235,13 +235,29 @@ class ExcelReader:
             eind=self.get_float('Gas_eind'),
             verbruik=self.get_float('Gas_verbruik')
         )
+
+        # Read Water (optional, might be 0 if not present)
+        water_begin = self.get_float('Water_begin', default=0.0)
+        water_eind = self.get_float('Water_eind', default=0.0)
+        water_verbruik = self.get_float('Water_verbruik', default=0.0)
         
-        return GWEMeterstanden(stroom=stroom, gas=gas)
+        water = None
+        # Only create water reading if there's actual data (non-zero or explicitly entered)
+        # We check if verbruik > 0 or if begin/eind are different
+        if water_verbruik > 0 or water_eind > 0:
+             water = GWEMeterReading(
+                begin=water_begin,
+                eind=water_eind,
+                verbruik=water_verbruik
+            )
+        
+        return GWEMeterstanden(stroom=stroom, gas=gas, water=water)
     
     def read_gwe_regels(self) -> List[GWERegel]:
         """Read GWE cost lines from GWE_Detail sheet table"""
-        # Read dynamic table starting at row 12 (after instructions)
-        rows = self.read_table_range('GWE_Detail', start_row=12, start_col=1, num_cols=4)
+        # Read dynamic table starting at row 17 (after section headers and table header row)
+        # Now reading 6 columns: Omschrijving, Verbruik, Tarief, Kosten, BTW %, BTW €
+        rows = self.read_table_range('GWE_Detail', start_row=17, start_col=1, num_cols=6)
         
         regels = []
         for row in rows:
@@ -249,6 +265,7 @@ class ExcelReader:
             verbruik = row[1] if row[1] is not None else 0
             tarief = row[2] if row[2] is not None else 0
             kosten = row[3] if row[3] is not None else 0
+            btw_pct = row[4] if len(row) > 4 and row[4] is not None else 0.21 # Default to 21%
             
             # Skip empty rows and header rows
             if not omschrijving or omschrijving.lower() in ['omschrijving', 'beschrijving']:
@@ -259,11 +276,18 @@ class ExcelReader:
                 continue
             
             try:
+                # Handle percentage input (e.g. 21, 0.21, "21%")
+                if isinstance(btw_pct, str):
+                    btw_pct = float(btw_pct.replace('%', '').strip()) / 100 if '%' in btw_pct else float(btw_pct)
+                elif btw_pct > 1: # Assumes input like 21 means 21%
+                    btw_pct = btw_pct / 100
+
                 regels.append(GWERegel(
                     omschrijving=omschrijving,
                     verbruik_of_dagen=float(verbruik),
                     tarief_excl=float(tarief),
-                    kosten_excl=float(kosten)
+                    kosten_excl=float(kosten),
+                    btw_percentage=float(btw_pct)
                 ))
             except (ValueError, TypeError) as e:
                 print(f"⚠️  Warning: Could not parse GWE regel '{omschrijving}': {e}")
@@ -292,7 +316,9 @@ class ExcelReader:
             pakket = '7_uur'
         elif 'basis' in pakket_raw.lower():
             pakket = '5_uur'
-        elif pakket_raw in ['5_uur', '7_uur']:
+        elif 'achteraf' in pakket_raw.lower():
+            pakket = 'achteraf'
+        elif pakket_raw in ['5_uur', '7_uur', 'achteraf']:
              pakket = pakket_raw
         else:
             print(f"⚠️  Warning: Unknown pakket type '{pakket_raw}', defaulting to '5_uur'")
@@ -312,7 +338,8 @@ class ExcelReader:
     def read_damage_regels(self) -> List[DamageRegel]:
         """Read damage line items from Schade sheet table"""
         # Read dynamic table starting at row 5
-        rows = self.read_table_range('Schade', start_row=5, start_col=1, num_cols=4)
+        # Now reading 6 columns: Beschrijving, Aantal, Tarief, Bedrag, BTW %, BTW €
+        rows = self.read_table_range('Schade', start_row=5, start_col=1, num_cols=6)
         
         regels = []
         for row in rows:
@@ -320,17 +347,25 @@ class ExcelReader:
             aantal = row[1] if row[1] is not None else 0
             tarief = row[2] if row[2] is not None else 0
             bedrag = row[3] if row[3] is not None else 0
+            btw_pct = row[4] if len(row) > 4 and row[4] is not None else 0.21 # Default to 21%
             
             # Skip empty rows and header rows (check for "beschrijving" text in description)
             if not beschrijving or beschrijving.lower() in ['beschrijving', 'omschrijving']:
                 continue
             
             try:
+                # Handle percentage input
+                if isinstance(btw_pct, str):
+                    btw_pct = float(btw_pct.replace('%', '').strip()) / 100 if '%' in btw_pct else float(btw_pct)
+                elif btw_pct > 1:
+                    btw_pct = btw_pct / 100
+
                 regels.append(DamageRegel(
                     beschrijving=beschrijving,
                     aantal=float(aantal),
                     tarief_excl=float(tarief),
-                    bedrag_excl=float(bedrag)
+                    bedrag_excl=float(bedrag),
+                    btw_percentage=float(btw_pct)
                 ))
             except (ValueError, TypeError) as e:
                 print(f"⚠️  Warning: Could not parse damage regel '{beschrijving}': {e}")
