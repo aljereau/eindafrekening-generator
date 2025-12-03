@@ -16,14 +16,16 @@ class IntelligenceAPI:
     API Layer exposing operational data as tools for the AI Assistant.
     """
 
-    def __init__(self, db_path: str = None):
+    def __init__(self, db_path: str = None, allow_writes: bool = False):
         # Default to the core DB, but allow overriding (e.g. for mock DB)
         self.db_path = db_path or "database/ryanrent_core.db"
         self.db = Database(self.db_path)
         self.manager = HuizenManager(self.db)
+        self.allow_writes = allow_writes
 
     def _get_connection(self):
         return sqlite3.connect(self.db_path)
+
 
     def _dict_factory(self, cursor, row):
         d = {}
@@ -269,16 +271,23 @@ class IntelligenceAPI:
 
     def run_sql_query(self, query: str) -> List[Dict]:
         """
-        Run a READ-ONLY SQL query.
+        Run a SQL query. Allows writes if authorized.
         """
-        # Safety Check: Only allow SELECT statements
-        if not query.strip().upper().startswith("SELECT"):
-            return [{"error": "Only SELECT statements are allowed for safety."}]
+        is_read_only = query.strip().upper().startswith("SELECT")
+        
+        if not is_read_only and not self.allow_writes:
+            return [{"error": "Unauthorized: Write operations are not allowed for this user role."}]
 
         conn = self._get_connection()
         conn.row_factory = self._dict_factory
         try:
-            rows = conn.execute(query).fetchall()
+            cursor = conn.execute(query)
+            
+            if not is_read_only:
+                conn.commit()
+                return [{"success": True, "rows_affected": cursor.rowcount, "message": "Query executed successfully."}]
+            
+            rows = cursor.fetchall()
             return rows
         except Exception as e:
             return [{"error": str(e)}]

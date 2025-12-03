@@ -401,3 +401,86 @@ class PlanningAPI:
         ]
         
         return critical_transitions
+
+    def get_planning_priorities(self, days_lookahead: int = 30) -> List[Dict]:
+        """
+        Get prioritized list of houses with upcoming checkouts but NO next tenant.
+        Prioritized by capacity (aantal_pers) DESC.
+        """
+        conn = self._get_connection()
+        conn.row_factory = self._dict_factory
+        cursor = conn.cursor()
+        
+        start_date = date.today()
+        end_date = start_date + timedelta(days=days_lookahead)
+        
+        # 1. Get Checkouts in range
+        query = """
+        SELECT 
+            b.id as booking_id,
+            b.huis_id,
+            b.checkout_datum,
+            k.naam as client_name,
+            h.adres,
+            h.object_id,
+            h.aantal_pers,
+            h.aantal_sk
+        FROM boekingen b
+        JOIN huizen h ON b.huis_id = h.id
+        JOIN klanten k ON b.klant_id = k.id
+        WHERE b.checkout_datum BETWEEN ? AND ?
+        AND b.status = 'active'
+        """
+        cursor.execute(query, (start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d')))
+        checkouts = cursor.fetchall()
+        
+        priorities = []
+        
+        for checkout in checkouts:
+            # 2. Check for Next Booking
+            cursor.execute("""
+                SELECT id FROM boekingen 
+                WHERE huis_id = ? 
+                AND checkin_datum >= ?
+                AND status != 'cancelled'
+                LIMIT 1
+            """, (checkout['huis_id'], checkout['checkout_datum']))
+            
+            has_next = cursor.fetchone()
+            
+            if not has_next:
+                # 3. No next tenant -> Candidate for priority list
+                
+                # 4. Check Inspections
+                cursor.execute("""
+                    SELECT inspection_type, status, planned_date 
+                    FROM inspections 
+                    WHERE booking_id = ?
+                """, (checkout['booking_id'],))
+                inspections = {row['inspection_type']: row for row in cursor.fetchall()}
+                
+                # Determine missing inspections
+                missing = []
+                if 'voorinspectie' not in inspections: missing.append('voorinspectie')
+                if 'eindinspectie' not in inspections: missing.append('eindinspectie')
+                
+                status_summary = ", ".join([f"{k}: {v['status']}" for k,v in inspections.items()])
+                
+                item = {
+                    "booking_id": checkout['booking_id'],
+                    "house": f"{checkout['adres']} ({checkout['object_id']})",
+                    "capacity": checkout['aantal_pers'],
+                    "checkout_date": checkout['checkout_datum'],
+                    "client": checkout['client_name'],
+                    "missing_inspections": missing,
+                    "inspection_status": status_summary or "None planned",
+                    "priority_score": checkout['aantal_pers'] # Simple score for now
+                }
+                priorities.append(item)
+                
+        conn.close()
+        
+        # 5. Sort by Capacity DESC
+        priorities.sort(key=lambda x: x['capacity'] or 0, reverse=True)
+        
+        return priorities

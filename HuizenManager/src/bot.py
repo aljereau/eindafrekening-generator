@@ -31,6 +31,7 @@ if shared_scripts_path not in sys.path:
 from modules.audit import AuditController
 from modules.query import QueryAnalyst
 from modules.excel_generator import ExcelGenerator
+from modules.query_library import QueryLibrary
 
 try:
     from generate import generate_report
@@ -165,10 +166,14 @@ class RyanRentBot:
     Uses OpenAI GPT-4o API to understand natural language and call Intelligence API tools.
     """
 
-    def __init__(self, api_key: str, db_path: str = None, provider: str = "openai", model_name: str = None):
+    def __init__(self, api_key: str, db_path: str = None, provider: str = "openai", model_name: str = None, user_role: str = "user"):
         self.api_key = api_key
         self.provider = provider
-        self.api = IntelligenceAPI(db_path)
+        
+        # Determine permissions based on role
+        allow_writes = user_role in ["admin", "manager"]
+        
+        self.api = IntelligenceAPI(db_path, allow_writes=allow_writes)
         self.planning_api = PlanningAPI(db_path)
         self.excel_handler = PlanningExcelHandler(db_path)
         self.file_exchange = FileExchangeHandler()  # New generic handler
@@ -177,6 +182,7 @@ class RyanRentBot:
         self.audit_controller = AuditController(db_path)
         self.query_analyst = QueryAnalyst(db_path)
         self.excel_generator = ExcelGenerator(db_path)
+        self.query_library = QueryLibrary(db_path)
         
         # Set default models if not provided
         if self.provider == "openai":
@@ -497,6 +503,19 @@ class RyanRentBot:
             {
                 "type": "function",
                 "function": {
+                    "name": "get_planning_priorities",
+                    "description": "Get prioritized list of houses with upcoming checkouts but NO next tenant.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "days_lookahead": {"type": "integer", "default": 30}
+                        }
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
                     "name": "get_upcoming_transitions",
                     "description": "Get upcoming transitions (checkouts/inchecks).",
                     "parameters": {
@@ -676,6 +695,52 @@ class RyanRentBot:
                             "file_path": {"type": "string"}
                         },
                         "required": ["file_path"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "search_query_library",
+                    "description": "Search for a saved SQL query.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "search_term": {"type": "string"}
+                        },
+                        "required": ["search_term"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "save_query",
+                    "description": "Save a SQL query to the library for future use.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "name": {"type": "string"},
+                            "description": {"type": "string"},
+                            "sql_template": {"type": "string"},
+                            "parameters": {"type": "array", "items": {"type": "string"}}
+                        },
+                        "required": ["name", "description", "sql_template"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "run_saved_query",
+                    "description": "Run a query from the library.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "query_id": {"type": "integer"},
+                            "param_values": {"type": "array", "items": {"type": "string"}}
+                        },
+                        "required": ["query_id"]
                     }
                 }
             }
@@ -1319,6 +1384,10 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
                 schoonmaak_uren=args.get('schoonmaak_uren'),
                 uurtarief_schoonmaak=args.get('uurtarief_schoonmaak')
             )
+        elif name == "get_planning_priorities":
+            return self.planning_api.get_planning_priorities(
+                days_lookahead=args.get('days_lookahead', 30)
+            )
         elif name == "get_upcoming_transitions":
             days = args.get("days_lookahead", 60)
             client_name = args.get("client_name")
@@ -1434,6 +1503,19 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
 
         elif name == "process_smart_excel":
             return self.excel_generator.process_update_sheet(args['file_path'])
+
+        elif name == "search_query_library":
+            return self.query_library.find_queries(args['search_term'])
+
+        elif name == "save_query":
+            return self.query_library.add_query(
+                args['name'], args['description'], args['sql_template'], args.get('parameters')
+            )
+
+        elif name == "run_saved_query":
+            return self.query_library.execute_query(
+                args['query_id'], args.get('param_values')
+            )
             
         else:
             return {"error": f"Unknown tool: {name}"}

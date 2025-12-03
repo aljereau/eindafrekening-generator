@@ -112,17 +112,17 @@ class PlanningExcelHandler:
         inspector_val = inspector if pd.notna(inspector) else None
 
         # Check if exists
-        cursor.execute("SELECT id FROM inspecties WHERE boeking_id=? AND inspectie_type=?", (booking_id, inspectie_type))
+        cursor.execute("SELECT id FROM inspections WHERE booking_id=? AND inspection_type=?", (booking_id, inspectie_type))
         res = cursor.fetchone()
         
         if res:
             cursor.execute("""
-                UPDATE inspecties 
-                SET geplande_datum=?, inspecteur=?, status='gepland'
+                UPDATE inspections 
+                SET planned_date=?, inspector=?, status='planned'
                 WHERE id=?
             """, (date_str, inspector_val, res[0]))
         else:
             cursor.execute("""
-                INSERT INTO inspecties (boeking_id, inspectie_type, geplande_datum, inspecteur, status)
-                VALUES (?, ?, ?, ?, 'gepland')
+                INSERT INTO inspections (booking_id, inspection_type, planned_date, inspector, status)
+                VALUES (?, ?, ?, ?, 'planned')
             """, (booking_id, inspectie_type, date_str, inspector_val))
