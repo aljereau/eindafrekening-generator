@@ -7,7 +7,7 @@ from datetime import datetime, date
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 from HuizenManager.src.manager import HuizenManager
-from Shared.entities import Huis, Eigenaar, InhuurContract
+from Shared.entities import Huis, Leverancier as Eigenaar, InhuurContract
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -112,6 +112,8 @@ def add_new_house(manager):
     
     input("\nDruk op Enter om door te gaan...")
 
+from Incheck.src.cli import show_planning_report
+
 def main_menu():
     manager = HuizenManager()
     
@@ -123,6 +125,7 @@ def main_menu():
         print("3. Bekijk Huis Details")
         print("4. Nieuw Huis Toevoegen")
         print("5. Exporteer naar Excel")
+        print("6. 📅 PLANNING & INSPECTIES")
         print("q. Afsluiten")
         
         choice = input("\nKies een optie: ").strip().lower()
@@ -149,6 +152,8 @@ def main_menu():
             # Use default output path logic in db_export_tool.py
             os.system(f"{sys.executable} HuizenManager/src/db_export_tool.py {table_name}")
             input("\nDruk op Enter om door te gaan...")
+        elif choice == '6':
+            show_planning_report()
         elif choice == 'q':
             print("Tot ziens!")
             break

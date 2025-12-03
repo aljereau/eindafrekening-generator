@@ -757,7 +757,8 @@
             <div class="start-bar-wrapper">
                 {{ financial.cleaning.svg_start_bar|safe }}
             </div>
-            <div class="prepaid-label">Gekozen pakket</div>
+            <div class="prepaid-label">{% if financial.cleaning.pakket_naam == "Achteraf Betaald" %}Geen voorschot{%
+                else %}Gekozen pakket{% endif %}</div>
         </div>
         <div class="usage-section">
             <div class="usage-section-spacer"></div>
@@ -861,12 +862,14 @@
             </div>
             {% if financial.gwe.meterstanden %}
             {% for type, stand in financial.gwe.meterstanden.items() %}
+            {% if stand %}
             <div class="detail-item">
                 <span style="color: var(--color-text-light); font-size: 11px;">
                     {{ type|capitalize }} (Start: {{ stand.begin }} - Eind: {{ stand.eind }})
                 </span>
                 <span style="font-size: 11px;">{{ stand.verbruik }}</span>
             </div>
+            {% endif %}
             {% endfor %}
             {% endif %}
             <div class="detail-item">
@@ -908,7 +911,8 @@
             </div>
             {% if financial.cleaning.extra_bedrag > 0 %}
             <div class="detail-item">
-                <span>Extra kosten:</span>
+                <span>{% if financial.cleaning.pakket_naam == "Achteraf Betaald" %}Schoonmaak kosten:{% else %}Extra
+                    kosten:{% endif %}</span>
                 <span>€{{ "%.2f"|format(financial.cleaning.extra_bedrag) }}</span>
             </div>
             {% endif %}
@@ -1000,15 +1004,27 @@
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <path d="M3 12h18M3 6h18M3 18h18" />
                         </svg>
+                        {% if financial.cleaning.pakket_naam == "Achteraf Betaald" %}
+                        Schoonmaak
+                        {% else %}
                         {{ financial.cleaning.pakket_naam }}
+                        {% endif %}
                     </td>
                     <td>€{{ "%.2f"|format(financial.cleaning.voorschot) }}</td>
                     <td>€{{ "%.2f"|format(financial.cleaning.voorschot + financial.cleaning.extra_bedrag) }}</td>
                     <td class="{{ 'text-neutral' if financial.cleaning.extra_bedrag == 0 else 'text-charge' }}">
+                        {% if financial.cleaning.pakket_naam == "Achteraf Betaald" %}
+                        {% if financial.cleaning.extra_bedrag > 0 %}
+                        €{{ "%.0f"|format(financial.cleaning.extra_bedrag) }} te betalen
+                        {% else %}
+                        €0
+                        {% endif %}
+                        {% else %}
                         {% if financial.cleaning.extra_bedrag > 0 %}
                         €{{ "%.0f"|format(financial.cleaning.extra_bedrag) }} bijbetalen
                         {% else %}
                         €0
+                        {% endif %}
                         {% endif %}
                     </td>
                 </tr>

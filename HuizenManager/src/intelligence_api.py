@@ -31,6 +31,64 @@ class IntelligenceAPI:
             d[col[0]] = row[idx]
         return d
 
+    def get_database_schema(self) -> str:
+        """
+        Dynamically retrieves the database schema AND data context (counts, distinct values).
+        Returns a formatted string suitable for the LLM system prompt.
+        """
+        conn = self._get_connection()
+        cursor = conn.cursor()
+        
+        # Get all tables
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'")
+        tables = cursor.fetchall()
+        
+        schema_lines = ["**DB Schema:**"]
+        
+        # Columns to sample for distinct values (Enums)
+        enum_columns = {
+            "huizen": ["status", "woning_type"],
+            "klanten": ["type"],
+            "boekingen": ["status"],
+            "borg_transacties": ["type"]
+        }
+        
+        ignored_tables = ['schema_migrations', 'schema_versions', 'sqlite_sequence']
+
+        for table in tables:
+            table_name = table[0]
+            if table_name in ignored_tables:
+                continue
+            
+            # Get Row Count
+            try:
+                cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
+                count = cursor.fetchone()[0]
+            except:
+                count = "?"
+
+            # Get Columns
+            cursor.execute(f"PRAGMA table_info({table_name})")
+            columns = cursor.fetchall()
+            col_names = [col[1] for col in columns]
+            
+            # Get Distinct Values for specific columns
+            enums_str = ""
+            if table_name in enum_columns:
+                for col in enum_columns[table_name]:
+                    if col in col_names:
+                        try:
+                            cursor.execute(f"SELECT DISTINCT {col} FROM {table_name} WHERE {col} IS NOT NULL LIMIT 3")
+                            vals = [str(row[0]) for row in cursor.fetchall()]
+                            enums_str += f" [{col}: {', '.join(vals)}]"
+                        except:
+                            pass
+
+            schema_lines.append(f"- **{table_name}** ({count}): {', '.join(col_names)}{enums_str}")
+            
+        conn.close()
+        return "\n".join(schema_lines)
+
     def get_houses_near_contract_end(self, days: int = 30) -> List[Dict]:
         """
         Return houses with INHUUR contracts ending within 'days'.
@@ -82,6 +140,36 @@ class IntelligenceAPI:
         """
         
         rows = conn.execute(query).fetchall()
+        conn.close()
+        return rows
+
+    def get_upcoming_checkouts(self, days: int = 60) -> List[Dict]:
+        """
+        Get bookings with checkout dates in the next 'days' days.
+        """
+        conn = self._get_connection()
+        conn.row_factory = self._dict_factory
+        
+        target_date = date.today() + timedelta(days=days)
+        
+        query = """
+            SELECT 
+                b.id as booking_id,
+                h.adres,
+                k.naam as client,
+                b.checkin_datum,
+                b.checkout_datum,
+                b.status
+            FROM boekingen b
+            JOIN huizen h ON b.huis_id = h.id
+            JOIN klanten k ON b.klant_id = k.id
+            WHERE b.checkout_datum >= DATE('now')
+            AND b.checkout_datum <= ?
+            AND b.status != 'cancelled'
+            ORDER BY b.checkout_datum ASC
+        """
+        
+        rows = conn.execute(query, (target_date,)).fetchall()
         conn.close()
         return rows
 
@@ -340,6 +428,51 @@ class IntelligenceAPI:
         finally:
             conn.close()
 
+    def update_booking(self, booking_id: int, checkin_date: str = None, checkout_date: str = None, status: str = None) -> Dict:
+        """
+        Update an existing booking.
+        """
+        conn = self._get_connection()
+        try:
+            cursor = conn.cursor()
+            
+            # 1. Verify booking exists
+            cursor.execute("SELECT id FROM boekingen WHERE id = ?", (booking_id,))
+            if not cursor.fetchone():
+                return {"error": f"Booking {booking_id} not found."}
+
+            # 2. Build Update Query
+            updates = []
+            params = []
+            
+            if checkin_date:
+                updates.append("checkin_datum = ?")
+                params.append(checkin_date)
+            
+            if checkout_date:
+                updates.append("checkout_datum = ?")
+                params.append(checkout_date)
+                
+            if status:
+                updates.append("status = ?")
+                params.append(status)
+                
+            if not updates:
+                return {"error": "No fields to update provided."}
+                
+            params.append(booking_id)
+            
+            query = f"UPDATE boekingen SET {', '.join(updates)} WHERE id = ?"
+            cursor.execute(query, tuple(params))
+            conn.commit()
+            
+            return {"success": True, "message": f"Booking {booking_id} updated successfully."}
+            
+        except Exception as e:
+            return {"error": str(e)}
+        finally:
+            conn.close()
+
     def register_checkin(self, booking_id: int, date: str, notes: str = "") -> Dict:
         """
         Register a check-in.
@@ -387,9 +520,20 @@ class IntelligenceAPI:
                           checkout_date: str, 
                           deposit_held: float, 
                           deposit_returned: float,
-                          cleaning_cost: float,
-                          damage_cost: float,
-                          gwe_usage: float = 0.0) -> Dict:
+                          
+                          gwe_voorschot: float,
+                          cleaning_voorschot: float,
+                          
+                          client_email: str = "unknown@example.com",
+                          
+                          gwe_details: Dict = None,
+                          gwe_usage_cost: float = 0.0,
+                          
+                          damages: List[Dict] = [],
+                          cleaning_package: str = "geen",
+                          cleaning_costs: float = 0.0,
+                          
+                          extra_voorschot: Dict = None) -> Dict:
         """
         Generate a PDF settlement (Eindafrekening).
         """
@@ -407,60 +551,144 @@ class IntelligenceAPI:
             from Shared.entities import (
                 Client, RentalProperty, Period, Deposit, 
                 GWEMeterReading, GWERegel, GWETotalen, Cleaning, 
-                DamageRegel, DamageTotalen, GWEMeterstanden
+                DamageRegel, DamageTotalen, GWEMeterstanden, ExtraVoorschot
             )
             
-            # 3. Construct Data Objects
+            # 3. Lookup House Details from DB
+            conn = self._get_connection()
+            conn.row_factory = self._dict_factory
+            house_row = conn.execute("SELECT object_id, postcode, plaats FROM huizen WHERE adres LIKE ?", (f"%{house_address}%",)).fetchone()
+            conn.close()
+            
+            postal_code = house_row['postcode'] if house_row else ""
+            city = house_row['plaats'] if house_row else ""
+            object_id = house_row['object_id'] if house_row else ""
+            unit = "" # Unit not in DB yet
+
+            # 4. Construct Data Objects
+            
             # Dates
             d_in = datetime.strptime(checkin_date, "%Y-%m-%d").date()
             d_out = datetime.strptime(checkout_date, "%Y-%m-%d").date()
             days = (d_out - d_in).days
             
             # Entities
-            client_obj = Client(name=client_name, contact_person=client_name, email="unknown@example.com")
-            object_obj = RentalProperty(address=house_address)
+            client_obj = Client(name=client_name, contact_person=client_name, email=client_email)
+            object_obj = RentalProperty(
+                address=house_address,
+                unit=unit,
+                postal_code=postal_code,
+                city=city,
+                object_id=object_id
+            )
             period_obj = Period(checkin_date=d_in, checkout_date=d_out, days=days)
             
+            # Helper to convert Incl VAT to Ex VAT
+            def to_excl(amount):
+                return amount / 1.21
+
+            # Damage Processing
+            damage_regels = []
+            total_damage = 0.0
+            for dmg in damages:
+                desc = dmg.get('description', 'Onbekende schade')
+                amt_incl = float(dmg.get('amount', 0))
+                amt_excl = to_excl(amt_incl)
+                # We set tarief_excl to the calculated excl amount
+                damage_regels.append(DamageRegel(desc, 1, amt_excl, amt_excl))
+                total_damage += amt_incl # Keep track of incl total for deposit check
+            
+            # Note: We don't need to calculate totals here, generate.py will do it.
+            # But we provide placeholders.
+            damage_totalen = DamageTotalen(totaal_excl=0, btw=0, totaal_incl=0)
+
+            # Deposit
+            # We set 'gebruikt' to total_damage so generate.py respects it
             deposit_obj = Deposit(
                 voorschot=deposit_held,
-                gebruikt=deposit_held - deposit_returned,
-                terug=deposit_returned,
-                restschade=0.0
+                gebruikt=total_damage, 
+                terug=max(0, deposit_held - total_damage),
+                restschade=max(0, total_damage - deposit_held)
             )
             
-            # GWE (Simplified for AI: assume usage is total cost for now, or 0)
-            # In a real scenario, AI should ask for meter readings.
-            # For now, we create a dummy entry if usage > 0
+            # GWE Construction
             gwe_regels = []
-            if gwe_usage > 0:
-                gwe_regels.append(GWERegel("Verbruik (Schatting)", 1, gwe_usage, gwe_usage))
+            
+            # Meter readings & Consumption Logic
+            if gwe_details:
+                stroom_begin = float(gwe_details.get('stroom_begin', 0))
+                stroom_eind = float(gwe_details.get('stroom_eind', 0))
+                stroom_verbruik = stroom_eind - stroom_begin
                 
-            gwe_totalen = GWETotalen(totaal_excl=gwe_usage, btw=0, totaal_incl=gwe_usage)
-            gwe_meterstanden = GWEMeterstanden(
-                stroom=GWEMeterReading(0,0,0), 
-                gas=GWEMeterReading(0,0,0)
-            )
+                gas_begin = float(gwe_details.get('gas_begin', 0))
+                gas_eind = float(gwe_details.get('gas_eind', 0))
+                gas_verbruik = gas_eind - gas_begin
+                
+                stroom = GWEMeterReading(begin=stroom_begin, eind=stroom_eind, verbruik=stroom_verbruik)
+                gas = GWEMeterReading(begin=gas_begin, eind=gas_eind, verbruik=gas_verbruik)
+                
+                # Create detailed line items with 0 cost (informational)
+                if stroom_verbruik > 0:
+                    gwe_regels.append(GWERegel(f"Stroom verbruik ({stroom_verbruik:.0f} kWh)", stroom_verbruik, 0, 0))
+                if gas_verbruik > 0:
+                    gwe_regels.append(GWERegel(f"Gas verbruik ({gas_verbruik:.0f} m3)", gas_verbruik, 0, 0))
+                    
+            else:
+                stroom = GWEMeterReading(0,0,0)
+                gas = GWEMeterReading(0,0,0)
+                
+            # Add the total cost line (converted to Ex VAT)
+            if gwe_usage_cost > 0:
+                cost_excl = to_excl(gwe_usage_cost)
+                gwe_regels.append(GWERegel("Totaal GWE Kosten", 1, cost_excl, cost_excl))
+                
+            gwe_totalen = GWETotalen(totaal_excl=0, btw=0, totaal_incl=0)
+            gwe_meterstanden = GWEMeterstanden(stroom=stroom, gas=gas)
             
             # Cleaning
+            # Map package name
+            pakket_naam = "Geen pakket"
+            inbegrepen = 0
+            if cleaning_package == "Basis Schoonmaak":
+                pakket_naam = "Basis Schoonmaak"
+                inbegrepen = 5
+            elif cleaning_package == "Intensief Schoonmaak":
+                pakket_naam = "Intensief Schoonmaak"
+                inbegrepen = 7
+
+            # Calculate extra hours to match the cost
+            # extra_bedrag = extra_uren * 50
+            # so extra_uren = extra_bedrag / 50
+            extra_uren = 0
+            if cleaning_costs > 0:
+                extra_uren = cleaning_costs / 50.0
+
             cleaning_obj = Cleaning(
-                pakket_type="geen", 
-                pakket_naam="Op nacalculatie", 
-                inbegrepen_uren=0, 
-                totaal_uren=0, 
-                extra_uren=0, 
-                uurtarief=0, 
-                extra_bedrag=cleaning_cost, 
-                voorschot=0
+                pakket_type=cleaning_package, 
+                pakket_naam=pakket_naam, 
+                inbegrepen_uren=inbegrepen, 
+                totaal_uren=inbegrepen + extra_uren, 
+                extra_uren=extra_uren, 
+                uurtarief=50, 
+                extra_bedrag=cleaning_costs, 
+                voorschot=cleaning_voorschot
             )
             
-            # Damage
-            damage_regels = []
-            if damage_cost > 0:
-                damage_regels.append(DamageRegel("Schade (Diverse)", 1, damage_cost, damage_cost))
-                
-            damage_totalen = DamageTotalen(totaal_excl=damage_cost, btw=0, totaal_incl=damage_cost)
-            
-            # 4. Build Data Dictionary
+            # Extra Voorschot
+            extra_voorschot_obj = None
+            if extra_voorschot:
+                amount = float(extra_voorschot.get('amount', 0))
+                used = float(extra_voorschot.get('used', 0))
+                desc = extra_voorschot.get('description', 'Extra')
+                extra_voorschot_obj = ExtraVoorschot(
+                    voorschot=amount,
+                    omschrijving=desc,
+                    gebruikt=used,
+                    terug=max(0, amount - used),
+                    restschade=max(0, used - amount)
+                )
+
+            # 5. Build Data Dictionary
             data = {
                 'client': client_obj,
                 'object': object_obj,
@@ -472,8 +700,8 @@ class IntelligenceAPI:
                 'cleaning': cleaning_obj,
                 'damage_regels': damage_regels,
                 'damage_totalen': damage_totalen,
-                'extra_voorschot': None,
-                'gwe_voorschot': 0.0 # Assuming included or handled in deposit
+                'extra_voorschot': extra_voorschot_obj,
+                'gwe_voorschot': gwe_voorschot
             }
             
             # 5. Call Generator
@@ -498,3 +726,90 @@ class IntelligenceAPI:
             import traceback
             traceback.print_exc()
             return {"error": str(e)}
+
+    def get_booking_for_settlement(self, booking_id: int) -> Dict:
+        """Fetch all booking data needed for settlement generation."""
+        conn = self._get_connection()
+        conn.row_factory = self._dict_factory
+        cursor = conn.cursor()
+        
+        query = """
+        SELECT 
+            b.id as booking_id, b.checkin_datum, b.checkout_datum, b.betaalde_borg,
+            b.voorschot_gwe, b.voorschot_schoonmaak, b.schoonmaak_pakket,
+            k.naam as client_name, k.contactpersoon, k.email, k.telefoonnummer,
+            h.adres as property_address, h.object_id, h.postcode, h.plaats
+        FROM boekingen b
+        JOIN klanten k ON b.klant_id = k.id
+        JOIN huizen h ON b.huis_id = h.id
+        WHERE b.id = ?
+        """
+        
+        cursor.execute(query, (booking_id,))
+        result = cursor.fetchone()
+        conn.close()
+        
+        if not result:
+            raise ValueError(f"Booking {booking_id} not found")
+        
+        return result
+    
+    def save_meter_readings(self, booking_id: int, readings: Dict) -> bool:
+        """Save GWE meter readings for a booking."""
+        conn = self._get_connection()
+        cursor = conn.cursor()
+        
+        for reading_type, values in readings.items():
+            cursor.execute("""
+                INSERT INTO meter_readings (booking_id, reading_type, start_value, end_value, tariff)
+                VALUES (?, ?, ?, ?, ?)
+            """, (booking_id, reading_type, values['start'], values['end'], values['tariff']))
+        
+        conn.commit()
+        conn.close()
+        return True
+    
+    def save_damages(self, booking_id: int, damages: List[Dict]) -> bool:
+        """Save damage records for a booking."""
+        conn = self._get_connection()
+        cursor = conn.cursor()
+        
+        for damage in damages:
+            cursor.execute("""
+                INSERT INTO damages (booking_id, description, estimated_cost, btw_percentage)
+                VALUES (?, ?, ?, ?)
+            """, (booking_id, damage['description'], damage['cost'], damage.get('btw_percentage', 21.0)))
+        
+        conn.commit()
+        conn.close()
+        return True
+    
+    def update_booking_settlement_status(self, booking_id: int) -> bool:
+        """Mark booking as having settlement generated."""
+        conn = self._get_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute("""
+            UPDATE boekingen
+            SET settlement_generated = 1, settlement_generated_at = CURRENT_TIMESTAMP
+            WHERE id = ?
+        """, (booking_id,))
+        
+        conn.commit()
+        conn.close()
+        return True
+    
+    def update_booking_voorschotten(self, booking_id: int, voorschot_gwe: float, voorschot_schoonmaak: float, schoonmaak_pakket: str) -> bool:
+        """Update voorschot amounts and cleaning package for a booking."""
+        conn = self._get_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute("""
+            UPDATE boekingen
+            SET voorschot_gwe = ?, voorschot_schoonmaak = ?, schoonmaak_pakket = ?
+            WHERE id = ?
+        """, (voorschot_gwe, voorschot_schoonmaak, schoonmaak_pakket, booking_id))
+        
+        conn.commit()
+        conn.close()
+        return True

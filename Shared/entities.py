@@ -72,13 +72,14 @@ class GWERegel:
     verbruik_of_dagen: float    # Consumption or days
     tarief_excl: float          # Rate excl. VAT
     kosten_excl: float          # Cost excl. VAT
+    btw_percentage: float = 0.21 # VAT percentage (default 21%)
 
 
 @dataclass
 class GWETotalen:
     """GWE totals with VAT calculation"""
     totaal_excl: float  # Total excl. VAT
-    btw: float          # VAT amount (21%)
+    btw: float          # VAT amount (calculated from lines)
     totaal_incl: float  # Total incl. VAT
 
 
@@ -102,13 +103,14 @@ class DamageRegel:
     aantal: float         # Quantity
     tarief_excl: float    # Rate excl. VAT
     bedrag_excl: float    # Amount excl. VAT
+    btw_percentage: float = 0.21 # VAT percentage (default 21%)
 
 
 @dataclass
 class DamageTotalen:
     """Damage totals with VAT calculation"""
     totaal_excl: float  # Total excl. VAT
-    btw: float          # VAT amount (21%)
+    btw: float          # VAT amount (calculated from lines)
     totaal_incl: float  # Total incl. VAT
 
 
@@ -127,6 +129,7 @@ class GWEMeterstanden:
     """Container for all meter readings"""
     stroom: GWEMeterReading  # Electricity meter
     gas: GWEMeterReading     # Gas meter
+    water: Optional[GWEMeterReading] = None # Water meter (optional)
 
 
 @dataclass

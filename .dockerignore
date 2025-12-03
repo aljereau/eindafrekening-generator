@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+.cursor/
+.claude/
+.bmad/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+Archive/
+.git/
+.gitignore
+
+# Sensitive
+.env
+
+# Build artifacts
+*.egg-info/
+dist/
+build/

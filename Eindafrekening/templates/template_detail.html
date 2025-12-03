@@ -111,8 +111,7 @@
         }
 
         .section {
-            margin-bottom: var(--spacing-xl);
-            break-inside: avoid;
+            margin-bottom: var(--spacing-lg);
         }
 
         .section-title {
@@ -130,6 +129,9 @@
             width: 100%;
             border-collapse: collapse;
             margin: var(--spacing-md) 0;
+        }
+
+        tr {
             break-inside: avoid;
         }
 
@@ -181,6 +183,7 @@
             padding: var(--spacing-md);
             border-radius: var(--radius-md);
             border-left: 3px solid var(--color-brand-green);
+            break-inside: avoid;
         }
 
         .meter-label {
@@ -215,6 +218,7 @@
             padding: var(--spacing-md);
             border-radius: var(--radius-md);
             margin: var(--spacing-md) 0;
+            break-inside: avoid;
         }
 
         .summary-box .label {
@@ -259,8 +263,6 @@
             }
 
             /* Prevent page breaks inside critical sections */
-            .section,
-            table,
             .meter-grid {
                 page-break-inside: avoid;
             }
@@ -335,6 +337,24 @@
                         </div>
                     </div>
                 </div>
+                {% if gwe.meterstanden.water %}
+                <div class="meter-card">
+                    <div class="meter-label">
+                        <svg class="icon" style="width: 16px; height: 16px; margin-right: 6px;" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                        </svg>
+                        Water (m³)
+                    </div>
+                    <div class="meter-values">
+                        <div>Begin: {{ gwe.meterstanden.water.begin }}</div>
+                        <div>Eind: {{ gwe.meterstanden.water.eind }}</div>
+                        <div style="font-weight: 600; color: var(--color-brand-dark);">
+                            Verbruik: {{ gwe.meterstanden.water.verbruik }} m³
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
             </div>
 
             <h3 style="font-size: 14px; margin-top: var(--spacing-lg);">Kostenspecificatie</h3>
@@ -361,7 +381,7 @@
                         <td class="text-right text-bold">€{{ "%.2f"|format(gwe.totalen.totaal_excl) }}</td>
                     </tr>
                     <tr>
-                        <td colspan="3">BTW 21%</td>
+                        <td colspan="3">BTW (Totaal)</td>
                         <td class="text-right">€{{ "%.2f"|format(gwe.totalen.btw) }}</td>
                     </tr>
                     <tr class="totals-row" style="background: var(--color-brand-green); color: white;">
@@ -387,9 +407,13 @@
             <div class="summary-box">
                 <div class="label">Schoonmaakpakket</div>
                 <div class="value">
+                    {% if cleaning.pakket_naam == "Achteraf Betaald" %}
+                    {{ cleaning.pakket_naam|lower }}
+                    {% else %}
                     {{ cleaning.pakket_naam|lower }}{% if cleaning.extra_uren > 0 %} + {{
                     "%.0f"|format(cleaning.extra_uren) }} extra {% if cleaning.extra_uren == 1 %}uur{% else %}uren{%
                     endif %}{% endif %}
+                    {% endif %}
                 </div>
             </div>
 
@@ -403,15 +427,18 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% if cleaning.pakket_naam != "Achteraf Betaald" %}
                     <tr>
                         <td>Basis pakket (inbegrepen)</td>
                         <td class="text-right">{{ "%.1f"|format(cleaning.inbegrepen_uren) }}</td>
                         <td class="text-right">€{{ "%.2f"|format(cleaning.uurtarief) }}</td>
                         <td class="text-right">€{{ "%.2f"|format(cleaning.voorschot) }}</td>
                     </tr>
+                    {% endif %}
                     {% if cleaning.extra_uren > 0 %}
                     <tr>
-                        <td>Extra uren nodig</td>
+                        <td>{% if cleaning.pakket_naam == "Achteraf Betaald" %}Schoonmaak uren{% else %}Extra uren
+                            nodig{% endif %}</td>
                         <td class="text-right">{{ "%.1f"|format(cleaning.extra_uren) }}</td>
                         <td class="text-right">€{{ "%.2f"|format(cleaning.uurtarief) }}</td>
                         <td class="text-right">€{{ "%.2f"|format(cleaning.extra_bedrag) }}</td>
@@ -520,7 +547,7 @@
                         <td class="text-right text-bold">€{{ "%.2f"|format(damage.totalen.totaal_excl) }}</td>
                     </tr>
                     <tr>
-                        <td colspan="3">BTW 21%</td>
+                        <td colspan="3">BTW (Totaal)</td>
                         <td class="text-right">€{{ "%.2f"|format(damage.totalen.btw) }}</td>
                     </tr>
                     <tr class="totals-row">
@@ -572,7 +599,7 @@
         <!-- FOOTER -->
         <div class="footer">
             <strong>RyanRent</strong> | Detail Afrekening<br>
-            Voor vragen: info@ryanrent.nl<br>
+            Voor vragen: beheer@ryanrent.nl<br>
             Zie ook: OnePager overzicht voor vereenvoudigd overzicht
         </div>
 

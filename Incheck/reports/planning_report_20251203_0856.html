@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>RyanRent Planning Overzicht</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap');
+
+        :root {
+            /* RyanRent Brand Colors */
+            --color-brand-green: #8BC34A;
+            --color-brand-orange: #FF9800;
+            --color-brand-dark: #2C3E50;
+
+            /* Priority Colors */
+            --color-critical: #F44336;
+            --color-critical-bg: #FFEBEE;
+            --color-high: #FF9800;
+            --color-high-bg: #FFF3E0;
+            --color-normal: #4CAF50;
+            --color-normal-bg: #E8F5E9;
+            --color-low: #9E9E9E;
+            --color-low-bg: #F5F5F5;
+
+            /* Layout */
+            --max-content-width: 900px;
+
+            /* Neutrals */
+            --color-text-main: #1A1A1A;
+            --color-text-muted: #616161;
+            --color-bg-page: #F5F5F5;
+            --color-bg-surface: #FFFFFF;
+            --color-border: #E0E0E0;
+
+            /* Spacing */
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+
+            --radius-md: 8px;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--color-text-main);
+            background-color: var(--color-bg-page);
+            margin: 0;
+            padding: var(--spacing-lg);
+            line-height: 1.5;
+        }
+
+        .page-container {
+            max-width: var(--max-content-width);
+            margin: 0 auto;
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--color-brand-green);
+            padding-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .brand h1 {
+            font-family: 'Barlow', sans-serif;
+            margin: 0;
+            color: var(--color-brand-dark);
+        }
+
+        .date {
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        /* Summary Cards */
+        .summary-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .card {
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        .card.critical {
+            background-color: var(--color-critical-bg);
+            color: var(--color-critical);
+        }
+
+        .card.high {
+            background-color: var(--color-high-bg);
+            color: var(--color-high);
+        }
+
+        .card.normal {
+            background-color: var(--color-normal-bg);
+            color: var(--color-normal);
+        }
+
+        .big-number {
+            font-family: 'Barlow', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin: var(--spacing-sm) 0;
+        }
+
+        .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Transitions List */
+        .transition-card {
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            background: white;
+        }
+
+        .transition-card.priority-critical {
+            border-left: 4px solid var(--color-critical);
+        }
+
+        .transition-card.priority-high {
+            border-left: 4px solid var(--color-high);
+        }
+
+        .transition-card.priority-normal {
+            border-left: 4px solid var(--color-normal);
+        }
+
+        .property-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .property-header h3 {
+            margin: 0;
+            font-family: 'Barlow', sans-serif;
+            color: var(--color-brand-dark);
+        }
+
+        .priority-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .priority-critical .priority-badge {
+            background: var(--color-critical);
+            color: white;
+        }
+
+        .priority-high .priority-badge {
+            background: var(--color-high);
+            color: white;
+        }
+
+        .priority-normal .priority-badge {
+            background: var(--color-normal);
+            color: white;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: var(--spacing-md) 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--color-border);
+            z-index: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            z-index: 1;
+            background: white;
+            padding: 0 var(--spacing-sm);
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .timeline-item .icon {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: var(--spacing-md);
+            background: var(--color-bg-page);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+        }
+
+        .details p {
+            margin: 0;
+        }
+
+        .details strong {
+            color: var(--color-text-muted);
+        }
+
+        .warnings {
+            margin-top: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: #FFF8E1;
+            border-radius: var(--radius-md);
+            border: 1px solid #FFECB3;
+        }
+
+        .warnings h4 {
+            margin: 0 0 var(--spacing-sm) 0;
+            color: #F57F17;
+            font-size: 14px;
+        }
+
+        .warnings ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #5D4037;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-container">
+        <div class="header">
+            <div class="brand">
+                <h1>🏠 RyanRent Planning</h1>
+            </div>
+            <div class="date">03-12-2025</div>
+        </div>
+
+        <div class="summary-section">
+            <div class="card critical">
+                <div class="label">Kritisch</div>
+                <div class="big-number">0</div>
+                <div>Actie vereist</div>
+            </div>
+            <div class="card high">
+                <div class="label">Hoog</div>
+                <div class="big-number">0</div>
+                <div>Aandacht nodig</div>
+            </div>
+            <div class="card normal">
+                <div class="label">Normaal</div>
+                <div class="big-number">0</div>
+                <div>Op schema</div>
+            </div>
+        </div>
+
+        <div class="transitions-section">
+            
+        </div>
+    </div>
+</body>
+
+</html>

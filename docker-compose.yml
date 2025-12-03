@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  ryanrent-bot:
+    build: .
+    container_name: ryanrent-intelligence
+    stdin_open: true # Keep STDIN open for interactive chat
+    tty: true # Allocate a pseudo-TTY
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./database:/app/database # Persist database
+      - ./Eindafrekening/output:/app/Eindafrekening/output # Persist generated reports
+    command: python HuizenManager/src/chat.py
