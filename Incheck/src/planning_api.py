@@ -133,12 +133,12 @@ class PlanningAPI:
             # Fetch Inspection Statuses
             # Current Booking (Voorinspectie, Eindinspectie)
             inspecties_query = """
-            SELECT inspectie_type, status, geplande_datum, inspecteur
-            FROM inspecties 
-            WHERE boeking_id = ?
+            SELECT inspection_type, status, planned_date, inspector
+            FROM inspections 
+            WHERE booking_id = ?
             """
             cursor.execute(inspecties_query, (checkout['booking_id'],))
-            huidige_inspecties = {row['inspectie_type']: row for row in cursor.fetchall()}
+            huidige_inspecties = {row['inspection_type']: row for row in cursor.fetchall()}
 
             # Next Booking (VIS, Incheck)
             # VIS is usually linked to the next booking's pre-checkin inspection? 

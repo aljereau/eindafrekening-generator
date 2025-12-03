@@ -1,7 +1,7 @@
 import pandas as pd
 import sys
 
-file_path = "Shared/Sources/Houses + Informationrelated.xlsx"
+file_path = "Shared/Sources/Houses List.xlsx"
 try:
     df = pd.read_excel(file_path)
     print("Columns found:", df.columns.tolist())

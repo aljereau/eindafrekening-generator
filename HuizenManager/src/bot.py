@@ -23,6 +23,15 @@ eindafrekening_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '.
 if eindafrekening_path not in sys.path:
     sys.path.append(eindafrekening_path)
 
+# Import new Intelligence Modules
+shared_scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'Shared', 'scripts'))
+if shared_scripts_path not in sys.path:
+    sys.path.append(shared_scripts_path)
+
+from modules.audit import AuditController
+from modules.query import QueryAnalyst
+from modules.excel_generator import ExcelGenerator
+
 try:
     from generate import generate_report
 except ImportError:
@@ -84,6 +93,16 @@ class ConversationMemory:
         # Keep the last `max_messages`
         # Summarize everything before that
         split_index = len(self.history) - self.max_messages
+        
+        # Ensure we don't split in the middle of a tool chain
+        # If the first message to be kept is a 'tool' message, it means its parent 'assistant' message
+        # is being summarized. We must also summarize the tool message to avoid an orphaned tool result.
+        while split_index < len(self.history) and self.history[split_index].get('role') == 'tool':
+            split_index += 1
+            
+        # If we pushed split_index all the way to the end, we might leave too few messages.
+        # But correctness is more important than keeping exactly max_messages.
+        
         to_summarize = self.history[:split_index]
         self.history = self.history[split_index:]
         
@@ -153,6 +172,11 @@ class RyanRentBot:
         self.planning_api = PlanningAPI(db_path)
         self.excel_handler = PlanningExcelHandler(db_path)
         self.file_exchange = FileExchangeHandler()  # New generic handler
+        
+        # Initialize Intelligence Modules
+        self.audit_controller = AuditController(db_path)
+        self.query_analyst = QueryAnalyst(db_path)
+        self.excel_generator = ExcelGenerator(db_path)
         
         # Set default models if not provided
         if self.provider == "openai":
@@ -593,6 +617,65 @@ class RyanRentBot:
                             }
                         },
                         "required": ["filename", "request_type"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "run_audit",
+                    "description": "Run a full system audit to check for data integrity issues.",
+                    "parameters": {"type": "object", "properties": {}}
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "run_analyst_query",
+                    "description": "Run a smart analytical query.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "query_type": {
+                                "type": "string",
+                                "enum": ["profitability", "client_scorecard", "operational_dashboard", "custom"]
+                            },
+                            "custom_sql": {"type": "string", "description": "Only for custom query type"}
+                        },
+                        "required": ["query_type"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "generate_smart_excel",
+                    "description": "Generate an Excel sheet based on a SQL query for bulk updates.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "sql_query": {"type": "string", "description": "SQL query to select data to update"},
+                            "update_type": {
+                                "type": "string",
+                                "enum": ["update_house_details", "update_contract"],
+                                "description": "Type of update to perform"
+                            }
+                        },
+                        "required": ["sql_query", "update_type"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "process_smart_excel",
+                    "description": "Process a filled Smart Excel sheet.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "file_path": {"type": "string"}
+                        },
+                        "required": ["file_path"]
                     }
                 }
             }
@@ -1187,7 +1270,10 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
             limit = args.get("limit", 50)
             return self.api.get_active_houses(limit)
         elif name == "run_sql_query":
-            return self.api.run_sql_query(args['query'])
+            query = args.get('query') or args.get('custom_sql')
+            if not query:
+                return {"error": "Missing 'query' argument"}
+            return self.api.run_sql_query(query)
         elif name == "add_house":
             return self.api.add_house(
                 args['adres'], args['plaats'], args['postcode'], 
@@ -1318,6 +1404,36 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
                 filename=args.get("filename"),
                 request_type=args.get("request_type")
             )
+
+        elif name == "run_audit":
+            return self.audit_controller.run_full_audit()
+
+        elif name == "run_analyst_query":
+            q_type = args.get("query_type")
+            if q_type == "profitability":
+                return self.query_analyst.get_house_profitability()
+            elif q_type == "client_scorecard":
+                return self.query_analyst.get_client_scorecard()
+            elif q_type == "operational_dashboard":
+                return self.query_analyst.get_operational_dashboard()
+            elif q_type == "custom":
+                return self.query_analyst.run_custom_query(args.get("custom_sql", ""))
+            else:
+                return {"error": "Unknown query type"}
+
+        elif name == "generate_smart_excel":
+            root_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+            output_dir = os.path.join(root_dir, "Shared", "Exchange", "Output")
+            os.makedirs(output_dir, exist_ok=True)
+            
+            return self.excel_generator.generate_update_sheet(
+                sql_query=args['sql_query'],
+                update_type=args['update_type'],
+                output_dir=output_dir
+            )
+
+        elif name == "process_smart_excel":
+            return self.excel_generator.process_update_sheet(args['file_path'])
             
         else:
             return {"error": f"Unknown tool: {name}"}
