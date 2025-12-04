@@ -16,7 +16,7 @@ Output: 2 PDFs (or HTML fallback) - OnePager + Detail
 import argparse
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, date
 
 # Add current directory to path so imports work
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -33,12 +33,13 @@ shared_dir = os.path.join(root_dir, 'Shared')
 sys.path.append(shared_dir)
 
 # Import modules
-from excel_reader import read_excel
+from excel_reader import ExcelReader, read_excel
 from calculator import recalculate_all
 from viewmodels import build_viewmodels_from_data, save_viewmodels_to_json
 from template_renderer import TemplateRenderer
 from pdf_generator import render_and_generate_pdfs
 from database import init_database
+from entities import GWERegel
 
 
 def build_output_basename(client_name: str, checkin_date: str, checkout_date: str) -> str:
@@ -66,13 +67,77 @@ def build_output_basename(client_name: str, checkin_date: str, checkout_date: st
     return basename
 
 
-def generate_report(input_path: str, output_dir: str = None) -> dict:
+def preprocess_gwe_tax_changes(data: dict):
+    """
+    Handle 2026 Water VAT change (9% -> 21%).
+    Splits Water lines if period spans 2026-01-01.
+    """
+    period = data['period']
+    checkin = period.checkin_date
+    checkout = period.checkout_date
+    
+    # Transition date
+    transition_date = date(2026, 1, 1)
+    
+    # Check if period spans transition
+    if checkin < transition_date and checkout > transition_date:
+        # Calculate split
+        days_total = period.days
+        days_2025 = (transition_date - checkin).days
+        days_2026 = (checkout - transition_date).days
+        
+        # Ensure we don't divide by zero (shouldn't happen if checkin < transition < checkout)
+        if days_total <= 0:
+            return
+
+        ratio_2025 = days_2025 / days_total
+        ratio_2026 = days_2026 / days_total
+        
+        new_regels = []
+        for regel in data['gwe_regels']:
+            # Check if it's a Water line (by Type or Description)
+            # Use getattr for type as it might not be populated in older objects/mocks
+            is_water = (hasattr(regel, 'type') and regel.type == 'Water') or 'water' in regel.omschrijving.lower()
+            
+            if is_water:
+                # Split line
+                regel1 = GWERegel(
+                    omschrijving=f"{regel.omschrijving} (2025: {days_2025} dagen)",
+                    verbruik_of_dagen=regel.verbruik_of_dagen * ratio_2025,
+                    tarief_excl=regel.tarief_excl,
+                    kosten_excl=regel.kosten_excl * ratio_2025,
+                    btw_percentage=0.09,
+                    type=getattr(regel, 'type', 'Water'),
+                    eenheid=getattr(regel, 'eenheid', '')
+                )
+                regel2 = GWERegel(
+                    omschrijving=f"{regel.omschrijving} (2026: {days_2026} dagen)",
+                    verbruik_of_dagen=regel.verbruik_of_dagen * ratio_2026,
+                    tarief_excl=regel.tarief_excl,
+                    kosten_excl=regel.kosten_excl * ratio_2026,
+                    btw_percentage=0.21,
+                    type=getattr(regel, 'type', 'Water'),
+                    eenheid=getattr(regel, 'eenheid', '')
+                )
+                new_regels.append(regel1)
+                new_regels.append(regel2)
+            else:
+                new_regels.append(regel)
+        
+        data['gwe_regels'] = new_regels
+        print(f"   ℹ️  Waterkosten gesplitst voor 2026 BTW-wijziging ({days_2025} dagen 9% / {days_2026} dagen 21%)")
+
+
+
+def generate_report(input_path: str, output_dir: str = None, save_json: bool = False, auto_open: bool = False) -> dict:
     """
     Generate report programmatically.
     
     Args:
         input_path: Path to filled Excel template
         output_dir: Optional output directory (defaults to project_root/output)
+        save_json: Whether to save intermediate JSON files
+        auto_open: Whether to auto-open generated files
         
     Returns:
         Dictionary with generation results
@@ -117,7 +182,7 @@ def generate_report(input_path: str, output_dir: str = None) -> dict:
         data['gwe_voorschot'] = gwe_voorschot
 
         # Call the reusable generation function
-        result = generate_eindafrekening_from_data(data, args.output_dir, bundle_dir, shared_dir, project_root, args.save_json, args.auto_open)
+        result = generate_eindafrekening_from_data(data, output_dir, bundle_dir, shared_dir, project_root, save_json, auto_open)
 
     except FileNotFoundError as e:
         print(f"\n❌ FOUT: {e}")
@@ -137,6 +202,9 @@ def generate_eindafrekening_from_data(data: dict, output_dir: str, bundle_dir: s
     """
     # ==================== STEP 2: CALCULATIONS ====================
     print(f"\n🔢 STAP 2: Berekeningen uitvoeren...")
+    
+    # Preprocess tax changes (2026 Water VAT split)
+    preprocess_gwe_tax_changes(data)
     
     # Add logo (base64 encoded)
     import base64
@@ -341,6 +409,29 @@ def generate_eindafrekening_from_data(data: dict, output_dir: str, bundle_dir: s
 
     return result
     
+def main():
+    """Main entry point"""
+    parser = argparse.ArgumentParser(description='RyanRent Eindafrekening Generator')
+    parser.add_argument('--input', '-i', required=True, help='Input Excel file')
+    parser.add_argument('--output', '-o', help='Output directory')
+    parser.add_argument('--no-pause', action='store_true', help='Do not pause at end')
+    parser.add_argument('--no-open', action='store_true', help='Do not auto-open browser')
+    
+    args = parser.parse_args()
+    
+    try:
+        generate_report(
+            input_path=args.input,
+            output_dir=args.output,
+            save_json=False, # Default to False for CLI unless flag added later
+            auto_open=not args.no_open
+        )
+    except Exception as e:
+        print(f"\n❌ FOUT: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
+
     # Pause if interactive
     if not args.no_pause:
         input("\n👉 Druk op Enter om af te sluiten...")

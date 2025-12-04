@@ -256,30 +256,36 @@ class ExcelReader:
     def read_gwe_regels(self) -> List[GWERegel]:
         """Read GWE cost lines from GWE_Detail sheet table"""
         # Read dynamic table starting at row 17 (after section headers and table header row)
-        # Now reading 6 columns: Omschrijving, Verbruik, Tarief, Kosten, BTW %, BTW €
-        rows = self.read_table_range('GWE_Detail', start_row=17, start_col=1, num_cols=6)
+        # Now reading 8 columns: Type, Omschrijving, Eenheid, Verbruik, Tarief, Kosten, BTW %, BTW €
+        rows = self.read_table_range('GWE_Detail', start_row=17, start_col=1, num_cols=8)
         
         regels = []
         for row in rows:
-            omschrijving = str(row[0]).strip() if row[0] else ""
-            verbruik = row[1] if row[1] is not None else 0
-            tarief = row[2] if row[2] is not None else 0
-            kosten = row[3] if row[3] is not None else 0
-            btw_pct = row[4] if len(row) > 4 and row[4] is not None else 0.21 # Default to 21%
+            type_val = str(row[0]).strip() if row[0] else "Overig"
+            omschrijving = str(row[1]).strip() if row[1] else ""
+            eenheid = str(row[2]).strip() if row[2] else ""
+            verbruik = row[3] if row[3] is not None else 0
+            tarief = row[4] if row[4] is not None else 0
+            kosten = row[5] if row[5] is not None else 0
+            btw_pct = row[6] if len(row) > 6 and row[6] is not None else 0.21 # Default to 21%
             
             # Skip empty rows and header rows
             if not omschrijving or omschrijving.lower() in ['omschrijving', 'beschrijving']:
                 continue
             
-            # Skip instruction rows (starting with emoji or containing instruction text)
+            # Skip instruction rows
             if omschrijving.startswith('💡') or 'vul hier' in omschrijving.lower():
+                continue
+
+            # Skip Total rows (which might be read if there are no empty lines between data and totals)
+            if 'totaal' in type_val.lower() or 'totaal' in omschrijving.lower():
                 continue
             
             try:
-                # Handle percentage input (e.g. 21, 0.21, "21%")
+                # Handle percentage input
                 if isinstance(btw_pct, str):
                     btw_pct = float(btw_pct.replace('%', '').strip()) / 100 if '%' in btw_pct else float(btw_pct)
-                elif btw_pct > 1: # Assumes input like 21 means 21%
+                elif btw_pct > 1:
                     btw_pct = btw_pct / 100
 
                 regels.append(GWERegel(
@@ -287,7 +293,9 @@ class ExcelReader:
                     verbruik_of_dagen=float(verbruik),
                     tarief_excl=float(tarief),
                     kosten_excl=float(kosten),
-                    btw_percentage=float(btw_pct)
+                    btw_percentage=float(btw_pct),
+                    type=type_val,
+                    eenheid=eenheid
                 ))
             except (ValueError, TypeError) as e:
                 print(f"⚠️  Warning: Could not parse GWE regel '{omschrijving}': {e}")
@@ -300,7 +308,8 @@ class ExcelReader:
         return GWETotalen(
             totaal_excl=self.get_float('GWE_totaal_excl'),
             btw=self.get_float('GWE_BTW'),
-            totaal_incl=self.get_float('GWE_totaal_incl')
+            totaal_incl=self.get_float('GWE_totaal_incl'),
+            beheer_type=self.get_string('GWE_Beheer', default='Via RyanRent')
         )
     
     def read_cleaning(self) -> Cleaning:
@@ -324,6 +333,16 @@ class ExcelReader:
             print(f"⚠️  Warning: Unknown pakket type '{pakket_raw}', defaulting to '5_uur'")
             pakket = '5_uur'
         
+        # Calculate VAT
+        totaal_incl = self.get_float('Schoonmaak_totaal_kosten', default=0.0)
+        btw_pct = self.get_float('BTW_percentage_schoonmaak', default=0.21)
+        
+        # Total Incl = Total Excl * (1 + VAT%)
+        # Total Excl = Total Incl / (1 + VAT%)
+        # VAT Amount = Total Incl - Total Excl
+        totaal_excl = totaal_incl / (1 + btw_pct)
+        btw_bedrag = totaal_incl - totaal_excl
+
         return Cleaning(
             pakket_type=pakket,  # type: ignore
             pakket_naam=pakket_naam,
@@ -332,7 +351,10 @@ class ExcelReader:
             extra_uren=self.get_float('Extra_uren'),
             uurtarief=self.get_float('Uurtarief_schoonmaak'),
             extra_bedrag=self.get_float('Extra_schoonmaak_bedrag'),
-            voorschot=self.get_float('Voorschot_schoonmaak')
+            voorschot=self.get_float('Voorschot_schoonmaak'),
+            totaal_kosten_incl=totaal_incl,
+            btw_percentage=btw_pct,
+            btw_bedrag=btw_bedrag
         )
     
     def read_damage_regels(self) -> List[DamageRegel]:

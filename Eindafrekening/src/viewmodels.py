@@ -11,6 +11,8 @@ Output matches onepager.json and detail.json schemas.
 
 from typing import Dict, Any, List
 from datetime import date, datetime
+from itertools import groupby
+from operator import attrgetter
 from entities import (
     Client, RentalProperty, Period, Deposit, GWEMeterReading, GWERegel,
     GWETotalen, Cleaning, DamageRegel, DamageTotalen, Settlement,
@@ -86,11 +88,11 @@ def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Di
                 "restschade": settlement.borg.restschade
             },
             "gwe": {
+                "show_gwe": gwe_totalen.beheer_type != "Eigen Beheer",
                 "voorschot": gwe_voorschot,
                 "totaal_incl": gwe_totalen.totaal_incl,
                 "meer_minder": gwe_meer_minder,
                 "is_overfilled": gwe_is_overfilled,
-                "extra": gwe_extra,
                 "extra": gwe_extra,
                 "terug": gwe_terug,
                 "meterstanden": {
@@ -120,7 +122,10 @@ def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Di
                 "extra_uren": cleaning.extra_uren,
                 "extra_bedrag": cleaning.extra_bedrag,
                 "is_overfilled": clean_is_overfilled,
-                "terug": clean_terug
+                "terug": clean_terug,
+                "btw_percentage": cleaning.btw_percentage,
+                "btw_bedrag": cleaning.btw_bedrag,
+                "totaal_kosten_incl": cleaning.totaal_kosten_incl
             },
             "damage": {
                 "totaal_incl": damage_totalen.totaal_incl
@@ -185,6 +190,7 @@ def build_detail_viewmodel(data: Dict[str, Any]) -> Dict[str, Any]:
             }
         },
         "gwe": {
+            "show_gwe": gwe_totalen.beheer_type != "Eigen Beheer",
             "meterstanden": {
                 "stroom": {
                     "begin": gwe_meterstanden.stroom.begin,
@@ -202,20 +208,13 @@ def build_detail_viewmodel(data: Dict[str, Any]) -> Dict[str, Any]:
                     "verbruik": gwe_meterstanden.water.verbruik
                 } if gwe_meterstanden.water else None
             },
-            "kostenregels": [
-                {
-                    "omschrijving": regel.omschrijving,
-                    "verbruik_of_dagen": regel.verbruik_of_dagen,
-                    "tarief_excl": regel.tarief_excl,
-                    "kosten_excl": regel.kosten_excl
-                }
-                for regel in gwe_regels
-            ],
+
+            "groups": _group_gwe_regels(gwe_regels),
             "totalen": {
                 "totaal_excl": gwe_totalen.totaal_excl,
                 "btw": gwe_totalen.btw,
                 "totaal_incl": gwe_totalen.totaal_incl
-            }
+            },
         },
         "cleaning": {
             "pakket_type": cleaning.pakket_type,
@@ -225,7 +224,8 @@ def build_detail_viewmodel(data: Dict[str, Any]) -> Dict[str, Any]:
             "extra_uren": cleaning.extra_uren,
             "uurtarief": cleaning.uurtarief,
             "extra_bedrag": cleaning.extra_bedrag,
-            "voorschot": cleaning.voorschot
+            "voorschot": cleaning.voorschot,
+            "btw_percentage": cleaning.btw_percentage
         },
         "damage": {
             "regels": [
@@ -598,6 +598,61 @@ def build_viewmodels_from_data(data: Dict[str, Any]) -> tuple[Dict[str, Any], Di
     return onepager_vm, detail_vm
 
 
+def _group_gwe_regels(regels: List[GWERegel]) -> List[Dict[str, Any]]:
+    """
+    Group GWE rules by type and calculate subtotals.
+    Returns a list of groups, each containing title, rows, and subtotal.
+    """
+    # Sort by type first (required for groupby)
+    # Use a custom sort order: Water, Elektra, Gas, Overig
+    sort_order = {"Water": 1, "Elektra": 2, "Gas": 3, "Overig": 4}
+    
+    def get_sort_key(r):
+        type_val = getattr(r, 'type', 'Overig')
+        return (sort_order.get(type_val, 99), type_val)
+
+    sorted_regels = sorted(regels, key=get_sort_key)
+    
+    groups = []
+    for type_name, group_iter in groupby(sorted_regels, key=lambda r: getattr(r, 'type', 'Overig')):
+        group_rows = []
+        subtotal_excl = 0.0
+        subtotal_btw = 0.0
+        subtotal_incl = 0.0
+        
+        for regel in group_iter:
+            btw_bedrag = regel.kosten_excl * regel.btw_percentage
+            kosten_incl = regel.kosten_excl + btw_bedrag
+            
+            subtotal_excl += regel.kosten_excl
+            subtotal_btw += btw_bedrag
+            subtotal_incl += kosten_incl
+            
+            group_rows.append({
+                "omschrijving": regel.omschrijving,
+                "verbruik_of_dagen": regel.verbruik_of_dagen,
+                "tarief_excl": regel.tarief_excl,
+                "kosten_excl": regel.kosten_excl,
+                "type": type_name,
+                "eenheid": getattr(regel, 'eenheid', ''),
+                "btw_percentage": regel.btw_percentage,
+                "btw_bedrag": btw_bedrag,
+                "kosten_incl": kosten_incl
+            })
+            
+        groups.append({
+            "title": type_name.upper(),
+            "rows": group_rows,
+            "subtotal": {
+                "excl": subtotal_excl,
+                "btw": subtotal_btw,
+                "incl": subtotal_incl
+            }
+        })
+        
+    return groups
+
+
 # ==================== JSON SERIALIZATION ====================
 
 def save_viewmodels_to_json(onepager_vm: Dict[str, Any], detail_vm: Dict[str, Any],
@@ -701,10 +756,10 @@ if __name__ == "__main__":
     print(f"   GWE meer/minder: €{onepager['financial']['gwe']['meer_minder']:.2f}")
     print(f"   Settlement: €{onepager['financial']['totals']['totaal_eindafrekening']:.2f}")
     
-    print("\n✅ Detail viewmodel:")
-    print(f"   GWE regels: {len(detail['gwe']['kostenregels'])}")
+    print(f"\n✅ Detail viewmodel:")
+    print(f"   GWE groups: {len(detail['gwe']['groups'])}")
     print(f"   Damage regels: {len(detail['damage']['regels'])}")
-    print(f"   Stroom verbruik: {detail['gwe']['meterstanden']['stroom']['verbruik']} kWh")
+
     
     print("\n✅ Bar chart data (OnePager):")
     print(f"   Borg bars: {onepager['financial']['borg']['bars']}")
