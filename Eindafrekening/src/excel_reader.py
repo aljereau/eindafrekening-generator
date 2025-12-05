@@ -334,9 +334,11 @@ class ExcelReader:
             pakket = '5_uur'
         
         # Calculate VAT
+        # Read totals from Excel as it is the source of truth
         totaal_incl = self.get_float('Schoonmaak_totaal_kosten', default=0.0)
         btw_pct = self.get_float('BTW_percentage_schoonmaak', default=0.21)
-        
+
+        # Calculate VAT amount from total incl
         # Total Incl = Total Excl * (1 + VAT%)
         # Total Excl = Total Incl / (1 + VAT%)
         # VAT Amount = Total Incl - Total Excl

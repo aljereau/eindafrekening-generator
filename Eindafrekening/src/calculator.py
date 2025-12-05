@@ -260,9 +260,10 @@ class Calculator:
         gwe_meer_minder = gwe_voorschot - gwe_totalen.totaal_incl
         totaal_eindafrekening += gwe_meer_minder
         
-        # Cleaning extra cost (negative) - only if package was purchased
+        # Cleaning settlement (voorschot - actual costs incl VAT)
         if cleaning.pakket_type != 'geen':
-            totaal_eindafrekening -= cleaning.extra_bedrag
+            cleaning_meer_minder = cleaning.voorschot - cleaning.totaal_kosten_incl
+            totaal_eindafrekening += cleaning_meer_minder
         
         # Extra voorschot refund (positive) - if exists
         # NOTE: Like borg, restschade is NOT charged in the settlement
@@ -594,6 +595,10 @@ def recalculate_all(data: Dict[str, Any]) -> Dict[str, Any]:
             cleaning.uurtarief,
             cleaning.voorschot
         )
+        # Preserve VAT values from Excel (source of truth)
+        data['cleaning'].totaal_kosten_incl = cleaning.totaal_kosten_incl
+        data['cleaning'].btw_percentage = cleaning.btw_percentage
+        data['cleaning'].btw_bedrag = cleaning.btw_bedrag
     
     # Recalculate deposit - preserve gebruikt value from Excel
     if 'deposit' in data and 'damage_totalen' in data:
