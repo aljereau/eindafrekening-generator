@@ -201,6 +201,37 @@ class Calculator:
         return aantal * tarief_excl
     
     @staticmethod
+    def calculate_cleaning_costs(cleaning: Cleaning) -> Cleaning:
+        """
+        Recalculate cleaning costs if Excel values are missing (0).
+        This ensures robustness against Excel formula failures.
+        """
+        # If total cost is 0 but we have hours and rate, calculate it
+        if cleaning.totaal_kosten_incl == 0 and cleaning.totaal_uren > 0 and cleaning.uurtarief > 0:
+            totaal_excl = cleaning.totaal_uren * cleaning.uurtarief
+            # Add VAT
+            totaal_incl = totaal_excl * (1 + cleaning.btw_percentage)
+            btw_bedrag = totaal_incl - totaal_excl
+            
+            print(f"ℹ️  Recalculated cleaning costs: {cleaning.totaal_uren}h * €{cleaning.uurtarief} = €{totaal_incl:.2f} (incl VAT)")
+            
+            # Return updated Cleaning object
+            return Cleaning(
+                pakket_type=cleaning.pakket_type,
+                pakket_naam=cleaning.pakket_naam,
+                inbegrepen_uren=cleaning.inbegrepen_uren,
+                totaal_uren=cleaning.totaal_uren,
+                extra_uren=cleaning.extra_uren,
+                uurtarief=cleaning.uurtarief,
+                extra_bedrag=cleaning.extra_bedrag,
+                voorschot=cleaning.voorschot,
+                totaal_kosten_incl=totaal_incl,
+                btw_percentage=cleaning.btw_percentage,
+                btw_bedrag=btw_bedrag
+            )
+        return cleaning
+    
+    @staticmethod
     def calculate_damage_totalen(regels: List[DamageRegel]) -> DamageTotalen:
         """
         Calculate damage totals from line items

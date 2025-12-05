@@ -34,7 +34,7 @@ sys.path.append(shared_dir)
 
 # Import modules
 from excel_reader import ExcelReader, read_excel
-from calculator import recalculate_all
+from calculator import recalculate_all, Calculator
 from viewmodels import build_viewmodels_from_data, save_viewmodels_to_json
 from template_renderer import TemplateRenderer
 from pdf_generator import render_and_generate_pdfs
@@ -231,16 +231,17 @@ def generate_eindafrekening_from_data(data: dict, output_dir: str, bundle_dir: s
     # Recalculate everything to ensure consistency
     data = recalculate_all(data)
     
+    # Recalculate cleaning costs if missing (robustness fix)
+    data['cleaning'] = Calculator.calculate_cleaning_costs(data['cleaning'])
+    
     # Calculate net settlement amount for display
-    from calculator import Calculator
-    calc = Calculator()
-    settlement = calc.calculate_settlement(
+    settlement = Calculator.calculate_settlement(
         borg=data['deposit'],
         gwe_voorschot=data.get('gwe_voorschot', 0.0),
         gwe_totalen=data['gwe_totalen'],
         cleaning=data['cleaning'],
         damage_totalen=data['damage_totalen'],
-        extra_voorschot=data.get('extra_voorschot')
+        extra_voorschot=data['extra_voorschot']
     )
     
     print(f"   ✓ Borg terug: €{data['deposit'].terug:.2f}")

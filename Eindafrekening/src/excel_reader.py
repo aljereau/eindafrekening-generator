@@ -338,6 +338,27 @@ class ExcelReader:
         totaal_incl = self.get_float('Schoonmaak_totaal_kosten', default=0.0)
         btw_pct = self.get_float('BTW_percentage_schoonmaak', default=0.21)
 
+        voorschot = self.get_float('Schoonmaak_voorschot', default=0.0)
+        
+            # If voorschot is 0 but we have a package, calculate default value
+        # This handles cases where user selects a package but leaves voorschot empty
+        if voorschot == 0 and pakket not in ['geen', 'achteraf', 'op maat']:
+            # Try to get standard hours for package
+            inbegrepen = self.get_float('Schoonmaak_uren_inbegrepen', 0.0)
+            tarief = self.get_float('Uurtarief_schoonmaak', 50.0)
+            
+            # Fallback for standard packages if Excel formula failed (inbegrepen=0)
+            if inbegrepen == 0:
+                if "basis" in pakket_naam.lower():
+                    inbegrepen = 5.0 # Standard Basis hours
+                elif "intensief" in pakket_naam.lower():
+                    inbegrepen = 7.0 # Standard Intensief hours
+            
+            if inbegrepen > 0:
+                # Calculate implied voorschot: hours * rate * (1+VAT)
+                voorschot = inbegrepen * tarief * (1 + btw_pct)
+                print(f"ℹ️  Calculated implied voorschot for {pakket_naam}: €{voorschot:.2f}")
+
         # Calculate VAT amount from total incl
         # Total Incl = Total Excl * (1 + VAT%)
         # Total Excl = Total Incl / (1 + VAT%)
@@ -353,7 +374,7 @@ class ExcelReader:
             extra_uren=self.get_float('Extra_uren'),
             uurtarief=self.get_float('Uurtarief_schoonmaak'),
             extra_bedrag=self.get_float('Extra_schoonmaak_bedrag'),
-            voorschot=self.get_float('Voorschot_schoonmaak'),
+            voorschot=voorschot, # Use the calculated voorschot
             totaal_kosten_incl=totaal_incl,
             btw_percentage=btw_pct,
             btw_bedrag=btw_bedrag

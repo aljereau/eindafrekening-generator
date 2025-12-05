@@ -459,6 +459,7 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
         financial['cleaning']['overflow_svg'] = ""
     else:
         # Pre-paid: Show package amount + overflow if any
+        is_overfilled_cleaning = cleaning['extra'] > 0
         cleaning_svg = generate_bar_svg(
             voorschot=cleaning['voorschot'],
             gebruikt_or_totaal=cleaning['voorschot'], # Always show full package used
@@ -466,7 +467,9 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
             label_gebruikt=f"€{cleaning['voorschot']:.0f}",
             label_extra_or_terug="",
             pot_width=280,
-            height=30
+            height=30,
+            show_limit_line=is_overfilled_cleaning,
+            rounded_right=not is_overfilled_cleaning
         )
         # Generate overflow indicator if extra costs exist
         if cleaning['extra'] > 0:
