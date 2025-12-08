@@ -19,7 +19,7 @@ from pathlib import Path
 class Database:
     """SQLite database manager for RyanRent Core"""
 
-    DEFAULT_DB_PATH = "database/ryanrent_core.db"
+    DEFAULT_DB_PATH = "database/ryanrent_mock.db"
     
     def __init__(self, db_path: str = None):
         """
@@ -41,8 +41,8 @@ class Database:
             current_dir = os.path.dirname(os.path.abspath(__file__))
             project_root = os.path.dirname(current_dir)
         
-        # Default path is ALWAYS [ProjectRoot]/database/ryanrent_core.db
-        default_db_path = os.path.join(project_root, "database", "ryanrent_core.db")
+        # Default path is ALWAYS [ProjectRoot]/database/ryanrent_mock.db
+        default_db_path = os.path.join(project_root, "database", "ryanrent_mock.db")
         
         self.db_path = db_path or default_db_path
         

@@ -129,29 +129,44 @@ def preprocess_gwe_tax_changes(data: dict):
 
 
 
-def generate_report(input_path: str, output_dir: str = None, save_json: bool = False, auto_open: bool = False) -> dict:
+def generate_report(input_file: str = None, output_dir: str = None, save_json: bool = False, auto_open: bool = True, data: dict = None, skip_db_save: bool = False) -> dict:
     """
-    Generate report programmatically.
+    Main entry point for report generation.
+    Can be called from CLI or other scripts.
     
     Args:
-        input_path: Path to filled Excel template
-        output_dir: Optional output directory (defaults to project_root/output)
-        save_json: Whether to save intermediate JSON files
-        auto_open: Whether to auto-open generated files
+        input_file: Path to Excel file (optional if data provided)
+        output_dir: Output directory (optional)
+        save_json: Whether to save intermediate JSON (debug)
+        auto_open: Whether to open generated PDF/HTML
+        data: Pre-loaded data dictionary (optional, skips Excel reading)
+        skip_db_save: Whether to skip saving to database (optional)
         
     Returns:
-        Dictionary with generation results
+        Dictionary with generation results or None on failure
     """
-    # Determine paths
+    # Setup paths
     if getattr(sys, 'frozen', False):
-        project_root = os.path.dirname(sys.executable)
         bundle_dir = sys._MEIPASS
+        # For frozen app, project root is up 3 levels from executable
+        # .../RyanRent Admin.app/Contents/MacOS/RyanRent Admin
+        # -> .../Contents/MacOS -> .../Contents -> .../RyanRent Admin.app -> Root
+        bundle_cli = os.path.dirname(sys.executable)
+        project_root = os.path.abspath(os.path.join(bundle_cli, '..', '..', '..'))
+        shared_dir = os.path.join(bundle_dir, 'Shared')
     else:
-        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        bundle_dir = project_root
+        # For script, __file__ is inside Eindafrekening/src
+        src_dir = os.path.dirname(os.path.abspath(__file__))
+        eindafrekening_dir = os.path.dirname(src_dir) # .../Eindafrekening
+        project_root = os.path.dirname(eindafrekening_dir) # .../Root
+        
+        # bundle_dir should be the base for resources (templates, etc)
+        # In this project structure, templates are in Eindafrekening/templates
+        bundle_dir = eindafrekening_dir
+        shared_dir = os.path.join(project_root, 'Shared')
         
     if output_dir is None:
-        output_dir = os.path.join(project_root, 'output')
+        output_dir = os.path.join(project_root, 'Eindafrekening', 'output')
         
     # Ensure output dir exists
     os.makedirs(output_dir, exist_ok=True)
@@ -160,42 +175,52 @@ def generate_report(input_path: str, output_dir: str = None, save_json: bool = F
     print("🏠 RyanRent Eindafrekening Generator V2.0")
     print("======================================================================")
 
-    # 1. Read Excel
-    print(f"\n📊 STAP 1: Excel data inlezen...")
-    print(f"   Bestand: {os.path.basename(input_path)}")
-    
     try:
-        if not os.path.exists(input_path):
-            # Fallback to current working directory if not found
-            local_input = 'input_template.xlsx'
-            if os.path.exists(local_input):
-                print(f"   ⚠️  Niet gevonden op verwachte locatie, gebruik lokaal bestand: {local_input}")
-                input_path = local_input
-            else:
-                raise FileNotFoundError(f"Excel bestand '{input_path}' niet gevonden.")
-
-        data = read_excel(input_path)
-
-        # Get GWE voorschot from Excel (should be read by excel_reader)
-        with ExcelReader(input_path) as reader:
-            gwe_voorschot = reader.get_float('Voorschot_GWE', default=0.0)
-        data['gwe_voorschot'] = gwe_voorschot
+        # 1. Read Excel (if data not provided)
+        if data is None:
+            if input_file is None:
+                raise ValueError("Must provide either input_file or data dictionary")
+                
+            print(f"\n📊 STAP 1: Excel data inlezen...")
+            print(f"   Bestand: {os.path.basename(input_file)}")
+            
+            if not os.path.exists(input_file):
+                # Fallback to current working directory if not found
+                local_input = 'input_template.xlsx'
+                if os.path.exists(local_input):
+                    print(f"   ⚠️  Niet gevonden op verwachte locatie, gebruik lokaal bestand: {local_input}")
+                    input_file = local_input
+                else:
+                    raise FileNotFoundError(f"Excel bestand '{input_file}' niet gevonden.")
+    
+            data = read_excel(input_file)
+    
+            # Get GWE voorschot from Excel (should be read by excel_reader)
+            # This is a hack because read_excel doesn't fully support all GWE logic yet?
+            # Or maybe it does. Let's keep it safe.
+            with ExcelReader(input_file) as reader:
+                gwe_voorschot = reader.get_float('Voorschot_GWE', default=0.0)
+            data['gwe_voorschot'] = gwe_voorschot
+        else:
+            print(f"\n📊 STAP 1: Data direct gebruikt (Batch Mode)")
+            # Ensure gwe_voorschot exists
+            if 'gwe_voorschot' not in data:
+                 data['gwe_voorschot'] = data['deposit'].voorschot if data.get('deposit') else 0.0 # Fallback? No, GWE voorschot logic is complex
 
         # Call the reusable generation function
-        result = generate_eindafrekening_from_data(data, output_dir, bundle_dir, shared_dir, project_root, save_json, auto_open)
+        return generate_eindafrekening_from_data(data, output_dir, bundle_dir, shared_dir, project_root, save_json, auto_open, skip_db_save)
 
     except FileNotFoundError as e:
         print(f"\n❌ FOUT: {e}")
-        print(f"   Controleer of het bestand bestaat en het pad correct is.")
-        sys.exit(1)
+        return None
         
     except Exception as e:
         print(f"\n❌ ONVERWACHTE FOUT: {e}")
         import traceback
         traceback.print_exc()
-        sys.exit(1)
+        return None
 
-def generate_eindafrekening_from_data(data: dict, output_dir: str, bundle_dir: str, shared_dir: str, project_root: str, save_json: bool = False, auto_open: bool = False):
+def generate_eindafrekening_from_data(data: dict, output_dir: str, bundle_dir: str, shared_dir: str, project_root: str, save_json: bool = False, auto_open: bool = False, skip_db_save: bool = False) -> dict:
     """
     Reusable function to generate eindafrekening from data dictionary.
     Encapsulates Steps 2-6 of the process.

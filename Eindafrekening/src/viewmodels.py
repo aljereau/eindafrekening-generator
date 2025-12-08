@@ -239,7 +239,10 @@ def build_detail_viewmodel(data: Dict[str, Any]) -> Dict[str, Any]:
                     "beschrijving": regel.beschrijving,
                     "aantal": regel.aantal,
                     "tarief_excl": regel.tarief_excl,
-                    "bedrag_excl": regel.bedrag_excl
+                    "bedrag_excl": regel.bedrag_excl,
+                    "btw_percentage": regel.btw_percentage,
+                    "btw_bedrag": regel.bedrag_excl * regel.btw_percentage,
+                    "bedrag_incl": regel.bedrag_excl * (1 + regel.btw_percentage)
                 }
                 for regel in damage_regels
             ],
