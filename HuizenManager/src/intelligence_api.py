@@ -744,7 +744,8 @@ class IntelligenceAPI:
         
         query = """
         SELECT 
-            b.id as booking_id, b.checkin_datum, b.checkout_datum, b.betaalde_borg,
+            b.id as booking_id, b.checkin_datum, b.checkout_datum, b.betaalde_borg as deposit,
+            b.totale_huur_factuur as rent,
             b.voorschot_gwe, b.voorschot_schoonmaak, b.schoonmaak_pakket,
             k.naam as client_name, k.contactpersoon, k.email, k.telefoonnummer,
             h.adres as property_address, h.object_id, h.postcode, h.plaats

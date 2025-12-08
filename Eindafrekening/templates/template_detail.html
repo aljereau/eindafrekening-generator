@@ -294,6 +294,7 @@
         </div>
 
         <!-- GWE SECTION -->
+        {% if gwe.show_gwe %}
         <div class="section">
             <h2 class="section-title">
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -358,40 +359,74 @@
             </div>
 
             <h3 style="font-size: 14px; margin-top: var(--spacing-lg);">Kostenspecificatie</h3>
+            <!-- GWE GROUPS LOOP -->
+            {% for group in gwe.groups %}
+            <h4
+                style="margin-top: var(--spacing-lg); margin-bottom: var(--spacing-sm); color: var(--color-brand-green); border-bottom: 1px solid var(--color-brand-green); padding-bottom: 4px;">
+                {{ group.title }}
+            </h4>
+            <table style="margin-top: 0;">
+                <thead>
+                    <tr>
+                        <th>Omschrijving</th>
+                        <th class="text-right">Eenheid</th>
+                        <th class="text-right">Verbruik</th>
+                        <th class="text-right">Tarief</th>
+                        <th class="text-right">Excl.</th>
+                        <th class="text-right">BTW €</th>
+                        <th class="text-right">Incl.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for regel in group.rows %}
+                    <tr>
+                        <td>{{ regel.omschrijving }}</td>
+                        <td class="text-right">{{ regel.eenheid }}</td>
+                        <td class="text-right">{{ "%.2f"|format(regel.verbruik_of_dagen) }}</td>
+                        <td class="text-right">€{{ "%.4f"|format(regel.tarief_excl) }}</td>
+                        <td class="text-right">€{{ "%.2f"|format(regel.kosten_excl) }}</td>
+                        <td class="text-right">€{{ "%.2f"|format(regel.btw_bedrag) }}</td>
+                        <td class="text-right">€{{ "%.2f"|format(regel.kosten_incl) }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr class="totals-row" style="background: #f9f9f9; font-weight: 600;">
+                        <td colspan="4" class="text-right">Subtotal {{ group.title|capitalize }}</td>
+                        <td class="text-right">€{{ "%.2f"|format(group.subtotal.excl) }}</td>
+                        <td class="text-right">€{{ "%.2f"|format(group.subtotal.btw) }}</td>
+                        <td class="text-right">€{{ "%.2f"|format(group.subtotal.incl) }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            {% endfor %}
+
+            <!-- TOTAALOVERZICHT -->
+            <h3
+                style="margin-top: var(--spacing-xl); border-bottom: 2px solid var(--color-brand-dark); padding-bottom: 8px;">
+                TOTAALOVERZICHT
+            </h3>
             <table>
                 <thead>
                     <tr>
                         <th>Omschrijving</th>
-                        <th class="text-right">Verbruik/Dagen</th>
-                        <th class="text-right">Tarief (excl. BTW)</th>
-                        <th class="text-right">Kosten (excl. BTW)</th>
+                        <th class="text-right">Excl.</th>
+                        <th class="text-right">BTW €</th>
+                        <th class="text-right">Incl.</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for regel in gwe.kostenregels %}
-                    <tr>
-                        <td>{{ regel.omschrijving }}</td>
-                        <td class="text-right">{{ "%.2f"|format(regel.verbruik_of_dagen) }}</td>
-                        <td class="text-right">€{{ "%.4f"|format(regel.tarief_excl) }}</td>
-                        <td class="text-right">€{{ "%.2f"|format(regel.kosten_excl) }}</td>
-                    </tr>
-                    {% endfor %}
-                    <tr class="totals-row">
-                        <td colspan="3" class="text-bold">Totaal excl. BTW</td>
-                        <td class="text-right text-bold">€{{ "%.2f"|format(gwe.totalen.totaal_excl) }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">BTW (Totaal)</td>
-                        <td class="text-right">€{{ "%.2f"|format(gwe.totalen.btw) }}</td>
-                    </tr>
                     <tr class="totals-row" style="background: var(--color-brand-green); color: white;">
-                        <td colspan="3" class="text-bold" style="border: none;">Totaal incl. BTW</td>
+                        <td class="text-bold" style="border: none;">Totaal GWE</td>
+                        <td class="text-right text-bold" style="border: none;">€{{
+                            "%.2f"|format(gwe.totalen.totaal_excl) }}</td>
+                        <td class="text-right text-bold" style="border: none;">€{{ "%.2f"|format(gwe.totalen.btw) }}
+                        </td>
                         <td class="text-right text-bold" style="border: none;">€{{
                             "%.2f"|format(gwe.totalen.totaal_incl) }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        {% endif %}
 
 
         <!-- CLEANING SECTION (only if package was purchased) -->
@@ -451,6 +486,16 @@
                         <td class="text-right text-bold">€{{ "%.2f"|format(cleaning.voorschot +
                             cleaning.extra_bedrag) }}</td>
                     </tr>
+                    {% if cleaning.totaal_kosten_incl > 0 %}
+                    <tr>
+                        <td colspan="3">BTW ({{ "%.0f"|format(cleaning.btw_percentage * 100) }}%)</td>
+                        <td class="text-right">€{{ "%.2f"|format(cleaning.btw_bedrag) }}</td>
+                    </tr>
+                    <tr class="totals-row">
+                        <td colspan="3" class="text-bold">Totaal incl. BTW</td>
+                        <td class="text-right text-bold">€{{ "%.2f"|format(cleaning.totaal_kosten_incl) }}</td>
+                    </tr>
+                    {% endif %}
                 </tbody>
             </table>
         </div>
@@ -529,8 +574,11 @@
                     <tr>
                         <th>Beschrijving</th>
                         <th class="text-right">Aantal</th>
-                        <th class="text-right">Tarief (excl. BTW)</th>
-                        <th class="text-right">Bedrag (excl. BTW)</th>
+                        <th class="text-right">Tarief (excl)</th>
+                        <th class="text-right">Bedrag (excl)</th>
+                        <th class="text-right">BTW %</th>
+                        <th class="text-right">BTW €</th>
+                        <th class="text-right">Totaal</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -540,19 +588,29 @@
                         <td class="text-right">{{ "%.0f"|format(regel.aantal) }}</td>
                         <td class="text-right">€{{ "%.2f"|format(regel.tarief_excl) }}</td>
                         <td class="text-right">€{{ "%.2f"|format(regel.bedrag_excl) }}</td>
+                        <td class="text-right">{{ "%.0f"|format(regel.btw_percentage * 100) }}%</td>
+                        <td class="text-right">€{{ "%.2f"|format(regel.btw_bedrag) }}</td>
+                        <td class="text-right">€{{ "%.2f"|format(regel.bedrag_incl) }}</td>
                     </tr>
                     {% endfor %}
-                    <tr class="totals-row">
-                        <td colspan="3" class="text-bold">Totaal excl. BTW</td>
-                        <td class="text-right text-bold">€{{ "%.2f"|format(damage.totalen.totaal_excl) }}</td>
+                    <tr class="totals-row" style="background: #f9f9f9; font-weight: 600;">
+                        <td colspan="4" class="text-right">Totaal excl. BTW</td>
+                        <td class="text-right"></td>
+                        <td class="text-right"></td>
+                        <td class="text-right">€{{ "%.2f"|format(damage.totalen.totaal_excl) }}</td>
                     </tr>
                     <tr>
-                        <td colspan="3">BTW (Totaal)</td>
+                        <td colspan="4" class="text-right">BTW (Totaal)</td>
+                        <td class="text-right"></td>
                         <td class="text-right">€{{ "%.2f"|format(damage.totalen.btw) }}</td>
+                        <td class="text-right"></td>
                     </tr>
-                    <tr class="totals-row">
-                        <td colspan="3" class="text-bold">Totaal incl. BTW</td>
-                        <td class="text-right text-bold">€{{ "%.2f"|format(damage.totalen.totaal_incl) }}</td>
+                    <tr class="totals-row" style="background: var(--color-brand-green); color: white;">
+                        <td colspan="4" class="text-bold" style="border: none;">Totaal incl. BTW</td>
+                        <td class="text-right" style="border: none;"></td>
+                        <td class="text-right" style="border: none;"></td>
+                        <td class="text-right text-bold" style="border: none;">€{{
+                            "%.2f"|format(damage.totalen.totaal_incl) }}</td>
                     </tr>
                 </tbody>
             </table>

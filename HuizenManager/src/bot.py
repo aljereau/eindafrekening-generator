@@ -32,6 +32,7 @@ from modules.audit import AuditController
 from modules.query import QueryAnalyst
 from modules.excel_generator import ExcelGenerator
 from modules.query_library import QueryLibrary
+from HuizenManager.src.mcp_agent import MCPSQLAgent
 
 try:
     from generate import generate_report
@@ -184,6 +185,9 @@ class RyanRentBot:
         self.excel_generator = ExcelGenerator(db_path)
         self.query_library = QueryLibrary(db_path)
         
+        # Initialize MCP Agent (will be set up after client is ready)
+        self.mcp_agent = None
+        
         # Set default models if not provided
         if self.provider == "openai":
             self.client = OpenAI(api_key=api_key)
@@ -196,12 +200,20 @@ class RyanRentBot:
                 base_url="http://localhost:11434/v1",
                 api_key="ollama" # required but ignored
             )
+            # Supported: qwen3-coder:30b, llama3:70b-instruct-q4_K_M, sqlcoder:7b
             self.model = model_name if model_name else "qwen3-coder:30b"
         else:
             raise ValueError(f"Unknown provider: {provider}")
         
         # Initialize Memory
         self.memory = ConversationMemory(max_messages=10)
+        
+        # Initialize MCP Agent
+        # Pass a bound method that handles the LLM call regardless of provider
+        self.mcp_agent = MCPSQLAgent(
+            db_path=db_path or "database/ryanrent_core.db", 
+            llm_callback=self.generate_completion
+        )
         
         # Define Tools (OpenAI Format - shared across all providers)
         self.tools = self._get_tools()
@@ -269,6 +281,20 @@ class RyanRentBot:
                         "properties": {
                             "limit": {"type": "integer", "default": 50}
                         }
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "ask_database",
+                    "description": "Ask a natural language question to the database. The MCP Agent will translate to SQL and execute.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "question": {"type": "string", "description": "The question to ask, e.g. 'Which houses are empty next month?'"}
+                        },
+                        "required": ["question"]
                     }
                 }
             },
@@ -670,6 +696,25 @@ class RyanRentBot:
                 "function": {
                     "name": "generate_smart_excel",
                     "description": "Generate an Excel sheet based on a SQL query for bulk updates.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "sql_query": {"type": "string", "description": "SQL query to select data to update"},
+                            "update_type": {
+                                "type": "string",
+                                "enum": ["update_house_details", "update_contract"],
+                                "description": "Type of update to perform"
+                            }
+                        },
+                        "required": ["sql_query", "update_type"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "preview_smart_excel",
+                    "description": "Preview the columns and data of a Smart Excel sheet before generating it. Use this FIRST when user asks to update data via Excel.",
                     "parameters": {
                         "type": "object",
                         "properties": {
@@ -1143,6 +1188,38 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
         except Exception as e:
             raise Exception(f"OpenAI API Error: {e}")
             
+    def generate_completion(self, messages: List[Dict]) -> str:
+        """
+        Generic method to generate a completion from the active provider.
+        Used by internal agents like MCPSQLAgent.
+        """
+        try:
+            if self.provider == "anthropic":
+                # Claude expects system prompt separate from messages
+                # Extract system prompt if present in messages
+                system_prompt = None
+                filtered_messages = []
+                for msg in messages:
+                    if msg['role'] == 'system':
+                        system_prompt = msg['content']
+                    else:
+                        filtered_messages.append(msg)
+                
+                response = self._call_claude(filtered_messages, system_prompt=system_prompt)
+                content_block = response['content']
+                text_block = next((block for block in content_block if block['type'] == "text"), None)
+                return text_block['text'] if text_block else ""
+                
+            else:
+                # OpenAI / Ollama
+                # They handle system prompt in messages list
+                response = self._call_openai(messages)
+                return response.choices[0].message.content
+                
+        except Exception as e:
+            print(f"❌ generate_completion failed: {e}")
+            raise e
+
     def chat(self, user_message: str) -> str:
         """
         Process a user message, call tools if needed, and return the response.
@@ -1334,6 +1411,17 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
         elif name == "get_active_houses":
             limit = args.get("limit", 50)
             return self.api.get_active_houses(limit)
+        elif name == "ask_database":
+            if not self.mcp_agent:
+                return {"error": "MCP Agent not initialized (requires OpenAI client)"}
+            
+            result = self.mcp_agent.process_query(args.get('question'))
+            
+            if result.get("success") and result.get("formatted_table"):
+                return f"✅ Query Executed:\n```sql\n{result['sql']}\n```\n\nResults:\n```\n{result['formatted_table']}\n```"
+            else:
+                return result
+            
         elif name == "run_sql_query":
             query = args.get('query') or args.get('custom_sql')
             if not query:
@@ -1457,7 +1545,53 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
             t_type = args.get("template_type")
             filters = args.get("filters", {})
             
-            if t_type == "checkout_update":
+            if t_type == "settlement_inputs":
+                # Filter by date range
+                start_date_str = filters.get("start_date")
+                end_date_str = filters.get("end_date")
+                
+                if not start_date_str or not end_date_str:
+                    return {"error": "Start and End date are required for settlement inputs."}
+                    
+                try:
+                    start_date = datetime.strptime(start_date_str, "%Y-%m-%d").date()
+                    end_date = datetime.strptime(end_date_str, "%Y-%m-%d").date()
+                except ValueError:
+                    return {"error": "Invalid date format. Use YYYY-MM-DD."}
+                
+                # Fetch transitions
+                transitions = self.planning_api.get_transitions_by_date_range(start_date, end_date)
+                
+                if not transitions:
+                    return {"success": False, "message": f"No checkouts found between {start_date} and {end_date}."}
+                
+                # Map transitions to booking dicts expected by generator
+                bookings = []
+                for t in transitions:
+                    # We need to fetch full booking details including financials
+                    # Since get_transitions_by_date_range returns limited info, we might need to enrich it
+                    # OR we update get_transitions_by_date_range to return more info.
+                    # For now, let's use what we have and maybe fetch extra if needed.
+                    # The generator needs: client_name, adres, postcode, plaats, checkin_datum, checkout_datum, deposit, rent
+                    
+                    # We can fetch the full booking object via IntelligenceAPI or direct DB
+                    # Let's use a helper in IntelligenceAPI if possible, or just use the transition data + defaults
+                    # transition has: property_address, checkout_date, current_client, current_booking_id
+                    
+                    # Better: Fetch full booking details for each ID
+                    booking_id = t['current_booking_id']
+                    full_booking = self.api.get_booking_for_settlement(booking_id) # Assuming this exists or similar
+                    if full_booking:
+                        bookings.append(full_booking)
+                
+                if not bookings:
+                     return {"success": False, "message": "Found checkouts but failed to fetch details."}
+
+                # Generate Batch
+                batch_path = self.file_exchange.generate_settlement_inputs(bookings)
+                return {"success": True, "message": f"Generated {len(bookings)} templates in: {batch_path}. Please fill them and upload to Input."}
+
+            elif t_type == "checkout_update":
                 # Default to upcoming checkouts if no specific filter
                 # In a real scenario, we'd parse filters to build a dynamic query
                 # For now, let's just get upcoming checkouts
@@ -1500,6 +1634,25 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
                 update_type=args['update_type'],
                 output_dir=output_dir
             )
+
+        elif name == "preview_smart_excel":
+            result = self.excel_generator.preview_update_sheet(
+                sql_query=args['sql_query'],
+                update_type=args['update_type']
+            )
+            
+            if result.get("success"):
+                # Format preview table
+                try:
+                    from tabulate import tabulate
+                    headers = result['headers']
+                    rows = [list(r.values()) for r in result['sample_data']]
+                    table = tabulate(rows, headers=headers, tablefmt="psql")
+                    return f"👀 **Preview of Excel Sheet**\n\nColumns: {', '.join(headers)}\n\nSample Data:\n```\n{table}\n```\n\nIs this correct? You can ask me to add/remove columns or proceed to generate."
+                except Exception as e:
+                    return f"Preview successful but formatting failed: {e}. Columns: {result['headers']}"
+            else:
+                return result
 
         elif name == "process_smart_excel":
             return self.excel_generator.process_update_sheet(args['file_path'])

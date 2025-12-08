@@ -128,6 +128,78 @@ class FileExchangeHandler:
     # Template Generators
     # ==========================================
 
+    def generate_settlement_inputs(self, bookings: List[Dict]) -> str:
+        """
+        Generates individual pre-filled input templates for a list of bookings.
+        
+        Args:
+            bookings: List of booking dictionaries (must contain id, client, object, dates, financials).
+            
+        Returns:
+            Path to the directory containing the generated files.
+        """
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M")
+        batch_dir = os.path.join(self.base_path, 'Output', f"Batch_Settlements_{timestamp}")
+        os.makedirs(batch_dir, exist_ok=True)
+        
+        # Path to master template
+        # Try Shared/Templates first, then Eindafrekening/src
+        master_template = os.path.join(self.templates_dir, "RyanRent_Input_Template.xlsx")
+        if not os.path.exists(master_template):
+             # Fallback to source
+             master_template = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'Eindafrekening', 'src', 'input_template.xlsx'))
+             
+        if not os.path.exists(master_template):
+            raise FileNotFoundError("Master input template not found.")
+
+        import openpyxl
+        
+        generated_count = 0
+        for booking in bookings:
+            try:
+                # Load template
+                wb = openpyxl.load_workbook(master_template)
+                
+                # Fill 'Algemeen' sheet
+                if 'Algemeen' in wb.sheetnames:
+                    ws = wb['Algemeen']
+                    
+                    # Helper to set value by named range
+                    def set_value(name, value):
+                        if name in wb.defined_names:
+                            dests = wb.defined_names[name].destinations
+                            for sheet, cell in dests:
+                                if sheet == 'Algemeen':
+                                    ws[cell.replace('$', '')] = value
+                                    
+                    # Fill Data
+                    set_value('Klantnaam', booking.get('client_name', ''))
+                    set_value('Object_adres', booking.get('adres') or booking.get('property_address', ''))
+                    # Postcode/Plaats are now VLOOKUPs, do not overwrite
+                    # set_value('Postcode', booking.get('postcode', ''))
+                    # set_value('Plaats', booking.get('plaats', ''))
+                    set_value('Incheck_datum', booking.get('checkin_datum', ''))
+                    set_value('Uitcheck_datum', booking.get('checkout_datum', ''))
+                    
+                    # Financials
+                    if 'deposit' in booking: set_value('Voorschot_borg', booking['deposit'])
+                    if 'rent' in booking: set_value('Kale_huur', booking['rent'])
+                    
+                    # GWE: Write monthly amount to GWE_Maandbedrag
+                    # The formula in Voorschot_GWE will calculate the total
+                    if 'voorschot_gwe' in booking: set_value('GWE_Maandbedrag', booking['voorschot_gwe'])
+                    
+                    # Save
+                    client_safe = "".join([c for c in booking.get('client_name', 'Client') if c.isalnum() or c in (' ', '_')]).strip()
+                    filename = f"Settlement_{client_safe}_{booking.get('id')}.xlsx"
+                    wb.save(os.path.join(batch_dir, filename))
+                    generated_count += 1
+                    
+            except Exception as e:
+                print(f"Failed to generate for booking {booking.get('id')}: {e}")
+                
+        return batch_dir
+
     def _create_checkout_update_template(self, data: List[Dict]) -> pd.DataFrame:
         """Columns: BookingID, Address, Client, CurrentCheckout, NewCheckout"""
         if not data:

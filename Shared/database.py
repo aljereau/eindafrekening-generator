@@ -128,37 +128,60 @@ class Database:
         )
 
     # ==========================================
-    # CORE ENTITIES: CLIENTS
+    # CORE ENTITIES: RELATIONS (Clients & Suppliers)
     # ==========================================
 
-    def add_client(self, name: str, email: str, **kwargs) -> int:
-        """Add a new client"""
+    def upsert_relation(self, code: int, naam: str, **kwargs) -> int:
+        """Insert or Update a relation (Client/Supplier)"""
         conn = self._get_connection()
         try:
-            # Check if exists
-            cursor = conn.execute("SELECT id FROM clients WHERE name = ?", (name,))
+            # Check if exists by ID (Code)
+            cursor = conn.execute("SELECT id FROM relaties WHERE id = ?", (code,))
             row = cursor.fetchone()
-            if row:
-                return row['id']
-
-            columns = ['name', 'email'] + list(kwargs.keys())
-            placeholders = ['?'] * len(columns)
-            values = [name, email] + list(kwargs.values())
             
-            sql = f"INSERT INTO clients ({', '.join(columns)}) VALUES ({', '.join(placeholders)})"
-            cursor = conn.execute(sql, values)
-            conn.commit()
-            return cursor.lastrowid
+            if row:
+                # Update
+                if not kwargs:
+                    return code
+                    
+                set_clause = ', '.join([f"{k} = ?" for k in kwargs.keys()])
+                # Also update name
+                set_clause += ", naam = ?"
+                values = list(kwargs.values()) + [naam, code]
+                
+                sql = f"UPDATE relaties SET {set_clause} WHERE id = ?"
+                conn.execute(sql, values)
+                conn.commit()
+                return code
+            else:
+                # Insert
+                columns = ['id', 'naam'] + list(kwargs.keys())
+                placeholders = ['?'] * len(columns)
+                values = [code, naam] + list(kwargs.values())
+                
+                sql = f"INSERT INTO relaties ({', '.join(columns)}) VALUES ({', '.join(placeholders)})"
+                conn.execute(sql, values)
+                conn.commit()
+                return code
         finally:
             conn.close()
 
-    def get_client(self, client_id: int) -> Optional[Dict[str, Any]]:
-        """Get client by ID"""
+    def get_relation(self, relation_id: int) -> Optional[Dict[str, Any]]:
+        """Get relation by ID"""
         conn = self._get_connection()
         try:
-            cursor = conn.execute("SELECT * FROM clients WHERE id = ?", (client_id,))
+            cursor = conn.execute("SELECT * FROM relaties WHERE id = ?", (relation_id,))
             row = cursor.fetchone()
             return dict(row) if row else None
+        finally:
+            conn.close()
+            
+    def get_all_relations(self) -> List[Dict[str, Any]]:
+        """Get all relations"""
+        conn = self._get_connection()
+        try:
+            cursor = conn.execute("SELECT * FROM relaties ORDER BY naam")
+            return [dict(row) for row in cursor.fetchall()]
         finally:
             conn.close()
 
@@ -270,7 +293,12 @@ class Database:
         borg_terug: float = 0.0,
         gwe_totaal_incl: float = 0.0,
         totaal_eindafrekening: float = 0.0,
-        file_path: str = ""
+        file_path: str = "",
+        schoonmaak_pakket: str = "",
+        schoonmaak_kosten: float = 0.0,
+        schade_totaal_kosten: float = 0.0,
+        extra_voorschot_bedrag: float = 0.0,
+        data_toon: str = ""
     ) -> int:
         """Save eindafrekening to database"""
         if version > 1 and not version_reason.strip():
@@ -279,17 +307,22 @@ class Database:
         json_data = json.dumps(data_json, ensure_ascii=False, indent=2)
         conn = self._get_connection()
         try:
+            values = (
+                client_name, str(checkin_date), str(checkout_date), version, version_reason,
+                json_data, object_address, period_days, borg_terug,
+                gwe_totaal_incl, totaal_eindafrekening, file_path,
+                schoonmaak_pakket, schoonmaak_kosten, schade_totaal_kosten, extra_voorschot_bedrag,
+                data_toon
+            )
             cursor = conn.execute("""
                 INSERT INTO eindafrekeningen (
                     client_name, checkin_date, checkout_date, version, version_reason,
                     data_json, object_address, period_days, borg_terug,
-                    gwe_totaal_incl, totaal_eindafrekening, file_path
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (
-                client_name, str(checkin_date), str(checkout_date), version, version_reason,
-                json_data, object_address, period_days, borg_terug,
-                gwe_totaal_incl, totaal_eindafrekening, file_path
-            ))
+                    gwe_totaal_incl, totaal_eindafrekening, file_path,
+                    schoonmaak_pakket, schoonmaak_kosten, schade_totaal_kosten, extra_voorschot_bedrag,
+                    data_toon
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, values)
             conn.commit()
             print(f"   ✓ Saved to database: ID={cursor.lastrowid}, Version={version}")
             return cursor.lastrowid
@@ -318,6 +351,7 @@ class Database:
 # Convenience functions
 def init_database(db_path: str = None) -> Database:
     """Initialize and return database instance"""
+    print(f"   DEBUG: init_database called with path: {db_path}")
     return Database(db_path)
 
 

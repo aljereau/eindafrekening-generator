@@ -52,12 +52,12 @@ def create_excel_template(output_path=None):
         conn = db.get_connection()
         
         # Fetch properties from huizen table
-        cursor = conn.execute("SELECT adres, object_id FROM huizen WHERE status='active' ORDER BY adres")
-        active_properties = [{'address': row['adres'], 'object_id': row['object_id']} for row in cursor.fetchall()]
+        cursor = conn.execute("SELECT adres, object_id, postcode, plaats FROM huizen WHERE status='active' ORDER BY adres")
+        active_properties = [{'address': row['adres'], 'object_id': row['object_id'], 'postcode': row['postcode'], 'city': row['plaats']} for row in cursor.fetchall()]
         print(f"📊 Found {len(active_properties)} active properties for dropdown")
         
-        # Fetch clients
-        cursor = conn.execute("SELECT naam, contactpersoon, email, telefoonnummer FROM klanten ORDER BY naam")
+        # Fetch clients from relaties
+        cursor = conn.execute("SELECT id, naam, adres, postcode, plaats, email FROM relaties WHERE is_klant=1 ORDER BY naam")
         clients = [dict(row) for row in cursor.fetchall()]
         print(f"📊 Found {len(clients)} clients for dropdown")
         
@@ -88,25 +88,33 @@ def create_lists_sheet(wb, properties, clients):
     ws = wb.create_sheet("Lists")
     ws.sheet_state = 'hidden'
     
-    # Property columns (A-B)
+    # Property columns (A-D)
     ws['A1'] = "Address"
     ws['B1'] = "Object ID"
+    ws['C1'] = "Postcode"
+    ws['D1'] = "Plaats"
     
     for i, prop in enumerate(properties, start=2):
         ws[f'A{i}'] = prop['address']
         ws[f'B{i}'] = prop['object_id']
+        ws[f'C{i}'] = prop.get('postcode', '')
+        ws[f'D{i}'] = prop.get('city', '')
     
-    # Client columns (C-F)
-    ws['C1'] = "Client Name"
-    ws['D1'] = "Contact Person"
-    ws['E1'] = "Email"
-    ws['F1'] = "Phone"
+    # Client columns (F-K)
+    ws['F1'] = "Naam"
+    ws['G1'] = "Klantnummer"
+    ws['H1'] = "Adres"
+    ws['I1'] = "Postcode"
+    ws['J1'] = "Plaats"
+    ws['K1'] = "Email"
     
     for i, client in enumerate(clients, start=2):
-        ws[f'C{i}'] = client['naam']
-        ws[f'D{i}'] = client.get('contactpersoon', '')
-        ws[f'E{i}'] = client.get('email', '')
-        ws[f'F{i}'] = client.get('telefoonnummer', '')
+        ws[f'F{i}'] = client['naam']
+        ws[f'G{i}'] = client['id']
+        ws[f'H{i}'] = client.get('adres', '')
+        ws[f'I{i}'] = client.get('postcode', '')
+        ws[f'J{i}'] = client.get('plaats', '')
+        ws[f'K{i}'] = client.get('email', '')
 
 
 def create_algemeen_sheet(wb, num_properties=0, num_clients=0):
@@ -156,30 +164,60 @@ def create_algemeen_sheet(wb, num_properties=0, num_clients=0):
     cell.border = thin_border
     row += 1
 
-    # Klantnaam (required) - with dropdown
+    # Naam Klant (required) - with dropdown
     ws[f'A{row}'] = "Naam Klant *"
     ws[f'A{row}'].font = label_font
     ws[f'B{row}'].fill = required_fill
     ws[f'B{row}'].border = thin_border
     add_named_range(wb,'Klantnaam', f'Algemeen!$B${row}')
     
-    # Add client dropdown if clients exist
+    # Add client dropdown (Naam)
     if num_clients > 0:
-        dv = DataValidation(type="list", formula1=f"=Lists!$C$2:$C${num_clients+1}", allow_blank=True)
+        dv = DataValidation(type="list", formula1=f"=Lists!$F$2:$F${num_clients+1}", allow_blank=True)
         ws.add_data_validation(dv)
         dv.add(f'B{row}')
     
     klantnaam_row = row
     row += 1
 
-    # Contactpersoon (auto-filled via VLOOKUP)
-    ws[f'A{row}'] = "Contactpersoon (automatisch)"
+    # Klantnummer (auto-filled via VLOOKUP)
+    ws[f'A{row}'] = "Klantnummer (automatisch)"
     ws[f'A{row}'].font = label_font
     ws[f'B{row}'].fill = computed_fill
     ws[f'B{row}'].border = thin_border
     if num_clients > 0:
-        ws[f'B{row}'] = f'=IFERROR(VLOOKUP(B{klantnaam_row},Lists!$C:$F,2,FALSE),"")'
-    add_named_range(wb,'Contactpersoon', f'Algemeen!$B${row}')
+        ws[f'B{row}'] = f'=IFERROR(VLOOKUP(B{klantnaam_row},Lists!$F:$K,2,FALSE),"")'
+    add_named_range(wb,'Klantnummer', f'Algemeen!$B${row}')
+    row += 1
+
+    # Adres (auto-filled via VLOOKUP)
+    ws[f'A{row}'] = "Adres (automatisch)"
+    ws[f'A{row}'].font = label_font
+    ws[f'B{row}'].fill = computed_fill
+    ws[f'B{row}'].border = thin_border
+    if num_clients > 0:
+        ws[f'B{row}'] = f'=IFERROR(VLOOKUP(B{klantnaam_row},Lists!$F:$K,3,FALSE),"")'
+    add_named_range(wb,'Klant_Adres', f'Algemeen!$B${row}')
+    row += 1
+
+    # Postcode (auto-filled via VLOOKUP)
+    ws[f'A{row}'] = "Postcode (automatisch)"
+    ws[f'A{row}'].font = label_font
+    ws[f'B{row}'].fill = computed_fill
+    ws[f'B{row}'].border = thin_border
+    if num_clients > 0:
+        ws[f'B{row}'] = f'=IFERROR(VLOOKUP(B{klantnaam_row},Lists!$F:$K,4,FALSE),"")'
+    add_named_range(wb,'Klant_Postcode', f'Algemeen!$B${row}')
+    row += 1
+
+    # Plaats (auto-filled via VLOOKUP)
+    ws[f'A{row}'] = "Plaats (automatisch)"
+    ws[f'A{row}'].font = label_font
+    ws[f'B{row}'].fill = computed_fill
+    ws[f'B{row}'].border = thin_border
+    if num_clients > 0:
+        ws[f'B{row}'] = f'=IFERROR(VLOOKUP(B{klantnaam_row},Lists!$F:$K,5,FALSE),"")'
+    add_named_range(wb,'Klant_Plaats', f'Algemeen!$B${row}')
     row += 1
 
     # Email (auto-filled via VLOOKUP)
@@ -188,18 +226,8 @@ def create_algemeen_sheet(wb, num_properties=0, num_clients=0):
     ws[f'B{row}'].fill = computed_fill
     ws[f'B{row}'].border = thin_border
     if num_clients > 0:
-        ws[f'B{row}'] = f'=IFERROR(VLOOKUP(B{klantnaam_row},Lists!$C:$F,3,FALSE),"")'
+        ws[f'B{row}'] = f'=IFERROR(VLOOKUP(B{klantnaam_row},Lists!$F:$K,6,FALSE),"")'
     add_named_range(wb,'Email', f'Algemeen!$B${row}')
-    row += 1
-
-    # Telefoonnummer (auto-filled via VLOOKUP)
-    ws[f'A{row}'] = "Telefoonnummer (automatisch)"
-    ws[f'A{row}'].font = label_font
-    ws[f'B{row}'].fill = computed_fill
-    ws[f'B{row}'].border = thin_border
-    if num_clients > 0:
-        ws[f'B{row}'] = f'=IFERROR(VLOOKUP(B{klantnaam_row},Lists!$C:$F,4,FALSE),"")'
-    add_named_range(wb,'Telefoonnummer', f'Algemeen!$B${row}')
     row += 2
 
     # ==================== OBJECT INFO ====================
@@ -244,17 +272,23 @@ def create_algemeen_sheet(wb, num_properties=0, num_clients=0):
     add_named_range(wb,'Unit_nr', f'Algemeen!$B${row}')
     row += 1
 
-    # Postcode (optional)
+    # Postcode (auto-filled via VLOOKUP)
     ws[f'A{row}'] = "Postcode"
     ws[f'A{row}'].font = label_font
+    ws[f'B{row}'].fill = computed_fill
     ws[f'B{row}'].border = thin_border
+    if num_properties > 0:
+        ws[f'B{row}'] = f'=IFERROR(VLOOKUP(B{object_adres_row},Lists!$A:$D,3,FALSE),"")'
     add_named_range(wb,'Postcode', f'Algemeen!$B${row}')
     row += 1
 
-    # Plaats (optional)
+    # Plaats (auto-filled via VLOOKUP)
     ws[f'A{row}'] = "Plaats"
     ws[f'A{row}'].font = label_font
+    ws[f'B{row}'].fill = computed_fill
     ws[f'B{row}'].border = thin_border
+    if num_properties > 0:
+        ws[f'B{row}'] = f'=IFERROR(VLOOKUP(B{object_adres_row},Lists!$A:$D,4,FALSE),"")'
     add_named_range(wb,'Plaats', f'Algemeen!$B${row}')
     row += 1
 
@@ -325,12 +359,37 @@ def create_algemeen_sheet(wb, num_properties=0, num_clients=0):
     add_named_range(wb,'Voorschot_borg', f'Algemeen!$B${row}')
     row += 1
 
-    # Voorschot_GWE (required)
-    ws[f'A{row}'] = "Voorschot GWE *"
+    # GWE Beheer (New Dropdown)
+    ws[f'A{row}'] = "GWE Beheer *"
     ws[f'A{row}'].font = label_font
     ws[f'B{row}'].fill = required_fill
     ws[f'B{row}'].border = thin_border
+    add_named_range(wb,'GWE_Beheer', f'Algemeen!$B${row}')
+    
+    dv_gwe = DataValidation(type="list", formula1='"Via RyanRent,Eigen Beheer"', allow_blank=False)
+    ws.add_data_validation(dv_gwe)
+    dv_gwe.add(f'B{row}')
+    gwe_beheer_row = row
+    row += 1
+
+    # GWE Maandbedrag (new field)
+    ws[f'A{row}'] = "GWE Maandbedrag"
+    ws[f'A{row}'].font = label_font
+    ws[f'B{row}'].border = thin_border
     ws[f'B{row}'].number_format = '€ #,##0.00'
+    ws[f'B{row}'] = 0
+    add_named_range(wb,'GWE_Maandbedrag', f'Algemeen!$B${row}')
+    gwe_maand_row = row
+    row += 1
+
+    # Voorschot_GWE (computed from monthly)
+    ws[f'A{row}'] = "Voorschot GWE (automatisch)"
+    ws[f'A{row}'].font = label_font
+    ws[f'B{row}'].fill = computed_fill
+    ws[f'B{row}'].border = thin_border
+    ws[f'B{row}'].number_format = '€ #,##0.00'
+    # Formula: IF(Eigen Beheer, 0, (Monthly * 12 / 365) * Days)
+    ws[f'B{row}'] = f'=IF(B{gwe_beheer_row}="Eigen Beheer",0,IF(ISNUMBER(B{gwe_maand_row}), (B{gwe_maand_row} * 12 / 365) * Aantal_dagen, 0))'
     add_named_range(wb,'Voorschot_GWE', f'Algemeen!$B${row}')
     row += 1
 
@@ -398,14 +457,14 @@ def create_algemeen_sheet(wb, num_properties=0, num_clients=0):
     ws[f'A{row}'].font = label_font
     ws[f'B{row}'].fill = computed_fill
     ws[f'B{row}'].border = thin_border
-    # Updated formula: Achteraf Betaald = 0 included hours
-    ws[f'B{row}'] = f'=IF(B{schoonmaak_pakket_row}="Basis Schoonmaak",5,IF(B{schoonmaak_pakket_row}="Intensief Schoonmaak",7,IF(B{schoonmaak_pakket_row}="Achteraf Betaald",0,"")))'
+    # Updated formula: Achteraf Betaald = 0 included hours, Geen = 0
+    ws[f'B{row}'] = f'=IF(B{schoonmaak_pakket_row}="Basis Schoonmaak",5,IF(B{schoonmaak_pakket_row}="Intensief Schoonmaak",7,0))'
     ws[f'B{row}'].number_format = '0'
     add_named_range(wb,'Inbegrepen_uren', f'Algemeen!$B${row}')
     row += 1
 
     # Uurtarief_schoonmaak (required, default 50)
-    ws[f'A{row}'] = "Uurtarief Schoonmaak *"
+    ws[f'A{row}'] = "Uurtarief Schoonmaak (excl. BTW) *"
     ws[f'A{row}'].font = label_font
     ws[f'B{row}'].fill = required_fill
     ws[f'B{row}'].border = thin_border
@@ -415,14 +474,26 @@ def create_algemeen_sheet(wb, num_properties=0, num_clients=0):
     uurtarief_row = row
     row += 1
 
+    # BTW_percentage_schoonmaak (required, default 21%)
+    ws[f'A{row}'] = "BTW Percentage Schoonmaak *"
+    ws[f'A{row}'].font = label_font
+    ws[f'B{row}'].fill = required_fill
+    ws[f'B{row}'].border = thin_border
+    ws[f'B{row}'].number_format = '0%'
+    ws[f'B{row}'] = 0.21
+    add_named_range(wb,'BTW_percentage_schoonmaak', f'Algemeen!$B${row}')
+    btw_schoonmaak_row = row
+    row += 1
+
     # Schoonmaak_totaal_kosten (computed: totaal uren × uurtarief)
     ws[f'A{row}'] = "Schoonmaak Totaal Kosten (automatisch)"
     ws[f'A{row}'].font = label_font
     ws[f'B{row}'].fill = computed_fill
     ws[f'B{row}'].border = thin_border
     ws[f'B{row}'].number_format = '€ #,##0.00'
-    # Formula references Schoonmaak sheet's Totaal_uren_gew
-    ws[f'B{row}'] = f'=IF(Schoonmaak!Totaal_uren_gew="","",Schoonmaak!Totaal_uren_gew*B{uurtarief_row})'
+    # Formula: MAX(Inbegrepen, Actual) * Rate * (1 + VAT)
+    # If "Geen", Inbegrepen is 0. If Actual is 0, Total is 0.
+    ws[f'B{row}'] = f'=IF(Schoonmaak!Totaal_uren_gew="","",MAX(Inbegrepen_uren,Schoonmaak!Totaal_uren_gew)*B{uurtarief_row}*(1+B{btw_schoonmaak_row}))'
     add_named_range(wb,'Schoonmaak_totaal_kosten', f'Algemeen!$B${row}')
     row += 1
 
@@ -643,17 +714,19 @@ def create_gwe_detail_sheet(wb):
     )
 
     # Set column widths
-    ws.column_dimensions['A'].width = 30
-    ws.column_dimensions['B'].width = 20
-    ws.column_dimensions['C'].width = 20
-    ws.column_dimensions['D'].width = 20
-    ws.column_dimensions['E'].width = 10  # BTW %
-    ws.column_dimensions['F'].width = 15  # BTW €
+    ws.column_dimensions['A'].width = 15  # Type
+    ws.column_dimensions['B'].width = 30  # Omschrijving
+    ws.column_dimensions['C'].width = 10  # Eenheid
+    ws.column_dimensions['D'].width = 15  # Verbruik
+    ws.column_dimensions['E'].width = 15  # Tarief
+    ws.column_dimensions['F'].width = 15  # Kosten
+    ws.column_dimensions['G'].width = 10  # BTW %
+    ws.column_dimensions['H'].width = 15  # BTW €
 
     row = 1
 
     # ==================== HEADER ====================
-    ws.merge_cells(f'A{row}:F{row}')  # 6 columns now
+    ws.merge_cells(f'A{row}:H{row}')  # 8 columns now
     cell = ws[f'A{row}']
     cell.value = "GAS / WATER / ELEKTRA DETAIL"
     cell.font = header_font
@@ -754,7 +827,7 @@ def create_gwe_detail_sheet(wb):
     row += 2
 
     # ==================== KOSTENREGELS TABLE ====================
-    ws.merge_cells(f'A{row}:F{row}')  # 6 columns now
+    ws.merge_cells(f'A{row}:H{row}')  # 8 columns now
     cell = ws[f'A{row}']
     cell.value = "KOSTENREGELS - Verbruik omzetten naar Euro's"
     cell.font = section_font
@@ -763,7 +836,7 @@ def create_gwe_detail_sheet(wb):
     row += 1
 
     # Instructions
-    ws.merge_cells(f'A{row}:F{row}')  # 6 columns now
+    ws.merge_cells(f'A{row}:H{row}')  # 8 columns now
     cell = ws[f'A{row}']
     cell.value = "💡 Vul hier de kosten in op basis van verbruik × tarief van energieleverancier. Voorbeelden staan hieronder (grijs). Verwijder voorbeelden en vul eigen regels in."
     cell.font = Font(name='Arial', size=9, italic=True)
@@ -775,7 +848,7 @@ def create_gwe_detail_sheet(wb):
 
     # Table headers (row 5 as per spec)
     table_start_row = row
-    headers = ["Omschrijving", "Verbruik (kWh/m³) of Dagen", "Tarief excl. BTW (€)", "Kosten excl. BTW (€)", "BTW %", "BTW (€)"]
+    headers = ["Type", "Omschrijving", "Eenheid", "Verbruik", "Tarief excl. BTW (€)", "Kosten excl. BTW (€)", "BTW %", "BTW (€)"]
     for col_idx, header in enumerate(headers, start=1):
         cell = ws.cell(row=row, column=col_idx)
         cell.value = header
@@ -786,90 +859,63 @@ def create_gwe_detail_sheet(wb):
     ws.row_dimensions[row].height = 30
     row += 1
 
-    # Add example rows (with gray background to indicate they're examples)
-    example_fill = PatternFill(start_color="F2F2F2", end_color="F2F2F2", fill_type="solid")
-    example_font = Font(name='Arial', size=9, italic=True, color="666666")
+    # Add empty rows with formulas and validation
+    # We'll add 20 rows for entry
+    types_list = '"Elektra,Gas,Water,Overig"'
+    
+    for i in range(20):
+        r = row + i
+        
+        # Type Dropdown (Col A)
+        dv = DataValidation(type="list", formula1=types_list, allow_blank=True)
+        ws.add_data_validation(dv)
+        dv.add(f'A{r}')
+        ws[f'A{r}'].border = thin_border
+        
+        # Omschrijving (Col B)
+        ws[f'B{r}'].border = thin_border
+        
+        # Eenheid (Col C) - Auto-fill based on Type
+        ws[f'C{r}'] = f'=IF(A{r}="Elektra","kWh",IF(A{r}="Gas","m³",IF(A{r}="Water","m³","")))'
+        ws[f'C{r}'].border = thin_border
+        ws[f'C{r}'].fill = computed_fill
+        
+        # Verbruik (Col D) - Auto-fill from Meter Readings
+        # Note: This pulls the TOTAL consumption. If splitting is needed, user must override.
+        ws[f'D{r}'] = f'=IF(A{r}="Elektra",KWh_verbruik,IF(A{r}="Gas",Gas_verbruik,IF(A{r}="Water",Water_verbruik,"")))'
+        ws[f'D{r}'].border = thin_border
+        ws[f'D{r}'].fill = computed_fill # Indicate it's calculated, but user can overwrite if needed? 
+        # Actually, if it's a formula, it should be computed_fill.
+        
+        # Tarief (Col E)
+        ws[f'E{r}'].border = thin_border
+        ws[f'E{r}'].number_format = '€ #,##0.0000' # 4 decimals for energy rates
+        
+        # Kosten (Col F) = Verbruik * Tarief
+        ws[f'F{r}'] = f'=IF(OR(D{r}="",E{r}=""),0,D{r}*E{r})'
+        ws[f'F{r}'].border = thin_border
+        ws[f'F{r}'].number_format = '€ #,##0.00'
+        ws[f'F{r}'].fill = computed_fill
+        
+        # BTW % (Col G)
+        ws[f'G{r}'].border = thin_border
+        ws[f'G{r}'].number_format = '0%'
+        ws[f'G{r}'] = 0.21 # Default
+        
+        # BTW € (Col H)
+        ws[f'H{r}'] = f'=F{r}*G{r}'
+        ws[f'H{r}'].border = thin_border
+        ws[f'H{r}'].number_format = '€ #,##0.00'
+        ws[f'H{r}'].fill = computed_fill
 
-    examples = [
-        ("Elektra verbruik (zie meterstand)", "=KWh_verbruik", 0.30, "=B{row}*C{row}", 0.21, "=D{row}*E{row}"),
-        ("Gas verbruik (zie meterstand)", "=Gas_verbruik", 1.20, "=B{row}*C{row}", 0.21, "=D{row}*E{row}"),
-        ("Vaste levering elektra per dag", "=Algemeen!Aantal_dagen", 0.50, "=B{row}*C{row}", 0.21, "=D{row}*E{row}"),
-        ("Vaste levering gas per dag", "=Algemeen!Aantal_dagen", 0.45, "=B{row}*C{row}", 0.21, "=D{row}*E{row}"),
-        ("Waterverbruik (geschat per dag)", "=Algemeen!Aantal_dagen", 3.50, "=B{row}*C{row}", 0.21, "=D{row}*E{row}"),
-    ]
+    row += 20
 
-    for example in examples:
-        # Omschrijving
-        cell = ws.cell(row=row, column=1)
-        cell.value = example[0]
-        cell.font = example_font
-        cell.fill = example_fill
-        cell.border = thin_border
 
-        # Verbruik/Dagen (formula or number)
-        cell = ws.cell(row=row, column=2)
-        cell.value = example[1]
-        cell.font = example_font
-        cell.fill = example_fill
-        cell.border = thin_border
-        cell.number_format = '#,##0.00'
+    # Old loop removed
 
-        # Tarief
-        cell = ws.cell(row=row, column=3)
-        cell.value = example[2]
-        cell.font = example_font
-        cell.fill = example_fill
-        cell.border = thin_border
-        cell.number_format = '€ #,##0.00'
-
-        # Kosten (formula)
-        cell = ws.cell(row=row, column=4)
-        cell.value = example[3].format(row=row)
-        cell.font = example_font
-        cell.fill = example_fill
-        cell.border = thin_border
-        cell.number_format = '€ #,##0.00'
-
-        # BTW %
-        cell = ws.cell(row=row, column=5)
-        cell.value = example[4]
-        cell.font = example_font
-        cell.fill = example_fill
-        cell.border = thin_border
-        cell.number_format = '0%'
-
-        # BTW €
-        cell = ws.cell(row=row, column=6)
-        cell.value = example[5].format(row=row)
-        cell.font = example_font
-        cell.fill = computed_fill
-        cell.border = thin_border
-        cell.number_format = '€ #,##0.00'
-
-        row += 1
-
-    # Add 15 empty rows for additional data entry
-    for i in range(15):
-        for col_idx in range(1, 7):  # Now 6 columns
-            cell = ws.cell(row=row, column=col_idx)
-            cell.border = thin_border
-            if col_idx == 2:  # Verbruik
-                cell.number_format = '#,##0.00'
-            elif col_idx in [3, 4]:  # Tarief, Kosten
-                cell.number_format = '€ #,##0.00'
-            elif col_idx == 5:  # BTW %
-                cell.value = 0.21
-                cell.number_format = '0%'
-            elif col_idx == 6:  # BTW €
-                cell.value = f'=IF(AND(D{row}<>"",E{row}<>""),D{row}*E{row},"")'
-                cell.fill = computed_fill
-                cell.number_format = '€ #,##0.00'
-        row += 1
-
-    row += 1
 
     # ==================== TOTALEN ====================
-    ws.merge_cells(f'A{row}:F{row}')  # 6 columns now
+    ws.merge_cells(f'A{row}:H{row}')  # 8 columns now
     cell = ws[f'A{row}']
     cell.value = "TOTALEN (automatisch berekend)"
     cell.font = section_font
@@ -883,35 +929,31 @@ def create_gwe_detail_sheet(wb):
     ws[f'B{row}'].fill = computed_fill
     ws[f'B{row}'].border = thin_border
     ws[f'B{row}'].number_format = '€ #,##0.00'
-    # Sum from table_start_row+1 (first data row after header) to row-2 (before totals)
-    ws[f'B{row}'] = f'=SUM(D{table_start_row+1}:D{row-2})'
+    # Sum of column F (Kosten excl)
+    ws[f'B{row}'] = f'=SUM(F{table_start_row+1}:F{row-2})'
     add_named_range(wb,'GWE_totaal_excl', f'GWE_Detail!$B${row}')
     gwe_totaal_excl_row = row
     row += 1
 
-    # GWE_BTW (computed: sum of BTW column F)
+    # GWE_BTW (computed: sum of BTW column H)
     ws[f'A{row}'] = "BTW (Totaal, automatisch)"
     ws[f'A{row}'].font = label_font
     ws[f'B{row}'].fill = computed_fill
     ws[f'B{row}'].border = thin_border
     ws[f'B{row}'].number_format = '€ #,##0.00'
-    # SUM of column F (BTW amounts)
-    ws[f'B{row}'] = f'=SUM(F{table_start_row+1}:F{row-2})'
+    # SUM of column H (BTW amounts)
+    ws[f'B{row}'] = f'=SUM(H{table_start_row+1}:H{row-2})'
     add_named_range(wb,'GWE_BTW', f'GWE_Detail!$B${row}')
     gwe_btw_row = row
     row += 1
 
-    # GWE_totaal_incl (computed: excl + btw)
+    # GWE_totaal_incl (computed)
     ws[f'A{row}'] = "Totaal incl. BTW (automatisch)"
-    ws[f'A{row}'].font = Font(name='Arial', size=10, bold=True)
+    ws[f'A{row}'].font = Font(name='Arial', size=11, bold=True)
     ws[f'B{row}'].fill = computed_fill
-    ws[f'B{row}'].border = Border(
-        left=Side(style='medium'), right=Side(style='medium'),
-        top=Side(style='medium'), bottom=Side(style='medium')
-    )
+    ws[f'B{row}'].border = thin_border
     ws[f'B{row}'].number_format = '€ #,##0.00'
-    ws[f'B{row}'].font = Font(name='Arial', size=10, bold=True)
-    ws[f'B{row}'] = f'=IF(B{gwe_totaal_excl_row}="","",B{gwe_totaal_excl_row}+B{gwe_btw_row})'
+    ws[f'B{row}'] = f'=GWE_totaal_excl+GWE_BTW'
     add_named_range(wb,'GWE_totaal_incl', f'GWE_Detail!$B${row}')
 
     # Freeze panes at A6 (freeze headers)

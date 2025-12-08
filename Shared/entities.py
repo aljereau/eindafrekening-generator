@@ -73,6 +73,8 @@ class GWERegel:
     tarief_excl: float          # Rate excl. VAT
     kosten_excl: float          # Cost excl. VAT
     btw_percentage: float = 0.21 # VAT percentage (default 21%)
+    type: str = "Overig"        # Type (Gas, Water, Elektra, Overig)
+    eenheid: str = ""           # Unit (kWh, m3, Dagen, etc.)
 
 
 @dataclass
@@ -81,6 +83,7 @@ class GWETotalen:
     totaal_excl: float  # Total excl. VAT
     btw: float          # VAT amount (calculated from lines)
     totaal_incl: float  # Total incl. VAT
+    beheer_type: str = "Via RyanRent" # "Via RyanRent" or "Eigen Beheer"
 
 
 @dataclass
@@ -94,6 +97,9 @@ class Cleaning:
     uurtarief: float                                # Hourly rate
     extra_bedrag: float                             # Extra cost for extra hours
     voorschot: float                                # Prepaid cleaning amount
+    totaal_kosten_incl: float = 0.0                 # Total cleaning costs incl VAT
+    btw_percentage: float = 0.21                    # VAT percentage (default 21%)
+    btw_bedrag: float = 0.0                         # VAT amount
 
 
 @dataclass

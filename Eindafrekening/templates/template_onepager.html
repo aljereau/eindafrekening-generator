@@ -18,6 +18,8 @@
             --color-positive-bg: #E8F5E9;
             --color-neutral: #546E7A;
             --color-neutral-bg: #F5F5F5;
+            --color-charge: #D32F2F;
+            /* Red for payments */
 
             /* Bar Colors */
             --color-bar-prepaid: #A5D6A7;
@@ -49,6 +51,14 @@
             /* Effects */
             --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .text-return {
+            color: var(--color-positive);
+        }
+
+        .text-charge {
+            color: var(--color-charge);
         }
 
         @page {
@@ -711,6 +721,8 @@
     </div>
 
     <!-- ROW 2: GWE -->
+    <!-- ROW 2: GWE -->
+    {% if financial.gwe.show_gwe %}
     <div class="budget-row">
         <div class="start-section">
             <div class="category-label">GWE</div>
@@ -740,13 +752,14 @@
             <div class="result-section-spacer"></div>
             <div class="result-value-wrapper">
                 {% if financial.gwe.is_overfilled %}
-                <div class="result-value text-charge">€{{ "%.0f"|format(financial.gwe.extra) }}</div>
+                <div class="result-value text-charge">€{{ "%.0f"|format(financial.gwe.extra) }} te betalen</div>
                 {% else %}
-                <div class="result-value text-return">€{{ "%.0f"|format(financial.gwe.terug) }}</div>
+                <div class="result-value text-return">€{{ "%.0f"|format(financial.gwe.terug) }} terug</div>
                 {% endif %}
             </div>
         </div>
     </div>
+    {% endif %}
 
 
     <!-- ROW 3: SCHOONMAAK (only if package was purchased) -->
@@ -780,8 +793,8 @@
         <div class="result-section">
             <div class="result-section-spacer"></div>
             <div class="result-value-wrapper">
-                {% if financial.cleaning.extra_bedrag > 0 %}
-                <div class="result-value text-charge">€{{ "%.0f"|format(financial.cleaning.extra_bedrag) }}</div>
+                {% if financial.cleaning.extra > 0 %}
+                <div class="result-value text-charge">€{{ "%.0f"|format(financial.cleaning.extra) }} te betalen</div>
                 {% else %}
                 <div class="result-value text-neutral">€0</div>
                 {% endif %}
@@ -846,12 +859,13 @@
             {% endfor %}
             {% else %}
             <div class="detail-item">
-                <span>Algemene inhoudingen</span>
+                <span>Geen schade</span>
                 <span>€{{ "%.2f"|format(financial.borg.gebruikt) }}</span>
             </div>
             {% endif %}
         </div>
 
+        {% if financial.gwe.show_gwe %}
         <div class="detail-card">
             <div class="detail-header">
                 <span>GWE SPECIFICATIE</span>
@@ -885,37 +899,36 @@
                 <span></span>
             </div>
         </div>
+        {% endif %}
 
         <!-- Cleaning specification card (only if package was purchased) -->
         {% if financial.cleaning.pakket_type != 'geen' %}
         <div class="detail-card">
             <div class="detail-header">
                 <span>SCHOONMAAK PAKKET</span>
-                <span>€{{ "%.2f"|format(financial.cleaning.voorschot) }}</span>
+                <span>€{{ "%.2f"|format(financial.cleaning.totaal_kosten_incl) }}</span>
             </div>
             <div class="detail-item">
                 <span>Gekozen pakket:</span>
-                <span>{{ financial.cleaning.pakket_naam|default("Basis Schoonmaak") }}</span>
+                <span>{{ financial.cleaning.pakket_naam }}</span>
             </div>
             <div class="detail-item">
-                <span>Inbegrepen uren:</span>
-                <span>{{ financial.cleaning.inbegrepen_uren|default(5.0) }} uur</span>
+                <span>Totaal uren:</span>
+                <span>{{ "%.1f"|format(financial.cleaning.totaal_uren) }} uur</span>
             </div>
             <div class="detail-item">
-                <span>Totaal uren gewerkt:</span>
-                <span>{{ financial.cleaning.totaal_uren|default(0) }} uur</span>
+                <span>Kosten (excl. BTW):</span>
+                <span>€{{ "%.2f"|format(financial.cleaning.totaal_kosten_incl - financial.cleaning.btw_bedrag) }}</span>
             </div>
             <div class="detail-item">
-                <span>Extra uren:</span>
-                <span>{{ financial.cleaning.extra_uren|default(0) }} uur</span>
+                <span>BTW ({{ "%.0f"|format(financial.cleaning.btw_percentage * 100) }}%):</span>
+                <span>€{{ "%.2f"|format(financial.cleaning.btw_bedrag) }}</span>
             </div>
-            {% if financial.cleaning.extra_bedrag > 0 %}
-            <div class="detail-item">
-                <span>{% if financial.cleaning.pakket_naam == "Achteraf Betaald" %}Schoonmaak kosten:{% else %}Extra
-                    kosten:{% endif %}</span>
-                <span>€{{ "%.2f"|format(financial.cleaning.extra_bedrag) }}</span>
+            <div class="detail-item"
+                style="font-weight: 700; border-top: 1px solid var(--color-border); margin-top: 4px; padding-top: 4px;">
+                <span>Totaal incl. BTW:</span>
+                <span>€{{ "%.2f"|format(financial.cleaning.totaal_kosten_incl) }}</span>
             </div>
-            {% endif %}
         </div>
         {% endif %}
 
@@ -1011,17 +1024,17 @@
                         {% endif %}
                     </td>
                     <td>€{{ "%.2f"|format(financial.cleaning.voorschot) }}</td>
-                    <td>€{{ "%.2f"|format(financial.cleaning.voorschot + financial.cleaning.extra_bedrag) }}</td>
-                    <td class="{{ 'text-neutral' if financial.cleaning.extra_bedrag == 0 else 'text-charge' }}">
+                    <td>€{{ "%.2f"|format(financial.cleaning.totaal_kosten_incl) }}</td>
+                    <td class="{{ 'text-neutral' if financial.cleaning.extra == 0 else 'text-charge' }}">
                         {% if financial.cleaning.pakket_naam == "Achteraf Betaald" %}
-                        {% if financial.cleaning.extra_bedrag > 0 %}
-                        €{{ "%.0f"|format(financial.cleaning.extra_bedrag) }} te betalen
+                        {% if financial.cleaning.extra > 0 %}
+                        €{{ "%.2f"|format(financial.cleaning.extra) }} te betalen
                         {% else %}
                         €0
                         {% endif %}
                         {% else %}
-                        {% if financial.cleaning.extra_bedrag > 0 %}
-                        €{{ "%.0f"|format(financial.cleaning.extra_bedrag) }} bijbetalen
+                        {% if financial.cleaning.extra > 0 %}
+                        €{{ "%.2f"|format(financial.cleaning.extra) }} bijbetalen
                         {% else %}
                         €0
                         {% endif %}

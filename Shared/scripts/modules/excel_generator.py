@@ -47,6 +47,28 @@ class ExcelGenerator:
             
         return {"success": True, "path": output_path, "rows": len(df)}
 
+    def preview_update_sheet(self, sql_query, update_type):
+        """
+        Preview the data that would be generated.
+        Returns headers and sample rows.
+        """
+        conn = self.get_conn()
+        try:
+            # Limit to 5 rows for preview
+            preview_query = f"SELECT * FROM ({sql_query}) LIMIT 5"
+            df = pd.read_sql_query(preview_query, conn)
+            
+            return {
+                "success": True,
+                "headers": list(df.columns),
+                "sample_data": df.to_dict(orient='records'),
+                "row_count_estimate": "Unknown (Preview Limit)" 
+            }
+        except Exception as e:
+            return {"error": f"SQL Error: {e}"}
+        finally:
+            conn.close()
+
     def process_update_sheet(self, file_path):
         """
         Reads the update sheet and applies changes to the DB.
