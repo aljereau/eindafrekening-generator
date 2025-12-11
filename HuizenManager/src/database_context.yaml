@@ -15,45 +15,57 @@ thinking_process:
     - name: "Insight Delivery"
       action: "Present data in Markdown tables. If > 5 rows, automatically trigger an Excel export."
 
-domain_knowledge:
-  core_concepts:
-    Properties: "Physical assets (`huizen`). Static data like address/type."
-    Occupancy: "Time-based usage (`boekingen`). A house is 'Occupied' if `DATE('now')` falls between `checkin_datum` and `checkout_datum`."
-    Clients: "People/Companies (`relaties`) who rent FROM us (`klant_id`)."
-    Owners: "People/Companies (`relaties`) we rent FROM (`verhuurder_id` in inhuur_contracten)."
-    Verhuur_Contracts: "Leases with CLIENTS (`verhuur_contracten`). Revenue source (Rent + Service Fees)."
-    Inhuur_Contracts: "Leases from OWNERS (`inhuur_contracten`). Cost source (Price we pay owner)."
-    Inspections: "Maintenance events (`inspecties`) linked to a house. Critical for operations."
+  domain_knowledge:
+    core_concepts:
+      Properties: "Physical assets (`huizen`). Static data like address/type."
+      Occupancy: "Time-based usage (`boekingen`). A house is 'Occupied' if `DATE('now')` falls between `checkin_datum` and `checkout_datum`."
+      Clients: "People/Companies (`relaties`) who rent FROM us (`klant_id`)."
+      Owners: "People/Companies (`relaties`) we rent FROM (`verhuurder_id` in inhuur_contracten)."
+      Verhuur_Contracts: "Leases with CLIENTS (`verhuur_contracten`). Revenue source (Rent + Service Fees)."
+      Inhuur_Contracts: "Leases from OWNERS (`inhuur_contracten`). Cost source (Price we pay owner)."
+      Inspections: "Maintenance events (`inspecties`) linked to a house. Critical for operations."
 
-  table_relationships:
-    - "huizen.id ↔ boekingen.huis_id (1:Many)"
-    - "huizen.id ↔ verhuur_contracten.huis_id (1:Many)"
-    - "huizen.id ↔ inhuur_contracten.huis_id (1:Many)"
-    - "huizen.id ↔ inspecties.huis_id (1:Many)"
-    - "relaties.id ↔ boekingen.klant_id (1:Many)"
-    - "relaties.id ↔ verhuur_contracten.klant_id (1:Many)"
+    table_relationships:
+      - "huizen.id ↔ boekingen.huis_id (1:Many)"
+      - "huizen.id ↔ verhuur_contracten.huis_id (1:Many)"
+      - "huizen.id ↔ inhuur_contracten.huis_id (1:Many)"
+      - "huizen.id ↔ inspecties.huis_id (1:Many)"
+      - "relaties.id ↔ boekingen.klant_id (1:Many)"
+      - "relaties.id ↔ verhuur_contracten.klant_id (1:Many)"
 
-  business_definitions:
-    # SQL snippets for common business logic
-    vacancy_check: "NOT EXISTS (SELECT 1 FROM boekingen b WHERE b.huis_id = h.id AND DATE('now') BETWEEN b.checkin_datum AND b.checkout_datum)"
-    revenue_source: "For history use `boekingen.totale_huur_factuur`. For projections use `verhuur_contracten.kale_huur`."
-    margin_analysis: "Use `v_house_costs` (View). If View unavailable: `verhuur_contracten.kale_huur - inhuur_contracten.inhuur_prijs`."
+    business_definitions:
+      # SQL snippets for common business logic
+      vacancy_check: "NOT EXISTS (SELECT 1 FROM boekingen b WHERE b.huis_id = h.id AND DATE('now') BETWEEN b.checkin_datum AND b.checkout_datum)"
+      revenue_source: "For history use `boekingen.totale_huur_factuur`. For projections use `verhuur_contracten.kale_huur`."
+      margin_analysis: "Use `v_house_costs` (View). If View unavailable: `verhuur_contracten.kale_huur - inhuur_contracten.inhuur_prijs`."
 
-  time_intelligence:
-    # How to interpret time-based questions
-    operational_events: "Checkins (`checkin_datum`), Checkouts (`checkout_datum`), Inspections (`datum`)."
-    bottlenecks: "Days with > 3 combined operational events."
-    history_traversal: "To find 'Previous': Sort by date DESC and take the 2nd record (or 1st record where end_date < NOW)."
+    time_intelligence:
+      # How to interpret time-based questions
+      operational_events: "Checkins (`checkin_datum`), Checkouts (`checkout_datum`), Inspections (`datum`)."
+      bottlenecks: "Days with > 3 combined operational events."
+      history_traversal: "To find 'Previous': Sort by date DESC and take the 2nd record (or 1st record where end_date < NOW)."
 
-  status_logic:
-    # Critical status filters
-    active_contract: "verhuur_contracten.status = 'active' AND (eind_datum IS NULL OR eind_datum >= DATE('now'))"
-    valid_booking: "boekingen.status IN ('confirmed', 'checked_in')"
+    status_logic: |
+      - **Active Booking**: status='confirmed' AND checkout_datum >= CURRENT_DATE
+      - **Past Booking**: checkout_datum < CURRENT_DATE
+      - **Occupancy Rate**: (booked_days / total_days_in_period) * 100
+      - **Active Contract**: verhuur_contracten.status = 'active' AND (eind_datum IS NULL OR eind_datum >= DATE('now'))
 
-  calculated_metrics:
-    # Explicit formulas for derivation
-    gross_margin: "Revenue (Kale Huur) - Cost (Inhuur Prijs)"
-    occupancy_rate: "Days Occupied / 365"
+    service_mapping: |
+      The database schema has been updated to match business terms. Standard services include:
+      - **Internet**: Connectivity costs.
+      - **Meubilering**: Furnishing costs.
+      - **Tuinonderhoud**: Garden/Exterior maintenance.
+      - **Aanschaf inventaris**: Inventory purchase/replacement.
+      - **Stoffering**: Soft furnishings.
+      - **Eindschoonmaak**: Final cleaning costs.
+      - **Gem. Heffingen**: Municipal taxes.
+
+    calculated_metrics: |
+      - **Revenue**: SUM(totale_huur_factuur) from boekingen
+      - **Owner Payout**: (inhuur_prijs_excl_btw) defined in inhuur_contracten
+      - **Profit (Gross)**: Revenue - Owner Payout - Expenses
+      - **Gross Margin**: Revenue (Kale Huur) - Cost (Inhuur Prijs)
 
 operational_rules:
   - "Output Format: Markdown Table (Clean & Readable) for small results."

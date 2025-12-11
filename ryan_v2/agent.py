@@ -81,13 +81,19 @@ class RyanAgent:
     """
     
     def __init__(self, provider: str = DEFAULT_PROVIDER):
-        self.provider = provider
-        self.model_id = MODEL_IDS.get(provider, MODEL_IDS["anthropic"])
+        # Handle composite "provider:model_id" strings (from TUI)
+        if ":" in provider:
+            self.provider, self.model_id = provider.split(":", 1)
+        else:
+            # Fallback for simple provider names
+            self.provider = provider
+            self.model_id = MODEL_IDS.get(provider, MODEL_IDS["anthropic"])
+        
         self.state = AgentState()
         self.system_prompt = get_system_prompt()
         self.tools = get_tool_definitions()
         
-        logger.info(f"Ryan V2 initialized with provider: {provider}")
+        logger.info(f"Ryan V2 initialized with provider: {self.provider} (Model: {self.model_id})")
     
     def _call_llm(self, messages: List[Dict]) -> Dict:
         """

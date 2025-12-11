@@ -6,13 +6,14 @@ import asyncio
 from typing import Optional
 from textual.app import App, ComposeResult
 from textual.containers import Container, Vertical, Horizontal, ScrollableContainer
-from textual.widgets import Header, Footer, Input, Static, Markdown, Button, Label, LoadingIndicator
+from textual.widgets import Header, Footer, Input, Static, Markdown, Button, Label, LoadingIndicator, Select
 from textual.binding import Binding
 from textual.message import Message
 
 # Import our V2 Agent
 from .agent import RyanAgent
 from .tools import list_tables
+from .config import MODEL_IDS, DEFAULT_PROVIDER, AVAILABLE_MODELS
 
 # Configure logging to write to file, NOT console (which breaks TUI)
 import logging
@@ -54,6 +55,13 @@ class DatabaseSidebar(Container):
         super().__init__(classes="sidebar")
         
     def compose(self) -> ComposeResult:
+        yield Label("🧠 Model", classes="sidebar-title")
+        
+        # Create select options from AVAILABLE_MODELS
+        # Default to the first model in the list
+        default_model = AVAILABLE_MODELS[0][1]
+        yield Select(AVAILABLE_MODELS, value=default_model, allow_blank=False, id="model-select")
+        
         yield Label("📊 Database Monitor", classes="sidebar-title")
         yield Markdown("Loading stats...", id="db-stats")
         yield Button("Refresh Schema", id="refresh-db", variant="primary")
@@ -90,7 +98,7 @@ class RyanApp(App):
         text-align: center;
         text-style: bold;
         padding: 1;
-        background: #007acc;
+        background: #007acc; # Ryan Blue
         color: white;
         margin-bottom: 1;
     }
@@ -125,7 +133,7 @@ class RyanApp(App):
         background: #1e1e1e;
         margin: 1 0;
         padding: 0 1;
-        border-left: wide #007acc; # Ryan Blue
+        border-left: wide #007acc;
         height: auto;
     }
     
@@ -155,7 +163,8 @@ class RyanApp(App):
 
     def __init__(self):
         super().__init__()
-        self.agent = RyanAgent() # Initialize our V2 agent
+        # Initialize default agent using first model
+        self.agent = RyanAgent(provider=AVAILABLE_MODELS[0][1])
         
     def compose(self) -> ComposeResult:
         # Sidebar
@@ -174,6 +183,22 @@ class RyanApp(App):
         """Called when app starts."""
         self.query_one(DatabaseSidebar).update_stats()
         self.query_one("#user-input").focus()
+
+    def on_select_changed(self, event: Select.Changed) -> None:
+        """Handle model selection change."""
+        if event.select.id == "model-select":
+            composite_value = str(event.value)
+            self.agent = RyanAgent(provider=composite_value)
+            
+            # Extract display name logic if possible, or just formatted value
+            if ":" in composite_value:
+                provider_name = composite_value.split(":")[0]
+                model_name = composite_value.split(":")[1]
+                display_name = f"{provider_name.capitalize()} ({model_name})"
+            else:
+                display_name = composite_value
+                
+            self.notify(f"Switched to {display_name}")
 
     async def on_input_submitted(self, message: Input.Submitted):
         """Handle user input."""
@@ -209,13 +234,19 @@ class RyanApp(App):
             
             for response_chunk in self.agent.run(query):
                 # Check if it's a tool notification or final answer
-                is_tool_call = response_chunk.startswith("🔧") or response_chunk.startswith("⚠️")
-                role = "tool" if is_tool_call else "assistant"
+                is_tool_call = response_chunk.startswith("🔧")
+                is_error = "❌" in response_chunk or "⚠️" in response_chunk
+                
+                role = "tool" if (is_tool_call or is_error) else "assistant"
+                
+                # If it's an error, make it visible and red
+                if is_error:
+                    response_chunk = f"**{response_chunk}**"
                 
                 await self.add_message(role, response_chunk)
                 
         except Exception as e:
-            await self.add_message("tool", f"❌ Error: {str(e)}")
+            await self.add_message("tool", f"❌ System Error: {str(e)}")
 
     async def add_message(self, role: str, content: str):
         """Add a message to the scroll area and scroll to bottom."""
