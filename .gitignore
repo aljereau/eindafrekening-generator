@@ -29,3 +29,6 @@ Thumbs.db
 # Temporary
 *.log
 *.tmp
+
+#specific folders
+ryan_v2/exports

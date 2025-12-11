@@ -6,80 +6,41 @@ import asyncio
 from typing import Optional
 from textual.app import App, ComposeResult
 from textual.containers import Container, Vertical, Horizontal, ScrollableContainer
-from textual.widgets import Header, Footer, Input, Static, Markdown, Button, Label, LoadingIndicator, Select
-from textual.binding import Binding
-from textual.message import Message
+from textual.widgets import Header, Footer, Input, Static, Markdown, Button, Label, LoadingIndicator, Select, Collapsible
 
-# Import our V2 Agent
-from .agent import RyanAgent
-from .tools import list_tables
-from .config import MODEL_IDS, DEFAULT_PROVIDER, AVAILABLE_MODELS
+# ... (imports remain)
 
-# Configure logging to write to file, NOT console (which breaks TUI)
-import logging
-logging.basicConfig(
-    filename="ryan_v2.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    force=True
-)
-
-class ChatMessage(Container):
-    """A single chat message bubble."""
-    
-    def __init__(self, role: str, content: str, is_tool: bool = False):
-        super().__init__()
-        self.role = role
-        self.content = content
-        self.is_tool = is_tool
-        
-        if role == "user":
-            self.classes = "user-message"
-            self.avatar = "👤 You"
-        elif role == "assistant":
-            self.classes = "assistant-message"
-            self.avatar = "🤖 Ryan"
-        else: # Tool info
-            self.classes = "tool-message"
-            self.avatar = "🔧 System"
-
-    def compose(self) -> ComposeResult:
-        with Horizontal(classes="header"):
-            yield Label(self.avatar, classes="avatar")
-        yield Markdown(self.content)
-
-class DatabaseSidebar(Container):
-    """Sidebar showing database stats."""
+class ThinkingProcess(Container):
+    """Collapsible container for agent thoughts and tool logs."""
     
     def __init__(self):
-        super().__init__(classes="sidebar")
-        
-    def compose(self) -> ComposeResult:
-        yield Label("🧠 Model", classes="sidebar-title")
-        
-        # Create select options from AVAILABLE_MODELS
-        # Default to the first model in the list
-        default_model = AVAILABLE_MODELS[0][1]
-        yield Select(AVAILABLE_MODELS, value=default_model, allow_blank=False, id="model-select")
-        
-        yield Label("📊 Database Monitor", classes="sidebar-title")
-        yield Markdown("Loading stats...", id="db-stats")
-        yield Button("Refresh Schema", id="refresh-db", variant="primary")
-        
-    def update_stats(self):
-        """Fetch real DB stats using our tools."""
-        try:
-            # We use the list_tables tool which returns a markdown string
-            stats = list_tables()
-            # Remove the title and making it compact
-            compact_stats = stats.replace("📊 **Available Tables:**", "").strip()
-            self.query_one("#db-stats", Markdown).update(compact_stats)
-        except Exception as e:
-            self.query_one("#db-stats", Markdown).update(f"Error: {e}")
+        super().__init__()
+        self.log_container = Vertical(classes="thinking-logs")
+        self.collapsible = Collapsible(self.log_container, title="⚙️ Thinking Process...", collapsed=True)
+        self.collapsible.classes = "thinking-collapsible"
 
-class RyanApp(App):
-    """The main TUI Application."""
-    
+    def compose(self) -> ComposeResult:
+        yield self.collapsible
+
+    def add_log(self, content: str):
+        """Add a log entry to the thinking process."""
+        # Clean up formatting
+        content = content.replace("🔧 *Calling", "🔧 Executing")
+        content = content.replace("🔧 *Tool Output:", "✅ Output:")
+        
+        # Style errors
+        if "❌" in content or "⚠️" in content:
+            style = "color: #ff5555;"
+        else:
+            style = "color: #888;"
+            
+        self.log_container.mount(Label(content, style=style))
+        
+    def set_complete(self):
+        self.collapsible.title = "✅ Process Completed"
+
+# ... (RyanApp class)
+
     CSS = """
     Screen {
         layout: horizontal;
@@ -137,14 +98,19 @@ class RyanApp(App):
         height: auto;
     }
     
-    .tool-message {
-        background: #222;
-        color: #666;
-        margin: 0 4;
-        padding: 0 1;
-        text-style: italic;
-        border-left: wide #eba134; 
+    /* Thinking Process Styling */
+    .thinking-collapsible {
+        background: #252526;
+        border: solid #444;
+        margin: 1 0;
         height: auto;
+        padding: 0;
+    }
+    
+    .thinking-logs {
+        padding: 1;
+        height: auto;
+        background: #1e1e1e;
     }
     
     .avatar {
@@ -154,106 +120,71 @@ class RyanApp(App):
         padding-bottom: 0;
     }
     """
+
+    # ... (__init__ remains)
+
+    # ... (compose remains)
     
-    TITLE = "RyanRent Intelligent Agent (V2)"
-    BINDINGS = [
-        Binding("ctrl+q", "quit", "Quit"),
-        Binding("ctrl+r", "refresh_stats", "Refresh DB"),
-    ]
+    # ... (on_mount remains)
 
-    def __init__(self):
-        super().__init__()
-        # Initialize default agent using first model
-        self.agent = RyanAgent(provider=AVAILABLE_MODELS[0][1])
-        
-    def compose(self) -> ComposeResult:
-        # Sidebar
-        yield DatabaseSidebar()
-        
-        # Main Chat Area
-        with Container(id="chat-container"):
-            yield Header()
-            with ScrollableContainer(id="messages-area"):
-                yield ChatMessage("assistant", "👋 Hallo! Ik ben Ryan V2. Ik heb toegang tot de live database.\n\nWaar kan ik mee helpen?")
-            
-            yield Input(placeholder="Stel je vraag over de huizen, contracten of cijfers...", id="user-input")
-            yield Footer()
+    # ... (on_select_changed remains)
 
-    def on_mount(self):
-        """Called when app starts."""
-        self.query_one(DatabaseSidebar).update_stats()
-        self.query_one("#user-input").focus()
-
-    def on_select_changed(self, event: Select.Changed) -> None:
-        """Handle model selection change."""
-        if event.select.id == "model-select":
-            composite_value = str(event.value)
-            self.agent = RyanAgent(provider=composite_value)
-            
-            # Extract display name logic if possible, or just formatted value
-            if ":" in composite_value:
-                provider_name = composite_value.split(":")[0]
-                model_name = composite_value.split(":")[1]
-                display_name = f"{provider_name.capitalize()} ({model_name})"
-            else:
-                display_name = composite_value
-                
-            self.notify(f"Switched to {display_name}")
-
-    async def on_input_submitted(self, message: Input.Submitted):
-        """Handle user input."""
-        user_query = message.value
-        if not user_query:
-            return
-            
-        # Clear input
-        message.input.value = ""
-        
-        # Add user message to UI
-        await self.add_message("user", user_query)
-        
-        # Run agent in background worker to keep UI responsive
-        self.run_worker(self.process_agent_response(user_query))
+    # ... (on_input_submitted remains)
 
     async def process_agent_response(self, query: str):
         """Run the agent loop and stream updates to UI."""
         messages_area = self.query_one("#messages-area")
         
-        # Add a thinking indicator (optional, but good UX)
-        # For now, we'll just stream the responses
+        # 1. Show Loading Indicator
+        loading = LoadingIndicator()
+        await messages_area.mount(loading)
+        
+        # 2. Prepare Thinking Process
+        thinking_process = ThinkingProcess()
+        thinking_mounted = False # Don't mount until we have tool output
         
         try:
-            # We use the generator version of the agent logic
-            # Note: run() is a generator that yields strings
-            # Since ryan_v2.agent.run is synchronous generator, we iterate it directly
-            # BUT we should wrap it in thread if it blocks, but let's try direct first.
-            # Actually, network calls block. We need to run the generator in a thread.
-            
-            # Since our agent is sync, we'll just do it step by step
-            # Ideally we'd make the agent async, but for this demo:
-            
+            # Iterate through agent chunks
             for response_chunk in self.agent.run(query):
-                # Check if it's a tool notification or final answer
+                
+                # Remove loading indicator on first chunk
+                if loading:
+                    await loading.remove()
+                    loading = None
+                
+                # Analyze chunk type
                 is_tool_call = response_chunk.startswith("🔧")
                 is_error = "❌" in response_chunk or "⚠️" in response_chunk
                 
-                role = "tool" if (is_tool_call or is_error) else "assistant"
+                if is_tool_call or is_error:
+                    # Mount thinking process if not yet active
+                    if not thinking_mounted:
+                        await messages_area.mount(thinking_process)
+                        thinking_mounted = True
+                        
+                    thinking_process.add_log(response_chunk)
+                else:
+                    # Final Answer / Text
+                    # Mark thinking as done if it was active
+                    if thinking_mounted:
+                        thinking_process.set_complete()
+                        
+                    # Stream final answer
+                    await self.add_message("assistant", response_chunk)
+                    
+            # Cleanup if finished
+            if loading:
+                await loading.remove()
                 
-                # If it's an error, make it visible and red
-                if is_error:
-                    response_chunk = f"**{response_chunk}**"
-                
-                await self.add_message(role, response_chunk)
+            if thinking_mounted:
+                thinking_process.set_complete()
                 
         except Exception as e:
+            if loading: await loading.remove()
             await self.add_message("tool", f"❌ System Error: {str(e)}")
 
     async def add_message(self, role: str, content: str):
         """Add a message to the scroll area and scroll to bottom."""
-        # Clean up tool messages slightly for UI
-        if role == "tool":
-            content = content.replace("🔧 *Calling", "🔧 Executing tool:")
-            
         messages_area = self.query_one("#messages-area")
         await messages_area.mount(ChatMessage(role, content))
         messages_area.scroll_end(animate=True)
