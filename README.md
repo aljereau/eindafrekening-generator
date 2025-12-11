@@ -1,73 +1,52 @@
-# RyanRent - Multi-App Suite
+# RyanRent Bot & Tools
 
-A monorepo containing multiple applications for managing RyanRent's rental properties, all sharing a central database.
+This repository contains the RyanRent Intelligence Bot (TUI) and utilities like the Eindafrekening Generator.
 
-## Repository Structure
+## 🚀 Quick Start (Any Machine)
 
-```
-RyanRent/
-├── Eindafrekening/          # Settlement Report Generator (✅ Complete)
-├── Manager/                 # Database Management Tool (✅ MVP)
-├── Huizeninventaris/        # Property Inventory (🚧 Planned)
-├── Contracten/              # Contract Management (🚧 Planned)
-├── Incheck/                 # Check-in/Check-out (🚧 Planned)
-├── Shared/                  # Core Database & Entities
-│   ├── database.py          # Database management
-│   ├── entities.py          # Data models
-│   ├── migrations/          # Schema migrations
-│   └── scripts/             # Utility scripts
-└── Archive/                 # Old/deprecated files
-```
+The easiest way to run the bot is using the provided start script. It handles Docker setup automatically.
 
-## Quick Start
+### Prerequisites
+- Docker & Docker Compose installed.
+- A `.env` file with your API keys (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`).
 
-### Run the Settlement Generator
+### Launch
 ```bash
-python3 Eindafrekening/src/generate.py --no-pause --auto-open
+./start.sh
 ```
 
-### View the Database
+This will:
+1.  Build the secure container.
+2.  Install all dependencies.
+3.  Launch the interactive Chat TUI.
+
+---
+
+## 🛠️ Manual Launch (Developers)
+
+### Local Python
+If you prefer running without Docker:
 ```bash
-python3 Manager/manage.py
-```
-
-### Import Legacy Data
-```bash
-python3 Shared/scripts/import_legacy_data.py
-```
-
-## Database
-
-All apps share a single SQLite database: `Shared/database/ryanrent_core.db`
-
-**Tables:**
-- `properties` - Rental properties (381 imported)
-- `clients` - Customers (81 imported)
-- `contracts` - Rental agreements
-- `bookings` - Individual stays
-- `eindafrekeningen` - Settlement reports
-
-## Development
-
-**Requirements:**
-```bash
+# 1. Setup venv
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
+
+# 2. Run
+./start_bot.command
+# OR
+python3 HuizenManager/src/chat.py
 ```
 
-**Build Standalone App:**
-```bash
-cd Eindafrekening
-python3 scripts/build_app.py
-```
+### Docker Manual
+If you want to run docker commands yourself:
+*   **Build**: `docker compose build`
+*   **Run**: `docker compose run --rm --service-ports ryanrent-bot`
+    *   *Note: usage of `run` instead of `up` is required to allow you to type in the chat window.*
 
-## Files
-
-- `requirements.txt` - Python dependencies
-- `Ryanrent Sales...xlsm` - Legacy Excel data source
-- `.gitignore` - Git ignore rules
-
-## Notes
-
-- Each app folder is self-contained with its own `src/`, `templates/`, `assets/`
-- The `Shared/` folder contains code used by multiple apps
-- Old files have been moved to `Archive/`
+## 📂 Directory Structure
+*   **`HuizenManager/`**: Core logic and source code.
+    *   `src/`: Main python source (`bot.py`, `chat.py`).
+*   **`TUI/`**: The visual terminal interface (Textual based).
+*   **`Eindafrekening/`**: The Excel generator module.
+*   **`Shared/`**: Shared resources (DB schema, scripts).

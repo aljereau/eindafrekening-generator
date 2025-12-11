@@ -35,53 +35,69 @@ def create_master_template(output_path=None):
     # ==================== COLUMNS CONFIGURATION ====================
     columns_config = [
         # GLOBAL
-        ("Adres", None), ("Type", None), ("Klantnaam", None), ("Object ID", header_blue),
+        ("Adres", None), 
+        ("Type", None), 
+        ("Klantnaam", None), 
+        ("Object ID", header_blue), # D
+        ("Klant Nr (Auto)", header_blue), # E
+        ("RR Inspecteur", header_blue), # F
+        ("Folder Link", header_blue),   # G
         
         # BASIS (Blue)
-        ("Check-in", header_blue), ("Check-out", header_blue), ("Borg (€)", header_blue), 
-        ("GWE Beheer", header_blue), ("Meterbeheerder", header_blue), ("Leverancier", header_blue), ("Contractnr", header_blue), 
-        ("Extra Voorschot (€)", header_blue), ("Extra Voor. Omschr.", header_blue),
+        ("Check-in", header_blue),        # H
+        ("Check-out", header_blue),       # I
+        ("Borg (€)", header_blue),        # J
+        ("GWE Beheer", header_blue),      # K
+        ("GWE Maandbedrag (€)", header_blue), # L
+        ("Voorschot GWE (Auto)", header_blue), # M
         
-        # GWE Readings (Orange) (Cols N-S)
-        ("Elek Begin", header_orange), ("Elek Eind", header_orange), 
-        ("Gas Begin", header_orange), ("Gas Eind", header_orange), 
-        ("Water Begin", header_orange), ("Water Eind", header_orange),
+        ("Meterbeheerder", header_blue),  # N
+        ("Leverancier", header_blue),     # O
+        ("Leverancier Nr (Auto)", header_blue), # P
+        ("Contractnr", header_blue),      # Q
+        ("Extra Voorschot (€)", header_blue), # R
+        ("Extra Voor. Omschr.", header_blue), # S
         
-        # SCHOONMAAK (Gold) (Cols T-Z)
-        ("Schoon Maak Pakket", header_gold), "Schoon Uren", "Uurtarief (€)", "Totaal Excl (€)", "BTW %", "BTW Bedrag (€)", "Totaal Incl (€)",
+        # GWE Readings (Orange) (Cols T-Y)
+        ("Elek Begin", header_orange),    # T
+        ("Elek Eind", header_orange),     # U
+        ("Gas Begin", header_orange),     # V
+        ("Gas Eind", header_orange),      # W
+        ("Water Begin", header_orange),   # X
+        ("Water Eind", header_orange),    # Y
         
-        # ITEMS (Red) (Cols AA-AI)
-        # Added: Kosten Type, Eenheid
-        ("Kosten Type", header_red), ("Eenheid", header_red),
-        ("Beschrijving", header_red), ("Aantal", header_red), ("Prijs/Stuk (€)", header_red), 
-        ("Totaal Excl (€)", header_red), "BTW %", "BTW Bedrag (€)", "Totaal Incl (€)"
+        # SCHOONMAAK (Gold) (Cols Z-AE)
+        ("Schoon Maak Pakket", header_gold), # Z
+        ("Schoon Uren", header_gold),     # AA
+        ("Uurtarief (€)", header_gold),   # AB
+        ("Totaal Excl (€)", header_gold), # AC
+        ("BTW %", header_gold),           # AD
+        ("BTW Bedrag (€)", header_gold),  # AE
+        ("Totaal Incl (€)", header_gold), # AF
+        
+        # ITEMS (Red) (Cols AG-AO)
+        ("Kosten Type", header_red),      # AG
+        ("Eenheid", header_red),          # AH
+        ("Beschrijving", header_red),     # AI
+        ("Aantal", header_red),           # AJ
+        ("Prijs/Stuk (€)", header_red),   # AK
+        ("Totaal Excl (€)", header_red),  # AL
+        ("BTW %", header_red),            # AM
+        ("BTW Bedrag (€)", header_red),   # AN
+        ("Totaal Incl (€)", header_red)   # AO
     ]
-    
+
     # Write Headers
-    # Simplify loop to handle tuple or string
     count = 1
     for item in columns_config:
-        if isinstance(item, tuple):
-            name, fill = item
-        else:
-            name, fill = item, PatternFill(start_color="FFC000", end_color="FFC000", fill_type="solid") # Default Gold/Red hack
-
-        # Fix fill logic:
-        # Schoonmaak strings -> Gold
-        # Items strings -> Red
-        if not isinstance(item, tuple):
-             if "Schoon" in name or "Uurtarief" in name or "Incl" in name or "Excl" in name: 
-                 if count >= 20 and count <= 26: fill = header_gold
-                 elif count >= 27: fill = header_red
-        
+        name, fill = item
+        if not fill:
+            fill = PatternFill(start_color="5B5B5B", end_color="5B5B5B", fill_type="solid")
+            
         cell = ws.cell(row=1, column=count)
         cell.value = name
-        if fill:
-            cell.fill = fill
-            cell.font = header_font
-        else:
-            cell.fill = PatternFill(start_color="5B5B5B", end_color="5B5B5B", fill_type="solid")
-            cell.font = header_font
+        cell.fill = fill
+        cell.font = header_font
         cell.alignment = Alignment(horizontal='center')
         ws.column_dimensions[openpyxl.utils.get_column_letter(count)].width = 15
         count += 1
@@ -89,115 +105,130 @@ def create_master_template(output_path=None):
     # Specific widths
     ws.column_dimensions['A'].width = 25 
     ws.column_dimensions['C'].width = 25 
-    ws.column_dimensions['AC'].width = 30 # Beschrijving (New Index AA -> AC)
-    
+    ws.column_dimensions['G'].width = 30 # Folder Link
+    ws.column_dimensions['AI'].width = 30 # Beschrijving
+
     # ==================== FORMULAS & VALIDATION ====================
-    # Indices Mapping:
-    # ...
-    # Z (26) = Schoon TotIncl
-    # AA (27) = Kosten Type
-    # AB (28) = Eenheid
-    # AC (29) = Beschrijving
-    # AD (30) = Aantal
-    # AE (31) = Prijs
-    # AF (32) = TotEx
-    # AG (33) = BTW%
-    # AH (34) = BTW€
-    # AI (35) = TotInc
-    
+
     # Row Type
     dv_type = DataValidation(type="list", formula1='"Basis,GWE,GWE_Item,Schoonmaak,Schade,Extra"', allow_blank=False)
     ws.add_data_validation(dv_type)
     dv_type.add('B2:B5000')
-    
-    # Addresses & Clients
+
+    # Addresses
     dv_adres = DataValidation(type="list", formula1='=Lists!$A$2:$A$5000', allow_blank=True)
     ws.add_data_validation(dv_adres)
     dv_adres.add('A2:A5000')
 
+    # Clients (Col C)
     dv_client = DataValidation(type="list", formula1='=Lists!$C$2:$C$5000', allow_blank=True)
     ws.add_data_validation(dv_client)
     dv_client.add('C2:C5000')
-    
-    # GWE Beheer
+
+    # GWE Beheer (Col K)
     dv_gwe = DataValidation(type="list", formula1='"Via RyanRent,Eigen Beheer"', allow_blank=True)
     ws.add_data_validation(dv_gwe)
-    dv_gwe.add('H2:H5000')
-    
-    # Schoonmaak Pakket
+    dv_gwe.add('K2:K5000')
+
+    # Schoonmaak Pakket (Col Z)
     dv_clean = DataValidation(type="list", formula1='"Basis Schoonmaak,Intensief Schoonmaak,Geen Schoonmaak,Achteraf Betaald"', allow_blank=True)
     ws.add_data_validation(dv_clean)
-    dv_clean.add('T2:T5000')
-    
-    # Kosten Type (New)
+    dv_clean.add('Z2:Z5000')
+
+    # Kosten Type (Col AG)
     dv_kosten = DataValidation(type="list", formula1='"Elektra,Gas,Water,Overig"', allow_blank=True)
     ws.add_data_validation(dv_kosten)
-    # Apply to Col AA (27)
-    dv_kosten.add('AA2:AA5000')
+    dv_kosten.add('AG2:AG5000')
+
+    # Styles
+    grey_fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
 
     # Prefill Formulas
     for r in range(2, 202):
-        # ObjID
+        # D: ObjID -> VLOOKUP Address in Lists A:B -> 2
         ws[f'D{r}'] = f'=IF(A{r}="","",VLOOKUP(A{r},Lists!$A:$B,2,FALSE))'
+        ws[f'D{r}'].fill = grey_fill 
+        
+        # E: Klant Nr -> VLOOKUP ClientName(C) in Lists C:D -> 2
+        ws[f'E{r}'] = f'=IF(C{r}="","",VLOOKUP(C{r},Lists!$C:$D,2,FALSE))'
+        ws[f'E{r}'].fill = grey_fill
+        
+        # F & G Meta
+        ws[f'F{r}'].fill = grey_fill
+        ws[f'G{r}'].fill = grey_fill
+
+        # J: Borg (€) - Pre-fill from Lists Column H (Index 8)
+        ws[f'J{r}'] = f'=IF(A{r}="","",IFERROR(VLOOKUP(A{r},Lists!$A:$H,8,FALSE),0))'
+        ws[f'J{r}'].number_format = '€ #,##0.00'
+
+        # L: GWE Maandbedrag - PREFILL from Lists Col G (Index 7)
+        ws[f'L{r}'] = f'=IF(A{r}="","",IFERROR(VLOOKUP(A{r},Lists!$A:$H,7,FALSE),0))'
+        ws[f'L{r}'].number_format = '€ #,##0.00'
+
+        # M: GWE Voorschot (Auto) = IF(GWE Beheer="Eigen Beheer", 0, (Maandbedrag * 12 / 365) * Dagen)
+        # K = GWE Beheer, L = Maandbedrag, I = Checkout, H = Checkin
+        # Using commas for formula standard (Excel converts to semicolon based on locale)
+        ws[f'M{r}'] = f'=IF(K{r}="Eigen Beheer",0,IF(AND(ISNUMBER(L{r}),I{r}<>"",H{r}<>""),(L{r}*12/365)*(I{r}-H{r}),0))'
+        ws[f'M{r}'].number_format = '€ #,##0.00'
+        ws[f'M{r}'].fill = grey_fill 
+        
+        # P: Lev Nr -> VLOOKUP LevName(O) in Lists E:F -> 2
+        ws[f'P{r}'] = f'=IF(O{r}="","",VLOOKUP(O{r},Lists!$E:$F,2,FALSE))'
+        ws[f'P{r}'].fill = grey_fill 
         
         # Schoonmaak Calculations
-        # W (TotEx) = U*V
-        ws[f'W{r}'] = f'=IF(AND(U{r}<>"",V{r}<>""),U{r}*V{r},"")'
-        ws[f'W{r}'].fill = fill_calc
-        ws[f'W{r}'].number_format = '€ #,##0.00'
-        # Y (BTW€) = W*X
-        ws[f'Y{r}'] = f'=IF(AND(W{r}<>"",X{r}<>""),W{r}*X{r},"")'
-        ws[f'Y{r}'].fill = fill_calc
-        ws[f'Y{r}'].number_format = '€ #,##0.00'
-        # Z (TotInc) = W+Y
-        ws[f'Z{r}'] = f'=IF(AND(W{r}<>"",Y{r}<>""),W{r}+Y{r},"")'
-        ws[f'Z{r}'].fill = fill_calc
-        ws[f'Z{r}'].number_format = '€ #,##0.00'
+        # AC (TotEx) = AA(Uren) * AB(Tarief)
+        ws[f'AC{r}'] = f'=IF(AND(AA{r}<>"",AB{r}<>""),AA{r}*AB{r},"")'
+        ws[f'AC{r}'].fill = fill_calc
+        ws[f'AC{r}'].number_format = '€ #,##0.00'
         
-        # ITEM CALCULATIONS
-        # AD (Aantal) - SMART LOOKUP
-        # If GWE_Item + Elektra/Gas/Water -> Fetch Consumption from GWE row
-        # Formula uses SUMIFS to find the GWE row for the SAME address
-        # Elek: O(Eind) - N(Begin)
-        # Gas: Q(Eind) - P(Begin)
-        # Water: S(Eind) - R(Begin)
+        # AD (BTW%)
+        ws[f'AD{r}'].number_format = '0%'
+
+        # AE (BTW€) = AC * AD
+        ws[f'AE{r}'] = f'=IF(AND(AC{r}<>"",AD{r}<>""),AC{r}*AD{r},"")'
+        ws[f'AE{r}'].fill = fill_calc
+        ws[f'AE{r}'].number_format = '€ #,##0.00'
         
-        # Construct the formula parts (Removed outer parens)
-        f_elek = f'SUMIFS($O:$O,$A:$A,$A{r},$B:$B,"GWE")-SUMIFS($N:$N,$A:$A,$A{r},$B:$B,"GWE")'
-        f_gas = f'SUMIFS($Q:$Q,$A:$A,$A{r},$B:$B,"GWE")-SUMIFS($P:$P,$A:$A,$A{r},$B:$B,"GWE")'
-        f_water = f'SUMIFS($S:$S,$A:$A,$A{r},$B:$B,"GWE")-SUMIFS($R:$R,$A:$A,$A{r},$B:$B,"GWE")'
-        
-        # Main Logic
-        f_smart = f'IF($AA{r}="Elektra",{f_elek},IF($AA{r}="Gas",{f_gas},IF($AA{r}="Water",{f_water},"")))'
-        
-        ws[f'AD{r}'] = f'=IF($B{r}="GWE_Item",{f_smart},"")'
-        
-        # AF (TotEx) = AD (Aantal) * AE (Prijs)
-        ws[f'AF{r}'] = f'=IF(AND(AD{r}<>"",AE{r}<>""),AD{r}*AE{r},"")'
+        # AF (TotInc) = AC + AE
+        ws[f'AF{r}'] = f'=IF(AND(AC{r}<>"",AE{r}<>""),AC{r}+AE{r},"")'
         ws[f'AF{r}'].fill = fill_calc
         ws[f'AF{r}'].number_format = '€ #,##0.00'
         
-        # AH (BTW€) = AF * AG
-        ws[f'AH{r}'] = f'=IF(AND(AF{r}<>"",AG{r}<>""),AF{r}*AG{r},"")'
-        ws[f'AH{r}'].fill = fill_calc
-        ws[f'AH{r}'].number_format = '€ #,##0.00'
+        # ITEM CALCULATIONS
+        # AJ (Aantal) - SMART LOOKUP
+        # GWE Indices: ElekBegin=T, ElekEind=U, GasBegin=V, GasEind=W, WaterBegin=X, WaterEind=Y
+        f_elek = f'SUMIFS($U:$U,$A:$A,$A{r},$B:$B,"GWE")-SUMIFS($T:$T,$A:$A,$A{r},$B:$B,"GWE")'
+        f_gas = f'SUMIFS($W:$W,$A:$A,$A{r},$B:$B,"GWE")-SUMIFS($V:$V,$A:$A,$A{r},$B:$B,"GWE")'
+        f_water = f'SUMIFS($Y:$Y,$A:$A,$A{r},$B:$B,"GWE")-SUMIFS($X:$X,$A:$A,$A{r},$B:$B,"GWE")'
         
-        # AI (TotInc) = AF + AH
-        ws[f'AI{r}'] = f'=IF(AND(AF{r}<>"",AH{r}<>""),AF{r}+AH{r},"")'
-        ws[f'AI{r}'].fill = fill_calc
-        ws[f'AI{r}'].number_format = '€ #,##0.00'
+        f_smart = f'IF($AG{r}="Elektra",{f_elek},IF($AG{r}="Gas",{f_gas},IF($AG{r}="Water",{f_water},"")))'
+        
+        ws[f'AJ{r}'] = f'=IF($B{r}="GWE_Item",{f_smart},"")'
+        
+        # AL (TotEx) = AJ * AK
+        ws[f'AL{r}'] = f'=IF(AND(AJ{r}<>"",AK{r}<>""),AJ{r}*AK{r},"")'
+        ws[f'AL{r}'].fill = fill_calc
+        ws[f'AL{r}'].number_format = '€ #,##0.00'
+        
+        # AM (BTW%)
+        ws[f'AM{r}'].number_format = '0%'
+
+        # AN (BTW€) = AL * AM
+        ws[f'AN{r}'] = f'=IF(AND(AL{r}<>"",AM{r}<>""),AL{r}*AM{r},"")'
+        ws[f'AN{r}'].fill = fill_calc
+        ws[f'AN{r}'].number_format = '€ #,##0.00'
+        
+        # AO (TotInc) = AL + AN
+        ws[f'AO{r}'] = f'=IF(AND(AL{r}<>"",AN{r}<>""),AL{r}+AN{r},"")'
+        ws[f'AO{r}'].fill = fill_calc
+        ws[f'AO{r}'].number_format = '€ #,##0.00'
 
     # Conditional Formatting
-    grey_fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
-    
-    # Basis: D-M -> Basis
-    ws.conditional_formatting.add('D2:M5000', FormulaRule(formula=['$B2<>"Basis"'], stopIfTrue=True, fill=grey_fill))
-    # GWE: N-S -> GWE (Readings)
-    ws.conditional_formatting.add('N2:S5000', FormulaRule(formula=['$B2<>"GWE"'], stopIfTrue=True, fill=grey_fill))
-    # Cleaning: T-Z -> Schoonmaak
-    ws.conditional_formatting.add('T2:Z5000', FormulaRule(formula=['$B2<>"Schoonmaak"'], stopIfTrue=True, fill=grey_fill))
-    # Items: AA-AI -> Schade OR Extra OR GWE_Item
-    ws.conditional_formatting.add('AA2:AI5000', FormulaRule(formula=['AND($B2<>"Schade",$B2<>"Extra",$B2<>"GWE_Item")'], stopIfTrue=True, fill=grey_fill))
+    ws.conditional_formatting.add('D2:S5000', FormulaRule(formula=['$B2<>"Basis"'], stopIfTrue=True, fill=grey_fill))
+    ws.conditional_formatting.add('T2:Y5000', FormulaRule(formula=['$B2<>"GWE"'], stopIfTrue=True, fill=grey_fill))
+    ws.conditional_formatting.add('Z2:AF5000', FormulaRule(formula=['$B2<>"Schoonmaak"'], stopIfTrue=True, fill=grey_fill))
+    ws.conditional_formatting.add('AG2:AO5000', FormulaRule(formula=['AND($B2<>"Schade",$B2<>"Extra",$B2<>"GWE_Item")'], stopIfTrue=True, fill=grey_fill))
 
     ws.freeze_panes = 'A2'
     
@@ -224,7 +255,6 @@ def create_dashboard_sheet(wb, input_ws):
         
     ws.column_dimensions['A'].width = 30
     
-    # Use _xlfn. prefix for dynamic array functions to ensure compatibility
     ws['A4'] = '=_xlfn.UNIQUE(_xlfn.FILTER(Input!A2:A5000, Input!A2:A5000<>""))'
     
     for i in range(4, 54): 
@@ -246,34 +276,59 @@ def create_lists_sheet(wb):
     ws.sheet_state = 'hidden'
     ws['A1'] = "Address"
     ws['B1'] = "Object ID"
-    ws['C1'] = "Clients"
+    ws['C1'] = "Clients (Name)"
+    ws['D1'] = "Clients (ID)"
+    ws['E1'] = "Leveranciers (Name)"
+    ws['F1'] = "Leveranciers (ID)"
+    ws['G1'] = "GWE Voorschot (Default)"
+    ws['H1'] = "Borg (Default)"
     
     try:
         db = Database()
         conn = db.get_connection()
+        
+        # Houses with GWE info and Borg
         cursor = conn.execute("""
-            SELECT adres, object_id 
+            SELECT adres, object_id, voorschot_gwe, borg
             FROM huizen 
             WHERE status='active' AND object_id IS NOT NULL AND object_id != ''
             ORDER BY adres
         """)
         houses = cursor.fetchall()
-        cursor = conn.execute("SELECT naam FROM relaties WHERE is_klant=1 ORDER BY naam")
-        clients = [row[0] for row in cursor.fetchall()]
+
+        # Clients
+        cursor = conn.execute("SELECT naam, id FROM relaties WHERE is_klant=1 ORDER BY naam")
+        clients = cursor.fetchall()
+        
+        # Suppliers (Leveranciers)
+        cursor = conn.execute("SELECT naam, id FROM leveranciers ORDER BY naam")
+        suppliers = cursor.fetchall()
+        
         conn.close()
         
-        for i, (addr, obj_id) in enumerate(houses, 2):
+        for i, (addr, obj_id, gwe_val, borg_val) in enumerate(houses, 2):
             ws[f'A{i}'] = addr
             ws[f'B{i}'] = obj_id if obj_id else ""
-        for i, name in enumerate(clients, 2):
-            ws[f'C{i}'] = name
+            ws[f'G{i}'] = gwe_val if gwe_val else 0
+            ws[f'H{i}'] = borg_val if borg_val else 0
             
-        print(f"📊 Added {len(houses)} houses and {len(clients)} clients to lists")
+        for i, (name, c_id) in enumerate(clients, 2):
+            ws[f'C{i}'] = name
+            ws[f'D{i}'] = c_id
+            
+        for i, (name, l_id) in enumerate(suppliers, 2):
+            ws[f'E{i}'] = name
+            ws[f'F{i}'] = l_id
+            
+        print(f"📊 Added {len(houses)} houses, {len(clients)} clients, {len(suppliers)} suppliers to lists")
             
     except Exception as e:
         print(f"⚠️ Could not fetch data: {e}")
+        # Valid Fallback for development
         ws['A2'] = "Test Address 1"
         ws['B2'] = "OBJ-001"
+        ws['G2'] = 50.00
+        ws['H2'] = 500.00
         ws['C2'] = "Test Client"
 
 if __name__ == "__main__":

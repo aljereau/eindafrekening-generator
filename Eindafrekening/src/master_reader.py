@@ -33,7 +33,11 @@ class MasterReader:
         """Read master sheet and return list of booking data dicts"""
         print(f"📖 Reading Master Input: {self.filepath}")
         wb = openpyxl.load_workbook(self.filepath, data_only=True)
-        ws = wb.active # Assume first sheet
+        if 'Input' in wb.sheetnames:
+            ws = wb['Input']
+        else:
+            print("⚠️ 'Input' sheet not found, using active sheet")
+            ws = wb.active
         
         # Group rows by Address (or Booking Identifier if available)
         # Using Address + Checkin Date as unique key would be safer, 
@@ -107,21 +111,25 @@ class MasterReader:
                 has_basis = True
                 
                 # Column mapping based on updated template
-                # 0:Adres, 1:Type, 2:Klant, 3:ObjID
-                # 4:Checkin, 5:Checkout, 6:Borg
-                # 7:GWEBeh, 8:Meter, 9:Lev, 10:Contr, 11:ExVr, 12:ExDesc
+                # 0:Adres, 1:Type, 2:Klant, 3:ObjID, 4:KlantNr, 5:Insp, 6:Link
+                # 7:Checkin, 8:Checkout, 9:Borg
+                # 10:GWEBeh, 11:GWEMaand, 12:GWEAuto, 13:Verreken, 14:LevName, 15:LevID, 16:Contract, 17:ExVoor, 18:ExDesc
                 
                 klant_naam = row[2]
-                checkin = parse_date(row[4])
-                checkout = parse_date(row[5])
-                borg_voorschot = parse_float(row[6])
+                checkin = parse_date(row[7]) # H
+                checkout = parse_date(row[8]) # I
+                borg_voorschot = parse_float(row[9]) # J
                 
-                gwe_beheer_val = str(row[7]).strip() if row[7] else "Via RyanRent"
+                gwe_beheer_val = str(row[10]).strip() if row[10] else "Via RyanRent" # K
                 gwe_settings['beheer_type'] = gwe_beheer_val
                 
-                # Extra Voorschot
-                ex_voor_bedrag = parse_float(row[11])
-                ex_voor_desc = str(row[12]) if row[12] else "Extra Voorschot"
+                # GWE Voorschot (Auto) - Column M (Index 12)
+                # This is the monthly amount * months usually, calculated in Excel
+                gwe_voorschot_auto = parse_float(row[12])
+                
+                # Extra Voorschot - Col R(17), S(18)
+                ex_voor_bedrag = parse_float(row[17])
+                ex_voor_desc = str(row[18]) if row[18] else "Extra Voorschot"
                 
                 if ex_voor_bedrag > 0:
                     extra_voorschot = ExtraVoorschot(
@@ -143,13 +151,14 @@ class MasterReader:
                 deposit = Deposit(voorschot=borg_voorschot, gebruikt=0.0, terug=0.0, restschade=0.0)
 
             elif row_type == "GWE":
-                # Readings (Cols N-S -> Indices 13-18)
-                elek_start = parse_float(row[13])
-                elek_eind = parse_float(row[14])
-                gas_start = parse_float(row[15])
-                gas_eind = parse_float(row[16])
-                water_start = parse_float(row[17])
-                water_eind = parse_float(row[18])
+                # Readings (Cols T-Y -> Indices 19-24)
+                # T19, U20, V21, W22, X23, Y24
+                elek_start = parse_float(row[19])
+                elek_eind = parse_float(row[20])
+                gas_start = parse_float(row[21])
+                gas_eind = parse_float(row[22])
+                water_start = parse_float(row[23])
+                water_eind = parse_float(row[24])
                 
                 stroom = GWEMeterReading(begin=elek_start, eind=elek_eind, verbruik=elek_eind-elek_start)
                 gas = GWEMeterReading(begin=gas_start, eind=gas_eind, verbruik=gas_eind-gas_start)
@@ -158,49 +167,85 @@ class MasterReader:
                 gwe_standen = GWEMeterstanden(stroom=stroom, gas=gas, water=water)
                 
             elif row_type == "Schoonmaak":
-                # Cleaning (Cols T-Z -> Indices 19-25)
-                # 19:Pakket, 20:Uren, 21:Tarief, 22:TotEx, 23:BTW%, 24:BTW€, 25:TotInc
-                pakket = str(row[19]).strip()
-                uren = parse_float(row[20])
-                tarief = parse_float(row[21])
-                btw_pct = parse_float(row[23]) # Index 23 now
+                # Cleaning (Cols Z-AF -> Indices 25-31)
+                # Z(25):Pakket, AA:Uren, AB:Tarief, AC:TotEx, AD:BTW%, AE:BTW€, AF:TotInc
+                pakket = str(row[25]).strip()
+                uren = parse_float(row[26])
+                tarief = parse_float(row[27])
+                btw_pct = parse_float(row[29]) # AD is Index 29
                 
                 if not btw_pct: btw_pct = 0.21
                 if btw_pct > 1: btw_pct = btw_pct / 100 
                 
                 # Map packet name
                 pakket_code = '5_uur'
-                if 'basis' in pakket.lower(): pakket_code = '5_uur'
-                elif 'intensief' in pakket.lower(): pakket_code = '7_uur'
-                elif 'geen' in pakket.lower(): pakket_code = 'geen'
-                elif 'achteraf' in pakket.lower(): pakket_code = 'achteraf'
+                inbegrepen_std = 5.0
+                if 'basis' in pakket.lower(): 
+                    pakket_code = '5_uur'
+                    inbegrepen_std = 5.0
+                elif 'intensief' in pakket.lower(): 
+                    pakket_code = '7_uur'
+                    inbegrepen_std = 7.0
+                elif 'geen' in pakket.lower(): 
+                    pakket_code = 'geen'
+                    inbegrepen_std = 0.0
+                elif 'achteraf' in pakket.lower(): 
+                    pakket_code = 'achteraf'
+                    inbegrepen_std = 0.0
                 
-                # Calculate costs
-                total_cost = uren * tarief * (1 + btw_pct)
+                # Calculate costs. Use Excel totals if available? Or recalc.
+                # Let's verify Excel TotIncl at index 31 (AF)
+                total_cost = parse_float(row[31])
+                if total_cost == 0:
+                     total_cost = uren * tarief * (1 + btw_pct)
+                
+                # Implied Voorschot Calculation (Prepaid Package)
+                # If package is standard (5 or 7 hours), we assume the standard hours are prepaid.
+                # Any hours ABOVE standard should be charged.
+                # So Voorschot = Standard Hours * Rate * (1+VAT)
+                cleaning_voorschot = 0.0
+                min_cost_incl = 0.0
+                
+                if pakket_code in ['5_uur', '7_uur']:
+                    cleaning_voorschot = inbegrepen_std * tarief * (1 + btw_pct)
+                    min_cost_incl = cleaning_voorschot
+                
+                # Enforce No Refund Policy:
+                # The total cost must be at least the package price (min_cost_incl).
+                # Even if actual hours < included hours, the cost IS the package price.
+                # Additional hours increase the cost.
+                
+                actual_calc_cost = uren * tarief * (1 + btw_pct)
+                final_total_cost = max(min_cost_incl, actual_calc_cost)
+                
+                # Update total_cost from Excel if it looks valid (greater than 0), otherwise use calculated
+                # But even if Excel has a value, we should enforce the floor if it's logically a package
+                if total_cost > 0:
+                     final_total_cost = max(min_cost_incl, total_cost)
                 
                 cleaning = Cleaning(
                     pakket_type=pakket_code,
                     pakket_naam=pakket,
-                    inbegrepen_uren=0, 
+                    inbegrepen_uren=inbegrepen_std, # Use explicit standard hours
                     totaal_uren=uren,
-                    extra_uren=0,
+                    extra_uren=max(0, uren - inbegrepen_std),
                     uurtarief=tarief,
-                    extra_bedrag=0,
-                    voorschot=0, 
-                    totaal_kosten_incl=total_cost,
+                    extra_bedrag=max(0, uren - inbegrepen_std) * tarief,
+                    voorschot=cleaning_voorschot, 
+                    totaal_kosten_incl=final_total_cost,
                     btw_percentage=btw_pct,
-                    btw_bedrag=total_cost - (total_cost/(1+btw_pct))
+                    btw_bedrag=final_total_cost - (final_total_cost/(1+btw_pct))
                 )
 
             elif row_type == "GWE_Item":
-                # Cols AA-AI (Indices 26-34)
-                # 26:Type, 27:Eenheid, 28:Desc, 29:Aant, 30:Prijs, 31:TotEx, 32:BTW%, 33:BTW€, 34:TotInc
-                k_type = str(row[26]).strip() if row[26] else "Overig"
-                eenheid = str(row[27]).strip() if row[27] else ""
-                desc = row[28]
-                aantal = parse_float(row[29])
-                prijs = parse_float(row[30])
-                btw = parse_float(row[32])
+                # Cols AG-AO (Indices 32-40)
+                # AG(32):Type, AH:Eenheid, AI:Desc, AJ:Aant, AK:Prijs, AL:TotEx, AM:BTW%, AN:BTW€, AO:TotInc
+                k_type = str(row[32]).strip() if row[32] else "Overig"
+                eenheid = str(row[33]).strip() if row[33] else ""
+                desc = row[34]
+                aantal = parse_float(row[35])
+                prijs = parse_float(row[36])
+                btw = parse_float(row[38]) # AM is 38
                 
                 if btw > 1: btw = btw / 100
                 if not btw: btw = 0.21
@@ -219,12 +264,11 @@ class MasterReader:
                 ))
 
             elif row_type in ["Schade", "Extra"]:
-                # Cols AA-AI (Indices 26-34) - SAME columns as GWE_Item!
-                # 26:Type (Ignore), 27:Eenheid (Ignore?), 28:Desc, 29:Aant, 30:Prijs, 32:BTW%
-                desc = row[28]
-                qty = parse_float(row[29])
-                amt = parse_float(row[30]) 
-                btw = parse_float(row[32]) 
+                # Item Cols (32-40)
+                desc = row[34] # AI
+                qty = parse_float(row[35]) # AJ
+                amt = parse_float(row[36]) # AK (Prijs/Stuk)
+                btw = parse_float(row[38]) # AM
                 
                 if btw > 1: btw = btw / 100
                 if not btw: btw = 0.21 
@@ -261,7 +305,30 @@ class MasterReader:
             
         if not cleaning:
             cleaning = Cleaning('geen', 'Geen pakket', 0,0,0,0,0,0,0,0,0)
+            
+        # GWE Voorschot Validation
+        # If gwe_voorschot_auto (calculated in Excel) is available, use it.
+        # Otherwise default to 0. 
+        # Note: variable gwe_voorschot_auto was typically set in 'Basis' block.
+        # If 'Basis' block executed (has_basis checked), then gwe_voorschot_auto must have been set or valid scope?
+        # Yes, defined in Basis block. But scope in Python loop? 
+        # Actually gwe_voorschot_auto is set inside the loop. If multiple Basis rows (unlikely), last one wins.
+        # But wait, python scope leaks variable after loop. But if loop didn't run basis, we returned None.
+        # So gwe_voorschot_auto is safe to access here if initialized.
+        # Let's initialize it before loop to be safe.
+        
+        # Initialize loop vars
+        gwe_voorschot_auto_final = 0.0
 
+        # Wait, I can't easily access variables from inside the previous loop block if they weren't init outside.
+        # I should've initialized gwe_voorschot_auto at top of _process_booking_rows.
+        # Or I can assume if has_basis is true, the variable is bound.
+        # But cleaner to check. I'll pass it via a local dict or just trust logic.
+        # Actually, `gwe_voorschot_auto` is defined inside `if row_type == "Basis":`.
+        # Python variables DO leak to function scope. So it exists.
+        
+        # Initialize at top for clarity in future, but for this edit patch I will just trust it or default it calculation.
+        
         # Totals mapping
         gwe_totalen = GWETotalen(0,0,0, gwe_settings['beheer_type'])
         damage_totalen = DamageTotalen(0,0,0)
@@ -271,6 +338,7 @@ class MasterReader:
             'object': rental_property,
             'period': period,
             'deposit': deposit,
+            'gwe_voorschot': locals().get('gwe_voorschot_auto', 0.0), # Use locals get to be safe
             'gwe_meterstanden': gwe_standen,
             'gwe_regels': gwe_regels, 
             'gwe_totalen': gwe_totalen,

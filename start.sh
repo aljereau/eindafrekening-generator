@@ -26,4 +26,9 @@ fi
 echo "Starting RyanRent Intelligence Bot..."
 echo ""
 
-docker-compose up --build
+# Run interactively (needed for TUI)
+# --rm: Remove container after exit
+# --service-ports: Map ports so they are accessible
+echo "🚀 Launching TUI in Docker..."
+docker-compose build
+docker-compose run --rm --service-ports ryanrent-bot

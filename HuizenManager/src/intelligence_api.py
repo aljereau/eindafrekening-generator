@@ -18,7 +18,8 @@ class IntelligenceAPI:
 
     def __init__(self, db_path: str = None, allow_writes: bool = False):
         # Default to the core DB, but allow overriding (e.g. for mock DB)
-        self.db_path = db_path or "database/ryanrent_core.db"
+        # Default to mock DB as per user request to avoid accidental production edits
+        self.db_path = db_path or "database/ryanrent_mock.db"
         self.db = Database(self.db_path)
         self.manager = HuizenManager(self.db)
         self.allow_writes = allow_writes
@@ -33,63 +34,156 @@ class IntelligenceAPI:
             d[col[0]] = row[idx]
         return d
 
-    def get_database_schema(self) -> str:
+    def get_database_schema(self, summary_mode: bool = True) -> str:
         """
-        Dynamically retrieves the database schema AND data context (counts, distinct values).
-        Returns a formatted string suitable for the LLM system prompt.
+        Dynamically retrieves the database schema.
+        
+        Args:
+            summary_mode: If True, returns only table names and descriptions (Low Token Cost).
+                          If False, returns full column details and samples (High Token Cost).
         """
         conn = self._get_connection()
         cursor = conn.cursor()
         
-        # Get all tables
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'")
-        tables = cursor.fetchall()
+        # Get all tables and views
+        cursor.execute("SELECT name, type FROM sqlite_master WHERE type IN ('table', 'view') AND name NOT LIKE 'sqlite_%'")
+        items = cursor.fetchall()
         
-        schema_lines = ["**DB Schema:**"]
-        
-        # Columns to sample for distinct values (Enums)
-        enum_columns = {
-            "huizen": ["status", "woning_type"],
-            "klanten": ["type"],
-            "boekingen": ["status"],
-            "borg_transacties": ["type"]
-        }
-        
-        ignored_tables = ['schema_migrations', 'schema_versions', 'sqlite_sequence']
-
-        for table in tables:
-            table_name = table[0]
-            if table_name in ignored_tables:
-                continue
+        if summary_mode:
+            # Low Token Mode (~100-200 tokens)
+            schema_lines = ["**Database Overview (Use 'get_table_info' to see columns):**"]
+            ignored_items = ['schema_migrations', 'schema_versions', 'sqlite_sequence']
             
+            # Brief descriptions for known tables
+            descriptions = {
+                "huizen": "rental properties, addresses, status (BUT NO PRICE DATA)",
+                "klanten": "clients/tenants, contact info",
+                "boekingen": "reservations, dates, status",
+                "inhuur_contracten": "contracts with owners (sourcing)",
+                "verhuur_contracten": "contracts with tenants (renting)",
+                "leveranciers": "owners/suppliers",
+                "inspecties": "house inspections (check-in/out)",
+                "voorschot_updates": "history of GWE advance payments",
+                "v_house_costs": "⚠️ MASTER PRICING VIEW. Join this for estimated_rent, base_cost, and margins. Use this for empty houses."
+            }
+
+            for item in items:
+                name = item[0]
+                type_ = item[1]
+                if name in ignored_items:
+                    continue
+                
+                desc = descriptions.get(name, "data table/view")
+                schema_lines.append(f"- **{name}** ({type_}): {desc}")
+            
+            conn.close()
+            return "\n".join(schema_lines)
+
+        else:
+            # Full Schema Mode (~2000+ tokens) - Legacy/Debug use
+            # ... (Implementation similar to before, but handling views if needed)
+            # For strictness, let's just use the summary mode update for now as that's what's active.
+            # But I need to preserve the else block structure.
+            # I will just return the original else block logic but adapted if I must, 
+            # Or I can just leave the else block mostly as is if the user didn't ask to change it?
+            # The instruction implies replacing the block. I should provide the full block replacement for safety.
+            
+            # Since the replacement chunk must remain contiguous, I will include the else block logic but updated.
+            
+            schema_lines = ["**Detailed DB Schema:**"]
+            
+            # Columns to sample for distinct values (Enums)
+            enum_columns = {
+                "huizen": ["status", "woning_type"],
+                "klanten": ["type"],
+                "boekingen": ["status"],
+                "borg_transacties": ["type"]
+            }
+            
+            ignored_items = ['schema_migrations', 'schema_versions', 'sqlite_sequence']
+            
+            for item in items:
+                name = item[0]
+                if name in ignored_items:
+                    continue
+                
+                # Get Row Count (skipped for views usually, or count(*))
+                try:
+                    cursor.execute(f"SELECT COUNT(*) FROM {name}")
+                    count = cursor.fetchone()[0]
+                except:
+                    count = "?"
+
+                # Get Columns
+                cursor.execute(f"PRAGMA table_info({name})")
+                columns = cursor.fetchall()
+                col_names = [col[1] for col in columns]
+                
+                # Get Distinct Values for specific columns
+                enums_str = ""
+                if name in enum_columns:
+                    for col in enum_columns[name]:
+                        if col in col_names:
+                            try:
+                                cursor.execute(f"SELECT DISTINCT {col} FROM {name} WHERE {col} IS NOT NULL LIMIT 3")
+                                vals = [str(row[0]) for row in cursor.fetchall()]
+                                enums_str += f" [{col}: {', '.join(vals)}]"
+                            except:
+                                pass
+
+                schema_lines.append(f"- **{name}** ({count}): {', '.join(col_names)}{enums_str}")
+            
+            conn.close()
+            return "\n".join(schema_lines)
+
+    def get_table_info(self, table_name: str) -> str:
+        """
+        Returns detailed column information for a specific table.
+        Used by the bot to "lazy load" schema details.
+        """
+        conn = self._get_connection()
+        cursor = conn.cursor()
+        
+        try:
+            # Verify table/view exists
+            cursor.execute("SELECT name FROM sqlite_master WHERE type IN ('table', 'view') AND name=?", (table_name,))
+            if not cursor.fetchone():
+                return f"Error: Table/View '{table_name}' not found."
+
             # Get Row Count
-            try:
-                cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
-                count = cursor.fetchone()[0]
-            except:
-                count = "?"
+            cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
+            count = cursor.fetchone()[0]
 
             # Get Columns
             cursor.execute(f"PRAGMA table_info({table_name})")
             columns = cursor.fetchall()
-            col_names = [col[1] for col in columns]
             
-            # Get Distinct Values for specific columns
-            enums_str = ""
-            if table_name in enum_columns:
-                for col in enum_columns[table_name]:
-                    if col in col_names:
-                        try:
-                            cursor.execute(f"SELECT DISTINCT {col} FROM {table_name} WHERE {col} IS NOT NULL LIMIT 3")
-                            vals = [str(row[0]) for row in cursor.fetchall()]
-                            enums_str += f" [{col}: {', '.join(vals)}]"
-                        except:
-                            pass
+            # Format: id (INTEGER), naam (TEXT), ...
+            col_details = []
+            for col in columns:
+                col_name = col[1]
+                col_type = col[2]
+                col_details.append(f"{col_name} ({col_type})")
+            
+            # Get samples for up to 5 textual columns to give context
+            sample_query = f"SELECT * FROM {table_name} LIMIT 1"
+            cursor.execute(sample_query)
+            sample_row = cursor.fetchone()
+            
+            sample_str = ""
+            if sample_row:
+                 # Dictionary factory is active? No, raw cursor here uses tuples unless row_factory set
+                 # Let's check headers again
+                 headers = [c[1] for c in columns]
+                 sample_dict = dict(zip(headers, sample_row))
+                 sample_str = f"\nSample Row: {sample_dict}"
 
-            schema_lines.append(f"- **{table_name}** ({count}): {', '.join(col_names)}{enums_str}")
+            return f"**Table: {table_name}** ({count} rows)\nColumns:\n- " + "\n- ".join(col_details) + sample_str
             
-        conn.close()
-        return "\n".join(schema_lines)
+        except Exception as e:
+            return f"Error getting table info: {str(e)}"
+        finally:
+            conn.close()
 
     def get_houses_near_contract_end(self, days: int = 30) -> List[Dict]:
         """
@@ -202,6 +296,36 @@ class IntelligenceAPI:
         conn.close()
         return rows
 
+    def get_upcoming_inspections(self, days: int = 30) -> List[Dict]:
+        """
+        Get inspections planned for the next 'days' days.
+        """
+        conn = self._get_connection()
+        conn.row_factory = self._dict_factory
+        
+        target_date = date.today() + timedelta(days=days)
+        
+        query = """
+            SELECT 
+                i.id,
+                i.inspection_type,
+                i.planned_date,
+                i.status,
+                h.adres,
+                k.naam as client
+            FROM inspections i
+            JOIN boekingen b ON i.booking_id = b.id
+            JOIN huizen h ON b.huis_id = h.id
+            JOIN klanten k ON b.klant_id = k.id
+            WHERE i.planned_date >= DATE('now')
+            AND i.planned_date <= ?
+            ORDER BY i.planned_date ASC
+        """
+        
+        rows = conn.execute(query, (target_date,)).fetchall()
+        conn.close()
+        return rows
+
     def get_status_overview(self) -> Dict:
         """
         High-level dashboard of the operation.
@@ -266,7 +390,51 @@ class IntelligenceAPI:
         conn.close()
         return rows
 
-        conn.close()
+    def export_query_to_excel(self, query: str, filename: str = "export.xlsx") -> str:
+        """
+        Executes a SQL query and saves the full result to an Excel file.
+        Returns the absolute path to the file.
+        """
+        import pandas as pd
+        
+        conn = self._get_connection()
+        try:
+            df = pd.read_sql_query(query, conn)
+            
+            # Ensure exports directory exists
+            export_dir = os.path.join(os.path.dirname(self.db_path), "..", "Exports")
+            if not os.path.exists(export_dir):
+                os.makedirs(export_dir)
+                
+            file_path = os.path.join(export_dir, filename)
+            df.to_excel(file_path, index=False)
+            return file_path
+        except Exception as e:
+            return f"Error exporting Excel: {str(e)}"
+        finally:
+            conn.close()
+
+    def get_query_sample(self, query: str, offset: int = 0, limit: int = 1) -> List[Dict]:
+        """
+        Executes a SQL query with specific LIMIT/OFFSET to retrieve specific rows.
+        Used for 'Total Awareness' context recovery.
+        """
+        conn = self._get_connection()
+        conn.row_factory = self._dict_factory
+        try:
+            # Clean strict semi-colons to append LIMIT
+            clean_query = query.strip().rstrip(';')
+            
+            # Check if query already has limit (complex case, simplified handling here)
+            # We wrap in subquery to be safe
+            wrapped_query = f"SELECT * FROM ({clean_query}) LIMIT {limit} OFFSET {offset}"
+            
+            rows = conn.execute(wrapped_query).fetchall()
+            return rows
+        except Exception as e:
+            return [{"error": str(e)}]
+        finally:
+            conn.close()
         return rows
 
     def run_sql_query(self, query: str) -> List[Dict]:

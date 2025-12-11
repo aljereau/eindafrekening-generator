@@ -1,0 +1,239 @@
+/* Global Styles */
+Screen {
+    background: $surface-darken-1;
+    color: $text;
+}
+
+Header {
+    dock: top;
+    height: 3;
+    content-align: center middle;
+    background: $primary-darken-2;
+    color: $text-accent;
+    text-style: bold;
+    border-bottom: heavy $secondary;
+}
+
+Footer {
+    dock: bottom;
+    height: 1;
+    background: $surface-darken-2;
+    color: $text-muted;
+}
+
+/* Layout */
+.main-layout {
+    layout: horizontal;
+    height: 1fr;
+}
+
+/* Navigation / Sidebar */
+#sidebar {
+    width: 25;
+    height: 100%;
+    background: $surface-darken-2;
+    border-right: vkey $secondary;
+    dock: left; /* Optional if in horizontal layout, but safe */
+}
+
+#main-content-area {
+    width: 1fr;
+    height: 100%;
+}
+
+.sidebar Button {
+    width: 100%;
+    height: 3;
+    margin: 1 0;
+    background: $surface;
+    border: none;
+    color: $text;
+}
+
+.sidebar Button:hover {
+    background: $secondary;
+    color: $text-accent;
+}
+
+/* Home Screen */
+#welcome-message {
+    text-align: center;
+    margin: 2;
+    text-style: bold;
+    color: $secondary-lighten-2;
+}
+
+#stats-container {
+    height: 12;
+    align: center middle;
+    margin-top: 2;
+}
+
+.stat-box {
+    width: 30;
+    height: 10;
+    border: heavy $secondary;
+    background: $surface;
+    margin: 1;
+    content-align: center middle;
+    text-align: center;
+}
+
+/* Generator Screen */
+#generator-container {
+    padding: 2;
+    align: center top;
+}
+
+.header-title {
+    text-align: center;
+    text-style: bold;
+    padding-bottom: 2;
+}
+
+#generator-logs {
+    height: 1fr;
+    border: solid $secondary;
+    background: $surface-darken-1;
+    overflow-y: scroll;
+    padding: 1;
+    margin-top: 2;
+}
+
+/* Inspections Screen */
+#inspections-container {
+    padding: 2;
+    align: center top;
+}
+
+/* Chat Screen */
+/* Chat Screen */
+#chat-container {
+    height: 100%;
+    layout: vertical;
+    padding: 1;
+}
+
+#chat-history {
+    height: 1fr;
+    border: solid $secondary;
+    background: $surface-darken-1;
+    margin-bottom: 1;
+    padding: 1;
+    scrollbar-background: $surface;
+    scrollbar-color: $secondary;
+}
+
+#chat-input {
+    dock: bottom;
+    height: 3;
+    border: tall $secondary;
+    background: $surface;
+}
+
+#chat-input:focus {
+    border: tall $accent;
+}
+
+/* Message Container Structure */
+.message-container {
+    height: auto;
+    margin-bottom: 2;
+    padding: 1;
+    border-left: thick $secondary;
+    background: $surface;
+}
+
+.message-user {
+    border-left: thick $success;
+    background: $surface-lighten-1;
+    margin-left: 5; /* Indent user messages slightly to right */
+}
+
+.message-bot {
+    border-left: thick $primary;
+    background: $surface;
+    margin-right: 5; /* Indent bot messages slightly to left (visual separation) */
+}
+
+/* Header (Sender Name) */
+.message-header {
+    text-style: bold;
+    padding-bottom: 1;
+    /* border-bottom: solid $secondary-darken-1;  Optional separator */
+}
+
+.sender-user {
+    color: $success;
+}
+
+.sender-bot {
+    color: $primary-lighten-1;
+}
+
+/* Body (Markdown) */
+.message-body {
+    padding-top: 1;
+}
+
+/* Specific Markdown Elements within Message */
+.message-body RichLog {
+    background: $surface-darken-1;
+}
+
+/* Tables in Markdown */
+.message-body DataTable {
+    height: auto;
+    max-height: 20;
+    margin: 1 0;
+    border: solid $secondary;
+}
+
+/* Status / Log Messages */
+.status-message {
+    color: $text-muted;
+    text-style: italic;
+    background: $surface-darken-1;
+    padding: 0 1;
+    margin-bottom: 1;
+}
+
+/* Settings Screen */
+#settings-page {
+    padding: 2;
+    align: center top;
+}
+
+.page-header {
+    text-align: center;
+    text-style: bold;
+    color: $accent;
+    margin-bottom: 2;
+    width: 100%;
+    border-bottom: heavy $secondary;
+}
+
+.section-header {
+    text-style: bold;
+    color: $text-accent;
+    margin-top: 1;
+}
+
+.section-desc {
+    color: $text-muted;
+    margin-bottom: 1;
+}
+
+.settings-card {
+    width: 60%;
+    height: auto;
+    border: tall $secondary;
+    background: $surface;
+    padding: 1 2;
+    margin-bottom: 2;
+}
+
+#model-selector {
+    width: 100%;
+    border: solid $secondary;
+}

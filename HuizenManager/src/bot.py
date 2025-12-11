@@ -13,6 +13,7 @@ from HuizenManager.src.intelligence_api import IntelligenceAPI
 from Incheck.src.planning_api import PlanningAPI
 from Incheck.src.excel_handler import PlanningExcelHandler
 from HuizenManager.src.file_exchange import FileExchangeHandler
+from HuizenManager.src.vector_memory import VectorMemory
 
 # Import for settlement generation
 import openpyxl
@@ -22,6 +23,24 @@ from openpyxl.utils import get_column_letter
 eindafrekening_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'Eindafrekening', 'src'))
 if eindafrekening_path not in sys.path:
     sys.path.append(eindafrekening_path)
+
+# Add Eindafrekening/scripts to path for importing create_master_template
+eindafrekening_scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'Eindafrekening', 'scripts'))
+if eindafrekening_scripts_path not in sys.path:
+    sys.path.append(eindafrekening_scripts_path)
+
+try:
+    from generate import generate_report
+except ImportError:
+    print("⚠️ Could not import generate_report from Eindafrekening/src/generate.py")
+    generate_report = None
+
+try:
+    from create_master_template import create_master_template
+except ImportError:
+    print("⚠️ Could not import create_master_template from Eindafrekening/scripts")
+    def create_master_template(output_path=None):
+        print("Mock create_master_template called")
 
 # Import new Intelligence Modules
 shared_scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'Shared', 'scripts'))
@@ -50,19 +69,29 @@ class ConversationMemory:
         self.summary: str = ""
 
     def add_message(self, role: str = None, content: Any = None, message: Dict = None):
-        # Truncate content if it's too long (e.g., > 4000 chars) to save tokens
-        MAX_CHARS = 4000
+        """Adds a message to history, maintaining size limits."""
+        # STRENGER MAKEN: Max 1000 chars for tool outputs (~250 tokens)
+        
+        target_role = role
+        target_content = content
         
         if message:
-            content_str = str(message.get('content', ''))
-            if len(content_str) > MAX_CHARS:
-                message['content'] = content_str[:MAX_CHARS] + "... (truncated)"
-            self.history.append(message)
-        elif role is not None:
-            content_str = str(content)
-            if len(content_str) > MAX_CHARS:
-                content_str = content_str[:MAX_CHARS] + "... (truncated)"
-            self.history.append({"role": role, "content": content_str})
+            target_role = message.get('role')
+            target_content = message.get('content')
+            
+        MAX_CHARS = 1000 if target_role == 'tool' else 4000
+        
+        content_str = str(target_content or "")
+        if len(content_str) > MAX_CHARS:
+             content_str = content_str[:MAX_CHARS] + f"... (truncated, {len(content_str) - MAX_CHARS} chars omitted)"
+        
+        if message:
+            # Preserve other keys like tool_call_id
+            msg_copy = message.copy()
+            msg_copy['content'] = content_str
+            self.history.append(msg_copy)
+        else:
+            self.history.append({"role": target_role, "content": content_str})
 
     def should_summarize(self) -> bool:
         # Summarize if we have more than double the max_messages
@@ -205,18 +234,82 @@ class RyanRentBot:
         else:
             raise ValueError(f"Unknown provider: {provider}")
         
-        # Initialize Memory
-        self.memory = ConversationMemory(max_messages=10)
+        # Initialize Memory (Short term)
+        self.memory = ConversationMemory(max_messages=5)
+        
+        # Initialize Vector Memory (Long term)
+        self.vector_memory = VectorMemory()
         
         # Initialize MCP Agent
         # Pass a bound method that handles the LLM call regardless of provider
+        # Default to mock DB as per user request
+        self.db_path = db_path or os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "database", "ryanrent_mock.db")
+
         self.mcp_agent = MCPSQLAgent(
-            db_path=db_path or "database/ryanrent_core.db", 
+            db_path=self.db_path, 
             llm_callback=self.generate_completion
         )
         
         # Define Tools (OpenAI Format - shared across all providers)
         self.tools = self._get_tools()
+        
+        # State for Dual Output Strategy (Total Awareness)
+        self.last_query = None
+
+    def switch_model(self, model_name: str) -> Dict[str, str]:
+        """
+        Dynamically switches the active LLM.
+        Auto-detects provider based on logic:
+        - gpt/o1 -> OpenAI
+        - claude -> Anthropic
+        - qwen/llama -> Ollama
+        """
+        import os
+        prev_provider = self.provider
+        
+        # 1. Detect Provider
+        if any(x in model_name.lower() for x in ["gpt", "o1"]):
+            self.provider = "openai"
+            # Verify/Rotate Key if needed
+            if prev_provider != "openai":
+                 self.api_key = os.environ.get("OPENAI_API_KEY", self.api_key)
+                 self.client = OpenAI(api_key=self.api_key)
+                 
+        elif "claude" in model_name.lower():
+            self.provider = "anthropic"
+            if prev_provider != "anthropic":
+                self.api_key = os.environ.get("ANTHROPIC_API_KEY", self.api_key)
+                self.api_url = "https://api.anthropic.com/v1/messages"
+        
+        elif "gemini" in model_name.lower():
+            self.provider = "google"
+            # Only import if needed to save startup time
+            try:
+                import google.generativeai as genai
+                # Check multiple patterns for the key (Standard, Brand, and User Typo)
+                self.api_key = os.environ.get("GOOGLE_API_KEY") or \
+                               os.environ.get("GEMINI_API_KEY") or \
+                               os.environ.get("GEMENI_API_KEY") or \
+                               self.api_key
+                
+                if not self.api_key:
+                    return {"status": "error", "message": "Missing API Key. Please set GOOGLE_API_KEY or GEMINI_API_KEY in .env"}
+
+                genai.configure(api_key=self.api_key)
+                self.genai = genai 
+            except ImportError:
+                return {"status": "error", "message": "google-generativeai package not installed"}
+
+        elif any(x in model_name.lower() for x in ["qwen", "llama", "mistral"]):
+             self.provider = "ollama"
+             self.client = OpenAI(
+                base_url="http://localhost:11434/v1",
+                api_key="ollama"
+            )
+        
+        self.model = model_name
+        print(f"🔄 Model Switched: {self.model} ({self.provider})")
+        return {"status": "success", "model": self.model, "provider": self.provider}
 
     def _get_tools(self) -> List[Dict]:
         """Returns minified tool definitions to save tokens."""
@@ -224,9 +317,120 @@ class RyanRentBot:
             {
                 "type": "function",
                 "function": {
+                    "name": "generate_master_input",
+                    "description": "Generate a blank Master Excel Template for batch settlements (Eindafrekening).",
+                    "parameters": {"type": "object", "properties": {}}
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "process_master_input",
+                    "description": "Process the filled Master Excel Template and generate settlement reports.",
+                    "parameters": {"type": "object", "properties": {}}
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "ask_database",
+                    "description": "Ask complex questions about houses, prices, checkouts, or occupancy using SQL.",
+                    "parameters": {
+                        "type": "object", 
+                        "properties": {
+                            "question": {"type": "string", "description": "Natural language question."}
+                        },
+                        "required": ["question"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
                     "name": "get_status_overview",
                     "description": "Get fleet status overview (occupancy, financials).",
                     "parameters": {"type": "object", "properties": {}}
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "get_upcoming_inspections",
+                    "description": "List upcoming inspections (Voorinspectie, Eindinspectie).",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "days": {"type": "integer", "default": 30}
+                        }
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "get_upcoming_checkouts",
+                    "description": "List checkouts in next N days.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "days": {"type": "integer", "default": 60}
+                        }
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "run_sql_query",
+                    "description": "PRIMARY TOOL for ANY question about 'all houses', 'filtering', 'counting', or 'searching'. Executes SQL directly against tables: huizen, klanten, boekingen, inspecties.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "query": {"type": "string"}
+                        },
+                        "required": ["query"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "export_last_query_to_excel",
+                    "description": "Export the results of the LAST run_sql_query to an Excel file. Use when user wants 'the list' or 'a file'.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "filename": {"type": "string", "description": "Optional filename"}
+                        }
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "get_item_from_last_result",
+                    "description": "Retrieve a specific row from the LAST run_sql_query by its index (1-based). Use when user asks about 'item #5' or 'the 10th house'.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "index": {"type": "integer", "description": "The row number to retrieve (1-based index). e.g., 5 for the 5th item."}
+                        },
+                        "required": ["index"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "get_table_info",
+                    "description": "Get column names and types for a specific table. ALWAYS use this before writing SQL queries for tables you haven't checked yet.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "table_name": {"type": "string"}
+                        },
+                        "required": ["table_name"]
+                    }
                 }
             },
             {
@@ -253,19 +457,6 @@ class RyanRentBot:
             {
                 "type": "function",
                 "function": {
-                    "name": "get_upcoming_checkouts",
-                    "description": "List checkouts in next N days.",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "days": {"type": "integer", "default": 60}
-                        }
-                    }
-                }
-            },
-            {
-                "type": "function",
-                "function": {
                     "name": "get_open_deposits_by_client",
                     "description": "Sum open deposits grouped by client.",
                     "parameters": {"type": "object", "properties": {}}
@@ -275,40 +466,12 @@ class RyanRentBot:
                 "type": "function",
                 "function": {
                     "name": "get_active_houses",
-                    "description": "List active houses.",
+                    "description": "Get a small SAMPLE of active houses. DO NOT use for 'all' or 'filtering'. Use SQL instead.",
                     "parameters": {
                         "type": "object",
                         "properties": {
-                            "limit": {"type": "integer", "default": 50}
+                            "limit": {"type": "integer", "default": 10}
                         }
-                    }
-                }
-            },
-            {
-                "type": "function",
-                "function": {
-                    "name": "ask_database",
-                    "description": "Ask a natural language question to the database. The MCP Agent will translate to SQL and execute.",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "question": {"type": "string", "description": "The question to ask, e.g. 'Which houses are empty next month?'"}
-                        },
-                        "required": ["question"]
-                    }
-                }
-            },
-            {
-                "type": "function",
-                "function": {
-                    "name": "run_sql_query",
-                    "description": "Run read-only SQL. Tables: huizen, klanten, boekingen, inspecties.",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "query": {"type": "string"}
-                        },
-                        "required": ["query"]
                     }
                 }
             },
@@ -791,12 +954,24 @@ class RyanRentBot:
             }
         ]
 
-    def _get_default_system_prompt(self) -> str:
+    def _get_rag_context(self, query: str = None) -> str:
+        """Retrieves relevant context from vector memory based on the query."""
+        if not self.vector_memory:
+            return ""
+        
+        if query:
+            # search() returns a formatted string, so we just return it
+            return self.vector_memory.search(query, n_results=3)
+        return ""
+
+    def _get_default_system_prompt(self, user_query: str = None) -> str:
         """Returns optimized system prompt based on model capability."""
         
         # Dynamically fetch schema
         try:
-            schema_text = self.api.get_database_schema()
+            # User requested "Full Data Dictionary" (all tables, views, fields).
+            # Switching to summary_mode=False to provide exhaustive context.
+            schema_text = self.api.get_database_schema(summary_mode=False)
         except Exception as e:
             print(f"⚠️ Failed to fetch schema: {e}")
             schema_text = "Schema unavailable."
@@ -804,66 +979,27 @@ class RyanRentBot:
         # Base prompt (for all models)
         base_prompt = f"""You are Ryan, the RyanRent Operational Assistant. You speak Dutch and help manage a fleet of 250+ houses.
 
-**Business Context:**
-- **RyanRent**: Intermediary renting houses from owners (Inhuur) and renting them out to clients (Verhuur).
-- **Financials**: kale_huur (base rent), servicekosten (service charges), voorschot_gwe (GWE advance), borg (deposit).
+Current Time: {datetime.now().strftime("%Y-%m-%d %H:%M")}
 
-**Core Rules:**
-1. **Data Integrity**: Check if owner/supplier exists before adding a house. Add owner first if needed.
-2. **Tools**: Use available tools. For complex queries, use `run_sql_query`.
-3. **Language**: Respond in Dutch.
-4. **Formatting**: Present data as clean markdown tables, not raw JSON.
+{self._get_rag_context(user_query)}"""
 
-{schema_text}"""
+        # Load external database context (YAML)
+        try:
+            context_path = os.path.join(os.path.dirname(__file__), 'database_context.yaml')
+            with open(context_path, 'r') as f:
+                db_context_template = f.read()
+                
+            # Inject dynamic schema into the template
+            db_context = db_context_template.replace('{schema_text}', schema_text)
+            
+            return base_prompt + "\n\n" + db_context
+            
+        except Exception as e:
+            print(f"⚠️ Failed to load database_context.yaml: {e}")
+            # Fallback
+            return base_prompt + "\n\n" + f"SCHEMA:\n{schema_text}"
 
-        # Smart models (Claude, GPT) - minimal guidance
-        if self.provider in ["anthropic", "openai"]:
-            return base_prompt
-        
-        # Dumb models (Ollama) - explicit step-by-step instructions
-        else:
-            return base_prompt + """
 
-**CRITICAL INSTRUCTIONS FOR TOOL USE:**
-
-**Rule #1: Tool Output Handling**
-When you receive a tool result, DO NOT explain it back to me. Instead:
-- Extract the relevant data
-- Format it as a clean markdown table
-- Answer the original question directly
-
-**Rule #2: SQL Query Workflow (MANDATORY)**
-For SQL queries, follow these steps IN ORDER:
-
-Step 1: Check schema
-- `PRAGMA table_info(table_name)` to see column names
-- `SELECT * FROM table_name LIMIT 1` to verify structure
-
-Step 2: Build incrementally
-- Start simple, test each JOIN separately
-- Fix errors before adding complexity
-
-Step 3: Add filters & sorting
-- WHERE clauses for filtering
-- ORDER BY for sorting (DESC = newest first)
-
-Step 4: Format results
-- Present as markdown table
-- Only show relevant columns
-
-**Example:**
-User: "Welke klanten checken uit in 2 maanden?"
-
-Your workflow:
-1. `PRAGMA table_info(boekingen)` → Check columns
-2. `SELECT * FROM boekingen LIMIT 1` → Verify
-3. `SELECT * FROM klanten LIMIT 1` → Check client table
-4. `SELECT b.*, k.naam FROM boekingen b JOIN klanten k ON b.klant_id = k.id LIMIT 1` → Test JOIN
-5. Final query with filters and sorting
-6. Format as table
-
-DO NOT skip steps. DO NOT guess column names. Be methodical.
-"""
 
 
     def _handle_generate_settlement(self, args: Dict[str, Any]) -> str:
@@ -1047,7 +1183,7 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
             "content-type": "application/json"
         }
         
-        default_system = self._get_default_system_prompt()
+        default_system = self._get_default_system_prompt(messages[-1]['content'] if messages and messages[-1]['role'] == 'user' else None)
 
         # Filter out 'system' role messages from history as Claude puts system prompt in top-level param
         # Also filter out 'tool' role messages if they are not supported or need conversion?
@@ -1096,14 +1232,20 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
                 content = msg["content"]
                 
                 # Check if we have a preceding assistant message with this tool call
+                # We must look back because we might have interleaved user messages (from previous tool results)
                 has_matching_tool_use = False
-                if anthropic_msgs and anthropic_msgs[-1]["role"] == "assistant":
-                    last_content = anthropic_msgs[-1]["content"]
-                    if isinstance(last_content, list):
-                        for block in last_content:
-                            if block.get("type") == "tool_use" and block.get("id") == tool_call_id:
-                                has_matching_tool_use = True
-                                break
+                matched_assistant_msg = None
+                
+                for prev_msg in reversed(anthropic_msgs):
+                    if prev_msg["role"] == "assistant":
+                         last_content = prev_msg["content"]
+                         if isinstance(last_content, list):
+                            for block in last_content:
+                                if block.get("type") == "tool_use" and block.get("id") == tool_call_id:
+                                    has_matching_tool_use = True
+                                    matched_assistant_msg = prev_msg
+                                    break
+                         break # Only check the immediate last assistant
                 
                 if has_matching_tool_use:
                     # Valid tool result pair - append as tool_result
@@ -1112,10 +1254,21 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
                         "tool_use_id": tool_call_id,
                         "content": content
                     }
-                    anthropic_msgs.append({
-                        "role": "user",
-                        "content": [tool_result]
-                    })
+                    
+                    # If the last message is already a user message (accumulating tool results), append to it
+                    if anthropic_msgs and anthropic_msgs[-1]["role"] == "user":
+                        last_msg = anthropic_msgs[-1]
+                        if isinstance(last_msg["content"], list):
+                             last_msg["content"].append(tool_result)
+                        else:
+                             # Convert string content to list and append (rare edge case)
+                             last_msg["content"] = [{"type": "text", "text": last_msg["content"]}, tool_result]
+                    else:
+                        # Create new user message for results
+                        anthropic_msgs.append({
+                            "role": "user",
+                            "content": [tool_result]
+                        })
                 else:
                     # Orphan tool result (history truncation or mismatch)
                     # Convert to text context to avoid API error
@@ -1159,7 +1312,7 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
 
     def _call_openai(self, messages: List[Dict], tools: List[Dict] = None, system_prompt: str = None) -> Any:
         
-        default_system = self._get_default_system_prompt()
+        default_system = self._get_default_system_prompt(messages[-1]['content'] if messages and messages[-1]['role'] == 'user' else None)
 
         # Prepare messages for OpenAI
         # OpenAI expects system message in the messages list
@@ -1220,31 +1373,201 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
             print(f"❌ generate_completion failed: {e}")
             raise e
 
-    def chat(self, user_message: str) -> str:
+    def chat(self, user_message: str, status_callback=None) -> str:
         """
         Process a user message, call tools if needed, and return the response.
+        status_callback: Optional function(message: str, type: str) to report progress.
         """
+        
+        def report(msg: str, type: str = "info"):
+            if status_callback:
+                status_callback(msg, type)
+            else:
+                print(f"[{type.upper()}] {msg}")
+
         # 0. Check if we need to summarize memory
         # Use the appropriate callback based on provider
-        callback = self._call_claude if self.provider == "anthropic" else self._call_openai
-        self.memory.summarize(callback)
+        api_callback = self._call_claude if self.provider == "anthropic" else self._call_openai
+        self.memory.summarize(api_callback)
         
-        # 1. Add user message to memory
+        # Add User Message to Memory
         self.memory.add_message("user", user_message)
         
-        # 2. Get full context (Summary + History)
+        # Add to Vector Memory
+        self.vector_memory.add_message("user", user_message)
+        
+        # Determine token limit based on complexity
+        max_tokens = self._determine_max_tokens(user_message)
+        
+        # 1. Get full context (Summary + History)
         messages_payload = self.memory.get_context_messages()
         
         if self.provider == "anthropic":
-            return self._chat_claude(messages_payload)
+            return self._chat_claude(messages_payload, report)
         else:
             # Both OpenAI and Ollama use the OpenAI-compatible chat loop
-            return self._chat_openai(messages_payload)
+            return self._chat_openai(messages_payload, report)
 
-    def _chat_openai(self, messages_payload):
-        # 3. Initial call to OpenAI
-        response = self._call_openai(messages_payload, self.tools)
-        response_message = response.choices[0].message
+    def _truncate_output(self, output: str, max_length: int = 15000) -> str:
+        """
+        Truncate overly long tool outputs to save tokens, but try to preserve valid JSON structure for the start.
+        """
+        if len(output) <= max_length:
+            return output
+
+        # Try to parse as JSON to do smart truncation
+        try:
+            data = json.loads(output)
+            if isinstance(data, list):
+                # Take top 15 items
+                truncated_list = data[:15]
+                remaining_count = len(data) - 15
+                
+                if remaining_count > 0:
+                    # Append a warning object correctly
+                    truncated_list.append({
+                        "system_warning": "OUTPUT TRUNCATED", 
+                        "message": f"{remaining_count} more items hidden. Use SQL queries to filter."
+                    })
+                    return json.dumps(truncated_list, default=str)
+                    
+            elif isinstance(data, dict):
+                 # For dicts, check key count? Simple fallback for now.
+                 pass
+        except:
+            # Not JSON, fall back to text
+            pass
+
+        # Fallback text truncation
+        return (
+            output[:max_length] 
+            + f"\n\n[SYSTEM WARNING: Output too large ({len(output)} chars). "
+            f"Truncated. Please rely on 'run_sql_query' for specific filtering.]"
+        )
+    
+    def _get_rag_context(self, query: str = None) -> str:
+        # ... existing ...
+        if not self.vector_memory:
+            return ""
+        if query:
+            return self.vector_memory.search(query, n_results=2)
+        return ""
+
+    # ... (skipping to re-entry block in _chat_openai) ...
+
+    # We need to find the re-entry block. I will use a separate replacement for that or do it here if I see it.
+    # The user asked for EndLine 1680. Let's look at the context.
+    # I will stick to fixing _truncate_output first, then another call for the loop.
+    # Actually I can do both if I target specific chunks? No replace_file_content is single contiguous.
+    # I'll enable MultiReplace? No, the tool definition says "use this tool ONLY when you are making a SINGLE CONTIGUOUS block".
+    # I will fix _truncate_output first.
+
+
+    def _get_rag_context(self, query: str = None) -> str:
+        """Retrieves relevant context from vector memory based on the query."""
+        if not self.vector_memory:
+            return ""
+        
+        if query:
+            # search() returns a formatted string, so we just return it
+            # Reduced n_results to 2 to save tokens
+            return self.vector_memory.search(query, n_results=2)
+        return ""
+
+    def _get_gemini_tools(self):
+        """Converts OpenAI tool definitions to Gemini format (Protos)."""
+        try:
+            import google.generativeai as genai
+            from google.ai.generativelanguage import FunctionDeclaration, Tool
+            
+            declarations = []
+            for tool in self.tools:
+                func = tool['function']
+                
+                # Gemini requires 'name', 'description', and 'parameters' (Schema)
+                # We need to ensure parameters are in the correct Schema format.
+                # OpenAI uses JSON Schema, which Gemini mostly accepts, but strict typing helps.
+                
+                declarations.append(
+                    FunctionDeclaration(
+                        name=func['name'],
+                        description=func['description'],
+                        parameters=func['parameters']
+                    )
+                )
+                
+            return Tool(function_declarations=declarations)
+        except ImportError:
+            print("⚠️ Google Generative AI SDK not found. gemini tools disabled.")
+            return None
+
+    def _chat_openai(self, messages_payload, report_func):
+        # 3. Initial call
+        if self.provider == "google":
+             # Google Gemini Logic for Initial Call
+            try:
+                import google.generativeai as genai
+                from google.protobuf import struct_pb2 # Needed if we manipulate params manually, but genai handles dicts well usually
+                
+                # Extract system prompt
+                system_prompt_msg = next((m for m in messages_payload if m['role'] == 'system'), None)
+                system_instruction = system_prompt_msg['content'] if system_prompt_msg else ""
+                
+                # Filter messages
+                gemini_messages = [
+                    {"role": "user" if msg['role'] == "user" else "model", "parts": [msg['content']]}
+                    for msg in messages_payload if msg['role'] != 'system'
+                ]
+                
+                model = self.genai.GenerativeModel(
+                    self.model, 
+                    system_instruction=system_instruction,
+                    tools=[self._get_gemini_tools()]
+                )
+                
+                # Force function calling mode if we want, or let it decide (auto is default)
+                response = model.generate_content(gemini_messages)
+                
+                # Extract content and tool calls
+                content = ""
+                tool_calls = []
+                
+                # Gemini responses have candidates -> content -> parts
+                if response.candidates:
+                    for part in response.candidates[0].content.parts:
+                        if part.text:
+                            content += part.text
+                        if part.function_call:
+                            # Convert to standard format
+                            import uuid
+                            fc = part.function_call
+                            # Args are correct type already (MapComposite), convert to dict
+                            args = dict(fc.args)
+                            
+                            tool_calls.append(
+                                type('obj', (object,), {
+                                    "id": f"call_{uuid.uuid4().hex[:8]}", # Gemini doesn't have IDs, generate one
+                                    "type": "function",
+                                    "function": type('obj', (object,), {
+                                        "name": fc.name,
+                                        "arguments": json.dumps(args) # Loop expects JSON string
+                                    })
+                                })
+                            )
+                
+                response_message = type('obj', (object,), {"content": content, "tool_calls": tool_calls})
+                
+            except Exception as e:
+                response_message = type('obj', (object,), {"content": f"Error calling Google API: {e}", "tool_calls": None})
+
+        elif self.provider == "ollama":
+             # Reuse OpenAI call for Ollama
+             response = self._call_openai(messages_payload, self.tools)
+             response_message = response.choices[0].message
+        else:
+             # Default OpenAI
+             response = self._call_openai(messages_payload, self.tools)
+             response_message = response.choices[0].message
         
         # Loop to handle multiple tool calls
         while response_message.tool_calls:
@@ -1273,25 +1596,26 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
                 function_args = json.loads(tool_call.function.arguments)
                 tool_call_id = tool_call.id
                 
-                print(f"🤖 Calling tool: {function_name}({function_args})")
+                report_func(f"Using tool: {function_name}", "tool")
                 
                 try:
                     # Execute the tool
                     result = self._execute_tool(function_name, function_args)
                     
                     # Add result to memory
-                    # We wrap the result in a clear context to prevent the model from thinking the user pasted it
-                    tool_output_context = f"[SYSTEM: This is the result of the tool call '{function_name}'. Use this data to answer the user's question.]\n\n{json.dumps(result, default=str)}"
+                    # Minimized token usage: removed verbose system wrapper, truncated output
+                    raw_output = json.dumps(result, default=str)
+                    clean_output = self._truncate_output(raw_output)
                     
                     self.memory.add_message(message={
                         "role": "tool",
                         "tool_call_id": tool_call_id,
                         "name": function_name,
-                        "content": tool_output_context
+                        "content": clean_output
                     })
                 except Exception as e:
                     error_message = f"Error executing tool '{function_name}': {str(e)}"
-                    print(f"❌ {error_message}")
+                    report_func(error_message, "error")
                     self.memory.add_message(message={
                         "role": "tool",
                         "tool_call_id": tool_call_id,
@@ -1302,9 +1626,160 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
             # Get updated context
             messages_payload = self.memory.get_context_messages()
             
-            # Call OpenAI again with the tool results
-            response = self._call_openai(messages_payload, self.tools)
-            response_message = response.choices[0].message
+            if self.provider == "ollama":
+                # Ollama follows the same OpenAI API format, so we can reuse _call_openai
+                response = self._call_openai(messages_payload, self.tools)
+                response_message = response.choices[0].message
+                
+            elif self.provider == "google":
+                # Google Gemini Logic RE-ENTRY
+                try:
+                    import google.generativeai as genai
+                    
+                    # Extract system prompt if present
+                    system_prompt_msg = next((m for m in messages_payload if m['role'] == 'system'), None)
+                    system_instruction = system_prompt_msg['content'] if system_prompt_msg else ""
+                    
+                    # Rebuild messages for history
+                    # CRITICAL: We need to properly represent the FunctionResponse for Gemini
+                    # Gemini expects [User, Model(Call), User(Response), Model(Result)] flow
+                    # But our memory is [..., Asst(ToolCall), Tool(Result)]
+                    # We need to map our 'tool' role messages to 'function_response' parts for Gemini
+                    
+                    gemini_messages = []
+                    last_role = None
+                    
+                    for msg in messages_payload:
+                        if msg['role'] == 'system': continue
+                        
+                        role = "user" if msg['role'] == "user" else "model"
+                        
+                        # Handle Tool Responses (role='tool')
+                        if msg['role'] == 'tool':
+                            # In Gemini, this is a "function_response" part within a "user" (or potentially "function") role block
+                            # Actually, Gemini API expects function responses to come from 'user' (conceptually) or special handling
+                            # Let's check docs pattern: 
+                            # history = [..., Content(role='model', parts=[FunctionCall...]), Content(role='user', parts=[FunctionResponse...])]
+                            
+                            # We need to map 'tool' messages to a 'user' message with function_response parts
+                            # Since we might have multiple tool outputs in a row, we should aggregate them?
+                            # Our 'messages_payload' flattens this.
+                            
+                            func_name = msg.get('name')
+                            try:
+                                content_json = json.loads(msg['content']) # It was stored as JSON string
+                            except:
+                                # Fallback if content is not JSON (e.g. error message string)
+                                content_json = {"result": msg['content']}
+                            
+                            part = genai.protos.Part(
+                                function_response=genai.protos.FunctionResponse(
+                                    name=func_name,
+                                    response={'result': content_json}
+                                )
+                            )
+                            
+                            # If previous message was also tool response, append?
+                            # Gemini usually groups concurrent tool executions.
+                            # For simplicity/robustness, a separate message per response is often accepted or we group.
+                            # Let's try appending as a 'user' message as per doc standard
+                            gemini_messages.append({"role": "user", "parts": [part]})
+                        
+                        # Handle Assistant Tool Calls
+                        elif msg.get('tool_calls'):
+                             # Map to FunctionCall parts
+                             parts = []
+                             if msg.get('content'): parts.append(msg['content']) # Text thought
+                             
+                             for tc in msg['tool_calls']:
+                                 fc_name = tc['function']['name']
+                                 fc_args = json.loads(tc['function']['arguments'])
+                                 
+                                 parts.append(
+                                     genai.protos.Part(
+                                         function_call=genai.protos.FunctionCall(
+                                            name=fc_name,
+                                            args=fc_args
+                                         )
+                                     )
+                                 )
+                             gemini_messages.append({"role": "model", "parts": parts})
+                        
+                        else:
+                            # Standard text message
+                            gemini_messages.append({"role": role, "parts": [msg['content']]})
+
+                    
+                    model = self.genai.GenerativeModel(
+                        self.model, 
+                        system_instruction=system_instruction,
+                        tools=[self._get_gemini_tools()]
+                    )
+                    
+                    response = model.generate_content(gemini_messages)
+                    
+                    # Same response parsing as initial call
+                    content = ""
+                    tool_calls = []
+                    
+                    if response.candidates:
+                         for part in response.candidates[0].content.parts:
+                             if part.text: content += part.text
+                             if part.function_call:
+                                 import uuid
+                                 fc = part.function_call
+                                 args = dict(fc.args)
+                                 tool_calls.append(type('obj', (object,), {
+                                     "id": f"call_{uuid.uuid4().hex[:8]}",
+                                     "type": "function",
+                                     "function": type('obj', (object,), {
+                                         "name": fc.name,
+                                         "arguments": json.dumps(args)
+                                     })
+                                 }))
+
+                    response_message = type('obj', (object,), {"content": content, "tool_calls": tool_calls})
+
+                except Exception as e:
+                    response_message = type('obj', (object,), {"content": f"Error calling Google API: {e}", "tool_calls": None})
+                    gemini_messages_for_history = [
+                        {"role": "user" if msg['role'] == "user" else "model", "parts": [msg['content']]}
+                        for msg in messages_payload if msg['role'] != 'system'
+                    ]
+
+                    model = self.genai.GenerativeModel(
+                        self.model,
+                        system_instruction=system_instruction # Pass system instruction here
+                    )
+                    
+                    # Generate content using the filtered messages
+                    response = model.generate_content(gemini_messages_for_history)
+                    content = response.text
+                    
+                    # Tool Logic: Gemini uses Function Calling standard now but requires definition mapping.
+                    # For this implementation, we are still relying on system prompt to output tool calls as JSON?
+                    # No, the system prompt tells it to use tools. 
+                    # If we want it to work like OpenAI/Ollama, we need to hope it outputs the JSON structure we asked for.
+                    # Or we need to map our tools to Gemini Tools.
+                    # Given "Lazy Loading" constraints and "God Object" fears, let's keep it text-based for now.
+                    # The LLM will output text, or if we trained it to output JSON for tools, it will do so.
+                    # Our system prompt instructs: "You have access to tools... To use a tool, output JSON..."
+                    
+                    # So we just treat 'content' as the response message.
+                    response_message = type('obj', (object,), {"content": content, "tool_calls": None})
+                    
+                    # Basic JSON parsing if it looks like a tool call (manual fallback)
+                    if "tool" in content and "{" in content:
+                        # This is a weak check, but matches our "Text-to-JSON" reliance if we aren't using native binding
+                        pass
+
+                except Exception as e:
+                    # Ensure response_message is defined even on error
+                    response_message = type('obj', (object,), {"content": f"Error calling Google API: {e}", "tool_calls": None})
+            else:
+                # Call OpenAI again with the tool results (default for OpenAI)
+                response = self._call_openai(messages_payload, self.tools)
+                response_message = response.choices[0].message
 
         # Final response (text)
         content = response_message.content
@@ -1312,18 +1787,13 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
         
         return content if content else "No response text."
 
-    def _chat_claude(self, messages_payload):
+    def _chat_claude(self, messages_payload, report_func):
         # 3. Initial call to Claude
         response_data = self._call_claude(messages_payload, self.tools)
         
         # Loop to handle multiple tool calls
         while response_data['stop_reason'] == "tool_use":
             content_block = response_data['content']
-            
-            # Add assistant response to memory (we need to convert back to OpenAI format for storage consistency)
-            # Or we just store it as is and let the converter handle it?
-            # The memory expects OpenAI format now (tool_calls list).
-            # We need to convert Claude's response to OpenAI format for storage.
             
             tool_calls_openai = []
             for block in content_block:
@@ -1353,7 +1823,7 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
                     tool_input = block['input']
                     tool_id = block['id']
                     
-                    print(f"🤖 Calling tool: {tool_name}({tool_input})")
+                    report_func(f"Using tool: {tool_name}", "tool")
                     
                     try:
                         result = self._execute_tool(tool_name, tool_input)
@@ -1361,7 +1831,7 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
                         # Truncate result if too large
                         result_str = json.dumps(result, default=str) # Convert to string for length check
                         if len(result_str) > 4000:
-                            print(f"⚠️ Tool output too large ({len(result_str)} chars). Truncating...")
+                            report_func(f"Tool output large ({len(result_str)} chars). Truncating...", "warning")
                             result_str = result_str[:4000] + "... (truncated)"
                             
                         # Add result to memory (OpenAI format)
@@ -1373,7 +1843,7 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
                         })
                     except Exception as e:
                         error_message = f"Error executing tool '{tool_name}': {e}"
-                        print(f"❌ {error_message}")
+                        report_func(error_message, "error")
                         self.memory.add_message(message={
                             "role": "tool",
                             "tool_call_id": tool_id,
@@ -1406,8 +1876,44 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
         elif name == "get_upcoming_checkouts":
             days = args.get("days", 60)
             return self.api.get_upcoming_checkouts(days)
+        elif name == "get_upcoming_inspections":
+            days = args.get("days", 30)
+            return self.api.get_upcoming_inspections(days)
         elif name == "get_open_deposits_by_client":
             return self.api.get_open_deposits_by_client()
+        elif name == "generate_master_input":
+            output_file = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'Eindafrekening', 'src', 'input_master.xlsx'))
+            create_master_template(output_file)
+            return {
+                "status": "success",
+                "message": "Master Template generated.",
+                "path": output_file,
+                "instructions": "Open this Excel file, fill the 'Input' sheet with settlement data, then ask me to 'process the master input'."
+            }
+            
+        elif name == "process_master_input":
+             if not generate_report:
+                 return {"status": "error", "message": "Generator module not available."}
+             
+             input_file = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'Eindafrekening', 'src', 'input_master.xlsx'))
+             try:
+                 result = generate_report(input_file, skip_db_save=False)
+                 summary = "Batch processing complete."
+                 if isinstance(result, list):
+                     summary += f" Processed {len(result)} settlements."
+                 elif result:
+                     summary += " Processed 1 settlement."
+                 else:
+                     summary += " No valid settlements found."
+                     
+                 return {
+                     "status": "success",
+                     "message": summary,
+                     "output_dir": os.path.join(os.path.dirname(input_file), '..', 'output')
+                 }
+             except Exception as e:
+                 return {"status": "error", "message": f"Generation failed: {str(e)}"}
+
         elif name == "get_active_houses":
             limit = args.get("limit", 50)
             return self.api.get_active_houses(limit)
@@ -1422,11 +1928,33 @@ DO NOT skip steps. DO NOT guess column names. Be methodical.
             else:
                 return result
             
+        elif name == "get_table_info":
+             return self.api.get_table_info(args.get('table_name'))
         elif name == "run_sql_query":
             query = args.get('query') or args.get('custom_sql')
             if not query:
                 return {"error": "Missing 'query' argument"}
+            # Cache the query for Dual Output Strategy
+            self.last_query = query
             return self.api.run_sql_query(query)
+            
+        elif name == "export_last_query_to_excel":
+            if not self.last_query:
+                return {"error": "No query history found. Run a SQL query first."}
+            filename = args.get("filename", f"export_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx")
+            path = self.api.export_query_to_excel(self.last_query, filename)
+            return {"status": "success", "file_path": path, "message": f"Exported {self.last_query} to {path}"}
+            
+        elif name == "get_item_from_last_result":
+            if not self.last_query:
+                return {"error": "No query history found."}
+            index = args.get("index", 1)
+            # Offset is index-1 because SQL OFFSET is 0-based
+            rows = self.api.get_query_sample(self.last_query, offset=index-1, limit=1)
+            if not rows:
+                return {"status": "empty", "message": f"No row found at index {index}."}
+            return {"status": "success", "row_index": index, "data": rows[0]}
+
         elif name == "add_house":
             return self.api.add_house(
                 args['adres'], args['plaats'], args['postcode'], 

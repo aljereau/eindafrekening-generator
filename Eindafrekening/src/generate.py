@@ -195,20 +195,35 @@ def generate_report(input_file: str = None, output_dir: str = None, save_json: b
     
             data = read_excel(input_file)
     
-            # Get GWE voorschot from Excel (should be read by excel_reader)
-            # This is a hack because read_excel doesn't fully support all GWE logic yet?
-            # Or maybe it does. Let's keep it safe.
-            with ExcelReader(input_file) as reader:
-                gwe_voorschot = reader.get_float('Voorschot_GWE', default=0.0)
-            data['gwe_voorschot'] = gwe_voorschot
+        # Call generation (Handle Batch or Single)
+        results = []
+        
+        if isinstance(data, list):
+            print(f"\n🚀 Starting Batch Generation for {len(data)} items...")
+            for i, booking_data in enumerate(data, 1):
+                print(f"\n--- Batch Item {i}/{len(data)}: {booking_data.get('object', {}).address} ---")
+                try:
+                    res = generate_eindafrekening_from_data(booking_data, output_dir, bundle_dir, shared_dir, project_root, save_json, auto_open, skip_db_save)
+                    results.append(res)
+                except Exception as e:
+                    print(f"❌ Error processing item {i}: {e}")
+                    import traceback
+                    traceback.print_exc()
+            
+            # Return last result for compatibility or summary
+            return results[-1] if results else None
+            
         else:
-            print(f"\n📊 STAP 1: Data direct gebruikt (Batch Mode)")
-            # Ensure gwe_voorschot exists
+            # Single item (legacy)
+            
+            # Get GWE voorschot from Excel (Legacy support)
+            # Only do this if not already provided by reader (e.g. MasterReader provides it)
             if 'gwe_voorschot' not in data:
-                 data['gwe_voorschot'] = data['deposit'].voorschot if data.get('deposit') else 0.0 # Fallback? No, GWE voorschot logic is complex
-
-        # Call the reusable generation function
-        return generate_eindafrekening_from_data(data, output_dir, bundle_dir, shared_dir, project_root, save_json, auto_open, skip_db_save)
+                with ExcelReader(input_file) as reader:
+                    gwe_voorschot = reader.get_float('Voorschot_GWE', default=0.0)
+                data['gwe_voorschot'] = gwe_voorschot
+                
+            return generate_eindafrekening_from_data(data, output_dir, bundle_dir, shared_dir, project_root, save_json, auto_open, skip_db_save)
 
     except FileNotFoundError as e:
         print(f"\n❌ FOUT: {e}")
@@ -447,7 +462,7 @@ def main():
     
     try:
         generate_report(
-            input_path=args.input,
+            input_file=args.input,
             output_dir=args.output,
             save_json=False, # Default to False for CLI unless flag added later
             auto_open=not args.no_open

@@ -2,11 +2,11 @@
 -- Date: 2024-12-02
 
 -- Add columns to boekingen table
-ALTER TABLE boekingen ADD COLUMN voorschot_gwe REAL DEFAULT 0;
+-- ALTER TABLE boekingen ADD COLUMN voorschot_gwe REAL DEFAULT 0;
 
-ALTER TABLE boekingen ADD COLUMN voorschot_schoonmaak REAL DEFAULT 0;
+-- ALTER TABLE boekingen ADD COLUMN voorschot_schoonmaak REAL DEFAULT 0;
 
-ALTER TABLE boekingen ADD COLUMN schoonmaak_pakket TEXT;
+-- ALTER TABLE boekingen ADD COLUMN schoonmaak_pakket TEXT;
 
 ALTER TABLE boekingen
 ADD COLUMN settlement_generated BOOLEAN DEFAULT 0;

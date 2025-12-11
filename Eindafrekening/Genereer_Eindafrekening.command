@@ -24,10 +24,10 @@ else
     echo "⚠️  Geen 'venv' map gevonden. We proberen de standaard python3..."
 fi
 
-# 3. Check of input bestand bestaat (in root map)
-if [ ! -f "input_template.xlsx" ]; then
-    echo "❌ FOUT: 'input_template.xlsx' niet gevonden!"
-    echo "   Zorg dat dit bestand in de map '$PWD' staat."
+# 3. Check of input bestand bestaat
+if [ ! -f "src/input_master.xlsx" ]; then
+    echo "❌ FOUT: 'src/input_master.xlsx' niet gevonden!"
+    echo "   Zorg dat 'input_master.xlsx' in de 'src' map staat."
     read -p "Druk op Enter om te sluiten..."
     exit 1
 fi
@@ -35,7 +35,7 @@ fi
 # 4. Start de generator (vanuit src map)
 # --no-pause: Zodat we hieronder zelf de pause kunnen beheren
 # --auto-open: Open browser automatisch
-python3 src/generate.py --no-pause --auto-open
+python3 src/generate.py --input src/input_master.xlsx --no-pause --auto-open
 
 # 5. Check resultaat
 if [ $? -eq 0 ]; then

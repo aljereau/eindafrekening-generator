@@ -18,10 +18,10 @@ if exist venv\Scripts\activate.bat (
     echo ⚠️  Geen 'venv' map gevonden. We proberen de standaard python...
 )
 
-REM 3. Check of input bestand bestaat (in root map)
-if not exist "input_template.xlsx" (
-    echo ❌ FOUT: 'input_template.xlsx' niet gevonden!
-    echo    Zorg dat dit bestand in de map '%CD%' staat.
+REM 3. Check of input bestand bestaat
+if not exist "src\input_master.xlsx" (
+    echo ❌ FOUT: 'src\input_master.xlsx' niet gevonden!
+    echo    Zorg dat 'input_master.xlsx' in de 'src' map staat.
     pause
     exit /b 1
 )
@@ -29,7 +29,7 @@ if not exist "input_template.xlsx" (
 REM 4. Start de generator (vanuit src map)
 REM --no-pause: Zodat we hieronder zelf de pause kunnen beheren
 REM --auto-open: Open browser automatisch
-python src/generate.py --no-pause --auto-open
+python src/generate.py --input src/input_master.xlsx --no-pause --auto-open
 
 REM 5. Einde
 echo.

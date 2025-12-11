@@ -474,8 +474,27 @@ def read_excel(filepath: str) -> Dict[str, Any]:
     Returns:
         Dictionary with all entity objects
     """
-    with ExcelReader(filepath) as reader:
-        return reader.read_all()
+    # Detect file type
+    wb = openpyxl.load_workbook(filepath, read_only=True)
+    sheet_names = wb.sheetnames
+    wb.close()
+    
+    if 'Input' in sheet_names:
+        print(f"ℹ️  Detecting Master Template format ('Input' sheet found)")
+        from master_reader import MasterReader
+        reader = MasterReader(filepath)
+        all_bookings = reader.read_all()
+        
+        if not all_bookings:
+            raise ValueError("No valid bookings found in Master Template")
+            
+        print(f"   Found {len(all_bookings)} bookings.")
+        return all_bookings # Return list of bookings
+        
+    else:
+        # Legacy Format
+        with ExcelReader(filepath) as reader:
+            return reader.read_all()
 
 
 if __name__ == "__main__":

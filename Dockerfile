@@ -29,4 +29,5 @@ RUN mkdir -p /app/database
 EXPOSE 8000
 
 # Default command: run the chatbot
+# Default command: run the chatbot
 CMD ["python", "HuizenManager/src/chat.py"]

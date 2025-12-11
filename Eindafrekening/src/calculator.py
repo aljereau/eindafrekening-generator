@@ -207,13 +207,26 @@ class Calculator:
         This ensures robustness against Excel formula failures.
         """
         # If total cost is 0 but we have hours and rate, calculate it
-        if cleaning.totaal_kosten_incl == 0 and cleaning.totaal_uren > 0 and cleaning.uurtarief > 0:
+        # If total cost is 0 but we have hours and rate, calculate it
+        # Also enforce "No Refund" logic: Cost is at least the package price.
+        if (cleaning.totaal_kosten_incl == 0 and cleaning.totaal_uren > 0 and cleaning.uurtarief > 0) or cleaning.pakket_type in ['5_uur', '7_uur']:
+            
             totaal_excl = cleaning.totaal_uren * cleaning.uurtarief
+            
+            # Enforce Package Floor
+            # Package implies specific hours were pre-purchased.
+            floor_hours = cleaning.inbegrepen_uren
+            if floor_hours > 0 and cleaning.totaal_uren < floor_hours:
+                 # If actual hours < params, we still charge for the full package
+                 # Effectively, we treat the 'totaal_excl' as if full hours were worked for billing
+                 totaal_excl = floor_hours * cleaning.uurtarief
+            
             # Add VAT
             totaal_incl = totaal_excl * (1 + cleaning.btw_percentage)
             btw_bedrag = totaal_incl - totaal_excl
             
-            print(f"ℹ️  Recalculated cleaning costs: {cleaning.totaal_uren}h * €{cleaning.uurtarief} = €{totaal_incl:.2f} (incl VAT)")
+            if abs(totaal_incl - cleaning.totaal_kosten_incl) > 0.01:
+                print(f"ℹ️  Recalculated cleaning costs (Floor Applied): {max(cleaning.totaal_uren, cleaning.inbegrepen_uren)}h (billed) * €{cleaning.uurtarief} = €{totaal_incl:.2f} (incl VAT)")
             
             # Return updated Cleaning object
             return Cleaning(
