@@ -374,6 +374,13 @@ def generate_eindafrekening_from_data(data: dict, output_dir: str, bundle_dir: s
             'settlement': str(settlement)
         }
         
+        # Extract additional stats
+        schoonmaak_pakket = data['cleaning'].pakket_naam
+        schoonmaak_kosten = data['cleaning'].totaal_kosten_incl
+        schade_totaal = data['damage_totalen'].totaal_incl
+        extra_voorschot = data.get('extra_voorschot')
+        extra_voorschot_bedrag = extra_voorschot.voorschot if extra_voorschot else 0.0
+
         # Save
         db.save_eindafrekening(
             client_name=data['client'].name,
@@ -387,7 +394,11 @@ def generate_eindafrekening_from_data(data: dict, output_dir: str, bundle_dir: s
             borg_terug=data['deposit'].terug,
             gwe_totaal_incl=data['gwe_totalen'].totaal_incl,
             totaal_eindafrekening=settlement.totaal_eindafrekening,
-            file_path=result['onepager']['pdf'] if result['onepager']['is_pdf'] else result['onepager']['html']
+            file_path=result['onepager']['pdf'] if result['onepager']['is_pdf'] else result['onepager']['html'],
+            schoonmaak_pakket=schoonmaak_pakket,
+            schoonmaak_kosten=schoonmaak_kosten,
+            schade_totaal_kosten=schade_totaal,
+            extra_voorschot_bedrag=extra_voorschot_bedrag
         )
         
     except Exception as e:

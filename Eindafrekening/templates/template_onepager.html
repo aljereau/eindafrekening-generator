@@ -683,6 +683,7 @@
     <!-- BUDGET ROWS -->
 
     <!-- ROW 1: BORG -->
+    {% if financial.borg.show_borg %}
     <div class="budget-row">
         <div class="start-section">
             <div class="category-label">BORG</div>
@@ -719,6 +720,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
     <!-- ROW 2: GWE -->
     <!-- ROW 2: GWE -->
@@ -845,6 +847,7 @@
 
     <!-- DETAILS SECTION -->
     <div class="details-grid">
+        {% if financial.borg.show_borg %}
         <div class="detail-card">
             <div class="detail-header">
                 <span>BORG SPECIFICATIE</span>
@@ -864,6 +867,7 @@
             </div>
             {% endif %}
         </div>
+        {% endif %}
 
         {% if financial.gwe.show_gwe %}
         <div class="detail-card">
@@ -978,6 +982,7 @@
                 </tr>
             </thead>
             <tbody>
+                {% if financial.borg.show_borg %}
                 <tr>
                     <td>
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -996,6 +1001,8 @@
                         {% endif %}
                     </td>
                 </tr>
+                {% endif %}
+                {% if financial.gwe.show_gwe %}
                 <tr>
                     <td>
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -1010,6 +1017,7 @@
                         bijbetalen"|format(financial.gwe.extra) }}
                     </td>
                 </tr>
+                {% endif %}
                 <!-- Cleaning row (only if package was purchased) -->
                 {% if financial.cleaning.pakket_type != 'geen' %}
                 <tr>

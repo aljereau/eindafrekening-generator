@@ -85,13 +85,14 @@ def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Di
         },
         "financial": {
             "borg": {
+                "show_borg": settlement.borg.voorschot > 0 or settlement.borg.restschade > 0,
                 "voorschot": settlement.borg.voorschot,
                 "gebruikt": settlement.borg.gebruikt,
                 "terug": settlement.borg.terug,
                 "restschade": settlement.borg.restschade
             },
             "gwe": {
-                "show_gwe": gwe_totalen.beheer_type != "Eigen Beheer",
+                "show_gwe": gwe_totalen.beheer_type != "Eigen Beheer" or gwe_voorschot > 0,
                 "voorschot": gwe_voorschot,
                 "totaal_incl": gwe_totalen.totaal_incl,
                 "meer_minder": gwe_meer_minder,
@@ -194,7 +195,7 @@ def build_detail_viewmodel(data: Dict[str, Any]) -> Dict[str, Any]:
             }
         },
         "gwe": {
-            "show_gwe": gwe_totalen.beheer_type != "Eigen Beheer",
+            "show_gwe": gwe_totalen.beheer_type != "Eigen Beheer" or data.get('gwe_voorschot', 0) > 0 or gwe_totalen.totaal_incl > 0,
             "meterstanden": {
                 "stroom": {
                     "begin": gwe_meterstanden.stroom.begin,
@@ -253,6 +254,7 @@ def build_detail_viewmodel(data: Dict[str, Any]) -> Dict[str, Any]:
             }
         },
         "borg": {
+            "show_borg": deposit.voorschot > 0 or deposit.restschade > 0,
             "voorschot": deposit.voorschot,
             "gebruikt": deposit.gebruikt,
             "terug": deposit.terug,
