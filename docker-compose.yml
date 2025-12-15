@@ -1,15 +1,29 @@
 version: '3.8'
 
 services:
-  ryanrent-bot:
+  ryan-backend:
     build: .
-    container_name: ryanrent-intelligence
-    stdin_open: true # Keep STDIN open for interactive chat
-    tty: true # Allocate a pseudo-TTY
+    container_name: ryan-backend
+    ports:
+      - "8000:8000"
     environment:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     volumes:
       - ./database:/app/database # Persist database
       - ./Eindafrekening/output:/app/Eindafrekening/output # Persist generated reports
-    command: python HuizenManager/src/chat.py
+      - ./ryan_v2/exports:/app/ryan_v2/exports # Persist generated excel files
+      - ./.env:/app/.env
+
+  ryan-frontend:
+    build:
+      context: ./ryan_v2/web_client
+    container_name: ryan-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - ryan-backend
+    volumes:
+      - ./ryan_v2/web_client/src:/app/src # Enable hot reload for frontend code

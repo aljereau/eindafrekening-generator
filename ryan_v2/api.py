@@ -1,5 +1,8 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
+import os
 from pydantic import BaseModel
 import json
 import logging
@@ -7,11 +10,18 @@ import asyncio
 
 from .agent import RyanAgent
 
+# Create exports directory if not exists
+EXPORTS_DIR = Path(__file__).parent / "exports"
+EXPORTS_DIR.mkdir(parents=True, exist_ok=True)
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("ryan_api")
 
-app = FastAPI(title="RyanRent Agent API")
+app = FastAPI(title="RyanRent Agent V2")
+
+# Mount exports for file downloads
+app.mount("/exports", StaticFiles(directory=EXPORTS_DIR), name="exports")
 
 # Allow CORS for development (React dev server on 5173)
 app.add_middleware(

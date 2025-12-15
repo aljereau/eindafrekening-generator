@@ -28,6 +28,6 @@ RUN mkdir -p /app/database
 # Expose port for potential web interface (future)
 EXPOSE 8000
 
-# Default command: run the chatbot
-# Default command: run the chatbot
-CMD ["python", "HuizenManager/src/chat.py"]
+# Default command: run the V2 API
+CMD ["python", "-m", "uvicorn", "ryan_v2.api:app", "--host", "0.0.0.0", "--port", "8000"]
+

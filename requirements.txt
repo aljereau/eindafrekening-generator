@@ -26,3 +26,10 @@ jinja2>=3.1.0
 
 # Optional: For local models
 # ollama (install separately if needed)
+
+# API
+fastapi>=0.100.0
+uvicorn>=0.20.0
+websockets>=11.0
+python-multipart>=0.0.6
+

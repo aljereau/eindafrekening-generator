@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, Menu, Settings, Bell, User, Paperclip, Mic, FileText, ChevronRight, Hash, MessageSquare, Plus } from 'lucide-react';
+import { Send, Bot, User, Sparkles, Loader2, ChevronDown, ChevronRight, Terminal, Menu, Settings, Bell, Paperclip, FileText, FileIcon, Download, Hash, MessageSquare, Plus } from 'lucide-react';
 import clsx from 'clsx';
 
 // --- Components ---
@@ -118,9 +118,6 @@ function ThinkingProcess({ logs, isComplete }) {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const scrollRef = useRef(null);
 
-  // Auto-expand on new logs if not explicitly collapsed by user (optional refinement)
-  // For now, default collapsed like TUI
-
   // Auto-scroll to bottom of logs
   useEffect(() => {
     if (scrollRef.current) {
@@ -162,15 +159,60 @@ function ThinkingProcess({ logs, isComplete }) {
 }
 
 
+// Helper to extract file path and render download link
+function renderContentWithDownloads(content) {
+  // Broadest regex: find any string ending in .xlsx that looks like a filename
+  // This handles cases where the agent strips the path (e.g. "Bestandsnaam: file.xlsx")
+  const fileRegex = /([a-zA-Z0-9_\-./\\:]+\.xlsx)/i;
+  const match = content.match(fileRegex);
+
+  if (match) {
+    let fullPath = match[1];
+    // clean up any leading/trailing punctuation if regex grabbed too much
+    fullPath = fullPath.replace(/^['"`*]+|['"`*]+$/g, '');
+
+    // Extract filename from path (works for both Unix and Windows paths)
+    const filename = fullPath.split(/[/\\]/).pop();
+    const downloadUrl = `http://localhost:8000/exports/${filename}`;
+
+    return (
+      <div className="space-y-4">
+        <div className="whitespace-pre-wrap">{content}</div>
+        <div className="bg-neutral-800/50 border border-neutral-700 rounded-lg p-4 flex items-center justify-between group hover:border-blue-500/50 transition-colors">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-blue-500/10 rounded-lg text-blue-400 group-hover:text-blue-300">
+              <FileIcon className="w-6 h-6" />
+            </div>
+            <div>
+              <div className="font-medium text-neutral-200">{filename}</div>
+              <div className="text-sm text-neutral-500">Click to download</div>
+            </div>
+          </div>
+          <a
+            href={downloadUrl}
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+          >
+            <Download className="w-4 h-4" />
+            Download
+          </a>
+        </div>
+      </div>
+    );
+  }
+  return <div className="whitespace-pre-wrap">{content}</div>;
+}
+
 function ChatMessage({ role, content, type, logs, isComplete }) {
   const isUser = role === 'user';
 
-  // Special handling for Thinking Process
   if (type === 'thinking') {
     return <ThinkingProcess logs={logs} isComplete={isComplete} />;
   }
 
-  const isError = type === 'error'; // Legacy error handling if needed, but errors now come as logs usually
+  const isError = type === 'error'; // Legacy error handling
 
   if (isError) {
     return (
@@ -181,19 +223,22 @@ function ChatMessage({ role, content, type, logs, isComplete }) {
   }
 
   return (
-    <div className={clsx("flex w-full mb-6 px-4", isUser ? "justify-end" : "justify-start")}>
+    <div className={clsx(
+      "flex w-full mb-6 px-4 animate-in fade-in slide-in-from-bottom-2",
+      isUser ? "justify-end" : "justify-start"
+    )}>
       {!isUser && (
         <div className="mr-3 flex-shrink-0 mt-1">
           <Avatar name="Ryan" initials="R" color="bg-blue-600" />
         </div>
       )}
       <div className={clsx(
-        "max-w-2xl px-5 py-3 shadow-sm text-sm leading-relaxed",
+        "max-w-[80%] rounded-2xl px-6 py-4 shadow-sm text-sm leading-relaxed",
         isUser
-          ? "bg-blue-600 text-white rounded-2xl rounded-tr-sm"
-          : "bg-dark-panel border border-dark-border rounded-2xl rounded-tl-sm text-gray-200"
+          ? "bg-blue-600 text-white rounded-tr-sm"
+          : "bg-neutral-800/80 text-neutral-100 border border-neutral-700/50 rounded-tl-sm backdrop-blur-sm"
       )}>
-        <p className="whitespace-pre-wrap">{content}</p>
+        {content && !isUser ? renderContentWithDownloads(content) : <div className="whitespace-pre-wrap">{content}</div>}
       </div>
       {isUser && (
         <div className="ml-3 flex-shrink-0 mt-1">
@@ -265,24 +310,17 @@ function App() {
       else if (data.type === 'done') {
         setMessages(prev => {
           // Mark the last thinking block as complete if it exists
-          // Also mark last text as 'fixed' so new text starts new bubble if needed (though usually done means stream end)
           const newMessages = [...prev];
-
-          // Find last thinking block
           for (let i = newMessages.length - 1; i >= 0; i--) {
             if (newMessages[i].type === 'thinking' && !newMessages[i].isComplete) {
               newMessages[i] = { ...newMessages[i], isComplete: true };
               break;
             }
           }
-          // Find last textual message to fallback isFixed logic if you want 
-          // (not strictly necessary with current logic but good practice)
-
           return newMessages;
         });
       }
       else if (data.type === 'error') {
-        // Legacy error or top-level system error
         setMessages(prev => [...prev, { role: 'system', content: data.content, type: 'error' }]);
       }
     };
