@@ -123,13 +123,14 @@ class MasterReader:
                 gwe_beheer_val = str(row[10]).strip() if row[10] else "Via RyanRent" # K
                 gwe_settings['beheer_type'] = gwe_beheer_val
                 
-                # GWE Voorschot (Auto) - Column M (Index 12)
-                # This is the monthly amount * months usually, calculated in Excel
-                gwe_voorschot_auto = parse_float(row[12])
+                # GWE Voorschot (Auto) - Column O (Index 14)
+                # This is the monthly amount * months usually, calculated in Excel.
+                # INPUT IS NOW VAT-INCLUSIVE via formula in template.
+                gwe_voorschot_auto = parse_float(row[14])
                 
-                # Extra Voorschot - Col R(17), S(18)
-                ex_voor_bedrag = parse_float(row[17])
-                ex_voor_desc = str(row[18]) if row[18] else "Extra Voorschot"
+                # Extra Voorschot - Col T(19), U(20) (Was U, V)
+                ex_voor_bedrag = parse_float(row[19])
+                ex_voor_desc = str(row[20]) if row[20] else "Extra Voorschot"
                 
                 if ex_voor_bedrag > 0:
                     extra_voorschot = ExtraVoorschot(
@@ -151,14 +152,14 @@ class MasterReader:
                 deposit = Deposit(voorschot=borg_voorschot, gebruikt=0.0, terug=0.0, restschade=0.0)
 
             elif row_type == "GWE":
-                # Readings (Cols T-Y -> Indices 19-24)
-                # T19, U20, V21, W22, X23, Y24
-                elek_start = parse_float(row[19])
-                elek_eind = parse_float(row[20])
-                gas_start = parse_float(row[21])
-                gas_eind = parse_float(row[22])
-                water_start = parse_float(row[23])
-                water_eind = parse_float(row[24])
+                # Readings (Cols V-AA -> Indices 21-26)
+                # V21, W22, X23, Y24, Z25, AA26
+                elek_start = parse_float(row[21])
+                elek_eind = parse_float(row[22])
+                gas_start = parse_float(row[23])
+                gas_eind = parse_float(row[24])
+                water_start = parse_float(row[25])
+                water_eind = parse_float(row[26])
                 
                 stroom = GWEMeterReading(begin=elek_start, eind=elek_eind, verbruik=elek_eind-elek_start)
                 gas = GWEMeterReading(begin=gas_start, eind=gas_eind, verbruik=gas_eind-gas_start)
@@ -167,12 +168,12 @@ class MasterReader:
                 gwe_standen = GWEMeterstanden(stroom=stroom, gas=gas, water=water)
                 
             elif row_type == "Schoonmaak":
-                # Cleaning (Cols Z-AF -> Indices 25-31)
-                # Z(25):Pakket, AA:Uren, AB:Tarief, AC:TotEx, AD:BTW%, AE:BTW€, AF:TotInc
-                pakket = str(row[25]).strip()
-                uren = parse_float(row[26])
-                tarief = parse_float(row[27])
-                btw_pct = parse_float(row[29]) # AD is Index 29
+                # Cleaning (Cols AB-AH -> Indices 27-33)
+                # AB(27):Pakket, AC:Uren, AD:Tarief, AE:TotEx, AF:BTW%, AG:BTW€, AH:TotInc
+                pakket = str(row[27]).strip()
+                uren = parse_float(row[28])
+                tarief = parse_float(row[29])
+                btw_pct = parse_float(row[31]) # AF is Index 31
                 
                 if not btw_pct: btw_pct = 0.21
                 if btw_pct > 1: btw_pct = btw_pct / 100 
@@ -194,8 +195,8 @@ class MasterReader:
                     inbegrepen_std = 0.0
                 
                 # Calculate costs. Use Excel totals if available? Or recalc.
-                # Let's verify Excel TotIncl at index 31 (AF)
-                total_cost = parse_float(row[31])
+                # AH is Index 33
+                total_cost = parse_float(row[33])
                 if total_cost == 0:
                      total_cost = uren * tarief * (1 + btw_pct)
                 
@@ -238,14 +239,14 @@ class MasterReader:
                 )
 
             elif row_type == "GWE_Item":
-                # Cols AG-AO (Indices 32-40)
-                # AG(32):Type, AH:Eenheid, AI:Desc, AJ:Aant, AK:Prijs, AL:TotEx, AM:BTW%, AN:BTW€, AO:TotInc
-                k_type = str(row[32]).strip() if row[32] else "Overig"
-                eenheid = str(row[33]).strip() if row[33] else ""
-                desc = row[34]
-                aantal = parse_float(row[35])
-                prijs = parse_float(row[36])
-                btw = parse_float(row[38]) # AM is 38
+                # Cols AI-AQ (Indices 34-42)
+                # AI(34):Type, AJ:Unit, AK:Desc, AL:Aant, AM:Prijs, AN:TotEx, AO:BTW%, AP:BTW€, AQ:TotInc
+                k_type = str(row[34]).strip() if row[34] else "Overig"
+                eenheid = str(row[35]).strip() if row[35] else ""
+                desc = row[36]
+                aantal = parse_float(row[37])
+                prijs = parse_float(row[38])
+                btw = parse_float(row[40]) # AO is 40
                 
                 if btw > 1: btw = btw / 100
                 if not btw: btw = 0.21
@@ -264,11 +265,11 @@ class MasterReader:
                 ))
 
             elif row_type in ["Schade", "Extra"]:
-                # Item Cols (32-40)
-                desc = row[34] # AI
-                qty = parse_float(row[35]) # AJ
-                amt = parse_float(row[36]) # AK (Prijs/Stuk)
-                btw = parse_float(row[38]) # AM
+                # Item Cols (shifted -1)
+                desc = row[33] 
+                qty = parse_float(row[34]) 
+                amt = parse_float(row[35]) 
+                btw = parse_float(row[37]) 
                 
                 if btw > 1: btw = btw / 100
                 if not btw: btw = 0.21 

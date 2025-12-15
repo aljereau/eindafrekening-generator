@@ -1,4 +1,9 @@
-<!-- 1cd001c2-3025-40f2-9305-8787d96fbb85 593550e6-d4d5-43e9-81a1-5e75ecb64f02 -->
+---
+name: "UI Redesign: Clean Professional Eindafrekening"
+overview: ""
+todos: []
+---
+
 # UI Redesign: Clean Professional Eindafrekening
 
 ## Overview

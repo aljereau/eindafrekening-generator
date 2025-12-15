@@ -49,42 +49,46 @@ def create_master_template(output_path=None):
         ("Borg (€)", header_blue),        # J
         ("GWE Beheer", header_blue),      # K
         ("GWE Maandbedrag (€)", header_blue), # L
-        ("Voorschot GWE (Auto)", header_blue), # M
+        ("BTW %", header_blue),           # M
+        ("Voorschot GWE (Incl)", header_blue), # N
+        ("Totaal Voorschot", header_blue), # O 
         
-        ("Meterbeheerder", header_blue),  # N
-        ("Leverancier", header_blue),     # O
-        ("Leverancier Nr (Auto)", header_blue), # P
-        ("Contractnr", header_blue),      # Q
-        ("Extra Voorschot (€)", header_blue), # R
-        ("Extra Voor. Omschr.", header_blue), # S
+        # P was Verrekening - REMOVED
+
+        ("Meterbeheerder", header_blue),  # P
+        ("Leverancier", header_blue),     # Q
+        ("Leverancier Nr (Auto)", header_blue), # R
+        ("Contractnr", header_blue),      # S
+        ("Extra Voorschot (€)", header_blue), # T
+        ("Extra Voor. Omschr.", header_blue), # U
         
-        # GWE Readings (Orange) (Cols T-Y)
-        ("Elek Begin", header_orange),    # T
-        ("Elek Eind", header_orange),     # U
-        ("Gas Begin", header_orange),     # V
-        ("Gas Eind", header_orange),      # W
-        ("Water Begin", header_orange),   # X
-        ("Water Eind", header_orange),    # Y
+        # GWE Readings (Orange) (Cols V-AA)
+        ("Elek Begin", header_orange),    # V
+        ("Elek Eind", header_orange),     # W
+        ("Gas Begin", header_orange),     # X
+        ("Gas Eind", header_orange),      # Y
+        ("Water Begin", header_orange),   # Z
+        ("Water Eind", header_orange),    # AA
         
-        # SCHOONMAAK (Gold) (Cols Z-AE)
-        ("Schoon Maak Pakket", header_gold), # Z
-        ("Schoon Uren", header_gold),     # AA
-        ("Uurtarief (€)", header_gold),   # AB
-        ("Totaal Excl (€)", header_gold), # AC
-        ("BTW %", header_gold),           # AD
-        ("BTW Bedrag (€)", header_gold),  # AE
-        ("Totaal Incl (€)", header_gold), # AF
+        # SCHOONMAAK (Gold) (Cols AB-AH)
+        ("Schoon Maak Pakket", header_gold), # AB
+        ("Schoon Uren", header_gold),     # AC
+        ("Uurtarief (€)", header_gold),   # AD
+        ("Totaal Excl (€)", header_gold), # AE
+        ("BTW %", header_gold),           # AF
+        ("BTW Bedrag (€)", header_gold),  # AG
+        ("Totaal Incl (€)", header_gold), # AH
         
-        # ITEMS (Red) (Cols AG-AO)
-        ("Kosten Type", header_red),      # AG
-        ("Eenheid", header_red),          # AH
-        ("Beschrijving", header_red),     # AI
-        ("Aantal", header_red),           # AJ
-        ("Prijs/Stuk (€)", header_red),   # AK
-        ("Totaal Excl (€)", header_red),  # AL
-        ("BTW %", header_red),            # AM
-        ("BTW Bedrag (€)", header_red),   # AN
-        ("Totaal Incl (€)", header_red)   # AO
+        # ITEMS (Red) (Cols AI-AQ)
+        ("Kosten Type", header_red),      # AI
+        ("Eenheid", header_red),          # AJ
+        ("Beschrijving", header_red),     # AK
+        ("Aantal", header_red),           # AL
+        ("Prijs/Stuk (€)", header_red),   # AM
+        ("Totaal Excl (€)", header_red),  # AN
+        ("BTW %", header_red),            # AO
+        ("BTW Bedrag (€)", header_red),   # AP
+        ("Totaal Incl (€)", header_red)   # AQ
     ]
 
     # Write Headers
@@ -106,7 +110,11 @@ def create_master_template(output_path=None):
     ws.column_dimensions['A'].width = 25 
     ws.column_dimensions['C'].width = 25 
     ws.column_dimensions['G'].width = 30 # Folder Link
-    ws.column_dimensions['AI'].width = 30 # Beschrijving
+    ws.column_dimensions['L'].width = 15 # GWE Excl
+    ws.column_dimensions['N'].width = 15 # GWE Incl
+    ws.column_dimensions['T'].width = 15 # Extra Voorschot (was U)
+    ws.column_dimensions['U'].width = 30 # Extra Voor Omschr (was V)
+    ws.column_dimensions['AK'].width = 30 # Beschrijving (AI starts items, AK is desc)
 
     # ==================== FORMULAS & VALIDATION ====================
 
@@ -126,19 +134,29 @@ def create_master_template(output_path=None):
     dv_client.add('C2:C5000')
 
     # GWE Beheer (Col K)
-    dv_gwe = DataValidation(type="list", formula1='"Via RyanRent,Eigen Beheer"', allow_blank=True)
-    ws.add_data_validation(dv_gwe)
-    dv_gwe.add('K2:K5000')
+    dv_gwe_beheer = DataValidation(type="list", formula1="=Lists!$K$2:$K$3", allow_blank=True)
+    ws.add_data_validation(dv_gwe_beheer)
+    dv_gwe_beheer.add('K2:K5000')
 
-    # Schoonmaak Pakket (Col Z)
-    dv_clean = DataValidation(type="list", formula1='"Basis Schoonmaak,Intensief Schoonmaak,Geen Schoonmaak,Achteraf Betaald"', allow_blank=True)
-    ws.add_data_validation(dv_clean)
-    dv_clean.add('Z2:Z5000')
+    # Meterbeheerder (Col P) (was Q)
+    dv_metertype = DataValidation(type="list", formula1="=Lists!$I$2:$I$5", allow_blank=True) 
+    ws.add_data_validation(dv_metertype)
+    dv_metertype.add('P2:P5000') 
 
-    # Kosten Type (Col AG)
-    dv_kosten = DataValidation(type="list", formula1='"Elektra,Gas,Water,Overig"', allow_blank=True)
-    ws.add_data_validation(dv_kosten)
-    dv_kosten.add('AG2:AG5000')
+    # Leverancier (Col Q) (was R)
+    dv_lev = DataValidation(type="list", formula1="=Lists!$E$2:$E$100", allow_blank=True)
+    ws.add_data_validation(dv_lev)
+    dv_lev.add('Q2:Q5000') 
+
+    # Schoonmaak Pakket (Col AB) (was AC)
+    dv_pakket = DataValidation(type="list", formula1="=Lists!$M$2:$M$6", allow_blank=True)
+    ws.add_data_validation(dv_pakket)
+    dv_pakket.add('AB2:AB5000')
+
+    # Kosten Type (Col AI) (Item Type) (was AJ)
+    dv_items = DataValidation(type="list", formula1="=Lists!$O$2:$O$5", allow_blank=True)
+    ws.add_data_validation(dv_items)
+    dv_items.add('AI2:AI5000')
 
     # Styles
     grey_fill = PatternFill(start_color="E7E6E6", end_color="E7E6E6", fill_type="solid")
@@ -165,70 +183,94 @@ def create_master_template(output_path=None):
         ws[f'L{r}'] = f'=IF(A{r}="","",IFERROR(VLOOKUP(A{r},Lists!$A:$H,7,FALSE),0))'
         ws[f'L{r}'].number_format = '€ #,##0.00'
 
-        # M: GWE Voorschot (Auto) = IF(GWE Beheer="Eigen Beheer", 0, (Maandbedrag * 12 / 365) * Dagen)
-        # K = GWE Beheer, L = Maandbedrag, I = Checkout, H = Checkin
-        # Using commas for formula standard (Excel converts to semicolon based on locale)
-        ws[f'M{r}'] = f'=IF(K{r}="Eigen Beheer",0,IF(AND(ISNUMBER(L{r}),I{r}<>"",H{r}<>""),(L{r}*12/365)*(I{r}-H{r}),0))'
-        ws[f'M{r}'].number_format = '€ #,##0.00'
-        ws[f'M{r}'].fill = grey_fill 
-        
-        # P: Lev Nr -> VLOOKUP LevName(O) in Lists E:F -> 2
-        ws[f'P{r}'] = f'=IF(O{r}="","",VLOOKUP(O{r},Lists!$E:$F,2,FALSE))'
-        ws[f'P{r}'].fill = grey_fill 
-        
-        # Schoonmaak Calculations
-        # AC (TotEx) = AA(Uren) * AB(Tarief)
-        ws[f'AC{r}'] = f'=IF(AND(AA{r}<>"",AB{r}<>""),AA{r}*AB{r},"")'
-        ws[f'AC{r}'].fill = fill_calc
-        ws[f'AC{r}'].number_format = '€ #,##0.00'
-        
-        # AD (BTW%)
-        ws[f'AD{r}'].number_format = '0%'
+        # M: BTW % (GWE)
+        ws[f'M{r}'] = 0.21
+        ws[f'M{r}'].number_format = '0%'
+        ws[f'M{r}'].fill = grey_fill
 
-        # AE (BTW€) = AC * AD
+        # N: Voorschot GWE (Incl) = L * (1 + M)
+        ws[f'N{r}'] = f'=L{r} * (1 + M{r})'
+        ws[f'N{r}'].number_format = '€ #,##0.00'
+        ws[f'N{r}'].fill = grey_fill
+
+        # O: Totaal Voorschot = IF(GWE Beheer="Eigen Beheer", 0, (Voorschot GWE (Incl) / 30) * Dagen)
+        # K = GWE Beheer, N = Voorschot GWE (Incl), I = Checkout, H = Checkin
+        ws[f'O{r}'] = f'=IF(K{r}="Eigen Beheer",0,IF(AND(ISNUMBER(N{r}),I{r}<>"",H{r}<>""),(N{r}/30)*(I{r}-H{r}),0))'
+        ws[f'O{r}'].number_format = '€ #,##0.00'
+        ws[f'O{r}'].fill = grey_fill
+
+        # P: Was Verrekening - Removed
+        
+        # R: Lev Nr (Auto) (Was S) -> VLOOKUP LevName(Q) in Lists E:F -> 2
+        # Now R targets Q
+        ws[f'R{r}'] = f'=IF(Q{r}="","",VLOOKUP(Q{r},Lists!$E:$F,2,FALSE))'
+        ws[f'R{r}'].fill = grey_fill 
+        ws[f'R{r}'].alignment = Alignment(horizontal='center') 
+        
+        # Schoonmaak Calculations (Cols AB-AH) (Was AC-AI)
+        # AB:Pakket, AC:Uren, AD:Tarief, AE:TotEx, AF:BTW%, AG:BTW€, AH:TotInc
+        
+        # AE (TotEx) = AC(Uren) * AD(Tarief)
         ws[f'AE{r}'] = f'=IF(AND(AC{r}<>"",AD{r}<>""),AC{r}*AD{r},"")'
         ws[f'AE{r}'].fill = fill_calc
         ws[f'AE{r}'].number_format = '€ #,##0.00'
         
-        # AF (TotInc) = AC + AE
-        ws[f'AF{r}'] = f'=IF(AND(AC{r}<>"",AE{r}<>""),AC{r}+AE{r},"")'
-        ws[f'AF{r}'].fill = fill_calc
-        ws[f'AF{r}'].number_format = '€ #,##0.00'
-        
-        # ITEM CALCULATIONS
-        # AJ (Aantal) - SMART LOOKUP
-        # GWE Indices: ElekBegin=T, ElekEind=U, GasBegin=V, GasEind=W, WaterBegin=X, WaterEind=Y
-        f_elek = f'SUMIFS($U:$U,$A:$A,$A{r},$B:$B,"GWE")-SUMIFS($T:$T,$A:$A,$A{r},$B:$B,"GWE")'
-        f_gas = f'SUMIFS($W:$W,$A:$A,$A{r},$B:$B,"GWE")-SUMIFS($V:$V,$A:$A,$A{r},$B:$B,"GWE")'
-        f_water = f'SUMIFS($Y:$Y,$A:$A,$A{r},$B:$B,"GWE")-SUMIFS($X:$X,$A:$A,$A{r},$B:$B,"GWE")'
-        
-        f_smart = f'IF($AG{r}="Elektra",{f_elek},IF($AG{r}="Gas",{f_gas},IF($AG{r}="Water",{f_water},"")))'
-        
-        ws[f'AJ{r}'] = f'=IF($B{r}="GWE_Item",{f_smart},"")'
-        
-        # AL (TotEx) = AJ * AK
-        ws[f'AL{r}'] = f'=IF(AND(AJ{r}<>"",AK{r}<>""),AJ{r}*AK{r},"")'
-        ws[f'AL{r}'].fill = fill_calc
-        ws[f'AL{r}'].number_format = '€ #,##0.00'
-        
-        # AM (BTW%)
-        ws[f'AM{r}'].number_format = '0%'
+        # AF (BTW%)
+        ws[f'AF{r}'].number_format = '0%'
 
-        # AN (BTW€) = AL * AM
+        # AG (BTW€) = AE * AF
+        ws[f'AG{r}'] = f'=IF(AND(AE{r}<>"",AF{r}<>""),AE{r}*AF{r},"")'
+        ws[f'AG{r}'].fill = fill_calc
+        ws[f'AG{r}'].number_format = '€ #,##0.00'
+        
+        # AH (TotInc) = AE + AG
+        ws[f'AH{r}'] = f'=IF(AND(AE{r}<>"",AG{r}<>""),AE{r}+AG{r},"")'
+        ws[f'AH{r}'].fill = fill_calc
+        ws[f'AH{r}'].number_format = '€ #,##0.00'
+        
+        # ITEM CALCULATIONS (Cols AI-AQ) (Was AJ-AR)
+        # AI:Type, AJ:Unit, AK:Desc, AL:Aant, AM:Prijs, AN:TotEx, AO:BTW%, AP:BTW€, AQ:TotInc
+        
+        # AL (Aantal) - SMART LOOKUP
+        # GWE Indices (Previously W-AB): ElekBegin=V(was W), ElekEind=W, GasBegin=X, GasEind=Y, WaterBegin=Z, WaterEind=AA
+        # Need to shift references back 1 char.
+        # W -> V, X -> W, Y -> X, Z -> Y, AA -> Z, AB -> AA
+        
+        f_elek = f'SUMIFS($W:$W,$A:$A,$A{r},$B:$B,"GWE")-SUMIFS($V:$V,$A:$A,$A{r},$B:$B,"GWE")'
+        f_gas = f'SUMIFS($Y:$Y,$A:$A,$A{r},$B:$B,"GWE")-SUMIFS($X:$X,$A:$A,$A{r},$B:$B,"GWE")'
+        f_water = f'SUMIFS($AA:$AA,$A:$A,$A{r},$B:$B,"GWE")-SUMIFS($Z:$Z,$A:$A,$A{r},$B:$B,"GWE")'
+        
+        f_smart = f'IF($AI{r}="Elektra",{f_elek},IF($AI{r}="Gas",{f_gas},IF($AI{r}="Water",{f_water},"")))'
+        
+        ws[f'AL{r}'] = f'=IF($B{r}="GWE_Item",{f_smart},"")'
+        
+        # AN (TotEx) = AL * AM
         ws[f'AN{r}'] = f'=IF(AND(AL{r}<>"",AM{r}<>""),AL{r}*AM{r},"")'
         ws[f'AN{r}'].fill = fill_calc
         ws[f'AN{r}'].number_format = '€ #,##0.00'
         
-        # AO (TotInc) = AL + AN
-        ws[f'AO{r}'] = f'=IF(AND(AL{r}<>"",AN{r}<>""),AL{r}+AN{r},"")'
-        ws[f'AO{r}'].fill = fill_calc
-        ws[f'AO{r}'].number_format = '€ #,##0.00'
+        # AO (BTW%)
+        ws[f'AO{r}'].number_format = '0%'
+
+        # AP (BTW€) = AN * AO
+        ws[f'AP{r}'] = f'=IF(AND(AN{r}<>"",AO{r}<>""),AN{r}*AO{r},"")'
+        ws[f'AP{r}'].fill = fill_calc
+        ws[f'AP{r}'].number_format = '€ #,##0.00'
+        
+        # AQ (TotInc) = AN + AP
+        ws[f'AQ{r}'] = f'=IF(AND(AN{r}<>"",AP{r}<>""),AN{r}+AP{r},"")'
+        ws[f'AQ{r}'].fill = fill_calc
+        ws[f'AQ{r}'].number_format = '€ #,##0.00'
 
     # Conditional Formatting
-    ws.conditional_formatting.add('D2:S5000', FormulaRule(formula=['$B2<>"Basis"'], stopIfTrue=True, fill=grey_fill))
-    ws.conditional_formatting.add('T2:Y5000', FormulaRule(formula=['$B2<>"GWE"'], stopIfTrue=True, fill=grey_fill))
-    ws.conditional_formatting.add('Z2:AF5000', FormulaRule(formula=['$B2<>"Schoonmaak"'], stopIfTrue=True, fill=grey_fill))
-    ws.conditional_formatting.add('AG2:AO5000', FormulaRule(formula=['AND($B2<>"Schade",$B2<>"Extra",$B2<>"GWE_Item")'], stopIfTrue=True, fill=grey_fill))
+    # Basis: D2:U5000 (was V)
+    ws.conditional_formatting.add('D2:U5000', FormulaRule(formula=['$B2<>"Basis"'], stopIfTrue=True, fill=grey_fill))
+    # Readings V-AA (was W-AB)
+    ws.conditional_formatting.add('V2:AA5000', FormulaRule(formula=['$B2<>"GWE"'], stopIfTrue=True, fill=grey_fill))
+    # Cleaning AB-AH (was AC-AI)
+    ws.conditional_formatting.add('AB2:AH5000', FormulaRule(formula=['$B2<>"Schoonmaak"'], stopIfTrue=True, fill=grey_fill))
+    # Items AI-AQ (was AJ-AR)
+    ws.conditional_formatting.add('AI2:AQ5000', FormulaRule(formula=['AND($B2<>"Schade",$B2<>"Extra",$B2<>"GWE_Item")'], stopIfTrue=True, fill=grey_fill))
 
     ws.freeze_panes = 'A2'
     
@@ -319,6 +361,35 @@ def create_lists_sheet(wb):
         for i, (name, l_id) in enumerate(suppliers, 2):
             ws[f'E{i}'] = name
             ws[f'F{i}'] = l_id
+            
+        # STATIC LISTS (I, K, M, O)
+        # I: Meterbeheerder
+        meter_ops = ["Stedin", "Liander", "Enexis", "Westland Infra"]
+        ws['I1'] = "Meterbeheerder"
+        ws['I1'].font = Font(bold=True)
+        for idx, val in enumerate(meter_ops, 2):
+            ws[f'I{idx}'] = val
+            
+        # K: GWE Beheer
+        gwe_opts = ["Via RyanRent", "Eigen Beheer"]
+        ws['K1'] = "GWE Beheer"
+        ws['K1'].font = Font(bold=True)
+        for idx, val in enumerate(gwe_opts, 2):
+            ws[f'K{idx}'] = val
+            
+        # M: Schoonmaak Pakket
+        clean_opts = ["Basis Schoonmaak", "Intensief Schoonmaak", "Geen Schoonmaak", "Achteraf Betaald", "Op Maat"]
+        ws['M1'] = "Schoonmaak Pakket"
+        ws['M1'].font = Font(bold=True)
+        for idx, val in enumerate(clean_opts, 2):
+            ws[f'M{idx}'] = val
+            
+        # O: Item Types (Kosten Type)
+        item_types = ["Elektra", "Gas", "Water", "Overig"]
+        ws['O1'] = "Kosten Type"
+        ws['O1'].font = Font(bold=True)
+        for idx, val in enumerate(item_types, 2):
+            ws[f'O{idx}'] = val
             
         print(f"📊 Added {len(houses)} houses, {len(clients)} clients, {len(suppliers)} suppliers to lists")
             

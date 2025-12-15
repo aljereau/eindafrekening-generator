@@ -1,0 +1,1 @@
+cd "/Users/aljereaumarten/Library/CloudStorage/OneDrive-SharedLibraries-RyanRentB.V/RyanRent - General/01_RyanRent&Co/Aljereau/Eindafrekening Generator" && source .venv/bin/activate && python3 -m uvicorn ryan_v2.api:app --reload --port 8000
