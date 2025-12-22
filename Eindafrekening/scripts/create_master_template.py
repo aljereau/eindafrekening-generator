@@ -193,9 +193,9 @@ def create_master_template(output_path=None):
         ws[f'N{r}'].number_format = '€ #,##0.00'
         ws[f'N{r}'].fill = grey_fill
 
-        # O: Totaal Voorschot = IF(GWE Beheer="Eigen Beheer", 0, (Voorschot GWE (Incl) / 30) * Dagen)
-        # K = GWE Beheer, N = Voorschot GWE (Incl), I = Checkout, H = Checkin
-        ws[f'O{r}'] = f'=IF(K{r}="Eigen Beheer",0,IF(AND(ISNUMBER(N{r}),I{r}<>"",H{r}<>""),(N{r}/30)*(I{r}-H{r}),0))'
+        # O: Totaal Voorschot = IF(GWE Beheer="Eigen Beheer", 0, YEARFRAC(Checkin, Checkout, 4) * 12 * MonthlyPrice)
+        # K = GWE Beheer, N = Voorschot GWE (Incl), I = Checkout, H = Checkin, 4 = European 30/360
+        ws[f'O{r}'] = f'=IF(K{r}="Eigen Beheer",0,IF(AND(ISNUMBER(N{r}),I{r}<>"",H{r}<>""),YEARFRAC(H{r},I{r},4)*12*N{r},0))'
         ws[f'O{r}'].number_format = '€ #,##0.00'
         ws[f'O{r}'].fill = grey_fill
 

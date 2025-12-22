@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
 @theme {
-  --color-dark-bg: #1a1b1e;
-  --color-dark-panel: #25262b;
-  --color-dark-border: #2c2e33;
-  --color-dark-text: #c1c2c5;
-  --color-dark-muted: #909296;
+  /* New RyanRent Premium Palette */
+  --color-ryan-beige: #F7E5C1;
+  /* Main Background */
+  --color-ryan-beige-dim: #ebdcb9;
+  /* Slightly darker beige for panels */
+  --color-ryan-clay: #9D7861;
+  /* Accent */
+  --color-ryan-clay-dark: #7d5b46;
+  /* Darker accent */
+  --color-ryan-clay-light: #bca08d;
+  /* Lighter accent */
+  --color-ryan-slate: #394348;
+  /* Main Text / Strong UI elements */
+  --color-ryan-slate-light: #5a646a;
+  /* Secondary Text */
 
-  --color-primary: #228be6;
-  --color-primary-hover: #1c7ed6;
+  /* Semantic mappings to replace old 'dark' theme */
+  --color-dark-bg: var(--color-ryan-beige);
+  --color-dark-panel: #ffffff;
+  /* Panels are now white/glass on beige */
+  --color-dark-border: #e6dccb;
+  --color-dark-text: var(--color-ryan-slate);
+  --color-dark-muted: var(--color-ryan-slate-light);
+
+  --color-primary: var(--color-ryan-clay);
+  --color-primary-hover: var(--color-ryan-clay-dark);
+
+  --font-sans: "Work Sans", sans-serif;
+  --font-display: "Barlow", sans-serif;
 }
-
 
 @layer base {
   body {
     @apply bg-dark-bg text-dark-text antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
   }
 }
 
 /* Custom scrollbar for webkit */
+/* Custom scrollbar for webkit */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -28,10 +60,102 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #373a40;
+  background: #9D7861;
+  /* Ryan Clay */
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #495057;
+  background: #7d5b46;
+  /* Ryan Clay Dark */
+}
+
+/* Markdown content in chat bubbles */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  color: inherit;
+}
+
+.markdown-content h1 {
+  font-size: 1.5em;
+}
+
+.markdown-content h2 {
+  font-size: 1.3em;
+}
+
+.markdown-content h3 {
+  font-size: 1.1em;
+}
+
+.markdown-content h4 {
+  font-size: 1em;
+}
+
+.markdown-content p {
+  margin-bottom: 0.75em;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-left: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.markdown-content li {
+  margin-bottom: 0.25em;
+}
+
+.markdown-content strong {
+  font-weight: 700;
+}
+
+.markdown-content em {
+  font-style: italic;
+}
+
+.markdown-content code {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.125em 0.25em;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.markdown-content pre {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.75em;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin-bottom: 0.75em;
+}
+
+.markdown-content pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.markdown-content a {
+  color: #9D7861;
+  text-decoration: underline;
+}
+
+.markdown-content a:hover {
+  color: #7d5b46;
+}
+
+.markdown-content blockquote {
+  border-left: 3px solid #9D7861;
+  padding-left: 1em;
+  margin-left: 0;
+  color: inherit;
+  opacity: 0.9;
 }

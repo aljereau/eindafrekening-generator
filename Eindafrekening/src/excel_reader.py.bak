@@ -355,13 +355,8 @@ class ExcelReader:
                     inbegrepen = 7.0 # Standard Intensief hours
             
             if inbegrepen > 0:
-                # Calculate voorschot with fixed prices (Basis: €250, Intensief: €375)
-                if "basis" in pakket_naam.lower():
-                    voorschot = 250.0
-                elif "intensief" in pakket_naam.lower():
-                    voorschot = 375.0
-                else:
-                    voorschot = inbegrepen * tarief * (1 + btw_pct)
+                # Calculate implied voorschot: hours * rate * (1+VAT)
+                voorschot = inbegrepen * tarief * (1 + btw_pct)
                 print(f"ℹ️  Calculated implied voorschot for {pakket_naam}: €{voorschot:.2f}")
 
         # Calculate VAT amount from total incl
