@@ -8,10 +8,10 @@ import DatabaseExplorer from './components/DatabaseExplorer';
 function Avatar({ name, initials, active, color }) {
   return (
     <div className="relative">
-      <div className={clsx("w-10 h-10 rounded-full flex items-center justify-center text-white font-medium text-sm", color || "bg-blue-500")}>
+      <div className={clsx("w-10 h-10 rounded-full flex items-center justify-center text-white font-medium text-sm", color || "bg-emerald-600")}>
         {initials || name.slice(0, 2).toUpperCase()}
       </div>
-      {active && <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-dark-panel rounded-full"></div>}
+      {active && <div className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full ring-1 ring-emerald-500/20"></div>}
     </div>
   );
 }
@@ -25,8 +25,8 @@ function GlobalRail({ activeView, onSelectView, notifications = [] }) {
       className={clsx(
         "relative p-3 rounded-md transition-all duration-300 group",
         activeView === viewId
-          ? "bg-[#9D7861] text-[#fbf7e8] shadow-lg scale-105"
-          : "text-[#9D7861] hover:bg-[#9D7861]/10 hover:scale-105"
+          ? "bg-emerald-600 text-white shadow-lg shadow-emerald-600/20 scale-105"
+          : "text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 hover:scale-105"
       )}
       title={label}
     >
@@ -36,14 +36,14 @@ function GlobalRail({ activeView, onSelectView, notifications = [] }) {
       )}
     </button>
   );
-
   return (
-    <div className="w-16 py-8 flex flex-col items-center justify-between h-full bg-inherit">
+    <div className="w-20 py-8 flex flex-col items-center justify-between h-full bg-white border-r border-gray-100">
       {/* Top: Logo & Main Nav */}
       <div className="flex flex-col items-center gap-8 w-full">
         {/* Logo */}
-        <div className="w-10 h-10 bg-gradient-to-br from-[#9D7861] to-[#7d5b46] rounded-md flex items-center justify-center shadow-lg text-[#fbf7e8] font-display font-bold text-xl cursor-default">
-          R
+        {/* Logo */}
+        <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-500/20 text-white font-display font-bold text-2xl cursor-default">
+          <span className="mt-0.5">R</span>
         </div>
 
         {/* Navigation */}
@@ -68,11 +68,11 @@ function GlobalRail({ activeView, onSelectView, notifications = [] }) {
           icon={<Settings size={22} />}
           label="Settings"
         />
-        <div className="h-px w-8 bg-[#9D7861]/20 my-2"></div>
+        <div className="h-px w-8 bg-gray-200 my-2"></div>
         {/* ... User Avatar ... */}
         <div className="relative group cursor-pointer">
-          <Avatar name="Aljereau" initials="AM" color="bg-[#394348]" />
-          <div className="absolute left-full ml-4 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[#394348] text-[#fbf7e8] text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-xl">
+          <Avatar name="Aljereau" initials="AM" color="bg-gray-800" />
+          <div className="absolute left-full ml-4 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-gray-800 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-xl">
             Aljereau Marten
           </div>
         </div>
@@ -177,11 +177,11 @@ function ChatWorkspacePanel({ sessions, onNewChat, onSelectSession, onToggleJson
   return (
     <div className="h-full flex flex-col">
       <div className="p-6 pb-2">
-        <h2 className="font-display font-bold text-xs text-[#9D7861]/80 uppercase tracking-[0.2em] mb-4">Ryan Agent</h2>
+        <h2 className="font-display font-bold text-xs text-gray-500 uppercase tracking-[0.2em] mb-4">Ryan Agent</h2>
         <div className="flex items-center gap-2 mb-4">
           <button
             onClick={onNewChat}
-            className="flex-1 flex items-center gap-2 bg-[#9D7861] text-[#fbf7e8] p-3 rounded-md shadow-md hover:bg-[#7d5b46] transition-all group"
+            className="flex-1 flex items-center gap-2 bg-emerald-600 text-white p-3 rounded-md shadow-md hover:bg-emerald-700 transition-all group"
           >
             <Plus size={18} />
             <span className="font-bold text-sm">New Chat</span>
@@ -191,18 +191,18 @@ function ChatWorkspacePanel({ sessions, onNewChat, onSelectSession, onToggleJson
       </div>
 
       <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2">
-        <div className="text-xs font-bold text-[#9D7861]/50 uppercase tracking-wider mb-2 mt-4 px-2">Recent</div>
+        <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 mt-4 px-2">Recent</div>
         {sessions.length === 0 && (
-          <div className="px-2 text-xs text-[#9D7861]/40 italic">No recent chats</div>
+          <div className="px-2 text-xs text-gray-400 italic">No recent chats</div>
         )}
         {sessions.slice().reverse().map(session => (
           <div
             key={session.id}
             onClick={() => onSelectSession(session.id)}
-            className="p-3 rounded-md bg-[#fbf7e8] border border-[#d4c5b3]/30 hover:border-[#9D7861]/30 cursor-pointer transition-colors group"
+            className="p-3 rounded-md bg-white border border-gray-100 hover:border-emerald-200 hover:bg-emerald-50/50 cursor-pointer transition-colors group shadow-sm"
           >
-            <h4 className="text-sm font-bold text-[#394348] truncate">{session.title}</h4>
-            <p className="text-xs text-[#9D7861]/70 truncate mt-0.5">{new Date(session.updatedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+            <h4 className="text-sm font-bold text-gray-700 truncate">{session.title}</h4>
+            <p className="text-xs text-gray-400 truncate mt-0.5">{new Date(session.updatedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
           </div>
         ))}
       </div>
@@ -245,12 +245,12 @@ function DatabaseSidebar({
     </svg>
   );
   const TableIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-[#e5a00d]">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-emerald-500">
       <path fillRule="evenodd" d="M1.5 5.25c0-.966.784-1.75 1.75-1.75h17.5c.966 0 1.75.784 1.75 1.75v13.5c0 .966-.784 1.75-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75V5.25ZM3.25-.25a.25.25 0 0 0-.25.25v3.25h17.5V5.25a.25.25 0 0 0-.25-.25H3.25ZM3 10v7.75c0 .138.112.25.25.25h17.5a.25.25 0 0 0 .25-.25V10H3Z" clipRule="evenodd" />
     </svg>
   );
   const FolderIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-[#e5a00d]">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-emerald-500">
       <path d="M19.5 21a3 3 0 0 0 3-3v-4.5a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3V18a3 3 0 0 0 3 3h15ZM1.5 10.146V6a3 3 0 0 1 3-3h5.379a2.25 2.25 0 0 1 1.59.659l2.122 2.121c.14.141.331.22.53.22H19.5a3 3 0 0 1 3 3v1.146A4.483 4.483 0 0 0 19.5 9h-15a4.483 4.483 0 0 0-3 1.146Z" />
     </svg>
   );
@@ -258,7 +258,7 @@ function DatabaseSidebar({
   return (
     <div className="flex h-full">
       {/* Rail */}
-      <div className="w-14 bg-[#eaddcf]/50 border-r border-[#d4c5b3]/60 flex flex-col items-center py-4 gap-4">
+      <div className="w-14 bg-gray-50/50 border-r border-gray-200 flex flex-col items-center py-4 gap-4">
         <button onClick={() => setActiveTab('entities')} className="p-2 transition-transform hover:scale-105" title="Entities">
           <DatabaseIcon active={activeTab === 'entities'} />
         </button>
@@ -271,32 +271,32 @@ function DatabaseSidebar({
       </div>
 
       {/* Panel */}
-      <div className="flex-1 flex flex-col bg-[#fbf7e8]">
-        <div className="h-10 px-4 border-b border-[#e6dccb] flex justify-between items-center bg-[#fbf7e8]">
+      <div className="flex-1 flex flex-col bg-white">
+        <div className="h-10 px-4 border-b border-gray-200 flex justify-between items-center bg-white">
           <div className="flex items-center gap-2">
             <button
               onClick={onToggleJson}
-              className="p-1.5 text-[#9D7861] hover:bg-[#9D7861]/10 rounded-lg transition-colors border border-[#d4c5b3]/50"
+              className="p-1.5 text-gray-400 hover:bg-gray-100/10 rounded-lg transition-colors border border-gray-200"
               title="Toggle JSON Panel"
             >
               <Braces size={14} />
             </button>
-            <h3 className="font-bold text-[#5a646a] text-xs tracking-wider uppercase">
+            <h3 className="font-bold text-gray-600 text-xs tracking-wider uppercase">
               {activeTab === 'entities' && 'Entities'}
               {activeTab === 'saved' && 'Saved'}
               {activeTab === 'history' && 'History'}
             </h3>
-            <span className="bg-[#e4dccd] text-[#7d5b46] text-[10px] px-1.5 rounded-full font-bold">{tableNames.length}</span>
+            <span className="bg-emerald-50 text-emerald-700 text-[10px] px-1.5 rounded-full font-bold border border-emerald-100">{tableNames.length}</span>
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-[#e6dccb]">
+        <div className="flex-1 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-gray-200">
           {activeTab === 'entities' ? (
             <div className="space-y-0.5">
               {/* Mock DB Node */}
               <div className="pb-1 mb-1">
-                <button className="flex items-center gap-1.5 w-full text-left px-2 py-1 hover:bg-[#9D7861]/5 rounded text-sm text-[#394348] font-medium group">
-                  <ChevronRightIcon expanded={true} className="text-[#9D7861] opacity-50" />
+                <button className="flex items-center gap-1.5 w-full text-left px-2 py-1 hover:bg-emerald-50 rounded text-sm text-gray-700 font-medium group transition-colors">
+                  <ChevronRightIcon expanded={true} className="text-gray-400 opacity-50" />
                   <FolderIcon />
                   <span>ryanrent.db</span>
                 </button>
@@ -539,13 +539,13 @@ function JsonSidePanel({ isOpen, onClose, data, tableName }) {
   if (!isOpen) return null;
 
   return (
-    <div className="w-96 border-l border-[#d4c5b3]/60 bg-[#fbf7e8] flex flex-col shadow-md animate-in slide-in-from-right duration-300 rounded-[2rem] overflow-hidden border border-[#fbf7e8]/50 h-full">
-      <div className="h-10 border-b border-[#d4c5b3]/60 flex items-center justify-between px-4 bg-[#eaddcf]/20">
-        <div className="flex items-center gap-2 text-[#9D7861] font-bold">
+    <div className="w-96 border-l border-gray-200 bg-white flex flex-col shadow-md animate-in slide-in-from-right duration-300 rounded-[2rem] overflow-hidden border border-gray-100 h-full">
+      <div className="h-10 border-b border-gray-200 flex items-center justify-between px-4 bg-gray-50">
+        <div className="flex items-center gap-2 text-gray-500 font-bold">
           <Braces size={18} />
           <span className="uppercase tracking-wider text-xs">JSON Editor</span>
         </div>
-        <button onClick={onClose} className="text-[#9D7861] hover:text-[#7d5b46]">
+        <button onClick={onClose} className="text-gray-400 hover:text-emerald-600 transition-colors">
           <X size={18} />
         </button>
       </div>
@@ -553,11 +553,11 @@ function JsonSidePanel({ isOpen, onClose, data, tableName }) {
         <textarea
           value={editedJson}
           onChange={(e) => setEditedJson(e.target.value)}
-          className="w-full h-full bg-white border border-[#d4c5b3] rounded-md p-4 font-mono text-xs text-[#394348] resize-none shadow-inner outline-none focus:ring-2 focus:ring-[#9D7861]/20"
+          className="w-full h-full bg-white border border-gray-200 rounded-md p-4 font-mono text-xs text-gray-700 resize-none shadow-inner outline-none focus:ring-2 focus:ring-emerald-500/20"
           spellCheck={false}
         />
       </div>
-      <div className="p-4 border-t border-[#d4c5b3]/60 bg-[#eaddcf]/20 space-y-2">
+      <div className="p-4 border-t border-gray-200 bg-gray-50 space-y-2">
         {saveStatus && (
           <div className={`text-xs font-medium p-2 rounded ${saveStatus.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
             }`}>
@@ -567,7 +567,7 @@ function JsonSidePanel({ isOpen, onClose, data, tableName }) {
         <button
           onClick={handleSave}
           disabled={isSaving}
-          className="w-full py-2 bg-[#9D7861] text-[#fbf7e8] rounded-md font-bold text-xs uppercase tracking-wider hover:bg-[#7d5b46] transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-2 bg-emerald-600 text-white rounded-md font-bold text-xs uppercase tracking-wider hover:bg-emerald-700 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSaving ? 'Saving...' : 'Save Changes'}
         </button>
@@ -636,13 +636,13 @@ function InfoPanel({ isConnected }) {
   };
 
   return (
-    <div className="h-full flex flex-col bg-[#fbf7e8] text-[#394348]">
+    <div className="h-full flex flex-col bg-white text-gray-700">
       {/* Fixed Header Section: System Info - Flattened */}
-      <div className="p-4 border-b border-[#e6dccb] shrink-0 bg-[#fbf7e8]">
+      <div className="p-4 border-b border-gray-100 shrink-0 bg-white">
         <div className="flex items-center gap-3 mb-4">
-          <Avatar name="Ryan Agent" initials="RA" active={isConnected} color="bg-[#9D7861]" />
+          <Avatar name="Ryan Agent" initials="RA" active={isConnected} color="bg-emerald-600" />
           <div>
-            <h3 className="font-bold text-sm text-[#394348]">Ryan V2</h3>
+            <h3 className="font-bold text-sm text-gray-800">Ryan V2</h3>
             <div className="flex items-center gap-2">
               {isConnected ? (
                 <span className="flex items-center gap-1.5 text-[10px] text-green-600 font-bold bg-green-500/5 px-2 py-0.5 rounded-full ring-1 ring-green-500/20">
@@ -659,21 +659,21 @@ function InfoPanel({ isConnected }) {
           </div>
         </div>
 
-        <div className="space-y-1.5 bg-[#eaddcf]/20 p-3 rounded-lg border border-[#d4c5b3]/30">
+        <div className="space-y-1.5 bg-gray-50 p-3 rounded-lg border border-gray-100">
           <div className="flex justify-between items-center text-[10px]">
-            <span className="uppercase font-bold text-[#9D7861]/70">Model</span>
-            <span className="font-medium text-[#394348] truncate max-w-[140px]" title={systemInfo.active_model}>
+            <span className="uppercase font-bold text-gray-400">Model</span>
+            <span className="font-medium text-gray-700 truncate max-w-[140px]" title={systemInfo.active_model}>
               {systemInfo.active_model.split(':')[1] || systemInfo.active_model}
             </span>
           </div>
           <div className="flex justify-between items-center text-[10px]">
-            <span className="uppercase font-bold text-[#9D7861]/70">Synced</span>
+            <span className="uppercase font-bold text-gray-400">Synced</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-[#394348]">{systemInfo.last_refreshed ? formatDate(systemInfo.last_refreshed).split(',')[0] : "Never"}</span>
+              <span className="text-gray-700">{systemInfo.last_refreshed ? formatDate(systemInfo.last_refreshed).split(',')[0] : "Never"}</span>
               <button
                 onClick={handleRefresh}
                 disabled={isRefreshing}
-                className={clsx("text-[#9D7861] hover:text-[#7d5b46] transition-colors", isRefreshing && "animate-spin")}
+                className={clsx("text-gray-400 hover:text-emerald-600 transition-colors", isRefreshing && "animate-spin")}
               >
                 <RotateCw size={10} />
               </button>
@@ -683,11 +683,11 @@ function InfoPanel({ isConnected }) {
       </div>
 
       {/* Scrollable List Section: Shared Files - Compact List */}
-      <div className="flex-1 overflow-y-auto w-64">
-        <div className="sticky top-0 bg-[#fbf7e8]/95 backdrop-blur-sm p-4 pb-2 flex justify-between items-center z-10 border-b border-[#e6dccb]/50">
-          <h3 className="text-[10px] font-bold text-[#9D7861] uppercase tracking-widest">Shared Files</h3>
-          <button onClick={fetchFiles} className="text-[#9D7861]/50 hover:text-[#9D7861] transition-colors">
-            <RotateCw size={12} />
+      <div className="flex-1 overflow-y-auto w-full">
+        <div className="sticky top-0 bg-white/95 backdrop-blur-sm p-4 pb-2 flex justify-between items-center z-10 border-b border-gray-100">
+          <h3 className="text-xs font-bold text-emerald-600 uppercase tracking-widest">Shared Files</h3>
+          <button onClick={fetchFiles} className="text-emerald-600/50 hover:text-emerald-600 transition-colors">
+            <RotateCw size={14} />
           </button>
         </div>
 
@@ -703,20 +703,20 @@ function InfoPanel({ isConnected }) {
                 href={file.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3 p-2 rounded-lg hover:bg-[#eaddcf]/30 transition-all duration-200 border border-transparent hover:border-[#d4c5b3]/30"
+                className="group flex items-center gap-3 p-2 rounded-lg hover:bg-emerald-50 transition-all duration-200 border border-transparent hover:border-emerald-100"
                 title={`${file.name} (${formatSize(file.size)})`}
               >
-                <div className="shrink-0 text-[#9D7861] opacity-70 group-hover:opacity-100">
-                  {file.name.endsWith('.xlsx') ? <FileText size={14} /> : <FileIcon size={14} />}
+                <div className="shrink-0 text-emerald-600 opacity-70 group-hover:opacity-100">
+                  {file.name.endsWith('.xlsx') ? <FileText size={18} /> : <FileIcon size={18} />}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[11px] font-medium text-[#394348] truncate leading-tight">{file.name}</p>
-                  <p className="text-[9px] text-[#9D7861]/60 truncate">
+                  <p className="text-sm font-medium text-gray-700 truncate leading-tight">{file.name}</p>
+                  <p className="text-xs text-emerald-600/60 truncate">
                     {formatSize(file.size)} • {new Date(file.created * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </p>
                 </div>
                 <div className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Download size={12} className="text-[#9D7861]" />
+                  <Download size={16} className="text-emerald-600" />
                 </div>
               </a>
             ))
@@ -745,7 +745,8 @@ function App() {
 
   // --- Layout State ---
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isJsonPanelOpen, setIsJsonPanelOpen] = useState(false); // New JSON Panel State
+  const [isJsonPanelOpen, setIsJsonPanelOpen] = useState(false);
+  const [activeSettingsTab, setActiveSettingsTab] = useState('general'); // New Settings Tab State
   const [notifications, setNotifications] = useState([]);
 
   // --- Settings State ---
@@ -1037,6 +1038,12 @@ function App() {
             onToggleJson={() => setIsJsonPanelOpen(!isJsonPanelOpen)}
           />
         )}
+        {activeView === 'settings' && (
+          <SettingsSidebar
+            activeTab={activeSettingsTab}
+            setActiveTab={setActiveSettingsTab}
+          />
+        )}
       </div>
 
       {/* 3. Main Content Area */}
@@ -1117,6 +1124,7 @@ function App() {
               activeModel={activeModel}
               onModelChange={handleModelChange}
               availableModels={availableModels}
+              activeTab={activeSettingsTab}
             />
           ) : null}
         </div>
@@ -1131,7 +1139,7 @@ function App() {
 
         {/* 4. Floating Info Panel (Always Visible on XL screens for Chat) */}
         {activeView === 'chat' && (
-          <div className="w-80 hidden xl:flex flex-col bg-[#fbf7e8] rounded-[2.5rem] shadow-2xl overflow-hidden border border-[#e6dccb]/60 m-4">
+          <div className="w-80 hidden xl:flex flex-col bg-[#fbf7e8] rounded-[2rem] shadow-xl overflow-hidden border border-[#e6dccb]/60">
             <InfoPanel isConnected={isConnected} />
           </div>
         )}

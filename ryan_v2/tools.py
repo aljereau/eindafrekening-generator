@@ -2,8 +2,11 @@
 RYAN-V2: RyanRent Intelligent Agent
 SQL Tools Module
 
-These are the 4 core tools the agent uses to understand and query the database.
+These are the 9 tools the agent uses to understand and query the database.
 Each tool is self-contained and returns structured data for the LLM.
+
+Core Tools (1-5): Database exploration and querying
+In/Uit-Check Tools (6-9): Check-in/check-out lifecycle management
 """
 import sqlite3
 import json
@@ -275,6 +278,390 @@ def export_to_excel(query: str, filename: str = "export.xlsx") -> str:
 
 
 # =============================================================================
+# TOOL 6: list_active_cycli
+# =============================================================================
+def list_active_cycli(limit: int = 20) -> str:
+    """
+    Returns all active check-in/check-out cycles with status and priorities.
+
+    Use this to see which properties are currently in the check-out → cleaning → check-in process.
+
+    Args:
+        limit: Maximum number of cycles to return (default 20).
+
+    Returns:
+        Formatted table with active cycles, deadlines, and status.
+    """
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    try:
+        # Query v_actieve_cycli view
+        cursor.execute(f"""
+            SELECT
+                adres,
+                plaats,
+                status,
+                klant_type,
+                bestemming,
+                deadline_dagen,
+                open_acties_count,
+                startdatum_nieuwe_huurder,
+                interne_opmerking
+            FROM v_actieve_cycli
+            LIMIT {limit}
+        """)
+
+        rows = cursor.fetchall()
+
+        if not rows:
+            return "📭 Geen actieve cycli gevonden."
+
+        result = f"🏠 **Actieve In/Uit-Check Cycli ({len(rows)} van max {limit}):**\n\n"
+
+        # Build markdown table
+        result += "| Adres | Status | Klant | Deadline (dagen) | Open Acties | Opmerking |\n"
+        result += "|-------|--------|-------|------------------|-------------|----------|\n"
+
+        for row in rows:
+            adres = f"{row[0]}, {row[1]}" if row[1] else row[0]
+            status = row[2]
+            klant = row[3]
+            deadline = f"{int(row[5])}" if row[5] is not None else "-"
+            open_acties = row[6]
+            opmerking = (row[8][:30] + "...") if row[8] and len(row[8]) > 30 else (row[8] or "-")
+
+            # Add urgency indicator
+            urgency_icon = ""
+            if row[5] is not None:
+                if row[5] <= 2:
+                    urgency_icon = "🚨"
+                elif row[5] <= 5:
+                    urgency_icon = "⚠️"
+
+            result += f"| {adres} | {status} | {klant} | {urgency_icon} {deadline} | {open_acties} | {opmerking} |\n"
+
+        conn.close()
+        return result
+
+    except Exception as e:
+        conn.close()
+        return f"❌ **Error:** {e}"
+
+
+# =============================================================================
+# TOOL 7: describe_cyclus
+# =============================================================================
+def describe_cyclus(object_id: str) -> str:
+    """
+    Returns full details of a property's active cycle including all actions.
+
+    Use this to get complete information about a specific property's check-in/check-out status.
+
+    Args:
+        object_id: The property ID (object_id from huizen table).
+
+    Returns:
+        Detailed cycle information with action history.
+    """
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    try:
+        # Get cycle details
+        cursor.execute("""
+            SELECT
+                cyclus_id,
+                object_id,
+                status,
+                klant_type,
+                bestemming,
+                einddatum_huurder,
+                startdatum_nieuwe_huurder,
+                interne_opmerking,
+                aangemaakt_op,
+                laatst_bijgewerkt_op
+            FROM woning_cycli
+            WHERE object_id = ? AND is_actief = 1
+        """, (object_id,))
+
+        cycle = cursor.fetchone()
+
+        if not cycle:
+            return f"❌ Geen actieve cyclus gevonden voor object_id: `{object_id}`"
+
+        # Get property details
+        cursor.execute("""
+            SELECT adres, postcode, plaats, woning_type, aantal_sk, aantal_pers
+            FROM huizen
+            WHERE object_id = ?
+        """, (object_id,))
+
+        huis = cursor.fetchone()
+
+        result = f"🏠 **Cyclus Details voor {huis[0] if huis else object_id}**\n\n"
+
+        # Cycle info
+        result += f"**Status:** {cycle[2]}\n"
+        result += f"**Klant Type:** {cycle[3]}\n"
+        result += f"**Bestemming:** {cycle[4]}\n"
+        result += f"**Einddatum Huurder:** {cycle[5] or 'Onbekend'}\n"
+        result += f"**Start Nieuwe Huurder:** {cycle[6] or 'Onbekend'}\n"
+
+        if cycle[7]:
+            result += f"**Opmerking:** {cycle[7]}\n"
+
+        # Get actions
+        cursor.execute("""
+            SELECT
+                actie_type,
+                gepland_op,
+                uitgevoerd_op,
+                uitgevoerd_door,
+                verwachte_schoonmaak_uren,
+                werkelijke_schoonmaak_uren,
+                opmerking
+            FROM woning_acties
+            WHERE cyclus_id = ?
+            ORDER BY
+                CASE
+                    WHEN uitgevoerd_op IS NOT NULL THEN uitgevoerd_op
+                    WHEN gepland_op IS NOT NULL THEN gepland_op
+                    ELSE aangemaakt_op
+                END ASC
+        """, (cycle[0],))
+
+        actions = cursor.fetchall()
+
+        if actions:
+            result += f"\n\n**Acties ({len(actions)}):**\n\n"
+            result += "| Type | Gepland | Uitgevoerd | Door | Uren (V/W) |\n"
+            result += "|------|---------|------------|------|------------|\n"
+
+            for action in actions:
+                actie_type = action[0]
+                gepland = action[1][:10] if action[1] else "-"
+                uitgevoerd = action[2][:10] if action[2] else "-"
+                door = action[3] or "-"
+                uren = f"{action[4]}/{action[5]}" if action[4] or action[5] else "-"
+
+                icon = "✅" if action[2] else "📅"
+                result += f"| {icon} {actie_type} | {gepland} | {uitgevoerd} | {door} | {uren} |\n"
+        else:
+            result += "\n\n**Acties:** Geen acties gevonden.\n"
+
+        # Get status check
+        cursor.execute("""
+            SELECT status_severity, check_voorinspectie_gepland, check_uitcheck_uitgevoerd,
+                   check_schoonmaak_nodig, check_klaar_voor_incheck, check_incheck_uitgevoerd
+            FROM v_status_check
+            WHERE object_id = ?
+        """, (object_id,))
+
+        status_check = cursor.fetchone()
+
+        if status_check:
+            severity = status_check[0]
+            icon = "❌" if severity == "BLOCKER" else "⚠️" if severity == "WARNING" else "✅"
+            result += f"\n\n**Status Validatie:** {icon} {severity}\n"
+
+        conn.close()
+        return result
+
+    except Exception as e:
+        conn.close()
+        return f"❌ **Error:** {e}"
+
+
+# =============================================================================
+# TOOL 8: list_cycli_acties
+# =============================================================================
+def list_cycli_acties(actie_type: Optional[str] = None) -> str:
+    """
+    Returns action history across all active cycles, optionally filtered by action type.
+
+    Use this to see planning overview or specific action types (e.g., all pending SCHOONMAAK actions).
+
+    Args:
+        actie_type: Filter by type (VOORINSPECTIE|UITCHECK|SCHOONMAAK|INCHECK|OVERDRACHT_EIGENAAR|REPARATIE).
+                    If None, shows all actions.
+
+    Returns:
+        Formatted table of actions with property and cycle context.
+    """
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    try:
+        # Build query
+        if actie_type:
+            query = """
+                SELECT
+                    adres,
+                    actie_type,
+                    gepland_op,
+                    uitgevoerd_op,
+                    uitgevoerd_door,
+                    deadline_dagen,
+                    verwachte_schoonmaak_uren,
+                    cyclus_status
+                FROM v_open_acties
+                WHERE actie_type = ?
+                ORDER BY deadline_dagen ASC NULLS LAST, planning_dagen ASC
+                LIMIT 30
+            """
+            cursor.execute(query, (actie_type,))
+        else:
+            query = """
+                SELECT
+                    adres,
+                    actie_type,
+                    gepland_op,
+                    uitgevoerd_op,
+                    uitgevoerd_door,
+                    deadline_dagen,
+                    verwachte_schoonmaak_uren,
+                    cyclus_status
+                FROM v_open_acties
+                ORDER BY deadline_dagen ASC NULLS LAST, planning_dagen ASC
+                LIMIT 30
+            """
+            cursor.execute(query)
+
+        rows = cursor.fetchall()
+
+        if not rows:
+            filter_msg = f" van type `{actie_type}`" if actie_type else ""
+            return f"📭 Geen open acties gevonden{filter_msg}."
+
+        title = f"Open Acties: {actie_type}" if actie_type else "Alle Open Acties"
+        result = f"📋 **{title} ({len(rows)}):**\n\n"
+
+        # Build table
+        result += "| Adres | Type | Gepland | Status | Deadline | Uren |\n"
+        result += "|-------|------|---------|--------|----------|------|\n"
+
+        for row in rows:
+            adres = row[0][:25] + "..." if len(row[0]) > 25 else row[0]
+            actie = row[1]
+            gepland = row[2][:10] if row[2] else "-"
+            status = row[7]
+            deadline = f"{int(row[5])} dgn" if row[5] is not None else "-"
+            uren = f"{row[6]}h" if row[6] else "-"
+
+            # Urgency icon
+            urgency = ""
+            if row[5] is not None and row[5] <= 2:
+                urgency = "🚨 "
+
+            result += f"| {adres} | {actie} | {gepland} | {status} | {urgency}{deadline} | {uren} |\n"
+
+        conn.close()
+        return result
+
+    except Exception as e:
+        conn.close()
+        return f"❌ **Error:** {e}"
+
+
+# =============================================================================
+# TOOL 9: get_planning_priorities
+# =============================================================================
+def get_planning_priorities(top_n: int = 10) -> str:
+    """
+    Returns AI-ready planning data with priority recommendations.
+
+    Use this to get intelligent recommendations for what to work on next.
+
+    Args:
+        top_n: Number of top priority items to return (default 10).
+
+    Returns:
+        Prioritized list with suggested next actions and reasoning.
+    """
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute(f"""
+            SELECT
+                adres,
+                status,
+                volgende_actie,
+                deadline_dagen,
+                urgency_band,
+                verwachte_schoonmaak_uren,
+                open_acties_count,
+                status_severity,
+                klant_type,
+                bestemming,
+                laatst_toegewezen_team
+            FROM v_planning_inputs
+            LIMIT {top_n}
+        """)
+
+        rows = cursor.fetchall()
+
+        if not rows:
+            return "📭 Geen actieve cycli voor planning."
+
+        result = f"🎯 **Planning Prioriteiten (Top {len(rows)}):**\n\n"
+
+        for idx, row in enumerate(rows, 1):
+            adres = row[0]
+            status = row[1]
+            volgende_actie = row[2]
+            deadline_dagen = row[3]
+            urgency = row[4]
+            uren = row[5]
+            open_acties = row[6]
+            severity = row[7]
+            klant_type = row[8]
+            bestemming = row[9]
+            team = row[10]
+
+            # Priority icon
+            if urgency == "CRITICAL":
+                priority_icon = "🚨"
+            elif urgency == "HIGH":
+                priority_icon = "⚠️"
+            elif severity == "BLOCKER":
+                priority_icon = "❌"
+            else:
+                priority_icon = "📌"
+
+            result += f"### {priority_icon} {idx}. {adres}\n\n"
+            result += f"**Volgende Actie:** {volgende_actie}\n"
+            result += f"**Status:** {status} ({severity})\n"
+            result += f"**Urgentie:** {urgency}"
+
+            if deadline_dagen is not None:
+                result += f" ({int(deadline_dagen)} dagen)\n"
+            else:
+                result += "\n"
+
+            if uren:
+                result += f"**Verwachte Uren:** {uren}h\n"
+
+            if open_acties > 0:
+                result += f"**Open Acties:** {open_acties}\n"
+
+            if team:
+                result += f"**Laatste Team:** {team}\n"
+
+            result += f"**Klant:** {klant_type} → {bestemming}\n\n"
+
+        result += "\n💡 **Aanbeveling:** Begin met items met 🚨 CRITICAL urgency of ❌ BLOCKER status.\n"
+
+        conn.close()
+        return result
+
+    except Exception as e:
+        conn.close()
+        return f"❌ **Error:** {e}"
+
+
+# =============================================================================
 # Tool Registry (for agent)
 # =============================================================================
 TOOLS = {
@@ -311,6 +698,34 @@ TOOLS = {
         "parameters": {
             "query": {"type": "string", "description": "The SQL query to execute"},
             "filename": {"type": "string", "description": "Output filename (default: export.xlsx)"}
+        }
+    },
+    "list_active_cycli": {
+        "function": list_active_cycli,
+        "description": "Returns all active check-in/check-out cycles with status and deadlines. Use to see which properties are in the checkout→cleaning→checkin process.",
+        "parameters": {
+            "limit": {"type": "integer", "description": "Maximum number of cycles to return (default 20)"}
+        }
+    },
+    "describe_cyclus": {
+        "function": describe_cyclus,
+        "description": "Returns full details of a specific property's active cycle including all actions. Use to get complete information about a property's check-in/check-out status.",
+        "parameters": {
+            "object_id": {"type": "string", "description": "The property ID (object_id from huizen table)"}
+        }
+    },
+    "list_cycli_acties": {
+        "function": list_cycli_acties,
+        "description": "Returns action history across all active cycles, optionally filtered by action type. Use to see planning overview or specific actions (e.g., all pending SCHOONMAAK).",
+        "parameters": {
+            "actie_type": {"type": "string", "description": "Filter by type: VOORINSPECTIE|UITCHECK|SCHOONMAAK|INCHECK|OVERDRACHT_EIGENAAR|REPARATIE (optional)"}
+        }
+    },
+    "get_planning_priorities": {
+        "function": get_planning_priorities,
+        "description": "Returns AI-ready planning data with priority recommendations. Use to get intelligent suggestions for what to work on next.",
+        "parameters": {
+            "top_n": {"type": "integer", "description": "Number of top priority items to return (default 10)"}
         }
     }
 }

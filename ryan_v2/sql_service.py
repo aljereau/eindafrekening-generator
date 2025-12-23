@@ -114,7 +114,7 @@ RULES:
                 client = Anthropic() # Assumes env var ANTHROPIC_API_KEY is set
                 response = client.messages.create(
                     model=actual_model,
-                    max_tokens=1024,
+                    max_tokens=4096,
                     system=system_prompt,
                     messages=[{"role": "user", "content": prompt}]
                 )
