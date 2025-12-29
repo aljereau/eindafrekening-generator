@@ -245,3 +245,54 @@ async def get_models():
     models = [{"label": label, "id": model_id} for label, model_id in AVAILABLE_MODELS]
     return {"models": models}
 
+# --- Contract App Endpoints ---
+from .contract_service import ContractService
+
+contract_service = ContractService()
+
+class ContractPrefillRequest(BaseModel):
+    klant_id: int
+    object_id: str
+    overrides: dict = None
+
+@app.get("/api/contracts/data")
+async def get_contract_dropdown_data():
+    return contract_service.get_dropdown_data()
+
+@app.post("/api/contracts/prefill")
+async def prefill_contract(request: ContractPrefillRequest):
+    result = contract_service.get_prefilled_contract(
+        request.klant_id, 
+        request.object_id, 
+        request.overrides
+    )
+    if not result:
+        raise HTTPException(status_code=404, detail="Data not found for selection")
+    return result
+
+@app.get("/api/contracts/list")
+async def list_contracts():
+    return contract_service.list_generated_contracts()
+
+@app.get("/api/contracts/download/{filename}")
+async def download_contract(filename: str):
+    file_path = contract_service.get_contract_file_path(filename)
+    if not file_path or not file_path.exists():
+        raise HTTPException(status_code=404, detail="File not found")
+    
+    return FileResponse(
+        path=file_path,
+        filename=filename,
+        media_type='application/octet-stream'
+    )
+
+class ContractSaveRequest(BaseModel):
+    filename: str
+    markdown: str
+
+@app.post("/api/contracts/save")
+async def save_contract(request: ContractSaveRequest):
+    success = contract_service.save_contract(request.filename, request.markdown)
+    return {"success": success}
+
+

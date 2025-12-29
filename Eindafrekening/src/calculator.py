@@ -127,39 +127,45 @@ class Calculator:
     @staticmethod
     def calculate_inbegrepen_uren(pakket_type: str) -> float:
         """
-        Get included hours for cleaning package
+        Get included hours for cleaning package (legacy, not used for pricing anymore)
         
         Args:
-            pakket_type: Package type ('5_uur' or '7_uur')
+            pakket_type: Package type ('basis' or 'intensief')
             
         Returns:
-            Number of included hours
+            Number of included hours (informational only)
         """
-        if pakket_type == '7_uur':
+        if pakket_type == 'intensief':
             return 7.0
         elif pakket_type == 'achteraf':
             return 0.0
-        return 5.0  # Default to 5_uur
+        return 5.0  # Default to basis
     
     @staticmethod
     def calculate_cleaning(pakket_type: str, pakket_naam: str, totaal_uren: float, 
                           uurtarief: float, voorschot: float) -> Cleaning:
         """
-        Calculate cleaning costs including extra hours
+        Calculate cleaning costs using fixed package prices
         
         Args:
-            pakket_type: Package type ('geen', '5_uur' or '7_uur')
+            pakket_type: Package type ('geen', 'basis' or 'intensief')
             totaal_uren: Total hours worked
             uurtarief: Hourly rate
-            voorschot: Prepaid cleaning amount
+            voorschot: Prepaid cleaning amount (fixed package price)
             
         Returns:
-            Cleaning entity with calculated extra hours and cost
+            Cleaning entity with calculated values
         """
+        # Fixed package prices (incl BTW)
+        PAKKET_PRIJZEN = {
+            'basis': 250.0,      # Basis Schoonmaak
+            'intensief': 375.0   # Intensief Schoonmaak
+        }
+        
         # Handle "geen" package - no cleaning package purchased
         if pakket_type == 'geen':
             return Cleaning(
-                pakket_type='geen',  # type: ignore
+                pakket_type='geen',
                 pakket_naam=pakket_naam,
                 inbegrepen_uren=0.0,
                 totaal_uren=0.0,
@@ -169,18 +175,21 @@ class Calculator:
                 voorschot=0.0
             )
         
-        inbegrepen_uren = Calculator.calculate_inbegrepen_uren(pakket_type)
-        extra_uren = max(0, totaal_uren - inbegrepen_uren)
-        extra_bedrag = extra_uren * uurtarief
+        # Get fixed package price
+        pakket_prijs_incl = PAKKET_PRIJZEN.get(pakket_type, 0.0)
+        
+        # Use fixed package price as voorschot if not set
+        if voorschot == 0 and pakket_prijs_incl > 0:
+            voorschot = pakket_prijs_incl
         
         return Cleaning(
-            pakket_type=pakket_type,  # type: ignore
+            pakket_type=pakket_type,
             pakket_naam=pakket_naam,
-            inbegrepen_uren=inbegrepen_uren,
+            inbegrepen_uren=0,  # Not relevant - fixed price packages
             totaal_uren=totaal_uren,
-            extra_uren=extra_uren,
+            extra_uren=0,  # Not relevant - we use total costs
             uurtarief=uurtarief,
-            extra_bedrag=extra_bedrag,
+            extra_bedrag=0,
             voorschot=voorschot
         )
     
@@ -203,46 +212,52 @@ class Calculator:
     @staticmethod
     def calculate_cleaning_costs(cleaning: Cleaning) -> Cleaning:
         """
-        Recalculate cleaning costs if Excel values are missing (0).
-        This ensures robustness against Excel formula failures.
+        Recalculate cleaning costs using fixed package prices.
         """
-        # If total cost is 0 but we have hours and rate, calculate it
-        # If total cost is 0 but we have hours and rate, calculate it
-        # Also enforce "No Refund" logic: Cost is at least the package price.
-        if (cleaning.totaal_kosten_incl == 0 and cleaning.totaal_uren > 0 and cleaning.uurtarief > 0) or cleaning.pakket_type in ['5_uur', '7_uur']:
-            
-            totaal_excl = cleaning.totaal_uren * cleaning.uurtarief
-            
-            # Enforce Package Floor
-            # Package implies specific hours were pre-purchased.
-            floor_hours = cleaning.inbegrepen_uren
-            if floor_hours > 0 and cleaning.totaal_uren < floor_hours:
-                 # If actual hours < params, we still charge for the full package
-                 # Effectively, we treat the 'totaal_excl' as if full hours were worked for billing
-                 totaal_excl = floor_hours * cleaning.uurtarief
-            
-            # Add VAT
-            totaal_incl = totaal_excl * (1 + cleaning.btw_percentage)
-            btw_bedrag = totaal_incl - totaal_excl
-            
-            if abs(totaal_incl - cleaning.totaal_kosten_incl) > 0.01:
-                print(f"ℹ️  Recalculated cleaning costs (Floor Applied): {max(cleaning.totaal_uren, cleaning.inbegrepen_uren)}h (billed) * €{cleaning.uurtarief} = €{totaal_incl:.2f} (incl VAT)")
-            
-            # Return updated Cleaning object
-            return Cleaning(
-                pakket_type=cleaning.pakket_type,
-                pakket_naam=cleaning.pakket_naam,
-                inbegrepen_uren=cleaning.inbegrepen_uren,
-                totaal_uren=cleaning.totaal_uren,
-                extra_uren=cleaning.extra_uren,
-                uurtarief=cleaning.uurtarief,
-                extra_bedrag=cleaning.extra_bedrag,
-                voorschot=cleaning.voorschot,
-                totaal_kosten_incl=totaal_incl,
-                btw_percentage=cleaning.btw_percentage,
-                btw_bedrag=btw_bedrag
-            )
-        return cleaning
+        # Fixed package prices (incl BTW)
+        PAKKET_PRIJZEN = {
+            'basis': 250.0,
+            'intensief': 375.0
+        }
+        
+        # Skip if already calculated or no package
+        if cleaning.pakket_type == 'geen' or cleaning.pakket_type == 'achteraf':
+            return cleaning
+        
+        # Get fixed package price
+        pakket_prijs_incl = PAKKET_PRIJZEN.get(cleaning.pakket_type, 0.0)
+        
+        # If voorschot is 0 but we have a package, set it to package price
+        voorschot = cleaning.voorschot
+        if voorschot == 0 and pakket_prijs_incl > 0:
+            voorschot = pakket_prijs_incl
+        
+        # If total cost not set, use package price as minimum
+        totaal_incl = cleaning.totaal_kosten_incl
+        if totaal_incl == 0:
+            totaal_incl = pakket_prijs_incl
+        
+        # Enforce minimum package price (no refunds)
+        if cleaning.pakket_type in ['basis', 'intensief']:
+            totaal_incl = max(pakket_prijs_incl, totaal_incl)
+        
+        btw_pct = cleaning.btw_percentage if cleaning.btw_percentage else 0.21
+        btw_bedrag = totaal_incl - (totaal_incl / (1 + btw_pct))
+        extra_bedrag = max(0, totaal_incl - pakket_prijs_incl)
+        
+        return Cleaning(
+            pakket_type=cleaning.pakket_type,
+            pakket_naam=cleaning.pakket_naam,
+            inbegrepen_uren=0,
+            totaal_uren=cleaning.totaal_uren,
+            extra_uren=0,
+            uurtarief=cleaning.uurtarief,
+            extra_bedrag=extra_bedrag / (1 + btw_pct),  # Store excl
+            voorschot=voorschot,
+            totaal_kosten_incl=totaal_incl,
+            btw_percentage=btw_pct,
+            btw_bedrag=btw_bedrag
+        )
     
     @staticmethod
     def calculate_damage_totalen(regels: List[DamageRegel]) -> DamageTotalen:

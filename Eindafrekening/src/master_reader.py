@@ -178,60 +178,65 @@ class MasterReader:
                 if not btw_pct: btw_pct = 0.21
                 if btw_pct > 1: btw_pct = btw_pct / 100 
                 
+                # Fixed package prices (incl BTW)
+                PAKKET_PRIJZEN = {
+                    'basis': 250.0,      # Basis Schoonmaak
+                    'intensief': 375.0   # Intensief Schoonmaak
+                }
+                
                 # Map packet name
-                pakket_code = '5_uur'
-                inbegrepen_std = 5.0
+                pakket_code = 'basis'
+                pakket_prijs_incl = 0.0
+                
                 if 'basis' in pakket.lower(): 
-                    pakket_code = '5_uur'
-                    inbegrepen_std = 5.0
+                    pakket_code = 'basis'
+                    pakket_prijs_incl = PAKKET_PRIJZEN['basis']
                 elif 'intensief' in pakket.lower(): 
-                    pakket_code = '7_uur'
-                    inbegrepen_std = 7.0
+                    pakket_code = 'intensief'
+                    pakket_prijs_incl = PAKKET_PRIJZEN['intensief']
                 elif 'geen' in pakket.lower(): 
                     pakket_code = 'geen'
-                    inbegrepen_std = 0.0
+                    pakket_prijs_incl = 0.0
                 elif 'achteraf' in pakket.lower(): 
                     pakket_code = 'achteraf'
-                    inbegrepen_std = 0.0
+                    pakket_prijs_incl = 0.0
                 
-                # Calculate costs. Use Excel totals if available? Or recalc.
-                # AH is Index 33
-                total_cost = parse_float(row[33])
-                if total_cost == 0:
-                     total_cost = uren * tarief * (1 + btw_pct)
+                # Get total cost from Excel - check both Excl (AE) and Incl (AH)
+                total_cost_excl = parse_float(row[30])  # AE: Totaal Excl
+                total_cost_incl = parse_float(row[33])  # AH: Totaal Incl
                 
-                # Implied Voorschot Calculation (Prepaid Package)
-                # If package is standard (5 or 7 hours), we assume the standard hours are prepaid.
-                # Any hours ABOVE standard should be charged.
-                # So Voorschot = Standard Hours * Rate * (1+VAT)
-                cleaning_voorschot = 0.0
-                min_cost_incl = 0.0
+                # Cleaning voorschot = fixed package price (what tenant already paid)
+                cleaning_voorschot = pakket_prijs_incl
                 
-                if pakket_code in ['5_uur', '7_uur']:
-                    cleaning_voorschot = inbegrepen_std * tarief * (1 + btw_pct)
-                    min_cost_incl = cleaning_voorschot
+                # Calculate final cost - prioritize excl input, then incl input
+                if total_cost_excl > 0:
+                    # User entered excl value - calculate incl
+                    final_total_cost = total_cost_excl * (1 + btw_pct)
+                elif total_cost_incl > 0:
+                    # User entered incl value - use directly
+                    final_total_cost = total_cost_incl
+                elif uren > 0 and tarief > 0:
+                    # Calculate from hours * rate
+                    final_total_cost = uren * tarief * (1 + btw_pct)
+                else:
+                    # Use package price as minimum
+                    final_total_cost = pakket_prijs_incl
                 
-                # Enforce No Refund Policy:
-                # The total cost must be at least the package price (min_cost_incl).
-                # Even if actual hours < included hours, the cost IS the package price.
-                # Additional hours increase the cost.
+                # Enforce minimum package price (no refunds for unused hours)
+                if pakket_code in ['basis', 'intensief']:
+                    final_total_cost = max(pakket_prijs_incl, final_total_cost)
                 
-                actual_calc_cost = uren * tarief * (1 + btw_pct)
-                final_total_cost = max(min_cost_incl, actual_calc_cost)
-                
-                # Update total_cost from Excel if it looks valid (greater than 0), otherwise use calculated
-                # But even if Excel has a value, we should enforce the floor if it's logically a package
-                if total_cost > 0:
-                     final_total_cost = max(min_cost_incl, total_cost)
+                # Extra bedrag = what tenant has to pay on top of package
+                extra_bedrag = max(0, final_total_cost - pakket_prijs_incl)
                 
                 cleaning = Cleaning(
                     pakket_type=pakket_code,
                     pakket_naam=pakket,
-                    inbegrepen_uren=inbegrepen_std, # Use explicit standard hours
+                    inbegrepen_uren=0,  # Not relevant anymore - fixed price packages
                     totaal_uren=uren,
-                    extra_uren=max(0, uren - inbegrepen_std),
+                    extra_uren=0,  # Not relevant - we use total costs
                     uurtarief=tarief,
-                    extra_bedrag=max(0, uren - inbegrepen_std) * tarief,
+                    extra_bedrag=extra_bedrag / (1 + btw_pct),  # Store excl
                     voorschot=cleaning_voorschot, 
                     totaal_kosten_incl=final_total_cost,
                     btw_percentage=btw_pct,
@@ -265,25 +270,46 @@ class MasterReader:
                 ))
 
             elif row_type in ["Schade", "Extra"]:
-                # Item Cols (shifted -1)
-                desc = row[33] 
-                qty = parse_float(row[34]) 
-                amt = parse_float(row[35]) 
-                btw = parse_float(row[37]) 
+                # Item Cols (AI-AQ -> Indices 34-42)
+                # AI(34):Type, AJ(35):Unit, AK(36):Desc, AL(37):Aant, AM(38):Prijs, AN(39):TotEx, AO(40):BTW%, AP(41):BTW€, AQ(42):TotInc
+                
+                desc = row[36]  # AK: Beschrijving
+                qty = parse_float(row[37])   # AL: Aantal
+                amt = parse_float(row[38])   # AM: Prijs/Stuk
+                total_excl_cell = parse_float(row[39])  # AN: Totaal Excl (direct input)
+                btw = parse_float(row[40])   # AO: BTW %
+                total_incl_cell = parse_float(row[42])  # AQ: Totaal Incl (direct input)
                 
                 if btw > 1: btw = btw / 100
                 if not btw: btw = 0.21 
                 
-                tarief = amt 
-                total_excl = qty * tarief
+                # Calculate total_excl - prioritize direct input over calculation
+                if total_excl_cell > 0:
+                    # User entered total excl directly
+                    total_excl = total_excl_cell
+                    tarief = total_excl / qty if qty > 0 else total_excl
+                elif total_incl_cell > 0:
+                    # User entered total incl - back-calculate excl
+                    total_excl = total_incl_cell / (1 + btw)
+                    tarief = total_excl / qty if qty > 0 else total_excl
+                elif amt > 0:
+                    # User entered unit price - calculate total
+                    tarief = amt
+                    total_excl = qty * tarief
+                else:
+                    # No price data at all
+                    tarief = 0
+                    total_excl = 0
                 
-                damage_regels.append(DamageRegel(
-                    beschrijving=desc,
-                    aantal=qty,
-                    tarief_excl=tarief,
-                    bedrag_excl=total_excl,
-                    btw_percentage=btw
-                ))
+                # Only add if we have a description
+                if desc:
+                    damage_regels.append(DamageRegel(
+                        beschrijving=desc,
+                        aantal=qty if qty > 0 else 1,
+                        tarief_excl=tarief,
+                        bedrag_excl=total_excl,
+                        btw_percentage=btw
+                    ))
 
         if not has_basis:
             print(f"⚠️  Skipping {adres}: No 'Basis' row found.")

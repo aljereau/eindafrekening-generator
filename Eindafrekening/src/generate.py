@@ -464,18 +464,26 @@ def generate_eindafrekening_from_data(data: dict, output_dir: str, bundle_dir: s
 def main():
     """Main entry point"""
     parser = argparse.ArgumentParser(description='RyanRent Eindafrekening Generator')
-    parser.add_argument('--input', '-i', required=True, help='Input Excel file')
+    parser.add_argument('--input', '-i', help='Input Excel file (interactive selection if not provided)')
     parser.add_argument('--output', '-o', help='Output directory')
     parser.add_argument('--no-pause', action='store_true', help='Do not pause at end')
     parser.add_argument('--no-open', action='store_true', help='Do not auto-open browser')
     
     args = parser.parse_args()
     
+    # If no input provided, show interactive file picker
+    input_file = args.input
+    if not input_file:
+        input_file = interactive_file_picker()
+        if not input_file:
+            print("❌ No file selected. Exiting.")
+            sys.exit(1)
+    
     try:
         generate_report(
-            input_file=args.input,
+            input_file=input_file,
             output_dir=args.output,
-            save_json=False, # Default to False for CLI unless flag added later
+            save_json=False,
             auto_open=not args.no_open
         )
     except Exception as e:
@@ -487,6 +495,51 @@ def main():
     # Pause if interactive
     if not args.no_pause:
         input("\n👉 Druk op Enter om af te sluiten...")
+
+
+def interactive_file_picker():
+    """Show interactive menu to pick input file from Eindafrekening Inputs folder."""
+    # Find the Eindafrekening Inputs folder
+    src_dir = os.path.dirname(os.path.abspath(__file__))
+    eindafrekening_dir = os.path.dirname(src_dir)
+    inputs_folder = os.path.join(eindafrekening_dir, "Eindafrekening Inputs")
+    
+    if not os.path.exists(inputs_folder):
+        print(f"⚠️  Inputs folder not found: {inputs_folder}")
+        return None
+    
+    # List xlsx files
+    files = [f for f in os.listdir(inputs_folder) if f.endswith('.xlsx') and not f.startswith('~$')]
+    files.sort(key=lambda f: os.path.getmtime(os.path.join(inputs_folder, f)), reverse=True)
+    
+    if not files:
+        print(f"⚠️  No Excel files found in: {inputs_folder}")
+        return None
+    
+    print("\n📂 Beschikbare input bestanden:")
+    print("=" * 50)
+    for i, f in enumerate(files, 1):
+        fpath = os.path.join(inputs_folder, f)
+        mtime = datetime.fromtimestamp(os.path.getmtime(fpath)).strftime('%Y-%m-%d %H:%M')
+        print(f"   [{i}] {f}")
+        print(f"       └─ Gewijzigd: {mtime}")
+    print("=" * 50)
+    
+    # Get user choice
+    while True:
+        try:
+            choice = input(f"\n👉 Kies bestand (1-{len(files)}) of 'q' om te stoppen: ").strip()
+            if choice.lower() == 'q':
+                return None
+            idx = int(choice) - 1
+            if 0 <= idx < len(files):
+                selected = os.path.join(inputs_folder, files[idx])
+                print(f"\n✅ Geselecteerd: {files[idx]}")
+                return selected
+            else:
+                print(f"⚠️  Kies een nummer tussen 1 en {len(files)}")
+        except ValueError:
+            print("⚠️  Voer een geldig nummer in")
 
 
 if __name__ == "__main__":

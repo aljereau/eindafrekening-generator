@@ -1,49 +1,26 @@
 #!/bin/bash
-#
-# RyanRent Eindafrekening Generator - Easy Launcher
-# Double-click this file to generate eindafrekening
-#
+# ==================================================
+# RyanRent - Eindafrekening Generator
+# Double-click to generate from Eindafrekening Inputs
+# ==================================================
 
-# Get the directory where this script is located
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-cd "$DIR"
+cd "$(dirname "$0")"
 
-# Clear screen and show header
-clear
 echo "╔════════════════════════════════════════════════════════════╗"
-echo "║     🏠 RyanRent Eindafrekening Generator                  ║"
+echo "║     🏠 RyanRent Eindafrekening Generator                   ║"
 echo "╚════════════════════════════════════════════════════════════╝"
 echo ""
-echo "📊 Bezig met genereren..."
-echo ""
 
-# 2. Activeer Virtual Environment (als die bestaat)
-if [ -d "venv" ]; then
+# Activate virtual environment (check parent folder too)
+if [ -d "../venv" ]; then
+    source ../venv/bin/activate
+elif [ -d "venv" ]; then
     source venv/bin/activate
-else
-    echo "⚠️  Geen 'venv' map gevonden. We proberen de standaard python3..."
 fi
 
-# 3. Check of input bestand bestaat
-if [ ! -f "src/input_master.xlsx" ]; then
-    echo "❌ FOUT: 'src/input_master.xlsx' niet gevonden!"
-    echo "   Zorg dat 'input_master.xlsx' in de 'src' map staat."
-    read -p "Druk op Enter om te sluiten..."
-    exit 1
-fi
+# Run the generator - it has built-in interactive file picker
+# that looks in Eindafrekening Inputs folder
+python3 src/generate.py
 
-# 4. Start de generator (vanuit src map)
-# --no-pause: Zodat we hieronder zelf de pause kunnen beheren
-# --auto-open: Open browser automatisch
-python3 src/generate.py --input src/input_master.xlsx --no-pause --auto-open
-
-# 5. Check resultaat
-if [ $? -eq 0 ]; then
-    echo ""
-    echo "✅ Klaar! Je kunt dit venster sluiten."
-    echo "   De HTML bestanden zijn geopend in je browser."
-    echo "   Gebruik Cmd+P om te printen of op te slaan als PDF."
-fi
-
-# Pause so user can see the output
-read -p "Druk op Enter om af te sluiten..."
+echo ""
+read -p "👉 Druk op Enter om af te sluiten..."

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Send, Bot, User, Sparkles, Loader2, ChevronDown, ChevronRight, Terminal, Menu, Settings, Bell, Paperclip, FileText, FileIcon, Download, Hash, MessageSquare, Plus, Database, X, RotateCw, Braces } from 'lucide-react';
 import clsx from 'clsx';
 import DatabaseExplorer from './components/DatabaseExplorer';
+import ContractWorkspace from './components/ContractWorkspace';
 
 // --- Components ---
 
@@ -57,6 +58,11 @@ function GlobalRail({ activeView, onSelectView, notifications = [] }) {
             viewId="database"
             icon={<Database size={22} />}
             label="Database"
+          />
+          <NavItem
+            viewId="contracts"
+            icon={<FileText size={22} />}
+            label="Contracts"
           />
         </nav>
       </div>
@@ -1119,6 +1125,8 @@ function App() {
                 setIsJsonPanelOpen(true);
               }}
             />
+          ) : activeView === 'contracts' ? (
+            <ContractWorkspace />
           ) : activeView === 'settings' ? (
             <SettingsWorkspace
               activeModel={activeModel}

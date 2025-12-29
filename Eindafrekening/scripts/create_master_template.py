@@ -10,10 +10,17 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(os.path.dirname(current_dir))
 sys.path.append(os.path.join(root_dir, 'Shared'))
 from database import Database
+from datetime import datetime
 
 def create_master_template(output_path=None):
+    # Default to Eindafrekening Inputs folder with timestamp
     if output_path is None:
-        output_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "input_master.xlsx")
+        eindafrekening_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        inputs_folder = os.path.join(eindafrekening_dir, "Eindafrekening Inputs")
+        os.makedirs(inputs_folder, exist_ok=True)
+        
+        timestamp = datetime.now().strftime("%Y-%m-%d")
+        output_path = os.path.join(inputs_folder, f"input_master_{timestamp}.xlsx")
 
     wb = openpyxl.Workbook()
     
@@ -207,24 +214,41 @@ def create_master_template(output_path=None):
         ws[f'R{r}'].fill = grey_fill 
         ws[f'R{r}'].alignment = Alignment(horizontal='center') 
         
-        # Schoonmaak Calculations (Cols AB-AH) (Was AC-AI)
-        # AB:Pakket, AC:Uren, AD:Tarief, AE:TotEx, AF:BTW%, AG:BTW€, AH:TotInc
+        # Schoonmaak Calculations (Cols AB-AH)
+        # AB:Pakket, AC:Uren, AD:Tarief (€50 default), AE:TotEx, AF:BTW%, AG:BTW€, AH:TotInc
+        # 
+        # NEW PRICING LOGIC:
+        # - Basis Schoonmaak: Fixed €250 incl BTW (5h included)
+        # - Intensief Schoonmaak: Fixed €375 incl BTW (7h included)
+        # - Extra hours: €50/hour excl BTW
         
-        # AE (TotEx) = AC(Uren) * AD(Tarief)
-        ws[f'AE{r}'] = f'=IF(AND(AC{r}<>"",AD{r}<>""),AC{r}*AD{r},"")'
+        # AD: Default tarief to 50 if blank
+        ws[f'AD{r}'] = 50
+        ws[f'AD{r}'].number_format = '€ #,##0.00'
+        
+        # AF (BTW%) - default 21%
+        ws[f'AF{r}'] = 0.21
+        ws[f'AF{r}'].number_format = '0%'
+        
+        # AE (TotEx) - Fixed package + extra hours
+        # Formula: IF Basis -> (250/1.21) + MAX(0, hours-5)*50
+        #          IF Intensief -> (375/1.21) + MAX(0, hours-7)*50
+        #          ELSE -> hours * tarief
+        f_basis_excl = f'(250/1.21)+MAX(0,AC{r}-5)*AD{r}'
+        f_intensief_excl = f'(375/1.21)+MAX(0,AC{r}-7)*AD{r}'
+        f_other_excl = f'AC{r}*AD{r}'
+        
+        ws[f'AE{r}'] = f'=IF(AB{r}="","",IF(ISNUMBER(SEARCH("Basis",AB{r})),{f_basis_excl},IF(ISNUMBER(SEARCH("Intensief",AB{r})),{f_intensief_excl},{f_other_excl})))'
         ws[f'AE{r}'].fill = fill_calc
         ws[f'AE{r}'].number_format = '€ #,##0.00'
-        
-        # AF (BTW%)
-        ws[f'AF{r}'].number_format = '0%'
 
         # AG (BTW€) = AE * AF
-        ws[f'AG{r}'] = f'=IF(AND(AE{r}<>"",AF{r}<>""),AE{r}*AF{r},"")'
+        ws[f'AG{r}'] = f'=IF(AE{r}<>"",AE{r}*AF{r},"")'
         ws[f'AG{r}'].fill = fill_calc
         ws[f'AG{r}'].number_format = '€ #,##0.00'
         
         # AH (TotInc) = AE + AG
-        ws[f'AH{r}'] = f'=IF(AND(AE{r}<>"",AG{r}<>""),AE{r}+AG{r},"")'
+        ws[f'AH{r}'] = f'=IF(AE{r}<>"",AE{r}+AG{r},"")'
         ws[f'AH{r}'].fill = fill_calc
         ws[f'AH{r}'].number_format = '€ #,##0.00'
         

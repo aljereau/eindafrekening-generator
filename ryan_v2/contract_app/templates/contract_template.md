@@ -1,0 +1,199 @@
+
+# HUUROVEREENKOMST
+![RyanRent Logo]([LOGO_BASE64])
+
+### Kantoorruimte en andere bedrijfsruimte in de zin van art. 7:230a BW
+
+Gebaseerd op het ROZ-Model zoals dat op 30 januari 2015 is vastgesteld - waarbij artikel 4.5 in april 2024 is aangepast - en op 8 april gedeponeerd bij de griffie van de rechtbank te Den Haag en aldaar ingeschreven onder nummer 10/2024 tevens gepubliceerd op de website www.roz.nl.
+
+**Datum**: [DATUM ONDERTEKENING]
+
+***
+
+**DE ONDERGETEKENDEN:**
+
+**Verhuurder:**
+*   **Naam**: RyanRent & Co B.V.
+*   **KVK nummer**: 87946653
+*   **Adres**: Honderdland 968, 2676 LV Maasdijk
+*   **Telefoonnummer**: 085 111 97 91
+*   **E-mailadres**: info@ryanrent.nl
+*   **Wettelijk vertegenwoordigd door**: Mevr. C. Stam
+
+Hierna te noemen: **'Verhuurder'**
+
+**EN**
+
+**Huurder:**
+*   **Naam**: [NAAM HUURDER / BEDRIJF]
+*   **KVK nummer**: [KVK NUMMER]
+*   **Adres**: [ADRES HUURDER]
+*   **Telefoonnummer**: [TELEFOONNUMMER]
+*   **E-mailadres**: [EMAILADRES]
+*   **E-mailadres voor facturen**: [EMAIL FACTURATIE]
+*   **Wettelijk vertegenwoordigd door**: [NAAM VERTEGENWOORDIGER]
+
+Hierna te noemen: **'Huurder'**
+
+Ondergetekenden worden hierna gezamenlijk "Partijen" genoemd en individueel "Partij".
+
+***
+
+**OVERWEGINGEN:**
+
+A. Huurder heeft bij Verhuurder haar interesse getoond ter zake het huren van de onroerende zaak waarop deze Huurovereenkomst betrekking heeft.
+B. Partijen zijn met elkaar in overleg getreden.
+C. Partijen hebben zich in dat overleg gerealiseerd dat discussie zou kunnen worden bestaan over de vraag overeenkomst het huurrechtelijke regime voor kantoorruimte en overige bedrijfsruimte in de zin van art. 7:230a BW van toepassing is, dan wel het woonruimteregime (art. 7:233 BW).
+D. Huurder heeft daartoe aangegeven dat zij de woning niet benodigd ter bewoning, maar puur in het kader van haar commerciële verdienmodel. Huurder heeft daarbij ook laten weten niet in aanmerking te willen komen voor enige bescherming van het woonruimteregime.
+E. Tegen deze achtergrond heeft Verhuurder zich bereid getoond om de onroerende zaak waarop deze Huurovereenkomst betrekking heeft aan Huurder te verhuren.
+F. Partijen zijn, mede ter voorkoming van onzekerheid en/of geschil hieromtrent, nadrukkelijk overeengekomen dat deze huurovereenkomst onder het regime van art. 7:230a BW valt.
+G. Voor zover Huurder in beginsel al enig recht op huur (beëindiging) bescherming op grond van het woonruimteregime zou toekomen, heeft Huurder laten weten daarvan geen gebruik te willen maken en daarvan nadrukkelijk afstand te willen doen en zich te realiseren dat het eventueel alsnog doen van een beroep op een dergelijk, gepretendeerd recht naar maatstaven van redelijkheid en billijkheid onaanvaardbaar zal zijn.
+H. Partijen hebben overeenstemming bereikt en wensen de gemaakte afspraken vast te leggen in deze overeenkomst, hierna: "de Huurovereenkomst".
+
+***
+
+**VERKLAREN MET INACHTNEMING VAN HET BEPAALDE IN DE CONSIDERANS TE ZIJN OVEREENGEKOMEN ALS VOLGT:**
+
+**1. Het gehuurde, bestemming**
+1.1 Verhuurder verhuurt aan Huurder en Huurder huurt van Verhuurder de bedrijfsruimte (hierna 'gehuurde'), plaatselijk bekend:
+**[ADRES GEHUURDE]**
+**[POSTCODE EN PLAATS GEHUURDE]**
+
+De staat van het gehuurde op de opleveringsdatum zal worden verstrekt en door partijen te paraferen proces-verbaal van oplevering. Dit proces-verbaal kwalificeert als een beschrijving in de zin van art. 7:224 lid 2 BW.
+
+1.2 Het gehuurde zal door of vanwege Huurder uitsluitend worden bestemd om te worden gebruikt ten behoeve van haar bedrijfsvoering, zoals deze wordt uitgeoefend op het moment van het aangaan van deze huurovereenkomst. Een eventuele aanpassing van deze bedrijfsvoering, leidt niet tot een aanpassing van de toegestane wijze van gebruik van het gehuurde c.q. heeft geen invloed op deze bestemmingsbepaling.
+
+1.3 Het is Huurder niet toegestaan zonder voorafgaande schriftelijke toestemming van Verhuurder een andere bestemming aan het gehuurde te geven dan omschreven in art. 1.2.
+
+1.4 De hoogst toelaatbare belasting van de vloeren van het gehuurde bedraagt zoveel als bouwkundig is toegestaan.
+
+1.5 Huurder heeft bij het aangaan van de huurovereenkomst niet een kopie van het energielabel, als bedoeld in het Besluit energieprestatie gebouwen, ontvangen ten aanzien van het gehuurde.
+
+**2. Voorwaarden**
+2.1 Van deze huurovereenkomst maken deel uit de “ALGEMENE BEPALINGEN HUUROVEREENKOMST KANTOORRUIMTE en andere bedrijfsruimte in de zin van artikel 7:230a BW”, gedeponeerd bij de griffie van de rechtbank te Den Haag op 17 februari 2015 en aldaar ingeschreven onder nummer 15/21, (hierna te noemen “algemene bepalingen”). De inhoud van deze algemene bepalingen is partijen bekend. Huurder en Verhuurder hebben een exemplaar van de algemene bepalingen ontvangen.
+
+2.2 De algemene bepalingen waarnaar in artikel 2.1 wordt verwezen, zijn van toepassing behoudens voor zover daarvan in deze huurovereenkomst uitdrukkelijk is afgeweken of toepassing daarvan ten aanzien van het gehuurde niet mogelijk is.
+
+**3. Duur, verlenging en opzegging**
+3.1 Deze huurovereenkomst gaat in op **[STARTDATUM]** (hierna ‘ingangsdatum’) en loopt tot en met **[EINDDATUM]**.
+
+3.2 Beëindiging van deze huurovereenkomst vindt plaats door opzegging door Huurder aan Verhuurder of door Verhuurder aan Huurder tegen het einde van de lopende huurperiode of, ingeval van een huurovereenkomst voor onbepaalde tijd tegen ieder tijdstip, met inachtneming van een termijn van één maand.
+
+3.3 Opzegging dient te geschieden per e-mail (info@ryanrent.nl) of per aangetekend schrijven. Opzegging buiten kantoortijden (ma. t/m vr. 8.30 - 17.00 uur) worden op de eerstvolgende werkdag in behandeling genomen.
+
+3.4 Bij nadelige wijziging van de gemeentelijke verordening, SNF afkeur en/of politieke besluiten m.b.t. de huisvesting van (buitenlandse) werknemers, waardoor onderhavige huur in het kader van het commerciële verdienmodel van huurder nadelig wordt beïnvloed, zijn partijen gerechtigd het huurcontract per direct te ontbinden.
+
+**4. Feitelijk gebruik**
+4.1 Het gehuurde is uitsluitend bedoeld ten behoeve van het commerciële verdienmodel van huurder, dat bestaat in - al dan niet via onderverhuur - ingebruikgeving aan derden voor kort verblijf, korter dan 6 maanden bewoond door één en dezelfde persoon. Huurder garandeert dat geen van de gebruikers gedurende het verblijf zijn middelpunt van zijn maatschappelijk leven zal overbrengen naar het gehuurde conform (Staatscourant paragraaf 7.4.1 van het Besluit Onroerende zaken).
+
+**5. Huurprijs en betaling**
+5.1 Met ingang van de ingangsdatum van deze huurovereenkomst bestaat de betalingsverplichting van huurder uit:
+*   De huurprijs;
+*   Overige zaken en diensten die geleverd worden in verband met de bewoning van het gehuurde (servicekosten);
+
+| Service | Status |
+| :--- | :--- |
+| Stoffering | [Inclusief/Exclusief] |
+| Meubilering | [Inclusief/Exclusief] |
+| Internet | [Inclusief/Exclusief] |
+| Tuinonderhoud | [Inclusief/Exclusief] |
+| Eindschoonmaak | [Inclusief/Exclusief] |
+| Afvalverwerking | [Inclusief/Exclusief] |
+
+5.2 Partijen komen overeen dat Verhuurder omzetbelasting over de huurprijs in rekening brengt.
+
+5.3 Partijen verklaren onder verwijzing naar artikel 11 lid 1 aanhef onder b onderdeel 5 van de Wet op de omzetbelasting 1968 een met omzetbelasting belaste verhuur te zijn overeengekomen.
+
+5.4 Het boekjaar van Huurder loopt van 01-01-[JAAR] tot en met 31-12-[JAAR].
+
+5.5 De huurprijs wordt jaarlijks voor het eerst met ingang van 1 juli [JAAR+1] aangepast met een vast percentage van 5%.
+
+5.6 De vergoeding die Huurder verschuldigd is voor de door of vanwege Verhuurder te verzorgen levering van zaken en diensten wordt bepaald overeenkomstig artikel 18 van de algemene bepalingen. De kosten eindschoonmaak bedragen een eenmalige vergoeding van **€ [SCHOONMAAK KOSTEN]** exclusief BTW.
+
+5.7 Huurder is geen omzetbelasting meer over de huurprijs verschuldigd indien het gehuurde niet langer met omzetbelasting mag worden verhuurd.
+
+5.8 De totale huurprijs is bij vooruitbetaling verschuldigd op IBAN: NL76 INGB 0008 9801 73 ten name van RyanRent & Co.
+
+5.9 Per maand wordt er **€ [TOTAAL BEDRAG]** gefactureerd, bestaande uit:
+
+| Omschrijving | Excl. BTW | BTW | Incl. BTW |
+| :--- | :--- | :--- | :--- |
+| **Huur** (9% of 21%) | € [KALE HUUR] | € [BTW HUUR] | € [INCL HUUR] |
+| **Voorschot G/W/E** (21%) | € [GWE BEDRAG] | € [BTW GWE] | € [INCL GWE] |
+| **Totaal** | **€ [TOTAAL EXCL]** | **€ [TOTAAL BTW]** | **€ [TOTAAL INCL]** |
+
+5.10 De eerste betaalperiode betreft de periode van [STARTDATUM] tot en met [EIND DEZE MAAND].
+
+**6. Kosten voor nutsvoorzieningen**
+Verhuurder zal zorgdragen voor de levering van elektriciteit, gas en water voor het verbruik in het woonruimtegedeelte van het gehuurde op basis van een zich in dat gedeelte bevindende individuele meter.
+
+**7. Waarborgsom**
+7.1 Huurder zal voor de ingangsdatum een waarborgsom betalen ter grootte van een bedrag van **€ [BORG BEDRAG]**.
+7.2 Waarborgsom zal binnen redelijke termijn na het beëindigen van de huurovereenkomst worden geretourneerd aan huurder, mits alle afspraken en verplichtingen die voortvloeien uit deze overeenkomst zijn nagekomen.
+
+**8. Beheerder**
+8.1 Totdat verhuurder anders meedeelt, treedt als beheerder op: RyanRent & Co.
+Bereikbaar: ma t/m vr 09:00u - 17:00u op 085 111 97 91. E-mail: beheer@ryanrent.nl.
+
+**9. Incentives**
+Partijen verklaren dat er tussen partijen geen andere incentives zijn overeengekomen dan in deze huurovereenkomst vermeld.
+
+**10. Belastingen en andere heffingen**
+10.1 Tenzij dit op grond van de wet of daaruit voortvloeiende regelgeving is toegestaan, zijn voor rekening van huurder, ook als verhuurder daarvoor wordt aangeslagen:
+a. de onroerende zaakbelasting en de waterschap- of polderlasten terzake van het feitelijk gebruik van het gebruik van het gehuurde en het feitelijk medegebruik van dienstruimten, algemene en gemeenschappelijke ruimten;
+b. milieuheffingen, waaronder de verontreinigingsheffing oppervlaktewateren en zuiveringsheffing afvalwater;
+c. baatbelasting, of daarmee verwante belastingen of heffingen, geheel of een evenredig gedeelte daarvan, indien en voor zover huurder is gebaat bij datgene op grond waarvan de aanslag of heffing wordt opgelegd;
+d. overige bestaande of toekomstige belastingen, milieubescherming bijdragen, lasten, heffingen en retributies
+    - terzake van het feitelijk gebruik van het gehuurde;
+    - terzake van goederen van huurder;
+    - die niet geheel of gedeeltelijk zouden zijn geheven of opgelegd, als het gehuurde niet in gebruik zou zijn gegeven.
+10.2 Indien de voor rekening van huurder komende heffingen, belastingen, retributies of andere lasten bij verhuurder worden geïnd, moeten deze door huurder op eerste verzoek aan verhuurder worden voldaan. Verhuurder kan huurder eveneens aanslaan voor voorgaande benoemde belastingen, heffingen en of lasten die in het navolgende jaar worden geïnd, maar nog betrekking hebben op het voorgaande jaar waarin huurder het gehuurde in gebruik heeft gehad, zelfs in het geval huurder op het desbetreffende moment geen huurder meer is van het gehuurde.
+
+**11. Bijzondere bepalingen**
+11.1 Het gestelde in de considerans van deze Huurovereenkomst dient als onlosmakelijk onderdeel van deze Huurovereenkomst beschouwd te worden en maakt daar onverkort deel van uit.
+11.2 Huurder is verplicht om een (steeds actuele) registratie bij te houden van de personen die van het gehuurde gebruik maken en dat overzicht op eerste daartoe strekkend verzoek aan Verhuurder te verschaffen.
+11.3 Huurder is steeds verantwoordelijk en aansprakelijk voor de gedragingen van de personen die van het gehuurde gebruik maken, alsook de personen die zich met goedvinden van die personen op hun beurt in het gehuurde bevinden. Indien enige gedraging in strijd komt wet enig wettelijke bepalingen en/of voorschrift en/of deze overeenkomst, is de Verhuurder gerechtigd aan een (of meer) perso(o)n(en) de toegang tot het gehuurde te ontzeggen. Een dergelijke maatregel heeft geen invloed op de betalingsverplichtingen van Huurder.
+11.4 Verhuurder en Huurder zijn overeengekomen dat het Gehuurde, gegeven de algemene, bouwkundige en de technische staat waarin het Gehuurde zich bij aanvang van de Huurovereenkomst bevindt, aan Huurder het genot kan verschaffen dat Huurder mag verwachten. Er is derhalve bij het aangaan van de overeenkomst geen sprake van enig (al dan niet latent aanwezig) gebrek in de zin van art. 7:204 lid 2 BW. Door ondertekening van deze Huurovereenkomst wordt dat door Huurder bevestigd. Huurder doet afstand van een eventueel aan haar toekomend beroep op het bepaalde in art. 7:204 lid 2 BW. Ter zake eventuele gebreken die ontstaan ná het aangaan van de Huurovereenkomst alsmede meer in het algemeen ter zake alle onderhouds-, herstel- en vernieuwingswerkzaamheden heeft te gelden dat deze te allen tijde door Huurder, voor diens eigen rekening en risico, dienen te worden verricht. Dit mede in afwijking van het bepaalde inde algemene bepalingen. De daar als ware zij voor rekening en risico van verhuurder opgenomen onderhouds-, herstel- en vernieuwingswerkzaamheden komen dus in onderhavige huurrelatie voor rekening en risico van Huurder. Verhuurder is nimmer aansprakelijk voor enige gevolgschade.
+11.5 Verhuurder is gerechtigd te controleren of huurder de huurovereenkomst en de algemene bepalingen nakomt. Het gaat daarbij met name, maar niet uitsluitend om de verplichtingen in de artikelen 1.2 en 1.3 van de huurovereenkomst en de artikelen 5.1 t/m 5.4, 6, 7, 8.1 en 8.2 en 12.1 t/m 12.3 van de algemene bepalingen. Verhuurder en alle door hem aan te wijzen personen zijn daartoe gerechtigd het gehuurde aangekondigd en onaangekondigd periodiek te betreden en te inspecteren. Huurder is verplicht daaraan zijn medewerking te verlenen. Indien huurder zich, na door verhuurder behoorlijk in gebreke te zijn gesteld, niet houdt aan dit artikellid, verbeurt huurder aan verhuurder een direct opeisbare boete van € 250 per kalenderdag voor elke kalenderdag dat huurder in verzuim is. Het vorenstaande laat onverlet de bevoegdheid van verhuurder om gebruik te maken van zijn overige rechten, waaronder het recht op volledige schadevergoeding voor zover de geleden schade de boete overtreft.
+11.6 Iedere tekortkoming van Huurder in de nakoming van een uit hoofde van deze Huurovereenkomst en/of de toepasselijke wettelijke bepalingen rechtvaardigt ontbinding van de Huurovereenkomst. Dit ongeacht de eventuele bijzondere aard of geringe betekenis daarvan. De ‘tenzij-bepaling’ zoals onderdeel van art. 6:265 BW wordt door partijen uitgesloten.
+11.7 Huurder zal gedurende de gehele duur van deze Huurovereenkomst op eigen kosten een algemene aansprakelijkheidsverzekering afsluiten en behouden.
+
+**12. Kwalificatie overeenkomst | Vaststellingsovereenkomst**
+12.1 Op deze huurovereenkomst is het regime van art. 7:230a BW van toepassing.
+12.2 Voor wat betreft de overwegingen en bepalingen ter zake de toepasselijkheid van het regime van art. 7:230a BW geldt deze overeenkomst als een vaststellingsovereenkomst in de zin van de wet (artikel 7:900 BW).
+12.3 Huurder doet afstand van enig recht op Huur(beëindiging)bescherming van het regime van woonruimte als bedoeld in art. 7:233 BW. Een eventueel beroep van Huurder op de bepalingen van dat woonruimteregime, onder welke omstandigheden en op welke gronden dan ook, is in strijd met de redelijkheid en billijkheid en naar maatstaven van redelijkheid en billijkheid onaanvaardbaar.
+
+**13. Slotbepalingen**
+13.1 Indien één of meer bepalingen van de Overeenkomst niet rechtsgeldig of niet afdwingbaar blijkt te zijn, dan zullen de overblijvende bepalingen worden uitgelegd alsof een dergelijke ongeldige of niet afdwingbare bepaling niet zou zijn opgenomen. In dat geval zal de ongeldige of niet afdwingbare bepaling worden geacht te zijn vervangen door een bepaling die de bedoeling van Partijen met de betreffende bepaling zo dicht mogelijk benadert. Huurder is ex art. 7:213 BW verplicht om een daartoe strekkend voorstel van Verhuurder te aanvaarden.
+13.2 Deze Overeenkomst kan slechts worden gewijzigd of aangevuld door middel van een door alle Partijen ondertekend document.
+
+***
+
+**Ondertekening**
+
+Aldus opgemaakt en ondertekend in tweevoud:
+
+**Plaats**: [PLAATS]  
+**Datum**: [DATUM]
+
+_________________________  
+**C. Stam** (Verhuurder)
+
+_________________________  
+**[NAAM HUURDER]** (Huurder)
+
+***
+**Bijlagen:**
+*   [ ] Proces-verbaal van oplevering
+*   [ ] Energielabel
+*   [ ] Algemene bepalingen
+*   [ ] Uittreksel KvK Huurder
+
+***
+
+**Afzonderlijke handtekening[en*] van Huurder[s*] voor de ontvangst van een eigen exemplaar van de ‘ALGEMENE BEPALINGEN HUUROVEREENKOMST KANTOORRUIMTE en andere bedrijfsruimte in de zin van artikel 7:230a BW als genoemd in artikel 2.1.**
+
+Handtekening[en*] Huurder[s*]:
+
+_________________________
+**[NAAM HUURDER]** (Huurder)
