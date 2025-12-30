@@ -212,22 +212,25 @@ class Calculator:
     @staticmethod
     def calculate_cleaning_costs(cleaning: Cleaning) -> Cleaning:
         """
-        Recalculate cleaning costs using fixed package prices.
+        Recalculate cleaning costs using fixed package prices (EXCL BTW).
         """
-        # Fixed package prices (incl BTW)
-        PAKKET_PRIJZEN = {
-            'basis': 250.0,
-            'intensief': 375.0
+        # Fixed package prices (EXCL BTW!)
+        PAKKET_PRIJZEN_EXCL = {
+            'basis': 250.0,      # Basis Schoonmaak excl BTW
+            'intensief': 375.0   # Intensief Schoonmaak excl BTW
         }
         
         # Skip if already calculated or no package
         if cleaning.pakket_type == 'geen' or cleaning.pakket_type == 'achteraf':
             return cleaning
         
-        # Get fixed package price
-        pakket_prijs_incl = PAKKET_PRIJZEN.get(cleaning.pakket_type, 0.0)
+        btw_pct = cleaning.btw_percentage if cleaning.btw_percentage else 0.21
         
-        # If voorschot is 0 but we have a package, set it to package price
+        # Get fixed package price
+        pakket_prijs_excl = PAKKET_PRIJZEN_EXCL.get(cleaning.pakket_type, 0.0)
+        pakket_prijs_incl = pakket_prijs_excl * (1 + btw_pct)
+        
+        # If voorschot is 0 but we have a package, set it to package price incl
         voorschot = cleaning.voorschot
         if voorschot == 0 and pakket_prijs_incl > 0:
             voorschot = pakket_prijs_incl
@@ -237,13 +240,17 @@ class Calculator:
         if totaal_incl == 0:
             totaal_incl = pakket_prijs_incl
         
+        # Get excl from incl
+        totaal_excl = totaal_incl / (1 + btw_pct)
+        
         # Enforce minimum package price (no refunds)
         if cleaning.pakket_type in ['basis', 'intensief']:
-            totaal_incl = max(pakket_prijs_incl, totaal_incl)
+            if totaal_excl < pakket_prijs_excl:
+                totaal_excl = pakket_prijs_excl
+                totaal_incl = pakket_prijs_incl
         
-        btw_pct = cleaning.btw_percentage if cleaning.btw_percentage else 0.21
-        btw_bedrag = totaal_incl - (totaal_incl / (1 + btw_pct))
-        extra_bedrag = max(0, totaal_incl - pakket_prijs_incl)
+        btw_bedrag = totaal_incl - totaal_excl
+        extra_bedrag_excl = max(0, totaal_excl - pakket_prijs_excl)
         
         return Cleaning(
             pakket_type=cleaning.pakket_type,
@@ -252,7 +259,7 @@ class Calculator:
             totaal_uren=cleaning.totaal_uren,
             extra_uren=0,
             uurtarief=cleaning.uurtarief,
-            extra_bedrag=extra_bedrag / (1 + btw_pct),  # Store excl
+            extra_bedrag=extra_bedrag_excl,  # Already excl!
             voorschot=voorschot,
             totaal_kosten_incl=totaal_incl,
             btw_percentage=btw_pct,

@@ -354,55 +354,69 @@ def generate_eindafrekening_from_data(data: dict, output_dir: str, bundle_dir: s
     # ==================== STEP 6: SAVE TO DATABASE ====================
     print(f"\n💾 STAP 6: Opslaan in database...")
     
-    try:
-        # Database is now in Shared/database
-        db_path = os.path.join(shared_dir, 'database', 'ryanrent_core.db')
-        db = init_database(db_path)
-        
-        # Determine version
-        version, is_new = db.get_next_version(
-            data['client'].name,
-            data['period'].checkin_date,
-            data['period'].checkout_date
-        )
-        
-        # Prepare data for storage (convert viewmodel to dict)
-        # For simplicity, we store the raw data dict + settlement info
-        storage_data = {
-            'client': str(data['client']),
-            'period': str(data['period']),
-            'settlement': str(settlement)
-        }
-        
-        # Extract additional stats
-        schoonmaak_pakket = data['cleaning'].pakket_naam
-        schoonmaak_kosten = data['cleaning'].totaal_kosten_incl
-        schade_totaal = data['damage_totalen'].totaal_incl
-        extra_voorschot = data.get('extra_voorschot')
-        extra_voorschot_bedrag = extra_voorschot.voorschot if extra_voorschot else 0.0
+    if skip_db_save:
+        print(f"   ℹ️  Database opslag overgeslagen (--skip-db-save)")
+    else:
+        try:
+            # Database tracking (using ryanrent_mock.db for now as requested)
+            db_path = os.path.join(project_root, 'database', 'ryanrent_mock.db')
+            print(f"   📂 Database: {os.path.basename(db_path)}")
+            db = init_database(db_path)
+            
+            # Determine version
+            version, is_new = db.get_next_version(
+                data['client'].name,
+                data['period'].checkin_date,
+                data['period'].checkout_date
+            )
+            
+            # Extract additional stats
+            schoonmaak_pakket = data['cleaning'].pakket_naam
+            schoonmaak_kosten = data['cleaning'].totaal_kosten_incl
+            schade_totaal = data['damage_totalen'].totaal_incl
+            extra_voorschot = data.get('extra_voorschot')
+            extra_voorschot_bedrag = extra_voorschot.voorschot if extra_voorschot else 0.0
 
-        # Save
-        db.save_eindafrekening(
-            client_name=data['client'].name,
-            checkin_date=data['period'].checkin_date,
-            checkout_date=data['period'].checkout_date,
-            version=version,
-            version_reason="Generated via script",
-            data_json=storage_data,
-            object_address=data['object'].address,
-            period_days=data['period'].days,
-            borg_terug=data['deposit'].terug,
-            gwe_totaal_incl=data['gwe_totalen'].totaal_incl,
-            totaal_eindafrekening=settlement.totaal_eindafrekening,
-            file_path=result['onepager']['pdf'] if result['onepager']['is_pdf'] else result['onepager']['html'],
-            schoonmaak_pakket=schoonmaak_pakket,
-            schoonmaak_kosten=schoonmaak_kosten,
-            schade_totaal_kosten=schade_totaal,
-            extra_voorschot_bedrag=extra_voorschot_bedrag
-        )
-        
-    except Exception as e:
-        print(f"   ⚠️  Kon niet opslaan in database: {e}")
+            # Save (using onepager_vm as the full data record)
+            db.save_eindafrekening(
+                client_name=data['client'].name,
+                checkin_date=data['period'].checkin_date,
+                checkout_date=data['period'].checkout_date,
+                version=version,
+                version_reason="Generated via script" if is_new else "Revision generated via script",
+                data_json=onepager_vm,
+                object_address=data['object'].address,
+                period_days=data['period'].days,
+                borg_terug=data['deposit'].terug,
+                gwe_totaal_incl=data['gwe_totalen'].totaal_incl,
+                totaal_eindafrekening=settlement.totaal_eindafrekening,
+                file_path=os.path.abspath(result['onepager']['pdf'] if result['onepager']['is_pdf'] else result['onepager']['html']),
+                schoonmaak_pakket=schoonmaak_pakket,
+                schoonmaak_kosten=schoonmaak_kosten,
+                schade_totaal_kosten=schade_totaal,
+                extra_voorschot_bedrag=extra_voorschot_bedrag,
+                # New fields from expanded schema
+                booking_id=data.get('booking_id'),
+                object_id=data['object'].object_id or data.get('object_id_excel'),
+                klant_nr=data.get('klant_nr'),
+                inspecteur=data.get('inspecteur'),
+                folder_link=data.get('folder_link'),
+                contractnr=data.get('contractnr'),
+                gwe_beheer_type=data['gwe_totalen'].beheer_type,
+                voorschot_gwe_incl=data.get('gwe_voorschot', 0.0),
+                extra_voorschot_omschrijving=data['extra_voorschot'].omschrijving if data.get('extra_voorschot') else None,
+                meter_elek_begin=data['gwe_meterstanden'].stroom.begin,
+                meter_elek_eind=data['gwe_meterstanden'].stroom.eind,
+                meter_gas_begin=data['gwe_meterstanden'].gas.begin,
+                meter_gas_eind=data['gwe_meterstanden'].gas.eind,
+                meter_water_begin=data['gwe_meterstanden'].water.begin if data['gwe_meterstanden'].water else None,
+                meter_water_eind=data['gwe_meterstanden'].water.eind if data['gwe_meterstanden'].water else None,
+                schoonmaak_uren_extra=data['cleaning'].extra_uren,
+                schoonmaak_uurtarief=data['cleaning'].uurtarief
+            )
+            
+        except Exception as e:
+            print(f"   ⚠️  Kon niet opslaan in database: {e}")
     
     # ==================== SUMMARY ====================
     print(f"\n" + "=" * 70)

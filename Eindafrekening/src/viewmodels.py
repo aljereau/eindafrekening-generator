@@ -492,13 +492,16 @@ def add_bar_chart_data(onepager_vm: Dict[str, Any]) -> Dict[str, Any]:
 
     # Generate human-readable caption
     if cleaning['pakket_naam'] == "Achteraf Betaald":
-        cleaning_caption = f"Schoonmaak kosten: €{cleaning['totaal_kosten_incl']:.0f}"
+        totaal_excl = cleaning['totaal_kosten_incl'] / (1 + cleaning['btw_percentage'])
+        cleaning_caption = f"Kosten: €{totaal_excl:.0f} excl (€{cleaning['totaal_kosten_incl']:.0f} incl)"
     else:
-        cleaning_caption = f"Verbruikt: {cleaning['totaal_uren']:.1f} uur"
+        # Show voorschot and extra costs - both excl and incl values
+        voorschot_excl = cleaning['voorschot'] / (1 + cleaning['btw_percentage'])
+        cleaning_caption = f"Voorschot: €{voorschot_excl:.0f} excl (€{cleaning['voorschot']:.0f} incl)"
         if cleaning['extra'] > 0:
-            cleaning_caption += f" · Extra kosten: €{cleaning['extra']:.0f}"
-        else:
-            cleaning_caption += " · Geen extra kosten"
+            extra_excl = cleaning['extra_bedrag']  # extra_bedrag is already excl
+            extra_incl = cleaning['extra']  # extra is incl
+            cleaning_caption += f" · Extra: €{extra_excl:.0f} excl (€{extra_incl:.0f} incl)"
 
     financial['cleaning']['caption'] = cleaning_caption
     

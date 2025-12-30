@@ -441,63 +441,64 @@
 
             <div class="summary-box">
                 <div class="label">Schoonmaakpakket</div>
-                <div class="value">
-                    {% if cleaning.pakket_naam == "Achteraf Betaald" %}
-                    {{ cleaning.pakket_naam|lower }}
-                    {% else %}
-                    {{ cleaning.pakket_naam|lower }}{% if cleaning.extra_uren > 0 %} + {{
-                    "%.0f"|format(cleaning.extra_uren) }} extra {% if cleaning.extra_uren == 1 %}uur{% else %}uren{%
-                    endif %}{% endif %}
-                    {% endif %}
-                </div>
+                <div class="value">{{ cleaning.pakket_naam|lower }}</div>
             </div>
 
             <table>
                 <thead>
                     <tr>
                         <th>Omschrijving</th>
-                        <th class="text-right">Uren</th>
-                        <th class="text-right">Tarief</th>
-                        <th class="text-right">Bedrag</th>
+                        <th class="text-right">Bedrag (excl.)</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% if cleaning.pakket_naam != "Achteraf Betaald" %}
+                    <!-- Package base price (voorschot) - show as excl -->
+                    {% if cleaning.pakket_type in ['basis', 'intensief'] %}
+                    {% set voorschot_excl = cleaning.voorschot / (1 + cleaning.btw_percentage) %}
                     <tr>
-                        <td>Basis pakket (inbegrepen)</td>
-                        <td class="text-right">{{ "%.1f"|format(cleaning.inbegrepen_uren) }}</td>
-                        <td class="text-right">€{{ "%.2f"|format(cleaning.uurtarief) }}</td>
-                        <td class="text-right">€{{ "%.2f"|format(cleaning.voorschot) }}</td>
+                        <td>{{ cleaning.pakket_naam }} (voorschot)</td>
+                        <td class="text-right">€{{ "%.2f"|format(voorschot_excl) }}</td>
                     </tr>
                     {% endif %}
-                    {% if cleaning.extra_uren > 0 %}
+
+                    <!-- Extra costs if any - already excl -->
+                    {% if cleaning.extra_bedrag > 0 %}
                     <tr>
-                        <td>{% if cleaning.pakket_naam == "Achteraf Betaald" %}Schoonmaak uren{% else %}Extra uren
-                            nodig{% endif %}</td>
-                        <td class="text-right">{{ "%.1f"|format(cleaning.extra_uren) }}</td>
-                        <td class="text-right">€{{ "%.2f"|format(cleaning.uurtarief) }}</td>
+                        <td>Extra schoonmaakkosten</td>
                         <td class="text-right">€{{ "%.2f"|format(cleaning.extra_bedrag) }}</td>
                     </tr>
                     {% endif %}
-                    <tr class="totals-row">
-                        <td class="text-bold">Totaal uren gewerkt</td>
-                        <td class="text-right text-bold">{{ "%.1f"|format(cleaning.totaal_uren) }}</td>
-                        <td></td>
-                        <td class="text-right text-bold">€{{ "%.2f"|format(cleaning.voorschot +
-                            cleaning.extra_bedrag) }}</td>
+
+                    <!-- Subtotal excl BTW -->
+                    <tr style="background: #f9f9f9;">
+                        <td class="text-bold">Subtotaal excl. BTW</td>
+                        <td class="text-right text-bold">€{{ "%.2f"|format(cleaning.totaal_kosten_incl / (1 +
+                            cleaning.btw_percentage)) }}</td>
                     </tr>
-                    {% if cleaning.totaal_kosten_incl > 0 %}
+
+                    <!-- BTW row -->
                     <tr>
-                        <td colspan="3">BTW ({{ "%.0f"|format(cleaning.btw_percentage * 100) }}%)</td>
+                        <td>BTW ({{ "%.0f"|format(cleaning.btw_percentage * 100) }}%)</td>
                         <td class="text-right">€{{ "%.2f"|format(cleaning.btw_bedrag) }}</td>
                     </tr>
-                    <tr class="totals-row">
-                        <td colspan="3" class="text-bold">Totaal incl. BTW</td>
-                        <td class="text-right text-bold">€{{ "%.2f"|format(cleaning.totaal_kosten_incl) }}</td>
+
+                    <!-- Total incl BTW -->
+                    <tr class="totals-row" style="background: var(--color-brand-green); color: white;">
+                        <td class="text-bold" style="border: none;">Totaal incl. BTW</td>
+                        <td class="text-right text-bold" style="border: none;">€{{
+                            "%.2f"|format(cleaning.totaal_kosten_incl) }}</td>
                     </tr>
-                    {% endif %}
                 </tbody>
             </table>
+
+            <!-- Settlement note -->
+            {% if cleaning.extra_bedrag > 0 %}
+            <div
+                style="margin-top: var(--spacing-sm); padding: var(--spacing-sm); background: var(--color-info-bg); border-radius: var(--radius-sm); font-size: 12px; color: var(--color-text-muted);">
+                <strong>Verrekening:</strong> €{{ "%.2f"|format(cleaning.voorschot) }} reeds betaald als voorschot.
+                Extra te betalen: €{{ "%.2f"|format(cleaning.totaal_kosten_incl - cleaning.voorschot) }}
+            </div>
+            {% endif %}
         </div>
         {% endif %}
 

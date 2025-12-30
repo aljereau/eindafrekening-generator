@@ -773,7 +773,7 @@
                 {{ financial.cleaning.svg_start_bar|safe }}
             </div>
             <div class="prepaid-label">{% if financial.cleaning.pakket_naam == "Achteraf Betaald" %}Geen voorschot{%
-                else %}Gekozen pakket{% endif %}</div>
+                else %}{{ financial.cleaning.pakket_naam }}{% endif %}</div>
         </div>
         <div class="usage-section">
             <div class="usage-section-spacer"></div>
@@ -916,10 +916,17 @@
                 <span>Gekozen pakket:</span>
                 <span>{{ financial.cleaning.pakket_naam }}</span>
             </div>
+            {% set voorschot_excl = financial.cleaning.voorschot / (1 + financial.cleaning.btw_percentage) %}
             <div class="detail-item">
-                <span>Totaal uren:</span>
-                <span>{{ "%.1f"|format(financial.cleaning.totaal_uren) }} uur</span>
+                <span>Voorschot (excl. BTW):</span>
+                <span>€{{ "%.2f"|format(voorschot_excl) }}</span>
             </div>
+            {% if financial.cleaning.extra_bedrag > 0 %}
+            <div class="detail-item">
+                <span>Extra kosten (excl. BTW):</span>
+                <span>€{{ "%.2f"|format(financial.cleaning.extra_bedrag) }}</span>
+            </div>
+            {% endif %}
             <div class="detail-item">
                 <span>Kosten (excl. BTW):</span>
                 <span>€{{ "%.2f"|format(financial.cleaning.totaal_kosten_incl - financial.cleaning.btw_bedrag) }}</span>

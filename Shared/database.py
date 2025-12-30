@@ -63,9 +63,10 @@ class Database:
         self._init_database()
 
     def _get_connection(self) -> sqlite3.Connection:
-        """Get database connection with row factory"""
+        """Get database connection with row factory and FK enforcement"""
         conn = sqlite3.connect(self.db_path)
         conn.row_factory = sqlite3.Row  # Return rows as dictionaries
+        conn.execute("PRAGMA foreign_keys = ON")  # Enable FK enforcement
         return conn
 
     def _init_database(self):
@@ -298,7 +299,24 @@ class Database:
         schoonmaak_kosten: float = 0.0,
         schade_totaal_kosten: float = 0.0,
         extra_voorschot_bedrag: float = 0.0,
-        data_toon: str = ""
+        data_toon: str = "",
+        booking_id: Optional[int] = None,
+        object_id: Optional[str] = None,
+        klant_nr: Optional[str] = None,
+        inspecteur: Optional[str] = None,
+        folder_link: Optional[str] = None,
+        contractnr: Optional[str] = None,
+        gwe_beheer_type: Optional[str] = None,
+        voorschot_gwe_incl: Optional[float] = None,
+        extra_voorschot_omschrijving: Optional[str] = None,
+        meter_elek_begin: Optional[float] = None,
+        meter_elek_eind: Optional[float] = None,
+        meter_gas_begin: Optional[float] = None,
+        meter_gas_eind: Optional[float] = None,
+        meter_water_begin: Optional[float] = None,
+        meter_water_eind: Optional[float] = None,
+        schoonmaak_uren_extra: Optional[float] = None,
+        schoonmaak_uurtarief: Optional[float] = None
     ) -> int:
         """Save eindafrekening to database"""
         if version > 1 and not version_reason.strip():
@@ -312,7 +330,10 @@ class Database:
                 json_data, object_address, period_days, borg_terug,
                 gwe_totaal_incl, totaal_eindafrekening, file_path,
                 schoonmaak_pakket, schoonmaak_kosten, schade_totaal_kosten, extra_voorschot_bedrag,
-                data_toon
+                data_toon, booking_id, object_id, klant_nr, inspecteur, folder_link,
+                contractnr, gwe_beheer_type, voorschot_gwe_incl, extra_voorschot_omschrijving,
+                meter_elek_begin, meter_elek_eind, meter_gas_begin, meter_gas_eind,
+                meter_water_begin, meter_water_eind, schoonmaak_uren_extra, schoonmaak_uurtarief
             )
             cursor = conn.execute("""
                 INSERT INTO eindafrekeningen (
@@ -320,8 +341,11 @@ class Database:
                     data_json, object_address, period_days, borg_terug,
                     gwe_totaal_incl, totaal_eindafrekening, file_path,
                     schoonmaak_pakket, schoonmaak_kosten, schade_totaal_kosten, extra_voorschot_bedrag,
-                    data_toon
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    data_toon, booking_id, object_id, klant_nr, inspecteur, folder_link,
+                    contractnr, gwe_beheer_type, voorschot_gwe_incl, extra_voorschot_omschrijving,
+                    meter_elek_begin, meter_elek_eind, meter_gas_begin, meter_gas_eind,
+                    meter_water_begin, meter_water_eind, schoonmaak_uren_extra, schoonmaak_uurtarief
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, values)
             conn.commit()
             print(f"   ✓ Saved to database: ID={cursor.lastrowid}, Version={version}")

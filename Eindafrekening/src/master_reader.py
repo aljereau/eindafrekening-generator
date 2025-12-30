@@ -116,6 +116,11 @@ class MasterReader:
                 # 10:GWEBeh, 11:GWEMaand, 12:GWEAuto, 13:Verreken, 14:LevName, 15:LevID, 16:Contract, 17:ExVoor, 18:ExDesc
                 
                 klant_naam = row[2]
+                object_id_excel = str(row[3]) if row[3] else None
+                klant_nr = str(row[4]) if row[4] else None
+                inspecteur = str(row[5]) if row[5] else None
+                folder_link = str(row[6]) if row[6] else None
+                
                 checkin = parse_date(row[7]) # H
                 checkout = parse_date(row[8]) # I
                 borg_voorschot = parse_float(row[9]) # J
@@ -124,11 +129,12 @@ class MasterReader:
                 gwe_settings['beheer_type'] = gwe_beheer_val
                 
                 # GWE Voorschot (Auto) - Column O (Index 14)
-                # This is the monthly amount * months usually, calculated in Excel.
-                # INPUT IS NOW VAT-INCLUSIVE via formula in template.
                 gwe_voorschot_auto = parse_float(row[14])
                 
-                # Extra Voorschot - Col T(19), U(20) (Was U, V)
+                # Contractnr - Col S(18)
+                contractnr = str(row[18]) if row[18] else None
+                
+                # Extra Voorschot - Col T(19), U(20)
                 ex_voor_bedrag = parse_float(row[19])
                 ex_voor_desc = str(row[20]) if row[20] else "Extra Voorschot"
                 
@@ -374,14 +380,20 @@ class MasterReader:
             'object': rental_property,
             'period': period,
             'deposit': deposit,
-            'gwe_voorschot': locals().get('gwe_voorschot_auto', 0.0), # Use locals get to be safe
+            'gwe_voorschot': locals().get('gwe_voorschot_auto', 0.0),
             'gwe_meterstanden': gwe_standen,
             'gwe_regels': gwe_regels, 
             'gwe_totalen': gwe_totalen,
             'cleaning': cleaning,
             'damage_regels': damage_regels,
             'damage_totalen': damage_totalen,
-            'extra_voorschot': extra_voorschot
+            'extra_voorschot': extra_voorschot,
+            # Metadata for DB
+            'object_id_excel': locals().get('object_id_excel'),
+            'klant_nr': locals().get('klant_nr'),
+            'inspecteur': locals().get('inspecteur'),
+            'folder_link': locals().get('folder_link'),
+            'contractnr': locals().get('contractnr')
         }
 
     def _fetch_property_details(self, adres: str) -> Dict[str, Any]:
