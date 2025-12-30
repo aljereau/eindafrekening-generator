@@ -178,56 +178,65 @@ class MasterReader:
                 if not btw_pct: btw_pct = 0.21
                 if btw_pct > 1: btw_pct = btw_pct / 100 
                 
-                # Fixed package prices (incl BTW)
-                PAKKET_PRIJZEN = {
-                    'basis': 250.0,      # Basis Schoonmaak
-                    'intensief': 375.0   # Intensief Schoonmaak
+                # Fixed package prices (EXCL BTW!)
+                PAKKET_PRIJZEN_EXCL = {
+                    'basis': 250.0,      # Basis Schoonmaak excl BTW
+                    'intensief': 375.0   # Intensief Schoonmaak excl BTW
                 }
                 
                 # Map packet name
                 pakket_code = 'basis'
-                pakket_prijs_incl = 0.0
+                pakket_prijs_excl = 0.0
                 
                 if 'basis' in pakket.lower(): 
                     pakket_code = 'basis'
-                    pakket_prijs_incl = PAKKET_PRIJZEN['basis']
+                    pakket_prijs_excl = PAKKET_PRIJZEN_EXCL['basis']
                 elif 'intensief' in pakket.lower(): 
                     pakket_code = 'intensief'
-                    pakket_prijs_incl = PAKKET_PRIJZEN['intensief']
+                    pakket_prijs_excl = PAKKET_PRIJZEN_EXCL['intensief']
                 elif 'geen' in pakket.lower(): 
                     pakket_code = 'geen'
-                    pakket_prijs_incl = 0.0
+                    pakket_prijs_excl = 0.0
                 elif 'achteraf' in pakket.lower(): 
                     pakket_code = 'achteraf'
-                    pakket_prijs_incl = 0.0
+                    pakket_prijs_excl = 0.0
+                
+                # Calculate incl for comparisons
+                pakket_prijs_incl = pakket_prijs_excl * (1 + btw_pct)
                 
                 # Get total cost from Excel - check both Excl (AE) and Incl (AH)
                 total_cost_excl = parse_float(row[30])  # AE: Totaal Excl
                 total_cost_incl = parse_float(row[33])  # AH: Totaal Incl
                 
-                # Cleaning voorschot = fixed package price (what tenant already paid)
+                # Cleaning voorschot = fixed package price incl BTW (what tenant paid)
                 cleaning_voorschot = pakket_prijs_incl
                 
-                # Calculate final cost - prioritize excl input, then incl input
+                # Calculate final cost - prioritize excl input
                 if total_cost_excl > 0:
-                    # User entered excl value - calculate incl
+                    # User entered excl value - this is the total cost excl
+                    final_cost_excl = total_cost_excl
                     final_total_cost = total_cost_excl * (1 + btw_pct)
                 elif total_cost_incl > 0:
                     # User entered incl value - use directly
                     final_total_cost = total_cost_incl
+                    final_cost_excl = total_cost_incl / (1 + btw_pct)
                 elif uren > 0 and tarief > 0:
-                    # Calculate from hours * rate
-                    final_total_cost = uren * tarief * (1 + btw_pct)
+                    # Calculate from hours * rate (tarief is excl)
+                    final_cost_excl = uren * tarief
+                    final_total_cost = final_cost_excl * (1 + btw_pct)
                 else:
                     # Use package price as minimum
+                    final_cost_excl = pakket_prijs_excl
                     final_total_cost = pakket_prijs_incl
                 
                 # Enforce minimum package price (no refunds for unused hours)
                 if pakket_code in ['basis', 'intensief']:
-                    final_total_cost = max(pakket_prijs_incl, final_total_cost)
+                    if final_cost_excl < pakket_prijs_excl:
+                        final_cost_excl = pakket_prijs_excl
+                        final_total_cost = pakket_prijs_incl
                 
-                # Extra bedrag = what tenant has to pay on top of package
-                extra_bedrag = max(0, final_total_cost - pakket_prijs_incl)
+                # Extra bedrag = what tenant has to pay on top of package (EXCL)
+                extra_bedrag_excl = max(0, final_cost_excl - pakket_prijs_excl)
                 
                 cleaning = Cleaning(
                     pakket_type=pakket_code,
@@ -236,11 +245,11 @@ class MasterReader:
                     totaal_uren=uren,
                     extra_uren=0,  # Not relevant - we use total costs
                     uurtarief=tarief,
-                    extra_bedrag=extra_bedrag / (1 + btw_pct),  # Store excl
+                    extra_bedrag=extra_bedrag_excl,  # Already excl!
                     voorschot=cleaning_voorschot, 
                     totaal_kosten_incl=final_total_cost,
                     btw_percentage=btw_pct,
-                    btw_bedrag=final_total_cost - (final_total_cost/(1+btw_pct))
+                    btw_bedrag=final_total_cost - final_cost_excl
                 )
 
             elif row_type == "GWE_Item":
