@@ -118,10 +118,15 @@ RULES:
                     system=system_prompt,
                     messages=[{"role": "user", "content": prompt}]
                 )
-                return response.content[0].text.strip()
+                sql = response.content[0].text.strip()
+                # Strip markdown code blocks if present
+                if sql.startswith("```"):
+                    lines = sql.split("\n")
+                    sql = "\n".join(lines[1:-1] if lines[-1] == "```" else lines[1:])
+                return sql.strip()
                 
             elif provider == "openai":
-                client = OpenAI() # Assumes env var OPENAI_API_KEY is set
+                client = OpenAI()  # Assumes env var OPENAI_API_KEY is set
                 response = client.chat.completions.create(
                     model=actual_model,
                     messages=[
@@ -129,7 +134,12 @@ RULES:
                         {"role": "user", "content": prompt}
                     ]
                 )
-                return response.choices[0].message.content.strip()
+                sql = response.choices[0].message.content.strip()
+                # Strip markdown code blocks if present
+                if sql.startswith("```"):
+                    lines = sql.split("\n")
+                    sql = "\n".join(lines[1:-1] if lines[-1] == "```" else lines[1:])
+                return sql.strip()
             
             else:
                 return f"-- Unsupported provider: {provider}"

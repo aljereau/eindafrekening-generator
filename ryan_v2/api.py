@@ -106,39 +106,69 @@ async def websocket_endpoint(websocket: WebSocket, model: str = None):
             # Send a user ack (optional, helps UI update immediately)
             # await websocket.send_json({"type": "user_msg", "content": user_message})
 
-            # Stream Agent Responses
+            # 1. CLASSIFY & PROCESS VIA PIPELINE
             try:
-                for chunk in agent.run(user_message):
-                    # Check if chunk describes a tool call or text
-                    if chunk.startswith("🔧"):
-                         # Clean text for UI but keep some context if needed
-                         # The TUI keeps "Executing" and "Output", let's pass the raw-ish string 
-                         # but maybe clean up the bold markers if they are annoying.
-                         # TUI does: content.replace("🔧 *Calling", "🔧 Executing").replace("🔧 *Tool Output:", "✅ Output:")
-                         
-                        clean_chunk = chunk.replace("🔧 *Calling", "Executing").replace("🔧 *Tool Output:", "Output:").replace("`", "")
-                        await websocket.send_json({
-                            "type": "log",
-                            "content": clean_chunk
-                        })
-                    elif "❌" in chunk or "⚠️" in chunk:
-                         await websocket.send_json({
-                            "type": "log", # Treat as log for the thinking process
-                            "content": chunk,
-                            "is_error": True
-                        })
-                    else:
-                        # Normal text stream
-                        await websocket.send_json({
-                            "type": "text",
-                            "content": chunk
-                        })
+                # Use the pipeline to classify and potentially execute
+                pipeline = get_pipeline()
                 
-                # Signal done
-                await websocket.send_json({"type": "done"})
+                # Notify UI we are analyzing
+                await websocket.send_json({"type": "log", "content": "🧠 Analyzing intent..."})
                 
+                # Process (this is synchronous but fast for classification)
+                result = pipeline.process(user_message, export_format="xlsx")
+                
+                # 2. HANDLE NON-DATA INTENTS (Fallback to Chitchat Agent)
+                if result.intent == "chitchat":
+                    # Pass to legacy RyanAgent for conversation
+                    log_msg = "💬 " + ("Conversational intent detected." if result.confidence > 0.8 else "Fallback to chat.")
+                    await websocket.send_json({"type": "log", "content": log_msg})
+                    
+                    for chunk in agent.run(user_message):
+                        if chunk.startswith("🔧"):
+                            clean_chunk = chunk.replace("🔧 *Calling", "Executing").replace("🔧 *Tool Output:", "Output:").replace("`", "")
+                            await websocket.send_json({"type": "log", "content": clean_chunk})
+                        elif "❌" in chunk or "⚠️" in chunk:
+                            await websocket.send_json({"type": "log", "content": chunk, "is_error": True})
+                        else:
+                            await websocket.send_json({"type": "text", "content": chunk})
+                    
+                    await websocket.send_json({"type": "done"})
+                    continue
+
+                # 3. HANDLE DATA INTENTS (Pipeline Output)
+                
+                # Report intent
+                await websocket.send_json({"type": "log", "content": f"🎯 Identified intent: `{result.intent}`"})
+                
+                if result.success and result.export_path:
+                    # Successful export
+                    await websocket.send_json({"type": "log", "content": f"📊 Executing query: {result.sql_used.split('LIMIT')[0].strip()}..."})
+                    await websocket.send_json({"type": "log", "content": f"💾 Exporting {result.row_count} rows..."})
+                    
+                    # Create a friendly message with the download link
+                    msg = f"""**✅ Export Ready**
+                    
+Found **{result.row_count} rows** matching your request.
+                    
+[📥 Download Excel Report]({result.download_url})
+"""
+                    await websocket.send_json({"type": "text", "content": msg})
+                    await websocket.send_json({"type": "done"})
+                
+                elif result.intent == "general_query" and not result.success:
+                    # SQL Generation failed or returned error
+                    await websocket.send_json({"type": "log", "content": f"❌ SQL Generation Failed: {result.message}", "is_error": True})
+                    await websocket.send_json({"type": "text", "content": f"I tried to run a query but encountered an error: {result.message}"})
+                    await websocket.send_json({"type": "done"})
+                    
+                else:
+                    # Other failure (0 rows etc)
+                    await websocket.send_json({"type": "log", "content": f"⚠️ {result.message}"})
+                    await websocket.send_json({"type": "text", "content": result.message})
+                    await websocket.send_json({"type": "done"})
+
             except Exception as e:
-                logger.error(f"Agent Error: {e}")
+                logger.error(f"Pipeline Execution Error: {e}", exc_info=True)
                 await websocket.send_json({
                     "type": "error",
                     "content": f"System Error: {str(e)}"
@@ -295,4 +325,64 @@ async def save_contract(request: ContractSaveRequest):
     success = contract_service.save_contract(request.filename, request.markdown)
     return {"success": success}
 
+
+# --- Agentic Pipeline Endpoints ---
+from .agentic import AgenticPipeline, INTENTS
+
+# Singleton pipeline instance
+_pipeline = None
+def get_pipeline():
+    global _pipeline
+    if _pipeline is None:
+        _pipeline = AgenticPipeline()
+    return _pipeline
+
+class AgenticAskRequest(BaseModel):
+    question: str
+    export_format: str = "xlsx"
+
+@app.post("/api/agentic/ask")
+async def agentic_ask(request: AgenticAskRequest):
+    """
+    Process a natural language question through the agentic pipeline.
+    Returns export file info or error message.
+    
+    This is the token-efficient path:
+    - Intent classification: ~200 tokens
+    - Template resolution: 0 tokens (code)
+    - Cache hit: 0 tokens
+    """
+    pipeline = get_pipeline()
+    result = pipeline.process(request.question, request.export_format)
+    return result.to_dict()
+
+@app.get("/api/agentic/intents")
+async def list_intents():
+    """List available intents for the agentic pipeline."""
+    return {
+        "intents": [
+            {
+                "name": name,
+                "description": defn.description,
+                "supports_date_range": defn.supports_date_range,
+                "supports_search": defn.supports_search
+            }
+            for name, defn in INTENTS.items()
+            if name != "general_query"
+        ],
+        "fallback": "general_query"
+    }
+
+@app.get("/api/agentic/cache/stats")
+async def get_cache_stats():
+    """Get cache statistics."""
+    from .agentic.cache_manager import get_cache_stats
+    return get_cache_stats()
+
+@app.post("/api/agentic/cache/clear")
+async def clear_cache():
+    """Clear the export cache."""
+    from .agentic.cache_manager import clear_cache
+    deleted = clear_cache()
+    return {"cleared": deleted}
 
