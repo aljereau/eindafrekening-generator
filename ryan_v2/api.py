@@ -200,6 +200,7 @@ async def get_schema():
 
 @app.post("/api/sql/generate")
 async def generate_sql(request: SQLGenerateRequest):
+    """Generate SQL from natural language."""
     sql = sql_service.generate_sql(request.prompt, request.model)
     # Clean up markdown fences if LLM ignored instructions
     sql = sql.replace("```sql", "").replace("```", "").strip()

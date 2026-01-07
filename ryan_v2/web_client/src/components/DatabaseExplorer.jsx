@@ -69,8 +69,11 @@ function TabContent({
 
     // Chat Specific State
     const [naturalInput, setNaturalInput] = useState("");
+    const [history, setHistory] = useState([]);  // Chat history (user + AI messages)
     const [selectedModel, setSelectedModel] = useState(AVAILABLE_MODELS[0]);
-    const [isModelMenuOpen, setIsModelMenuOpen] = useState(false);
+    const [showModelPicker, setShowModelPicker] = useState(false);
+    const [ws, setWs] = useState(null);
+    const [isConnecting, setIsConnecting] = useState(false);
     const [isGenerating, setIsGenerating] = useState(false);
 
     // Table Specific State
@@ -116,9 +119,6 @@ function TabContent({
         };
     }, [isResizing]);
 
-
-    // Unified Chat History (User + AI Text)
-    const [history, setHistory] = useState([]);
 
     // Footer state
     const [lastExecutionTime, setLastExecutionTime] = useState(null);
@@ -177,60 +177,70 @@ function TabContent({
         }
     };
 
+    // WebSocket chat handler (like TUI)
     const handleGenerateSQL = async () => {
         if (!naturalInput.trim()) return;
 
         // Add User Message to chat
         setHistory(prev => [...prev, { role: 'user', content: naturalInput, type: 'text' }]);
-        const prompt = naturalInput;
+        const userMessage = naturalInput;
         setNaturalInput(""); // Clear input
 
         setIsGenerating(true);
         setError(null);
-        try {
-            const res = await fetch("http://localhost:8000/api/sql/generate", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    prompt: prompt,
-                    model: selectedModel.id
-                })
-            });
-            const data = await res.json();
 
-            if (data.status === "error") {
-                setError(data.error);
-                // Add error message to chat
-                setHistory(prev => [...prev, {
-                    role: 'assistant',
-                    content: `❌ Error generating SQL: ${data.error}`,
-                    type: 'text'
-                }]);
-            } else {
-                const generatedSQL = data.sql || "";
+        // Connect to WebSocket if not already connected
+        let websocket = ws;
+        if (!websocket || websocket.readyState !== WebSocket.OPEN) {
+            setIsConnecting(true);
+            websocket = new WebSocket(`ws://localhost:8000/ws/chat?model=${selectedModel.id}`);
 
-                // Add AI's SQL generation response to chat
-                setHistory(prev => [...prev, {
-                    role: 'assistant',
-                    content: `I'll run this query:\n\`\`\`sql\n${generatedSQL}\n\`\`\``,
-                    type: 'text'
-                }]);
+            websocket.onopen = () => {
+                setIsConnecting(false);
+                setWs(websocket);
+                // Send message once connected
+                websocket.send(userMessage);
+            };
 
-                // Auto-execute the generated SQL
-                if (generatedSQL.trim()) {
-                    await handleExecute(generatedSQL);
+            websocket.onerror = (err) => {
+                setError("WebSocket connection failed");
+                setIsGenerating(false);
+                setIsConnecting(false);
+            };
+
+            // Handle incoming messages
+            let currentResponse = "";
+            websocket.onmessage = (event) => {
+                const msg = JSON.parse(event.data);
+                console.log("[WebSocket Message]", msg); // Debug all messages
+
+                if (msg.type === "text") {
+                    currentResponse += msg.content;
+                    console.log("[Text Response]", currentResponse); // Debug text accumulation
+                    // Update the last assistant message
+                    setHistory(prev => {
+                        const lastMsg = prev[prev.length - 1];
+                        if (lastMsg && lastMsg.role === 'assistant') {
+                            return [...prev.slice(0, -1), { ...lastMsg, content: currentResponse }];
+                        } else {
+                            return [...prev, { role: 'assistant', content: currentResponse, type: 'text' }];
+                        }
+                    });
+                } else if (msg.type === "log") {
+                    // Show log messages as system messages
+                    console.log("[Agent]", msg.content);
+                } else if (msg.type === "done") {
+                    setIsGenerating(false);
+                    currentResponse = ""; // Reset for next message
                 }
-            }
-        } catch (err) {
-            const errorMsg = "Failed to generate SQL: " + err.message;
-            setError(errorMsg);
-            setHistory(prev => [...prev, {
-                role: 'assistant',
-                content: `❌ ${errorMsg}`,
-                type: 'text'
-            }]);
-        } finally {
-            setIsGenerating(false);
+            };
+
+            websocket.onclose = () => {
+                setWs(null);
+            };
+        } else {
+            // Already connected, just send
+            websocket.send(userMessage);
         }
     };
 
@@ -438,16 +448,16 @@ function TabContent({
                                     {/* Footer Actions */}
                                     <div className="flex justify-between items-center mt-2">
                                         <div className="relative">
-                                            <button onClick={() => setIsModelMenuOpen(!isModelMenuOpen)} className="flex items-center gap-1.5 px-3 py-1 bg-[#eaddcf]/50 hover:bg-[#eaddcf] rounded-full text-[11px] font-bold text-[#7d5b46] transition-colors">
-                                                <span>{selectedModel.name.replace("Claude ", "").replace("GPT-", "")}</span>
-                                                <ChevronDown size={12} className={clsx("transition-transform", isModelMenuOpen && "rotate-180")} />
+                                            <button onClick={() => setShowModelPicker(!showModelPicker)} className="flex items-center gap-1.5 px-3 py-1 bg-[#eaddcf]/50 hover:bg-[#eaddcf] rounded-full text-[11px] font-bold text-[#7d5b46] transition-colors">
+                                                {selectedModel.name}
+                                                <ChevronDown size={12} className={clsx("transition-transform", showModelPicker && "rotate-180")} />
                                             </button>
-                                            {isModelMenuOpen && (
+                                            {showModelPicker && (
                                                 <>
-                                                    <div className="fixed inset-0 z-10" onClick={() => setIsModelMenuOpen(false)}></div>
+                                                    <div className="fixed inset-0 z-10" onClick={() => setShowModelPicker(false)}></div>
                                                     <div className="absolute bottom-full left-0 mb-2 w-48 bg-white rounded-md shadow-xl border border-[#d4c5b3] py-1 z-20 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
                                                         {AVAILABLE_MODELS.map(model => (
-                                                            <button key={model.id} onClick={() => { setSelectedModel(model); setIsModelMenuOpen(false); }} className="w-full text-left px-4 py-2 text-xs flex items-center justify-between hover:bg-[#fbf7e8] transition-colors">
+                                                            <button key={model.id} onClick={() => { setSelectedModel(model); setShowModelPicker(false); }} className="w-full text-left px-4 py-2 text-xs flex items-center justify-between hover:bg-[#fbf7e8] transition-colors">
                                                                 <span className={clsx(selectedModel.id === model.id ? "text-[#9D7861] font-bold" : "text-[#5a646a]")}>{model.name}</span>
                                                                 {selectedModel.id === model.id && <Check size={12} className="text-[#9D7861]" />}
                                                             </button>

@@ -27,7 +27,9 @@ from database import Database
 class MasterReader:
     def __init__(self, filepath: str):
         self.filepath = filepath
-        self.db = Database()
+        # Use abs path to ryanrent_mock.db
+        db_path = os.path.join(root_dir, 'database', 'ryanrent_mock.db')
+        self.db = Database(db_path)
         
     def read_all(self) -> List[Dict[str, Any]]:
         """Read master sheet and return list of booking data dicts"""
@@ -266,12 +268,35 @@ class MasterReader:
                 desc = row[36]
                 aantal = parse_float(row[37])
                 prijs = parse_float(row[38])
-                btw = parse_float(row[40]) # AO is 40
+                total_excl_cell = parse_float(row[39]) # AN
+                btw = parse_float(row[40]) # AO
+                total_incl_cell = parse_float(row[42]) # AQ
                 
                 if btw > 1: btw = btw / 100
                 if not btw: btw = 0.21
                 
-                bedrag_excl = aantal * prijs
+                # Calculate cost prioritization:
+                # 1. Total Excl (Direct input)
+                # 2. Total Incl (Back-calculate)
+                # 3. Aantal * Prijs (Calculated)
+                
+                if total_excl_cell > 0:
+                    bedrag_excl = total_excl_cell
+                    # Back-calculate tariff if missing
+                    if prijs == 0 and aantal > 0:
+                        prijs = bedrag_excl / aantal
+                elif total_incl_cell > 0:
+                    bedrag_excl = total_incl_cell / (1 + btw)
+                    # Back-calculate tariff if missing
+                    if prijs == 0 and aantal > 0:
+                        prijs = bedrag_excl / aantal
+                else:
+                    bedrag_excl = aantal * prijs
+                
+                # If quantity is missing but we have a cost, set qty to 1 so it displays nicely
+                if aantal == 0 and bedrag_excl > 0:
+                    aantal = 1.0
+                    prijs = bedrag_excl
                 
                 # Append to gwe_regels list
                 gwe_regels.append(GWERegel(
@@ -371,8 +396,18 @@ class MasterReader:
         
         # Initialize at top for clarity in future, but for this edit patch I will just trust it or default it calculation.
         
-        # Totals mapping
-        gwe_totalen = GWETotalen(0,0,0, gwe_settings['beheer_type'])
+        # Totals mapping - CALCULATE FROM ITEMS
+        gwe_totaal_excl = sum(r.kosten_excl for r in gwe_regels)
+        gwe_totaal_btw = sum(r.kosten_excl * r.btw_percentage for r in gwe_regels)
+        gwe_totaal_incl = gwe_totaal_excl + gwe_totaal_btw
+        
+        gwe_totalen = GWETotalen(
+            totaal_excl=gwe_totaal_excl, 
+            totaal_incl=gwe_totaal_incl, 
+            btw=gwe_totaal_btw, 
+            beheer_type=gwe_settings['beheer_type']
+        )
+        
         damage_totalen = DamageTotalen(0,0,0)
         
         return {
