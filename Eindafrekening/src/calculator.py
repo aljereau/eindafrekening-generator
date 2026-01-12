@@ -23,6 +23,79 @@ class Calculator:
     # Constants
     BTW_PERCENTAGE = 0.21  # 21% VAT
     
+    # Water Tariffs (Fixed rates - Evides/Dutch water utility)
+    WATER_TARIEF_LEVERING = 1.29       # €/m³ - Water delivery
+    WATER_TARIEF_VASTRECHT = 0.25474   # €/dag - Fixed daily charge
+    WATER_TARIEF_BELASTING = 0.45899   # €/m³ - Water tax
+    WATER_TARIEF_PRECARIO = 0.09230    # €/m³ - Precarioheffing
+    
+    # ==================== WATER AUTO-CALCULATION ====================
+    
+    @staticmethod
+    def calculate_water_regels(verbruik_m3: float, dagen: int, btw_percentage: float = 0.09) -> List[GWERegel]:
+        """
+        Auto-calculate water cost line items from consumption and duration.
+        
+        Args:
+            verbruik_m3: Water consumption in cubic meters (m³)
+            dagen: Number of days in the period
+            btw_percentage: VAT rate (default 9% for water, changes to 21% in 2026)
+            
+        Returns:
+            List of 4 GWERegel items for water costs
+        """
+        regels = []
+        
+        # 1. Levering (Delivery) - per m³
+        levering_kosten = verbruik_m3 * Calculator.WATER_TARIEF_LEVERING
+        regels.append(GWERegel(
+            type="Water",
+            omschrijving="Water levering",
+            eenheid="m³",
+            verbruik_of_dagen=verbruik_m3,
+            tarief_excl=Calculator.WATER_TARIEF_LEVERING,
+            kosten_excl=round(levering_kosten, 2),
+            btw_percentage=btw_percentage
+        ))
+        
+        # 2. Vastrecht (Fixed charge) - per dag
+        vastrecht_kosten = dagen * Calculator.WATER_TARIEF_VASTRECHT
+        regels.append(GWERegel(
+            type="Water",
+            omschrijving="Vastrecht",
+            eenheid="dag",
+            verbruik_of_dagen=dagen,
+            tarief_excl=Calculator.WATER_TARIEF_VASTRECHT,
+            kosten_excl=round(vastrecht_kosten, 2),
+            btw_percentage=btw_percentage
+        ))
+        
+        # 3. Belasting op leidingwater - per m³
+        belasting_kosten = verbruik_m3 * Calculator.WATER_TARIEF_BELASTING
+        regels.append(GWERegel(
+            type="Water",
+            omschrijving="Belasting op leidingwater",
+            eenheid="m³",
+            verbruik_of_dagen=verbruik_m3,
+            tarief_excl=Calculator.WATER_TARIEF_BELASTING,
+            kosten_excl=round(belasting_kosten, 2),
+            btw_percentage=btw_percentage
+        ))
+        
+        # 4. Precarioheffing - per m³
+        precario_kosten = verbruik_m3 * Calculator.WATER_TARIEF_PRECARIO
+        regels.append(GWERegel(
+            type="Water",
+            omschrijving="Precarioheffing",
+            eenheid="m³",
+            verbruik_of_dagen=verbruik_m3,
+            tarief_excl=Calculator.WATER_TARIEF_PRECARIO,
+            kosten_excl=round(precario_kosten, 2),
+            btw_percentage=btw_percentage
+        ))
+        
+        return regels
+    
     # ==================== DEPOSIT CALCULATIONS ====================
     
     @staticmethod

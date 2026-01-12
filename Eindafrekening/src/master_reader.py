@@ -23,6 +23,7 @@ from entities import (
 )
 # We need Database to fetch missing details (like Postcode/City)
 from database import Database
+from calculator import Calculator
 
 class MasterReader:
     def __init__(self, filepath: str):
@@ -395,6 +396,28 @@ class MasterReader:
         # Python variables DO leak to function scope. So it exists.
         
         # Initialize at top for clarity in future, but for this edit patch I will just trust it or default it calculation.
+        
+        # AUTO-GENERATE WATER REGELS if water meter data exists but no water items were manually entered
+        has_water_meter = gwe_standen and gwe_standen.water and gwe_standen.water.verbruik > 0
+        has_water_regels = any(r.type == 'Water' for r in gwe_regels)
+        
+        if has_water_meter and not has_water_regels:
+            # Use period days for vastrecht calculation
+            dagen = period.days if period else 30  # Default to 30 if no period
+            verbruik = gwe_standen.water.verbruik
+            
+            # Determine correct BTW rate (9% before 2026, 21% after)
+            btw_rate = 0.09
+            if period and period.checkout_date and period.checkout_date.year >= 2026:
+                btw_rate = 0.21
+            
+            water_regels = Calculator.calculate_water_regels(
+                verbruik_m3=verbruik,
+                dagen=dagen,
+                btw_percentage=btw_rate
+            )
+            gwe_regels.extend(water_regels)
+            print(f"   💧 Water kosten automatisch berekend: {verbruik:.2f} m³ over {dagen} dagen")
         
         # Totals mapping - CALCULATE FROM ITEMS
         gwe_totaal_excl = sum(r.kosten_excl for r in gwe_regels)

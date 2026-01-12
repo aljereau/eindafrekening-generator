@@ -133,6 +133,8 @@ def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Di
                 "totaal_kosten_incl": cleaning.totaal_kosten_incl
             },
             "damage": {
+                "totaal_excl": damage_totalen.totaal_excl,
+                "btw": damage_totalen.btw,
                 "totaal_incl": damage_totalen.totaal_incl
             },
             "extra_voorschot": {
@@ -149,7 +151,13 @@ def build_onepager_viewmodel(data: Dict[str, Any], settlement: Settlement) -> Di
             }
         },
         "damage_details": [
-            {"omschrijving": regel.beschrijving, "bedrag": regel.bedrag_excl}
+            {
+                "omschrijving": regel.beschrijving, 
+                "bedrag_excl": regel.bedrag_excl,
+                "btw_percentage": regel.btw_percentage,
+                "btw_bedrag": regel.bedrag_excl * regel.btw_percentage,
+                "bedrag_incl": regel.bedrag_excl * (1 + regel.btw_percentage)
+            }
             for regel in damage_regels
         ],
         "generated_date": datetime.now().strftime('%d-%m-%Y %H:%M'),
@@ -752,6 +760,7 @@ if __name__ == "__main__":
         'gwe_voorschot': 350,
         'cleaning': Cleaning(
             pakket_type="5_uur",
+            pakket_naam="Basis Schoonmaak",
             inbegrepen_uren=5,
             totaal_uren=7.5,
             extra_uren=2.5,
@@ -763,7 +772,12 @@ if __name__ == "__main__":
             DamageRegel("Reparatie deur", 1, 30, 30),
             DamageRegel("Vervangen lamp", 2, 15, 30)
         ],
-        'damage_totalen': DamageTotalen(totaal_excl=60, btw=12.6, totaal_incl=72.6)
+        'damage_totalen': DamageTotalen(totaal_excl=60, btw=12.6, totaal_incl=72.6),
+        'damage': {
+             'totaal_incl': 72.6,
+             'totaal_excl': 60,
+             'btw': 12.6
+        }
     }
     
     # Build viewmodels
