@@ -1,0 +1,268 @@
+﻿object_id;adres;eigenaar;huurder;inhuur_borg_contract;borg_ontvangen;borg_betaald;saldo;status
+0001;Nunspeetlaan 14;J.S. Vink Vastgoed;Tradiro Services B.V.;0;0;1800,0;-1800,0;OVERPAID
+0002;Allard Piersonlaan 142;Dhr R Paltan;Tradiro Services B.V.;2750,0;0;0;0;OK
+0003;Acacia 2;MvB Services BV (Meindert van Buuren);United Homes B.V.;0;16002,9;9361,76;6641,14;IN BEZIT
+0006;Enschotsestraat 163;T. Eenhuistra/J. Pluimakers;Optima Uitzendbureau B.V.;0;17067,5;9636,45;7431,05;IN BEZIT
+0007;Adriaan Baasstraat 34;Eva Laus;InAxtion Vastgoed B.V.;0;20130,62;13908,94;6221,68;IN BEZIT
+0008;Arkelse Onderweg 24a;;;0;14202,12;13824,45;377,67;IN BEZIT
+0012;Baarlelaan 27;Eva Laus;Vivir Wonen;0;6960,55;3576,61;3383,94;IN BEZIT
+0013;Baarsveen 197;Dhr. R. J. Beking;BBTS (Vastgoed Spijkenisse);0;31251,9;32383,23;-1131,33;OVERPAID
+0014;Abelenlaan 143;;;0;17086,02;12844,16;4241,86;IN BEZIT
+0018;Meester G. Groen van Prinsterlaan 313;M.B. Kewal;Labour Housing BV;0;4481,1;4481,1;0,0;OK
+0020;Mr. Troelstrastraat 37;RyanRent B.V.;Tradiro Services B.V.;0;0;104,0;-104,0;OVERPAID
+0023;Desiree Geerartstraat 1B;S. Kleiren;NL Realty B.V.;0;10784,01;5125,45;5658,56;IN BEZIT
+0024;Desiree Geerartstraat 1C;S. Kleiren;NL Realty B.V.;0;10784,01;5125,45;5658,56;IN BEZIT
+0025;Groenelaan 30B;RyanRent B.V.;Tradiro Services B.V.;0;9953,64;7102,04;2851,6;IN BEZIT
+0029;Madeliefstraat 46C;M. Kathiravelu;RNDV Industries;0;5563,0;1563,0;4000,0;IN BEZIT
+0031;Hogenbanweg 331;JS Vastgoed;Tradiro Services B.V.;1050,0;0;0;0;OK
+0032;Jacob van offwegenlaan 26;;;0;0;2013,88;-2013,88;OVERPAID
+0033;Kethelweg 66C;RyanRent B.V.;Tradiro Services B.V.;2000,0;6505,41;174,39;6331,02;IN BEZIT
+0034;Kethelweg 68A;RyanRent B.V.;Tradiro Services B.V.;2000,0;0;0;0;OK
+0035;Messchaertplein 39;Park Wonen BV;Tradiro Services B.V.;1300,0;1637,26;3024,76;-1387,5;OVERPAID
+0036;Messchaertplein 40;Park Wonen BV;Tradiro Services B.V.;1300,0;0;2312,5;-2312,5;OVERPAID
+0039;Inundatiestraat 3;J.G. van Pieterson;RNDV Industries;0;6519,84;3886,69;2633,15;IN BEZIT
+0040;Beatrixstraat 3;Mw. M. Hyllested Poulsen en Dhr. S. Crull;Impes Service S.p.A.;0;12608,83;8344,37;4264,46;IN BEZIT
+0042;Parallelweg 110A;;Tradiro Services B.V.;0;1850,0;2640,68;-790,68;OVERPAID
+0043;Amperelaan 23;H. Samson;Vivir Wonen;0;8806,55;7286,69;1519,86;IN BEZIT
+0044;Pleinweg 101a;Jes Funding & Beheer;Light Personeelsdiensten;0;5999,58;251,22;5748,36;IN BEZIT
+0046;Nieuwenhoornstraat 46B;Huurwoning in Rotterdam VOF;UAB Techsome;0;4300,1;231,2;4068,9;IN BEZIT
+0047;Bisschopstraat 68;T. Hoolhorst;Werckpost Service B.V.;0;14747,52;4829,92;9917,6;IN BEZIT
+0048;Bliek 41;A.P.W. Koedooder;AmDor Projecten B.V.;0;8007,23;2172,58;5834,65;IN BEZIT
+0049;Bornerbroeksestraat 129A;Dhr. J.L. Meerding;Team Unica B.V.;0;16414,88;4063,71;12351,17;IN BEZIT
+0050;Sint Josephstraat 61;T. Eenhuistra/J. Pluimakers;Welcome Housing B.V.;0;8299,87;394,12;7905,75;IN BEZIT
+0051;Coehoorn van Scheltingaweg 12;;United Homes B.V.;0;7027,15;153,53;6873,62;IN BEZIT
+0052;Coehoorn van Scheltingaweg 66;;United Homes B.V.;0;3990,06;203,4;3786,66;IN BEZIT
+0053;Curcumastraat 39 ;Ruva Vastgoed B.V.;OJP B.V.;0;11768,49;6161,45;5607,04;IN BEZIT
+0054;De Gasperistraat 11;;;0;11710,38;9879,91;1830,47;IN BEZIT
+0055;Baanhoek 139;R. Verspui;HousingWell B.V.;0;8774,0;8774,0;0,0;OK
+0056;De Hooidollen 606;L. Schilstra / Eigenaar.nl;Interwel Oost B.V.;0;20055,22;10895,29;9159,93;IN BEZIT
+0058;Deugenweerd 18;Dhr. T. Roestenberg en Mw. Roestenberg - Hustinx;Employ;0;17889,59;22432,63;-4543,04;OVERPAID
+0059;Dieptol 63;P. Ter Haar - Ros;Kapitan Workers Sp. Z.o.o.;0;44467,72;24165,27;20302,45;IN BEZIT
+0060;Besterdring 6;;;0;15974,77;10844,02;5130,75;IN BEZIT
+0061;Dwarsweg 44 ;Hugo Vastgoed B.V.;Impianti Industriala S.P.A. NEDERLAND BRANCH;0;48153,9;39093,9;9060,0;IN BEZIT
+0062;Eendrachtstraat 22;;;0;12666,3;16610,97;-3944,67;OVERPAID
+0063;Energieweg 40;Quadrant Vastgoed B.V.;Tradiro Services B.V.;0;1500,0;0;1500,0;IN BEZIT
+0064;Enk 6;F. Veurink en P. Neleman;Lago Personeelshuisvesting B.V.;0;8883,98;13083,98;-4200,0;OVERPAID
+0065;Esdoornlaan 68 ;Leendert Keizer;AmDor Projecten B.V.;0;11678,18;536,4;11141,78;IN BEZIT
+0067;Franz Liszstraat 5;Value+ Vastgoedmanagement;Tradiro Services B.V.;0;1850,0;5349,46;-3499,46;OVERPAID
+0068;F.Erensstraat 21;;;0;3186,89;2401,43;785,46;IN BEZIT
+0069;Gaffelaar 3;;;0;10677,05;6006,16;4670,89;IN BEZIT
+0070;Geleenstraat 1;Bart Vlastuin;;0;18292,33;9195,82;9096,51;IN BEZIT
+0071;H. Algraplein 25;BJ Bakker;DIT en Larex Vakpersoneel B.V.;0;24891,63;19664,43;5227,2;IN BEZIT
+0072;Heemskerkstraat 19;Robert de Jonge;DIT en Larex Vakpersoneel B.V.;0;12771,81;4658,05;8113,76;IN BEZIT
+0073;Hendrik Deddenstraat 26;Fam. Derwig;United Homes B.V.;0;5420,57;3767,87;1652,7;IN BEZIT
+0075;Hoofdstraat 110;HBB Wonen (Danielle Hanegraaf);WILL Vakkrachten B. V.;0;2088,51;682,1;1406,41;IN BEZIT
+0076;Molendijk 4;J. van der Linde;Multiservizi Romania SRL;0;8366,66;3466,66;4900,0;IN BEZIT
+0077;Voorstraat 10;J, van de Linde;Multiservizi Romania SRL;0;10730,48;7067,95;3662,53;IN BEZIT
+0078;Hooizolder 6;H. Samson;DIT en Larex Vakpersoneel B.V.;0;16390,15;9964,81;6425,34;IN BEZIT
+0080;Voorstraat 25;Houses2Rent;Tradiro Services B.V.;0;6461,24;2398,91;4062,33;IN BEZIT
+0082;Kanaal van Steenenhoek Z.Z. 10;Vivir wonen (Mendy);S. Bakker OPH Verhuur;0;10489,93;11885,1;-1395,17;OVERPAID
+0083;Pastoriedijk 89;;;0;2208,3;4224,74;-2016,44;OVERPAID
+0084;Kerkdreef 42;De Pagter Vastgoed B.V.;Tradiro Services B.V.;0;9292,21;6485,06;2807,15;IN BEZIT
+0085;Kierkegaardhof 54;E. Rebel;Estra Logistics Systems B.V.;0;25846,78;5954,3;19892,48;IN BEZIT
+0086;Kleine Beer 60;Dhr. J.L. Meerding;Workforce Housing Holland B.V.;0;30014,62;13651,58;16363,04;IN BEZIT
+0087;Jasmijnring 37;Vivir wonen (Mendy);H.T.C. Facility Services B.V.;0;7797,26;3128,83;4668,43;IN BEZIT
+0089;Van Maanenstraat 14A;J.P. Stoel;Focuzop-eu;0;8174,07;4750,27;3423,8;IN BEZIT
+0091;Landsteinerhof 68;Eva Laus;Team Home Rentals B.V.;0;17998,83;16025,41;1973,42;IN BEZIT
+0092;Lange Brink 3;Vondellaan vastgoed;Werckpost Service B.V.;0;18365,96;12026,07;6339,89;IN BEZIT
+0093;Fabristraat 34A;;;0;10183,52;1163,43;9020,09;IN BEZIT
+0095;Engelsestraat 16L3;IN STONES;Tradiro Services B.V.;0;10466,32;3360,34;7105,98;IN BEZIT
+0096;Loggerstraat 3;;;0;4944,96;7043,16;-2098,2;OVERPAID
+0097;Burchstraat 16A;A.H.S. Willemsen;Tradiro Services B.V.;0;8681,74;4155,37;4526,37;IN BEZIT
+0098;Melis Stokezijde 94;M. Farajzadeh;Autodaxx B.V.;0;4349,88;2879,08;1470,8;IN BEZIT
+0100;Molenweg 135;City Estate (Reinier Derksen);AmDor Projecten B.V.;0;17071,41;6235,73;10835,68;IN BEZIT
+0101;Moureauveld 8;Vivir wonen (Mendy);I–Housing Vastgoed Beheer B.V.;0;24113,11;22080,56;2032,55;IN BEZIT
+0102;Narcissenstraat 9;City Estate (Reinier Derksen);AmDor Projecten B.V.;0;8885,94;352,43;8533,51;IN BEZIT
+0103;Narcissenstraat 23;Tradiro Services B.V.;Tradiro Services B.V.;0;10244,05;5669,9;4574,15;IN BEZIT
+0104;Narcissenstraat 37;M. Poel;AmDor Projecten B.V.;0;4554,75;204,75;4350,0;IN BEZIT
+0105;Wieldraaierstraat 39;Vivir wonen (Mendy);WIL International B.V.;0;5417,15;675,26;4741,89;IN BEZIT
+0106;Prinses Wilhelminastraat 9;;Tradiro Services B.V.;0;13796,29;7280,14;6516,15;IN BEZIT
+0107;Hoefslag 8;H. Samson;DIT en Larex Vakpersoneel B.V.;0;30633,21;24510,07;6123,14;IN BEZIT
+0108;Nieuwe Zeedijk 1K 308;;;0;20431,01;13393,13;7037,88;IN BEZIT
+0110;Opaal 9;De Pagter Vastgoed B.V.;GOTI Verhuur B.V.;0;15921,0;7741,0;8180,0;IN BEZIT
+0111;Oosterstraat 89;;Tradiro Services B.V.;0;2986,4;128,6;2857,8;IN BEZIT
+0112;Oudewerfslaan 84;R. Boringa ;Eemsdelta Housing B.V.;0;8999,7;6510,99;2488,71;IN BEZIT
+0113;Peursumseweg 119A;R. Verspui;Flextalent4u Uitzenden B.V.;0;12755,68;8211,25;4544,43;IN BEZIT
+0114;Piersonstraat 8;Maatschap J.W. Meershoek & W.M. Meershoek;Impes Service S.p.A.;0;7651,34;345,66;7305,68;IN BEZIT
+0115;Poppestraat 59;S. Raats (123Wonen);Groene Hart Service Detachering B.V.;0;6063,45;153,86;5909,59;IN BEZIT
+0116;Prins Bernhardstraat 40;;;0;3762,0;162,0;3600,0;IN BEZIT
+0117;Prunuslaan 36;A. Ghali;Workforce Housing International B.V;0;25294,06;13086,75;12207,31;IN BEZIT
+0118;Marathonlaan 26;Johan ven der Burg;Bw-engineering;0;10655,29;5862,9;4792,39;IN BEZIT
+0120;Plaats 10;Johan van der Burg;Tradiro Services B.V.;0;9462,77;5195,82;4266,95;IN BEZIT
+0121;Rivierdijk 794;Business Housing;Interim Jobs B.V.;0;8484,57;6711,69;1772,88;IN BEZIT
+0123;Snecanusstraat 12;Dhr. J.L. Meerding;Team Unica B.V.;0;20262,86;12508,32;7754,54;IN BEZIT
+0124;Snoekenveen 242;A.P.W. Koedooder;United Homes B.V.;0;9114,08;3952,43;5161,65;IN BEZIT
+0125;Korte Singelstraat 21-3;Parkwonen;S. Bakker OPH Verhuur;0;8471,59;784,74;7686,85;IN BEZIT
+0127;Struitenweg 19b;Jan Luijsterburg Beheer B.V.;AmDor Projecten B.V.;0;10420,06;9549,86;870,2;IN BEZIT
+0128;Tesselschadelaan 45;Sjoerd Dolstra;EG Facility & Services BV;0;0;1040,49;-1040,49;OVERPAID
+0129;Utrechtse straatweg 7 ;L&T B.V.;People21 Services BV;0;5667,93;1336,39;4331,54;IN BEZIT
+0130;Van Langedonckstraat 80;CB-Homes B.V.;United Homes B.V.;0;3000,0;3000,0;0,0;OK
+0132;Voeghoutenstraat 236;;;0;26980,59;22416,99;4563,6;IN BEZIT
+0133;Herenpad 20A;Westhavendomein BV;Tradiro Services B.V.;0;3678,93;343,45;3335,48;IN BEZIT
+0135;Amperestraat 36A;Parkwonen;Tradiro Services B.V.;0;0;1289,94;-1289,94;OVERPAID
+0137;Venkelstraat 29A;;;0;120,12;806,02;-685,9;OVERPAID
+0138;Westercluft;Dhr. R. Bekken;Stay21;0;8072,84;5356,23;2716,61;IN BEZIT
+0140;Wilgenstraat 37;C. van Winsen;AKT Autoschade;0;10961,51;13086,99;-2125,48;OVERPAID
+0141;Wilhelminastraat 8;Dhr. M. Moeilijker;Buurman Vastgoed E B.V.;0;20923,99;18760,92;2163,07;IN BEZIT
+0142;Wilhelmina Druckerstraat 68;Jetty Michielsen;C-Flex B.V.;0;5423,18;3898,94;1524,24;IN BEZIT
+0143;Willem Lodewijkstraat 8;S. Bakker / Eigenaar.nl;Team Home Rentals B.V.;0;9636,69;409,91;9226,78;IN BEZIT
+0144;Scheepjesbrug 433;B. Bosch;Estra Logistics Systems B.V.;0;27639,38;18130,33;9509,05;IN BEZIT
+0145;Wouwbaan 230;T. van de Moosdijk;Interim Jobs B.V.;0;27228,19;7165,9;20062,29;IN BEZIT
+0146;Johan Willen Frisostraat 36;R. Bouius;Team Home Rentals B.V.;0;7249,0;4951,81;2297,19;IN BEZIT
+0148;2e Maasbosstraat 2 a;Adriaan Jacobus Maat;Tradiro Services B.V.;1150,0;0;0;0;OK
+0149;2e Maasbosstraat 2 b;JS Vastgoed;Tradiro Services B.V.;1250,0;0;0;0;OK
+0150;2e Maasbosstraat 2 c;Adriaan Jacobus Maat;Tradiro Services B.V.;1150,0;0;0;0;OK
+0152;Beeklaan 294;Homescout21 B.V.;Tradiro Services B.V.;0;7065,7;1019,28;6046,42;IN BEZIT
+0154;Rubensplein 6B3;IN STONES;Tradiro Services B.V.;500,0;4735,5;2715,5;2020,0;IN BEZIT
+0157;Kuipers-Rietbergpad 15;;;0;0;3726,7;-3726,7;OVERPAID
+0159;Kastanjelaan 232;Hopmans Flexstay;PRP Solutions Flex Sp. Z.O.O;0;7854,76;3456,11;4398,65;IN BEZIT
+0161;Willem de Rijkelaan 134;;;0;7003,85;4500,47;2503,38;IN BEZIT
+0164;Sint-Annalandstraat 116;S.H.M. De Swart;Tradiro Services B.V.;0;1976,45;6524,0;-4547,55;OVERPAID
+0166;Nieuwkerkstraat 78;D. tonen;Vivir Wonen;0;6000,0;12423,56;-6423,56;OVERPAID
+0170;Goudestein 30;;Tradiro Services B.V.;0;0;1010,07;-1010,07;OVERPAID
+0171;Wijdstraat 13;Groen Holding / van Vliet;People21 Services BV;0;5077,78;1775,07;3302,71;IN BEZIT
+0175;Hagastraat 8;T. Xie;Tradiro Services B.V.;1200,0;0;0;0;OK
+0178;Hoge Noordweg 28;Gebr. WMJ, LNJ, AAJ en MWJ van Holstein;Tradiro Services B.V.;1350,0;0;0;0;OK
+0179;Rooseveltlaan 185;Digo Real Estate BV;N2people B.V.;0;7538,69;4689,24;2849,45;IN BEZIT
+0181;Hontenissestraat 124;Tradiro Services B.V.;;0;3538,1;2197,52;1340,58;IN BEZIT
+0182;Malzwin 34;;;0;13795,32;7197,22;6598,1;IN BEZIT
+0183;Hugo de Vriesstraat 54 ;Tradiro Housing BV;Tradiro Services B.V.;0;5191,01;4239,2;951,81;IN BEZIT
+0184;Mathenesserdijk 261 C03;Tradiro Services B.V.;Tradiro Services B.V.;0;3849,27;109,77;3739,5;IN BEZIT
+0185;Laan van Nieuw Blankenburg 328;R. Ras;Impianti Industriala S.P.A. NEDERLAND BRANCH;0;5429,82;4233,82;1196,0;IN BEZIT
+0186;Woutersweg 20;Tradiro Services B.V.;Tradiro Services B.V.;5200,0;0;0;0;OK
+0189;Jacob van Lennepstraat 34;Soul Inn B.B. B.V.;;2150,0;0;0;0;OK
+0190;Achterdijk 47a;Vivir wonen (Mendy);dockHolland Huisvesting B.V.;0;6416,24;4148,1;2268,14;IN BEZIT
+0193;Kapershoek 11;JES Funding en Beheer B.V.;Tradiro Services B.V.;1075,0;4639,28;244,07;4395,21;IN BEZIT
+0194;Keesomstraat 22;Jan Peter Stoel;Tradiro Services B.V.;1750,0;0;0;0;OK
+0196;Keesomstraat 54;Ceysun Akbasoglu;Tradiro Services B.V.;1200,0;0;0;0;OK
+0197;Scheepjesbrug 814;B. Bosch;Flextalent4u Uitzenden B.V.;0;15199,9;8373,69;6826,21;IN BEZIT
+0199;Kerstendijk 125;Tradiro Services B.V.;Tradiro Services B.V.;0;0;2730,0;-2730,0;OVERPAID
+0200;Stal 355;H. Heijdra;THS EU B.V.;0;3519,63;8446,61;-4926,98;OVERPAID
+0201;Amberberg 14;;Tradiro Services B.V.;0;7370,21;6737,74;632,47;IN BEZIT
+0202;Kimbrenoord 15;;Tradiro Services B.V.;0;10726,1;4051,22;6674,88;IN BEZIT
+0203;Dorpstraat 48;;Tradiro Services B.V.;0;47260,15;68441,12;-21180,97;OVERPAID
+0204;Punter 22 34;City Estate (Reinier Derksen);Werckpost Service B.V.;0;14375,49;7990,42;6385,07;IN BEZIT
+0206;Kruiningenstraat 152;;Tradiro Services B.V.;0;12128,97;2350,07;9778,9;IN BEZIT
+0207;Kwikstaartweg 45;Dhr. J. P. L. Giessen;Tradiro Services B.V.;3200,0;0;0;0;OK
+0210;Lorentzstraat 73;Caner Duman;Tradiro Services B.V.;1750,0;0;0;0;OK
+0212;Wijngaard 66;City Estate (Reinier Derksen);DIT en Larex Vakpersoneel B.V.;0;30910,27;21880,59;9029,68;IN BEZIT
+0214;Mendelssohnplein 13D;JS Vastgoed;Tradiro Services B.V.;2000,0;1500,0;1450,07;49,93;OK
+0215;Mendelssohnplein 10C;JS Vastgoed;Tradiro Services B.V.;2000,0;0;0;0;OK
+0216;Mendelssohnplein 46a;Tradiro Services B.V.;Tradiro Services B.V.;1500,0;0;0;0;OK
+0217;Middelrode 8;JES Funding en Beheer B.V.;Tradiro Services B.V.;1075,0;4790,12;264,78;4525,34;IN BEZIT
+0218;P.F. Catsstraat 8;;;0;1000,0;1000,0;0,0;OK
+0219;Miltonstraat 55;JES Funding en Beheer B.V.;Tradiro Services B.V.;1175,0;3514,5;214,5;3300,0;IN BEZIT
+0221;Molenstraat 10;W.M. v. d. Haak beheer b.v.;Tradiro Services B.V.;1520,0;0;0;0;OK
+0222;Molenstraat 23;W.M. v.d. Haak Beheer B.V.;Tradiro Services B.V.;1120,0;0;0;0;OK
+0223;Acacialaan 9;;Tradiro Services B.V.;0;426,42;2994,84;-2568,42;OVERPAID
+0229;Parallelweg 98B;Ceysun Akbasoglu;Tradiro Services B.V.;1200,0;0;0;0;OK
+0230;Pasteursingel 61;De heer Hamid Reza Arya Barzin h.o.d.n. Arya Diensten;Tradiro Services B.V.;1550,0;0;0;0;OK
+0231;Platostraat 80;S.H.M. De Swart;Tradiro Services B.V.;1075,0;4898,32;3249,4;1648,92;IN BEZIT
+0232;Zuidhoek 209D;Tradiro Services B.V.;Tradiro Services B.V.;0;14417,16;10926,48;3490,68;IN BEZIT
+0233;Rembrandtstraat 20B;W.M. v.d. Haak Beheer B.V.;Tradiro Services B.V.;1120,0;0;0;0;OK
+0236;Schalkeroord 389;R.R. Kalmeijer en M.R. Klootwijk;Tradiro Services B.V.;800,0;0;0;0;OK
+0239;Schoonegge 110;S.H.M. De Swart (junior);Tradiro Services B.V.;1075,0;24241,8;22269,47;1972,33;IN BEZIT
+0240;Schoonegge 84;;Tradiro Services B.V.;0;7637,16;7637,16;0,0;OK
+0242;Sint Liduinastraat 76 A;Soul Inn B.B. B.V.;Tradiro Services B.V.;3500,0;0;0;0;OK
+0243;Sint Liduinastraat 80A;Soul Inn B.B. B.V.;Tradiro Services B.V.;3500,0;0;0;0;OK
+0246;Socratesstraat 168;S.H.M. De Swart;Tradiro Services B.V.;1050,0;0;0;0;OK
+0249;Tholenstraat 114;JES Funding en Beheer B.V.;Tradiro Services B.V.;1075,0;7209,16;1275,55;5933,61;IN BEZIT
+0251;Middenbaan Noord 18A;;;0;6813,17;5669,3;1143,87;IN BEZIT
+0254;Middenbaan Noord 20A;Homescout21 B.V.;BBTS (Vastgoed Spijkenisse);0;86270,44;41577,68;44692,76;IN BEZIT
+0255;Middenbaan Noord 20B;Homescout21 B.V.;BBTS (Vastgoed Spijkenisse);0;10077,43;4055,11;6022,32;IN BEZIT
+0269;Professor Kamerlingh Onneslaan 134A;P. Nederstigt;Housing en Transport Facilities BV;0;12837,07;668,11;12168,96;IN BEZIT
+0273;Fenacoliuslaan 56B;P.H. Jagt;Tradiro Services B.V.;2150,0;0;0;0;OK
+0274;Karel Doormanlaan 21A;De Rembrandt B.V.;Van Bergen Personeelsdiensten B.V.;1000,0;0;0;0;OK
+0275;Burgemeester Crezeelaan 76;K. Zuidgeest;Van Bergen Personeelsdiensten B.V.;2300,0;0;0;0;OK
+0276;Burgemeester Cramerlaan 82;P. van den Berg;Van Bergen Personeelsdiensten B.V.;1200,0;0;0;0;OK
+0278;Lange Broekweg 46;G. Hofland;Van Bergen Personeelsdiensten B.V.;1750,0;0;0;0;OK
+0286;Waellandweg 12;T. Olsthoorn;Van Bergen Personeelsdiensten B.V.;1400,0;0;0;0;OK
+0293;Akkerweg 41 [huis 14];Cris;Buurman Vastgoed E B.V.;0;2189,31;2819,36;-630,05;OVERPAID
+0297;Akkerweg 41 [huis 26] ;Cris;Royal DS Personeel-service;0;3997,73;4790,25;-792,52;OVERPAID
+0298;Akkerweg 41 [031];;;0;0;1432,63;-1432,63;OVERPAID
+0300;Akkerweg 41 [huis 40] ;C. van Driel e/o B.M. Verdouw;Eemsdelta Housing B.V.;0;6934,75;324,89;6609,86;IN BEZIT
+0302;Akkerweg 41 [huis 42];C. van Driel e/o B.M. Verdouw;Buurman Vastgoed E B.V.;0;15780,07;9127,48;6652,59;IN BEZIT
+0303;Akkerweg 41 [huis 55] ;C. van Driel e/o B.M. Verdouw;NL Realty B.V.;0;3460,58;371,06;3089,52;IN BEZIT
+0304;Akkerweg 41 [huis 56];C. van Driel e/o B.M. Verdouw;NL Realty B.V.;0;8074,1;537,31;7536,79;IN BEZIT
+0305;Akkerweg 41 [huis 57];Cris;MNA Proud Facilities B.V.;0;13606,76;10532,65;3074,11;IN BEZIT
+0306;Akkerweg 41 [059];;;0;7602,46;4161,02;3441,44;IN BEZIT
+0307;Akkerweg 41 [huis 75];Cris;FISSH B.V.;0;0;1331,5;-1331,5;OVERPAID
+0308;Kerkweg 9a [huis 135];Chalet Park Holiday;Werckpost Service B.V.;0;88254,73;43577,57;44677,16;IN BEZIT
+0309;Kerkweg 9a [huis 137];Chalet Park Holiday;UAB Toromega;0;3022,94;185,47;2837,47;IN BEZIT
+0311;Kerkweg 9a [huis 269];C. van Driel e/o B.M. Verdouw;UAB Toromega;0;11043,67;4050,35;6993,32;IN BEZIT
+0315;Kerkweg 9a [huis 342];Chalet Park Holiday;RNDV Industries;0;18899,32;10692,82;8206,5;IN BEZIT
+0318;Kerkweg 9a [huis 349];C. van Driel e/o B.M. Verdouw;Werckpost Service B.V.;0;12586,77;3508,44;9078,33;IN BEZIT
+0319;Kerkweg 9a [huis 356];Chalet Park Holiday;Werckpost Service B.V.;0;106,75;3865,09;-3758,34;OVERPAID
+0320;Kerkweg 9a [huis 359];Chalet Park Holiday;Labour Housing BV;0;25,96;3399,59;-3373,63;OVERPAID
+0322;Bettingeslag 10;J.P. Stoel;CB Construction UAB;0;17433,54;12953,75;4479,79;IN BEZIT
+0323;Marnixstraat 32;R. Paalman;Flexvesting B.V.;0;6043,55;192,95;5850,6;IN BEZIT
+0324;Van Swinderenstraat 21;E. Beukema;Flexvesting B.V.;0;1800,0;0;1800,0;IN BEZIT
+0325;Hendriklaan 49;M. Koolhaas;VALO Facilities B.V.;0;12310,84;662,0;11648,84;IN BEZIT
+0326;Akkerweg 41 [068];;;0;3839,33;175,76;3663,57;IN BEZIT
+0327;Putter 42;Cris;FISSH B.V.;0;9952,6;2162,1;7790,5;IN BEZIT
+0328;Noordmolenstraat 36A;Parkwonen;BBTS (Vastgoed Spijkenisse);0;7757,17;181,69;7575,48;IN BEZIT
+0329;Noordmolenstraat 36B;Parkwonen;BBTS (Vastgoed Spijkenisse);0;3257,17;181,69;3075,48;IN BEZIT
+0330;Noordmolenstraat 36C;Parkwonen;BBTS (Vastgoed Spijkenisse);0;3257,17;181,69;3075,48;IN BEZIT
+0331;Flankstraat 11;TH Mungroop;S. Bakker OPH Verhuur;0;5310,43;296,73;5013,7;IN BEZIT
+0332;Kerkweg 9a [huis 340];Chalet Park Holiday;Orange Investments Group;0;10670,02;501,19;10168,83;IN BEZIT
+0333;Kethelweg 66D;Parkwonen;Tradiro Services B.V.;0;12981,91;743,01;12238,9;IN BEZIT
+0334;Hof van zeeland 2;;;0;7095,58;3472,57;3623,01;IN BEZIT
+0335;Molenweg 3B;M.J.W. van den Enden & B.M. van den Enden;Van Bergen Personeelsdiensten B.V.;3600,0;0;0;0;OK
+0336;Ofwegen 1A;Facili Flex BV;Tradiro Services B.V.;0;3560,57;1569,81;1990,76;IN BEZIT
+0337;Kruisweg 16;Facili Flex BV;Tradiro Services B.V.;0;5632,92;4392,38;1240,54;IN BEZIT
+0338;Kerkweg 9a [huis 348];Chalet Park Holiday;Orange Investments Group;0;12278,73;601,41;11677,32;IN BEZIT
+0339;Kerkweg 9a [huis 357];Chalet Park Holiday;Eastmen;0;10940,39;4017,41;6922,98;IN BEZIT
+0340;Professor Poelslaan 58C;Comé Valk en Arjen Valk;Tradiro Services B.V.;1200,0;9839,05;3873,64;5965,41;IN BEZIT
+0341;Akkerweg 41 [huis 10] ;Cris;NL Realty B.V.;0;3625,45;3296,06;329,39;IN BEZIT
+0342;Akkerweg 41 [016];;;0;8898,49;5408,39;3490,1;IN BEZIT
+0344;Pastoor Gilisstraat 81-A;Edward Bosch;Housing en Transport Facilities BV;0;27616,48;20649,97;6966,51;IN BEZIT
+0345;Compierekade 15;;Tradiro Services B.V.;0;26018,85;13892,48;12126,37;IN BEZIT
+0346;Beukenlaan 53;Twins BV;PMM Workforce Management Ltd;0;3610,0;3610,0;0,0;OK
+0347;Van Ruijsdaellaan 72A;Houses2Rent;Tradiro Services B.V.;0;7428,3;438,3;6990,0;IN BEZIT
+0348;Wagenstraat 70;;Tradiro Services B.V.;0;27269,45;7594,45;19675,0;IN BEZIT
+0349;Persoonsdam 196;Transformatiehaven B.V.;Aelbers Flexibele Personeels Diensten B.V.;0;3690,64;1255,7;2434,94;IN BEZIT
+0350;Akkerweg 41 [huis 35] ;Cris;MNA Proud Facilities B.V.;0;3756,6;187,7;3568,9;IN BEZIT
+0352;Van Ruijsdaellaan 72C;Houses2Rent;Tradiro Services B.V.;0;3714,15;219,15;3495,0;IN BEZIT
+0353;Archimedesstraat 6B;Houses2Rent;Tradiro Services B.V.;0;3260,4;140,4;3120,0;IN BEZIT
+0354;Dorpsstraat 48;Facili Flex BV;Tradiro Services B.V.;0;18395,62;874,87;17520,75;IN BEZIT
+0355;Van Hoofsweg 4;;;0;4413,08;3685,48;727,6;IN BEZIT
+0356;Akkerweg 41 [huis 36];Cris;MNA Proud Facilities B.V.;0;8581,53;3639,5;4942,03;IN BEZIT
+0359;Kimbrenoord 49;Dockholland;Tradiro Services B.V.;0;5112,64;291,41;4821,23;IN BEZIT
+0360;Kruiningenstraat 185;Dockholland;Tradiro Services B.V.;0;10011,49;510,12;9501,37;IN BEZIT
+0362;Ruigenhoek 69;Dockholland;Tradiro Services B.V.;0;5613,49;312,12;5301,37;IN BEZIT
+0363;Rietdijkstraat 56A;S.A. van Bergen Vastgoed B.V.;Van Bergen Personeelsdiensten B.V.;1300,0;0;0;0;OK
+0364;Rietdijkstraat 56B;S.A. van Bergen Vastgoed B.V.;Van Bergen Personeelsdiensten B.V.;1950,0;0;0;0;OK
+0365;Laan op zuid 949;Dockholland;UAB Toromega;0;4469,01;220,65;4248,36;IN BEZIT
+0366;Lekdijk 14;;Tradiro Services B.V.;0;11128,77;11128,77;0,0;OK
+0367;Baanhoek 137;;;0;3600,0;3600,0;0,0;OK
+0368;Wedderweg 3A;CB-Homes B.V.;PRP Solutions Flex Sp. Z.O.O;0;14625,81;5364,61;9261,2;IN BEZIT
+0369;Oranjestraat 63;Kwekerij Stef Kleijweg;H.T.C. Facility Services B.V.;0;5493,43;2529,18;2964,25;IN BEZIT
+0370;Cloosterstraat 23a;4 Homes B.V.;Tradiro Services B.V.;0;12725,94;446,94;12279,0;IN BEZIT
+0372;Akkerweg 41 [huis 11] ;Cris;MNA Proud Facilities B.V.;0;5568,01;275,34;5292,67;IN BEZIT
+0373;Akkerweg 41 [huis 17];Cris;MNA Proud Facilities B.V.;0;5507,51;264,84;5242,67;IN BEZIT
+0374;Vierambachtsstraat 32-B01;Houses2Rent;Oostkracht Bemiddeling B.V.;0;4192,94;230,61;3962,33;IN BEZIT
+0376;Zwethkade Zuid 30A;Fransen Vastgoed / Holland Huisvesting B.V.;Tradiro Services B.V.;0;4395,07;4395,07;0,0;OK
+0380;Parallelweg 114C;J.P. Stoel;Tradiro Services B.V.;0;5817,95;2517,95;3300,0;IN BEZIT
+0381;Parallelweg 134B;J.P. Stoel;Tradiro Services B.V.;0;5817,95;2517,95;3300,0;IN BEZIT
+0383;Akkerweg 41 [huis 20] ;Cris;Buurman Vastgoed E B.V.;0;66152,18;31210,87;34941,31;IN BEZIT
+0384;Akkerweg 41 [huis 58];Cris;Buurman Vastgoed E B.V.;0;2800,38;209,76;2590,62;IN BEZIT
+0385;Lavendelpad 6;Flexvesting B.V.;OJP B.V.;0;23049,04;8108,64;14940,4;IN BEZIT
+0386;Poolsestraat 29a;R. Basil;Light Personeelsdiensten;0;9042,25;2467,25;6575,0;IN BEZIT
+0387;Verschansing 21 ;Orange Investments Group;RNDV Industries;0;5369,25;220,4;5148,85;IN BEZIT
+0388;1e Middellandstraat 104A;Orange Invesments Group;S. Bakker OPH Verhuur;0;9279,55;512,02;8767,53;IN BEZIT
+0389;Kritostraat 54;Orange Invesments Group;S. Bakker OPH Verhuur;0;4325,94;212,69;4113,25;IN BEZIT
+0396;Haven 24;dockHolland Huisvesting B.V.;;0;4800,0;0;4800,0;IN BEZIT
+0397;Boogertstraat 5A;dockHolland Huisvesting B.V.;S. Bakker OPH Verhuur;0;12747,3;1287,3;11460,0;IN BEZIT
+0399;Maasdijk 67;;Tradiro Services B.V.;0;803,37;528,24;275,13;IN BEZIT
+0404;Europalaan 50;All In Rentals B.V.;Tradiro Services B.V.;1512,0;0;0;0;OK
+0414;Platostraat 38;JS Vastgoed;Tradiro Services B.V.;3000,0;0;0;0;OK
+0416;Jacob van Ruijsdaelstraat 28;;Tradiro Services B.V.;0;0;6000,0;-6000,0;OVERPAID
+0430;Krabbendijkestraat 429;;;0;95,46;1707,88;-1612,42;OVERPAID
+0447;Kerklaan 74;Homeflex B.V.;Tradiro Services B.V.;50,0;0;0;0;OK
+0448;Kerklaan 80;Homeflex B.V.;Tradiro Services B.V.;60,0;0;0;0;OK
+0466;Singelweg 95;;Tradiro Services B.V.;0;878,93;0;878,93;IN BEZIT
+0467;St. Annalandstraat 116;;Tradiro Services B.V.;0;5689,21;109,48;5579,73;IN BEZIT
+0469;Tulpenstraat 45;Homeflex B.V.;Tradiro Services B.V.;40,0;0;0;0;OK
+0478;Admiraliteitskade 80-02;;Tradiro Services B.V.;0;2114,52;1049,62;1064,9;IN BEZIT
+0488;Van Goghlaan 36;;Tradiro Services B.V.;0;0;2760,43;-2760,43;OVERPAID
+0489;Woudseweg 146;IN STONES;;500,0;0;0;0;OK

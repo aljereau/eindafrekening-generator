@@ -1,0 +1,1736 @@
+Found 919 inhuur contracts
+Found 1434 verhuur contracts
+
+==================================================
+PARSING INHUUR CONTRACTS
+==================================================
+
+[1/919] Inhuur Curcumastraat 39 Hoogvliet Interhouse - CoH
+  ✓ Eigenaar: Ruva Vastgoed B.V.
+  ✓ Huurprijs: 1180.0
+
+[2/919] Machtiging Ruva Vastgoed.pdf
+  ✓ Eigenaar: Ruva Vastgoed
+  ✓ Huurprijs: N/A
+
+[3/919] IHOVK_Baarlelaan27_LAU_010323.pdf
+  ✓ Eigenaar: Mw. E. C. Laus
+  ✓ Huurprijs: 1700
+
+[4/919] IHOVK_Baarlelaan27_LAU_010323_GET_VH+HH.pdf
+  ✓ Eigenaar: Ww. E. C. Laus
+  ✓ Huurprijs: 1700
+
+[5/919] 220301_HOVK Baarlelaan 27 Hoogeveen_GET_HH_VH.pdf
+  ✓ Eigenaar: Eva Céline Laus
+  ✓ Huurprijs: 1650
+
+[6/919] 22 02 28 Opleverrapport Baarlelaan 27 te Hoogeveen
+  ✓ Eigenaar: CoHousingNL BV
+  ✓ Huurprijs: N/A
+
+[7/919] 220301_HOVK Baarlelaan 27 Hoogeveen_GET_HH.pdf
+  ✓ Eigenaar: Eva Céline Laus
+  ✓ Huurprijs: 1650.0
+
+[8/919] 22 02 28 Opleverrapport Baarlelaan 27 te Hoogeveen
+  ✓ Eigenaar: CoHousingNL BV
+  ✓ Huurprijs: N/A
+
+[9/919] 220301_HOVK Baarlelaan 27 Hoogeveen_GET_HH_VH.pdf
+  ✓ Eigenaar: Eva Céline Laus
+  ✓ Huurprijs: 1650.0
+
+[10/919] 22 02 28 Opleverrapport Baarlelaan 27 te Hoogeveen
+  ✓ Eigenaar: CoHousingNL BV
+  ✓ Huurprijs: N/A
+
+[11/919] 220301_HOVK Baarlelaan 27 Hoogeveen_GET_HH.pdf
+  ✓ Eigenaar: Eva Céline Laus
+  ✓ Huurprijs: 1650.0
+
+[12/919] 22 02 28 Opleverrapport Baarlelaan 27 te Hoogeveen
+  ✓ Eigenaar: CoHousingNL BV
+  ✓ Huurprijs: N/A
+
+[13/919] 220301_HOVK Baarlelaan 27 Hoogeveen_GET_HH_VH.pdf
+  ✓ Eigenaar: Eva Céline Laus
+  ✓ Huurprijs: 1650
+
+[14/919] 22 02 28 Opleverrapport Baarlelaan 27 te Hoogeveen
+  ✓ Eigenaar: CoHousingNL BV
+  ✓ Huurprijs: N/A
+
+[15/919] 220301_HOVK Baarlelaan 27 Hoogeveen_GET_HH.pdf
+  ✓ Eigenaar: Eva Céline Laus
+  ✓ Huurprijs: 1650
+
+[16/919] 22 02 28 Opleverrapport Baarlelaan 27 te Hoogeveen
+  ✓ Eigenaar: CoHousingNL BV
+  ✓ Huurprijs: N/A
+
+[17/919] VHOK_RyanRent&Co_VanLangendonckstraat_80_Rotterdam
+  ✓ Eigenaar: CB Homes
+  ✓ Huurprijs: 1950.0
+
+[18/919] VHOK_RyanRent&Co_VanLangendonckstraat_80_Rotterdam
+  ✓ Eigenaar: CB Homes B.V.
+  ✓ Huurprijs: 1950.0
+
+[19/919] IHOVK_VanLangendonckstraat80_CITY_010722_GET_VH+HH
+  ✓ Eigenaar: City Estate B.V.
+  ✓ Huurprijs: 1500
+
+[20/919] IHOVK_VanLangendonckstraat80_CITY_010722.pdf
+  ✓ Eigenaar: City Estate B.V.
+  ✓ Huurprijs: 1500
+
+[21/919] IHOVK_Akkerweg41huis55_DrielVerdouw_010325.pdf
+  ✓ Eigenaar: C. van Driel e/o B.M. Verdouw
+  ✓ Huurprijs: 2821.62
+
+[22/919] IHOVK_Inundatiestraat3 sasvanGent__010924 get H+VH
+  ✓ Eigenaar: RyanRent & Co B.V.
+  ✓ Huurprijs: 1500
+
+[23/919] IHOVK_Inundatiestraat3 sasvanGent__010924.pdf
+  ✓ Eigenaar: RyanRent & Co B.V.
+  ✓ Huurprijs: 1500
+
+[24/919] IHOVK_Vogelschorstraat 24 Sluiskil_A.Brouwers GET 
+  ✓ Eigenaar: A. Brouwers en S. Brouwers- van Weert
+  ✓ Huurprijs: 1800.0
+
+[25/919] IHOVK_Vogelschorstraat 24 Sluiskil_A.Brou.pdf
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 1800
+
+[26/919] IHOVK Narcissenstraat 37_M.Poel_100820.pdf
+  ✓ Eigenaar: M. Poel
+  ✓ Huurprijs: 1100
+
+[27/919] IHOVK Narcissenstraat 37_M.Poel_GET+HH+VH.pdf
+  ✓ Eigenaar: M. Poel
+  ✓ Huurprijs: 1100
+
+[28/919] IHOVK Narcissenstraat 23.pdf
+  ✓ Eigenaar: RyanRent B.V.
+  ✓ Huurprijs: 1136.3
+
+[29/919] IHOVK_Heemskerkstraat19_RDJ_100223_GET_VH+HH.pdf
+  ✓ Eigenaar: Dhr. R.L.P. de Jonge
+  ✓ Huurprijs: 1800
+
+[30/919] IHOVK_Heemskerkstraat19_RDJ_100223.pdf
+  ✓ Eigenaar: Dhr. R.L.P. de Jonge
+  ✓ Huurprijs: 1800
+
+[31/919] IHOVK_Heemskerkstraat19_RDJ_180222.pdf
+  ✓ Eigenaar: Dhr. R.LP. de Jonge
+  ✓ Huurprijs: 1800
+
+[32/919] IHOVK_Heemskerkstraat19_RDJ_180222_GET VH+H.pdf
+  ✓ Eigenaar: Dhr. R.LP. de Jonge
+  ✓ Huurprijs: 1800
+
+[33/919] IHOVK_Heemskerkstraat19_RDJ_180222_GET VH.pdf
+  ✓ Eigenaar: Dhr. R.LP. de Jonge
+  ✓ Huurprijs: 1800
+
+[34/919] Inhuur overeenkomst Utrechtsestraatweg 7 Oudewater
+  ✓ Eigenaar: T.A. van der Burg
+  ✓ Huurprijs: 1700
+
+[35/919] Inhuur overeenkomst Utrechtsestraatweg 7 Oudewater
+  ✓ Eigenaar: T.A. van der Burg
+  ✓ Huurprijs: 1700
+
+[36/919] IHOVK_Wijngaard66_CityEstate_120623.pdf
+  ✓ Eigenaar: City Estate B.V.
+  ✓ Huurprijs: 2200
+
+[37/919] Verhuurcontract Beeklaan 294- en 294-2 Tradiro Ser
+  ✓ Eigenaar: Homeschout21 B.V.
+  ✓ Huurprijs: 3987
+
+[38/919] IHOVK_Molendijk4_vdLinde_010624.pdf
+  ✓ Eigenaar: Johannes Gerardus Jacobus Maria van der Linde
+  ✓ Huurprijs: 1550
+
+[39/919] IHOVK_Akkerweg41_huis017_RecreatieparkdeWierde_180
+  ✓ Eigenaar: Recreatiepark de Wierde
+  ✓ Huurprijs: 2470.0
+
+[40/919] IHOVK_Akkerweg41_huis017_RecreatieparkdeWierde_180
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 2470.0
+
+[41/919] IHOVK_Noordmolenstraat36a_Parkwonen_010225 GET H+V
+  ✓ Eigenaar: Park Wonen B.V.
+  ✓ Huurprijs: 1500
+
+[42/919] IHOVK-FlankstraatSasvanGent_Mungroop_150125.pdf
+  ✓ Eigenaar: TH. Mungroop
+  ✓ Huurprijs: 1800
+
+[43/919] IHOVK-FlankstraatSasvanGent_Mungroop_150125 GET H+
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 1800.0
+
+[44/919] IHOVK_Kerkweg9a[huis349]_DrielVerdouw_011023.pdf
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 2730
+
+[45/919] IHOVK_Punter2234_CITY_190523.pdf
+  ✓ Eigenaar: City Estate B.V.
+  ✓ Huurprijs: 2200
+
+[46/919] IHOVK_Dwarsweg44_HugoVG_010523.pdf
+  ✓ Eigenaar: Hugo Vastgoed B.V.
+  ✓ Huurprijs: 3089.73
+
+[47/919] IHOVK_Dwarsweg44_HugoVG_010523_GET_VH+HH.pdf
+  ✓ Eigenaar: Hugo Vastgoed B.V.
+  ✓ Huurprijs: 3089.73
+
+[48/919] IHOVK_Dwarsweg44_HugoVG_010521.pdf
+  ✓ Eigenaar: Hugo Vastgoed B.V.
+  ✓ Huurprijs: 2750.0
+
+[49/919] RD44 - huurovereenkomst CoHousingNL_signed.pdf
+  ✓ Eigenaar: Hugo Vastgoed B.V.
+  ✓ Huurprijs: 2750.0
+
+[50/919] IHOVK_Pleinweg101bRotterdam_JesBeheer_111124.pdf
+  ✓ Eigenaar: Jes Funding & Beheer B.V.
+  ✓ Huurprijs: 1200
+
+[51/919] IHOVK_Pleinweg101bRotterdam_JesBeheer_131124.pdf
+  ✓ Eigenaar: Jes Funding & Beheer B.V.
+  ✓ Huurprijs: 1200.0
+
+[52/919] IHOVK_vanMaanenstraat14ARotterdam_JStoel_010624.pd
+  ✓ Eigenaar: Dhr. J.P. Stoel
+  ✓ Huurprijs: 1210.0
+
+[53/919] IHOVK_Snecanusstraat12_JMeerding_010922[1].pdf
+  ✓ Eigenaar: Dhr. J.L Meerding
+  ✓ Huurprijs: 2000
+
+[54/919] IHOVK_Snecanusstraat12_JMeerding_010922.pdf
+  ✓ Eigenaar: Dhr. J.L Meerding
+  ✓ Huurprijs: 2000
+
+[55/919] VHOK_Snecanusstraat12_JW_010622_GET_HH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2000
+
+[56/919] VHOK_Snecanusstraat12_JW_010622_GET_HH+VH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: N/A
+
+[57/919] VHOK_Snecanusstraat12_JW_010622.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2000
+
+[58/919] van Ruijsdaellaan 72-A 3117 XP Schiedam_RyanRent.p
+  ✓ Eigenaar: RyanRent & Co BV.
+  ✓ Huurprijs: 1250
+
+[59/919] IHOVK_vanRuijsdaellaan_72A_Schiedam_010325 GET H.p
+  ✓ Eigenaar: Houses2Rent
+  ✓ Huurprijs: 1250
+
+[60/919] IHOVK_vanRuijsdaellaan_72A_Schiedam_010325.pdf
+  ✓ Eigenaar: Houses2Rent
+  ✓ Huurprijs: 1250
+
+[61/919] IHOVK_Moureauveld8_VIVIR_010223_GET_VH+HH.pdf
+  ✓ Eigenaar: VIVIR wonen
+  ✓ Huurprijs: 2000.0
+
+[62/919] IHOVK_Moureauveld8_VIVIR_010223_GET_HH.pdf
+  ✓ Eigenaar: VIVIR wonen
+  ✓ Huurprijs: 2000.0
+
+[63/919] IHOVK Allard Piersonlaan 142.pdf
+  ✓ Eigenaar: Tradiro Services B.V.
+  ✓ Huurprijs: 1375
+
+[64/919] IHOVK_Visartstraat31_Sluiskil_BV-Vastgoed.pdf
+  ✓ Eigenaar: B.MLH. Verstegen & K.J.M. Maas
+  ✓ Huurprijs: 1800.0
+
+[65/919] Verklaring BRP.pdf
+  ✓ Eigenaar: RyanRent&Co BV
+  ✓ Huurprijs: N/A
+
+[66/919] IHOVK_Visartstraat31_Sluiskil_BV-Vastgoed Get H+VH
+  ✓ Eigenaar: B.MLH. Verstegen & K.J.M. Maas
+  ✓ Huurprijs: 1800
+
+[67/919] IHOVK_Akkerweg41huis40_DrielVerdouw_131124.pdf
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 4160.0
+
+[68/919] IHOVK_Akkerweg41huis40_DrielVerdouw_010325.pdf
+  ✓ Eigenaar: C. van Driel e/o B.M. Verdouw
+  ✓ Huurprijs: 3818.29
+
+[69/919] IHOVK_Persoonsdam182_Huurkracht_011123 GEt H+VH.pd
+  ✓ Eigenaar: Transformatiehaven BV
+  ✓ Huurprijs: 1850
+
+[70/919] IHOVK_Bliek41_APWK_010221.pdf
+  ✓ Eigenaar: Dhr. A.P.W. Koedooder
+  ✓ Huurprijs: 2166.67
+
+[71/919] IHOVK_DGeeraertstraat1C_Kleiren_181024.pdf
+  ✓ Eigenaar: RyanRent & Co B.V.
+  ✓ Huurprijs: 3400
+
+[72/919] IHOVK_DGeeraertstraat1C_Kleiren_181024 GET H+VH.pd
+  ✓ Eigenaar: RyanRent & Co B.V.
+  ✓ Huurprijs: 3400
+
+[73/919] IHOVK_Vierambachtsstraat32B01Rotterdam_010725.pdf
+  ✓ Eigenaar: Houses2Rent
+  ✓ Huurprijs: 1425.0
+
+[74/919] IHOVK_Vierambachtsstraat32B01Rotterdam_010725 GET 
+  ✓ Eigenaar: Houses2Rent
+  ✓ Huurprijs: 1425.0
+
+[75/919] IHOVK_D.Geeraertstraat1B_Kleiren_181024.pdf
+  ✓ Eigenaar: RyanRent & Co B.V.
+  ✓ Huurprijs: 3400.0
+
+[76/919] IHOVK_D.Geeraertstraat1B_Kleiren_181024 GET H+VH.p
+  ✓ Eigenaar: RyanRent & Co B.V.
+  ✓ Huurprijs: 3400.0
+
+[77/919] IHOVK_Dieptol63_010322_1j_GET H.pdf
+  ✓ Eigenaar: CoHousingNL B.V.
+  ✓ Huurprijs: 2400
+
+[78/919] IHOVK_Dieptol63_010322_1j.pdf
+  ✓ Eigenaar: CoHousingNL B.V.
+  ✓ Huurprijs: 2400
+
+[79/919] IHOVK_Persoonsdam_178_Huurkracht_081123 GET H+VH.p
+  ✓ Eigenaar: Transformatiehaven BV
+  ✓ Huurprijs: 1471.5
+
+[80/919] IHOVK_Hoefslag_8_Noordwolde_InMotion_010424.pdf
+  ✓ Eigenaar: H.A. Samson en M.E.P. Knaap
+  ✓ Huurprijs: 2050.0
+
+[81/919] IHOVK_Hoefslag_8_Noordwolde_InMotion_010424 GET H+
+  ✓ Eigenaar: HA. Samson en M.E.P. Knaap
+  ✓ Huurprijs: 2050.0
+
+[82/919] Addendum_Huurovereenkomst_Poppestraat_59.pdf
+  ✓ Eigenaar: Dhr. S.J.J. Raats
+  ✓ Huurprijs: N/A
+
+[83/919] HOVK_Poppestraat_59_StWB_GET_HH_VH.pdf
+  ✓ Eigenaar: Dhr S.J.J. Raats
+  ✓ Huurprijs: 1600
+
+[84/919] IHOVK_Struitenweg19b_Luijsterburg_181221.pdf
+  ✓ Eigenaar: Jan Luijsterburg Beheer B.V.
+  ✓ Huurprijs: 1950
+
+[85/919] IHOVK_Struitenweg19b_Luijsterburg_171221.pdf
+  ✓ Eigenaar: Jan Luijsterburg Beheer B.V.
+  ✓ Huurprijs: 1950
+
+[86/919] rental contract Hof van zeeland 2 ryanrent.pdf
+  ✓ Eigenaar: Hureninvlissingen.nl
+  ✓ Huurprijs: 3000
+
+[87/919] IHOVK_Admiraliteitskade 80 Rotterdam.pdf
+  ✓ Eigenaar: Barstarz BV
+  ✓ Huurprijs: 3223.75
+
+[88/919] IHOVK_Admiraliteitskade 80_Beijer_011123 GET H + V
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 3223.75
+
+[89/919] IHOVK Inialoane 2.pdf
+  ✓ Eigenaar: Dhr. J.D. Jongsma
+  ✓ Huurprijs: 4550
+
+[90/919] Addendum IHOVK Inialoane 2.pdf
+  ✓ Eigenaar: Dhr. J.D. Jongsma
+  ✓ Huurprijs: 4550
+
+[91/919] IHOVK_NieuweZeedijk1K308_MVB_010323_GET_VH+HH.pdf
+  ✓ Eigenaar: MvB Services
+  ✓ Huurprijs: 2600
+
+[92/919] IHOVK_NieuweZeedijk1K308_MVB_010323.pdf
+  ✓ Eigenaar: MvB Services
+  ✓ Huurprijs: 2600
+
+[93/919] IHOV_Robinsonstraat203_UH_130123.pdf
+  ✓ Eigenaar: United Homes
+  ✓ Huurprijs: 2100
+
+[94/919] IHOVK_Broeksteeg7_Vivir_010321_getH.pdf
+  ✓ Eigenaar: De heer T.A. Middelkoop
+  ✓ Huurprijs: 3465
+
+[95/919] VIVIR Huurovereenkomst ROZ-2017 Broeksteeg 7 Trich
+  ✓ Eigenaar: VIVIR wonen
+  ✓ Huurprijs: 3100.0
+
+[96/919] HOVK Tramstraat 13 GET H + VH.pdf
+  ✓ Eigenaar: Reham Verhuur B.V.
+  ✓ Huurprijs: 1300
+
+[97/919] Vrieseweg 135 Co.pdf
+  ✓ Eigenaar: Correcthuren
+  ✓ Huurprijs: 3800
+
+[98/919] Pr.WillenAlexandersingel 53_Beesd_Space4u_ CoHousi
+  ✓ Eigenaar: Space4U B.V.
+  ✓ Huurprijs: 1875
+
+[99/919] IHOVK_Bellstraat7_EHV_280222_GET H+VH.pdf
+  ✓ Eigenaar: Eizema Heerenveen Vastgoed B.V.
+  ✓ Huurprijs: 1820
+
+[100/919] IHOVK_FransBekkenstraat72e_RIB_011222.pdf
+  ✓ Eigenaar: Dhr. S. H. G. J. Ribbink
+  ✓ Huurprijs: 1800
+
+[101/919] IHOVK_FransBekkerstraat72e_RIB_011222_GET_VH+HH.pd
+  ✓ Eigenaar: Dhr. S. H. G. J. Ribbink
+  ✓ Huurprijs: 1800
+
+[102/919] IHOVK_FransBekkenstraat72e_RIB_011222.pdf
+  ✓ Eigenaar: Dhr. S. H. G. J. Ribbink
+  ✓ Huurprijs: 2078
+
+[103/919] IHOVK_FransBekkenstraat72e_RIB_011222_GET_VH+HH.pd
+  ✓ Eigenaar: Dhr. S. H. G. J. Ribbink
+  ✓ Huurprijs: 2078
+
+[104/919] Inhuurovereenkomst Willem Marisstraat 4 Dordrecht 
+  ✓ Eigenaar: United Homes B.V.
+  ✓ Huurprijs: 1625
+
+[105/919] IHOVK Willem Marisstraat GET H + VH.pdf
+  ✓ Eigenaar: United Homes BV
+  ✓ Huurprijs: 1625.0
+
+[106/919] IHOVK_Putsebocht136B01Rotterdam_Dockholland_250425
+  ✓ Eigenaar: DockHolland Huisvesting B.V.
+  ✓ Huurprijs: 1430.0
+
+[107/919] IHOVK_Putsebocht136B01Rotterdam_Dockholland_250425
+  ✓ Eigenaar: dockHolland Huisvesting B.V.
+  ✓ Huurprijs: 1430.0
+
+[108/919] IHOVK_Dorpsstraat48Aarlanderveen_FaciliFlex_260325
+  ✓ Eigenaar: Facili Flex BV
+  ✓ Huurprijs: 500.02
+
+[109/919] IHOVK_Dorpsstraat48Aarlanderveen_FaciliFlex_260325
+  ✓ Eigenaar: RyanRent & Co B.V.
+  ✓ Huurprijs: 7604.42
+
+[110/919] HOK Jordaensplein GET H + VH.pdf
+  ✓ Eigenaar: CS Vastgoedbeheer B.V.
+  ✓ Huurprijs: 1300
+
+[111/919] HOVK Jordaensplein 30.pdf
+  ✓ Eigenaar: CS Vastgoedbeheer B.V.
+  ✓ Huurprijs: 1300.0
+
+[112/919] IHOVK_Lekdijk14KrimpenaandenIJssel_Isaku_06052025.
+  ✓ Eigenaar: RyanRent & Co B.V.
+  ✓ Huurprijs: 6000
+
+[113/919] IHOVK_vanViandestraat37_011020.pdf
+  ✓ Eigenaar: CoHousingNL B.V.
+  ✓ Huurprijs: 1200
+
+[114/919] IHOVK_vanViandestraat37_vanOs_01122021_ED.pdf
+  ✓ Eigenaar: Dhr. E.A van Os
+  ✓ Huurprijs: 2000
+
+[115/919] IHOVK_vanViandestraat37_vanOs_01122021_Lenie+Ed_GE
+  ✓ Eigenaar: Mevr. H.C. van Os ~ Remeeus en Dhr. E.A van Os
+  ✓ Huurprijs: 2000
+
+[116/919] IHOVK_vanViandestraat37_vanOs_01122021_.pdf
+  ✓ Eigenaar: H.C. van Os - Remeeus
+  ✓ Huurprijs: 2000
+
+[117/919] IHOVK_vanViandestraat37_vanOs_01122021_ED_GET H.pd
+  ✓ Eigenaar: Dhr. E.A van Os
+  ✓ Huurprijs: 2000
+
+[118/919] IHOVK_vanViandestraat37_011020 GET H+VH.pdf
+  ✓ Eigenaar: E.A. van Os
+  ✓ Huurprijs: 1200
+
+[119/919] IHOVK_Dijkstraat 66_Reham_310820.pdf
+  ✓ Eigenaar: Johanna van Heeswijk
+  ✓ Huurprijs: 1300
+
+[120/919] Side agreement; huur Lauernessestraat 8 + Beemd 55
+  ✓ Eigenaar: Resource One BV CoHousingNL
+  ✓ Huurprijs: N/A
+
+[121/919] HUUROVEREENKOMST WOONRUIMTE Beemd 55, 3193LG Hoogv
+  ✓ Eigenaar: Quality Home Rentals
+  ✓ Huurprijs: 2004.0
+
+[122/919] HUUROVEREENKOMST WOONRUIMTE Beemd 55, 3193LG Hoogv
+  ✓ Eigenaar: Home Rentals Groep BV
+  ✓ Huurprijs: 2600
+
+[123/919] Huurovereenkomst; Beemd 55, Hoogvliet GET_HH+VH.pd
+  ✓ Eigenaar: Resource One BV
+  ✓ Huurprijs: 1950
+
+[124/919] IHOVK_Akkerweg41_huis59_RecreatieparkdeWierde_0109
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 1560.0
+
+[125/919] IHOVK_Akkerweg41_huis59_RecreatieparkdeWierde_0109
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 1560.0
+
+[126/919] IHOVK_Narcissenstraat 23_Tradiro_191122_GET_VH+HH.
+  ✓ Eigenaar: Tradiro Services B.V.
+  ✓ Huurprijs: 1450
+
+[127/919] IHOVK_Narcissenstraat 23_Tradiro_191122.pdf
+  ✓ Eigenaar: Tradiro Services B.V.
+  ✓ Huurprijs: 1150
+
+[128/919] HOVK_Cloosterstraat_23A_Ryanrent GET H+VH.pdf
+  ✓ Eigenaar: 4 Homes BV
+  ✓ Huurprijs: 2600.0
+
+[129/919] IHOVK_Cloosterstraat23aKloosterzande_04062025 GET.
+  ✓ Eigenaar: 4 Homes B.V.
+  ✓ Huurprijs: 2600
+
+[130/919] VVE formulier.pdf
+  ✓ Eigenaar: Vereniging Van Eigenaars Akkersplein
+  ✓ Huurprijs: N/A
+
+[131/919] Algemene-Bepalingen-Woonruimte-ROZ-2017.pdf
+  ✓ Eigenaar: Fryslan Homes
+  ✓ Huurprijs: N/A
+
+[132/919] receipt for Tijdelijke HVK Akkersplein 90, Heerenv
+  ✓ Eigenaar: RyanRent
+  ✓ Huurprijs: N/A
+
+[133/919] IHOVK Akkersplein 90_GET_HH+VH.pdf
+  ✓ Eigenaar: Fryslan Homes
+  ✓ Huurprijs: 1295
+
+[134/919] IHOVK_A.H. Verweijweg 6_I.I. Bhaggoe_GET_HH+VH.pdf
+  ✓ Eigenaar: I.. Bhaggoe
+  ✓ Huurprijs: 8000
+
+[135/919] Inhuurovereenkomst Leuringlaan 33 Tolbert - De Vri
+  ✓ Eigenaar: W.J. de Vries
+  ✓ Huurprijs: 2000
+
+[136/919] VIVIR huurovereenkomst Bazeldijk 26 getekende vers
+  ✓ Eigenaar: VIVIR wonen
+  ✓ Huurprijs: 2450.0
+
+[137/919] IHOVK Rhoonsestraat 18b.pdf
+  ✓ Eigenaar: Marco is Vastgoed B.V.
+  ✓ Huurprijs: 1485
+
+[138/919] IHOVK Rhoonsestraat get VH.pdf
+  ✓ Eigenaar: Marco is Vastgoed B.V.
+  ✓ Huurprijs: 1485
+
+[139/919] HO Rhoonsestraat GET VH + H.pdf
+  ✓ Eigenaar: Marco is Vastgoed B.V.
+  ✓ Huurprijs: 1485
+
+[140/919] IHOVK Rhoonsestraat 18b CoHousingNL.pdf
+  ✓ Eigenaar: Marco is Vastgoed B.V.
+  ✓ Huurprijs: 1485
+
+[141/919] IHOVK_Zuiderkruis15_JK_010622_.pdf
+  ✓ Eigenaar: Dhr. J. Kuipers
+  ✓ Huurprijs: 1950
+
+[142/919] IHOVK_Zuiderkruis15_JK_010622_GET H+VH.pdf
+  ✓ Eigenaar: Dhr. J. Kuipers
+  ✓ Huurprijs: 1950
+
+[143/919] Meterstanden  2-5-2022  Zuiderkruis 15 (2022-05-02
+  ✓ Eigenaar: CoHousingNL
+  ✓ Huurprijs: N/A
+
+[144/919] IHOVK_Zuiderkruis15_JK_010622_GET H.pdf
+  ✓ Eigenaar: Dhr. J. Kuipers
+  ✓ Huurprijs: 1950
+
+[145/919] IHOVK_Zuiderkruis15_JK_010622.pdf
+  ✓ Eigenaar: Dhr. J. Kuipers
+  ✓ Huurprijs: 1950
+
+[146/919] ‭IHOVK_Hooilandseweg30_LW_010621_getH+VH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 3750
+
+[147/919] ‭IHOVK_Hooilandseweg30_LW_010621.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 3750
+
+[148/919] IHOVK_Hooilandseweg30_TJOuwehand_01062021.pdf
+  ✓ Eigenaar: Dhr. T.J. Ouwehand
+  ✓ Huurprijs: 3500
+
+[149/919] ‭IHOVK_Hooilandseweg30_LW_010521_GET-VVH_HH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 3500
+
+[150/919] ‭IHOVK_Hooilandseweg30_LW_010521.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 3500
+
+[151/919] IHOVK_Kuipers-Rietbergpad 15_BookThat_041223 GET H
+  ✓ Eigenaar: BookThat Flex B.V.
+  ✓ Huurprijs: 3767.1
+
+[152/919] IHOVK_Kuipers-Rietbergpad 15_BookThat_041223.pdf
+  ✓ Eigenaar: BookThat Flex B.V.
+  ✓ Huurprijs: 3767.1
+
+[153/919] IHOVK_Sonsbrug50Acquoy_210321.pdf
+  ✓ Eigenaar: De heer T.A. Middelkoop
+  ✓ Huurprijs: 290.0
+
+[154/919] Inhuurovereenkomst Voorstraat 86A Harlingen Goti M
+  ✓ Eigenaar: Goti Monumenten bv
+  ✓ Huurprijs: N/A
+
+[155/919] IHOVK_FranzLisztstraat5_JK_210122.pdf
+  ✓ Eigenaar: Dhr. J. Kuipers
+  ✓ Huurprijs: 1600
+
+[156/919] algemene voorwaarden.pdf
+  ✓ Eigenaar: RyanRent
+  ✓ Huurprijs: N/A
+
+[157/919] HOVK Spijksekweldijk_VIVIR_GET_HH+VH.pdf
+  ✓ Eigenaar: VIVIR wonen
+  ✓ Huurprijs: 5890
+
+[158/919] VIVIR huurovereenkomst Spijksekweldijk 206 en 208 
+  ✓ Eigenaar: VIVIR wonen
+  ✓ Huurprijs: 5890
+
+[159/919] Algemene voorwaarden_VIVIR_GET_HH+VH.pdf
+  ✓ Eigenaar: N/A
+  ✓ Huurprijs: N/A
+
+[160/919] HOVK Spijksekweldijk VIVIR_GET_HH+VH.pdf
+  ✓ Eigenaar: VIVIR wonen
+  ✓ Huurprijs: 4890
+
+[161/919] Inhuurovereenkomst van t Hoffstraat 22 Vlaardingen
+  ✓ Eigenaar: H.C. van Os-Remeeus
+  ✓ Huurprijs: 1150.0
+
+[162/919] Inhuurovereenkomst Finest Housing BV - CoHousingNL
+  ✓ Eigenaar: Finest Housing B.V.
+  ✓ Huurprijs: 4767
+
+[163/919] IHOVK_Seringestraat_5_Gennep_Oxrooms_160421.pdf
+  ✓ Eigenaar: Oxrooms BV
+  ✓ Huurprijs: 1050
+
+[164/919] GET HOV Zakelijk 243231 - Steenovenstraat 175-4 Es
+  ✓ Eigenaar: FlexStay B.V.
+  ✓ Huurprijs: 1970
+
+[165/919] HOV Zakelijk 243231 - Steenovenstraat 175-4 Essen 
+  ✓ Eigenaar: FlexStay B.V.
+  ✓ Huurprijs: 1970.0
+
+[166/919] Inhuurovereenkomst Groningerstraatweg 26 Leeuwarde
+  ✓ Eigenaar: J de Jong Holding b.v.
+  ✓ Huurprijs: 1600
+
+[167/919] IHOVK Goudenregenstraat 11_Bright_220720_GET_HH+VH
+  ✓ Eigenaar: Bright Home Rentals B.V.
+  ✓ Huurprijs: 1950.0
+
+[168/919] IHOVK Goudenregenstraat 11_Bright_220720.pdf
+  ✓ Eigenaar: Bright Home Rentals B.V.
+  ✓ Huurprijs: 1950.0
+
+[169/919] Inhuurovereenkomst Rijksstraatweg 80, Noardburgum 
+  ✓ Eigenaar: CoHousingNL
+  ✓ Huurprijs: 2800
+
+[170/919] IHOK GET VH + H.pdf
+  ✓ Eigenaar: CoHousingNL
+  ✓ Huurprijs: 2800
+
+[171/919] IHOVK_FEerensstraat21_VAS_170522_GET_VH+HH.pdf
+  ✓ Eigenaar: O. Vasiutina
+  ✓ Huurprijs: 1800
+
+[172/919] IHOVK_FEerensstraat21_VAS_200522.pdf
+  ✓ Eigenaar: O. Vasiutina
+  ✓ Huurprijs: 1800
+
+[173/919] IHOVK - Frans Erensstraat 21 Sittard - CoHousingNL
+  ✓ Eigenaar: CoHousingNL B.V.
+  ✓ Huurprijs: 2000
+
+[174/919] IHOVK_Markt19_JWV_010222_GET_HH_VH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2700
+
+[175/919] IHOVK_Markt19_JWV_010222.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2700
+
+[176/919] IHOVK_Markt 19_LW_010322 GET H.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2700
+
+[177/919] IHOVK_Markt 19_LW_010322_OT_GET H.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2700
+
+[178/919] IHOVK_Markt 19_LW_010322_OT.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2700
+
+[179/919] IHOVK_Markt 19_LW_010322.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2700
+
+[180/919] IHOVK_Markt 19_TH_010322_OT_GET_HH_VH.pdf
+  ✓ Eigenaar: Dhr. T. Hoolhorst
+  ✓ Huurprijs: 2700
+
+[181/919] IHOVK_Markt 19_TH_010322_OT.pdf
+  ✓ Eigenaar: Dhr. T. Hoolhorst
+  ✓ Huurprijs: 2700
+
+[182/919] IHOVK_Markt 19_TH_010322_OT.pdf
+  ✓ Eigenaar: Dhr. T. Hoolhorst
+  ✓ Huurprijs: 2700
+
+[183/919] IHOVK_Markt 19_Oudenbosch_TH_010322_OT_GET_HH_VH.p
+  ✓ Eigenaar: Dhr. T. Hoolhorst
+  ✓ Huurprijs: 2700
+
+[184/919] Inhuurovereenkomst Aerdberg 6 Steyl Finest Housing
+  ✓ Eigenaar: Finest Housing B.V
+  ✓ Huurprijs: 1950
+
+[185/919] IHOVK_Nieuwesteeg68_TNM_010423.pdf
+  ✓ Eigenaar: TNM Aannemersbedrijf & Vastgoed
+  ✓ Huurprijs: 2200
+
+[186/919] IHOVK_Nieuwesteeg68_TNM_010423_GETH+VH.pdf
+  ✓ Eigenaar: TINM Aannemersbedrijf & Vastgoed
+  ✓ Huurprijs: 2200
+
+[187/919] IHOVK_RoemerVisscherstraat148_CITY_090522_GET_H.pd
+  ✓ Eigenaar: City Estate B.V.
+  ✓ Huurprijs: 1600
+
+[188/919] IHOVK_RoemerVisscherstraat148_CITY_090522_GET_H+VH
+  ✓ Eigenaar: City Estate B.V.
+  ✓ Huurprijs: 1600
+
+[189/919] IHOVK Noordstraat 55 040820 GET H.pdf
+  ✓ Eigenaar: de PAGTER VASTGOED b.v.
+  ✓ Huurprijs: 1000
+
+[190/919] IHOVK Noordstraat 55_DePagter_040820_GET_HH+VH.pdf
+  ✓ Eigenaar: de PAGTER VASTGOED b.v.
+  ✓ Huurprijs: 1000
+
+[191/919] Inhuurovereenkomst Marwei 130 Delfstrahuizen Liqiu
+  ✓ Eigenaar: Liquid Life B.V.
+  ✓ Huurprijs: 5700
+
+[192/919] IHOVK_Goghlaan36_4Homes_20092023_GET H+VH.pdf
+  ✓ Eigenaar: 4 Homes B.V.
+  ✓ Huurprijs: 3212.0
+
+[193/919] IHOVK Parallelweg 96A_DirectRendement_180920 GET V
+  ✓ Eigenaar: Direct Rendement B.V
+  ✓ Huurprijs: 1850
+
+[194/919] IHOVK Parallelweg 96A_DirectRendement_180920.pdf
+  ✓ Eigenaar: Direct Rendement B.V.
+  ✓ Huurprijs: 1850
+
+[195/919] Inhuurovereenkomst Lavendelpad 6 Gravendeel 190321
+  ✓ Eigenaar: Oxrooms
+  ✓ Huurprijs: 1700
+
+[196/919] IHOVK Lavendelpad 6 sGravendeel_190321_GET HH+VH.p
+  ✓ Eigenaar: Oxrooms
+  ✓ Huurprijs: 1700
+
+[197/919] Inhuurovereenkomst Lavendelpad 6 Gravendeel 190321
+  ✓ Eigenaar: Oxrooms
+  ✓ Huurprijs: 1700
+
+[198/919] Inhuurovereenkomst Lavendelpa - kopie.pdf
+  ✓ Eigenaar: Oxrooms
+  ✓ Huurprijs: 1700
+
+[199/919] HOVK_Mark_Bright_GET_HH+VH.PDF
+  ✓ Eigenaar: Bright Home Rentals B.V.
+  ✓ Huurprijs: 2000.0
+
+[200/919] HOVK_Mark_BrightHomeRentals.pdf
+  ✓ Eigenaar: Bright Home Rentals B.V.
+  ✓ Huurprijs: 2000
+
+[201/919] IHOVK_BesterdringTilburg_Mde Haan_1572024.pdf
+  ✓ Eigenaar: RyanRent & Co B.V.
+  ✓ Huurprijs: 3000
+
+[202/919] IHOVK_BesterdringTilburg_Mde Haan_080724 GET H+VH.
+  ✓ Eigenaar: EP Paardekooper Holding BV
+  ✓ Huurprijs: 3000
+
+[203/919] IHOVK_BesterdringTilburg_Mde Haan_080724.pdf
+  ✓ Eigenaar: E.P. Paardekooper holding BV
+  ✓ Huurprijs: 3000.0
+
+[204/919] IHOVK Nispensestraat, Roosendaal.pdf
+  ✓ Eigenaar: Direct Rendement
+  ✓ Huurprijs: 1800
+
+[205/919] IHOVK Nispensestraat 2c_DirectRendement_010620_GET
+  ✓ Eigenaar: Direct Rendement
+  ✓ Huurprijs: 1500
+
+[206/919] IHOVK Jasmijnring 22_Bright_GET_HH+VH.PDF
+  ✓ Eigenaar: Bright Home Rentals B.V.
+  ✓ Huurprijs: 2800.0
+
+[207/919] IHOVK_DeGasperistraat11_PRONK_010323.pdf
+  ✓ Eigenaar: Dhr. D. Pronk en Mw. Y Pronk - Dijkhuizen
+  ✓ Huurprijs: 1800
+
+[208/919] IHOVK_DeGasperistraat11_PRONK_010323_GET_VH+HH.pdf
+  ✓ Eigenaar: Dhr. D. Pronk en Mw. Y Pronk - Dijkhuizen
+  ✓ Huurprijs: 1800
+
+[209/919] IHOVK_Bernhardweg33_HBB_220122_GET_VH+HH.pdf
+  ✓ Eigenaar: HBBwonen.nu B.V
+  ✓ Huurprijs: 1800
+
+[210/919] Hovk Scholeksterstraat 7 Hellevoetsluis getekend.p
+  ✓ Eigenaar: Staffhousing Services BV
+  ✓ Huurprijs: 1729.0
+
+[211/919] Oss Staringstr.120- CoHousingNL BV - Space4u 1-10-
+  ✓ Eigenaar: Space4U B.V.
+  ✓ Huurprijs: 1850
+
+[212/919] Oss Staringstr.120 get- CoHousingNL- Space4u 1-10-
+  ✓ Eigenaar: Space4U B.V.
+  ✓ Huurprijs: 1850
+
+[213/919] Oss Staringstr.120- CoHousingNL BV - Space4u 1-10-
+  ✓ Eigenaar: Space4U B.V.
+  ✓ Huurprijs: 1850
+
+[214/919] Oss Staringstr.120- CoHousingNL BV - Space4u 1-10-
+  ✓ Eigenaar: Space4U B.V.
+  ✓ Huurprijs: 1850
+
+[215/919] Oss Staringstr.120- CoHousingNL BV - Space4u 1-10-
+  ✓ Eigenaar: Space4U B.V.
+  ✓ Huurprijs: 1850
+
+[216/919] HOVK Ebenhaezerstraat 38A.pdf
+  ✓ Eigenaar: ROWORK
+  ✓ Huurprijs: 1650.0
+
+[217/919] VHOVK Ebenhaezerstraat 38A_RoWork_010620_GET_HH+VH
+  ✓ Eigenaar: ROWORK
+  ✓ Huurprijs: 1650
+
+[218/919] VHOK_RyanRentCo_Eendrachtstraat_22_Middelharnis_01
+  ✓ Eigenaar: B Homes B.V.
+  ✓ Huurprijs: 4750.0
+
+[219/919] IHOVK_Eendrachtstraat22_ROS_090522_GET_V+HH.pdf
+  ✓ Eigenaar: Dhr. A. Ros
+  ✓ Huurprijs: 2300
+
+[220/919] IHOVK_Eendrachtstraat22_ROS_09052022.pdf
+  ✓ Eigenaar: Dhr. A. Ros
+  ✓ Huurprijs: 2300
+
+[221/919] IHOVK_Eendrachtstraat22_JW_150722.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2300
+
+[222/919] IHOVK_Eendrachtstraat22_JW_150722_GET_HH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2300
+
+[223/919] IHOVK_Akkerweg41_huis68_RecreatieparkdeWierde_1001
+  ✓ Eigenaar: Recreatiepark de Wierde
+  ✓ Huurprijs: 1560.0
+
+[224/919] IHOVK_Akkerweg41_huis68_RecreatieparkdeWierde_1001
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 1560.0
+
+[225/919] HUUROVEREENKOMST;  Lauernessestraat 17 3193PM Hoog
+  ✓ Eigenaar: Home Rentals Groep BV
+  ✓ Huurprijs: 3900.0
+
+[226/919] HUUROVEREENKOMST WOONRUIMTE Lauernessestraat 17, 3
+  ✓ Eigenaar: Quality Home Rentals
+  ✓ Huurprijs: 2600
+
+[227/919] HUUROVEREENKOMST WOONRUIMTE Lauernessestraat 17, 3
+  ✓ Eigenaar: Quality Home Rentals
+  ✓ Huurprijs: 2600.0
+
+[228/919] IHOVK_Lauerness17_150121.pdf
+  ✓ Eigenaar: Quality Home Rentals
+  ✓ Huurprijs: 2600.0
+
+[229/919] IHOVK_Lauernesse17_201120_get.pdf
+  ✓ Eigenaar: Quality Home Rentals
+  ✓ Huurprijs: 2210.0
+
+[230/919] HUUROVEREENKOMST WOONRUIMTE Lauernessestraat 17, 3
+  ✓ Eigenaar: Quality Home Rentals
+  ✓ Huurprijs: N/A
+
+[231/919] IHOVK_DeStad_FinestHousing_GET_HH+VH.pdf
+  ✓ Eigenaar: Finest Housing B.V.
+  ✓ Huurprijs: 2655
+
+[232/919] IHOVK_DeStad_Oirschot_FinestHousing.pdf
+  ✓ Eigenaar: Finest Housing B.V.
+  ✓ Huurprijs: 2655
+
+[233/919] HUUROVEREENKOMST WOONRUIMTE Nibelungenhof 22, 3194
+  ✓ Eigenaar: Quality Home Rentals
+  ✓ Huurprijs: 2405.0
+
+[234/919] IHOVK Nibelungenhof 22_Hoogvliet_070921_GET_HH.pdf
+  ✓ Eigenaar: Quality Home Rentals
+  ✓ Huurprijs: 2405.0
+
+[235/919] IHOVK Nibelungenhof 22_GET_HH+VH.pdf
+  ✓ Eigenaar: Resource One BV
+  ✓ Huurprijs: 2208.3
+
+[236/919] HUUROVEREENKOMST WOONRUIMTE Nibelungenhof 22, 3194
+  ✓ Eigenaar: Home Rentals Groep BV
+  ✓ Huurprijs: 3120.0
+
+[237/919] IHOVK_Kerkweg9aHensbroekhuisnummer101_hollChaletpa
+  ✓ Eigenaar: RyanRent & Co B.V.
+  ✓ Huurprijs: 1235.0
+
+[238/919] huurcontract Nieuwestad 8-1. Leeuwarden 1-9-20  31
+  ✓ Eigenaar: Goti Monumenten bv
+  ✓ Huurprijs: 2800
+
+[239/919] IHOVK Nieuwestad 8_GOTI_GET_HH+VH.pdf
+  ✓ Eigenaar: Goti Monumenten by
+  ✓ Huurprijs: 2800
+
+[240/919] Inhuurovereenkomst Nieuwstad 8 Leeuwarden - De Goo
+  ✓ Eigenaar: Sjoerd de Gooljer
+  ✓ Huurprijs: 2600
+
+[241/919] IHOVK_Bergsestraat 56_BHR_010821_ GET H+VH.pdf
+  ✓ Eigenaar: Bright Home Rentals B.V.
+  ✓ Huurprijs: 2000
+
+[242/919] IHOVK_Bergsestraat 56 Huijbergen_BHR.pdf
+  ✓ Eigenaar: Bright Home Rentals B.V.
+  ✓ Huurprijs: 2080.0
+
+[243/919] HOVK_Bergsestraat 56_BHR_18032021_ GET H + VH.pdf
+  ✓ Eigenaar: Bright Home Rentals B.V.
+  ✓ Huurprijs: 2080.0
+
+[244/919] IHOVK Burg van Haarenlaan 905_ get HH + VH.pdf
+  ✓ Eigenaar: Gebr Meershoek Verhuur
+  ✓ Huurprijs: 900
+
+[245/919] (oude) IHOVK Kade_GET HH+VH.pdf
+  ✓ Eigenaar: Direct Rendement
+  ✓ Huurprijs: 2400
+
+[246/919] VHOVK Kade 26&26a.pdf
+  ✓ Eigenaar: Direct Rendement
+  ✓ Huurprijs: 2000
+
+[247/919] IHOVK_kade_Pronk_01062021_GET H.pdf
+  ✓ Eigenaar: De heer M.A. Pronk
+  ✓ Huurprijs: 2400
+
+[248/919] IHOVK_kade_Pronk_01062021.pdf
+  ✓ Eigenaar: De heer M.A. Pronk
+  ✓ Huurprijs: 2400
+
+[249/919] IHOVK_kade_Pronk_01062021_GET H + VH.pdf
+  ✓ Eigenaar: De heer M.A. Pronk
+  ✓ Huurprijs: 2400
+
+[250/919] IHOVK Kade 26_26a, Roosendaal.pdf
+  ✓ Eigenaar: Direct Rendement
+  ✓ Huurprijs: 2400
+
+[251/919] IHK Kade 26-26A, Roosendaal M.A. Pronk - CoHousing
+  ✓ Eigenaar: M. Pronk
+  ✓ Huurprijs: 2000
+
+[252/919] IHOVK Kade_GET HH+VH.pdf
+  ✓ Eigenaar: Direct Rendement
+  ✓ Huurprijs: 2000
+
+[253/919] IHOVK_Kade2626a_Pronk_010222.pdf
+  ✓ Eigenaar: De heer M.A. Pronk
+  ✓ Huurprijs: 2700
+
+[254/919] IHOVK_EIZ_Kwartel8_011022.pdf
+  ✓ Eigenaar: Eizema Heerenveen Vastgoed B.V.
+  ✓ Huurprijs: 1600
+
+[255/919] Huurovereenkomst CohousingNL BV Kwartel 8 Dokkum  
+  ✓ Eigenaar: Eizema Heerenveen Vastgoed B.V.
+  ✓ Huurprijs: 1800
+
+[256/919] IHOVK_Populierenlaan_4_Space4U_150121.pdf
+  ✓ Eigenaar: Space4u B.V.
+  ✓ Huurprijs: 3224
+
+[257/919] IHOV_Lev5_Schoutstraat15_GET_VH+H.pdf
+  ✓ Eigenaar: Meerdervoort Queda Real B.V.
+  ✓ Huurprijs: 1100
+
+[258/919] Huurovereenkomst Schoutstraat 15 - Heerlen_GET_H.p
+  ✓ Eigenaar: Meerdervoort Queda Real B.V.
+  ✓ Huurprijs: 1100
+
+[259/919] IHOVK_JanSnouckstraat2_SHORT_140123_GET_VH+HH.pdf
+  ✓ Eigenaar: Short Stay NL Housing BV
+  ✓ Huurprijs: 3334.1
+
+[260/919] HO Ring 57.pdf
+  ✓ Eigenaar: Quality Home Rentals
+  ✓ Huurprijs: 2208.3
+
+[261/919] Huurovereenkomst Driebergenstraat 170 Den Haag (Co
+  ✓ Eigenaar: City Estate B.V.
+  ✓ Huurprijs: 1600
+
+[262/919] IHOVK_Poststraat4_BRR_150822_GET H.pdf
+  ✓ Eigenaar: Berkeley Ridge Residentials B.V.
+  ✓ Huurprijs: 1800
+
+[263/919] IHOVK_Poststraat4_BRR_150822_GET_HH.pdf
+  ✓ Eigenaar: Berkeley Ridge Residentials B.V.
+  ✓ Huurprijs: 1800
+
+[264/919] IHOVK_Poststraat4_BRR_150822.pdf
+  ✓ Eigenaar: Berkeley Ridge Residentials B.V.
+  ✓ Huurprijs: 1800
+
+[265/919] BRR - verhuurovereenkomst CoHousingNL via BookThat
+  ✓ Eigenaar: Berkeley Ridge Residential B.V.
+  ✓ Huurprijs: 1800
+
+[266/919] Machtiging Fabristraat 34B.pdf
+  ✓ Eigenaar: Westhavendomein B.V.
+  ✓ Huurprijs: N/A
+
+[267/919] IHOVK_Fabristraat 34B_Westhavendomein_010624.pdf
+  ✓ Eigenaar: Verknocht B.V.
+  ✓ Huurprijs: 1500
+
+[268/919] IHOVK_Fabristraat 34B_Westhavendomein_010624 GET H
+  ✓ Eigenaar: Westhavendomein B.V.
+  ✓ Huurprijs: 1500
+
+[269/919] IHOVK_Voorstraat53_123_010622_GET H.pdf
+  ✓ Eigenaar: hr R. van der Vliet
+  ✓ Huurprijs: 1475
+
+[270/919] IHOVK_Voorstraat53_123_010622_GET H+VH.pdf
+  ✓ Eigenaar: Dhr R. van der Vliet
+  ✓ Huurprijs: 1475
+
+[271/919] IHOVK_Voorstraat53_123_010622.pdf
+  ✓ Eigenaar: hr R. van der Vliet
+  ✓ Huurprijs: 1475
+
+[272/919] IHOVK_Volkelseweg 19-21_BookThat_111123.pdf
+  ✓ Eigenaar: BookThat Flex B.V.
+  ✓ Huurprijs: 11000
+
+[273/919] IHOVK_Volkelseweg 19-21_BookThat_111123 GET H + VH
+  ✓ Eigenaar: BookThat Flex B.V.
+  ✓ Huurprijs: 11000
+
+[274/919] IHOVK_PFCatsstraat8_Koens_010723_GET_HH_VH.pdf
+  ✓ Eigenaar: T. Koens
+  ✓ Huurprijs: 2238
+
+[275/919] IHOVK_PFCatsstraat8_Koens_010723.pdf
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 2238
+
+[276/919] Inhuurovereenkomst Antillenweg 29 Leeuwarden J. de
+  ✓ Eigenaar: J de Jong Holding b.v.
+  ✓ Huurprijs: 1500
+
+[277/919] IHOVK_Herenpad20B_Westhavendomein_010324 GET H+VH.
+  ✓ Eigenaar: Verknocht B.V.
+  ✓ Huurprijs: 750
+
+[278/919] IHOVK_Herenpad20B_Westhavendomein_010324.pdf
+  ✓ Eigenaar: Verknocht B.V.
+  ✓ Huurprijs: 750
+
+[279/919] machtiging huur betalingen.pdf
+  ✓ Eigenaar: Westhavendomein B.V.
+  ✓ Huurprijs: N/A
+
+[280/919] IHOVK Lange Reed, De Westereen GET_HH.pdf
+  ✓ Eigenaar: CoHousingNL
+  ✓ Huurprijs: 1213.34
+
+[281/919] IHOVK Lange Reed, De Westereen.pdf
+  ✓ Eigenaar: 21.S. de Bruin
+  ✓ Huurprijs: 1213.34
+
+[282/919] IHOVK_Baanhoek137Sliedrecht_Verspui_01062025 GET H
+  ✓ Eigenaar: RyanRent & Co BV
+  ✓ Huurprijs: 1800
+
+[283/919] IHOVK_Baanhoek137Sliedrecht_Verspui_01062025.pdf
+  ✓ Eigenaar: RyanRent & Co B.V.
+  ✓ Huurprijs: 1800.0
+
+[284/919] HOVK Het Kerkehout 64 GET_HH+VH.pdf
+  ✓ Eigenaar: A.W.N. Alkemade
+  ✓ Huurprijs: 2500
+
+[285/919] HOVK Het Kerkehout 64 Wassenaar.pdf
+  ✓ Eigenaar: A.W.N. Alkemade
+  ✓ Huurprijs: 2500
+
+[286/919] IHOVK_Kerkehout_010121.pdf
+  ✓ Eigenaar: A.W.N. Alkemade
+  ✓ Huurprijs: 3000
+
+[287/919] IHOVK_Dahliastraat39_Baert_220321.pdf
+  ✓ Eigenaar: Mevrouw M. Baert
+  ✓ Huurprijs: 1300
+
+[288/919] IHOVK_Dahliastraat39_Baert_220321_.pdf
+  ✓ Eigenaar: Mevrouw M. Baert
+  ✓ Huurprijs: 1300
+
+[289/919] VHOK_Vossepol39_JW_010523_GET_VH+HH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2000
+
+[290/919] VHOK_Vossepol39_JW_010523.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2000
+
+[291/919] IVHOK_Vossepol39_JW_010223_GET_HH_VH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2400
+
+[292/919] IVHOK_Vossepol39_JW_010223_GET_H.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2400
+
+[293/919] VHOK_Vossepol39_JW_010223.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2400
+
+[294/919] Inhuur overeenkomst P van Driel - CoHousingNL 01-0
+  ✓ Eigenaar: CoHousingNL
+  ✓ Huurprijs: 1450.0
+
+[295/919] Inhuur overeenkomst P van Driel - CoHousingNL 23-1
+  ✓ Eigenaar: CoHousingNL
+  ✓ Huurprijs: 1150.0
+
+[296/919] Inhuur overeenkomst Langweer Vastgoed BV - CoHousi
+  ✓ Eigenaar: Langweer Vastgoed BV
+  ✓ Huurprijs: 2500
+
+[297/919] bijlage huurovereenkomst HollandHousing Rental - R
+  ✓ Eigenaar: HollandHousing Rental
+  ✓ Huurprijs: 2950
+
+[298/919] IHOVK_PBernhardstraat40_JW_010722.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 1800
+
+[299/919] IHOVK_PBernhardstraat40_JW_010722_GET H.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 1800
+
+[300/919] IHOVK_PBernhardstraat40_JW_010722_GET_HH_VH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 1800
+
+[301/919] IHOVK_CBHomes_PrinsBernhardstraat_36_Zoutkamp_0104
+  ✓ Eigenaar: CB Homes B.V.
+  ✓ Huurprijs: 2312.0
+
+[302/919] IHOVK_CBHomes_PrinsBernhardstraat_36_Zoutkamp_0104
+  ✓ Eigenaar: CB Homes B.V.
+  ✓ Huurprijs: 2312.0
+
+[303/919] IHOVK_EvertCSlimstraat4_STBG_050222_GET H+VH.pdf
+  ✓ Eigenaar: CoHousingNL B.V.
+  ✓ Huurprijs: 1800
+
+[304/919] IHOVK Evert C. slimstraat 4, sint Annaparochie (Co
+  ✓ Eigenaar: CoHousingNL B.V.
+  ✓ Huurprijs: 1800
+
+[305/919] IHOVK_EvertCSlimstraat4_STBG_050222_GET H.pdf
+  ✓ Eigenaar: CoHousingNL B.V.
+  ✓ Huurprijs: 1800
+
+[306/919] IHOVK_EvertCSlimstraat4_STBG_050222.pdf
+  ✓ Eigenaar: CoHousingNL B.V.
+  ✓ Huurprijs: 1800
+
+[307/919] IHOVK_Westendorpweg13_010421_getH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 1250
+
+[308/919] IHOVK_Westendorpweg13_010421.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 1250
+
+[309/919] IHOVK_Westendorpweg13_010421_getH+VH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 1250
+
+[310/919] IHOVK_Westendorpweg13_010721_MQR_CHNL.pdf
+  ✓ Eigenaar: Meerdervoort Queda Real B.V.
+  ✓ Huurprijs: 1250.0
+
+[311/919] IHOVK_Westendorpweg13_010721_MQR_CHNL_-_huuroveree
+  ✓ Eigenaar: Meerdervoort Queda Real B.V.
+  ✓ Huurprijs: 1250
+
+[312/919] Kvk uittreksel MQR.pdf
+  ✓ Eigenaar: Meerdervoort Queda Real B.V.
+  ✓ Huurprijs: N/A
+
+[313/919] Paspoort met Watermerk.pdf
+  ✓ Eigenaar: N/A
+  ✓ Huurprijs: N/A
+
+[314/919] algemene-bepalingen-kantoorruimte-2015.pdf
+  ✓ Eigenaar: N/A
+  ✓ Huurprijs: N/A
+
+[315/919] Inhuurovereenkomst Voorstraat 3 Harlingen Gotimonu
+  ✓ Eigenaar: Gotimonumenten
+  ✓ Huurprijs: 1600.0
+
+[316/919] IHOVK_Jasmijnring 35_BHR_010821.pdf
+  ✓ Eigenaar: Bright Home Rentals B.V.
+  ✓ Huurprijs: 2800
+
+[317/919] IHOVK Jasmijnring 35_Bright_160920.pdf
+  ✓ Eigenaar: Bright Home Rentals B.V.
+  ✓ Huurprijs: 2800.0
+
+[318/919] IHOVK_Kleinzand18_SM_140122.pdf
+  ✓ Eigenaar: Dhr. S. Marinus
+  ✓ Huurprijs: 1600
+
+[319/919] IHOVK_Kleinzand18_SM_140122_GET_HH_VH.pdf
+  ✓ Eigenaar: Dhr. S. Marinus
+  ✓ Huurprijs: 1600
+
+[320/919] IHOVK_VanHoofsweg4_JanLuijsterburg_010425 GET H + 
+  ✓ Eigenaar: Jan Luijsterburg Beheer BV
+  ✓ Huurprijs: 2700
+
+[321/919] IHOVK_VanHoofsweg4_JanLuijsterburg_010425.pdf
+  ✓ Eigenaar: Jan Luijsterburg Beheer BV
+  ✓ Huurprijs: 2700
+
+[322/919] IHOVK_VanHoofsweg4_JanLuijsterburg_010425 GET H.pd
+  ✓ Eigenaar: Jan Luijsterburg Beheer BV
+  ✓ Huurprijs: 2700
+
+[323/919] IHOVK Vliethorn_GET_HH+VH.pdf
+  ✓ Eigenaar: Mw. Hermans
+  ✓ Huurprijs: 1300.0
+
+[324/919] IHOVK Vliethorn 6_030720.pdf
+  ✓ Eigenaar: Mw. J. Hermans
+  ✓ Huurprijs: 1300
+
+[325/919] HOVK BT Vliethorn 6, Farmsum.pdf
+  ✓ Eigenaar: J. Hermans
+  ✓ Huurprijs: 1300
+
+[326/919] HOVK Torenmolen.pdf
+  ✓ Eigenaar: Staffhousing Services BV
+  ✓ Huurprijs: 2200.0
+
+[327/919] HOVK Torenmolen, Amsterdam GET_HH+VH.pdf
+  ✓ Eigenaar: Staffhousing Services BV
+  ✓ Huurprijs: 2200.0
+
+[328/919] IHOVK Laag Bolwerk 13 GET H.pdf
+  ✓ Eigenaar: J de Jong Holding b.v.
+  ✓ Huurprijs: 1000
+
+[329/919] IHOVK Laag Bolwerk 13 GET H + VH.pdf
+  ✓ Eigenaar: J de Jong Holding b.v.
+  ✓ Huurprijs: 1000
+
+[330/919] IHOVK_Naaldwijkseweg 144_Huysman_010224.pdf
+  ✓ Eigenaar: Mevr. B. Huysman
+  ✓ Huurprijs: 2000
+
+[331/919] Inhuurovereenkomst De Visserstraat 60 Dordrecht Di
+  ✓ Eigenaar: Direct Rendement
+  ✓ Huurprijs: 1250
+
+[332/919] IHOVK_Bloklaan 22A (Ganzengat 6) Loosdrecht_vdWind
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 1500.0
+
+[333/919] IHOVK_Bloklaan 22A (Zomertaling 12 Loosdrecht_vdWi
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 2200.0
+
+[334/919] IHOVK_Bloklaan 22A (Goudplevier 2) Loosdrecht_vdWi
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 2200.0
+
+[335/919] IHOVK_Bloklaan 22A (Ganzengat 14) Loosdrecht_vdWin
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 1200
+
+[336/919] IHOVK_Akkerweg41_huis26_RecreatieparkdeWierde_1001
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 1560.0
+
+[337/919] IHOVK_Akkerweg41_huis26_RecreatieparkdeWierde_1110
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 1560.0
+
+[338/919] IHOVK_Bastion117_CITY_070423_GETHH.pdf
+  ✓ Eigenaar: City Estate B.V.
+  ✓ Huurprijs: 2060
+
+[339/919] IHOVK_Bastion117_CITY_070423_GET_VH+HH.pdf
+  ✓ Eigenaar: City Estate B.V.
+  ✓ Huurprijs: 2060
+
+[340/919] IHOVK_Beethovenhof78_TUN_151122.pdf
+  ✓ Eigenaar: TNM Aannemersbedrijf & Vastgoed
+  ✓ Huurprijs: 1400
+
+[341/919] IHOVK_Beethovenhof78_TUN_151122_GET_VH+HH.pdf
+  ✓ Eigenaar: Teunis Arie Middelkoop, TNM Aannemersbedrijf & Vastgoed
+  ✓ Huurprijs: 1400
+
+[342/919] IHOVK_WillemvanArkellaan25_SHORT_210123_GET_VH+HH.
+  ✓ Eigenaar: Short Stay NL Housing BV
+  ✓ Huurprijs: 4763
+
+[343/919] IHOVK_Marowijnestraat7_Walma_080122.pdf
+  ✓ Eigenaar: Dhr. D. Walma
+  ✓ Huurprijs: 2000
+
+[344/919] IHOVK_Marowijnestraat7_Walma_080122_GET_HH_VH.pdf
+  ✓ Eigenaar: Dhr. D. Walma
+  ✓ Huurprijs: 2000
+
+[345/919] IHOVK_Molenweg_Veghel_FinestHousing.pdf
+  ✓ Eigenaar: Finest Housing B.V.
+  ✓ Huurprijs: 2950
+
+[346/919] IHOVK_Molenweg_FinestHousing_GET_HH+VH.pdf
+  ✓ Eigenaar: Finest Housing B.V.
+  ✓ Huurprijs: 2650
+
+[347/919] IHOVK_Loggerstraat3_EIZ_150522_GET_H.pdf
+  ✓ Eigenaar: Eizema Heerenveen Vastgoed B.V.
+  ✓ Huurprijs: 1900
+
+[348/919] IHOVK_DeTerp25_LW_070322_GET H.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 1250
+
+[349/919] IHOVK_DeTerp25_LW_070322_GET HH_VH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 1250
+
+[350/919] Algemene-Bepalingen-Woonruimte-ROZ-2017.pdf
+  ✓ Eigenaar: Fryslan Homes
+  ✓ Huurprijs: N/A
+
+[351/919] VHOVK De Terp 25_FryslanHomes_GET_HH+VH.pdf
+  ✓ Eigenaar: Fryslan Homes
+  ✓ Huurprijs: 1300
+
+[352/919] IHOVK_DeTerp25_LW_070322.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 1250
+
+[353/919] IHOVK_Baliendijk7_THR_010623.pdf
+  ✓ Eigenaar: Team Home Rentals BV
+  ✓ Huurprijs: 4970.0
+
+[354/919] IHOVK_Baliendijk7_THR_010623_GET H+VH.pdf
+  ✓ Eigenaar: Team Home Rentals BV
+  ✓ Huurprijs: 4970.0
+
+[355/919] IHOVK kerkweg 25 get HH + VH.pdf
+  ✓ Eigenaar: Direct Rendement
+  ✓ Huurprijs: 2630
+
+[356/919] IHOVK Kerkweg 25, Driebruggen.pdf
+  ✓ Eigenaar: Direct Rendement
+  ✓ Huurprijs: 1988.72
+
+[357/919] VIVIR Huurovereenkomst ROZ-2017 Maasdijk 28 Aalst 
+  ✓ Eigenaar: VIVIR wonen
+  ✓ Huurprijs: 3200
+
+[358/919] VIVIR Huurovereenkomst ROZ-2017 Maasdijk 28, Aalst
+  ✓ Eigenaar: VIVIR wonen
+  ✓ Huurprijs: 3200
+
+[359/919] Inhuurovereenkomst Dag Hamarsjoldlaan 80 Hellevoet
+  ✓ Eigenaar: CoHousingNL
+  ✓ Huurprijs: 1250.0
+
+[360/919] IHOVK_dorpsstraat48_VlistDriel_010723_GET H+VH.pdf
+  ✓ Eigenaar: Maatschap van Driel - Vd Vlist
+  ✓ Huurprijs: 7800
+
+[361/919] IHOVK_Dorpstraat48_VlistDriel_010723.pdf
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 7800
+
+[362/919] hov_27020.1.pdf
+  ✓ Eigenaar: StayProjects Group Netherlands B.V.
+  ✓ Huurprijs: 3800
+
+[363/919] IHOVK_Oudedijk147_HBB_010321_GET_VH+HH.pdf
+  ✓ Eigenaar: HBBwonen.nu B.V
+  ✓ Huurprijs: 2300
+
+[364/919] IHOVK_Oudedijk147_HBB_010321.pdf
+  ✓ Eigenaar: HBBwonen.nu B.V
+  ✓ Huurprijs: 2300
+
+[365/919] Huurovk CohousingNL BV  De Riede 10 Slaghharen  pe
+  ✓ Eigenaar: Eizema Heerenveen Vastgoed B.V.
+  ✓ Huurprijs: 1840
+
+[366/919] def  HUURCONTRACT 2023 Jacob Van Offwegenlaan 26 2
+  ✓ Eigenaar: Irene Verbeek
+  ✓ Huurprijs: 1450
+
+[367/919] IHOVK_Hoofdstraat266_010622_GET_VH+H.pdf
+  ✓ Eigenaar: Enigma Pro B.V.
+  ✓ Huurprijs: 2150
+
+[368/919] IHOVK_Hoofdstraat266_010622.pdf
+  ✓ Eigenaar: Enigma Pro B.V.
+  ✓ Huurprijs: 2150
+
+[369/919] IHOVK_Hoofdstraat266_JW_160522_GET HH_VH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.
+  ✓ Huurprijs: 1950
+
+[370/919] IHOVK_Hoofdstraat266_JW_160522_GET H.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 1950
+
+[371/919] VHOK_Hoofdstraat266_JW_160522.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 1950
+
+[372/919] Inhuurovereenkomst Bleeklaan 9 Leeuwarden - J. de 
+  ✓ Eigenaar: J de Jong Holding b.v.
+  ✓ Huurprijs: 1400.0
+
+[373/919] Bleeklaan huurcontract GET_HH+VH.pdf
+  ✓ Eigenaar: J de Jong Holding b.v.
+  ✓ Huurprijs: 1400
+
+[374/919] IHOVK_ParkaanhetVeer22A_Luijsterburg_080122_GET H.
+  ✓ Eigenaar: Jan Luijsterburg Beheer B.V.
+  ✓ Huurprijs: 900
+
+[375/919] IHOVK_ParkaanhetVeer22A_Luijsterburg_080122_GET H+
+  ✓ Eigenaar: Jan Luijsterburg Beheer B.V.
+  ✓ Huurprijs: 900
+
+[376/919] IHOVK_ParkaanhetVeer22A_Luijsterburg_080122.pdf
+  ✓ Eigenaar: Jan Luijsterburg Beheer B.V.
+  ✓ Huurprijs: 900
+
+[377/919] IHOVK_WdeRijkelaan134__Stoel_271123.pdf
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 2800
+
+[378/919] IHOVK Hoofdstraat 32 T Zandt CohousingNL.pdf
+  ✓ Eigenaar: Staffhousing Services BV
+  ✓ Huurprijs: 1950.0
+
+[379/919] IHOVK Hoofdstraat GET_HH+VH.pdf
+  ✓ Eigenaar: Staffhousing Services BV
+  ✓ Huurprijs: 1950.0
+
+[380/919] Huurovk CohousingNL BV  De Grouw 30 Leek per 14-03
+  ✓ Eigenaar: Eizema Heerenveen Vastgoed B.V.
+  ✓ Huurprijs: 1650
+
+[381/919] Huurovk CohousingNL BV  De Grouw 30 Leek per 14-03
+  ✓ Eigenaar: Eizema Heerenveen Vastgoed B.V.
+  ✓ Huurprijs: 1650
+
+[382/919] IHOVK_Akkerweg41_huis31_RecreatieparkdeWierde_0109
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 1560.0
+
+[383/919] IHOVK_Akkerweg41_huis31_RecreatieparkdeWierde_0109
+  ✓ Eigenaar: Recreatiepark de Wierde
+  ✓ Huurprijs: 1560.0
+
+[384/919] Arkelse Onderweg 24a Gorinchem (ver)huurder 30-03-
+  ✓ Eigenaar: N/A
+  ✓ Huurprijs: N/A
+
+[385/919] Arkelse Onderweg 24a Gorinchem (ver)huurder 300321
+  ✓ Eigenaar: VIVIR wonen
+  ✓ Huurprijs: 3550.0
+
+[386/919] Arkelse Onderweg 24a Gorinchem (ver)huurder 30-03-
+  ✓ Eigenaar: N/A
+  ✓ Huurprijs: N/A
+
+[387/919] HVk-15studio'sNesserwei2-CoHousingNL_GET H+VH.pdf
+  ✓ Eigenaar: Kloosterveste BV
+  ✓ Huurprijs: 495
+
+[388/919] IHOVK_Kareldoormanlaan238_CE_150422_GET_HH_VH.pdf
+  ✓ Eigenaar: City Estate B.V.
+  ✓ Huurprijs: 1200
+
+[389/919] IHOVK_Kareldoormanlaan238_CE_150422_GET_HH.pdf
+  ✓ Eigenaar: City Estate B.V.
+  ✓ Huurprijs: 1200
+
+[390/919] IHOVK_Amberberg14_Jaspers_250823.pdf
+  ✓ Eigenaar: RyanRent B.V.
+  ✓ Huurprijs: 2850
+
+[391/919] Inhuur overeenkomst Van der Fuykstraat 66 Brielle 
+  ✓ Eigenaar: Bright Home Rentals B.V.
+  ✓ Huurprijs: 1775
+
+[392/919] IHOVK_Benthuizerstraat30B_VIVIR_270123.pdf
+  ✓ Eigenaar: VIVIR wonen
+  ✓ Huurprijs: 3300.0
+
+[393/919] IHOVK_Benthuizerstraat30B_VIVIR_270123_GET_VH+H.pd
+  ✓ Eigenaar: VIVIR wonen
+  ✓ Huurprijs: 3300.0
+
+[394/919] VHOVK Voorweg 1_MvBServices_010820_GET_HH+VH.pdf
+  ✓ Eigenaar: MvB Services
+  ✓ Huurprijs: 2000
+
+[395/919] VHOK_TwinsBV_Abelenlaan_143_Rozenburg_011024.pdf
+  ✓ Eigenaar: TwinsBV
+  ✓ Huurprijs: 3450.0
+
+[396/919] IHOVK_Schanker70-1_vdHeuvel_230625.pdf
+  ✓ Eigenaar: Van den Heuvel Lieven
+  ✓ Huurprijs: 1880
+
+[397/919] IHOVK_Azielaan764_VALK_030423.pdf
+  ✓ Eigenaar: Valkenet Vastgoed B. V.
+  ✓ Huurprijs: 2200
+
+[398/919] IHOVK_Azielaan764_VALK_030423_VH+HH.pdf
+  ✓ Eigenaar: Valkenet Vastgoed B. V.
+  ✓ Huurprijs: 2200
+
+[399/919] GETEKEND Huurovereenkomst CohousingNL Leenheerstra
+  ✓ Eigenaar: City Estate B.V.
+  ✓ Huurprijs: 950
+
+[400/919] Huurovereenkomst CohousingNL Leenheerstraat 16 Hee
+  ✓ Eigenaar: City Estate B.V.
+  ✓ Huurprijs: 950
+
+[401/919] Hovk Menno Ter Braakstraat 26B Spijkenisse geteken
+  ✓ Eigenaar: Staffhousing Services BV
+  ✓ Huurprijs: 1230.0
+
+[402/919] IHOVK_Marrisstraat 9_Reham_010920.pdf
+  ✓ Eigenaar: Reham Verhuur B.V.
+  ✓ Huurprijs: 1200
+
+[403/919] Inhuurovereenkomst Finest Housing BV - CoHousingNL
+  ✓ Eigenaar: Finest Housing B.V.
+  ✓ Huurprijs: 2600
+
+[404/919] IHOVK_Compierekade15Alphenaanderijn_FaciliFlex_250
+  ✓ Eigenaar: Facil Flex B.V.
+  ✓ Huurprijs: 5750
+
+[405/919] IHOVK_Compierekade15Alphenaanderijn_FaciliFlex_250
+  ✓ Eigenaar: Facili Flex BV
+  ✓ Huurprijs: 5750
+
+[406/919] HOV Zakelijk 243230 - Steenovenstraat 175-1 Essen 
+  ✓ Eigenaar: FlexStay B.V.
+  ✓ Huurprijs: 1970
+
+[407/919] GET HOV Zakelijk 243230 - Steenovenstraat 175-1 Es
+  ✓ Eigenaar: FlexStay B.V.
+  ✓ Huurprijs: 1970
+
+[408/919] Begininspectie  31-1-2023   Rijksweg Zuid 161, 613
+  ✓ Eigenaar: CoHousingNL
+  ✓ Huurprijs: N/A
+
+[409/919] IHOVK_RijksewegZuid161_Moos_30123_GET_VH+HH.pdf
+  ✓ Eigenaar: Dhr. T.R. van de Moosdijk
+  ✓ Huurprijs: 2000
+
+[410/919] IHOVK_RijkswegZuid161_MOOS_010123.pdf
+  ✓ Eigenaar: Dhr. T.R. van de Moosdijk
+  ✓ Huurprijs: 2000
+
+[411/919] Huurovereenkomst Rijksweg Zuid 161 - Sittard getek
+  ✓ Eigenaar: Dhr. TR. van de Moosdijk
+  ✓ Huurprijs: 2000
+
+[412/919] IHOK_Kerkweg 9a Hensbroek huis 268_E&L Dumanli_181
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 1450.0
+
+[413/919] IHOVK_Kerkweg 9A_Dumali_181123 GET H+VH.pdf
+  ✓ Eigenaar: RyanRent & Co
+  ✓ Huurprijs: 2456.0
+
+[414/919] IHOVK Julianalaan 4_VBA_300620 GET H + VH.pdf
+  ✓ Eigenaar: V.B.A. Beheer B.V.
+  ✓ Huurprijs: 1400
+
+[415/919] IHOVK Julianalaan 4_VBA_300620.pdf
+  ✓ Eigenaar: Cohousing Nederland B.V.
+  ✓ Huurprijs: 1400
+
+[416/919] IHOVK_ProfessorKamerlinghOnneslaan105b2_Valkenet_0
+  ✓ Eigenaar: Valkenet Vastgoed B. V.
+  ✓ Huurprijs: 1550
+
+[417/919] IHOVK_ProfessorKamerlinghOnneslaan105b2_Valkenet_0
+  ✓ Eigenaar: Valkenet Vastgoed B. V.
+  ✓ Huurprijs: 1550
+
+[418/919] IHOVK_ProfessorKamerlinghOnneslaan105b2_Valkenet_0
+  ✓ Eigenaar: Valkenet Vastgoed B. V.
+  ✓ Huurprijs: 1550
+
+[419/919] Getekende huurovereenkomst Spijksesteeg1_Spijk_240
+  ✓ Eigenaar: Mevrouw J.C. Kemp
+  ✓ Huurprijs: 1600.0
+
+[420/919] Getekende huurovereenkomst 240321.pdf
+  ✓ Eigenaar: Mevrouw J.C. Kemp
+  ✓ Huurprijs: 1600
+
+[421/919] Getekende huurovereenkomst 24-03-2021.pdf
+  ✓ Eigenaar: Mevrouw J.C. Kemp
+  ✓ Huurprijs: 1600.0
+
+[422/919] Getekende huurovereenkomst 24-03-2021.pdf
+  ✓ Eigenaar: Mevrouw J.C. Kemp
+  ✓ Huurprijs: 1600.0
+
+[423/919] HUUROVEREENKOMST;  Lauernessestraat 8 3193PM Hoogv
+  ✓ Eigenaar: Home Rentals Groep BV
+  ✓ Huurprijs: 3141.67
+
+[424/919] HUUROVEREENKOMST WOONRUIMTE Lauernessestraat 8, 31
+  ✓ Eigenaar: Quality Home Rentals
+  ✓ Huurprijs: 2383.33
+
+[425/919] HUUROVEREENKOMST WOONRUIMTE Lauernessestraat 8, 31
+  ✓ Eigenaar: Quality Home Rentals
+  ✓ Huurprijs: 2004.0
+
+[426/919] Huurovereenkomst; Lauernessestraat 8, Hoogvliet ge
+  ✓ Eigenaar: Resource One BV
+  ✓ Huurprijs: 1841.67
+
+[427/919] Waterstraat 4, hovk.pdf
+  ✓ Eigenaar: Meerdervoort Queda Real B.V.
+  ✓ Huurprijs: 2250
+
+[428/919] IHOVK_waterstraat4_LWV_01072021_ GET H.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2250
+
+[429/919] IHOVK_waterstraat4_LWV_01072021.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2250
+
+[430/919] IHOVK_waterstraat4_LWV_01072021_ GET HH_VH.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2250.0
+
+[431/919] tweezijdig getekende HOVK Waterstraat 4, Delfzijl 
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2250
+
+[432/919] IHOVK_waterstraat4_LWV_01062021.pdf
+  ✓ Eigenaar: Langweer Vastgoed B.V.
+  ✓ Huurprijs: 2250.0
+
+[433/919] IHOVK_Waterstraat4_Delfzijl_15072021_MQR_CHNL_GET_

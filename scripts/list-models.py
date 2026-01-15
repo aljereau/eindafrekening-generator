@@ -39,14 +39,21 @@ async def list_gemini():
 def list_anthropic():
     
     print("\n--- Anthropic Claude (claude) ---")
-    print("  Note: Anthropic SDK does not have a public 'list' endpoint.")
     print("  Referencing documented 2026 models:")
-    print("  - claude-4-5-opus")
-    print("  - claude-4-5-sonnet")
-    print("  - claude-sonnet-4-5-20250929")
-    print("  - claude-4-opus")
-    print("  - claude-4-sonnet")
-d
+    try:
+        from anthropic import Anthropic
+
+        client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+        # Models API returns models with most recent first
+        models = client.models.list()
+
+        for m in models.data:  # .data contains ModelInfo objects
+            print(f"  - {m.name}")
+
+    except Exception as e:
+        print(f"  ❌ Anthropic error: {e}")
+
 async def main():
     print("🔍 FETCHING AVAILABLE MODELS (JANUARY 2026)...")
     await list_openai()

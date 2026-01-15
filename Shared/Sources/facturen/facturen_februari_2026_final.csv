@@ -1,0 +1,357 @@
+﻿object_id;adres;postcode;plaats;capaciteit_personen;aantal_slaapkamers;huurder_naam;huurder_id;start_date;end_date;huur_excl_btw;kale_huur;voorschot_gwe_excl_btw;overige_kosten;gwe_verantwoordelijk
+0005;Ringbaan Oost 327;5014 GG;Tilburg;8;8;AKT Autoschade;237;2024-08-01;2025-07-31;6210,93;5710,93;500,00;0,00;ryanrent
+0140;Wilgenstraat 37;5038PB;Tilburg;5;5;AKT Autoschade;237;2024-06-01;;4255,80;3955,80;300,00;0,00;ryanrent
+0349;Persoonsdam 196;3071EE;Rotterdam;3;3;Aelbers Flexibele Personeels Diensten B.V.;247;2025-03-21;2025-12-21;150,00;0,00;150,00;0,00;ryanrent
+0048;Bliek 41;3225XB;Hellevoetsluis;5;5;AmDor Projecten B.V.;124;2024-01-01;2024-12-31;4650,75;4250,75;400,00;0,00;ryanrent
+0065;Esdoornlaan 68 ;3181XD;Rozenburg;6;4;AmDor Projecten B.V.;124;2023-04-03;2024-04-02;3539,85;3239,85;300,00;0,00;ryanrent
+0100;Molenweg 135;3181AW;Rozenburg;5;3;AmDor Projecten B.V.;124;2024-07-06;2025-07-05;3232,13;2932,13;300,00;0,00;ryanrent
+0102;Narcissenstraat 9;3181WT;Rozenburg;3;2;AmDor Projecten B.V.;124;2022-01-01;2022-12-31;2038,90;1738,90;300,00;0,00;ryanrent
+0104;Narcissenstraat 37;3181WT;Rozenburg;3;3;AmDor Projecten B.V.;124;2022-01-01;2022-12-31;2653,88;2278,88;375,00;0,00;ryanrent
+0127;Struitenweg 19b;3082WP;Rotterdam;5;3;AmDor Projecten B.V.;124;2021-12-18;2022-12-17;2891,83;2516,83;375,00;0,00;ryanrent
+0098;Melis Stokezijde 94;2543GG;Den Haag;4;4;Autodaxx B.V.;140;2022-02-18;2022-08-17;3947,60;3747,60;200,00;0,00;ryanrent
+0013;Baarsveen 197;3205 BB;Spijkenisse;5;5;BBTS (Vastgoed Spijkenisse);190;2023-11-01;2024-04-30;5084,10;4759,10;325,00;0,00;ryanrent
+0158;Visartstraat 31;4541BA;Sluiskil ;4;4;BBTS (Vastgoed Spijkenisse);190;2024-01-30;2024-07-29;2649,11;2449,11;200,00;0,00;ryanrent
+0167;Vogelschorstraat 24;4541AZ;Sluiskil;4;4;BBTS (Vastgoed Spijkenisse);190;2024-01-30;2024-07-29;2649,11;2449,11;200,00;0,00;ryanrent
+0254;Middenbaan Noord 20A;3191EH;Hoogvliet;3;3;BBTS (Vastgoed Spijkenisse);190;2024-06-08;2025-06-07;3159,60;2909,60;250,00;0,00;ryanrent
+0255;Middenbaan Noord 20B;3191EH;Hoogvliet;3;3;BBTS (Vastgoed Spijkenisse);190;2024-06-08;2025-06-07;3159,60;2909,60;250,00;0,00;ryanrent
+0256;Middenbaan Noord 20C;3191EH;Hoogvliet;3;3;BBTS (Vastgoed Spijkenisse);190;2024-06-08;2025-06-07;3159,60;2909,60;250,00;0,00;ryanrent
+0258;Middenbaan Noord 22B;3191EH;Hoogvliet;3;3;BBTS (Vastgoed Spijkenisse);190;2023-05-13;2023-11-12;2748,54;2498,54;250,00;0,00;ryanrent
+0259;Middenbaan Noord 22C ;3191EH;Hoogvliet;3;3;BBTS (Vastgoed Spijkenisse);190;2023-05-13;2023-11-12;2748,54;2498,54;250,00;0,00;ryanrent
+0328;Noordmolenstraat 36A;3111PD;Schiedam;2;2;BBTS (Vastgoed Spijkenisse);190;2025-01-18;2025-07-18;1950,00;1750,00;200,00;0,00;ryanrent
+0329;Noordmolenstraat 36B;3111PD;Schiedam;2;2;BBTS (Vastgoed Spijkenisse);190;2025-01-18;2025-07-18;1950,00;1750,00;200,00;0,00;ryanrent
+0330;Noordmolenstraat 36C;3111PD;Schiedam;2;2;BBTS (Vastgoed Spijkenisse);190;2025-01-18;2025-07-18;1950,00;1750,00;200,00;0,00;ryanrent
+0141;Wilhelminastraat 8;4696 BS;Stavenisse;4;4;Buurman Vastgoed E B.V.;346;2025-10-24;2025-12-31;300,00;0,00;300,00;0,00;ryanrent
+0118;Marathonlaan 26;2807BB;Gouda;5;5;Bw-engineering;342;2025-07-01;2026-06-30;3600,00;3300,00;300,00;0,00;ryanrent
+0142;Wilhelmina Druckerstraat 68;7741 RM;Coevorden;4;4;C-Flex B.V.;288;2024-03-30;2025-02-28;2744,30;2394,30;350,00;0,00;ryanrent
+0147;Hugo de Grootstraat 72A&B;2518 EG;Den Haag;6;4;Crown Uitzendgroep;82;2023-09-11;2023-03-10;3426,56;3426,56;0,00;0,00;eigen_beheer
+0071;H. Algraplein 25;8802RE;Franeker;7;4;DIT en Larex Vakpersoneel B.V.;210;2025-08-16;2026-06-15;2825,00;2575,00;250,00;0,00;ryanrent
+0072;Heemskerkstraat 19;9866AR;Lutjegast;4;4;DIT en Larex Vakpersoneel B.V.;210;2025-03-04;2025-04-04;2500,00;2250,00;250,00;0,00;ryanrent
+0078;Hooizolder 6;9205 CA;Drachten;4;4;DIT en Larex Vakpersoneel B.V.;210;2024-03-15;2024-09-14;2852,50;2602,50;250,00;0,00;ryanrent
+0107;Hoefslag 8;8391BJ;Noordwolde;5;5;DIT en Larex Vakpersoneel B.V.;210;2024-09-27;2024-12-27;2696,35;2446,35;250,00;0,00;ryanrent
+0119;Koningin Julianastraat 27;3466LG;Waarder;5;5;DIT en Larex Vakpersoneel B.V.;210;2024-05-03;2025-05-02;3709,28;3409,28;300,00;0,00;ryanrent
+0212;Wijngaard 66;8212 CD;Lelystad;4;4;DIT en Larex Vakpersoneel B.V.;210;2026-01-16;2026-11-15;3025,00;2775,00;250,00;0,00;ryanrent
+0128;Tesselschadelaan 45;4707CJ;Roosendaal;4;4;EG Facility & Services BV;276;2024-02-04;2025-02-03;2316,23;2316,23;0,00;0,00;eigen_beheer
+0136;Elisadonk 220;4707ER;Roosendaal;4;4;EG Facility & Services BV;276;2024-03-01;2025-02-28;2446,35;2446,35;0,00;0,00;eigen_beheer
+0339;Kerkweg 9a [huis 357];1711RR;Hensbroek;3;3;Eastmen;86;2025-10-30;2026-04-29;3200,00;3000,00;200,00;0,00;ryanrent
+0112;Oudewerfslaan 84;9675 EW;Winschoten;4;4;Eemsdelta Housing B.V.;218;2025-02-09;2025-05-09;2332,00;2082,00;250,00;0,00;ryanrent
+0058;Deugenweerd 18;7271XT;Borculo;6;6;Employ;34;2025-05-30;2025-08-29;2750,00;2750,00;0,00;0,00;eigen_beheer
+0085;Kierkegaardhof 54;1277 AL;Huizen;3;3;Estra Logistics Systems B.V.;320;2025-11-14;2026-06-30;2600,00;2400,00;200,00;0,00;ryanrent
+0144;Scheepjesbrug 433;4231ZZ;Meerkerk;6;6;Estra Logistics Systems B.V.;320;2025-03-22;2026-03-22;4200,00;3800,00;400,00;0,00;ryanrent
+0307;Akkerweg 41 [huis 75];1779GJ;Den Oever;3;4;FISSH B.V.;347;2025-11-01;;2900,00;2600,00;300,00;0,00;ryanrent
+0327;Putter 42;4872 PB;Etten-Leur;4;4;FISSH B.V.;347;2025-08-24;2025-12-20;2600,00;2350,00;250,00;0,00;ryanrent
+0113;Peursumseweg 119A;3381 KV;Giessenburg;4;4;Flextalent4u Uitzenden B.V.;266;2023-11-30;2024-11-30;3075,11;3075,11;0,00;0,00;eigen_beheer
+0197;Scheepjesbrug 814;4231ZZ;Meerkerk;4;4;Flextalent4u Uitzenden B.V.;266;2024-10-26;2025-04-26;250,00;0,00;250,00;0,00;ryanrent
+0260;Persoonsdam 176;3071EE;Rotterdam;2;2;Flexvesting B.V.;172;2025-04-01;2026-04-01;1603,32;1503,32;100,00;0,00;ryanrent
+0261;Persoonsdam 177;3071EE;Rotterdam;2;2;Flexvesting B.V.;172;2025-04-01;2026-04-01;1603,32;1503,32;100,00;0,00;ryanrent
+0262;Persoonsdam 178;3071EE;Rotterdam;2;2;Flexvesting B.V.;172;2025-04-01;2026-04-01;1603,32;1503,32;100,00;0,00;ryanrent
+0263;Persoonsdam 179;3071EE;Rotterdam;3;3;Flexvesting B.V.;172;2025-04-01;2026-04-01;2405,00;2255,00;150,00;0,00;ryanrent
+0264;Persoonsdam 180;3071EE;Rotterdam;3;3;Flexvesting B.V.;172;2025-04-01;2026-04-01;2405,00;2255,00;150,00;0,00;ryanrent
+0265;Persoonsdam 181;3071EE;Rotterdam;3;3;Flexvesting B.V.;172;2025-04-01;2026-04-01;2405,00;2255,00;150,00;0,00;ryanrent
+0266;Persoonsdam 182;3071EE;Rotterdam;3;3;Flexvesting B.V.;172;2025-04-01;2026-04-01;2405,00;2255,00;150,00;0,00;ryanrent
+0267;Persoonsdam 194;3071EE;Rotterdam;2;2;Flexvesting B.V.;172;2025-04-01;2026-04-01;1603,32;1503,32;100,00;0,00;ryanrent
+0268;Persoonsdam 198;3071EE;Rotterdam;3;3;Flexvesting B.V.;172;2025-04-01;2026-04-01;2405,00;2255,00;150,00;0,00;ryanrent
+0323;Marnixstraat 32;7553LC;Hengelo;5;5;Flexvesting B.V.;172;2025-03-25;2026-01-31;2850,00;2550,00;300,00;0,00;ryanrent
+0324;Van Swinderenstraat 21;7741 VK;Coevorden;4;4;Flexvesting B.V.;172;2025-03-01;2026-02-28;2350,00;2100,00;250,00;0,00;ryanrent
+0089;Van Maanenstraat 14A;3038 CZ;Rotterdam;2;2;Focuzop-eu;290;2025-09-15;2025-12-14;120,00;0,00;120,00;0,00;ryanrent
+0151;Datheenstraat 255;3132PG;Vlaardingen;3;3;GAP Costruzioni S.r.l.;374;2024-01-01;2024-12-31;2841,93;2841,93;0,00;0,00;eigen_beheer
+0153;Deensestraat 6A2;3028GH;Rotterdam;4;4;GAP Costruzioni S.r.l.;374;2024-01-01;2024-12-31;3789,24;3789,24;0,00;0,00;eigen_beheer
+0252;Middenbaan Noord 18B ;3191EH;Hoogvliet;3;3;GAP Costruzioni S.r.l.;374;2024-01-01;2024-12-31;2837,83;2737,83;100,00;0,00;ryanrent
+0253;Middenbaan Noord 18C;3191EH;Hoogvliet;3;3;GAP Costruzioni S.r.l.;374;2024-01-01;2024-12-31;2837,83;2737,83;100,00;0,00;ryanrent
+0110;Opaal 9;4337MA;Middelburg;4;4;GOTI Verhuur B.V.;6;2022-10-01;2022-03-31;300,00;0,00;300,00;0,00;ryanrent
+0115;Poppestraat 59;4711EW;St. Willebrord;6;4;Groene Hart Service Detachering B.V.;19;2022-03-12;2023-03-11;2855,46;2855,46;0,00;0,00;eigen_beheer
+0087;Jasmijnring 37;4881HT;Zundert;6;4;H.T.C. Facility Services B.V.;136;2025-10-03;2026-10-02;3600,00;3250,00;350,00;0,00;ryanrent
+0369;Oranjestraat 63;3111AN;Schiedam;2;2;H.T.C. Facility Services B.V.;136;2025-08-15;2026-08-14;1750,00;1600,00;150,00;0,00;ryanrent
+0269;Professor Kamerlingh Onneslaan 134A;3112 VL;Schiedam;4;2;Housing en Transport Facilities BV;88;2024-08-03;2025-08-02;2086,26;1936,26;150,00;0,00;ryanrent
+0270;Professor Kamerlingh Onneslaan 134B1;3112 VL;Schiedam;3;2;Housing en Transport Facilities BV;88;2024-07-27;2025-07-26;1586,58;1436,58;150,00;0,00;ryanrent
+0271;Professor Kamerlingh Onneslaan 134B2;3112 VL;Schiedam;3;2;Housing en Transport Facilities BV;88;2024-07-27;2025-07-26;1586,58;1436,58;150,00;0,00;ryanrent
+0272;Professor Kamerlingh Onneslaan 134B3;3112 VL;Schiedam;3;2;Housing en Transport Facilities BV;88;2024-08-03;2025-08-02;1586,58;1436,58;150,00;0,00;ryanrent
+0344;Pastoor Gilisstraat 81-A;5121CC;Rijen;6;6;Housing en Transport Facilities BV;88;2025-08-15;2026-08-14;4000,00;3600,00;400,00;0,00;ryanrent
+0055;Baanhoek 139;3361 GC;Sliedrecht;4;4;HousingWell B.V.;310;2025-01-01;;3029,47;2779,47;250,00;0,00;ryanrent
+0040;Beatrixstraat 3;3181GA;Rozenburg;3;3;Impes Service S.p.A.;220;2025-10-10;2026-10-09;3300,00;3050,00;250,00;0,00;ryanrent
+0090;Laan van Nieuw Blankenburg 278;3181AL;Rozenburg ;4;3;Impes Service S.p.A.;220;2023-05-22;;3055,46;2855,46;200,00;0,00;ryanrent
+0114;Piersonstraat 8;3119RG;Schiedam;3;3;Impes Service S.p.A.;220;2025-12-19;2026-12-18;2650,00;2450,00;200,00;0,00;ryanrent
+0061;Dwarsweg 44 ;3181HG;Rozenburg;5;5;Impianti Industriala S.P.A. NEDERLAND BRANCH;240;2023-09-01;2024-01-31;4955,44;4755,44;200,00;0,00;ryanrent
+0185;Laan van Nieuw Blankenburg 328;3181AM ;Rozenburg ;4;3;Impianti Industriala S.P.A. NEDERLAND BRANCH;240;2023-09-01;2024-02-01;3053,27;2853,27;200,00;0,00;ryanrent
+0007;Adriaan Baasstraat 34;7902HN;Hoogeveen;4;4;InAxtion Vastgoed B.V.;154;2025-04-18;2026-04-17;2480,00;2200,00;250,00;30,00;ryanrent
+0121;Rivierdijk 794;3371EM;Hardinxveld - Giessendam;9;8;Interim Jobs B.V.;32;2020-10-02;2021-10-01;4620,91;4620,91;0,00;0,00;eigen_beheer
+0145;Wouwbaan 230;4703TA;Roosendaal;5;4;Interim Jobs B.V.;32;2022-07-10;2023-07-09;2974,53;2974,53;0,00;0,00;eigen_beheer
+0226;Rivierdijk 793;3371EM;Hardinxveld - Giessendam;4;3;Interim Jobs B.V.;32;2023-10-13;2024-10-12;2053,74;2053,74;0,00;0,00;eigen_beheer
+0056;De Hooidollen 606;8918JZ;Leeuwarden;4;4;Interwel Oost B.V.;122;2023-03-15;2024-03-14;2046,42;2046,42;0,00;0,00;eigen_beheer
+0101;Moureauveld 8;4702MA;Roosendaal;4;4;I–Housing Vastgoed Beheer B.V.;358;2025-12-05;2026-12-04;3050,00;2800,00;250,00;0,00;ryanrent
+0059;Dieptol 63;8332BK;Steenwijk ;6;6;Kapitan Workers Sp. Z.o.o.;367;2025-10-01;2026-09-30;3700,00;3300,00;400,00;0,00;ryanrent
+0018;Meester G. Groen van Prinsterlaan 313;1181TV;Amstelveen;3;2;Labour Housing BV;234;2024-11-15;2025-11-15;2255,98;2055,98;200,00;0,00;ryanrent
+0310;Kerkweg 9a [huis 210];1711RR;Hensbroek;4;4;Labour Housing BV;234;2024-08-16;2025-08-15;2800,00;2550,00;250,00;0,00;ryanrent
+0312;Kerkweg 9a [huis 333];1711RR;Hensbroek;6;3;Labour Housing BV;234;2024-09-13;2025-09-12;3575,00;3275,00;300,00;0,00;ryanrent
+0313;Kerkweg 9a [huis 334];1711RR;Hensbroek;6;3;Labour Housing BV;234;2024-09-13;2025-09-12;3575,00;3275,00;300,00;0,00;ryanrent
+0314;Kerkweg 9a [huis 338];1711RR;Hensbroek;6;3;Labour Housing BV;234;2024-09-13;2025-09-12;3575,00;3275,00;300,00;0,00;ryanrent
+0316;Kerkweg 9a [huis 346];1711RR;Hensbroek;6;3;Labour Housing BV;234;2024-08-22;2025-08-21;3550,00;3250,00;300,00;0,00;ryanrent
+0317;Kerkweg 9a [huis 347];1711RR;Hensbroek;6;3;Labour Housing BV;234;2024-09-13;2025-09-12;3575,00;3275,00;300,00;0,00;ryanrent
+0320;Kerkweg 9a [huis 359];1711RR;Hensbroek;6;3;Labour Housing BV;234;2024-09-20;2025-09-20;3575,00;3275,00;300,00;0,00;ryanrent
+0321;Kerkweg 9a [huis 453];1711RR;Hensbroek;7;5;Labour Housing BV;234;2024-09-20;2025-09-12;4175,00;3775,00;400,00;0,00;ryanrent
+0064;Enk 6;7621ES;Borne;5;4;Lago Personeelshuisvesting B.V.;98;2023-05-05;;2253,77;2253,77;0,00;0,00;eigen_beheer
+0044;Pleinweg 101a;3081JH;Rotterdam;3;2;Light Personeelsdiensten;48;2024-11-15;2025-11-15;2021,75;1821,75;200,00;0,00;ryanrent
+0045;Pleinweg 101b;3081JH;Rotterdam;3;2;Light Personeelsdiensten;48;2024-11-15;2025-11-15;2021,75;1821,75;200,00;0,00;ryanrent
+0386;Poolsestraat 29a;3028EN;Rotterdam;5;3;Light Personeelsdiensten;48;2025-11-01;2026-10-31;3250,00;2950,00;300,00;0,00;ryanrent
+0305;Akkerweg 41 [huis 57];1779GJ;Den Oever ;4;3;MNA Proud Facilities B.V.;348;2025-04-25;2025-10-01;2400,00;2150,00;250,00;0,00;ryanrent
+0350;Akkerweg 41 [huis 35] ;1779GJ;Den Oever;4;3;MNA Proud Facilities B.V.;348;2025-04-18;2025-10-01;2400,00;2150,00;250,00;0,00;ryanrent
+0356;Akkerweg 41 [huis 36];1779GJ;Den Oever;3;3;MNA Proud Facilities B.V.;348;2025-07-15;2027-07-14;2400,00;2150,00;250,00;0,00;ryanrent
+0372;Akkerweg 41 [huis 11] ;1779GJ;Den Oever;6;3;MNA Proud Facilities B.V.;348;2025-04-18;2025-10-01;3550,00;3200,00;350,00;0,00;ryanrent
+0373;Akkerweg 41 [huis 17];1779GJ;Den Oever;6;4;MNA Proud Facilities B.V.;348;2025-04-18;2025-10-01;3500,00;3200,00;300,00;0,00;ryanrent
+0076;Molendijk 4;3255AL;Oude-Tonge;4;4;Multiservizi Romania SRL;324;2024-10-01;2025-09-30;3868,79;3608,79;260,00;0,00;ryanrent
+0077;Voorstraat 10;3255AX;Oude-Tonge;4;4;Multiservizi Romania SRL;324;2024-10-01;2025-09-30;3868,80;3608,80;260,00;0,00;ryanrent
+0179;Rooseveltlaan 185;4624DM;Bergen op Zoom;6;4;N2people B.V.;372;2025-11-07;2026-05-06;3800,00;3500,00;300,00;0,00;ryanrent
+0023;Desiree Geerartstraat 1B;5111CH;Baarle-Nassau;8;5;NL Realty B.V.;236;2024-10-18;2025-04-18;4033,88;4033,88;0,00;0,00;eigen_beheer
+0024;Desiree Geerartstraat 1C;5111CH;Baarle-Nassau;8;6;NL Realty B.V.;236;2024-10-18;2025-04-18;4033,88;4033,88;0,00;0,00;eigen_beheer
+0294;Akkerweg 41 [huis 15] ;1779GJ;Den Oever;6;4;NL Realty B.V.;236;2024-02-03;2025-02-02;3907,77;3607,77;300,00;0,00;ryanrent
+0299;Akkerweg 41 [huis 37] ;1779GJ;Den Oever ;8;4;NL Realty B.V.;236;2024-01-13;2025-01-12;5110,36;4810,36;300,00;0,00;ryanrent
+0053;Curcumastraat 39 ;3193XA;Hoogvliet;4;4;OJP B.V.;123;2025-01-10;2026-01-10;3633,25;3383,25;250,00;0,00;ryanrent
+0385;Lavendelpad 6;2691NP;S-GRAVENZANDE;6;4;OJP B.V.;123;2025-10-10;;4568,00;4568,00;0,00;0,00;eigen_beheer
+0374;Vierambachtsstraat 32-B01;3023AN;Rotterdam;3;3;Oostkracht Bemiddeling B.V.;356;2025-07-09;2026-01-08;200,00;0,00;200,00;0,00;ryanrent
+0006;Enschotsestraat 163;5014 DD;Tilburg;8;8;Optima Uitzendbureau B.V.;353;2025-06-21;2026-06-21;4575,00;4575,00;0,00;0,00;eigen_beheer
+0332;Kerkweg 9a [huis 340];1711RR;Hensbroek;6;3;Orange Investments Group;84;2025-04-18;2026-04-17;3685,00;3250,00;350,00;85,00;ryanrent
+0338;Kerkweg 9a [huis 348];1711RR;Hensbroek;6;3;Orange Investments Group;84;2025-01-01;;400,00;0,00;400,00;0,00;eigen_beheer
+0159;Kastanjelaan 232;4621HM;Bergen op Zoom;4;3;PRP Solutions Flex Sp. Z.O.O;336;2025-05-21;2026-03-20;2750,00;2500,00;250,00;0,00;ryanrent
+0368;Wedderweg 3A;9699 RA;Vriescheloo;4;4;PRP Solutions Flex Sp. Z.O.O;336;2025-01-01;;250,00;0,00;250,00;0,00;eigen_beheer
+0129;Utrechtse straatweg 7 ;3421GL;Oudewater;6;5;People21 Services BV;268;2023-12-15;2024-12-14;3123,00;3123,00;0,00;0,00;eigen_beheer
+0171;Wijdstraat 13;3421 AJ;Oudewater;10;5;People21 Services BV;268;2024-06-01;2025-05-31;5861,15;5361,15;500,00;0,00;ryanrent
+0029;Madeliefstraat 46C;3083TJ;Rotterdam;3;3;RNDV Industries;329;2024-11-01;2025-11-01;2212,90;1977,90;200,00;35,00;ryanrent
+0039;Inundatiestraat 3;4551VE;Sas van Gent;4;4;RNDV Industries;329;2025-03-18;2025-09-18;2625,00;2375,00;250,00;0,00;ryanrent
+0315;Kerkweg 9a [huis 342];1711RR;Hensbroek;6;3;RNDV Industries;329;2025-10-04;2026-01-02;3625,00;3275,00;350,00;0,00;ryanrent
+0387;Verschansing 21 ;3181NG;Rozenburg;6;4;RNDV Industries;329;2025-10-30;2026-03-31;4350,00;4000,00;350,00;0,00;ryanrent
+0066;Dorpsstraat 73;2841 BH;Moordrecht;9;9;Royal DS Personeel-service;304;2024-06-29;2025-06-28;6540,29;6140,29;400,00;0,00;ryanrent
+0301;Akkerweg 41 [huis 41] ;1779GJ;Den Oever ;8;8;Royal DS Personeel-service;304;2025-01-03;2025-07-03;5500,00;4900,00;600,00;0,00;ryanrent
+0082;Kanaal van Steenenhoek Z.Z. 10;4202LS;Gorinchem;6;6;S. Bakker OPH Verhuur;23;2025-03-19;2025-12-31;4450,00;4100,00;350,00;0,00;ryanrent
+0125;Korte Singelstraat 21-3;3112 GA;Schiedam;2;3;S. Bakker OPH Verhuur;23;2026-01-09;2027-01-08;1700,00;1600,00;100,00;0,00;ryanrent
+0126;Korte Singelstraat 21-2;3112 GA;Schiedam;3;3;S. Bakker OPH Verhuur;23;2026-01-09;2027-01-08;2500,00;2350,00;150,00;0,00;ryanrent
+0331;Flankstraat 11;4551AR;Sas van Gent;4;4;S. Bakker OPH Verhuur;23;2005-02-04;2025-05-04;2750,00;2450,00;300,00;0,00;ryanrent
+0388;1e Middellandstraat 104A;3021BH;Rotterdam;2;2;S. Bakker OPH Verhuur;23;2025-10-31;2026-03-31;1800,00;1600,00;200,00;0,00;ryanrent
+0389;Kritostraat 54;3076BH;Rotterdam;3;3;S. Bakker OPH Verhuur;23;2025-11-14;2026-03-31;2550,00;2350,00;200,00;0,00;ryanrent
+0397;Boogertstraat 5A;3141VN;Maassluis;3;3;S. Bakker OPH Verhuur;23;2026-01-01;2026-12-31;2815,00;2665,00;150,00;0,00;ryanrent
+0398;Boogertstraat 7A;3141VN;Maassluis;3;3;S. Bakker OPH Verhuur;23;2026-01-01;2026-12-31;2815,00;2665,00;150,00;0,00;ryanrent
+0138;Westercluft;8332 AH;Steenwijk ;6;6;Stay21;89;2025-10-10;2026-10-09;3675,00;3325,00;350,00;0,00;ryanrent
+0257;Middenbaan Noord 22A;3191EH;Hoogvliet;2;2;Suricare B.V.;217;2023-05-13;2024-05-12;1752,29;1552,29;200,00;0,00;ryanrent
+0200;Stal 355;9205AN;Drachten ;4;4;THS EU B.V.;235;2023-09-01;2024-02-28;2923,43;2663,43;260,00;0,00;ryanrent
+0091;Landsteinerhof 68;7908 BC;Hoogeveen;5;5;Team Home Rentals B.V.;30;2024-04-04;2025-04-03;2914,80;2914,80;0,00;0,00;eigen_beheer
+0143;Willem Lodewijkstraat 8;8801EL;Franeker;3;3;Team Home Rentals B.V.;30;2025-05-08;;2200,00;2000,00;200,00;0,00;ryanrent
+0146;Johan Willen Frisostraat 36;8606CW;Sneek;5;5;Team Home Rentals B.V.;30;2025-05-01;2025-10-30;3175,00;2875,00;300,00;0,00;ryanrent
+0049;Bornerbroeksestraat 129A;7601BE;Almelo;4;4;Team Unica B.V.;286;2025-11-21;2026-03-20;2600,00;2350,00;250,00;0,00;ryanrent
+0123;Snecanusstraat 12;8607BK;Sneek;5;5;Team Unica B.V.;286;2025-05-17;2025-10-16;2950,00;2650,00;300,00;0,00;ryanrent
+0001;Nunspeetlaan 14;2573 HG;Den Haag;4;3;Tradiro Services B.V.;17;2026-01-14;;1829,53;1829,53;0,00;22,82;ryanrent
+0002;Allard Piersonlaan 142;2522 MT;Den Haag;4;3;Tradiro Services B.V.;17;2026-01-14;;1829,53;1829,53;0,00;25,10;ryanrent
+0004;Broekweg 25;3131 HC;Vlaardingen;4;;Tradiro Services B.V.;17;2023-02-01;2024-03-01;1708,41;1708,41;260,15;25,20;eigen_beheer
+0009;Galgeweg 48-A;2691MG;s-Gravenzande;6;3;Tradiro Services B.V.;17;2026-01-14;;3643,50;0,00;773,78;50,37;ryanrent
+0010;Kethelweg 1B;3135 GA;Vlaardingen;5;3;Tradiro Services B.V.;17;2023-02-01;2024-02-01;1708,41;1708,41;85,24;25,10;eigen_beheer
+0011;Kethelweg 1C;3135 GA;Vlaardingen;3;3;Tradiro Services B.V.;17;2023-02-01;2024-02-01;1708,41;1708,41;32,11;25,10;eigen_beheer
+0015;Maasdijk 69 ;2691NZ;S-Gravenzande;4;3;Tradiro Services B.V.;17;2026-01-14;;3400,00;0,00;2470,80;0,00;ryanrent
+0016;van Scorelstraat 73;3141 TH;Maassluis;5;3;Tradiro Services B.V.;17;2023-02-01;2024-02-01;2364,30;2364,30;218,11;67,36;eigen_beheer
+0017;G.A. Brederolaan 75B;3141 CD;Maassluis;4;3;Tradiro Services B.V.;17;2023-02-01;2024-02-01;1677,89;1677,89;208,85;33,06;eigen_beheer
+0020;Mr. Troelstrastraat 37;3131 HR;Vlaardingen;3;2;Tradiro Services B.V.;17;2023-02-01;2024-02-01;1723,44;1723,44;181,36;25,10;eigen_beheer
+0021;Vaartweg 106C;3131 HV;Vlaardingen;5;3;Tradiro Services B.V.;17;2023-02-01;2024-02-01;1830,43;1830,43;256,89;25,10;eigen_beheer
+0022;2e van Leydengaelstraat 6;3134 LL;Vlaardingen;8;4;Tradiro Services B.V.;17;2023-02-01;2024-02-01;2930,56;2930,56;482,84;25,10;eigen_beheer
+0025;Groenelaan 30B;3114 CH;Schiedam;3;3;Tradiro Services B.V.;17;2025-05-30;;1430,00;1430,00;190,22;117,18;eigen_beheer
+0026;Chopinstraat 39C;3131 DB;Vlaardingen;5;3;Tradiro Services B.V.;17;2023-02-01;2024-02-01;1952,46;1952,46;255,59;25,10;eigen_beheer
+0027;Buizerdstraat 210;3145 AD;Maassluis;4;5;Tradiro Services B.V.;17;2023-03-01;2024-03-01;1677,89;1677,89;142,75;0,00;eigen_beheer
+0028;Lange kruisweg 12;2676 BL;Maasdijk;8;4;Tradiro Services B.V.;17;2023-03-01;2024-03-01;2928,69;2928,69;272,64;0,00;eigen_beheer
+0030;Curacaolaan 88;3131 XD;Vlaardingen;4;2;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;297,55;354,76;ryanrent
+0031;Hogenbanweg 331;3112 CK;Schiedam;3;2;Tradiro Services B.V.;17;2023-03-01;2024-03-01;1568,43;1568,43;195,97;43,49;eigen_beheer
+0033;Kethelweg 66C;3135 GM;Vlaardingen;5;3;Tradiro Services B.V.;17;2023-03-01;2024-03-01;2082,00;2082,00;370,02;22,82;eigen_beheer
+0034;Kethelweg 68A;3135 GM;Vlaardingen;5;3;Tradiro Services B.V.;17;2023-03-01;2024-03-01;2082,00;2082,00;491,73;22,82;eigen_beheer
+0035;Messchaertplein 39;3131 TG;Vlaardingen;3;2;Tradiro Services B.V.;17;2023-01-13;2023-12-31;1784,67;1784,67;160,42;0,00;eigen_beheer
+0036;Messchaertplein 40;3131 TG;Vlaardingen;5;3;Tradiro Services B.V.;17;2023-01-13;2023-12-31;2810,70;2810,70;332,55;25,10;eigen_beheer
+0037;Westfrankelandsestraat 108B;3117 AW;Schiedam;3;3;Tradiro Services B.V.;17;2026-01-14;;2546,51;2196,51;350,00;43,49;ryanrent
+0042;Parallelweg 110A;3131 DK;Vlaardingen;5;3;Tradiro Services B.V.;17;2025-01-01;;2082,00;2082,00;0,00;22,82;eigen_beheer
+0057;Markt 5 ;3142 GE;Maassluis;8;6;Tradiro Services B.V.;17;2026-01-14;;1715,60;0,00;395,02;43,39;ryanrent
+0063;Energieweg 40;3133EC;Vlaardingen;4;3;Tradiro Services B.V.;17;2026-01-14;;2841,93;2841,93;266,49;25,10;ryanrent
+0067;Franz Liszstraat 5;4536EA;Terneuzen;7;4;Tradiro Services B.V.;17;2024-04-12;2025-04-11;3643,50;3643,50;631,65;0,00;eigen_beheer
+0074;Mgr. W.M. Bekkerslaan 34;3141SK;Maassluis;4;4;Tradiro Services B.V.;17;2026-01-14;;2509,85;0,00;267,50;43,39;ryanrent
+0079;Ploegstraat 2a;3114NP;Schiedam;4;2;Tradiro Services B.V.;17;2024-06-01;;1734,98;1734,98;107,58;0,00;eigen_beheer
+0080;Voorstraat 25;3135HV;Vlaardingen;4;2;Tradiro Services B.V.;17;2025-06-06;;2420,00;2170,00;250,00;0,00;ryanrent
+0084;Kerkdreef 42;4571GJ;Axel;4;2;Tradiro Services B.V.;17;2024-10-18;2025-10-18;2250,00;2250,00;0,00;0,00;eigen_beheer
+0088;Kethelweg 66A;3135 GM;Vlaardingen;5;3;Tradiro Services B.V.;17;2025-04-04;;2593,81;2593,81;151,41;0,00;eigen_beheer
+0095;Engelsestraat 16L3;3028CG;Rotterdam;4;2;Tradiro Services B.V.;17;2025-01-01;;1993,32;1993,32;58,43;25,10;eigen_beheer
+0097;Burchstraat 16A;4501 BJ;Oostburg;7;7;Tradiro Services B.V.;17;2025-07-25;;4000,00;3550,00;450,00;0,00;ryanrent
+0099;Steenen Dijck 87;3146 BX;Maassluis;6;3;Tradiro Services B.V.;17;2024-04-13;2025-04-12;3383,25;3383,25;503,72;0,00;eigen_beheer
+0103;Narcissenstraat 23;3181 WT;Rozenburg;3;2;Tradiro Services B.V.;17;2025-06-03;;1700,00;1700,00;250,00;24,30;eigen_beheer
+0111;Oosterstraat 89;3134NN;Vlaardingen;6;3;Tradiro Services B.V.;17;2026-01-14;;1569,30;0,00;315,48;0,00;ryanrent
+0120;Plaats 10;3417EC;Montfoort;4;4;Tradiro Services B.V.;17;2026-01-14;;3100,00;2850,00;250,00;0,00;ryanrent
+0122;Kethelweg 66B;3135 GM;Vlaardingen;5;3;Tradiro Services B.V.;17;2024-02-01;2025-02-01;2593,81;2593,81;329,99;0,00;eigen_beheer
+0131;Chopinstraat 35A;3131 BD;Vlaardingen;4;3;Tradiro Services B.V.;17;2024-02-01;2025-01-31;2165,26;2165,26;146,31;0,00;eigen_beheer
+0134;Herenpad 20 B;3111 LN ;Schiedam;3;3;Tradiro Services B.V.;17;2026-01-14;;992,34;0,00;0,00;0,00;ryanrent
+0135;Amperestraat 36A;3112MD;Schiedam;3;2;Tradiro Services B.V.;17;2024-04-23;2025-04-22;1691,63;1691,63;331,67;0,00;eigen_beheer
+0139;Wilgensingel 63 ;3181XK;Rozenburg;5;3;Tradiro Services B.V.;17;2026-01-14;;3457,68;3157,68;300,00;0,00;ryanrent
+0148;2e Maasbosstraat 2 a;3134XJ;Vlaardingen;;;Tradiro Services B.V.;17;2025-01-01;;1570,24;0,00;179,57;67,35;eigen_beheer
+0149;2e Maasbosstraat 2 b;3134XJ;Vlaardingen;5;5;Tradiro Services B.V.;17;2025-01-01;;1570,24;0,00;168,87;69,57;eigen_beheer
+0150;2e Maasbosstraat 2 c;3134XJ;Vlaardingen;5;5;Tradiro Services B.V.;17;2025-01-01;;1475,31;0,00;106,43;69,56;eigen_beheer
+0152;Beeklaan 294;2562AV;Den Haag ;8;4;Tradiro Services B.V.;17;2026-01-14;;5050,00;4600,00;450,00;25,10;ryanrent
+0154;Rubensplein 6B3;3117BK;Schiedam;4;3;Tradiro Services B.V.;17;2024-11-01;2024-12-31;2438,15;2238,15;200,00;0,00;ryanrent
+0156;Broersvest 74 c;3112DG;SCHIEDAM;3;3;Tradiro Services B.V.;17;2026-01-14;;2051,51;0,00;165,62;69,56;ryanrent
+0160;Chopinstraat 33C;3131DB;Vlaardingen;3;3;Tradiro Services B.V.;17;2025-01-01;;1300,00;0,00;230,16;25,10;eigen_beheer
+0162;Coornhertstraat 95 ;3132GB;VLAARDINGEN;2;2;Tradiro Services B.V.;17;2026-01-14;;1557,73;0,00;223,96;25,10;ryanrent
+0163;Curacaolaan 24;3131XC;VLAARDINGEN;3;3;Tradiro Services B.V.;17;2026-01-14;;3269,00;0,00;406,25;43,90;ryanrent
+0165;De Driesprong 17;2295LL;KWINTSHEUL;4;4;Tradiro Services B.V.;17;2025-01-01;;4140,00;0,00;902,75;50,37;eigen_beheer
+0170;Goudestein 30;3085 DB;Rotterdam;3;3;Tradiro Services B.V.;17;2026-01-14;;2350,00;2100,00;250,00;25,10;ryanrent
+0172;Groeneweg 127;2691ML;'S-GRAVENZANDE;3;3;Tradiro Services B.V.;17;2026-01-14;;2650,00;0,00;711,47;0,00;ryanrent
+0173;Groeneweg 71 ;2691MK;S-GRAVENZANDE;4;3;Tradiro Services B.V.;17;2026-01-14;;1850,00;0,00;424,43;50,37;ryanrent
+0174;Groeneweg 74;2691MR;'S-GRAVENZANDE;2;2;Tradiro Services B.V.;17;2026-01-14;;1916,00;0,00;200,00;50,37;ryanrent
+0175;Hagastraat 8;3114ND;Schiedam;2;2;Tradiro Services B.V.;17;2026-01-14;;1451,23;0,00;208,34;69,56;ryanrent
+0176;Herautpad 22 ;3119DL;Schiedam;2;2;Tradiro Services B.V.;17;2025-01-01;;1125,00;0,00;116,38;67,35;eigen_beheer
+0177;Hoge Noordweg 27B;2671DZ;NAALDWIJK;4;3;Tradiro Services B.V.;17;2026-01-14;;2700,00;0,00;1144,00;53,72;ryanrent
+0178;Hoge Noordweg 28;2671DZ;NAALDWIJK;4;3;Tradiro Services B.V.;17;2026-01-14;;2800,00;0,00;11040,15;53,72;ryanrent
+0183;Hugo de Vriesstraat 54 ;3132TG;VLAARDINGEN;5;3;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;189,37;325,10;ryanrent
+0184;Mathenesserdijk 261 C03;3027AK;Rotterdam;3;3;Tradiro Services B.V.;17;2026-01-14;;2932,63;2732,63;200,00;0,00;ryanrent
+0186;Woutersweg 20;2691 PR; 's-Gravenzande;4;3;Tradiro Services B.V.;17;2025-01-01;;2600,00;0,00;1888,57;27,44;eigen_beheer
+0191;Jan van Arkelstraat 118;3132VP;VLAARDINGEN;3;3;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;203,11;210,10;ryanrent
+0193;Kapershoek 11;3085ED;Rotterdam;4;2;Tradiro Services B.V.;17;2026-01-14;;2600,00;2350,00;250,00;25,10;ryanrent
+0194;Keesomstraat 22;3132TJ;VLAARDINGEN;2;2;Tradiro Services B.V.;17;2026-01-14;;2336,00;0,00;971,97;43,11;ryanrent
+0195;Keesomstraat 50 ;3132TJ;VLAARDINGEN;3;3;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;236,33;230,45;ryanrent
+0196;Keesomstraat 54;3132TJ;VLAARDINGEN;3;3;Tradiro Services B.V.;17;2026-01-14;;1405,00;0,00;276,32;25,10;ryanrent
+0199;Kerstendijk 125;3079EV;Rotterdam;3;3;Tradiro Services B.V.;17;2026-01-14;;2841,93;2841,93;519,95;25,10;ryanrent
+0202;Kimbrenoord 15;3079 KC;Rotterdam;5;3;Tradiro Services B.V.;17;2026-01-14;;2950,00;2650,00;300,00;25,10;ryanrent
+0205;Kreekrug 1;2678PR;DE LIER;;;Tradiro Services B.V.;17;2026-01-14;;4800,00;0,00;475,00;0,00;ryanrent
+0206;Kruiningenstraat 152;3086KS;Rotterdam;4;2;Tradiro Services B.V.;17;2026-01-14;;2650,00;2400,00;250,00;25,10;ryanrent
+0207;Kwikstaartweg 45;3136JH;Vlaardingen;3;2;Tradiro Services B.V.;17;2025-01-01;;1970,00;0,00;350,03;30,00;eigen_beheer
+0208;Mr. L.A. Kesperweg 31A;3135BS;VLAARDINGEN;3;2;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;189,37;211,44;ryanrent
+0210;Lorentzstraat 73;3132SP;Schiedam;5;3;Tradiro Services B.V.;17;2026-01-14;;1865,50;0,00;345,28;25,20;ryanrent
+0213;Mr. Troelstrastraat 11;3131HR;VLAARDINGEN;3;2;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;283,56;175,10;ryanrent
+0214;Mendelssohnplein 13D;3131RD;VLAARDINGEN;4;4;Tradiro Services B.V.;17;2026-01-14;;2801,00;0,00;96,38;43,90;ryanrent
+0215;Mendelssohnplein 10C;3131RD;VLAARDINGEN;8;8;Tradiro Services B.V.;17;2026-01-14;;2801,00;0,00;75,67;43,90;ryanrent
+0216;Mendelssohnplein 46a;3131RK;VLAARDINGEN;4;3;Tradiro Services B.V.;17;2026-01-14;;1561,50;0,00;569,98;35,00;ryanrent
+0217;Middelrode 8;3085CR;Rotterdam;3;3;Tradiro Services B.V.;17;2026-01-14;;2500,00;2250,00;250,00;25,10;ryanrent
+0219;Miltonstraat 55;3076TG;Rotterdam;2;2;Tradiro Services B.V.;17;2026-01-14;;1600,00;1450,00;150,00;25,10;ryanrent
+0221;Molenstraat 10;2671EX;Naaldwijk;6;6;Tradiro Services B.V.;17;2025-01-01;;2088,66;0,00;1600,00;72,57;eigen_beheer
+0222;Molenstraat 23;2671EW;Naaldwijk;4;4;Tradiro Services B.V.;17;2025-01-01;;1282,51;0,00;477,68;43,39;eigen_beheer
+0225;Kerkwervesingel 127;3086HL;Rotterdam;3;2;Tradiro Services B.V.;17;2026-01-14;;1800,00;1600,00;200,00;25,10;ryanrent
+0227;Oostlaan 3 ;2678NK;DE LIER;4;4;Tradiro Services B.V.;17;2025-01-01;;2561,50;0,00;463,53;0,00;eigen_beheer
+0228;Parallelweg 122A ;3131DL;VLAARDINGEN;;;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;381,26;135,10;ryanrent
+0229;Parallelweg 98B;3131DJ;VLAARDINGEN;4;4;Tradiro Services B.V.;17;2026-01-14;;1397,00;0,00;167,62;25,10;ryanrent
+0230;Pasteursingel 61;3028EJ;Rotterdam;6;3;Tradiro Services B.V.;17;2025-01-01;;1776,00;0,00;450,00;25,10;eigen_beheer
+0231;Platostraat 80;3076BP;Rotterdam;4;2;Tradiro Services B.V.;17;2026-01-14;;1200,00;0,00;266,32;25,10;ryanrent
+0232;Zuidhoek 209D;3082PH;Rotterdam;4;2;Tradiro Services B.V.;17;2026-01-14;;2650,00;2400,00;250,00;25,10;ryanrent
+0233;Rembrandtstraat 20B;2671GD;Naaldwijk;3;2;Tradiro Services B.V.;17;2025-01-01;;1603,14;0,00;2877,70;43,39;eigen_beheer
+0234;Rotterdamsedijk 154B;3112BJ;SCHIEDAM;6;5;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;452,17;119,57;ryanrent
+0235;Rubensplein 3 B;3117BK;SCHIEDAM;5;3;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;117,03;69,56;ryanrent
+0236;Schalkeroord 389;3079WH;Rotterdam;;;Tradiro Services B.V.;17;2025-01-01;;1623,90;0,00;462,00;165,21;eigen_beheer
+0237;Schere 238;3085DZ;ROTTERDAM;4;3;Tradiro Services B.V.;17;2026-01-14;;1345,37;0,00;43,23;24,30;ryanrent
+0238;Van der Werffstraat 370 ;3132WK;VLAARDINGEN;2;2;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;231,94;751,36;ryanrent
+0239;Schoonegge 110;3085CZ;Rotterdam;4;2;Tradiro Services B.V.;17;2026-01-14;;2550,00;2300,00;250,00;25,10;ryanrent
+0241;van der Werffstraat 166;3132WG;VLAARDINGEN;3;2;Tradiro Services B.V.;17;2025-01-01;;1250,00;0,00;35,88;25,10;eigen_beheer
+0242;Sint Liduinastraat 76 A;3117CV;SCHIEDAM;5;3;Tradiro Services B.V.;17;2026-01-14;;900,00;0,00;332,77;69,56;ryanrent
+0243;Sint Liduinastraat 80A;3117CV;SCHIEDAM;4;4;Tradiro Services B.V.;17;2025-01-01;;4216,22;0,00;334,43;69,57;eigen_beheer
+0245;van der Werffstraat 240;3132WH;VLAARDINGEN;;;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;186,36;211,00;ryanrent
+0246;Socratesstraat 168;3076BZ;ROTTERDAM;4;4;Tradiro Services B.V.;17;2026-01-14;;1200,00;0,00;265,08;25,10;ryanrent
+0247;Spoorsingel 154b;3134XW;VLAARDINGEN;4;4;Tradiro Services B.V.;17;2026-01-14;;2129,12;0,00;0,00;25,10;ryanrent
+0249;Tholenstraat 114;3086TP;Rotterdam;3;2;Tradiro Services B.V.;17;2026-01-14;;2350,00;2150,00;200,00;25,10;ryanrent
+0250;van der Waalsstraat 70;3132TN;VLAARDINGEN;4;4;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;411,41;182,10;ryanrent
+0277;Gerberalaan 113;2671 KC;Naaldwijk;;;Tradiro Services B.V.;17;2026-01-14;;111,47;0,00;0,00;0,00;ryanrent
+0292;Burgemeester Stulemeijerlaan 71;3118BC;Schiedam;;;Tradiro Services B.V.;17;2026-01-14;;1019,00;0,00;47,03;0,00;ryanrent
+0333;Kethelweg 66D;3135 GM;Vlaardingen;5;3;Tradiro Services B.V.;17;2025-02-07;2026-02-07;2491,65;2491,65;0,00;0,00;eigen_beheer
+0336;Ofwegen 1A;2481KA;Woubrugge;6;3;Tradiro Services B.V.;17;2026-01-14;;3250,00;2900,00;350,00;0,00;ryanrent
+0337;Kruisweg 16;2481NA;Woubrugge;10;6;Tradiro Services B.V.;17;2025-10-01;;5350,00;4750,00;600,00;0,00;ryanrent
+0340;Professor Poelslaan 58C;3028ET;Rotterdam;5;3;Tradiro Services B.V.;17;2025-02-28;2026-02-28;2750,00;2750,00;224,26;0,00;eigen_beheer
+0347;Van Ruijsdaellaan 72A;3117XV;Schiedam;3;2;Tradiro Services B.V.;17;2025-03-01;;1560,00;1560,00;95,67;0,00;eigen_beheer
+0351;Van Ruijsdaellaan 72B;3117XV;Schiedam;3;2;Tradiro Services B.V.;17;2025-04-01;;1560,00;1560,00;134,40;0,00;eigen_beheer
+0352;Van Ruijsdaellaan 72C;3117XV;Schiedam;3;2;Tradiro Services B.V.;17;2025-03-17;;1560,00;1560,00;153,15;0,00;eigen_beheer
+0353;Archimedesstraat 6B;3112DB;Schiedam;4;2;Tradiro Services B.V.;17;2025-04-01;;1623,96;1623,96;174,24;0,00;eigen_beheer
+0359;Kimbrenoord 49;3079 KC;Rotterdam;4;2;Tradiro Services B.V.;17;2026-01-14;;2500,00;2250,00;250,00;0,00;ryanrent
+0360;Kruiningenstraat 185;3086KM;Rotterdam;4;2;Tradiro Services B.V.;17;2026-01-14;;2750,00;2500,00;250,00;25,10;ryanrent
+0361;Putsebocht 136 B01;3073 HS;Rotterdam;;;Tradiro Services B.V.;17;2026-01-14;;1494,99;0,00;112,58;0,00;ryanrent
+0362;Ruigenhoek 69;3085EM;Rotterdam;4;2;Tradiro Services B.V.;17;2026-01-14;;2750,00;2500,00;250,00;0,00;ryanrent
+0371;De Zwingel 8B;4926DC;Lage Zwaluwe;28;;Tradiro Services B.V.;17;2025-05-01;;13043,23;13043,23;718,97;153,76;eigen_beheer
+0375;Cubalaan 25;2685 LA;Poeldijk;8;5;Tradiro Services B.V.;17;2025-07-18;;5300,00;4850,00;450,00;0,00;ryanrent
+0376;Zwethkade Zuid 30A;2635CV;Den Hoorn;6;3;Tradiro Services B.V.;17;2025-08-16;;3890,00;3500,00;390,00;0,00;ryanrent
+0380;Parallelweg 114C;3131DL;Vlaardingen;4;3;Tradiro Services B.V.;17;2025-09-20;;2350,00;2100,00;250,00;110,00;ryanrent
+0381;Parallelweg 134B;3131DL;Vlaardingen;4;3;Tradiro Services B.V.;17;2025-09-20;;2350,00;2100,00;250,00;0,00;ryanrent
+0382;Kwekerslaan 7 ;2691NP;s-Gravezande;10;7;Tradiro Services B.V.;17;2025-10-03;;4956,32;4506,32;450,00;0,00;ryanrent
+0390;Roerdompstraat 4B;2953ER;Alblasserdam;10;5;Tradiro Services B.V.;17;2026-01-14;;3200,00;0,00;0,00;0,00;ryanrent
+0402;Broersveld 150B;;Schiedam;;;Tradiro Services B.V.;17;2026-01-14;;990,46;0,00;50,28;0,00;ryanrent
+0403;Hontenissestraat 124A;;Rotterdam;;;Tradiro Services B.V.;17;2026-01-14;;1574,00;0,00;385,02;25,10;ryanrent
+0404;Europalaan 50;;Sas van Gent;;;Tradiro Services B.V.;17;2026-01-14;;3615,03;3615,03;517,88;85,25;ryanrent
+0408;Lauwersmeer 4;;Barendrecht;;;Tradiro Services B.V.;17;2026-01-14;;2550,00;0,00;394,00;59,00;ryanrent
+0409;Noordstraat 26;;Walsoorden;;;Tradiro Services B.V.;17;2026-01-14;;5883,03;5883,03;740,00;85,25;ryanrent
+0411;Homeflex Park;;Honselersdijk;;;Tradiro Services B.V.;17;2026-01-14;;600,00;0,00;0,00;0,00;ryanrent
+0412;Hontenissestraat 162;;Rotterdam;;;Tradiro Services B.V.;17;2026-01-14;;3347,25;0,00;380,00;85,25;ryanrent
+0414;Platostraat 38;;Rotterdam;;;Tradiro Services B.V.;17;2026-01-14;;1080,00;1080,00;4,67;0,00;ryanrent
+0416;Jacob van Ruijsdaelstraat 28;;Roosendaal;;;Tradiro Services B.V.;17;2026-01-14;;1560,00;0,00;69,73;67,35;ryanrent
+0431;1e Verdeligsweg 6 - 537;;Putte;;;Tradiro Services B.V.;17;2026-01-14;;475,00;0,00;0,00;0,00;ryanrent
+0432;1e Verdeligsweg 6 - 821;;Putte;;;Tradiro Services B.V.;17;2026-01-14;;475,00;0,00;0,00;0,00;ryanrent
+0433;1e Verdeligsweg 6 - 822;;Putte;;;Tradiro Services B.V.;17;2026-01-14;;475,00;0,00;0,00;0,00;ryanrent
+0436;de Lus 16 ap28;;Schagen;;;Tradiro Services B.V.;17;2026-01-14;;59,85;0,00;0,00;0,00;ryanrent
+0437;Dorpstraat 27;;Moordrecht;;;Tradiro Services B.V.;17;2026-01-14;;1409,40;0,00;0,00;0,00;ryanrent
+0438;Franselaan 273-B;;;;;Tradiro Services B.V.;17;2026-01-14;;1641,12;0,00;272,56;25,10;ryanrent
+0440;Genestestraat 32;;Terneuzen;;;Tradiro Services B.V.;17;2026-01-14;;2602,50;0,00;0,00;0,00;ryanrent
+0443;Ida Gerhardtplein 10;;Spijkenisse;;;Tradiro Services B.V.;17;2026-01-14;;757,44;0,00;0,00;0,00;ryanrent
+0444;J. van Lennepstraat 13A;;Schiedam;;;Tradiro Services B.V.;17;2026-01-14;;989,88;0,00;273,62;67,36;ryanrent
+0445;J. van Lennepstraat 13B;;Schiedam;;;Tradiro Services B.V.;17;2026-01-14;;989,88;0,00;482,46;67,35;ryanrent
+0447;Kerklaan 74;;Nieuwerkerk aan den IJssel;;;Tradiro Services B.V.;17;2026-01-14;;647,10;0,00;0,00;0,00;ryanrent
+0448;Kerklaan 80;;Nieuwerkerk aan den IJssel;;;Tradiro Services B.V.;17;2026-01-14;;764,26;0,00;0,00;0,00;ryanrent
+0452;Nic. Beetsstraat 29;;Vlaardingen;;;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;202,99;140,10;ryanrent
+0453;Nijverheidstraat 26a, Studio 201;;Vlaardingen;;;Tradiro Services B.V.;17;2026-01-14;;59,85;0,00;0,00;0,00;ryanrent
+0454;Oostene 23;;;;;Tradiro Services B.V.;17;2026-01-14;;972,00;0,00;0,00;0,00;ryanrent
+0455;Papsouwselaan 30;;Delft;;;Tradiro Services B.V.;17;2026-01-14;;435,00;0,00;0,00;0,00;ryanrent
+0456;Papsouwselaan 32;;Delft;;;Tradiro Services B.V.;17;2026-01-14;;435,00;0,00;0,00;0,00;ryanrent
+0457;Papsouwselaan 34;;Delft;;;Tradiro Services B.V.;17;2026-01-14;;435,00;0,00;0,00;0,00;ryanrent
+0458;Papsouwselaan 44;;Delft;;;Tradiro Services B.V.;17;2026-01-14;;435,00;0,00;0,00;0,00;ryanrent
+0459;Papsouwselaan 52;;Delft;;;Tradiro Services B.V.;17;2026-01-14;;435,00;0,00;0,00;0,00;ryanrent
+0460;Papsouwselaan 58;;Delft;;;Tradiro Services B.V.;17;2026-01-14;;435,00;0,00;0,00;0,00;ryanrent
+0461;Papsouwselaan 68;;Delft;;;Tradiro Services B.V.;17;2026-01-14;;435,00;0,00;0,00;0,00;ryanrent
+0462;Papsouwselaan 86;;Delft;;;Tradiro Services B.V.;17;2026-01-14;;435,00;0,00;0,00;0,00;ryanrent
+0463;Papsouwselaan 138;;Delft;;;Tradiro Services B.V.;17;2026-01-14;;435,00;0,00;0,00;0,00;ryanrent
+0464;Papsouwselaan 178;;Delft;;;Tradiro Services B.V.;17;2026-01-14;;560,00;0,00;0,00;0,00;ryanrent
+0466;Singelweg 95;;Axel;;;Tradiro Services B.V.;17;2026-01-14;;614,82;0,00;0,00;0,00;ryanrent
+0467;St. Annalandstraat 116;;Rotterdam;;;Tradiro Services B.V.;17;2026-01-14;;1415,00;0,00;273,81;25,10;ryanrent
+0468;Sweelinckstraat 32;;Vlaardingen;;;Tradiro Services B.V.;17;2026-01-14;;730,44;0,00;0,00;0,00;ryanrent
+0469;Tulpenstraat 45;;Rozenburg;;;Tradiro Services B.V.;17;2026-01-14;;441,00;0,00;0,00;0,00;ryanrent
+0470;v.d. Waalstraat 16;;Vlaardingen;;;Tradiro Services B.V.;17;2026-01-14;;895,00;0,00;411,41;1102,91;ryanrent
+0474;Honselaarsdijk 27;;Monster;;;Tradiro Services B.V.;17;2025-01-01;;15163,20;15163,20;0,00;0,00;ryanrent
+0475;Broekweg 26;2691 RN;'s-Gravenzande;;;Tradiro Services B.V.;17;2025-01-01;;864,00;864,00;0,00;0,00;ryanrent
+0489;Woudseweg 146;;;;;Tradiro Services B.V.;17;2025-01-01;;540,00;540,00;0,00;0,00;ryanrent
+0046;Nieuwenhoornstraat 46B;3082 VJ;Rotterdam;3;3;UAB Techsome;330;2025-01-10;2026-01-10;2386,10;2186,10;200,00;0,00;ryanrent
+0309;Kerkweg 9a [huis 137];1711RR;Hensbroek;3;3;UAB Toromega;83;2025-09-28;2026-01-31;2050,00;1850,00;200,00;0,00;ryanrent
+0311;Kerkweg 9a [huis 269];1711RR;Hensbroek;4;2;UAB Toromega;83;2025-09-28;2026-01-31;2525,00;2275,00;250,00;0,00;ryanrent
+0365;Laan op zuid 949;3072DB;Rotterdam;4;3;UAB Toromega;83;2025-09-20;2025-12-31;2900,00;2650,00;250,00;0,00;ryanrent
+0133;Herenpad 20A;3111 LP;Schiedam;2;2;Uitzendbureau Bakker B.V.;298;2026-01-09;2027-01-08;1700,00;1700,00;100,00;0,00;ryanrent
+0003;Acacia 2;3224EB;Hellevoetsluis;5;5;United Homes B.V.;13;2023-03-06;2024-03-05;3820,81;3820,81;0,00;0,00;eigen_beheer
+0051;Coehoorn van Scheltingaweg 12;8442EX;Heerenveen;4;3;United Homes B.V.;13;2022-10-01;2024-04-30;1991,92;1991,92;0,00;0,00;eigen_beheer
+0052;Coehoorn van Scheltingaweg 66;8442GA;Heerenveen;4;3;United Homes B.V.;13;2022-10-01;2024-04-30;1911,79;1911,79;0,00;0,00;eigen_beheer
+0073;Hendrik Deddenstraat 26;8395PX;Steggerda;5;5;United Homes B.V.;13;2022-10-01;;2464,47;2464,47;0,00;0,00;eigen_beheer
+0124;Snoekenveen 242;3205CN;Spijkenisse;4;4;United Homes B.V.;13;2022-05-01;2023-04-30;2913,43;2663,43;250,00;0,00;ryanrent
+0130;Van Langedonckstraat 80;3076 SM;Rotterdam;4;3;United Homes B.V.;13;2022-10-01;2023-01-01;2234,29;2234,29;0,00;0,00;eigen_beheer
+0325;Hendriklaan 49;6043 BN;Roermond;10;6;VALO Facilities B.V.;305;2025-01-03;2026-01-03;6030,00;5500,00;450,00;80,00;ryanrent
+0273;Fenacoliuslaan 56B;3143AE;Maassluis;8;4;Van Bergen Personeelsdiensten B.V.;284;2020-03-06;;2227,00;0,00;388,90;79,00;ryanrent
+0274;Karel Doormanlaan 21A;2678EX;DE LIER;4;2;Van Bergen Personeelsdiensten B.V.;284;2018-03-01;;1150,00;0,00;0,00;0,00;ryanrent
+0275;Burgemeester Crezeelaan 76;2678KZ;DE LIER;8;4;Van Bergen Personeelsdiensten B.V.;284;2012-11-26;;1400,00;0,00;902,34;0,00;ryanrent
+0276;Burgemeester Cramerlaan 82;2678 AN;DE LIER;6;4;Van Bergen Personeelsdiensten B.V.;284;2019-01-01;;1450,00;0,00;589,59;79,00;ryanrent
+0278;Lange Broekweg 46;2671 DV;Naaldwijk;8;5;Van Bergen Personeelsdiensten B.V.;284;2017-12-10;;1825,00;0,00;0,00;79,00;ryanrent
+0279;Haagkamp 11;2675 SK;Honselersdijk;6;3;Van Bergen Personeelsdiensten B.V.;284;2012-11-26;;1950,00;0,00;429,36;0,00;ryanrent
+0280;Bovendijk 59;2295 RW;Kwintsheul;5;3;Van Bergen Personeelsdiensten B.V.;284;2014-06-01;;1375,00;0,00;122,42;79,00;ryanrent
+0281;Bovendijk 61;2295 RW;Kwintsheul;8;5;Van Bergen Personeelsdiensten B.V.;284;2014-06-01;;2625,00;0,00;261,87;79,00;ryanrent
+0282;Madeweg 25C;2681 PJ;Monster;8;4;Van Bergen Personeelsdiensten B.V.;284;2017-04-01;;2600,00;0,00;0,00;79,00;ryanrent
+0283;Madeweg 35A;2681 PK;Monster;7;4;Van Bergen Personeelsdiensten B.V.;284;2021-03-01;;2020,00;0,00;632,87;79,00;ryanrent
+0284;Molenweg 3A;2681 RD;Monster;7;4;Van Bergen Personeelsdiensten B.V.;284;2012-11-26;;1800,00;0,00;609,67;79,00;ryanrent
+0285;Poeldijkseweg 27;2681 LT;Monster;;;Van Bergen Personeelsdiensten B.V.;284;2023-11-01;;850,00;0,00;0,00;0,00;ryanrent
+0286;Waellandweg 12;2681 LV;Monster;7;4;Van Bergen Personeelsdiensten B.V.;284;2012-11-26;;2000,00;0,00;633,76;79,00;ryanrent
+0288;De Haak, Zekkenstraat 31A;3151 XP;Hoek van Holland;7;4;Van Bergen Personeelsdiensten B.V.;284;2023-01-01;;2500,00;0,00;48,21;0,00;ryanrent
+0289;De Haak, Zekkenstraat 31B;3151 XP;Hoek van Holland;8;4;Van Bergen Personeelsdiensten B.V.;284;2023-01-01;;2500,00;0,00;0,00;0,00;ryanrent
+0291;Koperwerf 28;2544EN;Den Haag;150;86;Van Bergen Personeelsdiensten B.V.;284;2020-03-01;;1500,00;0,00;0,00;395,00;ryanrent
+0335;Molenweg 3B;2681 RD;Monster;5;3;Van Bergen Personeelsdiensten B.V.;284;2025-01-02;;1800,00;0,00;200,00;79,00;ryanrent
+0363;Rietdijkstraat 56A;3151 GJ;Hoek van Holland;4;2;Van Bergen Personeelsdiensten B.V.;284;2023-01-01;;1300,00;0,00;6,70;0,00;ryanrent
+0364;Rietdijkstraat 56B;3151 GJ;Hoek van Holland;6;3;Van Bergen Personeelsdiensten B.V.;284;2023-01-01;;1950,00;0,00;6,70;0,00;ryanrent
+0377;Rijpstraat 24;3151BV;Hoek van Holland;4;2;Van Bergen Personeelsdiensten B.V.;284;2019-05-15;;1733,33;0,00;0,00;0,00;ryanrent
+0378;Poeldijkseweg 29;2681 LT;Monster;;;Van Bergen Personeelsdiensten B.V.;284;2023-07-01;;1500,00;0,00;0,00;0,00;ryanrent
+0012;Baarlelaan 27;7906GB;Hoogeveen;4;4;Vivir Wonen;26;2023-01-06;2024-01-05;2059,23;2059,23;0,00;0,00;eigen_beheer
+0043;Amperelaan 23;8451BW;Oudeschoot;4;4;Vivir Wonen;26;2023-10-09;2024-10-08;2471,07;2471,07;0,00;0,00;eigen_beheer
+0109;Geldersestraat 91;4191BB;Geldermalsen;7;7;Vivir Wonen;26;2024-05-13;2025-05-12;4872,20;4372,20;500,00;0,00;ryanrent
+0166;Nieuwkerkstraat 78;3311TK;Dordrecht;4;3;Vivir Wonen;26;2023-11-01;2024-10-31;2469,06;2169,06;300,00;0,00;ryanrent
+0105;Wieldraaierstraat 39;4204EW;Gorinchem;5;4;WIL International B.V.;309;2024-09-03;2025-09-02;3038,78;2888,78;150,00;0,00;ryanrent
+0075;Hoofdstraat 110;5473AT;Heeswijk-Dinther;4;4;WILL Vakkrachten B. V.;270;2024-01-15;2024-07-15;2342,25;2342,25;0,00;0,00;eigen_beheer
+0081;Patrijsstraat 39;3353AZ;Papendrecht;4;3;WS Detachering BV;36;2024-06-18;2024-12-17;2644,30;2394,30;250,00;0,00;ryanrent
+0050;Sint Josephstraat 61;5017GD;Tilburg;7;7;Welcome Housing B.V.;312;2024-08-05;2025-02-04;4564,00;4164,00;400,00;0,00;ryanrent
+0047;Bisschopstraat 68;8325BD;Vollenhove;6;7;Werckpost Service B.V.;149;2024-07-23;2025-07-22;4038,04;4038,04;0,00;0,00;eigen_beheer
+0092;Lange Brink 3;8315AH;Luttelgeest;8;5;Werckpost Service B.V.;149;2024-06-24;2025-06-23;3643,50;3643,50;0,00;0,00;eigen_beheer
+0204;Punter 22 34;8242DT;Lelystad;5;4;Werckpost Service B.V.;149;2025-03-21;2026-03-21;3100,00;2800,00;300,00;0,00;ryanrent
+0308;Kerkweg 9a [huis 135];1711RR;Hensbroek;3;3;Werckpost Service B.V.;149;2025-06-13;2026-06-12;2100,00;1900,00;200,00;0,00;ryanrent
+0318;Kerkweg 9a [huis 349];1711RR;Hensbroek;6;3;Werckpost Service B.V.;149;2025-09-02;2026-09-01;3675,00;3275,00;400,00;0,00;ryanrent
+0319;Kerkweg 9a [huis 356];1711RR;Hensbroek;6;3;Werckpost Service B.V.;149;2024-06-22;2024-08-22;3650,00;3250,00;300,00;100,00;ryanrent
+0086;Kleine Beer 60;7904 LV;Hoogeveen;7;6;Workforce Housing Holland B.V.;338;2025-04-01;2025-08-31;550,00;0,00;550,00;0,00;ryanrent
+0117;Prunuslaan 36;9944AT;Nieuwolda;4;4;Workforce Housing International B.V;363;2025-08-16;2025-10-15;2550,00;0,00;250,00;0,00;ryanrent
+0190;Achterdijk 47a;4243 TM;Nieuwland;7;4;dockHolland Huisvesting B.V.;145;2023-11-11;2024-11-10;4113,26;3613,26;500,00;0,00;ryanrent

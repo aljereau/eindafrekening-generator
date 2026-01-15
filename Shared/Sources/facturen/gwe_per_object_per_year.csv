@@ -1,0 +1,553 @@
+﻿object_id;adres;huurder;jaar;gwe_kosten;transacties
+0005;Ringbaan Oost 327;AKT Autoschade;2023;1500,0;3
+0005;Ringbaan Oost 327;AKT Autoschade;2024;9641,23;13
+0005;Ringbaan Oost 327;AKT Autoschade;2025;11762,51;13
+0006;Enschotsestraat 163;Optima Uitzendbureau B.V.;2024;279,86;1
+0006;Enschotsestraat 163;Optima Uitzendbureau B.V.;2025;3294,53;8
+0006;Enschotsestraat 163;Optima Uitzendbureau B.V.;2026;413,15;1
+0007;Adriaan Baasstraat 34;InAxtion Vastgoed B.V.;2022;1845,36;8
+0007;Adriaan Baasstraat 34;InAxtion Vastgoed B.V.;2023;92,66;1
+0007;Adriaan Baasstraat 34;InAxtion Vastgoed B.V.;2024;3779,46;14
+0007;Adriaan Baasstraat 34;InAxtion Vastgoed B.V.;2025;5105,64;13
+0007;Adriaan Baasstraat 34;InAxtion Vastgoed B.V.;2026;1975,1;3
+0008;Arkelse Onderweg 24a;;2021;3461,21;10
+0008;Arkelse Onderweg 24a;;2022;22061,84;13
+0012;Baarlelaan 27;Vivir Wonen;2022;2790,16;9
+0013;Baarsveen 197;BBTS (Vastgoed Spijkenisse);2024;4079,57;14
+0013;Baarsveen 197;BBTS (Vastgoed Spijkenisse);2025;4734,04;13
+0013;Baarsveen 197;BBTS (Vastgoed Spijkenisse);2026;991,55;3
+0014;Abelenlaan 143;;2024;845,44;3
+0014;Abelenlaan 143;;2025;3379,87;10
+0018;Meester G. Groen van Prinsterlaan 313;Labour Housing BV;2025;3830,73;13
+0018;Meester G. Groen van Prinsterlaan 313;Labour Housing BV;2026;67,61;1
+0025;Groenelaan 30B;Tradiro Services B.V.;2024;103,22;1
+0025;Groenelaan 30B;Tradiro Services B.V.;2025;147,7;1
+0025;Groenelaan 30B;Tradiro Services B.V.;2026;22,94;1
+0027;Buizerdstraat 210;Tradiro Services B.V.;2025;5583,1;1
+0028;Lange kruisweg 12;Tradiro Services B.V.;2024;614,26;1
+0028;Lange kruisweg 12;Tradiro Services B.V.;2025;1278,0;2
+0032;Jacob van offwegenlaan 26;;2024;1399,96;7
+0032;Jacob van offwegenlaan 26;;2025;2539,35;9
+0035;Messchaertplein 39;Tradiro Services B.V.;2024;459,94;3
+0036;Messchaertplein 40;Tradiro Services B.V.;2024;947,84;5
+0037;Westfrankelandsestraat 108B;Tradiro Services B.V.;2024;2892,6;10
+0037;Westfrankelandsestraat 108B;Tradiro Services B.V.;2025;6316,54;13
+0038;Westfrankelandsestraat 108;;2025;3057,84;10
+0039;Inundatiestraat 3;RNDV Industries;2024;674,39;2
+0039;Inundatiestraat 3;RNDV Industries;2025;3758,22;11
+0039;Inundatiestraat 3;RNDV Industries;2026;422,08;1
+0040;Beatrixstraat 3;Impes Service S.p.A.;2025;338,84;2
+0040;Beatrixstraat 3;Impes Service S.p.A.;2026;198,78;2
+0043;Amperelaan 23;Vivir Wonen;2022;2202,0;7
+0043;Amperelaan 23;Vivir Wonen;2023;2976,89;14
+0044;Pleinweg 101a;Light Personeelsdiensten;2025;2975,08;12
+0044;Pleinweg 101a;Light Personeelsdiensten;2026;2185,0;2
+0046;Nieuwenhoornstraat 46B;UAB Techsome;2025;2995,08;12
+0047;Bisschopstraat 68;Werckpost Service B.V.;2022;6334,34;13
+0047;Bisschopstraat 68;Werckpost Service B.V.;2023;8699,1;15
+0047;Bisschopstraat 68;Werckpost Service B.V.;2024;4724,85;12
+0048;Bliek 41;AmDor Projecten B.V.;2023;2586,24;1
+0048;Bliek 41;AmDor Projecten B.V.;2024;819,0;1
+0048;Bliek 41;AmDor Projecten B.V.;2025;3198,35;6
+0048;Bliek 41;AmDor Projecten B.V.;2026;36,7;1
+0049;Bornerbroeksestraat 129A;Team Unica B.V.;2022;4477,86;10
+0049;Bornerbroeksestraat 129A;Team Unica B.V.;2023;5065,51;14
+0049;Bornerbroeksestraat 129A;Team Unica B.V.;2024;2818,01;13
+0049;Bornerbroeksestraat 129A;Team Unica B.V.;2025;3706,23;11
+0050;Sint Josephstraat 61;Welcome Housing B.V.;2024;674,38;2
+0050;Sint Josephstraat 61;Welcome Housing B.V.;2025;4852,02;13
+0051;Coehoorn van Scheltingaweg 12;United Homes B.V.;2022;3442,38;9
+0051;Coehoorn van Scheltingaweg 12;United Homes B.V.;2024;475,04;1
+0052;Coehoorn van Scheltingaweg 66;United Homes B.V.;2022;1532,82;7
+0052;Coehoorn van Scheltingaweg 66;United Homes B.V.;2024;320,66;1
+0053;Curcumastraat 39 ;OJP B.V.;2021;883,88;12
+0053;Curcumastraat 39 ;OJP B.V.;2022;6550,2;16
+0053;Curcumastraat 39 ;OJP B.V.;2023;3049,59;13
+0053;Curcumastraat 39 ;OJP B.V.;2024;2946,33;14
+0053;Curcumastraat 39 ;OJP B.V.;2025;2535,46;13
+0053;Curcumastraat 39 ;OJP B.V.;2026;28,44;1
+0054;De Gasperistraat 11;;2023;1910,15;8
+0054;De Gasperistraat 11;;2024;4236,9;14
+0054;De Gasperistraat 11;;2025;262,29;1
+0055;Baanhoek 139;HousingWell B.V.;2024;1001,64;4
+0055;Baanhoek 139;HousingWell B.V.;2025;1836,75;8
+0056;De Hooidollen 606;Interwel Oost B.V.;2021;3992,01;14
+0056;De Hooidollen 606;Interwel Oost B.V.;2022;6873,1;14
+0056;De Hooidollen 606;Interwel Oost B.V.;2023;766,97;4
+0058;Deugenweerd 18;Employ;2023;2500,0;5
+0058;Deugenweerd 18;Employ;2024;2407,46;7
+0058;Deugenweerd 18;Employ;2025;1685,01;4
+0059;Dieptol 63;Kapitan Workers Sp. Z.o.o.;2025;753,29;3
+0059;Dieptol 63;Kapitan Workers Sp. Z.o.o.;2026;307,44;1
+0060;Besterdring 6;;2024;1717,62;4
+0061;Dwarsweg 44 ;Impianti Industriala S.P.A. NEDERLAND BRANCH;2021;7340,22;11
+0061;Dwarsweg 44 ;Impianti Industriala S.P.A. NEDERLAND BRANCH;2022;8380,44;12
+0061;Dwarsweg 44 ;Impianti Industriala S.P.A. NEDERLAND BRANCH;2023;600,0;3
+0061;Dwarsweg 44 ;Impianti Industriala S.P.A. NEDERLAND BRANCH;2024;11267,23;14
+0061;Dwarsweg 44 ;Impianti Industriala S.P.A. NEDERLAND BRANCH;2025;8328,28;10
+0061;Dwarsweg 44 ;Impianti Industriala S.P.A. NEDERLAND BRANCH;2026;35,78;1
+0062;Eendrachtstraat 22;;2022;5458,7;7
+0062;Eendrachtstraat 22;;2023;1376,22;1
+0062;Eendrachtstraat 22;;2025;7188,55;3
+0063;Energieweg 40;Tradiro Services B.V.;2024;300,0;1
+0063;Energieweg 40;Tradiro Services B.V.;2025;4449,01;13
+0063;Energieweg 40;Tradiro Services B.V.;2026;331,18;1
+0064;Enk 6;Lago Personeelshuisvesting B.V.;2022;3533,16;10
+0064;Enk 6;Lago Personeelshuisvesting B.V.;2023;828,05;5
+0065;Esdoornlaan 68 ;AmDor Projecten B.V.;2021;3009,87;16
+0065;Esdoornlaan 68 ;AmDor Projecten B.V.;2022;9050,76;13
+0065;Esdoornlaan 68 ;AmDor Projecten B.V.;2023;1954,8;8
+0065;Esdoornlaan 68 ;AmDor Projecten B.V.;2024;4855,16;14
+0065;Esdoornlaan 68 ;AmDor Projecten B.V.;2025;8857,99;13
+0065;Esdoornlaan 68 ;AmDor Projecten B.V.;2026;626,87;1
+0066;Dorpsstraat 73;Royal DS Personeel-service;2024;2400,0;6
+0066;Dorpsstraat 73;Royal DS Personeel-service;2025;8629,3;11
+0067;Franz Liszstraat 5;Tradiro Services B.V.;2022;4515,82;15
+0067;Franz Liszstraat 5;Tradiro Services B.V.;2023;8911,96;17
+0067;Franz Liszstraat 5;Tradiro Services B.V.;2024;2630,6;8
+0068;F.Erensstraat 21;;2022;1708,6;7
+0069;Gaffelaar 3;;2022;4130,74;10
+0069;Gaffelaar 3;;2023;5948,91;15
+0069;Gaffelaar 3;;2024;7624,67;19
+0069;Gaffelaar 3;;2025;5395,39;10
+0070;Geleenstraat 1;;2022;0,0;3
+0070;Geleenstraat 1;;2024;3985,92;14
+0070;Geleenstraat 1;;2025;4079,31;13
+0071;H. Algraplein 25;DIT en Larex Vakpersoneel B.V.;2022;4924,96;12
+0071;H. Algraplein 25;DIT en Larex Vakpersoneel B.V.;2023;4542,17;14
+0071;H. Algraplein 25;DIT en Larex Vakpersoneel B.V.;2024;6211,76;21
+0071;H. Algraplein 25;DIT en Larex Vakpersoneel B.V.;2025;2356,45;21
+0072;Heemskerkstraat 19;DIT en Larex Vakpersoneel B.V.;2022;3854,78;12
+0072;Heemskerkstraat 19;DIT en Larex Vakpersoneel B.V.;2023;4827,76;15
+0072;Heemskerkstraat 19;DIT en Larex Vakpersoneel B.V.;2024;1933,13;6
+0072;Heemskerkstraat 19;DIT en Larex Vakpersoneel B.V.;2025;2806,78;11
+0072;Heemskerkstraat 19;DIT en Larex Vakpersoneel B.V.;2026;272,73;1
+0073;Hendrik Deddenstraat 26;United Homes B.V.;2022;5058,44;9
+0075;Hoofdstraat 110;WILL Vakkrachten B. V.;2021;4619,63;14
+0075;Hoofdstraat 110;WILL Vakkrachten B. V.;2022;9087,68;14
+0075;Hoofdstraat 110;WILL Vakkrachten B. V.;2024;1455,11;4
+0076;Molendijk 4;Multiservizi Romania SRL;2024;1800,0;6
+0076;Molendijk 4;Multiservizi Romania SRL;2025;4079,77;14
+0076;Molendijk 4;Multiservizi Romania SRL;2026;271,14;1
+0077;Voorstraat 10;Multiservizi Romania SRL;2024;999,99;5
+0077;Voorstraat 10;Multiservizi Romania SRL;2025;4884,27;13
+0077;Voorstraat 10;Multiservizi Romania SRL;2026;352,56;1
+0078;Hooizolder 6;DIT en Larex Vakpersoneel B.V.;2022;3144,7;9
+0078;Hooizolder 6;DIT en Larex Vakpersoneel B.V.;2023;2400,05;13
+0078;Hooizolder 6;DIT en Larex Vakpersoneel B.V.;2024;2940,35;21
+0078;Hooizolder 6;DIT en Larex Vakpersoneel B.V.;2025;902,74;3
+0080;Voorstraat 25;Tradiro Services B.V.;2024;199,99;1
+0080;Voorstraat 25;Tradiro Services B.V.;2025;352,56;1
+0081;Patrijsstraat 39;WS Detachering BV;2024;1252,05;5
+0081;Patrijsstraat 39;WS Detachering BV;2025;3222,89;13
+0081;Patrijsstraat 39;WS Detachering BV;2026;275,74;1
+0082;Kanaal van Steenenhoek Z.Z. 10;S. Bakker OPH Verhuur;2023;3040,13;10
+0082;Kanaal van Steenenhoek Z.Z. 10;S. Bakker OPH Verhuur;2024;4942,33;15
+0082;Kanaal van Steenenhoek Z.Z. 10;S. Bakker OPH Verhuur;2025;5229,28;15
+0083;Pastoriedijk 89;;2024;999,98;5
+0083;Pastoriedijk 89;;2025;1501,18;6
+0085;Kierkegaardhof 54;Estra Logistics Systems B.V.;2022;2202,0;7
+0085;Kierkegaardhof 54;Estra Logistics Systems B.V.;2023;2299,25;13
+0085;Kierkegaardhof 54;Estra Logistics Systems B.V.;2024;2391,51;13
+0085;Kierkegaardhof 54;Estra Logistics Systems B.V.;2025;4366,58;12
+0086;Kleine Beer 60;Workforce Housing Holland B.V.;2022;2935,8;7
+0086;Kleine Beer 60;Workforce Housing Holland B.V.;2023;4287,62;9
+0086;Kleine Beer 60;Workforce Housing Holland B.V.;2024;5460,26;16
+0086;Kleine Beer 60;Workforce Housing Holland B.V.;2025;5909,19;14
+0086;Kleine Beer 60;Workforce Housing Holland B.V.;2026;15,52;1
+0087;Jasmijnring 37;H.T.C. Facility Services B.V.;2021;148,18;1
+0087;Jasmijnring 37;H.T.C. Facility Services B.V.;2025;241,31;1
+0088;Kethelweg 66A;Tradiro Services B.V.;2025;677,98;3
+0088;Kethelweg 66A;Tradiro Services B.V.;2026;86,24;1
+0089;Van Maanenstraat 14A;Focuzop-eu;2024;1199,96;6
+0089;Van Maanenstraat 14A;Focuzop-eu;2025;3127,21;15
+0089;Van Maanenstraat 14A;Focuzop-eu;2026;231,55;1
+0090;Laan van Nieuw Blankenburg 278;Impes Service S.p.A.;2020;574,04;1
+0090;Laan van Nieuw Blankenburg 278;Impes Service S.p.A.;2021;1941,3;12
+0090;Laan van Nieuw Blankenburg 278;Impes Service S.p.A.;2022;2911,6;16
+0090;Laan van Nieuw Blankenburg 278;Impes Service S.p.A.;2023;2367,95;16
+0090;Laan van Nieuw Blankenburg 278;Impes Service S.p.A.;2024;3100,33;14
+0090;Laan van Nieuw Blankenburg 278;Impes Service S.p.A.;2025;5933,99;17
+0090;Laan van Nieuw Blankenburg 278;Impes Service S.p.A.;2026;23,85;1
+0091;Landsteinerhof 68;Team Home Rentals B.V.;2023;1447,93;5
+0091;Landsteinerhof 68;Team Home Rentals B.V.;2024;2645,41;7
+0092;Lange Brink 3;Werckpost Service B.V.;2021;826,48;4
+0092;Lange Brink 3;Werckpost Service B.V.;2022;9879,9;12
+0092;Lange Brink 3;Werckpost Service B.V.;2023;2938,16;9
+0092;Lange Brink 3;Werckpost Service B.V.;2024;5524,63;12
+0093;Fabristraat 34A;;2024;173,54;2
+0093;Fabristraat 34A;;2025;2527,36;10
+0094;Fabristraat 34B;;2024;319,0;2
+0094;Fabristraat 34B;;2025;2311,07;9
+0097;Burchstraat 16A;Tradiro Services B.V.;2025;2643,94;9
+0098;Melis Stokezijde 94;Autodaxx B.V.;2022;8083,26;13
+0098;Melis Stokezijde 94;Autodaxx B.V.;2023;2274,95;12
+0098;Melis Stokezijde 94;Autodaxx B.V.;2024;7063,35;13
+0098;Melis Stokezijde 94;Autodaxx B.V.;2025;9049,36;15
+0100;Molenweg 135;AmDor Projecten B.V.;2022;2863,0;9
+0100;Molenweg 135;AmDor Projecten B.V.;2023;7938,95;14
+0100;Molenweg 135;AmDor Projecten B.V.;2024;5039,49;14
+0100;Molenweg 135;AmDor Projecten B.V.;2025;5513,02;14
+0100;Molenweg 135;AmDor Projecten B.V.;2026;42,2;1
+0101;Moureauveld 8;I–Housing Vastgoed Beheer B.V.;2023;4123,01;12
+0101;Moureauveld 8;I–Housing Vastgoed Beheer B.V.;2024;5895,81;15
+0101;Moureauveld 8;I–Housing Vastgoed Beheer B.V.;2025;5330,92;13
+0102;Narcissenstraat 9;AmDor Projecten B.V.;2021;648,64;7
+0102;Narcissenstraat 9;AmDor Projecten B.V.;2022;4515,04;14
+0102;Narcissenstraat 9;AmDor Projecten B.V.;2023;2894,78;15
+0102;Narcissenstraat 9;AmDor Projecten B.V.;2024;3975,12;14
+0102;Narcissenstraat 9;AmDor Projecten B.V.;2025;4475,57;14
+0102;Narcissenstraat 9;AmDor Projecten B.V.;2026;25,69;1
+0103;Narcissenstraat 23;Tradiro Services B.V.;2022;1673,44;7
+0104;Narcissenstraat 37;AmDor Projecten B.V.;2021;202,31;1
+0104;Narcissenstraat 37;AmDor Projecten B.V.;2022;5716,02;13
+0104;Narcissenstraat 37;AmDor Projecten B.V.;2023;4520,58;15
+0104;Narcissenstraat 37;AmDor Projecten B.V.;2024;3675,85;14
+0104;Narcissenstraat 37;AmDor Projecten B.V.;2025;4019,99;14
+0104;Narcissenstraat 37;AmDor Projecten B.V.;2026;33,03;1
+0105;Wieldraaierstraat 39;WIL International B.V.;2024;1599,98;8
+0105;Wieldraaierstraat 39;WIL International B.V.;2025;2601,27;13
+0105;Wieldraaierstraat 39;WIL International B.V.;2026;169,14;1
+0106;Prinses Wilhelminastraat 9;Tradiro Services B.V.;2024;1344,2;6
+0106;Prinses Wilhelminastraat 9;Tradiro Services B.V.;2025;205,39;3
+0107;Hoefslag 8;DIT en Larex Vakpersoneel B.V.;2024;1692,56;8
+0107;Hoefslag 8;DIT en Larex Vakpersoneel B.V.;2025;4883,84;14
+0107;Hoefslag 8;DIT en Larex Vakpersoneel B.V.;2026;358,97;1
+0108;Nieuwe Zeedijk 1K 308;;2023;3632,04;10
+0108;Nieuwe Zeedijk 1K 308;;2024;4836,7;14
+0108;Nieuwe Zeedijk 1K 308;;2025;2028,0;5
+0109;Geldersestraat 91;Vivir Wonen;2024;1642,97;7
+0109;Geldersestraat 91;Vivir Wonen;2025;11240,02;12
+0112;Oudewerfslaan 84;Eemsdelta Housing B.V.;2025;2782,41;12
+0113;Peursumseweg 119A;Flextalent4u Uitzenden B.V.;2022;370,0;2
+0114;Piersonstraat 8;Impes Service S.p.A.;2021;2653,51;11
+0114;Piersonstraat 8;Impes Service S.p.A.;2022;5733,8;14
+0114;Piersonstraat 8;Impes Service S.p.A.;2023;2319,03;13
+0114;Piersonstraat 8;Impes Service S.p.A.;2024;2415,36;14
+0114;Piersonstraat 8;Impes Service S.p.A.;2025;2328,14;14
+0115;Poppestraat 59;Groene Hart Service Detachering B.V.;2022;5943,86;10
+0115;Poppestraat 59;Groene Hart Service Detachering B.V.;2023;0,0;4
+0117;Prunuslaan 36;Workforce Housing International B.V;2021;743,76;10
+0117;Prunuslaan 36;Workforce Housing International B.V;2022;6491,1;12
+0117;Prunuslaan 36;Workforce Housing International B.V;2023;1200,0;5
+0117;Prunuslaan 36;Workforce Housing International B.V;2024;5275,6;13
+0117;Prunuslaan 36;Workforce Housing International B.V;2025;5409,03;15
+0118;Marathonlaan 26;Bw-engineering;2024;2400,0;8
+0118;Marathonlaan 26;Bw-engineering;2025;4532,4;16
+0118;Marathonlaan 26;Bw-engineering;2026;359,6;2
+0119;Koningin Julianastraat 27;DIT en Larex Vakpersoneel B.V.;2024;2100,0;7
+0119;Koningin Julianastraat 27;DIT en Larex Vakpersoneel B.V.;2025;5194,05;13
+0119;Koningin Julianastraat 27;DIT en Larex Vakpersoneel B.V.;2026;343,47;1
+0120;Plaats 10;Tradiro Services B.V.;2024;2003,35;8
+0120;Plaats 10;Tradiro Services B.V.;2025;3186,56;14
+0120;Plaats 10;Tradiro Services B.V.;2026;239,9;1
+0121;Rivierdijk 794;Interim Jobs B.V.;2022;4402,36;3
+0123;Snecanusstraat 12;Team Unica B.V.;2022;1431,48;7
+0123;Snecanusstraat 12;Team Unica B.V.;2024;1269,42;6
+0123;Snecanusstraat 12;Team Unica B.V.;2025;6489,18;12
+0124;Snoekenveen 242;United Homes B.V.;2023;2553,21;1
+0124;Snoekenveen 242;United Homes B.V.;2024;758,0;1
+0124;Snoekenveen 242;United Homes B.V.;2025;2668,6;5
+0125;Korte Singelstraat 21-3;S. Bakker OPH Verhuur;2024;200,0;1
+0125;Korte Singelstraat 21-3;S. Bakker OPH Verhuur;2025;520,44;2
+0126;Korte Singelstraat 21-2;S. Bakker OPH Verhuur;2025;27262,44;7
+0126;Korte Singelstraat 21-2;S. Bakker OPH Verhuur;2026;227,27;1
+0127;Struitenweg 19b;AmDor Projecten B.V.;2021;165,29;1
+0127;Struitenweg 19b;AmDor Projecten B.V.;2022;9371,44;16
+0127;Struitenweg 19b;AmDor Projecten B.V.;2023;3496,52;14
+0127;Struitenweg 19b;AmDor Projecten B.V.;2024;5178,79;14
+0127;Struitenweg 19b;AmDor Projecten B.V.;2025;5150,66;14
+0128;Tesselschadelaan 45;EG Facility & Services BV;2021;3375,11;13
+0128;Tesselschadelaan 45;EG Facility & Services BV;2022;5594,78;13
+0128;Tesselschadelaan 45;EG Facility & Services BV;2024;413,22;2
+0128;Tesselschadelaan 45;EG Facility & Services BV;2025;367,88;1
+0129;Utrechtse straatweg 7 ;People21 Services BV;2021;4307,26;13
+0129;Utrechtse straatweg 7 ;People21 Services BV;2022;7808,48;13
+0130;Van Langedonckstraat 80;United Homes B.V.;2022;1100,94;5
+0132;Voeghoutenstraat 236;;2022;1570,78;5
+0135;Amperestraat 36A;Tradiro Services B.V.;2024;440,23;3
+0138;Westercluft;Stay21;2022;3369,24;10
+0138;Westercluft;Stay21;2023;2383,51;2
+0138;Westercluft;Stay21;2025;614,88;2
+0138;Westercluft;Stay21;2026;307,44;1
+0140;Wilgenstraat 37;AKT Autoschade;2023;2294,14;8
+0140;Wilgenstraat 37;AKT Autoschade;2024;3915,31;13
+0140;Wilgenstraat 37;AKT Autoschade;2025;6821,05;14
+0141;Wilhelminastraat 8;Buurman Vastgoed E B.V.;2023;1915,71;8
+0141;Wilhelminastraat 8;Buurman Vastgoed E B.V.;2024;4522,27;19
+0141;Wilhelminastraat 8;Buurman Vastgoed E B.V.;2025;10088,01;18
+0141;Wilhelminastraat 8;Buurman Vastgoed E B.V.;2026;391,24;1
+0142;Wilhelmina Druckerstraat 68;C-Flex B.V.;2022;1431,52;6
+0142;Wilhelmina Druckerstraat 68;C-Flex B.V.;2023;1157,99;7
+0142;Wilhelmina Druckerstraat 68;C-Flex B.V.;2024;3009,1;14
+0142;Wilhelmina Druckerstraat 68;C-Flex B.V.;2025;2898,97;14
+0142;Wilhelmina Druckerstraat 68;C-Flex B.V.;2026;247,04;2
+0143;Willem Lodewijkstraat 8;Team Home Rentals B.V.;2021;2681,38;12
+0143;Willem Lodewijkstraat 8;Team Home Rentals B.V.;2022;5397,5;14
+0143;Willem Lodewijkstraat 8;Team Home Rentals B.V.;2023;4104,11;13
+0143;Willem Lodewijkstraat 8;Team Home Rentals B.V.;2024;7082,07;20
+0143;Willem Lodewijkstraat 8;Team Home Rentals B.V.;2025;6057,77;13
+0144;Scheepjesbrug 433;Estra Logistics Systems B.V.;2022;3600,0;2
+0144;Scheepjesbrug 433;Estra Logistics Systems B.V.;2025;3057,85;1
+0145;Wouwbaan 230;Interim Jobs B.V.;2021;1157,1;7
+0145;Wouwbaan 230;Interim Jobs B.V.;2022;8677,88;13
+0145;Wouwbaan 230;Interim Jobs B.V.;2023;130,17;1
+0146;Johan Willen Frisostraat 36;Team Home Rentals B.V.;2024;3280,29;9
+0146;Johan Willen Frisostraat 36;Team Home Rentals B.V.;2025;1421,46;8
+0146;Johan Willen Frisostraat 36;Team Home Rentals B.V.;2026;203,31;1
+0147;Hugo de Grootstraat 72A&B;Crown Uitzendgroep;2023;699,18;2
+0147;Hugo de Grootstraat 72A&B;Crown Uitzendgroep;2024;4362,08;14
+0147;Hugo de Grootstraat 72A&B;Crown Uitzendgroep;2025;3216,75;13
+0151;Datheenstraat 255;GAP Costruzioni S.r.l.;2024;2100,0;7
+0151;Datheenstraat 255;GAP Costruzioni S.r.l.;2025;2603,13;13
+0151;Datheenstraat 255;GAP Costruzioni S.r.l.;2026;221,9;3
+0152;Beeklaan 294;Tradiro Services B.V.;2023;1118,19;3
+0152;Beeklaan 294;Tradiro Services B.V.;2024;713,83;3
+0153;Deensestraat 6A2;GAP Costruzioni S.r.l.;2024;1877,64;8
+0153;Deensestraat 6A2;GAP Costruzioni S.r.l.;2025;4609,55;10
+0154;Rubensplein 6B3;Tradiro Services B.V.;2024;1765,28;8
+0154;Rubensplein 6B3;Tradiro Services B.V.;2025;3710,91;12
+0154;Rubensplein 6B3;Tradiro Services B.V.;2026;310,57;1
+0158;Visartstraat 31;BBTS (Vastgoed Spijkenisse);2024;3197,67;12
+0158;Visartstraat 31;BBTS (Vastgoed Spijkenisse);2025;2090,68;10
+0159;Kastanjelaan 232;PRP Solutions Flex Sp. Z.O.O;2024;500,82;2
+0159;Kastanjelaan 232;PRP Solutions Flex Sp. Z.O.O;2025;121,79;1
+0161;Willem de Rijkelaan 134;;2025;1715,84;6
+0165;De Driesprong 17;Tradiro Services B.V.;2025;222,0;1
+0166;Nieuwkerkstraat 78;Vivir Wonen;2024;2660,53;13
+0166;Nieuwkerkstraat 78;Vivir Wonen;2025;6023,03;15
+0166;Nieuwkerkstraat 78;Vivir Wonen;2026;36,7;1
+0167;Vogelschorstraat 24;BBTS (Vastgoed Spijkenisse);2024;826,45;4
+0167;Vogelschorstraat 24;BBTS (Vastgoed Spijkenisse);2025;4561,95;12
+0170;Goudestein 30;Tradiro Services B.V.;2024;2389,98;1
+0171;Wijdstraat 13;People21 Services BV;2024;2112,34;9
+0171;Wijdstraat 13;People21 Services BV;2025;4972,56;13
+0179;Rooseveltlaan 185;N2people B.V.;2024;2436,28;9
+0179;Rooseveltlaan 185;N2people B.V.;2025;4087,04;15
+0179;Rooseveltlaan 185;N2people B.V.;2026;302,93;1
+0181;Hontenissestraat 124;;2024;92,12;1
+0182;Malzwin 34;;2023;726,25;4
+0182;Malzwin 34;;2025;12,97;1
+0184;Mathenesserdijk 261 C03;Tradiro Services B.V.;2025;823,15;4
+0185;Laan van Nieuw Blankenburg 328;Impianti Industriala S.P.A. NEDERLAND BRANCH;2023;1252,08;5
+0185;Laan van Nieuw Blankenburg 328;Impianti Industriala S.P.A. NEDERLAND BRANCH;2024;4320,18;13
+0185;Laan van Nieuw Blankenburg 328;Impianti Industriala S.P.A. NEDERLAND BRANCH;2025;5572,45;13
+0185;Laan van Nieuw Blankenburg 328;Impianti Industriala S.P.A. NEDERLAND BRANCH;2026;14,68;1
+0190;Achterdijk 47a;dockHolland Huisvesting B.V.;2023;3647,95;8
+0190;Achterdijk 47a;dockHolland Huisvesting B.V.;2024;4000,0;8
+0190;Achterdijk 47a;dockHolland Huisvesting B.V.;2025;5000,0;10
+0197;Scheepjesbrug 814;Flextalent4u Uitzenden B.V.;2024;300,0;1
+0199;Kerstendijk 125;Tradiro Services B.V.;2024;4698,15;1
+0200;Stal 355;THS EU B.V.;2023;413,22;2
+0200;Stal 355;THS EU B.V.;2024;5181,68;12
+0200;Stal 355;THS EU B.V.;2025;4899,89;14
+0201;Amberberg 14;Tradiro Services B.V.;2024;1200,0;4
+0201;Amberberg 14;Tradiro Services B.V.;2025;2554,24;6
+0203;Dorpstraat 48;Tradiro Services B.V.;2023;902,49;4
+0203;Dorpstraat 48;Tradiro Services B.V.;2024;11876,29;27
+0203;Dorpstraat 48;Tradiro Services B.V.;2025;7430,36;17
+0204;Punter 22 34;Werckpost Service B.V.;2023;1366,13;5
+0204;Punter 22 34;Werckpost Service B.V.;2024;258,47;1
+0204;Punter 22 34;Werckpost Service B.V.;2025;3850,01;10
+0206;Kruiningenstraat 152;Tradiro Services B.V.;2024;1068,39;1
+0206;Kruiningenstraat 152;Tradiro Services B.V.;2025;241,32;1
+0206;Kruiningenstraat 152;Tradiro Services B.V.;2026;271,6;2
+0207;Kwikstaartweg 45;Tradiro Services B.V.;2026;240,0;1
+0209;Laan van Adrichem 12;Tradiro Services B.V.;2024;777,52;3
+0209;Laan van Adrichem 12;Tradiro Services B.V.;2025;2151,66;10
+0212;Wijngaard 66;DIT en Larex Vakpersoneel B.V.;2025;1200,0;6
+0212;Wijngaard 66;DIT en Larex Vakpersoneel B.V.;2026;200,0;1
+0214;Mendelssohnplein 13D;Tradiro Services B.V.;2022;4441,5;12
+0214;Mendelssohnplein 13D;Tradiro Services B.V.;2023;3269,57;15
+0214;Mendelssohnplein 13D;Tradiro Services B.V.;2024;3318,39;10
+0217;Middelrode 8;Tradiro Services B.V.;2025;429,76;2
+0219;Miltonstraat 55;Tradiro Services B.V.;2025;214,88;1
+0219;Miltonstraat 55;Tradiro Services B.V.;2026;214,88;1
+0223;Acacialaan 9;Tradiro Services B.V.;2024;4373,69;13
+0223;Acacialaan 9;Tradiro Services B.V.;2025;2535,94;9
+0225;Kerkwervesingel 127;Tradiro Services B.V.;2024;58,55;1
+0230;Pasteursingel 61;Tradiro Services B.V.;2025;450,0;1
+0231;Platostraat 80;Tradiro Services B.V.;2024;106,31;1
+0232;Zuidhoek 209D;Tradiro Services B.V.;2025;429,76;2
+0235;Rubensplein 3 B;Tradiro Services B.V.;2025;310,57;1
+0236;Schalkeroord 389;Tradiro Services B.V.;2026;462,0;1
+0239;Schoonegge 110;Tradiro Services B.V.;2024;3385,1;1
+0244;Sint Liduinastraat 80B;;2023;1845,22;9
+0244;Sint Liduinastraat 80B;;2024;4251,13;13
+0244;Sint Liduinastraat 80B;;2025;3377,98;12
+0246;Socratesstraat 168;Tradiro Services B.V.;2024;62,19;1
+0249;Tholenstraat 114;Tradiro Services B.V.;2024;720,49;1
+0251;Middenbaan Noord 18A;;2023;619,83;3
+0252;Middenbaan Noord 18B ;GAP Costruzioni S.r.l.;2023;1027,65;9
+0252;Middenbaan Noord 18B ;GAP Costruzioni S.r.l.;2024;2304,47;13
+0252;Middenbaan Noord 18B ;GAP Costruzioni S.r.l.;2025;3529,43;14
+0252;Middenbaan Noord 18B ;GAP Costruzioni S.r.l.;2026;23,85;1
+0253;Middenbaan Noord 18C;GAP Costruzioni S.r.l.;2023;1252,34;10
+0253;Middenbaan Noord 18C;GAP Costruzioni S.r.l.;2024;1517,66;13
+0253;Middenbaan Noord 18C;GAP Costruzioni S.r.l.;2025;1676,88;14
+0253;Middenbaan Noord 18C;GAP Costruzioni S.r.l.;2026;88,38;3
+0255;Middenbaan Noord 20B;BBTS (Vastgoed Spijkenisse);2023;1436,61;8
+0255;Middenbaan Noord 20B;BBTS (Vastgoed Spijkenisse);2024;3760,7;13
+0255;Middenbaan Noord 20B;BBTS (Vastgoed Spijkenisse);2025;3579,74;15
+0255;Middenbaan Noord 20B;BBTS (Vastgoed Spijkenisse);2026;76,37;2
+0256;Middenbaan Noord 20C;BBTS (Vastgoed Spijkenisse);2023;1570,35;8
+0256;Middenbaan Noord 20C;BBTS (Vastgoed Spijkenisse);2024;4080,91;13
+0256;Middenbaan Noord 20C;BBTS (Vastgoed Spijkenisse);2025;3497,22;14
+0256;Middenbaan Noord 20C;BBTS (Vastgoed Spijkenisse);2026;23,65;2
+0257;Middenbaan Noord 22A;Suricare B.V.;2023;1691,62;8
+0257;Middenbaan Noord 22A;Suricare B.V.;2024;5206,05;13
+0257;Middenbaan Noord 22A;Suricare B.V.;2025;3936,24;14
+0257;Middenbaan Noord 22A;Suricare B.V.;2026;25,66;2
+0258;Middenbaan Noord 22B;BBTS (Vastgoed Spijkenisse);2023;1746,29;8
+0258;Middenbaan Noord 22B;BBTS (Vastgoed Spijkenisse);2024;3801,03;13
+0258;Middenbaan Noord 22B;BBTS (Vastgoed Spijkenisse);2025;725,32;14
+0258;Middenbaan Noord 22B;BBTS (Vastgoed Spijkenisse);2026;95,22;2
+0259;Middenbaan Noord 22C ;BBTS (Vastgoed Spijkenisse);2023;1546,47;7
+0259;Middenbaan Noord 22C ;BBTS (Vastgoed Spijkenisse);2024;4934,59;13
+0259;Middenbaan Noord 22C ;BBTS (Vastgoed Spijkenisse);2025;3900,58;14
+0259;Middenbaan Noord 22C ;BBTS (Vastgoed Spijkenisse);2026;84,94;2
+0260;Persoonsdam 176;Flexvesting B.V.;2024;5099,25;5
+0260;Persoonsdam 176;Flexvesting B.V.;2025;9202,5;11
+0261;Persoonsdam 177;Flexvesting B.V.;2025;300,0;3
+0262;Persoonsdam 178;Flexvesting B.V.;2025;300,0;3
+0263;Persoonsdam 179;Flexvesting B.V.;2025;371,91;3
+0264;Persoonsdam 180;Flexvesting B.V.;2025;371,91;3
+0265;Persoonsdam 181;Flexvesting B.V.;2025;371,91;3
+0266;Persoonsdam 182;Flexvesting B.V.;2025;371,91;3
+0267;Persoonsdam 194;Flexvesting B.V.;2025;300,0;3
+0268;Persoonsdam 198;Flexvesting B.V.;2025;371,79;3
+0270;Professor Kamerlingh Onneslaan 134B1;Housing en Transport Facilities BV;2024;438,85;3
+0270;Professor Kamerlingh Onneslaan 134B1;Housing en Transport Facilities BV;2025;2041,79;13
+0271;Professor Kamerlingh Onneslaan 134B2;Housing en Transport Facilities BV;2024;508,27;3
+0271;Professor Kamerlingh Onneslaan 134B2;Housing en Transport Facilities BV;2025;2197,79;13
+0272;Professor Kamerlingh Onneslaan 134B3;Housing en Transport Facilities BV;2024;622,32;3
+0272;Professor Kamerlingh Onneslaan 134B3;Housing en Transport Facilities BV;2025;3297,65;13
+0279;Haagkamp 11;Tradiro Services B.V.;2026;50,0;1
+0292;Burgemeester Stulemeijerlaan 71;Tradiro Services B.V.;2026;448,51;1
+0293;Akkerweg 41 [huis 14];Buurman Vastgoed E B.V.;2024;392,56;2
+0293;Akkerweg 41 [huis 14];Buurman Vastgoed E B.V.;2025;90720,33;234
+0294;Akkerweg 41 [huis 15] ;NL Realty B.V.;2025;2156,29;4
+0295;Akkerweg 41 [018];;2025;2499,65;5
+0297;Akkerweg 41 [huis 26] ;Royal DS Personeel-service;2025;200,0;1
+0299;Akkerweg 41 [huis 37] ;NL Realty B.V.;2025;2484,56;4
+0300;Akkerweg 41 [huis 40] ;Eemsdelta Housing B.V.;2025;3046,3;5
+0301;Akkerweg 41 [huis 41] ;Royal DS Personeel-service;2025;2579,94;4
+0302;Akkerweg 41 [huis 42];Buurman Vastgoed E B.V.;2025;1000,0;2
+0303;Akkerweg 41 [huis 55] ;NL Realty B.V.;2025;2088,91;5
+0304;Akkerweg 41 [huis 56];NL Realty B.V.;2025;4239,38;8
+0305;Akkerweg 41 [huis 57];MNA Proud Facilities B.V.;2025;1131,2;4
+0307;Akkerweg 41 [huis 75];FISSH B.V.;2025;600,0;2
+0308;Kerkweg 9a [huis 135];Werckpost Service B.V.;2025;555,04;2
+0309;Kerkweg 9a [huis 137];UAB Toromega;2025;555,04;2
+0310;Kerkweg 9a [huis 210];Labour Housing BV;2024;1096,77;2
+0310;Kerkweg 9a [huis 210];Labour Housing BV;2025;6973,0;15
+0310;Kerkweg 9a [huis 210];Labour Housing BV;2026;333,03;1
+0311;Kerkweg 9a [huis 269];UAB Toromega;2024;1035,36;4
+0311;Kerkweg 9a [huis 269];UAB Toromega;2025;3037,71;13
+0312;Kerkweg 9a [huis 333];Labour Housing BV;2024;1272,47;4
+0312;Kerkweg 9a [huis 333];Labour Housing BV;2025;5026,27;12
+0312;Kerkweg 9a [huis 333];Labour Housing BV;2026;363,0;1
+0313;Kerkweg 9a [huis 334];Labour Housing BV;2024;929,47;3
+0313;Kerkweg 9a [huis 334];Labour Housing BV;2025;5641,11;12
+0313;Kerkweg 9a [huis 334];Labour Housing BV;2026;363,0;1
+0314;Kerkweg 9a [huis 338];Labour Housing BV;2024;600,0;2
+0314;Kerkweg 9a [huis 338];Labour Housing BV;2025;65,73;1
+0315;Kerkweg 9a [huis 342];RNDV Industries;2025;6242,59;15
+0315;Kerkweg 9a [huis 342];RNDV Industries;2026;423,5;1
+0316;Kerkweg 9a [huis 346];Labour Housing BV;2024;998,32;4
+0316;Kerkweg 9a [huis 346];Labour Housing BV;2025;5833,91;17
+0316;Kerkweg 9a [huis 346];Labour Housing BV;2026;302,5;1
+0317;Kerkweg 9a [huis 347];Labour Housing BV;2025;5203,97;14
+0317;Kerkweg 9a [huis 347];Labour Housing BV;2026;363,0;1
+0318;Kerkweg 9a [huis 349];Werckpost Service B.V.;2024;1638,95;6
+0318;Kerkweg 9a [huis 349];Werckpost Service B.V.;2025;5400,08;14
+0318;Kerkweg 9a [huis 349];Werckpost Service B.V.;2026;302,5;1
+0319;Kerkweg 9a [huis 356];Werckpost Service B.V.;2024;500,0;2
+0319;Kerkweg 9a [huis 356];Werckpost Service B.V.;2025;4657,98;13
+0319;Kerkweg 9a [huis 356];Werckpost Service B.V.;2026;302,5;1
+0320;Kerkweg 9a [huis 359];Labour Housing BV;2024;3042,55;14
+0320;Kerkweg 9a [huis 359];Labour Housing BV;2025;6708,01;19
+0320;Kerkweg 9a [huis 359];Labour Housing BV;2026;302,5;1
+0321;Kerkweg 9a [huis 453];Labour Housing BV;2024;1119,46;4
+0321;Kerkweg 9a [huis 453];Labour Housing BV;2025;4609,16;13
+0321;Kerkweg 9a [huis 453];Labour Housing BV;2026;333,03;1
+0322;Bettingeslag 10;CB Construction UAB;2025;2737,29;13
+0322;Bettingeslag 10;CB Construction UAB;2026;77,12;1
+0323;Marnixstraat 32;Flexvesting B.V.;2025;3438,0;10
+0324;Van Swinderenstraat 21;Flexvesting B.V.;2025;2551,05;9
+0324;Van Swinderenstraat 21;Flexvesting B.V.;2026;363,21;2
+0325;Hendriklaan 49;VALO Facilities B.V.;2025;4557,11;6
+0325;Hendriklaan 49;VALO Facilities B.V.;2026;260,33;1
+0326;Akkerweg 41 [068];;2025;874,56;3
+0327;Putter 42;FISSH B.V.;2025;939,66;3
+0327;Putter 42;FISSH B.V.;2026;313,22;1
+0328;Noordmolenstraat 36A;BBTS (Vastgoed Spijkenisse);2025;2910,71;15
+0329;Noordmolenstraat 36B;BBTS (Vastgoed Spijkenisse);2025;1790,09;14
+0330;Noordmolenstraat 36C;BBTS (Vastgoed Spijkenisse);2025;803,33;11
+0331;Flankstraat 11;S. Bakker OPH Verhuur;2025;3154,51;11
+0331;Flankstraat 11;S. Bakker OPH Verhuur;2026;286,78;1
+0332;Kerkweg 9a [huis 340];Orange Investments Group;2025;5070,86;13
+0332;Kerkweg 9a [huis 340];Orange Investments Group;2026;363,0;1
+0333;Kethelweg 66D;Tradiro Services B.V.;2025;2580,97;9
+0333;Kethelweg 66D;Tradiro Services B.V.;2026;286,78;1
+0334;Hof van zeeland 2;;2025;400,0;2
+0335;Molenweg 3B;Van Bergen Personeelsdiensten B.V.;2026;600,0;1
+0336;Ofwegen 1A;Tradiro Services B.V.;2025;4912,14;10
+0336;Ofwegen 1A;Tradiro Services B.V.;2026;526,45;1
+0337;Kruisweg 16;Tradiro Services B.V.;2025;5476,81;14
+0337;Kruisweg 16;Tradiro Services B.V.;2026;148,76;1
+0338;Kerkweg 9a [huis 348];Orange Investments Group;2025;4925,51;12
+0338;Kerkweg 9a [huis 348];Orange Investments Group;2026;363,0;1
+0339;Kerkweg 9a [huis 357];Eastmen;2025;4930,78;12
+0339;Kerkweg 9a [huis 357];Eastmen;2026;363,0;1
+0341;Akkerweg 41 [huis 10] ;NL Realty B.V.;2025;3088,75;8
+0342;Akkerweg 41 [016];;2025;2458,3;7
+0343;Akkerweg 41 [019];;2025;2678,24;7
+0344;Pastoor Gilisstraat 81-A;Housing en Transport Facilities BV;2025;4665,46;10
+0346;Beukenlaan 53;PMM Workforce Management Ltd;2025;3354,52;9
+0346;Beukenlaan 53;PMM Workforce Management Ltd;2026;372,73;1
+0348;Wagenstraat 70;Tradiro Services B.V.;2025;1808,17;3
+0349;Persoonsdam 196;Aelbers Flexibele Personeels Diensten B.V.;2025;495,91;4
+0350;Akkerweg 41 [huis 35] ;MNA Proud Facilities B.V.;2025;1440,77;5
+0356;Akkerweg 41 [huis 36];MNA Proud Facilities B.V.;2025;1868,67;6
+0357;Akkerweg 41 [038];;2025;1832,34;5
+0359;Kimbrenoord 49;Tradiro Services B.V.;2025;1021,49;3
+0359;Kimbrenoord 49;Tradiro Services B.V.;2026;340,5;1
+0360;Kruiningenstraat 185;Tradiro Services B.V.;2025;482,64;2
+0360;Kruiningenstraat 185;Tradiro Services B.V.;2026;241,32;1
+0362;Ruigenhoek 69;Tradiro Services B.V.;2025;1100,82;3
+0362;Ruigenhoek 69;Tradiro Services B.V.;2026;366,94;1
+0365;Laan op zuid 949;UAB Toromega;2025;190,92;2
+0367;Baanhoek 137;;2025;524,88;2
+0367;Baanhoek 137;;2026;262,44;1
+0368;Wedderweg 3A;PRP Solutions Flex Sp. Z.O.O;2022;2618,2;5
+0368;Wedderweg 3A;PRP Solutions Flex Sp. Z.O.O;2025;2065,31;7
+0368;Wedderweg 3A;PRP Solutions Flex Sp. Z.O.O;2026;295,04;1
+0369;Oranjestraat 63;H.T.C. Facility Services B.V.;2025;899,16;4
+0369;Oranjestraat 63;H.T.C. Facility Services B.V.;2026;24,77;1
+0372;Akkerweg 41 [huis 11] ;MNA Proud Facilities B.V.;2025;1506,31;4
+0373;Akkerweg 41 [huis 17];MNA Proud Facilities B.V.;2025;2015,14;4
+0374;Vierambachtsstraat 32-B01;Oostkracht Bemiddeling B.V.;2025;414,05;3
+0374;Vierambachtsstraat 32-B01;Oostkracht Bemiddeling B.V.;2026;138,02;1
+0375;Cubalaan 25;Tradiro Services B.V.;2025;4138,02;10
+0375;Cubalaan 25;Tradiro Services B.V.;2026;359,5;1
+0376;Zwethkade Zuid 30A;Tradiro Services B.V.;2025;323,14;1
+0376;Zwethkade Zuid 30A;Tradiro Services B.V.;2026;323,14;1
+0379;Akkerweg 41 [074];;2025;1723,64;4
+0380;Parallelweg 114C;Tradiro Services B.V.;2025;887,59;3
+0380;Parallelweg 114C;Tradiro Services B.V.;2026;33,94;1
+0381;Parallelweg 134B;Tradiro Services B.V.;2025;887,59;3
+0381;Parallelweg 134B;Tradiro Services B.V.;2026;33,94;1
+0382;Kwekerslaan 7 ;Tradiro Services B.V.;2025;4050,0;7
+0383;Akkerweg 41 [huis 20] ;Buurman Vastgoed E B.V.;2025;1500,0;3
+0384;Akkerweg 41 [huis 58];Buurman Vastgoed E B.V.;2025;500,83;5
+0386;Poolsestraat 29a;Light Personeelsdiensten;2025;214,88;1
+0386;Poolsestraat 29a;Light Personeelsdiensten;2026;214,88;1
+0387;Verschansing 21 ;RNDV Industries;2025;214,88;1
+0387;Verschansing 21 ;RNDV Industries;2026;214,88;1
+0388;1e Middellandstraat 104A;S. Bakker OPH Verhuur;2025;205,78;1
+0389;Kritostraat 54;S. Bakker OPH Verhuur;2025;178,51;1
+0392;Burgemeester Baumannlaan 175H;;2026;394,0;1
+0393;Donze Visserstraat 13;;2026;205,79;1
+0406;Hoge Noordweg 27A;Tradiro Services B.V.;2025;832,75;4
+0438;Franselaan 273-B;Tradiro Services B.V.;2025;145,5;4

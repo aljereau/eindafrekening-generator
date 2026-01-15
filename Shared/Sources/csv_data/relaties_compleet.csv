@@ -1,0 +1,839 @@
+﻿id;naam;type;email;telefoonnummer;iban;kvk_nummer;adres;postcode;plaats;is_eigenaar
+173;'t Werkt B.V.;particulier;finance@twerkt.nl;;NL73 INGB 0674 0477 29;30234790.0;Burgemeester Meslaan 98;;TIEL;0
+497;123Wonen Vastgoedbeheer B.V.;particulier;beheer@123wonen.nl;;NL72 RABO 0306 4372 79;67067247.0;Twekkeler Es 42;;ENSCHEDE;0
+482;123wonen Bergen op Zoom;particulier;;;NL78 INGB 0007 5683 99;67010318.0;Zuidzijde Haven 39 a;;BERGEN OP ZOOM;0
+174;24/7 drive;particulier;factuur@247drive.nl;088 522 52 38;;17187408.0;Ekkersrijt 7025;;SON EN BREUGEL;0
+576;4 Homes;particulier;;;NL30 RABO 0120 4592 56;;;;;0
+85;4 Homes B.V.;zakelijk;factuur@4homes.nl;0167 - 745023;NL30 RABO 0120 4592 56;27178161;Prins Reinierstraat 18a;;Steenbergen;0
+118;A. Blaszcak;particulier;info@aneta.nl;;NL22 ABNA 0425 7631 37;;Prof. Kernkampstraat 24;;Tilburg;0
+838;A. Brouwers & S. Brouwers- van Weert;particulier;;;;;;;;0
+267;A. Brouwers en S. Brouwers- van Weert;particulier;alecbrouwers@gmail.com;06 20805474;NL36 BUNQ 2101 3885 02;;Dokter Barentsenstraat 42;;Bergeyk;0
+69;A. Dzaka;bureau;adisa-kemo@hotmail.com;;;;Merwedepad 29;;Rozenburg ZH;0
+115;A. Ghali;particulier;;;NL11 ABNA 0560 7581 38;;Rooseveltlaan 956;;Utrecht;0
+67;A. Verschueren;particulier;verhuur@reham.nl;;NL32 INGB 0007 1086 71;;Mangelbeekstraat 1;;;0
+302;A.H.S. Willemsen;particulier;huurwoningarnhem@gmail.com;;NL90 ABNA 0861 1395 26;;;;;0
+150;A.I.G. Lukkien;particulier;;;NL79 ABNA 0625 3594 96;;Achterstekamp 28;;Stadskanaal;0
+77;A.P.W. Koedooder;particulier;apwkoedooder@gmail.com;;NL21 INGB 0006 8135 04;;Isaac Beeckmanhof 1;;ROTTERDAM;0
+40;A.W.N. Alkemade;particulier;melkveebedrijfalkemade@kpnmail.nl;206 28884613;NL80 ABNA 0608 8189 41;;Laan van Pluymestein 36;;WASSENAAR;0
+59;A.Y. Nicolai;particulier;famnicolai@hotmail.com;;NL44 INGB 0006 4538 99;;De Setangel 14;;GROU;0
+250;ABC Bedrijfsservice B.V;particulier;randy@abc-jobs.eu;;NL04 RABO 0344 4836 49;;Sint Canisiussingel 36;;Nijmegen;0
+242;AKRION ADMINISTRATION;particulier;info@interm-project.com;2431652855090;;;Corn. Speelmanstraat 77;;'s-Gravenhage;0
+237;AKT Autoschade;particulier;facturen@aktautoschade.com;06 33417286;;;Goirkekanaaldijk 211-18;;Tilburg;0
+612;ANWB;particulier;;;;;;;;0
+249;Adecco Group;particulier;crediteurenadministratie@adecco.nl;0418 784 000;;;;;Zaltbommel;0
+978;Adriaan Jacobus Maat;particulier;;;;;Visseringstrast 117;1051 MH;Amsterdam;1
+386;Advocatenkantoor de Boorder;particulier;;;;;Benoordenhoutseweg 23;;Den Haag;0
+247;Aelbers Flexibele Personeels Diensten B.V.;particulier;facturen@aelberspersoneel.nl;06 82 29 99 48;NL65 INGB 0662 8126 54;106 82 29 99 48;Grutbroek 15;;Doetinchem;0
+28;Alis Vastgoed B.V.;particulier;rifat@prokonak.nl;070 216 6477;;;Fruitweg 25;;'S-GRAVENHAGE;0
+964;All In Rentals B.V.;bedrijf;;;;;Oud-Beijerland;3261 LP;Barendrecht;1
+555;All Safety;particulier;;;SE18 1200 0000 0124 1016 6350;;Mandenmakerstraat 41;;Hoogvliet Rotterdam;0
+520;Alpha Housing B.V.;particulier;;;NL05 RABO 0312 4652 89;66836522.0;Leemidden 22;;De Lier;0
+468;Alpha Star Finance;particulier;;;NL97 KNAB 0257 9316 35;72998245.0;Grote Vos 47;;'S-Gravenzande;0
+214;Alpha Workforce Aps;particulier;operations@alphaworkforce.net;;;;Priory Hall;;Dublin;0
+500;Aluxa Vastgoed B.V.;particulier;info@aluxa.nl;;NL13 RABO 0333 5906 78;72729791.0;Bedrijvenpark Twente 147 g;;ALMELO;0
+711;Alvast Antikraak;particulier;;;NL57 ABNA 0108 9280 12;;;;;0
+124;AmDor Projecten B.V.;particulier;invoice@amdorprojecten.nl;;NL51 INGB 0009 3373 89;72342315.0;Maarsseveensevaart 92;;MAARSSEN;0
+679;Aperta Estate Management;particulier;;;NL42 ABNA 0114 1649 24;;Gildekamp 21;;Cuijk;0
+722;Arbo centrum;particulier;debiteurenbeheer@arbocentrum.nl;;NL95 INGB 0006 8054 79;62925202.0;Galvanistraat 14-1;;Ede GL;0
+652;Arjan de Wit;particulier;;;NL69 RABO 0112 1630 17;;;;;0
+387;Arval;particulier;;;NL04 ABNA 0484 1745 33;30139084.0;Duwboot 10;;Houten;0
+388;Athlon Beheer Nederland B.V.;particulier;;;NL41 BNPA 0227 7017 71;34071478.0;Veluwezoom 4;;Almere;0
+715;Atta Zaken;particulier;attaverhuisliften@gmail.com;;NL13 ABNA 0828 3560 76;72387513.0;Kasteellaan 591;;'s-Gravenhage;0
+389;Auto Center Oostvoorne;particulier;;;NL60 RABO 0126 5836 84;24406857.0;Langeweg 5;;Oostvoorne;0
+391;Auto Raggers;particulier;;;;;;;;0
+390;Auto de Boer;particulier;;;;;;;;0
+223;Autobedrijf Voorne;particulier;info@autobedrijfvoorne.nl;;;;Langeweg 3;;OOSTVOORNE;0
+91;Autobedrijf W. Bronder;particulier;k.bronder@outlook.com;;NL22 RABO 0350 2406 63;24234431.0;Boomweg 17;;Rockanje;0
+140;Autodaxx B.V.;particulier;inkoopfactuur@autodaxx.nl;2431 (0) 165 520 200;NL24 INGB 0008 6453 92;58795928.0;Argon 21;;OUD GASTEL;0
+544;Autoschadebedrijf Carpoort;particulier;;;NL51 INGB 0004 6028 19;;;;;0
+392;Autoschoonmaakbedrijf Total Clean;particulier;;;NL34 RABO 0344 8432 70;56201796.0;Pascalweg 7;;Spijkenisse;0
+577;B Renkema;particulier;;;NL82 RABO 0315 3768 13;;;;;0
+591;B Verstegen en K Maas;particulier;;;NL65 TRIO 0320 9580 94;;;;;0
+809;B. Bakker;particulier;;;;;;;;0
+135;B. Bosch;particulier;brucebosch@live.nl;;NL18 INGB 0796 0357 25;;Stuartweg 29;;Vianen;0
+375;B. van Abeelen;particulier;vanabeelenstucadoorsbedrijf@gmail.com;;NL95 INGB 0113 3306 85;;Blauwloop 2;;Loon op Zand;0
+484;B.A.D. Loodgietersbedrijf B.V.;particulier;;;NL87 INGB 0008 9639 70;73968145.0;Dwarsweg 24;;ROZENBURG;0
+563;B2Mobility;particulier;;;;;;;;0
+190;BBTS (Vastgoed Spijkenisse);particulier;a.bilge@vastgoedspijkenisse.nl;;;53388917.0;Theemsweg 85;;Spijkenisse;0
+527;BCC Elektro-speciaalzaken B.V.;particulier;;;NL19 INGB 0663 8672 90;33156765.0;Van der Madeweg 13;;AMSTERDAM-DUIVENDRECHT;0
+192;BDR Uitzendbureau B.V.;particulier;muratbayka@gmail.com;06-29551021;NL14 INGB 0008 2350 68;24408919.0;Sint-Andriesstraat 222;;ROTTERDAM;0
+394;BFW B.V.;particulier;;;NL42 RABO 0336 5683 47;73355976.0;Van Aylvawei 18;;Rinsumageast;0
+593;BICT Groep;particulier;;;NL66 RABO 0170 8351 70;;;;;0
+241;BJ Bakker;particulier;bjbakker85@hotmail.com;;NL36 RABO 0302 0165 70;;Spiens 3;;Dokkum;0
+395;BNP Paribas Leasing Solutions N.V.;particulier;;;NL69 BNPA 0227 6520 88;24271429.0;Hambakenwetering 4;;'S-Hertogenbosch;0
+516;BO-Rent B.V.;particulier;;;;33256507.0;Eerste Oosterparkstraat 51 D;;AMSTERDAM;0
+680;Barry Elektrotechniek B.V. (Oosterhout);particulier;;;NL49 ABNA 0450 6623 57;91698227.0;Dr. Janssenslaan 17;;Oosterhout;0
+554;Barstarz BV;particulier;info@restaurant-yolo.com;06 24226158;NL63 ABNA 0476 1829 99;;Adminiraliteitskade 17B;;Rotterdam;0
+808;Bart Vlastuin;particulier;;;;;;;;0
+531;Bas Eefting;particulier;;;NL10 INGB 0006 5920 57;;Korhoenweg 9;;KLUNDERT;0
+105;Bator V.O.F.;particulier;;;NL19 INGB 0006 0624 69;53286634.0;Jacob Marisstraat 37;;Zwijndrecht;0
+793;Beking;particulier;;;;;;;;0
+477;Belastingdienst;particulier;;;NL86 INGB 0002 4455 88;;;;;0
+719;Belastingsamenwerking West-Brabant;particulier;;;NL86 BNGH 0285 1542 65;;Bredaseweg 211;;Etten-Leur;0
+35;Best@Work B.V.;particulier;info@bestatwork.nl;;;74210025.0;Industrieweg 74-76;;WAALWIJK;0
+265;Betterway BV;particulier;rbecker@fbaivastgoed.com;;;;Nijverheidsweg-Noord 81;;Amersfoort;0
+393;BeursBulletin Alerts B.V.;particulier;;;;34244390.0;Rokebrandlaan 2;;Blaricum;0
+609;Blok Interrek B.V.;particulier;;;NL76 RABO 0125 4357 89;;Giessenweg 67-69;;Rotterdam;0
+557;Blue 10 B.V.;particulier;;;NL06 INGB 0683 4968 32;;Oude Middenweg 17;;'s-Gravenhage;0
+476;Bol.com;particulier;;;;32147382.0;Papendorpseweg 100;;Utrecht;0
+524;BookThat Solutions B.V.;particulier;;;NL71 RABO 0370 7185 18;83277668.0;Westerstraat 69;;AMERSFOORT;0
+628;Born Management en Beheer;particulier;bornmenb@bornmail.nl;;NL08 RABO 0118 3742 49;;Parkweg 1b 248;;Hellevoetsluis;0
+597;Bosch;particulier;;;NL47 BUNQ 2053 5805 93;;Nolweg 9;;Schelluinen;0
+226;Bosch B Dhr (Scheepjesbrug 814 Meerkerk);particulier;brucebosch@live.nl;;NL47 BUNQ 2053 5805 93;;Nolweg 9;;Schelluinen;0
+272;Bouius;particulier;r.bouius@hotmail.com;;NL25 RABO 0310 2297 58;;Jan van Scorelstraat 50;;Leeuwarden;0
+194;Bouw Service International B.V.;particulier;bouwserviceinternational@gmail.com;06 119 19 966;;78258901.0;Kanaal Noord 446;;BEEMTE BROEKLAND;0
+611;Brabant Water NV;particulier;;;;;;;;0
+2;Bright Home Rentals B.V.;bureau;administratie@brighthomerentals.nl;0180-396802;NL62 RABO 0312 8075 46;66838452.0;Ebweg 73;;BARENDRECHT;0
+396;Brixx Metafoor Vastgoed en Software B.V.;particulier;;;NL86 INGB 0663 7083 62;39082342.0;Eskimolaan 13;;Dronten;0
+397;Brother International (Nederland) B.V.;particulier;;;;33124324.0;Zanderij 25 27;;Amstelveen;0
+491;Bureau Cicero B.V.;particulier;;;NL35 RABO 0102 4230 83;39092300.0;Dokter van Deenweg 162;;ZWOLLE;0
+53;Business Housing;particulier;eliane@zamens.nl;;NL50 RABO 0323 5939 68;69861846.0;Oosteinde 26;;Oud Alblas;0
+398;Business Software Haaglanden B.V.;particulier;;;NL89 ABNA 0408 1063 79;27287021.0;Sportlaan 528;;'S-GRAVENHAGE;0
+346;Buurman Vastgoed E B.V.;particulier;admin@inexho.com;06 153 97 067;;20615397067;Westerweg 291;;Alkmaar;0
+473;Buwalda Multiservice Nederland B.V.;particulier;;;NL83 ABNA 0825 4758 56;57661782.0;De Wieken 31;;Franeker;0
+342;Bw-engineering;particulier;r.adelaar@bw-engineering.nl;06-345 79 097;NL74 ABNA 0554 0784 57;634579097;van Brakelstraat 66;;Rotterdam;0
+601;Byfin bv;particulier;;;NL52 INGB 0103 8679 45;;;;;0
+288;C-Flex B.V.;particulier;administratie@cflexbv.nl;024-4400300;;;Kerkenbos 1051;;Nijmegen;0
+766;C. van Driel e/o B.M. Verdouw;particulier;drielviist@gmail.com / bmverdouw@gmail.com;06 53141599;;;;;;0
+366;C. van Winsen;particulier;coenvanwinsen@gmail.com;;NL30 RABO 0189 1515 52;;Emmastraat 10;;Noordwijkerhout;0
+854;C.R. Valk & H.J. Valk;particulier;;;;;;;;0
+351;CASS Construction and Steel Structures Sp. z o.o;particulier;p.samborski@cass.com.pl;;;;Grzybów 78;;Staszów;0
+352;CB Construction UAB;particulier;info@cbconstruction.eu;00370 675 13321;;;Chemijos g.27c-62;;Kaunas;0
+856;CB-Homes;particulier;;;;;;;;0
+121;CB-Homes B.V.;particulier;info@cb-homes.nl;;NL61 INGB 0006 7055 02;78756081.0;Langeweg 3 a;;OOSTVOORNE;0
+399;CBR;particulier;;;;;;;Rijswijk;0
+502;CH Brandbeveiliging BV;particulier;;;NL33 RABO 0307 6871 47;69077355.0;Steenhouwer 34;;STADSKANAAL;0
+677;CR Valk;particulier;;;NL11 RABO 0325 3673 45;;T Perron 3;;De Lier;0
+380;CS Vastgoedbeheer B.V.;bureau;info@cswonen.nl;0165-870000;;64548937.0;Nispensestraat 72;;Roosendaal;0
+703;Campos Bouw;particulier;;;NL81 ABNA 0807 4986 88;;Krabbendijksestraat 35;;Rotterdam;0
+987;Caner Duman;particulier;;;;;europasingel 102;2661 BW;Bergschenhoek;1
+659;Centraal Beheer;particulier;;;;;;;;0
+469;Centraal Justitieel Incassobureau;particulier;;;NL56 INGB 0705 0051 00;1176224.0;Tesselschadestraat 55;;LEEUWARDEN;0
+171;Central Job Facilities B.V.;particulier;invoice@centraljob.nl;;NL82 INGB 0007 0419 08;64022994.0;Hoofdweg 649;;HOOFDDORP;0
+986;Ceysun Akbasoglu;particulier;ceysun.a@hotmail.com;06-12372543;NL31 KNAB 0257 2508 16;;Swammerdamstraat 6;31325X;Viaardingen;1
+849;Chalet Park Holiday;particulier;;;;;;;;0
+561;Chaletpark de Wierde;particulier;chris@chaletparkdewierde.nl;;NL53 INGB 0004 4656 25;;Akkerweg 41;;Den Oever;0
+823;City Estate (Reinier Derksen);particulier;;;;;;;;0
+58;City Estate B.V.;particulier;huren@cityestate.nl;085-0607004;NL95 INGB 0006 7773 49;77525027.0;Oudegracht 312;;UTRECHT;0
+478;Co. Elektro;particulier;;;NL41 INGB 0006 4758 75;60075759.0;Lepelaarstraat 65;;ROZENBURG;0
+503;Colors@Home Budding;particulier;info@buddingschilders.nl;;NL68 RABO 0356 6061 39;24227498.0;Emmastraat 11;;ROZENBURG;0
+990;Comé Valk en Arjen Valk;particulier;;;NL11RABO0325367345;;;;;1
+974;Conmihace Varrdinry Lrol;particulier;;;;;;;;1
+726;Cris;particulier;;;;;;;;0
+82;Crown Uitzendgroep;zakelijk;;;;;;;;0
+794;Crul;particulier;;;;;;;;0
+187;D Blommers;particulier;d_blommers@hotmail.com;;NL91 TRIO 0391 0901 78;;;;;0
+251;D Kleijweg;particulier;devinkleijweg@hotmail.com;;NL48 RABO 0358 2190 27;;;;;0
+825;D. Kleijweg;particulier;;;;;;;;0
+133;D. Walma;particulier;info@timmerbedrijfwalma.nl;H;NL08 RABO 0374 0135 78;;Ceresweg 46-C;;Leeuwarden;0
+826;D. tonen;particulier;tonen222@gmail.com;;;;;;;0
+116;DB Beheer B.V.;particulier;info@dbwork.com;0184 43 08 12;;62123440.0;Sportlaan 257;;SLIEDRECHT;0
+137;DB woonruimtebemiddeling;particulier;uren@dbgroup.nl;;NL67 ABNA 0400 8375 95;8108140.0;Vonderweg 29;;ENTER;0
+691;DBR Bouw;particulier;info@dbrbouw.nl;;NL92 INGB 0006 6883 57;61857378.0;Kerklaan 7;;Schiedam;0
+689;DEEZ BV;particulier;lieven@vdhbvba.be;;BE78 7340 5713 1086;778777069.0;SCHANKER 70/ B000;;ESSEN;0
+505;DELTA Fiber Nederland B.V.;particulier;zakelijk@deltafiber.nl;;;22051676.0;Overschieseweg 203;;SCHIEDAM;0
+592;DH Service en Onderhoud;particulier;;;NL16 KNAB 0503 6604 77;;;;;0
+210;DIT en Larex Vakpersoneel B.V.;particulier;factuur@ditenlarexvakpersoneel.nl;06 117 50 200;NL17 RABO 0320 0278 72;8116290.0;Maagdenburgstraat 10;;DEVENTER;0
+92;DNACC B.V. / Rolbakkie;particulier;;;NL94 INGB 0007 2004 81;37155744.0;Aziehavenweg 18;;Amsterdam;0
+157;DS People B.V.;particulier;Facturen@dspeople.nl;106 46 42 84 38;;63134462.0;Deltageul 13;;STELLENDAM;0
+512;Daan Advies en Installatiebedrijf;particulier;;;NL69 RABO 0374 5380 26;84426985.0;Harmen Sytstrastraat 20;;Sneek;0
+687;Daem Renovaties B.V.;particulier;;;NL25 BUNQ 2099 6810 15;91722438.0;Lange dreef 21;;Borculo;0
+678;Dar klusbedrijf;particulier;;;NL09 INGB 0111 4934 04;;Ruitwagen 149;;Hoogvliet Rotterdam;0
+51;De Borgmeren B.V.;particulier;borgmeren@live.nl;null;NL54 RABO 0366 9535 75;;Hoofdweg 34;;SCHARMER;0
+521;De Griekse Makelaar;particulier;info@degrieksemakelaar.com;206 283 281 27;;;Ringdijk 181;;Lelystad;0
+704;De Haij van der Wende;particulier;;;NL21 INGB 0653 3909 63;;Barbizonlaan 82;;Capelle aan den IJssel;0
+43;De Pagter Vastgoed B.V.;particulier;info@depagtervastgoed.nl;;NL91 INGB 0650 5095 79;22033473.0;Molenwater 2;;MIDDELBURG;0
+658;De Ramentinter;particulier;;;NL95 RABO 0346 9081 75;;;;;0
+954;De Rembrandt B.V.;particulier;flip@eetcafedewitte.nl;06-41372342;NL21RABO0156104105;;;;;0
+219;De Uitlener B.V.;particulier;facturen@deuitlener.nl;06 11992427;;60382694.0;Larenseweg 30;;LOCHEM;0
+166;De Witte Brigade B.V.;particulier;administratie@wittebrigade.nl;;NL64 INGB 0007 5538 10;67474950.0;Admiraliteitskade 79;;ROTTERDAM;0
+985;De heer Hamid Reza Arya Barzin h.o.d.n. Arya Diensten;particulier;gem.worldwide@hotmail.com;06-11921956 / 010 — 7850187;;62936751;1° Pijnackerstraat 105A;;Rotterdam;1
+354;Demeter BV;particulier;Factuur.demeter@knoppertamaryllis.nl;;;;Madeweg 27A;;Monster;0
+847;Derwig;particulier;;;;;;;;0
+275;Desa Construction NL BV;particulier;invoices.nl@desacons.eu;06-28510605;;;Lange Kleiweg 26e;;Rijswijk ZH;0
+179;Detaconcept Services B.V.;particulier;paul@detaconcept.nl;06 481 968 69;NL35 INGB 0008 3668 04;72041749.0;'s-Gravenzandseweg 4;;WATERINGEN;0
+178;Detaconcept Uitzendgroep B.V.;particulier;;;;65815726.0;'s-Gravenzandseweg 6;;WATERINGEN;0
+570;Detron;particulier;;;NL67 ABNA 0106 9533 97;;;;;0
+197;Dhr D. Pronk en Mw y. Pronk - Dijkhuizen;particulier;familiepronk-dijkhuizen@ziggo.nl;;NL93 INGB 0388 7726 97;;Aronskelkweg 70;;'s-Gravenhage;0
+224;Dhr I.B. Stefan;particulier;alexandrudorin93@gmail.com;;;;de Dulf 69;;LEEUWARDEN;0
+975;Dhr R Paltan;particulier;rppaltan@gmail.com;06-51026495;NLo7RABO0188649506;;Industrieweg 28 G;3044 CB;Rotterdam;1
+188;Dhr. A. Dorin;particulier;rasinfra@hotmail.com;06-19168576;;;de Dulf 69;;LEEUWARDEN;0
+158;Dhr. A. Ros;particulier;invoice-alex@hotmail.com;0646866898;NL06 ABNA 0476 9393 64;;Slenerbrink 96;;Emmen;0
+161;Dhr. B. Vlastuin;particulier;bartvlastuin@gmail.com;;NL47 KNAB 0614 0994 63;;Reebaa 24;;Scherpenzeel GL;0
+973;Dhr. J. P. L. Giessen;particulier;giessenjo@yahoo.com;0648156153;NL24RABO0119617404;;Westland;;;1
+175;Dhr. J.L. Meerding;particulier;jlmeerding@gmai.com;;NL29 ABNA 0416 0042 29;;Mauvezand 6;;Laren NH;0
+176;Dhr. J.M.R. Boringa;particulier;rob@rohanvastgoed.nl;;NL02 ABNA 0249 4453 36;;Willem Lodewijklaan 63;;Heerenveen;0
+184;Dhr. M. Moeilijker;particulier;mmoeilijker@gmail.com;;NL66 RABO 0346 0186 25;;Hoofdstraat 77;;Ovezande;0
+186;Dhr. R Verspui;particulier;rverspui@hotmail.com;;NL51 RABO 0321 7135 08;;Peursumseweg 119a;;Giessenburg;0
+164;Dhr. R. Bekken;particulier;renzo.bekken@gmail.com;206 24524308;NL62 BUNQ 2070 7468 01;;Roemer Visscherlaan 57;;Zeist;0
+185;Dhr. R. J. Beking;particulier;rjbeking@icloud.com;;NL32 RABO 0331 8091 25;;Dauwbraam 31;;KATWIJK;0
+162;Dhr. SWJ Colpaert en Mevr. J. Michielsen;particulier;info@jettymichielsen.com;;NL56 INGB 0652 0926 67;;Wilhelmina Druckerstraat 68;;Coevorden;0
+206;Dhr. T. Roestenberg en Mw. Roestenberg - Hustinx;particulier;timoroestenberg@hotmail.com;06 199 144 13;NL42 ASNB 8832 1748 71;;De Haarmansenk 7;;Schalkhaar;0
+626;Digidentity;particulier;;;;;;;;0
+400;Digital Revolution B.V.;particulier;;;;33267823.0;Nieuw Walden 56;;Nederhorst den Berg;0
+834;Digo Real Estate;particulier;;;;;;;;0
+590;Digo Real Estate BV;particulier;info@digorealestate.com;+31 6 22 82 66 20;NL68 RABO 0364 3051 26;;;;;0
+31;Direct Rendement B.V.;particulier;info@directrendement.nl;06 18880220;NL09 INGB 0008 5322 69;72724382.0;Kortedijk 57;;VLAARDINGEN;0
+816;Dockholland;particulier;;;;;;;;0
+981;Drift Oud camp 8.V.;bedrijf;;;NL77Rabo0328946427;71225870;Oudecampsweg 15;;;1
+360;Duijndam Personeelsdiensten B.V.;particulier;facturen@duijndamworks.nl;0174-270365;;54370914.0;Honderdland 241;;Maasdijk;0
+256;Dumanli;particulier;;;NL10 INGB 0637 6346 75;;;;;0
+278;Dunaj Projekty SRO;particulier;pim.stroo@dunajprojekty.eu;;;;Velkoblahosvska cesta 1063/5 929 01;;Dunajska Streda;0
+635;Dunea;particulier;;;;;;;;0
+318;Dutch Ink;particulier;Info@dutchink.nl;;;;George Stephensonweg 21m;;Vlaardingen;0
+151;Dutch Shipyard B.V.;particulier;info@dutchshipyard.eu;;;69474907.0;Bollenmarkt 6 C;;ZWAAGDIJK-OOST;0
+93;Dynalinx B.V.;particulier;;;NL70 RABO 0351 6436 80;6092423.0;Pascalweg 15;;Hellevoetsluis;0
+676;E Beukema;particulier;e.r.beukema@gmail.com;;NL03 RABO 0136 7409 01;;;;;0
+317;E Rebel;particulier;erebel@ziggo.nl;;NL66 INGB 0004 1170 64;;;;;0
+837;E. Beukema;particulier;et.beukema@gmail.com;06 31077111;;;;;;0
+815;E. Rebel;particulier;;;;;;;;0
+364;E.C. Koornneef;particulier;info@hollandhuisvesting.nl;;;;Holwerdalaan 3;;Naaldwijk;0
+148;E.C. Laus (Landsteinerhof 68);particulier;;;NL35 RABO 0199 2573 10;;;;;0
+183;E.C. Laus / K. van Elk Landsteinerhof;particulier;eva_laus@hotmail.com;;NL48 ABNA 0562 3643 74;;Landsteinerhof 68;;Hoogeveen;0
+511;ECE Brand- en Inbraakbeveiliging B.V.;particulier;info@ecebv.nl;;NL53 RABO 0394 4227 32;75283875.0;Celsiusbaan 6 A;;NIEUWEGEIN;0
+276;EG Facility & Services BV;particulier;facturen@egfs.nl;06 43220422;NL69 RABO 0359 9345 79;88802957.0;Velsenstraat 6A;;Werkendam;0
+649;EP Paardekooper holding B.V.;particulier;;06-20242670;NL86 INGB 0103 0932 73;;;;;0
+113;ERGO Construction doo;particulier;ergo.const@gmail.com;;;;Frana Supila 6;;Rijeka;0
+126;EU Facility Services;particulier;inkoopfacturen@houseofcovebo.nl;033 29 94 222;NL94 ABNA 0254 3837 93;32110787.0;Ambachtsstraat 13;;NIJKERK;0
+281;EWLIT Sp.Z.O.O.SP.K;particulier;Michal.wierzchowski@ewl.com.pl;;;;ul. Kilinskiego 16/6;;Piaseczno;0
+86;Eastmen;zakelijk;;;;;;;;0
+170;Eastmen Human Resources B.V.;particulier;facturen@eastmen.eu;088 1444430;NL11 INGB 0669 4409 57;1117168.0;Papendorpseweg 99;;Utrecht;0
+142;Easyjob People;particulier;administratie@easyjobpeople.nl;;NL23 RABO 0351 6588 82;24372176.0;Laanweg 6;;SPIJKENISSE;0
+615;Easypark;particulier;;;;;;;;0
+681;Edward Bosch;particulier;;;NL03 ABNA 0867 0942 73;;;;;0
+14;Edy Comert BV;particulier;office@edycom.ro;;;51124769.0;Bergerweg 61;;Sittard;0
+74;Edy Comert SRL;particulier;office@edycom.ro;06-28339565;RO73 BACX 0000 0008 7210 3014;RO21608672;Strada Rapsodiei 47;;Constanta;0
+218;Eemsdelta Housing B.V.;particulier;facturen@eemsdelta-housing.nl;;NL22 INGB 0007 7428 43;80302246.0;Weereweg 25 A;;TJUCHEM;0
+202;Eigenaren van Dieptol 63;particulier;prkapper@gmail.com,judithdijkgraaf@hotmail.com;;NL76 KNAB 0516 2255 53;;Dieptol 63;;Steenwijk;0
+144;Eizema Heerenveen Vastgoed b.v.;particulier;administratie@eizema-vastgoed.nl;0513 - 71 39 83;NL58 INGB 0660 8505 67;1114324.0;Burgemeester Falkenaweg 36;;HEERENVEEN;0
+490;Elabo B.V.;particulier;;;NL66 INGB 0009 0743 46;8098960.0;Landdrostlaan 51;;APELDOORN;0
+34;Employ;particulier;;;;;;;;0
+213;Employ Facilitair B.V.;particulier;facilitair@employ.nl;088-0889008;NL28 RABO 0317 3858 79;68292449.0;Industrieweg 1;;HOOGEVEEN;0
+614;Enexis Netbeheer BV;particulier;;;NL04 RABO 0307 5125 84;;;;;0
+401;Essent Retail Energie B.V.;particulier;;;NL32 ABNA 0242 2447 77;13041611.0;Postbus 1024;;'s-Hertogenbosch;0
+320;Estra Logistics Systems B.V.;particulier;finance@cruisr.nl;06 153 52 404;;282166021;Zuid Hollandiaan 7;;'s-Gravenhage;0
+201;Euromontur Asemblies SL.;particulier;ana.gomez@euromontur.net;;ES38 2085 4891 8203 3358 3866;;Merindad Castilla La Vieja 27;;Spanje;0
+308;Europe-jobs B.V.;particulier;info@europe-jobs.nl;06 525 02 595;NL42 INGB 0674 8319 50;98765432;Oude Terborgseweg 288;;Doetinchem;0
+46;European Business Brokers;particulier;daniel@reppz.com;;;;Dr. Duyvendakhof 32;;Oud Beijerland;0
+662;Europlan;particulier;;;;;;;;0
+790;Eva Laus;particulier;;;;;;;;0
+402;Evides Waterbedrijf;particulier;;;;;;;;0
+598;Evo Vastgoedonderhoud;particulier;;;NL12 RABO 0371 3427 08;;;;;0
+403;Exact Netherlands B.V.;particulier;;;NL08 ABNA 0484 9873 21;61876992.0;Molengraaffsingel 33;;Delft;0
+404;Expert;particulier;;;;;;;brielle;0
+168;F. Veurink en P. Neleman;particulier;mieke.veurink@gmail.com;0628555669 / 0610435440;NL62 INGB 0654 9954 78;;Dorresteinseweg 18;;Amersfoort;0
+960;F.A.S. van Bergen;particulier;jetvbergen@gmail.com;06-53739975;NL44ABNA0620327766;;;;;0
+606;FD Cursus;particulier;;;NL23 INGB 0008 5055 36;;;;;0
+325;FGM Solar Renewable S.R.L.;particulier;edeny2002@gmail.com;06-44844483;;47218800;Str. Nufarului, Nr. 28E, Et. 3;;Oradea;0
+347;FISSH B.V.;particulier;administratie@fissh.nl;06 338 76 573;;264206165;Copernicusstraat 18;;Wijchen;0
+992;FULL-TIME Holding BV;bedrijf;;;;24263084;;;;1
+253;Facili Flex BV;particulier;invoice@ifj.nl;0297-389680;NL68 RABO 0330 6682 42;;Legmeerdijk 313;;Aalsmeer;0
+146;Fam. Derwig;particulier;hans.derwig@dunlopcb.com;20620498826;NL90 INGB 0001 0215 56;;Hooizolder 188;;Drachten;0
+321;Fareon Z Nederland;particulier;nancy@fareon.nl;+31 640979644;NL50 ABNA 0838 0539 55;;Lange Amerikaweg 67;;Apeldoorn;0
+567;Fastgoed makelaars;particulier;;;NL49 KNAB 0507 4890 55;;;;;0
+339;Fasttravel Taxi;particulier;iacovachem@gmail.com;06-484 08 866;;;Kerkweg 9A;;Hensbroek;0
+262;Feel Flex B.V.;particulier;factuur@feelflex.nl;;;;Doornhoek 3842;;Veghel;0
+405;Financial Lease.NL;particulier;;;;;Diamantlaan 6;;HOOFDDORP;0
+11;Finest Housing B.V.;particulier;backoffice@finesthousing.nl;1077 - 333 33 33;NL57 RABO 0342 8897 61;75080060.0;John F. Kennedylaan 246;;PANNINGEN;0
+54;Finishing De Luxe GmbH;particulier;katja.korotchenko@finishing-deluxe.com;0412- 745806;;;Burgermeister Schade Strasse 20;;SCHONKIRCHEN;0
+204;Fix Personeelsdiensten;particulier;admin@teamfix.nl;;NL05 RABO 0312 4652 89;22065411.0;Leemidden 22;;DE LIER;0
+657;Flake;particulier;;;NL44 KNAB 0775 9672 97;;Van Brakelstraat 8;;'s-Gravenhage;0
+80;Flex House Renting B.V.;zakelijk;e.ozel@interimjobs.nl;;NL35 INGB 0008 0442 79;78002222.0;Vlierwerf 3 d;;ROOSENDAAL;0
+114;Flex Pons B.V.;particulier;f.tuncer@flexpons.nl;06 42 57 37 23;NL31 INGB 0006 2037 76;60580364.0;Boschstraat 43;;BREDA;0
+232;FlexState B.V.;particulier;customer-success@hiway-mail.com;+45 42719791;;;Kerkenbos 1075 W;;NIJMEGEN;0
+341;Flexbo B.V.;particulier;info@flexbo.nl;085-060 30 34;NL34 INGB 0105 4807 97;;Posthoornstraat 11;;Rotterdam;0
+15;Flexcraft SSC BV;particulier;huisvesting@flexcraft.eu;2431 (0)85 022 02 22;;67541690.0;Einsteinstraat 9 B;;Gorinchem;0
+266;Flextalent4u Uitzenden B.V.;particulier;administratie@flextalent4u.nl;;;;Manmakerweg 23;;Bleskensgraaf Ca;0
+172;Flexvesting B.V.;particulier;administratie@flexvesting.com;033 303 59 40;NL51 RABO 0370 7195 57;83276491.0;Wiekenweg 50b;;Amersfoort;0
+37;Flowerhill B.V.;bureau;jb.heuvel@quicknet.nl;06-51013861;;69891478.0;Prinses Marijkestraat 36;;Andijk;0
+290;Focuzop-eu;particulier;administratie@focuzop-eu.com;06-45085584;;85020184;Amperestraat 7-14;;Harderwijk;0
+625;Franks Kluus Service FP van der Hooft;particulier;;;NL67 RABO 0147 9282 14;;;;;0
+701;Fransen Vastgoed / Holland Huisvesting B.V.;particulier;info@fransenvastgoed.nl;;NL80 RABO 0190 7126 43;;Lekdreef 2;;Krimpen aan de Lek;0
+75;Fryslân Homes;bureau;backoffice@fryslanhomes.frl;;NL44 INGB 0006 4538 99;63969823.0;Struikheide 6;;Heerenveen;0
+94;Furniture Lease;particulier;;;NL67 RABO 0133 9564 31;73701297.0;Sint Walburg 20 b;;Zetten;0
+955;G. Hofland;particulier;goos@hoflandfloweringplants.nl;0174-625887;NL27RABO0343661063;;;;;0
+134;G.D. Dijkstra;particulier;info@wijzerinwonen.nl;;NL76 INGB 0662 5063 24;;Zuurstukken 86;;Eelde;0
+779;G.J. Bergwerff;particulier;;;;;;;;0
+314;G.K. Stoel;particulier;rolfstoel@hotmail.com;06-14901449;;;Patrijsstraat 39;;Papendrecht;0
+374;GAP Costruzioni S.r.l.;particulier;invoice@gapcostruzioni.it;+39 346 7115 004;IT29 E030 6984 6201 0000 0011 940;;Viale Italia 110;;Augusta;0
+407;GGN van Mastrigt & Partners;particulier;;;;17240971.0;Willemsplein 489;;Rotterdam;0
+600;GJ Bergwerff;particulier;;;NL37 RABO 0336 2428 08;;;;;0
+279;GMC KOVI Global Metal Construction;particulier;emina.dzelilovic@gmcgroup.ba;;;;Maistrova ulica 16;;Kanik;0
+6;GOTI Verhuur B.V.;zakelijk;info@gotiverhuur.nl;;NL94 INGB 0665 1314 02;1098148.0;Noorderhaven 63;;Harlingen;0
+274;GSI B.V.;particulier;maurice@teamwanted.nl;088-9668300;;;Koperslagersstraat 88;;Sneek;0
+259;Gap Costruzioni Dutch Branch;particulier;invoice@gapcostruzioni.it;;IT29 E030 6984 6201 0000 0011 940;;Posthoornstraat 11;;Rotterdam;0
+283;Gastvrijaanzee.nl;particulier;rekening@getstay.nl;;NL78 INGB 0006 3933 41;;Mosselaan 53;;Egmond aan den Hoef;0
+979;Gebr van der Voort v.o.f.;bedrijf;;;NL34RABO0342916386;;van Rijckevorsellaan 6;;'s-Gravenzande;1
+966;Gebr. WMJ, LNJ, AAJ en MWJ van Holstein;particulier;;;;;Watermolen 5;;De Lier;1
+624;Gelecon Schoonmaak;particulier;;;NL51 INGB 0661 0307 25;;;;;0
+406;Gem Rotterdam;particulier;;;NL97 ABNA 0644 5121 13;;;;;0
+670;Gemeente Nissewaard;particulier;;;NL08 BNGH 0285 1835 08;;;;;0
+581;Gemeente Voorne aan Zee;particulier;;;NL34 BNGH 0285 1856 59;;;;;0
+191;Gemeente Waadhoeke;particulier;info@waadhoeke.nl;;;70528586.0;Harlingerweg 18;;Franeker;0
+513;Glasservice en Timmerwerken D.Stukje;particulier;;;NL03 RABO 0325 5181 30;70328471.0;Lageweg 38A;;Wedde;0
+27;Global Accomodation Solutions (Incassobureau);particulier;info@globalaccommodation.solutions;;NL76 INGB 0008 9801 73;78155797.0;Jan Pietersz. Coenstraat 7;;'S-GRAVENHAGE;0
+47;Global Expatriate Services SL;particulier;lodewijk@globexs.com;;ES59 0049 0621 1228 1065 0833;;Calle Del Pintor Salvador Abril 35;;Valencia;0
+486;Goed In Vastgoed Belegging B.V.;particulier;;;NL96 INGB 0009 1278 35;73068926.0;Wetterkrite 49;;GOUTUM;0
+408;Goed in Vastgoedbeleggingen;particulier;;;;;;;;0
+685;Gravis Beheer BV;particulier;;;NL86 KNAB 0256 4946 81;;Westeinderhof 10;;Moordrecht;0
+983;Greenroads Beheer B.V.;bedrijf;;;NL08RABO0328704393;27300625;Kaapsebos 13;2676 BX;Maasdijk;1
+78;Gridin's Group LT;particulier;a.kozlova@gridins.com;+370 613 87 080;;;Tomo g. 20-2;;Klaipeda;0
+840;Groen Holding / van Vliet;particulier;;;;;;;;0
+604;Groen Holding BV;particulier;gzbeheer@outlook.com;null;NL85 RABO 0352 3067 93;;;;;0
+19;Groene Hart Service Detachering B.V.;bureau;facturatie@groenehartservice.nl;06 42 03 8114;NL41 INGB 0650 5389 00;;Fokkerstraat 5;;REEUWIJK;0
+716;Groenedag Installaties;particulier;;;NL91 INGB 0650 4744 65;;Ernst Casmirstraat 5;;Sneek;0
+752;H. Heijdra;particulier;;;;;;;;0
+141;H. Molla Farajzadeh;particulier;habibmf@2ops.nl;;NL45 ABNA 0599 1094 83;;Juttepeer 60;;Den Hoorn ZH;0
+792;H. Samson;particulier;;;;;;;;0
+957;H. van Leeuwen;particulier;petra@huubvanleeuwen.nl;06-51262904 / 0174-248804;NL96RABO0375644504;;;;;0
+231;H. van den Berg;particulier;martijnbergvanden@gmail.com;;NL72 BUNQ 2036 4253 05;;Marconistraat 12;;Huizen;0
+167;H.A. Samsom & M.E.P. Knaap;particulier;office@inmotionvastgoed.nl;;NL47 ABNA 0822 9350 07;;Klokkenberg 88;;Breda;0
+9;H.C. van Os - Remeeus;particulier;marcel@cohousingnederland.nl;;NL60 RABO 0369 8896 57;;Iependaal 19;;ROZENBURG;0
+136;H.T.C. Facility Services B.V.;particulier;inkoop@htcfacilityservices.nl;06 139 29 236;NL43 RABO 0358 2186 32;70962499.0;Rivium Quadrant 2;;Capelle aan den IJssel;0
+472;HB Housing;particulier;;;NL44 RABO 0134 1169 92;55417760.0;Sloterkade 182;;Amsterdam;0
+813;HBB Wonen (Danielle Hanegraaf);particulier;;;;;;;;0
+41;HBBwonen.nu B.V.;particulier;info@hbbwonen.nu;06-34104099;NL79 INGB 0006 8359 34;70532222.0;Stationsstraat 13;;ROSMALEN;0
+631;HBM Machines B.V.;particulier;info@hbm-machines.com;;NL61 ABNA 0869 7940 00;;Louis Dobbelmannweg 12;;Waddinxveen;0
+818;HC van Os - Remeeus;particulier;;;;;;;;0
+410;HD logistics;particulier;;;;73302384.0;Burgemeester Sweenslaan 39;;Leidschendam;0
+71;HJC Service;particulier;benhanan010@gmail.com;;NL78 SNSB 0786 0245 77;71585737.0;Maarland Zuidzijde 27;;Brielle;0
+165;Habroko B.V.;particulier;fdenbroeder@upcmail.nl;;NL67 HAND 0785 1044 10;86020625.0;Valkenlaan 37;;OOSTVOORNE;0
+496;Handmatige crediteuren;particulier;;;NL61 RABO 0102 6415 44;1171685.0;Spoorlaan 18;;De Blesse;0
+261;Head Vastgoed B.V.;particulier;administratie@headstaffing.nl;2085 4897400;NL72 RABO 0313 2276 67;;Edisonbaan 12;;Nieuwegein;0
+228;Heijdra Dhr. H.M.;particulier;h.heijdra@outlook.com;;NL81 INGB 0671 1964 64;;Lauwersmeer 22;;Barendrecht;0
+501;Helden van . Nu B.V.;particulier;info@heldenvan.nu;;NL92 RABO 0160 7561 11;34264245.0;Binnenweg 14;;HOOFDDORP;0
+95;Hiltermann Lease B.V.;particulier;;;NL32 ABNA 0633 0060 76;34216188.0;Diamantlaan 6;;Hoofddorp;0
+215;Hiway Operational Company B.V.;particulier;lea@alphaworkforce.net;;;80604250.0;Kerkenbos 1075 W;;NIJMEGEN;0
+588;Holiday Chaletpark;particulier;;;NL28 INGB 0000 0643 12;;;;;0
+307;Holland Chalet Park;particulier;Receptie@hollandchaletpark.nl;06-11068727;NL28 INGB 0000 0643 12;;Kerkweg 9a;;Hensbroek;0
+547;Holland Housing;particulier;;;NL36 ABNA 0107 1323 38;;Seggeweg 63;;Vierpolders;0
+620;Holland Warmte Verwarming;particulier;;;NL85 RABO 0347 4013 09;;;;;0
+835;HollandHousing Rental BV;particulier;;;;;;;;0
+499;Home Rentals Groep B.V.;particulier;;;NL87 INGB 0008 5592 86;85998524.0;Krammer 8;;BRIELLE;0
+749;HomeScout (Rene van der Kruijf);particulier;;;;;;;;0
+977;Homeflex B.V.;bedrijf;info@homeflex.nl;0184-820082;NL69 RABO 0111 5509 47;24397918;Molendijk 16;3361 EN;Sliedrecht;1
+106;Homekeur B.V.;particulier;;;NL71 INGB 0007 6493 26;67431496.0;Gieterijstraat 82;;Ridderkerk;0
+211;Homescout21 B.V.;particulier;rene@homescout21.com;;NL22 ABNA 0101 0258 58;82780242.0;Keizerstraat 28 1;;'S-GRAVENHAGE;0
+814;Hopmans;particulier;;;;;;;;0
+542;Hopmans Flexstay;particulier;;;NL93 RABO 0318 1254 98;;;;;0
+322;Horus Team Sp. Z.o.o.;particulier;administration@horusteam.net;;;;Święty Marcin 29/8;;Poznan;0
+720;Hotel aan de Linge;particulier;info@hotelaandelinge.nl;;NL23 RABO 0312 6539 21;66924650.0;Lingedijk 2;;Kedichem;0
+271;Houses2Rent;particulier;info@houses2rent.nl;06-20877085;NL17 INGB 0390 7692 58;;Stellingmolen 42;;Maassluis;0
+702;Housing Solutions;particulier;;;NL10 INGB 0651 0123 33;;Breedstraat 15;;Zuidland;0
+88;Housing en Transport Facilities BV;zakelijk;inkoopfacturen@houseofcovebo.nl;+31641786315;;2431 64 17 86 315;;;;0
+310;HousingWell B.V.;particulier;info@housingwell.nl;078 614 02 02;;;Tinstraat 7b;;Ridderkerk;0
+227;Houvast Estates B.V.;particulier;hershihoffman22@gmail.com;;;;Consciencestraat 47;;Antwerpen;0
+706;Hoveniersbedrijf Tichelaar;particulier;;;NL52 ABNA 0550 3913 98;50197894.0;Kanaaleg 80;;Harlingen;0
+708;Hubo Oud-Beijerland;particulier;oud-beijerland@hubo.nl;;NL76 ABNA 0505 7142 21;23050770.0;Rembrandtstraat 7;;Oud Beijerland;0
+845;Hugo Vastgoed;particulier;;;;;;;;0
+111;Hugo Vastgoed B.V.;particulier;administratie@hemobeheer.nl;2076 515 45 06;NL06 ABNA 0889 9369 43;81215169.0;Academiesingel 37 A;;BREDA;0
+669;Hureninvlissingen.nl Lampert;particulier;;;NL84 RABO 0108 4706 36;;;;;0
+851;Huurwoning in Rotterdam;particulier;;;;;;;;0
+667;Huurwoning in Rotterdam VOF;particulier;info@huurwoninginrotterdam.nl;;NL47 RABO 0379 6025 98;;Noordsingel 34A;;Rotterdam;0
+618;I. Verbeek;particulier;irene.verbeek@icloud.com;;NL22 INGB 0007 7361 50;;;;;0
+664;I.C.Y. BV;particulier;;;NL51 SNSB 0904 4262 70;;;;;0
+50;I.I. Bhaggoe;particulier;;;NL56 INGB 0671 6016 95;;Jan Campertlaan 8;;SPIJKENISSE;0
+299;I.T.S. SR.L. (INDUSTRIAL TECHNICAL SERVICES), BRAN;particulier;salvotringali@hotmail.it , dballotta@itsservices.it;;;;Schepenenweg 35;;oostvoorne;0
+138;IC Idea Complex Sp. Z.o.o.;particulier;invoice@ideacomplex.eu;;PL87 1050 1504 1000 0090 8038 5108;;ul. Oleska 97H/4;;Opole;0
+216;ICS Impianti S.R.L.;particulier;info@icsimpiantisrl.com;;;;President Kennedylaan 19;;'S-GRAVENHAGE;0
+127;IFC B.V.;particulier;administratie@ifc.nl;078-6202823;NL67 ABNA 0446 9231 68;63659832.0;Fruiteniersstraat 12;;ZWIJNDRECHT;0
+412;IKEA B.V.;particulier;;;NL17 BNPA 8012 0001 21;33166333.0;Laan Van Decima 1 Service Offi;;Haarlem;0
+976;IN STONES;bedrijf;huisvesting@tradiro.nl;010-2341441;NL12 RABO 0300786654;61924644;Woudseweg 146;2636 AV;Schipluiden;1
+319;IPS Industrial Plant Solutions Kft.;particulier;loretta.hanoder@ipsolutions.hu;0036 70 357 1475 / 0036 70 659 5660;;;Lage Mosten 49;;Breda;0
+220;Impes Service S.p.A.;particulier;fatture.olanda@impesservice.it, Nicola.pisani@impesservice.it;+31 6 87020773;;;President Kennedylaan 19;;'s-Gravenhage;0
+240;Impianti Industriala S.P.A. NEDERLAND BRANCH;particulier;vendors@sitie.it;;;;Poortland 66;;Amsterdam;0
+641;In Control;particulier;;;NL72 RABO 0119 6705 69;;;;;0
+295;In Stijl Totaalbouw BV;particulier;info@instijltotaalbouw.nl;06-44404678;;;Burgemeester Freijterslaan 1;;Roosendaal;0
+154;InAxtion Vastgoed B.V.;particulier;Invoice.vastgoed@inaxtion.com;06 43 36 18 85;NL68 ABNA 0427 9222 08;16074829.0;Wijnstraat 123;;Dordrecht;0
+87;Industrial Technical Services Srl;zakelijk;;;;;;;;0
+413;Inquar;particulier;;;;;;;;0
+650;Installatie Service Robert ISR;particulier;;;NL06 ABNA 0406 6809 06;;;;;0
+532;Installatiebedrijf Jonkers BV;particulier;;;NL80 INGB 0001 5745 39;;Henric de Cranestraat 47;;KUINRE;0
+414;Installatiebureau Kon;particulier;;;;66341272.0;Sluisweg 2 C;;Hardinxveld-Giessendam;0
+506;Installatieprofi;particulier;;;NL84 RABO 0353 3409 28;77789490.0;Vlagtwedderstraat 95;;Bourtange;0
+32;Interim Jobs B.V.;particulier;e.ozel@interimjobs.nl;+31165396496;NL83 RABO 0313 5561 05;67044360.0;Vlierwerf 3 d;;ROOSENDAAL;0
+122;Interwel Oost B.V.;particulier;facturen@interwel.nl;1052 224 25 20;NL13 ABNA 0627 7737 53;4067303.0;Rollecate 71;;NIEUWLEUSEN;0
+358;I–Housing Vastgoed Beheer B.V.;particulier;administratie@i-housingvastgoedbeheer.nl;;NL89 RABO 0366 5365 24;81783604.0;Eusebiusbuitensingel 32-2;;Arnhem;0
+839;J, van de Linde;particulier;;;;;;;;0
+22;J. Hermans;particulier;frankjolanda@online.nl;20643982924;NL92 RABO 0154 3249 14;;Meedhuizerweg 5;;MEEDHUIZEN;0
+255;J. Hogervorst;particulier;jan@hoger.demon.nl;;NL46 RABO 0354 4717 59;;Molendijk 3;;Pijnacker;0
+177;J. J. van Veen;particulier;jack@obend.nl;;;;;;;0
+131;J. Kuipers;particulier;kuipers.jordi@gmail.com;;NL43 RABO 0330 9122 59;;Luytkemeer 11;;Heerenveen;0
+129;J. Luijsterburg;particulier;j.luijsterburg@planet.nl;;NL21 INGB 0008 3555 13;;Nassaulaan 39;;Steenbergen NB;0
+481;J. Schoemaker;particulier;;;NL63 ABNA 0605 8140 90;23091591.0;Kruisweg 1;;KRABBENDIJKE;0
+63;J. van Heeswijk;particulier;verhuur@reham.nl;;NL32 INGB 0007 1086 71;;Kortrijksesteenweg 1004;;;0
+630;J. van der Linde;particulier;;;NL90 RABO 0352 2550 99;;;;;0
+38;J.D. Jongsma;particulier;jand.jongsma@icloud.com;;NL88 INGB 0794 4823 68;;Tamboerstraat 16;;LOON OP ZAND;0
+644;J.G. van Pieterson;particulier;;;NL82 ABNA 0886 0378 24;;C.G. Roosweg 28;;Schoonhoven;0
+817;J.L. Meerding;particulier;;;;;;;;0
+795;J.P. Stoel;particulier;Jpstoel@gma;06 408 960 47;;;;;;0
+827;J.S. Vink;particulier;;;;;;;;0
+759;J.S. Vink Vastgoed;particulier;;;;;;;;0
+297;JC Kemp;particulier;;;NL53 RABO 0322 2526 95;;Spijksesteeg 1;;Spijk Gem Lingewaal;0
+300;JES Funding & Beheer B.V.;particulier;info@jesbeheer.com;06-27270429;NL79 INGB 0008 0477 55;;;;;0
+969;JES Funding en Beheer B.V.;bedrijf;verhuur@jesbeheer.com;06-54615625;;59979135;Koninginneweg 13;1217 KP;Hilversum;1
+415;JInniy Tel;particulier;;;;;Mimosastraat 100;;Maassluis;0
+303;JJM Personeel B.V.;particulier;Facturen@jjmpersoneel.nl;206 55 23 7385;NL77 RABO 0329 2174 45;;van Leeuwenhoekweg 6;;Schijndel;0
+273;JPJ Stoel;particulier;jpstoel@gmail.com;;NL60 HAND 0787 3890 80;;Celesta 16;;Kampen;0
+971;JS Vastgoed;bedrijf;;;NL26 RABO 0156 3479 70;;Achterom 117;2991 AC;Barendrecht;1
+369;JT Glazenwasserij en Schoonmaakdiensten;particulier;info@jtschoonmaak.nl;;NL44 INGB 0006 8898 17;66378753.0;Turbinestraat 8M;;Veenendaal;0
+306;Jacco Maat;particulier;jacco@jtvastgoed.nl;;;;;;;0
+130;Jan Luijsterburg Beheer B.V.;particulier;j.luijsterburg@planet.nl;206 10147431;NL21 INGB 0008 3555 13;20149379.0;Nassaulaan 39;;STEENBERGEN;0
+980;Jan Peter Stoel;particulier;jpstoel@gmail.com;06-40896047;;;Genestetlaan 1;2741 AC;Waddinxveen;1
+608;Jef van Mierop;particulier;;;BE53 7330 7293 6653;;;;;0
+853;Jes Funding & Beheer;particulier;;;;;;;;0
+842;Jetty Michielsen;particulier;;;;;;;;0
+291;Johan van der Burg;particulier;johanvanderburg87@gmail.com;;NL74 RABO 0134 5913 64;;;;;0
+783;Johan ven der Burg;particulier;;;;;;;;0
+225;Jong de SAW Dhr;particulier;jcdejong@aol.nl;;NL26 RABO 0111 5750 01;;De Tolve 34;;Goutum;0
+647;Joop Kuipers Riool ontstopping;particulier;;;NL83 KNAB 0414 6949 45;;;;;0
+540;Joop Leeuwis;particulier;;;NL20 RABO 0321 7596 56;;;;;0
+648;Joost de Jong Beheer;particulier;;;NL56 RABO 0306 7918 11;;;;;0
+8;Joost de Jong Holding B.V.;particulier;jcdejong@aol.nl;;NL70 INGB 0007 1264 17;63936070.0;Wetterkrite 49;;Goutum;0
+163;Joyce Bakker Advies;particulier;joyce@joycebakker.nl;;;60240156.0;Mient 110;;'s-Gravenhage;0
+76;K-Power Netherlands Kft;particulier;k-power@t-online.hu;+36 30 976 3129;;;Wetering Oost 48;;Wetering;0
+771;K. Zuidgeest;particulier;;;;;;;;0
+418;KGV B.V.;particulier;;;;52454576.0;James Wattweg 2 b;;Vlaardingen;0
+492;KIV-Noord B.V.;particulier;;;NL93 ABNA 0813 5547 64;58754512.0;Industrieweg 4 A;;HARLINGEN;0
+209;KODE Staffhousing B.V.;particulier;administratie@kodere.nl;;NL48 INGB 0389 9935 73;89585798.0;Economiestraat 16;;Sittard;0
+419;KOK GLAS;particulier;;;NL33 ABNA 0860 1110 91;;James Wattweg 2 b;;VLAARDINGEN;0
+416;Kaarten en Atlassen;particulier;;;;;;;LANDSMEER;0
+96;Kadaster;particulier;;;NL42 INGB 0006 3919 52;8215619.0;George Hintzenweg 77;;Rotterdam;0
+368;Kajuit;particulier;info@kajuitbv.nl;;;85828904.0;Marsdiep 16a;;Urk;0
+526;Kamer van Koophandel;particulier;;;;59581883.0;St.-Jacobsstraat 300;;UTRECHT;0
+367;Kapitan Workers Sp. Z.o.o.;particulier;kapitanworkers@outlook.com;;;;Szosa Chelminska 26;;Torun;0
+365;Kapitein & Personeel B.V;particulier;klaas@kapiteinpersoneel.nl;;;83620494.0;Marsdiep 16a;;Urk;0
+619;Kaplan;particulier;;;NL22 RABO 0116 5377 87;;;;;0
+248;Karadeniz Diensten;particulier;info@karadenizdiensten.nl;206 10048527;;;Bomendijk 10;;Rozenburg ZH;0
+417;Keizer Hoveniersbedrijf;particulier;;;NL67 RABO 0381 8320 74;59593350.0;Vinkseweg 8;;Rozenburg;0
+550;Kempers en Koppenol;particulier;;;NL33 RABO 0344 8164 19;;;;;0
+350;Key4work B.V.;particulier;facturen@key4work.com;06- 110 80 619;NL04 INGB 0006 3999 11;75551438;Smaragdstraat 14;;Hengelo OV;0
+97;Keypro B.V.;particulier;;;NL76 INGB 0007 4343 81;52688844.0;Suikerlaan 15;;Groningen;0
+45;Kiose Yacht Finishing;particulier;metinkiose@yahoo.co.uk;;;;Kiou 6;;Keatsini  Athens;0
+10;Klaas Bos;particulier;klaas.bos@example.com;;;;;;;0
+323;Kleijweg projects;particulier;Info@kleijweginvestments.nl;;;;Zwedenstraat 12;;De Lier;0
+613;Klusman Simon;particulier;;;NL02 INGB 0007 3276 55;;;;;0
+642;Ko-Tech Kozijntechniek BV;particulier;;;NL51 RABO 0117 7812 90;;;;;0
+203;Koens T. Dhr.;particulier;tommykoens@gmail.com;;NL71 INGB 0652 0479 71;;Krijnenweg 3;;Bussum;0
+963;Kolpa V.V.S. Beheer B.V.;bedrijf;info@kolpaves.nl;010 467 25 55;;24324527;James Wattweg 20;3133 KK;Vlaardingen;1
+546;Kozijn Service Nederland;particulier;;;NL61 INGB 0674 5329 45;;;;;0
+420;Kpn;particulier;;;NL83 INGB 0000 3255 13;27124701.0;Wilhelminakade 123;;Rotterdam;0
+421;Kuwait Petroleum;particulier;;;;;;;;0
+359;Kwekerij Stef Kleijweg;particulier;Stefkleijweg@gmail.com;;;;Woudselaan 14;;Den Hoorn ZH;0
+675;L&T B.V.;particulier;;;NL67 INGB 0109 4448 84;;;;;0
+79;L. Keizer;zakelijk;leendertkeizer@hotmail.com;;NL16 INGB 0675 4147 09;;Rettichlaan 8;;'S-GRAVENZANDE;0
+800;L. Schilstra / Eigenaar.nl;particulier;;;;;;;;0
+33;L.M. Schilstra;particulier;;;NL17 RABO 0158 8674 16;;Adres onbekend;;;0
+485;L.M.J.D. B.V.;particulier;;050 - 311 2543;NL56 RABO 0321 1700 24;69118205.0;Leonard Springerlaan 7;;GRONINGEN;0
+102;LZ Auto- en Motorservice B.V.;particulier;lz@lzautoservice.nl;;;64117367.0;Dwarsweg 32;;Rozenburg;0
+422;La Marina;particulier;;;;;;;Javea;0
+705;Laadkompas;particulier;info@laadkompas.nl;;NL72 ABNA 0114 4249 26;;Koperstraat 1A;;Almere;0
+234;Labour Housing BV;particulier;crediteuren@ottoworkforce.eu;06 164 77 586;NL84 ABNA 0405 8514 13;50188895;Postbus 5145;;VENRAY;0
+98;Lago Personeelshuisvesting B.V.;particulier;facturen@lagopersoneelshuisvesting.nl;2085-021 25 05;;67649815.0;Kwinkweerd 100A;;Lochem;0
+747;Lammertink Projecten B.V.;particulier;;;;;;;;0
+68;Langweer Vastgoed B.V.;particulier;jan@wassenaarvastgoed.nl;0513-498113;NL64 RABO 0312 3429 77;;Buorren 15;;LANGWEER;0
+423;LeasePlan Nederland N.V.;particulier;;;NL24 ABNA 0515 1700 38;39037163.0;P.J. Oudweg 4;;Almere;0
+230;Leen Bakker Nederland B.V.;particulier;;;NL72 RABO 0320 2430 95;18118971.0;Karperweg 3;;RAAMSDONKSVEER;0
+846;Leendert Keizer;particulier;;;;;;;;0
+535;Lekdetectiecentrale;particulier;;;NL39 INGB 0006 4214 94;;;;;0
+119;Level 5 Assetmanagement B.V.;particulier;;;NL78 INGB 0006 3405 73;80486142.0;Edisonweg 12;;ALBLASSERDAM;0
+603;Liander;particulier;;;NL95 INGB 0000 0055 85;;;;;0
+424;Lidl;particulier;;;;32061446.0;Havenstraat 71;;Huizen;0
+257;Lievaart B.V.;particulier;vl-beheer@outlook.com;;NL52 KNAB 0512 2396 73;;;;;0
+48;Light Personeelsdiensten;particulier;;;;;;;;0
+331;Light Personeelsdiensten BV;particulier;facturen@lightpersoneelsdiensten.nl;010-760 08 57;;;Selma Lagerlöfweg 63;;Rotterdam;0
+334;Lilit Home Makelaardij;particulier;info@lilithome.nl;;;;Strevelsweg 72A-74A;;Rotterdam;0
+169;Lion Trading;particulier;i.asadi@liontrading.nl;;;72344849.0;Tonneboerstraat 33;;ROCKANJE;0
+355;LogIQ Barendrecht B.V.;particulier;facturen0180@logiq.nl;;NL22 ABNA 0885 7890 32;;Ebweg 12;;Barendrecht;0
+260;Looije Facilities B.V.;particulier;Factuur@nwg.nl;;;;Verburghlaan 24 a;;Poeldijk;0
+425;Luxury Floors;particulier;;;;;Haatlanderdijk 6-D;;Kampen;0
+654;M Kathiravelu;particulier;;;NL62 RABO 0320 3485 20;;;;;0
+607;M en M Hendriks;particulier;mark.e.hendriks@gmail.com;;NL73 RABO 0332 1313 00;;Drs. J.L. Moonenstraat 24;;;0
+239;M van den Berg e/o H van den Berg;particulier;martijnbergvanden@gmail.com;;NL61 BUNQ 2100 6227 22;;;;;0
+803;M&M Hendriks;particulier;;;;;;;;0
+812;M. Dogan;particulier;;;;;;;;0
+769;M. Farajzadeh;particulier;;;;;;;;0
+850;M. Kathiravelu;particulier;;;;;;;;0
+811;M. Koolhaas;particulier;mike.koolhaas@hotmail.com;06 47075 677;;;;;;0
+843;M. Moeilijker;particulier;123wG@nen.nl;;;;;;;0
+952;M. Nottet;particulier;mnottet@caiway.nl;06-50502637;NL60RABO0323282903;;;;;0
+60;M. Poel;bureau;monique_pruijsen@hotmail.com;20650128055;NL96 RABO 0138 5699 08;;Esdoornlaan 64;;ROZENBURG;0
+480;M. van Happen Transport B.V.;particulier;;;NL55 INGB 0662 9650 27;17053881.0;Weijerbeemd 10;;EINDHOVEN;0
+70;M.A. Pronk;particulier;mp64@hotmail.com;;NL31 INGB 0799 7542 77;;Oosteinde 102;;BERKHOUT;0
+822;M.B. Kewal;particulier;mireldak@hotmail.com;06-42186940;;;;;;0
+1;M.C. Claassen;bureau;mcc.2006@hotmail.com;;NL05 RABO 0383 7113 04;;Camino Viejo de Valencia 8 1e izq;;;0
+807;M.C. Mostert;particulier;;;;;;;;0
+12;M.J. van Os;particulier;marcelvanos0@gmail.com;;NL21 INGB 0664 8003 94;;Burg Letteweg 31;;OOSTVOORNE;0
+956;M.J.W. van den Enden & B.M. van den Enden;particulier;endem3@caiway.nl;06-51611737 Barbara / 06-54398790 Maup;NL81INGB0112509347;;;;;0
+208;M@tchm@kers International B.V.;particulier;hello@matchmakers.nu;;NL16 ABNA 0124 8353 92;87011549.0;Wichard van Pontlaan 86;;ZALTBOMMEL;0
+335;MB Kewal;particulier;mireldak@hotmail.com;;NL83 ASNB 0932 1139 90;;Sweelinckplein 15;;'s-Gravenhage;0
+189;MBS Services B.V.;particulier;info@mbs-services.nl;06 11 22 3353;;73615889.0;Dwarsweg 34;;ROZENBURG;0
+264;MC Mostert prive;particulier;arie@tradiro.nl;;NL55 RABO 0318 2923 43;;;;;0
+296;MDI Techniek B.V.;particulier;wendy@mditechniek.nl;;NL89 RABO 0136 1461 98;;Parallelweg 31;;Neede;0
+430;MIB Verwarmingsbedrijf;particulier;;;NL91 RABO 0161 9621 30;24391341.0;'t Woud 35 F;;Brielle;0
+337;MK Contracting BV;particulier;info@mkcontracting.nl;070-2170650;NL80 INGB 0008 5110 09;;Van Gijnstraat 19;;Rijswijk ZH;0
+348;MNA Proud Facilities B.V.;particulier;Recep@prokonak.nl;06 423 54595;NL59 RABO 0366 0069 59;80752721;Tomatenlaan 29;;'s-Gravenhage;0
+718;MOVE-IZI;particulier;contact@move-izi.nl;;;89173651.0;Van Deventerlaan 31;;Utrecht;0
+238;MPC Energy B.V.;particulier;randolf@hollandhousing.work;;;74896482.0;Franse Akker 8;;BREDA;0
+666;MWT Loodgieters;particulier;;;NL16 BUNQ 2110 9692 61;;;;;0
+7;Maatschap J.W. Meershoek & W.M. Meershoek;zakelijk;j.meershoek1@chello.nl;;NL37 ABNA 0406 1514 07;;Grootzand 11;;HOEK VAN HOLLAND;0
+229;Maatschap Van Driel - Vd Vlist;particulier;drielvlist@gmail.com;+06 53141599;NL24 KNAB 0416 5382 31;85563943.0;Hekendorpse Buurt 24;;HEKENDORP;0
+530;Maatschap van Driel vd Vlist;particulier;;;NL24 KNAB 0416 5382 31;;Hekendorpse Buurt 24;;HEKENDORP;0
+802;Maatschap vd Vlist -Teuben;particulier;;;;;;;;0
+632;Maatschap vd Vlist Teuben;particulier;;;NL66 KNAB 0775 4675 45;;;;;0
+495;Maeva Services;particulier;;;NL34 KNAB 0405 7088 74;82131325.0;1e Weteringdwarsstraat 75;;AMSTERDAM;0
+44;Marco is Vastgoed B.V.;particulier;marco@dewitteaap.nl;20642154048;NL33 RABO 0349 6595 32;;Lombardkade 29 C;;ROTTERDAM;0
+200;Marco van Beek B.V.;particulier;;;;5070965.0;Ruxveenseweg 6;;STEENWIJK;0
+294;Maria;particulier;calinmariana@rambler.ru;;;;Sparrendreef 15;;Vlaardingen;0
+90;Marseille Bax Van Maanen Rotterdamse account.;particulier;;;NL39 ABNA 0800 7349 55;24220887.0;Molenweg 11-13;;Rozenburg;0
+633;Mast Allround;particulier;;;NL48 INGB 0105 2759 72;;;;;0
+525;Matex Trading B.V.;particulier;;;NL95 ABNA 0130 5378 61;17033570.0;Stoelerij 8;;ZEVENBERGEN;0
+282;Mavi Vastgoed;particulier;invoice@mavivastgoed.nl;06-28737253;;28737253;Havenstraat 20;;Ridderkerk;0
+646;Maxaro BV;particulier;;;;;;;;0
+427;Maxd'Oro B.V.;particulier;;;;32117532.0;Vanadiumweg 11 L;;Amersfoort;0
+483;Maxx Aanhuurmakelaars Leeuwarden;particulier;;;NL04 INGB 0701 7558 57;5070577.0;Willemskade 27;;Zwolle;0
+381;Maxx Leeuwarden;bureau;;;NL04 INGB 0701 7558 57;;Stationsweg 19;;Leeuwarden;0
+623;Maxxy Vastgoed;particulier;;;NL51 INGB 0008 1222 70;;Maaslandseweg 5;;Wateringen;0
+252;Maytree Invest;particulier;leon@maytreeme.nl;;NL17 INGB 0006 9360 87;;;;;0
+428;Mediamarkt;particulier;;;;;;;;0
+292;Mediterranean Careers Netherlands B.V.;particulier;finance@mcareers.eu;;;;Bredaseweg 185;;Etten-Leur;0
+152;Meerdervoort Queda Real B.V.;particulier;chris@L-5.nl;0887704444;;68918593.0;Kranenburgweg 131;;'S-GRAVENHAGE;0
+831;Meershoek;particulier;;;;;;;;0
+429;Meubelzorg B.V.;particulier;;;;69723389.0;W.M. Dudokweg 50;;Heerhugowaard;0
+541;Mevr V de Kovel;particulier;;;NL47 INGB 0009 6438 84;;Koolweg 46;;OUDDORP;0
+362;Milieu Service Brabant;particulier;;;NL87 INGB 0674 7847 74;16067309.0;Schouwrooij 8;;Boxtel;0
+195;Mooswijk T.R. & Plugers R.;particulier;tvandemoosdijk@gmail.com;;NL88 INGB 0626 5496 63;;Fliere 8;;Gemert;0
+431;Motoport;particulier;;;;;;;Rockanje;0
+494;Multiservice bedrijf Sandra;particulier;;;NL68 ABNA 0867 8839 44;76767930.0;It Spul 4;;WITMARSUM;0
+324;Multiservizi Romania SRL;particulier;amministrazionepythagoras@gmail.com;;;;Sector 1 str academiei nr 35-37 scb et2;;Bucuresti;0
+39;Multiserwis SP z o.o.;particulier;karol.pastucha@bilfinger.com;;DE81 7007 0010 0206 0184 00;120630.0;ul. Prudnicka 40;;Krapkowise;0
+566;Murat Dogan;particulier;;;NL91 INGB 0007 2888 05;;;;;0
+56;MvB Services;particulier;driver@meindertvanbuuren.com;06-23234296;NL70 RABO 0327 4853 45;70892865.0;Windgatseweg 2;;ROCKANJE;0
+789;MvB Services BV (Meindert van Buuren);particulier;;;;;;;;0
+180;Mw. M. Hyllested Poulsen en Dhr. S. Crull;particulier;maria-sander@outlook.com;20651292767;NL95 ABNA 0102 0651 60;;Ina Boudier-Bakkerhof 18;;Utrecht;0
+471;N.van Dijk Bouwservice;particulier;;;NL97 INGB 0006 9412 43;81240910.0;Ln Van Nieuw Blankenburg 362;;Rozenburg Zh;0
+372;N2people B.V.;particulier;invoice@n2people.nl;085 0200805 / 06 13430756;;17206030.0;Mandenmakerstraat 11;;Uden;0
+378;NL Housing B.V.;particulier;;;NL07 RABO 0344 4145 31;75191806.0;Fivelpoort 10 c;;Appingedam;0
+236;NL Realty B.V.;particulier;administratie@nl-jobs.com;06 22 040 775;NL90 RABO 0346 4019 25;;Honderdland 1;;MAASDIJK;0
+695;NMI Techniek;particulier;;;NL91 ABNA 0471 5581 17;;;;;0
+193;Nerom Flex B.V.;particulier;administratie@nerom-bv.nl;;NL54 INGB 0006 7051 43;80543901.0;Bouwkamp 9;;NIEUWEHORNE;0
+153;Nerom Industrial Flex B.V.;particulier;info@nerom-industrial.nl;206 25505595;NL54 INGB 0006 7051 43;80543901.0;Bouwkamp 9;;NIEUWEHORNE;0
+432;Nespresso;particulier;;;;;;;;0
+989;Nikozijn B.V.;bedrijf;;06-53208852;NL59 ABNA 050.83.20.917;59979135;;;;1
+645;Normec VRO;particulier;;;NL20 INGB 0007 4352 92;;;;;0
+433;Notariskant Zuijdgeest BV;particulier;;;;;;;Delft;0
+712;O. van Eldert;particulier;o.v.e.onderhoud@outlook.com;;NL66 INGB 0104 4615 27;87053039.0;Singel 53A;;Schiedam;0
+25;O.J.P Soc Construções;particulier;romeu.ferreira@ojp.pt;;PT50 0010 0000 5582 3720 0019 1;;Rua Quinta da Tapada 20 R C;;;0
+160;O.P.H. Verhuur B.V. / Eigenaar.nl;particulier;info@eigenaar.nl;;NL08 INGB 0390 6302 25;73003069.0;Willemskade 3;;LEEUWARDEN;0
+159;O.Vasiutina;particulier;olga.vasiutina@asml.com;;NL75 INGB 0747 8086 27;;Molenstraat 16;;Waalre;0
+510;OBC Winters;particulier;;;NL83 RABO 0128 2542 89;85040487.0;Steenwijkerweg 227;;WITTE PAARDEN;0
+104;OGSS BV;particulier;administratie@ooijkaas.nl;;;;Hoofdstraat 127A;;Schiedam;0
+123;OJP B.V.;particulier;rita.guimaraes@ojp.pt;+32473954591;NL10 INGB 0674 8358 24;84474432.0;Marten Meesweg 25G;;Rotterdam;0
+370;Odido Netherlands;particulier;;;NL03 COBA 0733 9597 17;33265679.0;Waldorpstraat 60;;'s-Gravenhage;0
+700;Ok Gas B.V.;particulier;;;NL72 INGB 0663 7123 00;30037038.0;;;;0
+725;Onbekend;particulier;;;;;;;;0
+585;Onderhoudsbedrijf AG Wolters;particulier;;;NL85 RABO 0184 1494 36;;;;;0
+690;Ongedierte Bestrijding Westland (Naaldwijk);particulier;;;NL96 RABO 0129 3704 28;50246186.0;Secretaris Harmansstraat 15;;Naaldwijk;0
+356;Oostkracht Bemiddeling B.V.;particulier;info@ok-groep.nl;06 418 60 430;;85593087.0;Zeppelinstraat 21;;Berkel en Rodenrijs;0
+434;Open Guard;particulier;;;NL36 RABO 0348 6667 80;59819197.0;Broeklaan 72;;Harderwijk;0
+353;Optima Uitzendbureau B.V.;particulier;Financieel@optimauitzendburo.nl;0184 675 489;;24403530.0;Kade 40;;Hardinxveld Giessendam;0
+751;Orange Invesments Group;particulier;;;;;;;;0
+84;Orange Investments Group;zakelijk;;;;;;;;0
+263;Orange Investments Group B.V.;particulier;crediteuren@peopledirekt.nl;0174 504 792;NL43 RABO 0197 7933 39;863612222;Leehove 80;;De Lier;0
+285;Oranjegroep Vastgoed B.V.;particulier;inkoopfacturen@oranjegroepvastgoed.nl;010-4123399;;24379038;van Vollenhovenstraat 10;;Rotterdam;0
+661;Oscar van Ham;particulier;;;NL71 ASNB 0950 4719 41;;;;;0
+435;Ouwendijk Service Bouwmarkt;particulier;;;NL61 INGB 0001 3257 85;24284204.0;Emmastraat 52;;Rozenburg;0
+436;Oxigo B.V.;particulier;;;;72010827.0;Groeneweg 162 l;;Bunnik;0
+109;Oxrooms;particulier;info@ox-rooms.nl;0628750259;NL02 INGB 0008 3414 02;77559355.0;Antwerpsestraat 62;;PUTTE;0
+66;P. Gryspeerdt;particulier;verhuur@reham.nl;;NL32 INGB 0007 1086 71;;Klimopstraat 1;;;0
+311;P. Nederstigt;particulier;p.nederstigt@casema.nl;;NL30 ABNA 0401 3982 42;;Frans Halsstraat 67;;Lisse;0
+801;P. Ter Haar - Ros;particulier;;;;;;;;0
+373;P. Ter Haar-Ros;particulier;prkapper@gmail.com;;;;Utrechtseweg 242;;Amersfoort;0
+953;P. van den Berg;particulier;info@vandenbergdelier.nl;06-38765032;NL29ABNA0472271989;;;;;0
+958;P.C. Vijverberg;particulier;piet@pietvijverberg.nl;06-53299575;NL95RABO0142277460;;;;;0
+912;P.H. Jagt;particulier;;;;;;;;0
+437;P.M.F. Otten Deurwaarder Heerlen B.V.;particulier;;;;14089801.0;Schinkelstraat 5;;Heerlen;0
+568;PFw Jaspers;particulier;;;NL44 ABNA 0124 8213 08;;;;;0
+682;PJAJ Verhoef;particulier;piet-verhoef@outlook.com;;NL87 RABO 0105 8987 24;;Dahliastraat 44;;Made;0
+277;PMM Workforce Management Ltd;particulier;d.soare@pmm-group.eu , accounting@pmm-group.eu;;;;Triq ix-Xatt 154, Level 2, Office A;;Gzira;0
+572;PPP diensten;particulier;;;NL83 INGB 0008 2927 05;;;;;0
+336;PRP Solutions Flex Sp. Z.O.O;particulier;costs@prpsolutions.eu;;;;Dobrzynska 36;;Plock;0
+724;PWN Waterleidingbedrijf Noord-Holland;particulier;;;;34072007.0;Rijksweg 501;;Velserbroek;0
+673;Paalman;particulier;rjpaalman@gmail.com;;NL95 KNAB 0256 8915 40;;Sleedoornlaan 26;;Arnhem;0
+655;Parc Merwede / Miven BV;particulier;;;NL58 RABO 0147 9705 71;;;;;0
+438;Parfumerie Douglas;particulier;;;;10005918.0;Binnenhof 2;;Amstelveen;0
+984;Park Wonen BV;bedrijf;info@parkwonen.nl;010 — 844 25 52;NLO4 RABO 0307 5644 79;64549836;Kruisplein 488a;3012 CC;Rotterdam;1
+258;Parkwonen;particulier;info@parkwonen.nl;;NL04 RABO 0307 5644 79;;Kruisplein 488A;;Rotterdam;0
+627;Pens.com;particulier;;;NL92 BOFA 0266 5977 18;;;;;0
+268;People21 Services BV;particulier;administratie@people21.eu;06-28340050 / 010-4270111;;;Westfrankelandsedijk 7;;Schiedam;0
+222;PersoneelDirectFriesland;particulier;info@personeeldirectfriesland.nl;;;81961324.0;Zenegroen 129;;LEEUWARDEN;0
+616;Pestec Ongediertebestrijding;particulier;;;NL63 ABNA 0126 4121 54;;;;;0
+439;PickThisUp B.V.;particulier;;;;63337444.0;Johan Huizingalaan 763 A 1e verdiep;;Amsterdam;0
+385;Pinbetalingen/I-deal;particulier;;;;;;;;0
+571;Pluimakers eo Eenshuistra;particulier;;;NL38 RABO 0319 8121 54;;;;;0
+112;Plural Albufeira S.R.L.;particulier;office@plural.ro;;;;Strada SLT. POPA, NR 7, Bloc 17, Scara 2, Etaj 4, Ap. 38;;Bucuresti Sectorul 5;0
+523;Plus Oostvoorne;particulier;;;NL24 RABO 0314 3617 82;;Rakkerweg 15;;Oostvoorne;0
+49;Pol Flex B.V.;bureau;administratie@polflexbv.nl;10621476810;NL22 SNSB 0267 9799 16;73251127.0;Ouddeelstraat 7 a;;LEEUWARDEN;0
+489;Polmai Brandbeveiliging B.V.;particulier;;;NL32 INGB 0695 0616 74;24110810.0;Oosteinde 14;;BARENDRECHT;0
+508;Power Home Rentals;particulier;;;NL22 RABO 0350 2604 51;86347136.0;Vlinderslag 4;;OOSTVOORNE;0
+517;PreZero Nederland;particulier;klantenservicezuid.nl@prezero.com;;;9046820.0;Ankerkade 21;;MAASTRICHT;0
+128;Profectus Staffing Solutions;particulier;u.tevkir@carriere.com;;NL31 RABO 0371 5511 10;83528865.0;Gastelseweg 144 F;;ROOSENDAAL;0
+672;Profoma B.V.;particulier;;;NL34 ABNA 0139 8382 52;;;;;0
+440;Proviced Holding B.V.;particulier;;;NL36 RABO 0339 9178 65;75653109.0;Bedrijvenweg 9 A;;Leiderdorp;0
+569;Quadrant Vastgoed B.V.;particulier;bovastbv@live.nl;06-53800820;NL47 RABO 0379 6025 98;;;;;0
+65;Quality Home Rentals;particulier;info@qualityhomerentals.nl;;NL19 KNAB 0259 8013 56;76436357.0;Vlinderslag 4;;OOSTVOORNE;0
+507;Quality Home Solutions;particulier;;;NL84 INGB 0674 6370 97;84386851.0;Abelenlaan 3;;OOSTVOORNE;0
+634;R Stoel;particulier;;;NL14 ABNA 0892 7907 33;;;;;0
+221;R&E Services;particulier;administratie@rebv.nl;+010 433 43 98;NL53 ABNA 0640 1561 50;;Rhijnspoor 225 B;;CAPELLE AAN DEN IJSSEL;0
+832;R. Basil;particulier;;;;;;;;0
+371;R. Bassil;particulier;rogerbassil@outlook.com;;NL21 ABNA 0455 7876 62;;Professor Poelslaan 58A;;Rotterdam;0
+857;R. Bekken;particulier;;;;;;;;0
+829;R. Boringa ;particulier;;;;;;;;0
+848;R. Bouius;particulier;bouius@hotmail.com;06-13658480;;;;;;0
+821;R. Paalman;particulier;;;;;;;;0
+819;R. Ras;particulier;;;;;;;;0
+852;R. Verspui;particulier;;;;;;;;0
+982;R.R. Kalmeijer en M.R. Klootwijk;particulier;;;NLS7 RABO 0341 695165;;Laan van Magisch Realisme 5;3059 VJ;Rotterdam;1
+441;RAS;particulier;;;;;Basisweg 30;;AMSTERDAM;0
+709;RBZ Rioolreiniging VOF;particulier;info@RBZrioolreiniging.nl;;NL72 ABNA 0837 4056 96;73549819.0;Kreeft 9;;Yerseke;0
+693;RM Coatings B.V.;particulier;denhaag@rmcoatings.nl;;NL40 ABNA 0412 8348 47;24413838.0;Zichtenburglaan 28;;Den Haag;0
+329;RNDV Industries;particulier;laura.brackiene@rndv.eu;+37062054093;;1304203983;Taikos pr. 52C;;Klipeda;0
+684;RNR Riooltechniek;particulier;;;NL30 INGB 0110 3294 14;;;;;0
+340;RNVD Industries;particulier;laura.brackiene@rndv.eu;24370 62054093;;304203983;Taikos pr. 52C;;Klaipeda;0
+539;RRS Nederland BV;particulier;;;NL93 RABO 0102 3536 54;;;;;0
+717;RX Group;particulier;;;;;Wolfswater 9A;;Gemert;0
+4;Randstad Wonen;bureau;info@randstadwonen.nl;;;;;;;0
+233;Ras R.A. Dhr.;particulier;ron.ras1999@outlook.com;;NL80 RABO 0356 6418 13;;Laan van Nieuw Blankenburg 328;;Rozenburg ZH;0
+493;RefurnZ B.V.;particulier;facturen@refurnz.nl;;NL07 INGB 0008 6952 65;73380822.0;Postbus 1;;LOCHEM;0
+107;Reham Verhuur B.V.;particulier;verhuur@reham.nl;0115-432514;NL32 INGB 0007 1086 71;74947087.0;Terneuzensestraat 10;;Zaamslag;0
+605;Rekad BV;particulier;;;NL84 INGB 0664 4279 44;;;;;0
+442;Renewi Nederland B.V.;particulier;;;NL74 KRED 0633 0007 60;17089397.0;;;;0
+583;Rentokill Initial;particulier;;;NL03 INGB 0007 9716 20;;;;;0
+443;Reshift Digital B.V.;particulier;;;;58687076.0;Richard Holkade 8;;Haarlem;0
+29;Resource One B.V.;particulier;info@qualityhomerentals.nl;;NL95 KNAB 0259 2344 78;74887068.0;Nobelstraat 76;;BRIELLE;0
+467;Rijnaarts;particulier;;;NL11 INGB 0693 4464 20;;Havenkade 72;;Spijkenisse;0
+594;Riofix;particulier;;;NL60 RABO 0189 8495 09;;;;;0
+573;Risa Beheer B.V.;particulier;info@risa-beheer.nl;+31.651602853;NL32 RABO 0363 4098 82;;;;;0
+143;Robert L.P. de Jonge;particulier;robertdejonge@ziggo.nl;;NL48 RABO 0334 9161 35;;Noolseweg 23;;Blaricum;0
+810;Robert de Jonge;particulier;;;;;;;;0
+653;Roegiers Glas;particulier;;;NL58 RABO 0385 3660 43;;;;;0
+736;Roestenberg;particulier;;;;;;;;0
+379;Rowork;particulier;info@rowork.nl;+31 (0)6 27268819;;70118817.0;Dahliastraat 12 B;;Rotterdam;0
+304;Royal DS Personeel-service;particulier;m.langeveld@royalds.nl;06 532 88 389;;;Ambachtsweg 57;;Nijmegen;0
+560;Royal Safety;particulier;;;NL21 KNAB 0256 3994 33;;Dalweg 24;;Oostvoorne;0
+988;Ruud van der Hoeven BV & Raymond Vijverberg BV;bedrijf;;;NL84RABO0360849504;;Heulweg 33-a;2295KA;Kwintsheul;1
+5;Ruva Vastgoed B.V.;zakelijk;beheer@ruvavastgoed.nl;6-53 16 82 85;NL93 RABO 0116 6871 50;52768384.0;Burgemeester van Campenhoutstraat 2;;MADE;0
+198;RyanRent B.V.;particulier;facturen@ryanrent.nl;06-82746368;NL50 RABO 0339 0738 10;87946653.0;Energieweg 22 c;3133 EC;VLAARDINGEN;0
+686;S Isaku;particulier;;;NL27 ABNA 0601 9929 38;;;;;0
+361;S Kleijweg;particulier;;;NL43 RABO 0358 2186 32;;;;;0
+844;S. Bakker / Eigenaar.nl;particulier;;;;;;;;0
+23;S. Bakker OPH Verhuur;particulier;;;NL85 INGB 0102 8401 21;;Hoofdweg 7;;Hitzum;0
+20;S. Dolstra;particulier;dolstra@yahoo.com;;NL51 RABO 0194 3333 02;;Molenweg 10 a;;KRUISLAND;0
+326;S. Kleiren;particulier;sabine.kleiren@gmail.com;;NL20 RABO 0103 8768 98;;;;;0
+62;S. Marinus (zie 50200);particulier;;;NL16 RABO 0348 0756 34;;'t Deel 29;;Drachten;0
+42;S. Meijer;particulier;siebmeijer@msn.com;;NL76 INGB 0679 9560 42;;Zevenhuizen 2;;FRANEKER;0
+833;S. Raats (123Wonen);particulier;;;;;;;;0
+382;S. de Gooijer;particulier;;;;;Noorderhaven 63;;Harlingen;0
+959;S.A. van Bergen Vastgoed B.V.;particulier;bas.vanbergen@aubvanbergen.nl;06-30412153;NL11RABO0318502364;;;;;0
+965;S.H.M. De Swart;particulier;;06 153 153 95;NL37 SNSB 0901829056;;Robijndijk 123;4706 ZR;Roosendaal;1
+962;S.H.M. De Swart (junior);particulier;;06 242 10 114;NL23 SNSB 0935 3997 47;;Grote Spellestraat 2;4756 SV;Kruisland;1
+699;SB Electronics B.V.;particulier;;;NL75 RABO 0331 3079 28;72087714.0;Heescheweg 17;;Nistelrode;0
+343;SHGJ Ribbink;particulier;SHGJ.Ribbink@gmail.com;;;;Gagelstraat 109;;Eindhoven;0
+444;SKDC;particulier;;;;63499258.0;Hoogeveenenweg 110;;Nieuwerkerk ad IJssel;0
+475;SKG-IKOB Certificatie B.V.;particulier;;;NL82 ABNA 0440 7601 00;24164317.0;Poppenbouwing 56;;Geldermalsen;0
+316;SS Kara Yacht Painters LLP;particulier;sskarayaght23@gmail.com;00306949024950;;;Omonias 77;;Kavala;0
+665;SS Rotterdam;particulier;;;NL50 INGB 0006 6131 62;;;;;0
+196;STANA d.o.o.;particulier;stana2@telemach.net;;SI56 0700 0000 3563 191;;Razlagova 11;;Maribor;0
+449;SVHW;particulier;;;;;;;Klaaswaal;0
+599;Sabewa Zeeland;particulier;;;NL45 BNGH 0285 1605 32;;;;;0
+18;Sagius Uitzenders B.V.;particulier;facturen@sagiusuitzenders.nl;0793030070;NL41 RABO 0145 8741 25;206 5160 2853;Bleiswijkseweg 43;;ZOETERMEER;0
+553;Samson Airconditioning;particulier;;;NL36 INGB 0004 6424 71;;;;;0
+621;Sancus Bouw en infro;particulier;;;NL68 RABO 0354 7322 93;;;;;0
+595;SchadeNet;particulier;;;NL03 ABNA 0574 0199 28;;;;;0
+545;Sebrechts;particulier;;;NL73 RABO 0148 8293 33;;;;;0
+548;Service en Zo;particulier;;;NL16 KNAB 0405 2272 05;;;;;0
+688;Shahin Bouw (Leeuwarden);particulier;;;NL96 BUNQ 2031 9620 00;90205502.0;Starterstraat 15;;Leeuwarden;0
+515;Shortstay Facilities B.V.;particulier;;;NL90 INGB 0675 8096 22;86233335.0;Vlietskade 9034;;ARKEL;0
+345;Showtuin Nederland B.V.;particulier;info@showtuinnederland.nl;0575-202033;;862406468;Pollaan 50;;Zutphen;0
+349;Shtan Vitaliy;particulier;Vitalij.shtan@gmail.com;06-12117059;;NIP9522087140;Trakt Lubelski 397;;Warszawa;0
+798;Sill Marinus Dijkstra Vastgoedbeheer);particulier;;;;;;;;0
+836;Sjoerd Dolstra;particulier;;;;;;;;0
+534;Slotenzaak.nl;particulier;;;NL70 RABO 0350 5015 05;;;;;0
+970;Soul Inn B.B. B.V.;bedrijf;service@hb-vb.nl;070-3615080;NL03RABO0156109085;59979135;Dr. Lelykade 249;2583 JZ;Den Haag;1
+293;Soul inn B.B B.V;particulier;ed@edwinroos.com;;;;Oude Delft;;Delft;0
+61;Space4U B.V.;particulier;info@space4ubv.nl;306 23 401186;NL44 INGB 0007 4063 42;77266099.0;Kastelenplein 4;;EINDHOVEN;0
+156;St. Zakelijke Beh.rek. Dijkstra Vastgoedbeh.;particulier;;;NL28 RABO 0368 1239 60;82743398.0;Berglaan 14;;DRACHTEN;0
+445;St.BTPF v.h. Schoonmaak- en Glazenwassersbedr;particulier;;;;41177936.0;Basisweg 10;;Amsterdam;0
+446;Start Home Rentals;particulier;;;;;;;;0
+89;Stay21;zakelijk;;;;;;;;0
+72;StayProjects Group Netherlands B.V.;particulier;sametkaya@staysolutions.com;085-0043930;NL34 RABO 0152 5813 16;20160652.0;Bijdorpplein 9 - 11;;BARENDRECHT;0
+636;Stedin Netbeheer BV;particulier;;;NL23 ABNA 0640 0805 45;;Blaak 8;;Rotterdam;0
+828;Stef Kleijweg;particulier;Stefkleijweg@gmail.com;206 232 199 73;;;;;;0
+377;Steneker Verhuur;particulier;;;;;Kempenaerlaan 13;;St. Nicolaasga;0
+514;Stichting 123inkt-huismerk Klanten;particulier;info@123inkt.nl;;NL27 RABO 0304 5133 18;66938821.0;Nieuw Walden 70;;Nederhorst Den Berg;0
+120;Stichting Bewaring PRMD;particulier;finance1@prmd.nl;;NL78 INGB 0006 3405 73;64066703.0;Kranenburgweg 131;;'S-GRAVENHAGE;0
+961;Stichting MCM;particulier;jetvbergen@gmail.com;06-53739975;NL39RABO0334435080;;;;;0
+474;Stichting Normering Flexwonen;particulier;;;NL63 INGB 0651 4353 66;58049940.0;Reitseplein 1;;Tilburg;0
+447;Stofzuigzakken.nu;particulier;;;;;;;;0
+426;Stomerij Mauriks CohousingNL;particulier;;;NL86 RABO 0175 4167 02;16041667.0;Moleneindplein 29;;Vught;0
+448;Straetus Incasso Friesland B.V.;particulier;;;;56600518.0;Willemskade 3;;Leeuwarden;0
+558;Strijbosch;particulier;;;NL46 RABO 0140 4115 77;;Heescheweg 29;;Nistelrode;0
+643;Student Housing Holland B.V.;particulier;service@studenthousingholland.com;;NL38 INGB 0006 1827 95;;;;;0
+217;Suricare B.V.;particulier;arie.degroot@carevisie.nl;;;83481699.0;Kastanjelaan 8;;VELP;0
+450;Synofit Europe B.V.;particulier;;;;51516128.0;Koninginneweg 11;;Hilversum;0
+564;T van der Pols Machineverhuur BV;particulier;;;NL63 RABO 0375 9565 65;;;;;0
+763;T. Eenhuistra/J. Pluimakers;particulier;;;;;;;;0
+147;T. Hoolhorst;particulier;t.hoolhorst@gmail.com;;NL13 KNAB 0405 5294 14;;Leliestraat 21;;Utrecht;0
+786;T. Olsthoorn;particulier;;;;;;;;0
+968;T. Xie;particulier;t.xie@hotmail.com;0621507663;NL96RABO0171254155;;Gleterijstraat 92;2984 AB;Ridderkerk;1
+132;T. van de Moosdijk;particulier;tvandemoosdijk@gmail.com;;NL87 BUNQ 2059 0465 99;;Fliere 8;;Gemert;0
+81;T.A. Middelkoop;zakelijk;tunny.10@hotmail.com;;NL70 RABO 0397 2182 57;;Vlietskade 9015;;ARKEL;0
+3;T.A. van der Burg;bureau;vanderburgron@gmail.com;06-46212928;NL67 INGB 0795 2367 27;53093623.0;Heeswijk 113;;Montfoort;0
+805;TH Mungroop;particulier;;;;;;;;0
+671;TH. Mungroop;particulier;tmungroop@gmail.com;;NL09 BUNQ 2112 6685 36;;De Clercqstraat 54-1;;Amsterdam;0
+235;THS EU B.V.;particulier;invoices@tecline.com;088-2442300;;2333810.0;Paasheuvelweg 34 A;;AMSTERDAM;0
+376;TM Hendriks - van Balen;bureau;;;;;Frans Halsstraat 16b;;Spijkenisse;0
+155;TNM Vastgoed B.V.;particulier;tunny.10@hotmail.com;;NL48 RABO 0397 2183 62;84774401.0;Vlietskade 9015;;ARKEL;0
+453;TOP Schoonmaakartikelen;particulier;;;;;;;;0
+99;TOTAL Nederland N.V.;particulier;;;NL83 DEUT 0265 2210 48;24106171.0;Bezuidenhoutseweg 273;;'s-Gravenhage;0
+651;TOW Ontstopping;particulier;;;NL22 RABO 0160 9243 08;;;;;0
+660;TS Onderhoud;particulier;;;NL57 KNAB 0606 1925 22;;;;;0
+30;Team Home Rentals B.V.;particulier;administratie@teamhomerentals.nl;085 - 0645224;NL61 RABO 0330 2631 02;71523561.0;Dopplerweg1;;Spijkenisse;0
+280;Team Technical Services BV;particulier;robert@team-ts.nl;;;;Marrewijklaan 11;;Spijkenisse;0
+286;Team Unica B.V.;particulier;facturen@teamunica.nl;206 142 186 41;;76348881;Langeweg 15B;;Oostvoorne;0
+212;TecFlex B.V.;particulier;jkoning@tecflex.nl;;;;Emdenweg 3;;GRONINGEN;0
+243;Techvisie Personeelsdiensten Centraal B.V.;particulier;facturen@techvisie.nl;0570-676167;;;;;;0
+622;Tecline;particulier;;;NL94 RABO 0166 2979 76;;;;;0
+199;Tempsteel B.V.;particulier;m.matelis@tempsteel.eu;;;83196641.0;Paul Krugerstraat 12 H;;ROTTERDAM;0
+683;Tetering en Martens;particulier;;;NL07 RBRB 8836 2755 32;;;;;0
+694;The Happy Company (Apeldoorn);particulier;;;NL92 RABO 0379 5950 95;92503667.0;Het Rietveld 55;;Apeldoorn;0
+21;The Housing Guild B.V.;particulier;r.nijboer@degildegroep.nl;20522 235 990;NL81 ABNA 0823 0941 54;;Blankenstein 136;;MEPPEL;0
+488;The Voip Company;particulier;;;;8064597.0;Plesmanstraat 6 Unit B;;LEUSDEN;0
+451;Threeforce;particulier;;;;;;;;0
+301;Thuisvesting B.V.;particulier;facturen@thuisvesting.com;;;;Barneveldsestraat 44;;Renswoude;0
+315;Timing Uitzendteam BV;particulier;inkoopfacturen@timing.nl;06 229 29 727;NL48 INGB 0651 8897 90;;Deventerstraat 15-2;;Apeldoorn;0
+452;Tinke Assurantiën B.V.;particulier;;;NL04 INGB 0680 9086 17;24264808.0;Zwolseweg 17;;Barendrecht;0
+586;Tonen;particulier;tonen222@gmail.com;;NL71 INGB 0796 4294 64;;Kobelaan 294;;Rotterdam;0
+383;Toussaint + Van Wijk woning - bedrijfsmak.;particulier;;;NL56 INGB 0671 6016 95;61686638.0;Jan Campertlaan 8;;Spijkenisse;0
+791;Tradiro;particulier;;;;;;;;0
+993;Tradiro Housing BV;bedrijf;;;NL84 RABO 0306 8492 16;63681552;James Wattweg 20;3133 KK;Vlaardingen;1
+17;Tradiro Services B.V.;particulier;facturen@tradiro.nl;null;NL05 RABO 0154 0739 89;59979135.0;Honderdland 960;2678 PS;Maasdijk;0
+565;Transformatiehaven B.V.;particulier;info@huurkracht.nl;+ 078-4100009;NL55 INGB 0008 4174 66;;Kamerlingh Onnesweg 2;;Dordrecht;0
+254;Transport People B.V.;particulier;facturenaalsmeer@transportpeople.nl;06-82061967;;;Tiendweg 24;;Naaldwijk;0
+454;Turien & Co. Assuradeuren B.V.;particulier;;;;37101244.0;James Wattstraat 11;;Alkmaar;0
+328;Twins BV;particulier;info@twinsbv.com;206 53525041;NL79 INGB 0107 5053 47;;Burgemeester Letteweg 31;;Oostvoorne;0
+504;TÜV Nederland QA B.V.;particulier;;;NL10 RABO 0118 3950 68;17091102.0;Ekkersrijt 4401;;SON EN BREUGEL;0
+244;UAB Baltic Contracting Group;particulier;Kristina.domarkaite@baltcontract.eu;4370 46 310637;;;;;;0
+330;UAB Techsome;particulier;info@techsoma.lt;;LT80 7300 0101 8868 2143;95342265.0;Šėtos g. 116-311;;Kėdainiai;0
+83;UAB Toromega;zakelijk;dovydas.j@toromega.eu;+37069058856;;;Danes g.6;;Klaipeda;0
+245;UAB „Laivsta“/ JSC „Laivsta“, Part of Litana Group;particulier;aleksej.frolov@litana-group.com;;;;Verslo str. 6;;Klaipeda, Lithuania;0
+298;Uitzendbureau Bakker B.V.;particulier;administratie@bedrijvenbakker.nl;06 2550336;;;Albertjoachimkade 33H;;Goes;0
+656;Uitzendburo Tradiro B.V.;particulier;;;NL47 RABO 0128 6245 07;;;;;0
+344;Uitzendwerk B.V.;particulier;facturen@uitzendwerk.eu;0850731619;;;Edisonstraat 2H;;Emmen;0
+13;United Homes B.V.;particulier;administratie@unitedhomes.eu;0181-473985;NL85 RABO 0131 3612 60;473122;Van Vollenhovenstraat 10;;Rotterdam;0
+117;United Homes Inhouse B.V.;particulier;administratie@unitedhomes.eu;;NL65 RABO 0367 7098 80;82140030.0;Van Vollenhovenstraat 10;;Rotterdam;0
+455;United Parcel Service Nederland B.V.;particulier;;;;34089270.0;Zandsteen 22;;Hoofddorp;0
+64;V.B.A. Beheer B.V.;particulier;vbabv@outlook.com;06-22894028;NL72 ABNA 0508 0206 62;60392525.0;Ouddeelstraat 9;;Leeuwarden;0
+24;V.O.F. Groepsaccommodaties Drenthe;particulier;;;;67963692.0;Westeind 12;;Norg;0
+305;VALO Facilities B.V.;particulier;invoices.facilities@valo-group.eu;;;;Bruistensingel 400;;'s-Hertogenbosch;0
+587;VTM Services;particulier;;;NL08 RABO 0135 5704 09;;;;;0
+16;Vaktec BV;particulier;j.deboer@vaktec.nl;06-21288359;NL93 ABNA 0244 7895 41;1134291.0;Kielerbocht 29A;;Groningen;0
+207;Valkenet Vastgoed B.V.;particulier;;;NL61 INGB 0008 0361 48;69246025.0;Perkinsbaan 15 A;;NIEUWEGEIN;0
+806;Value+ Vastgoedmanagement;particulier;;;;;;;;0
+529;Van A tot Z;particulier;;;NL44 RABO 0304 9755 08;54781310.0;Ohmweg 2B;;Spijkenisse;0
+284;Van Bergen Personeelsdiensten B.V.;particulier;facturen@aubvanbergen.nl;;NL76 RABO 0328 7743 67;;Honderdland 960;;Maasdijk;0
+692;Van Delft Beveiligingen B.V.;particulier;info@slotenmaker.nu;;NL96 RABO 0137 9434 82;69939888.0;Kompasstraat 28;;Capelle aan den IJssel;0
+589;Van Dijk Wijnhandel;particulier;;;NL47 INGB 0003 1984 28;;;;;0
+721;Van Houwelingen Gerechtsdeurwaarders;particulier;info@houwelingen-partners.nl;;;78703875.0;De Schoof 94;;Hendrik Ido Ambacht;0
+579;Van Mossel Bedijfwagencentrum;particulier;;;NL65 RABO 0312 3767 15;;;;;0
+596;Van Mossel Car Solutions;particulier;;;NL17 RABO 0307 8372 03;;;;;0
+637;Van Mossel MB Vans en Trucks BV;particulier;;;NL43 RABO 0121 9173 20;;;;;0
+696;Van Mossel Nissan Amsterdam (Amsterdam);particulier;;;NL89 RABO 0312 3102 26;11012244.0;Schepenbergweg 43;;Amsterdam;0
+707;Van Mossel Renault Dacia Rotterdam;particulier;debiteuren.rdn@vanmossel.nl;;NL93 RABO 0158 7820 46;11014764.0;Koperstraat 16;;Rotterdam;0
+332;Van Mossel Rotterdam;particulier;simon.beumer@vanmossel.nl;;;;Driemanssteeweg 690A;;Rotterdam;0
+100;Van der Wal Bedrijfshuisvesting B.V.;particulier;;;NL46 RABO 0166 3751 79;24243929.0;Beeldsweg 6 a;;;0
+73;Vast-PS Housing;bureau;info@vast-ps.nl;085 049 38 00;NL79 RABO 0335 3714 77;;Verlaatsweg 33;;SPIERDIJK;0
+456;Vast-ps Cleaning B.V.;particulier;;;;73216046.0;Verlaatsweg 33;;Spierdijk;0
+668;Vastgoed Beheer Zuid.;particulier;info@huureenwoonruimte.nl;;NL85 RABO 0358 8757 30;;Groeneweg12B;;Roermond;0
+528;Vattenfall;particulier;;;NL54 INGB 0000 0005 03;9105542.0;Postbus 40021;;Arnhem;0
+498;Vegter Installatietechniek;particulier;info@vegterinstallatietechniek.nl;;NL15 RABO 0327 9871 46;78492300.0;Zijlvest 18;;FARMSUM;0
+108;Verhuur en onderhoudsbedrijf Hilaard;particulier;verhuurenonderhoudsbedrijfhilaard@outlook.com;06-22779168;NL56 INGB 0009 0228 25;77467442.0;Hilaerdermieden 1;;HILAARD;0
+713;Verjong Vastgoed;particulier;info@verjongvastgoed.nl;;NL37 RABO 0101 6107 69;92350429.0;Dirk Smeetslaan 14;;Rotterdam;0
+103;Verkeersschool Nobel;particulier;info@verkeersschoolnobel.nl;;;;Oostdijk 37;;Hellevoetsluis;0
+574;Verknocht;particulier;;;NL41 ABNA 0456 3688 17;;;;;0
+575;Verkocht;particulier;;;NL41 ABNA 0456 3688 17;;;;;0
+313;Verlangen Finance BV;particulier;info@verlangenfinance.nl;;;;Touwbaan 1;;Gorinchem;0
+519;Versteeg Schoenmakerij;particulier;;;NL86 RABO 0147 8709 33;72000961.0;Raadhuisplein 6;;Franeker;0
+804;Veurink;particulier;;;;;;;;0
+457;Visma;particulier;;;;;HJE Wenckebachweg 200;;Amsterdam;0
+458;Vitens N.V.;particulier;;;NL94 INGB 0000 8690 00;5069581.0;Oude Veerweg 1;;Zwolle;0
+26;Vivir Wonen;particulier;info@vivirwonen.nl;(+31)6 123 33 496;NL52 RABO 0106 0699 77;58693807.0;Postbus 811;;Gorinchem;0
+824;Vivir wonen (Mendy);particulier;;;;;;;;0
+57;Vleesbewerking van der Pijl B.V.;particulier;facturen@vleesbewerkingvanderpijl.nl;;;70437769.0;Cypresbaan 6a;;CAPELLE AAN DEN IJSSEL;0
+181;Vlot Vastgoed B.V.;particulier;jan@wassenaarvastgoed.nl;20622571687;NL36 RABO 0312 3427 05;61769193.0;Pontdyk 8 c;;LANGWEER;0
+459;VoipLinX;particulier;;;;50230840.0;Pascalweg 15;;Hellevoetsluis;0
+125;Vondellaan Vastgoed Beheer B.V.;particulier;;;NL51 REVO 2865 8489 57;34217369.0;Apeldoornseweg 43;;ARNHEM;0
+820;Vondellaan vastgoed;particulier;;;;;;;;0
+487;Voys B.V.;particulier;;;NL11 RABO 0121 3943 87;50161113.0;Lubeckweg 2;;GRONINGEN;0
+460;Vroegh & Hobbel B.V.;particulier;;;;24368270.0;De Pinnepot 21 c;;Oostvoorne;0
+578;W van Straalen;particulier;;;NL18 RABO 0342 9411 94;;;;;0
+797;W. van Straalen;particulier;woutervanstraalen@gmail.com;06-30 44 23 58;;;;;;0
+461;W.H. Lagendijk Onderhoudsbedrijf;particulier;;;;24393155.0;Kruisdijk 85;;Poortugaal;0
+972;W.M. v. d. Haak beheer b.v.;bedrijf;;;NL92 RABO 0142217859;9979135;Emmastraat 1;2671 ET;Naaldwijk;1
+967;W.M. v.d. Haak Beheer B.V.;bedrijf;;;NL92 RABO 0142217859;;Emmastraat 1;2671 ET;Naaldwijk;1
+139;W.T. Bosgraaf en E. Stam;particulier;info@nerom-industrial.nl;;NL50 ABNA 0106 0406 42;;Eerste Weteringdwarsstraat 75;;Amsterdam;0
+309;WIL International B.V.;particulier;international@wilgroep.nl;06 52502595;;;Streekweg 22;;Nijmegen;0
+270;WILL Vakkrachten B. V.;particulier;administratie@wilgroep.nl;;;;Streekweg 22;;Nijmegen;0
+610;WML Waterlieding Maatschappij Limburg;particulier;;;;;;;;0
+464;WP Advocaten;particulier;;;NL63 ABNA 0492 2707 40;56270933.0;De Schoof 94;;HENDRIK-IDO-AMBACHT;0
+36;WS Detachering BV;particulier;administratie@workstead.nl;06-23486273;;;Barneveldsestraat 44;;Renswoude;0
+698;Wasco;particulier;;;NL43 INGB 0675 8759 43;;;;;0
+462;Wasgoed.com;particulier;;;NL37 RABO 0326 7672 66;1117807.0;Schenkenschans 3 d;;Leeuwarden;0
+710;Waterbedrijf Groningen;particulier;;;NL07 INGB 0000 8051 88;2008621.0;Griffeweg 99;;Groningen;0
+580;Webciters;particulier;;;NL27 ABNA 0604 4446 13;;;;;0
+312;Welcome Housing B.V.;particulier;Invoices@hobij.nl;0413-870000;;;Heilig Hartplein 1;;Veghel;0
+640;Wensing Meubelen BV;particulier;;;NL42 RABO 0114 8555 44;;;;;0
+149;Werckpost Service B.V.;particulier;facturen@werckpost.nl;106-15954842;;64653986.0;Het Rif 1;;URK;0
+735;Westhavendomein;particulier;;;;;;;;0
+602;Westhavendomein BV;particulier;vastgoed@westhavendomein.nl;010-2477477;NL07 INGB 0000 0151 23;;;;;0
+697;Westland Autoschade (De Lier);particulier;;;NL57 INGB 0105 5176 31;67254195.0;De Hondert Margen 9;;De Lier;0
+470;Why not NL?!;particulier;Info@whynotnl.com;;NL42 ABNA 0834 5431 84;72138920.0;Strausspad 42;;Spijkenisse;0
+463;Witgoed Hellevoetsluis;particulier;;;NL63 INGB 0007 3100 67;24251690.0;Moriaanseweg West 20 A;;Hellevoetsluis;0
+384;WitteWoning Makelaars;bureau;;;;73068926.0;Stationsweg 19;;Leeuwarden;0
+562;Wittkamp Trading;particulier;;;NL30 RABO 0351 1026 55;;;;;0
+582;Wooninq;particulier;;;NL02 ABNA 0119 1673 52;;;;;0
+338;Workforce Housing Holland B.V.;particulier;invoices@w-hi.com;06-0448 44 483;;295259619;Keizersgracht 209;;Amsterdam;0
+363;Workforce Housing International B.V;particulier;invoices@w-hi.com;0252-255550;NL37 INGB 0395 8388 94;195259619;Keizersgracht 241;;Amsterdam;0
+269;Works Personeelsdiensten;particulier;info@works.jobs;024-4400300;;;Kerkenbos 1051;;Nijmegen;0
+465;XS4ALL Internet B.V.;particulier;;;;33287534.0;Teleportboulevard 121;;Amsterdam;0
+182;Y. K. Bos;particulier;;;NL62 RABO 0354 1315 83;;Europaplein 49;;Stadskanaal;0
+101;YaY;particulier;yolanda@youronlineassociate.nl;;NL33 KNAB 0259 4355 11;74545191.0;Kikkerveen 217;;Spijkenisse;0
+638;Yearth Academy;particulier;;;NL92 ABNA 0594 6027 93;;;;;0
+466;Yellowbrick;particulier;;;NL13 ABNA 0243 1853 40;;;;;0
+556;Yur Advocaten B.V.;particulier;;;NL22 RABO 0380 8447 45;;Oostmaaslaan 71;;Rotterdam;0
+357;Z Yilmaz;particulier;z.yilmaz@yilmazradijs.nl;;NL11 RABO 0115 2819 32;;tomatenlaan 10a;;'s-Gravenhage;0
+799;Z. Yilmaz;particulier;zyilmaz@yilmazradijs.nt;50619418327;;;;;;0
+663;ZILXX;particulier;;;;;;;;0
+205;ZaMens R.I.A. B.V.;particulier;facturen@zamens.nl;;;11069235.0;Parmentierplein 20;;ROTTERDAM;0
+55;Zeeland Housing Facility B.V.;particulier;info@housingzeeland.nl;;;75463547.0;Prinsenhove 168;;Middelburg;0
+509;Zien! B.V.;particulier;;;NL30 RABO 0156 5705 13;56838638.0;Fascinatio Boulevard 522;;CAPELLE AAN DEN IJSSEL;0
+522;Ziggo Services B.V.;particulier;;;;62393944.0;Boven Vredenburgpassage 128;;UTRECHT;0
+584;de Verhuurder vastgoedbemiddeling;particulier;;;NL11 INGB 0007 0642 35;;;;;0
+145;dockHolland Huisvesting B.V.;particulier;inkoopfacturen@dockholland.com;;NL65 ABNA 0892 0134 27;24255227.0;Industrieweg 130A;;Rotterdam;0
+552;flexcraft;particulier;;;NL53 RABO 0348 9158 61;;;;;0
+536;gbtwente;particulier;;;NL72 BNGH 0285 1412 28;;;;;0
+409;hallo,;particulier;;;NL66 RABO 0161 3073 45;50755609.0;;;;0
+411;hemdvoorhem.nl B.V.;particulier;;;;64100367.0;Jadelaan 25;;Hoofddorp;0
+543;hotel Rozenburg;particulier;;;NL37 INGB 0009 1713 83;;Emmastraat 26;;;0
+289;house of work;particulier;rob.jansen@houseofwork.nl;;;;Stoelmatter 38;;Wateringen;0
+723;kerstpakkettenplaza.nl;particulier;klantenservice@kerstpakkettenplaza.nl;;NL44 RABO 0112 3597 95;17280883.0;Gildeplein 5;;Niftrik;0
+538;marc de vries;particulier;;;NL22 RABO 0350 2604 51;;;;;0
+533;oasen nv;particulier;;;NL42 INGB 0000 0312 74;;Postbus 122;;GOUDA;0
+549;reedijk wheels and tyres;particulier;;;NL91 RABO 0326 8969 53;;;;;0
+551;spaa materials;particulier;;;NL43 RABO 0344 5650 09;;;;;0
+914;v.o.f. J.C. Mulder;particulier;;;;;;;;0
+639;value+;particulier;;;NL10 INGB 0521 6438 21;;;;;0
+559;van Gastel Notarissen;particulier;;;NL44 INGB 0688 9137 92;;Westlandseweg 260;;Vlaardingen;0
+52;van Heeswijk;particulier;verhuur@reham.nl;;NL32 INGB 0007 1086 71;;Adres onbekend;;;0
+674;van der Meij Interieurs;particulier;vandermeijinterieurs@outlook.com;;NL70 RABO 0365 5956 75;;;;;0
+537;wmd water;particulier;;;NL58 RABO 0302 8995 53;;;;;0

@@ -1,0 +1,489 @@
+﻿object_id;adres;postcode;plaats;eigenaar_naam;eigenaar_email;eigenaar_telefoon;eigenaar_kvk;eigenaar_iban;huurder_naam;huurder_email;huurder_telefoon;huurder_kvk;huurder_iban
+0001;Nunspeetlaan 14;2573 HG;Den Haag;J.S. Vink Vastgoed;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0001;Nunspeetlaan 14;2573 HG;Den Haag;J.S. Vink Vastgoed;;;;;Looije Facilities B.V.;Factuur@nwg.nl;;;
+0002;Allard Piersonlaan 142;2522 MT;Den Haag;Dhr R Paltan;rppaltan@gmail.com;06-51026495;;NLo7RABO0188649506;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0002;Allard Piersonlaan 142;2522 MT;Den Haag;Dhr R Paltan;rppaltan@gmail.com;06-51026495;;NLo7RABO0188649506;Looije Facilities B.V.;Factuur@nwg.nl;;;
+0003;Acacia 2;3224EB;Hellevoetsluis;MvB Services BV (Meindert van Buuren);;;;;United Homes B.V.;administratie@unitedhomes.eu;0181-473985;473122;NL85 RABO 0131 3612 60
+0004;Broekweg 25;3131 HC;Vlaardingen;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0005;Ringbaan Oost 327;5014 GG;Tilburg;T. Eenhuistra/J. Pluimakers;;;;;AKT Autoschade;facturen@aktautoschade.com;06 33417286;;
+0006;Enschotsestraat 163;5014 DD;Tilburg;T. Eenhuistra/J. Pluimakers;;;;;Optima Uitzendbureau B.V.;Financieel@optimauitzendburo.nl;0184 675 489;24403530.0;
+0007;Adriaan Baasstraat 34;7902HN;Hoogeveen;Eva Laus;;;;;InAxtion Vastgoed B.V.;Invoice.vastgoed@inaxtion.com;06 43 36 18 85;16074829.0;NL68 ABNA 0427 9222 08
+0009;Galgeweg 48-A;2691MG;s-Gravenzande;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0010;Kethelweg 1B;3135 GA;Vlaardingen;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0010;Kethelweg 1B;3135 GA;Vlaardingen;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0011;Kethelweg 1C;3135 GA;Vlaardingen;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0011;Kethelweg 1C;3135 GA;Vlaardingen;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0012;Baarlelaan 27;7906GB;Hoogeveen;Eva Laus;;;;;Vivir Wonen;info@vivirwonen.nl;(+31)6 123 33 496;58693807.0;NL52 RABO 0106 0699 77
+0013;Baarsveen 197;3205 BB;Spijkenisse;Dhr. R. J. Beking;rjbeking@icloud.com;;;NL32 RABO 0331 8091 25;BBTS (Vastgoed Spijkenisse);a.bilge@vastgoedspijkenisse.nl;;53388917.0;
+0015;Maasdijk 69 ;2691NZ;S-Gravenzande;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0016;van Scorelstraat 73;3141 TH;Maassluis;M.C. Mostert;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0017;G.A. Brederolaan 75B;3141 CD;Maassluis;M.C. Mostert;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0018;Meester G. Groen van Prinsterlaan 313;1181TV;Amstelveen;M.B. Kewal;mireldak@hotmail.com;06-42186940;;;Labour Housing BV;crediteuren@ottoworkforce.eu;06 164 77 586;50188895;NL84 ABNA 0405 8514 13
+0020;Mr. Troelstrastraat 37;3131 HR;Vlaardingen;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0020;Mr. Troelstrastraat 37;3131 HR;Vlaardingen;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0021;Vaartweg 106C;3131 HV;Vlaardingen;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0021;Vaartweg 106C;3131 HV;Vlaardingen;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0022;2e van Leydengaelstraat 6;3134 LL;Vlaardingen;Verknocht;;;;NL41 ABNA 0456 3688 17;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0023;Desiree Geerartstraat 1B;5111CH;Baarle-Nassau;S. Kleiren;sabine.kleiren@gmail.com;;;NL20 RABO 0103 8768 98;NL Realty B.V.;administratie@nl-jobs.com;06 22 040 775;;NL90 RABO 0346 4019 25
+0024;Desiree Geerartstraat 1C;5111CH;Baarle-Nassau;S. Kleiren;sabine.kleiren@gmail.com;;;NL20 RABO 0103 8768 98;NL Realty B.V.;administratie@nl-jobs.com;06 22 040 775;;NL90 RABO 0346 4019 25
+0025;Groenelaan 30B;3114 CH;Schiedam;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0025;Groenelaan 30B;3114 CH;Schiedam;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0026;Chopinstraat 39C;3131 DB;Vlaardingen;Park Wonen BV;info@parkwonen.nl;010 — 844 25 52;64549836;NLO4 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0026;Chopinstraat 39C;3131 DB;Vlaardingen;Park Wonen BV;info@parkwonen.nl;010 — 844 25 52;64549836;NLO4 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0027;Buizerdstraat 210;3145 AD;Maassluis;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0027;Buizerdstraat 210;3145 AD;Maassluis;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0028;Lange kruisweg 12;2676 BL;Maasdijk;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0028;Lange kruisweg 12;2676 BL;Maasdijk;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0029;Madeliefstraat 46C;3083TJ;Rotterdam;M. Kathiravelu;;;;;RNDV Industries;laura.brackiene@rndv.eu;+37062054093;1304203983;
+0030;Curacaolaan 88;3131 XD;Vlaardingen;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0031;Hogenbanweg 331;3112 CK;Schiedam;JS Vastgoed;;;;NL26 RABO 0156 3479 70;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0031;Hogenbanweg 331;3112 CK;Schiedam;JS Vastgoed;;;;NL26 RABO 0156 3479 70;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0033;Kethelweg 66C;3135 GM;Vlaardingen;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0033;Kethelweg 66C;3135 GM;Vlaardingen;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0034;Kethelweg 68A;3135 GM;Vlaardingen;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0034;Kethelweg 68A;3135 GM;Vlaardingen;RyanRent B.V.;facturen@ryanrent.nl;06-82746368;87946653.0;NL50 RABO 0339 0738 10;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0035;Messchaertplein 39;3131 TG;Vlaardingen;Park Wonen BV;info@parkwonen.nl;010 — 844 25 52;64549836;NLO4 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0035;Messchaertplein 39;3131 TG;Vlaardingen;Park Wonen BV;info@parkwonen.nl;010 — 844 25 52;64549836;NLO4 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0036;Messchaertplein 40;3131 TG;Vlaardingen;Park Wonen BV;info@parkwonen.nl;010 — 844 25 52;64549836;NLO4 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0036;Messchaertplein 40;3131 TG;Vlaardingen;Park Wonen BV;info@parkwonen.nl;010 — 844 25 52;64549836;NLO4 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0037;Westfrankelandsestraat 108B;3117 AW;Schiedam;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0037;Westfrankelandsestraat 108B;3117 AW;Schiedam;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Transport People B.V.;facturenaalsmeer@transportpeople.nl;06-82061967;;
+0039;Inundatiestraat 3;4551VE;Sas van Gent;J.G. van Pieterson;;;;NL82 ABNA 0886 0378 24;RNDV Industries;laura.brackiene@rndv.eu;+37062054093;1304203983;
+0040;Beatrixstraat 3;3181GA;Rozenburg;Mw. M. Hyllested Poulsen en Dhr. S. Crull;maria-sander@outlook.com;20651292767;;NL95 ABNA 0102 0651 60;Impes Service S.p.A.;fatture.olanda@impesservice.it, Nicola.pisani@impesservice.it;+31 6 87020773;;
+0041;Nunspeetlaan 53;2573 HB;Den Haag;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0042;Parallelweg 110A;3131 DK;Vlaardingen;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0043;Amperelaan 23;8451BW;Oudeschoot;H. Samson;;;;;Vivir Wonen;info@vivirwonen.nl;(+31)6 123 33 496;58693807.0;NL52 RABO 0106 0699 77
+0044;Pleinweg 101a;3081JH;Rotterdam;Jes Funding & Beheer;;;;;Light Personeelsdiensten;;;;
+0045;Pleinweg 101b;3081JH;Rotterdam;Jes Funding & Beheer;;;;;Light Personeelsdiensten;;;;
+0046;Nieuwenhoornstraat 46B;3082 VJ;Rotterdam;Huurwoning in Rotterdam VOF;info@huurwoninginrotterdam.nl;;;NL47 RABO 0379 6025 98;UAB Techsome;info@techsoma.lt;;95342265.0;LT80 7300 0101 8868 2143
+0047;Bisschopstraat 68;8325BD;Vollenhove;T. Hoolhorst;t.hoolhorst@gmail.com;;;NL13 KNAB 0405 5294 14;Werckpost Service B.V.;facturen@werckpost.nl;106-15954842;64653986.0;
+0048;Bliek 41;3225XB;Hellevoetsluis;A.P.W. Koedooder;apwkoedooder@gmail.com;;;NL21 INGB 0006 8135 04;AmDor Projecten B.V.;invoice@amdorprojecten.nl;;72342315.0;NL51 INGB 0009 3373 89
+0049;Bornerbroeksestraat 129A;7601BE;Almelo;Dhr. J.L. Meerding;jlmeerding@gmai.com;;;NL29 ABNA 0416 0042 29;Team Unica B.V.;facturen@teamunica.nl;206 142 186 41;76348881;
+0050;Sint Josephstraat 61;5017GD;Tilburg;T. Eenhuistra/J. Pluimakers;;;;;Welcome Housing B.V.;Invoices@hobij.nl;0413-870000;;
+0051;Coehoorn van Scheltingaweg 12;8442EX;Heerenveen;;;;;;United Homes B.V.;administratie@unitedhomes.eu;0181-473985;473122;NL85 RABO 0131 3612 60
+0052;Coehoorn van Scheltingaweg 66;8442GA;Heerenveen;;;;;;United Homes B.V.;administratie@unitedhomes.eu;0181-473985;473122;NL85 RABO 0131 3612 60
+0053;Curcumastraat 39 ;3193XA;Hoogvliet;Ruva Vastgoed B.V.;beheer@ruvavastgoed.nl;6-53 16 82 85;52768384.0;NL93 RABO 0116 6871 50;OJP B.V.;rita.guimaraes@ojp.pt;+32473954591;84474432.0;NL10 INGB 0674 8358 24
+0055;Baanhoek 139;3361 GC;Sliedrecht;R. Verspui;;;;;HousingWell B.V.;info@housingwell.nl;078 614 02 02;;
+0056;De Hooidollen 606;8918JZ;Leeuwarden;L. Schilstra / Eigenaar.nl;;;;;Interwel Oost B.V.;facturen@interwel.nl;1052 224 25 20;4067303.0;NL13 ABNA 0627 7737 53
+0057;Markt 5 ;3142 GE;Maassluis;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0058;Deugenweerd 18;7271XT;Borculo;Dhr. T. Roestenberg en Mw. Roestenberg - Hustinx;timoroestenberg@hotmail.com;06 199 144 13;;NL42 ASNB 8832 1748 71;Employ;;;;
+0059;Dieptol 63;8332BK;Steenwijk ;P. Ter Haar - Ros;;;;;Kapitan Workers Sp. Z.o.o.;kapitanworkers@outlook.com;;;
+0061;Dwarsweg 44 ;3181HG;Rozenburg;Hugo Vastgoed B.V.;administratie@hemobeheer.nl;2076 515 45 06;81215169.0;NL06 ABNA 0889 9369 43;Impianti Industriala S.P.A. NEDERLAND BRANCH;vendors@sitie.it;;;
+0063;Energieweg 40;3133EC;Vlaardingen;Quadrant Vastgoed B.V.;bovastbv@live.nl;06-53800820;;NL47 RABO 0379 6025 98;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0063;Energieweg 40;3133EC;Vlaardingen;Quadrant Vastgoed B.V.;bovastbv@live.nl;06-53800820;;NL47 RABO 0379 6025 98;GAP Costruzioni S.r.l.;invoice@gapcostruzioni.it;+39 346 7115 004;;IT29 E030 6984 6201 0000 0011 940
+0064;Enk 6;7621ES;Borne;F. Veurink en P. Neleman;mieke.veurink@gmail.com;0628555669 / 0610435440;;NL62 INGB 0654 9954 78;Lago Personeelshuisvesting B.V.;facturen@lagopersoneelshuisvesting.nl;2085-021 25 05;67649815.0;
+0065;Esdoornlaan 68 ;3181XD;Rozenburg;Leendert Keizer;;;;;AmDor Projecten B.V.;invoice@amdorprojecten.nl;;72342315.0;NL51 INGB 0009 3373 89
+0066;Dorpsstraat 73;2841 BH;Moordrecht;Maatschap vd Vlist -Teuben;;;;;Royal DS Personeel-service;m.langeveld@royalds.nl;06 532 88 389;;
+0067;Franz Liszstraat 5;4536EA;Terneuzen;Value+ Vastgoedmanagement;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0070;Geleenstraat 1;6133XK ;Sittard;Bart Vlastuin;;;;;;;;;
+0071;H. Algraplein 25;8802RE;Franeker;BJ Bakker;bjbakker85@hotmail.com;;;NL36 RABO 0302 0165 70;DIT en Larex Vakpersoneel B.V.;factuur@ditenlarexvakpersoneel.nl;06 117 50 200;8116290.0;NL17 RABO 0320 0278 72
+0072;Heemskerkstraat 19;9866AR;Lutjegast;Robert de Jonge;;;;;DIT en Larex Vakpersoneel B.V.;factuur@ditenlarexvakpersoneel.nl;06 117 50 200;8116290.0;NL17 RABO 0320 0278 72
+0073;Hendrik Deddenstraat 26;8395PX;Steggerda;Fam. Derwig;hans.derwig@dunlopcb.com;20620498826;;NL90 INGB 0001 0215 56;United Homes B.V.;administratie@unitedhomes.eu;0181-473985;473122;NL85 RABO 0131 3612 60
+0074;Mgr. W.M. Bekkerslaan 34;3141SK;Maassluis;Fransen Vastgoed / Holland Huisvesting B.V.;info@fransenvastgoed.nl;;;NL80 RABO 0190 7126 43;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0075;Hoofdstraat 110;5473AT;Heeswijk-Dinther;HBB Wonen (Danielle Hanegraaf);;;;;WILL Vakkrachten B. V.;administratie@wilgroep.nl;;;
+0076;Molendijk 4;3255AL;Oude-Tonge;J. van der Linde;;;;NL90 RABO 0352 2550 99;Multiservizi Romania SRL;amministrazionepythagoras@gmail.com;;;
+0077;Voorstraat 10;3255AX;Oude-Tonge;J, van de Linde;;;;;Multiservizi Romania SRL;amministrazionepythagoras@gmail.com;;;
+0078;Hooizolder 6;9205 CA;Drachten;H. Samson;;;;;DIT en Larex Vakpersoneel B.V.;factuur@ditenlarexvakpersoneel.nl;06 117 50 200;8116290.0;NL17 RABO 0320 0278 72
+0079;Ploegstraat 2a;3114NP;Schiedam;Houses2Rent;info@houses2rent.nl;06-20877085;;NL17 INGB 0390 7692 58;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0080;Voorstraat 25;3135HV;Vlaardingen;Houses2Rent;info@houses2rent.nl;06-20877085;;NL17 INGB 0390 7692 58;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0081;Patrijsstraat 39;3353AZ;Papendrecht;G.K. Stoel;rolfstoel@hotmail.com;06-14901449;;;WS Detachering BV;administratie@workstead.nl;06-23486273;;
+0082;Kanaal van Steenenhoek Z.Z. 10;4202LS;Gorinchem;Vivir wonen (Mendy);;;;;S. Bakker OPH Verhuur;;;;NL85 INGB 0102 8401 21
+0084;Kerkdreef 42;4571GJ;Axel;De Pagter Vastgoed B.V.;info@depagtervastgoed.nl;;22033473.0;NL91 INGB 0650 5095 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0085;Kierkegaardhof 54;1277 AL;Huizen;E. Rebel;;;;;Estra Logistics Systems B.V.;finance@cruisr.nl;06 153 52 404;282166021;
+0086;Kleine Beer 60;7904 LV;Hoogeveen;Dhr. J.L. Meerding;jlmeerding@gmai.com;;;NL29 ABNA 0416 0042 29;Workforce Housing Holland B.V.;invoices@w-hi.com;06-0448 44 483;295259619;
+0087;Jasmijnring 37;4881HT;Zundert;Vivir wonen (Mendy);;;;;H.T.C. Facility Services B.V.;inkoop@htcfacilityservices.nl;06 139 29 236;70962499.0;NL43 RABO 0358 2186 32
+0088;Kethelweg 66A;3135 GM;Vlaardingen;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0089;Van Maanenstraat 14A;3038 CZ;Rotterdam;J.P. Stoel;Jpstoel@gma;06 408 960 47;;;Focuzop-eu;administratie@focuzop-eu.com;06-45085584;85020184;
+0090;Laan van Nieuw Blankenburg 278;3181AL;Rozenburg ;HC van Os - Remeeus;;;;;Impes Service S.p.A.;fatture.olanda@impesservice.it, Nicola.pisani@impesservice.it;+31 6 87020773;;
+0091;Landsteinerhof 68;7908 BC;Hoogeveen;Eva Laus;;;;;Team Home Rentals B.V.;administratie@teamhomerentals.nl;085 - 0645224;71523561.0;NL61 RABO 0330 2631 02
+0092;Lange Brink 3;8315AH;Luttelgeest;Vondellaan vastgoed;;;;;Werckpost Service B.V.;facturen@werckpost.nl;106-15954842;64653986.0;
+0095;Engelsestraat 16L3;3028CG;Rotterdam;In Stijl Totaalbouw BV;info@instijltotaalbouw.nl;06-44404678;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0095;Engelsestraat 16L3;3028CG;Rotterdam;IN STONES;huisvesting@tradiro.nl;010-2341441;61924644;NL12 RABO 0300786654;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0095;Engelsestraat 16L3;3028CG;Rotterdam;IN STONES;huisvesting@tradiro.nl;010-2341441;61924644;NL12 RABO 0300786654;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0097;Burchstraat 16A;4501 BJ;Oostburg;A.H.S. Willemsen;huurwoningarnhem@gmail.com;;;NL90 ABNA 0861 1395 26;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0098;Melis Stokezijde 94;2543GG;Den Haag;M. Farajzadeh;;;;;Autodaxx B.V.;inkoopfactuur@autodaxx.nl;2431 (0) 165 520 200;58795928.0;NL24 INGB 0008 6453 92
+0099;Steenen Dijck 87;3146 BX;Maassluis;HollandHousing Rental BV;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0100;Molenweg 135;3181AW;Rozenburg;City Estate (Reinier Derksen);;;;;AmDor Projecten B.V.;invoice@amdorprojecten.nl;;72342315.0;NL51 INGB 0009 3373 89
+0101;Moureauveld 8;4702MA;Roosendaal;Vivir wonen (Mendy);;;;;I–Housing Vastgoed Beheer B.V.;administratie@i-housingvastgoedbeheer.nl;;81783604.0;NL89 RABO 0366 5365 24
+0102;Narcissenstraat 9;3181WT;Rozenburg;City Estate (Reinier Derksen);;;;;AmDor Projecten B.V.;invoice@amdorprojecten.nl;;72342315.0;NL51 INGB 0009 3373 89
+0103;Narcissenstraat 23;3181 WT;Rozenburg;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0104;Narcissenstraat 37;3181WT;Rozenburg;M. Poel;monique_pruijsen@hotmail.com;20650128055;;NL96 RABO 0138 5699 08;AmDor Projecten B.V.;invoice@amdorprojecten.nl;;72342315.0;NL51 INGB 0009 3373 89
+0105;Wieldraaierstraat 39;4204EW;Gorinchem;Vivir wonen (Mendy);;;;;WIL International B.V.;international@wilgroep.nl;06 52502595;;
+0106;Prinses Wilhelminastraat 9;3467 PK;Hekendorp;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0107;Hoefslag 8;8391BJ;Noordwolde;H. Samson;;;;;DIT en Larex Vakpersoneel B.V.;factuur@ditenlarexvakpersoneel.nl;06 117 50 200;8116290.0;NL17 RABO 0320 0278 72
+0109;Geldersestraat 91;4191BB;Geldermalsen;Johan ven der Burg;;;;;Vivir Wonen;info@vivirwonen.nl;(+31)6 123 33 496;58693807.0;NL52 RABO 0106 0699 77
+0110;Opaal 9;4337MA;Middelburg;De Pagter Vastgoed B.V.;info@depagtervastgoed.nl;;22033473.0;NL91 INGB 0650 5095 79;GOTI Verhuur B.V.;info@gotiverhuur.nl;;1098148.0;NL94 INGB 0665 1314 02
+0111;Oosterstraat 89;3134NN;Vlaardingen;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0112;Oudewerfslaan 84;9675 EW;Winschoten;R. Boringa ;;;;;Eemsdelta Housing B.V.;facturen@eemsdelta-housing.nl;;80302246.0;NL22 INGB 0007 7428 43
+0113;Peursumseweg 119A;3381 KV;Giessenburg;R. Verspui;;;;;Flextalent4u Uitzenden B.V.;administratie@flextalent4u.nl;;;
+0114;Piersonstraat 8;3119RG;Schiedam;Maatschap J.W. Meershoek & W.M. Meershoek;j.meershoek1@chello.nl;;;NL37 ABNA 0406 1514 07;Impes Service S.p.A.;fatture.olanda@impesservice.it, Nicola.pisani@impesservice.it;+31 6 87020773;;
+0115;Poppestraat 59;4711EW;St. Willebrord;S. Raats (123Wonen);;;;;Groene Hart Service Detachering B.V.;facturatie@groenehartservice.nl;06 42 03 8114;;NL41 INGB 0650 5389 00
+0117;Prunuslaan 36;9944AT;Nieuwolda;A. Ghali;;;;NL11 ABNA 0560 7581 38;Workforce Housing International B.V;invoices@w-hi.com;0252-255550;195259619;NL37 INGB 0395 8388 94
+0118;Marathonlaan 26;2807BB;Gouda;Johan ven der Burg;;;;;Bw-engineering;r.adelaar@bw-engineering.nl;06-345 79 097;634579097;NL74 ABNA 0554 0784 57
+0119;Koningin Julianastraat 27;3466LG;Waarder;Johan ven der Burg;;;;;DIT en Larex Vakpersoneel B.V.;factuur@ditenlarexvakpersoneel.nl;06 117 50 200;8116290.0;NL17 RABO 0320 0278 72
+0120;Plaats 10;3417EC;Montfoort;Johan van der Burg;johanvanderburg87@gmail.com;;;NL74 RABO 0134 5913 64;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0120;Plaats 10;3417EC;Montfoort;Johan van der Burg;johanvanderburg87@gmail.com;;;NL74 RABO 0134 5913 64;Estra Logistics Systems B.V.;finance@cruisr.nl;06 153 52 404;282166021;
+0121;Rivierdijk 794;3371EM;Hardinxveld - Giessendam;Business Housing;eliane@zamens.nl;;69861846.0;NL50 RABO 0323 5939 68;Interim Jobs B.V.;e.ozel@interimjobs.nl;+31165396496;67044360.0;NL83 RABO 0313 5561 05
+0122;Kethelweg 66B;3135 GM;Vlaardingen;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0123;Snecanusstraat 12;8607BK;Sneek;Dhr. J.L. Meerding;jlmeerding@gmai.com;;;NL29 ABNA 0416 0042 29;Team Unica B.V.;facturen@teamunica.nl;206 142 186 41;76348881;
+0124;Snoekenveen 242;3205CN;Spijkenisse;A.P.W. Koedooder;apwkoedooder@gmail.com;;;NL21 INGB 0006 8135 04;United Homes B.V.;administratie@unitedhomes.eu;0181-473985;473122;NL85 RABO 0131 3612 60
+0125;Korte Singelstraat 21-3;3112 GA;Schiedam;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;S. Bakker OPH Verhuur;;;;NL85 INGB 0102 8401 21
+0126;Korte Singelstraat 21-2;3112 GA;Schiedam;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;S. Bakker OPH Verhuur;;;;NL85 INGB 0102 8401 21
+0127;Struitenweg 19b;3082WP;Rotterdam;Jan Luijsterburg Beheer B.V.;j.luijsterburg@planet.nl;206 10147431;20149379.0;NL21 INGB 0008 3555 13;AmDor Projecten B.V.;invoice@amdorprojecten.nl;;72342315.0;NL51 INGB 0009 3373 89
+0128;Tesselschadelaan 45;4707CJ;Roosendaal;Sjoerd Dolstra;;;;;EG Facility & Services BV;facturen@egfs.nl;06 43220422;88802957.0;NL69 RABO 0359 9345 79
+0129;Utrechtse straatweg 7 ;3421GL;Oudewater;L&T B.V.;;;;NL67 INGB 0109 4448 84;People21 Services BV;administratie@people21.eu;06-28340050 / 010-4270111;;
+0130;Van Langedonckstraat 80;3076 SM;Rotterdam;CB-Homes B.V.;info@cb-homes.nl;;78756081.0;NL61 INGB 0006 7055 02;United Homes B.V.;administratie@unitedhomes.eu;0181-473985;473122;NL85 RABO 0131 3612 60
+0131;Chopinstraat 35A;3131 BD;Vlaardingen;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0133;Herenpad 20A;3111 LP;Schiedam;Westhavendomein BV;vastgoed@westhavendomein.nl;010-2477477;;NL07 INGB 0000 0151 23;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0133;Herenpad 20A;3111 LP;Schiedam;Westhavendomein BV;vastgoed@westhavendomein.nl;010-2477477;;NL07 INGB 0000 0151 23;S. Bakker OPH Verhuur;;;;NL85 INGB 0102 8401 21
+0134;Herenpad 20 B;3111 LN ;Schiedam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0135;Amperestraat 36A;3112MD;Schiedam;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0136;Elisadonk 220;4707ER;Roosendaal;M&M Hendriks;;;;;EG Facility & Services BV;facturen@egfs.nl;06 43220422;88802957.0;NL69 RABO 0359 9345 79
+0138;Westercluft;8332 AH;Steenwijk ;Dhr. R. Bekken;renzo.bekken@gmail.com;206 24524308;;NL62 BUNQ 2070 7468 01;Stay21;;;;
+0139;Wilgensingel 63 ;3181XK;Rozenburg;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0139;Wilgensingel 63 ;3181XK;Rozenburg;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Transport People B.V.;facturenaalsmeer@transportpeople.nl;06-82061967;;
+0139;Wilgensingel 63 ;3181XK;Rozenburg;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0139;Wilgensingel 63 ;3181XK;Rozenburg;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Transport People B.V.;facturenaalsmeer@transportpeople.nl;06-82061967;;
+0140;Wilgenstraat 37;5038PB;Tilburg;C. van Winsen;coenvanwinsen@gmail.com;;;NL30 RABO 0189 1515 52;AKT Autoschade;facturen@aktautoschade.com;06 33417286;;
+0141;Wilhelminastraat 8;4696 BS;Stavenisse;Dhr. M. Moeilijker;mmoeilijker@gmail.com;;;NL66 RABO 0346 0186 25;Buurman Vastgoed E B.V.;admin@inexho.com;06 153 97 067;20615397067;
+0142;Wilhelmina Druckerstraat 68;7741 RM;Coevorden;Jetty Michielsen;;;;;C-Flex B.V.;administratie@cflexbv.nl;024-4400300;;
+0143;Willem Lodewijkstraat 8;8801EL;Franeker;S. Bakker / Eigenaar.nl;;;;;Team Home Rentals B.V.;administratie@teamhomerentals.nl;085 - 0645224;71523561.0;NL61 RABO 0330 2631 02
+0144;Scheepjesbrug 433;4231ZZ;Meerkerk;B. Bosch;brucebosch@live.nl;;;NL18 INGB 0796 0357 25;Estra Logistics Systems B.V.;finance@cruisr.nl;06 153 52 404;282166021;
+0145;Wouwbaan 230;4703TA;Roosendaal;T. van de Moosdijk;tvandemoosdijk@gmail.com;;;NL87 BUNQ 2059 0465 99;Interim Jobs B.V.;e.ozel@interimjobs.nl;+31165396496;67044360.0;NL83 RABO 0313 5561 05
+0146;Johan Willen Frisostraat 36;8606CW;Sneek;R. Bouius;bouius@hotmail.com;06-13658480;;;Team Home Rentals B.V.;administratie@teamhomerentals.nl;085 - 0645224;71523561.0;NL61 RABO 0330 2631 02
+0147;Hugo de Grootstraat 72A&B;2518 EG;Den Haag;Risa Beheer B.V.;info@risa-beheer.nl;+31.651602853;;NL32 RABO 0363 4098 82;Crown Uitzendgroep;;;;
+0148;2e Maasbosstraat 2 a;3134XJ;Vlaardingen;JS Vastgoed;;;;NL26 RABO 0156 3479 70;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0148;2e Maasbosstraat 2 a;3134XJ;Vlaardingen;Adriaan Jacobus Maat;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0148;2e Maasbosstraat 2 a;3134XJ;Vlaardingen;Adriaan Jacobus Maat;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0148;2e Maasbosstraat 2 a;3134XJ;Vlaardingen;Adriaan Jacobus Maat;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0149;2e Maasbosstraat 2 b;3134XJ;Vlaardingen;JS Vastgoed;;;;NL26 RABO 0156 3479 70;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0150;2e Maasbosstraat 2 c;3134XJ;Vlaardingen;Adriaan Jacobus Maat;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0151;Datheenstraat 255;3132PG;Vlaardingen;Houses2Rent;info@houses2rent.nl;06-20877085;;NL17 INGB 0390 7692 58;GAP Costruzioni S.r.l.;invoice@gapcostruzioni.it;+39 346 7115 004;;IT29 E030 6984 6201 0000 0011 940
+0152;Beeklaan 294;2562AV;Den Haag ;Homescout21 B.V.;rene@homescout21.com;;82780242.0;NL22 ABNA 0101 0258 58;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0152;Beeklaan 294;2562AV;Den Haag ;Homescout21 B.V.;rene@homescout21.com;;82780242.0;NL22 ABNA 0101 0258 58;Duijndam Personeelsdiensten B.V.;facturen@duijndamworks.nl;0174-270365;54370914.0;
+0153;Deensestraat 6A2;3028GH;Rotterdam;Houses2Rent;info@houses2rent.nl;06-20877085;;NL17 INGB 0390 7692 58;GAP Costruzioni S.r.l.;invoice@gapcostruzioni.it;+39 346 7115 004;;IT29 E030 6984 6201 0000 0011 940
+0154;Rubensplein 6B3;3117BK;Schiedam;Houses2Rent;info@houses2rent.nl;06-20877085;;NL17 INGB 0390 7692 58;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0154;Rubensplein 6B3;3117BK;Schiedam;IN STONES;huisvesting@tradiro.nl;010-2341441;61924644;NL12 RABO 0300786654;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0156;Broersvest 74 c;3112DG;SCHIEDAM;Conmihace Varrdinry Lrol;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0158;Visartstraat 31;4541BA;Sluiskil ;B Verstegen en K Maas;;;;NL65 TRIO 0320 9580 94;BBTS (Vastgoed Spijkenisse);a.bilge@vastgoedspijkenisse.nl;;53388917.0;
+0159;Kastanjelaan 232;4621HM;Bergen op Zoom;Hopmans Flexstay;;;;NL93 RABO 0318 1254 98;PRP Solutions Flex Sp. Z.O.O;costs@prpsolutions.eu;;;
+0160;Chopinstraat 33C;3131DB;Vlaardingen;In Stijl Totaalbouw BV;info@instijltotaalbouw.nl;06-44404678;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0162;Coornhertstraat 95 ;3132GB;VLAARDINGEN;Nikozijn B.V.;;06-53208852;59979135;NL59 ABNA 050.83.20.917;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0163;Curacaolaan 24;3131XC;VLAARDINGEN;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0164;Sint-Annalandstraat 116;3086TG;Rotterdam;S.H.M. De Swart;;06 153 153 95;;NL37 SNSB 0901829056;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0165;De Driesprong 17;2295LL;KWINTSHEUL;Ruud van der Hoeven BV & Raymond Vijverberg BV;;;;NL84RABO0360849504;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0166;Nieuwkerkstraat 78;3311TK;Dordrecht;D. tonen;tonen222@gmail.com;;;;Vivir Wonen;info@vivirwonen.nl;(+31)6 123 33 496;58693807.0;NL52 RABO 0106 0699 77
+0167;Vogelschorstraat 24;4541AZ;Sluiskil;A. Brouwers & S. Brouwers- van Weert;;;;;BBTS (Vastgoed Spijkenisse);a.bilge@vastgoedspijkenisse.nl;;53388917.0;
+0170;Goudestein 30;3085 DB;Rotterdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0170;Goudestein 30;3085 DB;Rotterdam;;;;;;LogIQ Barendrecht B.V.;facturen0180@logiq.nl;;;NL22 ABNA 0885 7890 32
+0171;Wijdstraat 13;3421 AJ;Oudewater;Groen Holding / van Vliet;;;;;People21 Services BV;administratie@people21.eu;06-28340050 / 010-4270111;;
+0172;Groeneweg 127;2691ML;'S-GRAVENZANDE;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0173;Groeneweg 71 ;2691MK;S-GRAVENZANDE;Tradiro;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0174;Groeneweg 74;2691MR;'S-GRAVENZANDE;Drift Oud camp 8.V.;;;71225870;NL77Rabo0328946427;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0175;Hagastraat 8;3114ND;Schiedam;T. Xie;t.xie@hotmail.com;0621507663;;NL96RABO0171254155;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0176;Herautpad 22 ;3119DL;Schiedam;In Stijl Totaalbouw BV;info@instijltotaalbouw.nl;06-44404678;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0177;Hoge Noordweg 27B;2671DZ;NAALDWIJK;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0178;Hoge Noordweg 28;2671DZ;NAALDWIJK;Gebr. WMJ, LNJ, AAJ en MWJ van Holstein;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0179;Rooseveltlaan 185;4624DM;Bergen op Zoom;Digo Real Estate BV;info@digorealestate.com;+31 6 22 82 66 20;;NL68 RABO 0364 3051 26;N2people B.V.;invoice@n2people.nl;085 0200805 / 06 13430756;17206030.0;
+0180;Liesveld 100;3131CM;VLAARDINGEN;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0181;Hontenissestraat 124;3086KJ;Rotterdam;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89;;;;;
+0183;Hugo de Vriesstraat 54 ;3132TG;VLAARDINGEN;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0184;Mathenesserdijk 261 C03;3027AK;Rotterdam;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0184;Mathenesserdijk 261 C03;3027AK;Rotterdam;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89;Industrial Technical Services Srl;;;;
+0185;Laan van Nieuw Blankenburg 328;3181AM ;Rozenburg ;R. Ras;;;;;Impianti Industriala S.P.A. NEDERLAND BRANCH;vendors@sitie.it;;;
+0186;Woutersweg 20;2691 PR; 's-Gravenzande;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0187;Jacob van Lennepstraat 13 A;3117SH;SCHIEDAM;Kolpa V.V.S. Beheer B.V.;info@kolpaves.nl;010 467 25 55;24324527;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0187;Jacob van Lennepstraat 13 A;3117SH;SCHIEDAM;Kolpa V.V.S. Beheer B.V.;info@kolpaves.nl;010 467 25 55;24324527;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0188;Jacob van Lennepstraat 13 B;3117SH;SCHIEDAM;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0189;Jacob van Lennepstraat 34;3117SK;SCHIEDAM;Soul Inn B.B. B.V.;service@hb-vb.nl;070-3615080;59979135;NL03RABO0156109085;;;;;
+0190;Achterdijk 47a;4243 TM;Nieuwland;Vivir wonen (Mendy);;;;;dockHolland Huisvesting B.V.;inkoopfacturen@dockholland.com;;24255227.0;NL65 ABNA 0892 0134 27
+0191;Jan van Arkelstraat 118;3132VP;VLAARDINGEN;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0192;Kaapsebos 11 ;2676BX;MAASDIJK;Greenroads Beheer B.V.;;;27300625;NL08RABO0328704393;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0193;Kapershoek 11;3085ED;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0193;Kapershoek 11;3085ED;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;Labour Housing BV;crediteuren@ottoworkforce.eu;06 164 77 586;50188895;NL84 ABNA 0405 8514 13
+0193;Kapershoek 11;3085ED;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0193;Kapershoek 11;3085ED;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;Labour Housing BV;crediteuren@ottoworkforce.eu;06 164 77 586;50188895;NL84 ABNA 0405 8514 13
+0194;Keesomstraat 22;3132TJ;VLAARDINGEN;Jan Peter Stoel;jpstoel@gmail.com;06-40896047;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0195;Keesomstraat 50 ;3132TJ;VLAARDINGEN;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0196;Keesomstraat 54;3132TJ;VLAARDINGEN;Ceysun Akbasoglu;ceysun.a@hotmail.com;06-12372543;;NL31 KNAB 0257 2508 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0197;Scheepjesbrug 814;4231ZZ;Meerkerk;B. Bosch;brucebosch@live.nl;;;NL18 INGB 0796 0357 25;Flextalent4u Uitzenden B.V.;administratie@flextalent4u.nl;;;
+0199;Kerstendijk 125;3079EV;Rotterdam;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0199;Kerstendijk 125;3079EV;Rotterdam;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89;GAP Costruzioni S.r.l.;invoice@gapcostruzioni.it;+39 346 7115 004;;IT29 E030 6984 6201 0000 0011 940
+0200;Stal 355;9205AN;Drachten ;H. Heijdra;;;;;THS EU B.V.;invoices@tecline.com;088-2442300;2333810.0;
+0201;Amberberg 14;4707 NM;Roosendaal;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0202;Kimbrenoord 15;3079 KC;Rotterdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0202;Kimbrenoord 15;3079 KC;Rotterdam;;;;;;LogIQ Barendrecht B.V.;facturen0180@logiq.nl;;;NL22 ABNA 0885 7890 32
+0203;Dorpstraat 48;3411AG;Lopik;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0204;Punter 22 34;8242DT;Lelystad;City Estate (Reinier Derksen);;;;;Werckpost Service B.V.;facturen@werckpost.nl;106-15954842;64653986.0;
+0205;Kreekrug 1;2678PR;DE LIER;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0206;Kruiningenstraat 152;3086KS;Rotterdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0206;Kruiningenstraat 152;3086KS;Rotterdam;;;;;;Light Personeelsdiensten;;;;
+0207;Kwikstaartweg 45;3136JH;Vlaardingen;Dhr. J. P. L. Giessen;giessenjo@yahoo.com;0648156153;;NL24RABO0119617404;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0208;Mr. L.A. Kesperweg 31A;3135BS;VLAARDINGEN;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0209;Laan van Adrichem 12;2678CZ;DE LIER;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0210;Lorentzstraat 73;3132SP;Schiedam;Caner Duman;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0210;Lorentzstraat 73;3132SP;Schiedam;Caner Duman;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0211;Maasdijk 206;2691NZ;S-GRAVENZANDE;Gebr van der Voort v.o.f.;;;;NL34RABO0342916386;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0212;Wijngaard 66;8212 CD;Lelystad;City Estate (Reinier Derksen);;;;;DIT en Larex Vakpersoneel B.V.;factuur@ditenlarexvakpersoneel.nl;06 117 50 200;8116290.0;NL17 RABO 0320 0278 72
+0213;Mr. Troelstrastraat 11;3131HR;VLAARDINGEN;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0214;Mendelssohnplein 13D;3131RD;VLAARDINGEN;JS Vastgoed;;;;NL26 RABO 0156 3479 70;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0214;Mendelssohnplein 13D;3131RD;VLAARDINGEN;JS Vastgoed;;;;NL26 RABO 0156 3479 70;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0215;Mendelssohnplein 10C;3131RD;VLAARDINGEN;JS Vastgoed;;;;NL26 RABO 0156 3479 70;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0216;Mendelssohnplein 46a;3131RK;VLAARDINGEN;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0217;Middelrode 8;3085CR;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0217;Middelrode 8;3085CR;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;S. Bakker OPH Verhuur;;;;NL85 INGB 0102 8401 21
+0217;Middelrode 8;3085CR;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0217;Middelrode 8;3085CR;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;S. Bakker OPH Verhuur;;;;NL85 INGB 0102 8401 21
+0219;Miltonstraat 55;3076TG;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0219;Miltonstraat 55;3076TG;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;S. Bakker OPH Verhuur;;;;NL85 INGB 0102 8401 21
+0220;Miltonstraat 85;3076TH;ROTTERDAM;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0221;Molenstraat 10;2671EX;Naaldwijk;W.M. v. d. Haak beheer b.v.;;;9979135;NL92 RABO 0142217859;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0222;Molenstraat 23;2671EW;Naaldwijk;W.M. v.d. Haak Beheer B.V.;;;;NL92 RABO 0142217859;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0223;Acacialaan 9;2641 aa;Pijnacker;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0224;Nicolaas Beetsstraat 29;3131GP;VLAARDINGEN;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;;;;;
+0225;Kerkwervesingel 127;3086HL;Rotterdam;In Stijl Totaalbouw BV;info@instijltotaalbouw.nl;06-44404678;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0225;Kerkwervesingel 127;3086HL;Rotterdam;In Stijl Totaalbouw BV;info@instijltotaalbouw.nl;06-44404678;;;Light Personeelsdiensten;;;;
+0226;Rivierdijk 793;3371EM;Hardinxveld - Giessendam;Business Housing;eliane@zamens.nl;;69861846.0;NL50 RABO 0323 5939 68;Interim Jobs B.V.;e.ozel@interimjobs.nl;+31165396496;67044360.0;NL83 RABO 0313 5561 05
+0227;Oostlaan 3 ;2678NK;DE LIER;Uitzendburo Tradiro B.V.;;;;NL47 RABO 0128 6245 07;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0228;Parallelweg 122A ;3131DL;VLAARDINGEN;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0229;Parallelweg 98B;3131DJ;VLAARDINGEN;Ceysun Akbasoglu;ceysun.a@hotmail.com;06-12372543;;NL31 KNAB 0257 2508 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0230;Pasteursingel 61;3028EJ;Rotterdam;De heer Hamid Reza Arya Barzin h.o.d.n. Arya Diensten;gem.worldwide@hotmail.com;06-11921956 / 010 — 7850187;62936751;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0231;Platostraat 80;3076BP;Rotterdam;S.H.M. De Swart;;06 153 153 95;;NL37 SNSB 0901829056;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0232;Zuidhoek 209D;3082PH;Rotterdam;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0232;Zuidhoek 209D;3082PH;Rotterdam;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89;Labour Housing BV;crediteuren@ottoworkforce.eu;06 164 77 586;50188895;NL84 ABNA 0405 8514 13
+0233;Rembrandtstraat 20B;2671GD;Naaldwijk;W.M. v.d. Haak Beheer B.V.;;;;NL92 RABO 0142217859;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0234;Rotterdamsedijk 154B;3112BJ;SCHIEDAM;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0235;Rubensplein 3 B;3117BK;SCHIEDAM;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0236;Schalkeroord 389;3079WH;Rotterdam;R.R. Kalmeijer en M.R. Klootwijk;;;;NLS7 RABO 0341 695165;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0237;Schere 238;3085DZ;ROTTERDAM;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0238;Van der Werffstraat 370 ;3132WK;VLAARDINGEN;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0239;Schoonegge 110;3085CZ;Rotterdam;S.H.M. De Swart (junior);;06 242 10 114;;NL23 SNSB 0935 3997 47;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0239;Schoonegge 110;3085CZ;Rotterdam;S.H.M. De Swart (junior);;06 242 10 114;;NL23 SNSB 0935 3997 47;EU Facility Services;inkoopfacturen@houseofcovebo.nl;033 29 94 222;32110787.0;NL94 ABNA 0254 3837 93
+0240;Schoonegge 84;3085CX;ROTTERDAM;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0241;van der Werffstraat 166;3132WG;VLAARDINGEN;IN STONES;huisvesting@tradiro.nl;010-2341441;61924644;NL12 RABO 0300786654;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0241;van der Werffstraat 166;3132WG;VLAARDINGEN;IN STONES;huisvesting@tradiro.nl;010-2341441;61924644;NL12 RABO 0300786654;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0242;Sint Liduinastraat 76 A;3117CV;SCHIEDAM;Soul Inn B.B. B.V.;service@hb-vb.nl;070-3615080;59979135;NL03RABO0156109085;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0243;Sint Liduinastraat 80A;3117CV;SCHIEDAM;Soul Inn B.B. B.V.;service@hb-vb.nl;070-3615080;59979135;NL03RABO0156109085;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0245;van der Werffstraat 240;3132WH;VLAARDINGEN;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0246;Socratesstraat 168;3076BZ;ROTTERDAM;S.H.M. De Swart;;06 153 153 95;;NL37 SNSB 0901829056;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0247;Spoorsingel 154b;3134XW;VLAARDINGEN;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0249;Tholenstraat 114;3086TP;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0249;Tholenstraat 114;3086TP;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;Industrial Technical Services Srl;;;;
+0249;Tholenstraat 114;3086TP;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0249;Tholenstraat 114;3086TP;Rotterdam;JES Funding en Beheer B.V.;verhuur@jesbeheer.com;06-54615625;59979135;;Industrial Technical Services Srl;;;;
+0250;van der Waalsstraat 70;3132TN;VLAARDINGEN;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0252;Middenbaan Noord 18B ;3191EH;Hoogvliet;Homescout21 B.V.;rene@homescout21.com;;82780242.0;NL22 ABNA 0101 0258 58;GAP Costruzioni S.r.l.;invoice@gapcostruzioni.it;+39 346 7115 004;;IT29 E030 6984 6201 0000 0011 940
+0253;Middenbaan Noord 18C;3191EH;Hoogvliet;Homescout21 B.V.;rene@homescout21.com;;82780242.0;NL22 ABNA 0101 0258 58;GAP Costruzioni S.r.l.;invoice@gapcostruzioni.it;+39 346 7115 004;;IT29 E030 6984 6201 0000 0011 940
+0254;Middenbaan Noord 20A;3191EH;Hoogvliet;Homescout21 B.V.;rene@homescout21.com;;82780242.0;NL22 ABNA 0101 0258 58;BBTS (Vastgoed Spijkenisse);a.bilge@vastgoedspijkenisse.nl;;53388917.0;
+0255;Middenbaan Noord 20B;3191EH;Hoogvliet;Homescout21 B.V.;rene@homescout21.com;;82780242.0;NL22 ABNA 0101 0258 58;BBTS (Vastgoed Spijkenisse);a.bilge@vastgoedspijkenisse.nl;;53388917.0;
+0256;Middenbaan Noord 20C;3191EH;Hoogvliet;Homescout21 B.V.;rene@homescout21.com;;82780242.0;NL22 ABNA 0101 0258 58;BBTS (Vastgoed Spijkenisse);a.bilge@vastgoedspijkenisse.nl;;53388917.0;
+0257;Middenbaan Noord 22A;3191EH;Hoogvliet;Homescout21 B.V.;rene@homescout21.com;;82780242.0;NL22 ABNA 0101 0258 58;Suricare B.V.;arie.degroot@carevisie.nl;;83481699.0;
+0258;Middenbaan Noord 22B;3191EH;Hoogvliet;Homescout21 B.V.;rene@homescout21.com;;82780242.0;NL22 ABNA 0101 0258 58;BBTS (Vastgoed Spijkenisse);a.bilge@vastgoedspijkenisse.nl;;53388917.0;
+0259;Middenbaan Noord 22C ;3191EH;Hoogvliet;Homescout21 B.V.;rene@homescout21.com;;82780242.0;NL22 ABNA 0101 0258 58;BBTS (Vastgoed Spijkenisse);a.bilge@vastgoedspijkenisse.nl;;53388917.0;
+0260;Persoonsdam 176;3071EE;Rotterdam;Transformatiehaven B.V.;info@huurkracht.nl;+ 078-4100009;;NL55 INGB 0008 4174 66;Flexvesting B.V.;administratie@flexvesting.com;033 303 59 40;83276491.0;NL51 RABO 0370 7195 57
+0261;Persoonsdam 177;3071EE;Rotterdam;Transformatiehaven B.V.;info@huurkracht.nl;+ 078-4100009;;NL55 INGB 0008 4174 66;Flexvesting B.V.;administratie@flexvesting.com;033 303 59 40;83276491.0;NL51 RABO 0370 7195 57
+0262;Persoonsdam 178;3071EE;Rotterdam;Transformatiehaven B.V.;info@huurkracht.nl;+ 078-4100009;;NL55 INGB 0008 4174 66;Flexvesting B.V.;administratie@flexvesting.com;033 303 59 40;83276491.0;NL51 RABO 0370 7195 57
+0263;Persoonsdam 179;3071EE;Rotterdam;Transformatiehaven B.V.;info@huurkracht.nl;+ 078-4100009;;NL55 INGB 0008 4174 66;Flexvesting B.V.;administratie@flexvesting.com;033 303 59 40;83276491.0;NL51 RABO 0370 7195 57
+0264;Persoonsdam 180;3071EE;Rotterdam;Transformatiehaven B.V.;info@huurkracht.nl;+ 078-4100009;;NL55 INGB 0008 4174 66;Flexvesting B.V.;administratie@flexvesting.com;033 303 59 40;83276491.0;NL51 RABO 0370 7195 57
+0265;Persoonsdam 181;3071EE;Rotterdam;Transformatiehaven B.V.;info@huurkracht.nl;+ 078-4100009;;NL55 INGB 0008 4174 66;Flexvesting B.V.;administratie@flexvesting.com;033 303 59 40;83276491.0;NL51 RABO 0370 7195 57
+0266;Persoonsdam 182;3071EE;Rotterdam;Transformatiehaven B.V.;info@huurkracht.nl;+ 078-4100009;;NL55 INGB 0008 4174 66;Flexvesting B.V.;administratie@flexvesting.com;033 303 59 40;83276491.0;NL51 RABO 0370 7195 57
+0267;Persoonsdam 194;3071EE;Rotterdam;Transformatiehaven B.V.;info@huurkracht.nl;+ 078-4100009;;NL55 INGB 0008 4174 66;Flexvesting B.V.;administratie@flexvesting.com;033 303 59 40;83276491.0;NL51 RABO 0370 7195 57
+0268;Persoonsdam 198;3071EE;Rotterdam;Transformatiehaven B.V.;info@huurkracht.nl;+ 078-4100009;;NL55 INGB 0008 4174 66;Flexvesting B.V.;administratie@flexvesting.com;033 303 59 40;83276491.0;NL51 RABO 0370 7195 57
+0269;Professor Kamerlingh Onneslaan 134A;3112 VL;Schiedam;P. Nederstigt;p.nederstigt@casema.nl;;;NL30 ABNA 0401 3982 42;Housing en Transport Facilities BV;inkoopfacturen@houseofcovebo.nl;+31641786315;2431 64 17 86 315;
+0270;Professor Kamerlingh Onneslaan 134B1;3112 VL;Schiedam;P. Nederstigt;p.nederstigt@casema.nl;;;NL30 ABNA 0401 3982 42;Housing en Transport Facilities BV;inkoopfacturen@houseofcovebo.nl;+31641786315;2431 64 17 86 315;
+0271;Professor Kamerlingh Onneslaan 134B2;3112 VL;Schiedam;P. Nederstigt;p.nederstigt@casema.nl;;;NL30 ABNA 0401 3982 42;Housing en Transport Facilities BV;inkoopfacturen@houseofcovebo.nl;+31641786315;2431 64 17 86 315;
+0272;Professor Kamerlingh Onneslaan 134B3;3112 VL;Schiedam;P. Nederstigt;p.nederstigt@casema.nl;;;NL30 ABNA 0401 3982 42;Housing en Transport Facilities BV;inkoopfacturen@houseofcovebo.nl;+31641786315;2431 64 17 86 315;
+0273;Fenacoliuslaan 56B;3143AE;Maassluis;P.H. Jagt;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0273;Fenacoliuslaan 56B;3143AE;Maassluis;P.H. Jagt;;;;;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0274;Karel Doormanlaan 21A;2678EX;DE LIER;De Rembrandt B.V.;flip@eetcafedewitte.nl;06-41372342;;NL21RABO0156104105;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0275;Burgemeester Crezeelaan 76;2678KZ;DE LIER;K. Zuidgeest;;;;;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0276;Burgemeester Cramerlaan 82;2678 AN;DE LIER;P. van den Berg;info@vandenbergdelier.nl;06-38765032;;NL29ABNA0472271989;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0277;Gerberalaan 113;2671 KC;Naaldwijk;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0278;Lange Broekweg 46;2671 DV;Naaldwijk;G. Hofland;goos@hoflandfloweringplants.nl;0174-625887;;NL27RABO0343661063;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0279;Haagkamp 11;2675 SK;Honselersdijk;v.o.f. J.C. Mulder;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0279;Haagkamp 11;2675 SK;Honselersdijk;v.o.f. J.C. Mulder;;;;;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0280;Bovendijk 59;2295 RW;Kwintsheul;M. Nottet;mnottet@caiway.nl;06-50502637;;NL60RABO0323282903;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0280;Bovendijk 59;2295 RW;Kwintsheul;M. Nottet;mnottet@caiway.nl;06-50502637;;NL60RABO0323282903;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0281;Bovendijk 61;2295 RW;Kwintsheul;M. Nottet;mnottet@caiway.nl;06-50502637;;NL60RABO0323282903;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0281;Bovendijk 61;2295 RW;Kwintsheul;M. Nottet;mnottet@caiway.nl;06-50502637;;NL60RABO0323282903;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0282;Madeweg 25C;2681 PJ;Monster;H. van Leeuwen;petra@huubvanleeuwen.nl;06-51262904 / 0174-248804;;NL96RABO0375644504;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0283;Madeweg 35A;2681 PK;Monster;J.S. Vink Vastgoed;;;;;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0284;Molenweg 3A;2681 RD;Monster;M.J.W. van den Enden & B.M. van den Enden;endem3@caiway.nl;06-51611737 Barbara / 06-54398790 Maup;;NL81INGB0112509347;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0285;Poeldijkseweg 27;2681 LT;Monster;P.C. Vijverberg;piet@pietvijverberg.nl;06-53299575;;NL95RABO0142277460;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0286;Waellandweg 12;2681 LV;Monster;T. Olsthoorn;;;;;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0288;De Haak, Zekkenstraat 31A;3151 XP;Hoek van Holland;Stichting MCM;jetvbergen@gmail.com;06-53739975;;NL39RABO0334435080;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0289;De Haak, Zekkenstraat 31B;3151 XP;Hoek van Holland;Stichting MCM;jetvbergen@gmail.com;06-53739975;;NL39RABO0334435080;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0291;Koperwerf 28;2544EN;Den Haag;Lammertink Projecten B.V.;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0291;Koperwerf 28;2544EN;Den Haag;Lammertink Projecten B.V.;;;;;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0291;Koperwerf 28;2544EN;Den Haag;Lammertink Projecten B.V.;;;;;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0291;Koperwerf 28;2544EN;Den Haag;Lammertink Projecten B.V.;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0291;Koperwerf 28;2544EN;Den Haag;Lammertink Projecten B.V.;;;;;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0291;Koperwerf 28;2544EN;Den Haag;Lammertink Projecten B.V.;;;;;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0292;Burgemeester Stulemeijerlaan 71;3118BC;Schiedam;IN STONES;huisvesting@tradiro.nl;010-2341441;61924644;NL12 RABO 0300786654;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0293;Akkerweg 41 [huis 14];1779GJ;Den Oever;Cris;;;;;Buurman Vastgoed E B.V.;admin@inexho.com;06 153 97 067;20615397067;
+0294;Akkerweg 41 [huis 15] ;1779GJ;Den Oever;C. van Driel e/o B.M. Verdouw;drielviist@gmail.com / bmverdouw@gmail.com;06 53141599;;;NL Realty B.V.;administratie@nl-jobs.com;06 22 040 775;;NL90 RABO 0346 4019 25
+0297;Akkerweg 41 [huis 26] ;1779GJ;Den Oever;Cris;;;;;Royal DS Personeel-service;m.langeveld@royalds.nl;06 532 88 389;;
+0299;Akkerweg 41 [huis 37] ;1779GJ;Den Oever ;C. van Driel e/o B.M. Verdouw;drielviist@gmail.com / bmverdouw@gmail.com;06 53141599;;;NL Realty B.V.;administratie@nl-jobs.com;06 22 040 775;;NL90 RABO 0346 4019 25
+0300;Akkerweg 41 [huis 40] ;1779GJ;Den Oever ;C. van Driel e/o B.M. Verdouw;drielviist@gmail.com / bmverdouw@gmail.com;06 53141599;;;Eemsdelta Housing B.V.;facturen@eemsdelta-housing.nl;;80302246.0;NL22 INGB 0007 7428 43
+0301;Akkerweg 41 [huis 41] ;1779GJ;Den Oever ;C. van Driel e/o B.M. Verdouw;drielviist@gmail.com / bmverdouw@gmail.com;06 53141599;;;Royal DS Personeel-service;m.langeveld@royalds.nl;06 532 88 389;;
+0302;Akkerweg 41 [huis 42];1779GJ;Den Oever ;C. van Driel e/o B.M. Verdouw;drielviist@gmail.com / bmverdouw@gmail.com;06 53141599;;;Buurman Vastgoed E B.V.;admin@inexho.com;06 153 97 067;20615397067;
+0303;Akkerweg 41 [huis 55] ;1779GJ;Den Oever ;C. van Driel e/o B.M. Verdouw;drielviist@gmail.com / bmverdouw@gmail.com;06 53141599;;;NL Realty B.V.;administratie@nl-jobs.com;06 22 040 775;;NL90 RABO 0346 4019 25
+0304;Akkerweg 41 [huis 56];1779GJ;Den Oever ;C. van Driel e/o B.M. Verdouw;drielviist@gmail.com / bmverdouw@gmail.com;06 53141599;;;NL Realty B.V.;administratie@nl-jobs.com;06 22 040 775;;NL90 RABO 0346 4019 25
+0305;Akkerweg 41 [huis 57];1779GJ;Den Oever ;Cris;;;;;MNA Proud Facilities B.V.;Recep@prokonak.nl;06 423 54595;80752721;NL59 RABO 0366 0069 59
+0307;Akkerweg 41 [huis 75];1779GJ;Den Oever;Cris;;;;;FISSH B.V.;administratie@fissh.nl;06 338 76 573;264206165;
+0308;Kerkweg 9a [huis 135];1711RR;Hensbroek;Chalet Park Holiday;;;;;Werckpost Service B.V.;facturen@werckpost.nl;106-15954842;64653986.0;
+0309;Kerkweg 9a [huis 137];1711RR;Hensbroek;Chalet Park Holiday;;;;;UAB Toromega;dovydas.j@toromega.eu;+37069058856;;
+0310;Kerkweg 9a [huis 210];1711RR;Hensbroek;Chalet Park Holiday;;;;;Labour Housing BV;crediteuren@ottoworkforce.eu;06 164 77 586;50188895;NL84 ABNA 0405 8514 13
+0311;Kerkweg 9a [huis 269];1711RR;Hensbroek;C. van Driel e/o B.M. Verdouw;drielviist@gmail.com / bmverdouw@gmail.com;06 53141599;;;UAB Toromega;dovydas.j@toromega.eu;+37069058856;;
+0312;Kerkweg 9a [huis 333];1711RR;Hensbroek;Chalet Park Holiday;;;;;Labour Housing BV;crediteuren@ottoworkforce.eu;06 164 77 586;50188895;NL84 ABNA 0405 8514 13
+0313;Kerkweg 9a [huis 334];1711RR;Hensbroek;Chalet Park Holiday;;;;;Labour Housing BV;crediteuren@ottoworkforce.eu;06 164 77 586;50188895;NL84 ABNA 0405 8514 13
+0314;Kerkweg 9a [huis 338];1711RR;Hensbroek;Chalet Park Holiday;;;;;Labour Housing BV;crediteuren@ottoworkforce.eu;06 164 77 586;50188895;NL84 ABNA 0405 8514 13
+0315;Kerkweg 9a [huis 342];1711RR;Hensbroek;Chalet Park Holiday;;;;;RNDV Industries;laura.brackiene@rndv.eu;+37062054093;1304203983;
+0316;Kerkweg 9a [huis 346];1711RR;Hensbroek;Chalet Park Holiday;;;;;Labour Housing BV;crediteuren@ottoworkforce.eu;06 164 77 586;50188895;NL84 ABNA 0405 8514 13
+0317;Kerkweg 9a [huis 347];1711RR;Hensbroek;Chalet Park Holiday;;;;;Labour Housing BV;crediteuren@ottoworkforce.eu;06 164 77 586;50188895;NL84 ABNA 0405 8514 13
+0318;Kerkweg 9a [huis 349];1711RR;Hensbroek;C. van Driel e/o B.M. Verdouw;drielviist@gmail.com / bmverdouw@gmail.com;06 53141599;;;Werckpost Service B.V.;facturen@werckpost.nl;106-15954842;64653986.0;
+0319;Kerkweg 9a [huis 356];1711RR;Hensbroek;Chalet Park Holiday;;;;;Werckpost Service B.V.;facturen@werckpost.nl;106-15954842;64653986.0;
+0320;Kerkweg 9a [huis 359];1711RR;Hensbroek;Chalet Park Holiday;;;;;Labour Housing BV;crediteuren@ottoworkforce.eu;06 164 77 586;50188895;NL84 ABNA 0405 8514 13
+0321;Kerkweg 9a [huis 453];1711RR;Hensbroek;Chalet Park Holiday;;;;;Labour Housing BV;crediteuren@ottoworkforce.eu;06 164 77 586;50188895;NL84 ABNA 0405 8514 13
+0322;Bettingeslag 10;7824HD;Emmen;J.P. Stoel;Jpstoel@gma;06 408 960 47;;;CB Construction UAB;info@cbconstruction.eu;00370 675 13321;;
+0323;Marnixstraat 32;7553LC;Hengelo;R. Paalman;;;;;Flexvesting B.V.;administratie@flexvesting.com;033 303 59 40;83276491.0;NL51 RABO 0370 7195 57
+0324;Van Swinderenstraat 21;7741 VK;Coevorden;E. Beukema;et.beukema@gmail.com;06 31077111;;;Flexvesting B.V.;administratie@flexvesting.com;033 303 59 40;83276491.0;NL51 RABO 0370 7195 57
+0325;Hendriklaan 49;6043 BN;Roermond;M. Koolhaas;mike.koolhaas@hotmail.com;06 47075 677;;;VALO Facilities B.V.;invoices.facilities@valo-group.eu;;;
+0327;Putter 42;4872 PB;Etten-Leur;Cris;;;;;FISSH B.V.;administratie@fissh.nl;06 338 76 573;264206165;
+0327;Putter 42;4872 PB;Etten-Leur;Cris;;;;;FISSH B.V.;administratie@fissh.nl;06 338 76 573;264206165;
+0328;Noordmolenstraat 36A;3111PD;Schiedam;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;BBTS (Vastgoed Spijkenisse);a.bilge@vastgoedspijkenisse.nl;;53388917.0;
+0329;Noordmolenstraat 36B;3111PD;Schiedam;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;BBTS (Vastgoed Spijkenisse);a.bilge@vastgoedspijkenisse.nl;;53388917.0;
+0330;Noordmolenstraat 36C;3111PD;Schiedam;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;BBTS (Vastgoed Spijkenisse);a.bilge@vastgoedspijkenisse.nl;;53388917.0;
+0331;Flankstraat 11;4551AR;Sas van Gent;TH Mungroop;;;;;S. Bakker OPH Verhuur;;;;NL85 INGB 0102 8401 21
+0332;Kerkweg 9a [huis 340];1711RR;Hensbroek;Chalet Park Holiday;;;;;Orange Investments Group;;;;
+0333;Kethelweg 66D;3135 GM;Vlaardingen;Parkwonen;info@parkwonen.nl;;;NL04 RABO 0307 5644 79;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0335;Molenweg 3B;2681 RD;Monster;M.J.W. van den Enden & B.M. van den Enden;endem3@caiway.nl;06-51611737 Barbara / 06-54398790 Maup;;NL81INGB0112509347;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0336;Ofwegen 1A;2481KA;Woubrugge;Facili Flex BV;invoice@ifj.nl;0297-389680;;NL68 RABO 0330 6682 42;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0337;Kruisweg 16;2481NA;Woubrugge;Facili Flex BV;invoice@ifj.nl;0297-389680;;NL68 RABO 0330 6682 42;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0338;Kerkweg 9a [huis 348];1711RR;Hensbroek;Chalet Park Holiday;;;;;Orange Investments Group;;;;
+0339;Kerkweg 9a [huis 357];1711RR;Hensbroek;Chalet Park Holiday;;;;;Eastmen;;;;
+0340;Professor Poelslaan 58C;3028ET;Rotterdam;Comé Valk en Arjen Valk;;;;NL11RABO0325367345;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0340;Professor Poelslaan 58C;3028ET;Rotterdam;Comé Valk en Arjen Valk;;;;NL11RABO0325367345;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0341;Akkerweg 41 [huis 10] ;1779GJ;Den Oever;Cris;;;;;NL Realty B.V.;administratie@nl-jobs.com;06 22 040 775;;NL90 RABO 0346 4019 25
+0344;Pastoor Gilisstraat 81-A;5121CC;Rijen;Edward Bosch;;;;NL03 ABNA 0867 0942 73;Housing en Transport Facilities BV;inkoopfacturen@houseofcovebo.nl;+31641786315;2431 64 17 86 315;
+0345;Compierekade 15;2404 NA;Alphen a/d Rijn;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0346;Beukenlaan 53;3181XA;Rozenburg;Twins BV;info@twinsbv.com;206 53525041;;NL79 INGB 0107 5053 47;PMM Workforce Management Ltd;d.soare@pmm-group.eu , accounting@pmm-group.eu;;;
+0347;Van Ruijsdaellaan 72A;3117XV;Schiedam;Houses2Rent;info@houses2rent.nl;06-20877085;;NL17 INGB 0390 7692 58;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0348;Wagenstraat 70;4845CW;Wagenberg;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0349;Persoonsdam 196;3071EE;Rotterdam;Transformatiehaven B.V.;info@huurkracht.nl;+ 078-4100009;;NL55 INGB 0008 4174 66;Aelbers Flexibele Personeels Diensten B.V.;facturen@aelberspersoneel.nl;06 82 29 99 48;106 82 29 99 48;NL65 INGB 0662 8126 54
+0350;Akkerweg 41 [huis 35] ;1779GJ;Den Oever;Cris;;;;;MNA Proud Facilities B.V.;Recep@prokonak.nl;06 423 54595;80752721;NL59 RABO 0366 0069 59
+0351;Van Ruijsdaellaan 72B;3117XV;Schiedam;Houses2Rent;info@houses2rent.nl;06-20877085;;NL17 INGB 0390 7692 58;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0352;Van Ruijsdaellaan 72C;3117XV;Schiedam;Houses2Rent;info@houses2rent.nl;06-20877085;;NL17 INGB 0390 7692 58;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0353;Archimedesstraat 6B;3112DB;Schiedam;Houses2Rent;info@houses2rent.nl;06-20877085;;NL17 INGB 0390 7692 58;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0354;Dorpsstraat 48;2445AN;Aarlanderveen;Facili Flex BV;invoice@ifj.nl;0297-389680;;NL68 RABO 0330 6682 42;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0356;Akkerweg 41 [huis 36];1779GJ;Den Oever;Cris;;;;;MNA Proud Facilities B.V.;Recep@prokonak.nl;06 423 54595;80752721;NL59 RABO 0366 0069 59
+0358;Monsterseweg 26A;2691JH;S-GRAVENZANDE;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0359;Kimbrenoord 49;3079 KC;Rotterdam;Dockholland;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0359;Kimbrenoord 49;3079 KC;Rotterdam;Dockholland;;;;;LogIQ Barendrecht B.V.;facturen0180@logiq.nl;;;NL22 ABNA 0885 7890 32
+0360;Kruiningenstraat 185;3086KM;Rotterdam;Dockholland;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0360;Kruiningenstraat 185;3086KM;Rotterdam;Dockholland;;;;;EU Facility Services;inkoopfacturen@houseofcovebo.nl;033 29 94 222;32110787.0;NL94 ABNA 0254 3837 93
+0361;Putsebocht 136 B01;3073 HS;Rotterdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0362;Ruigenhoek 69;3085EM;Rotterdam;Dockholland;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0362;Ruigenhoek 69;3085EM;Rotterdam;Dockholland;;;;;EU Facility Services;inkoopfacturen@houseofcovebo.nl;033 29 94 222;32110787.0;NL94 ABNA 0254 3837 93
+0363;Rietdijkstraat 56A;3151 GJ;Hoek van Holland;S.A. van Bergen Vastgoed B.V.;bas.vanbergen@aubvanbergen.nl;06-30412153;;NL11RABO0318502364;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0364;Rietdijkstraat 56B;3151 GJ;Hoek van Holland;S.A. van Bergen Vastgoed B.V.;bas.vanbergen@aubvanbergen.nl;06-30412153;;NL11RABO0318502364;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0365;Laan op zuid 949;3072DB;Rotterdam;Dockholland;;;;;UAB Toromega;dovydas.j@toromega.eu;+37069058856;;
+0366;Lekdijk 14;2921 AD;Krimpen aan den Ijsel;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0368;Wedderweg 3A;9699 RA;Vriescheloo;CB-Homes B.V.;info@cb-homes.nl;;78756081.0;NL61 INGB 0006 7055 02;PRP Solutions Flex Sp. Z.O.O;costs@prpsolutions.eu;;;
+0369;Oranjestraat 63;3111AN;Schiedam;Kwekerij Stef Kleijweg;Stefkleijweg@gmail.com;;;;H.T.C. Facility Services B.V.;inkoop@htcfacilityservices.nl;06 139 29 236;70962499.0;NL43 RABO 0358 2186 32
+0370;Cloosterstraat 23a;4587CA;Kloosterzande;4 Homes B.V.;factuur@4homes.nl;0167 - 745023;27178161;NL30 RABO 0120 4592 56;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0371;De Zwingel 8B;4926DC;Lage Zwaluwe;Tetering en Martens;;;;NL07 RBRB 8836 2755 32;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0372;Akkerweg 41 [huis 11] ;1779GJ;Den Oever;Cris;;;;;MNA Proud Facilities B.V.;Recep@prokonak.nl;06 423 54595;80752721;NL59 RABO 0366 0069 59
+0373;Akkerweg 41 [huis 17];1779GJ;Den Oever;Cris;;;;;MNA Proud Facilities B.V.;Recep@prokonak.nl;06 423 54595;80752721;NL59 RABO 0366 0069 59
+0374;Vierambachtsstraat 32-B01;3023AN;Rotterdam;Houses2Rent;info@houses2rent.nl;06-20877085;;NL17 INGB 0390 7692 58;Oostkracht Bemiddeling B.V.;info@ok-groep.nl;06 418 60 430;85593087.0;
+0375;Cubalaan 25;2685 LA;Poeldijk;Z. Yilmaz;zyilmaz@yilmazradijs.nt;50619418327;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0376;Zwethkade Zuid 30A;2635CV;Den Hoorn;Fransen Vastgoed / Holland Huisvesting B.V.;info@fransenvastgoed.nl;;;NL80 RABO 0190 7126 43;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0377;Rijpstraat 24;3151BV;Hoek van Holland;F.A.S. van Bergen;jetvbergen@gmail.com;06-53739975;;NL44ABNA0620327766;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0378;Poeldijkseweg 29;2681 LT;Monster;P.C. Vijverberg;piet@pietvijverberg.nl;06-53299575;;NL95RABO0142277460;Van Bergen Personeelsdiensten B.V.;facturen@aubvanbergen.nl;;;NL76 RABO 0328 7743 67
+0380;Parallelweg 114C;3131DL;Vlaardingen;J.P. Stoel;Jpstoel@gma;06 408 960 47;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0381;Parallelweg 134B;3131DL;Vlaardingen;J.P. Stoel;Jpstoel@gma;06 408 960 47;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0382;Kwekerslaan 7 ;2691NP;s-Gravezande;Z. Yilmaz;zyilmaz@yilmazradijs.nt;50619418327;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0383;Akkerweg 41 [huis 20] ;1779GJ;Den Oever;Cris;;;;;Buurman Vastgoed E B.V.;admin@inexho.com;06 153 97 067;20615397067;
+0384;Akkerweg 41 [huis 58];1779GJ;Den Oever ;Cris;;;;;Buurman Vastgoed E B.V.;admin@inexho.com;06 153 97 067;20615397067;
+0385;Lavendelpad 6;2691NP;S-GRAVENZANDE;Flexvesting B.V.;administratie@flexvesting.com;033 303 59 40;83276491.0;NL51 RABO 0370 7195 57;OJP B.V.;rita.guimaraes@ojp.pt;+32473954591;84474432.0;NL10 INGB 0674 8358 24
+0386;Poolsestraat 29a;3028EN;Rotterdam;R. Basil;;;;;Light Personeelsdiensten;;;;
+0387;Verschansing 21 ;3181NG;Rozenburg;Orange Investments Group;;;;;RNDV Industries;laura.brackiene@rndv.eu;+37062054093;1304203983;
+0388;1e Middellandstraat 104A;3021BH;Rotterdam;Orange Invesments Group;;;;;S. Bakker OPH Verhuur;;;;NL85 INGB 0102 8401 21
+0389;Kritostraat 54;3076BH;Rotterdam;Orange Invesments Group;;;;;S. Bakker OPH Verhuur;;;;NL85 INGB 0102 8401 21
+0390;Roerdompstraat 4B;2953ER;Alblasserdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0391;Industriestraat 9;5107NC;Dongen;B. van Abeelen;vanabeelenstucadoorsbedrijf@gmail.com;;;NL95 INGB 0113 3306 85;;;;;
+0396;Haven 24;3143 BC;Maassluis;dockHolland Huisvesting B.V.;inkoopfacturen@dockholland.com;;24255227.0;NL65 ABNA 0892 0134 27;;;;;
+0397;Boogertstraat 5A;3141VN;Maassluis;dockHolland Huisvesting B.V.;inkoopfacturen@dockholland.com;;24255227.0;NL65 ABNA 0892 0134 27;S. Bakker OPH Verhuur;;;;NL85 INGB 0102 8401 21
+0398;Boogertstraat 7A;3141VN;Maassluis;dockHolland Huisvesting B.V.;inkoopfacturen@dockholland.com;;24255227.0;NL65 ABNA 0892 0134 27;S. Bakker OPH Verhuur;;;;NL85 INGB 0102 8401 21
+0399;Maasdijk 67;;'s-Gravenzande;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0400;Ranaholm 3;;Schiedam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0401;Hoge Noordweg 26A;;Naaldwijk;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0402;Broersveld 150B;;Schiedam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0403;Hontenissestraat 124A;;Rotterdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0404;Europalaan 50;;Sas van Gent;All In Rentals B.V.;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0404;Europalaan 50;;Sas van Gent;All In Rentals B.V.;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0405;Oosthavenkade 39;;;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0406;Hoge Noordweg 27A;;Naaldwijk;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0407;Professor Kamerlingh Onneslaan 98A;;Schiedam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0408;Lauwersmeer 4;;Barendrecht;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0409;Noordstraat 26;;Walsoorden;All In Rentals B.V.;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0409;Noordstraat 26;;Walsoorden;All In Rentals B.V.;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0410;Dorpstraat 46;;Aarlanderveen;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0411;Homeflex Park;;Honselersdijk;Homeflex B.V.;info@homeflex.nl;0184-820082;24397918;NL69 RABO 0111 5509 47;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0412;Hontenissestraat 162;;Rotterdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0413;Groenelaan 35;;Schiedam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0414;Platostraat 38;;Rotterdam;JS Vastgoed;;;;NL26 RABO 0156 3479 70;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0415;Rotterdamsedijk 104a2;;Vlaardingen;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0416;Jacob van Ruijsdaelstraat 28;;Roosendaal;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0417;Deensestraat 91A;;Rotterdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0418;Burg. Knappertlaan 176A;;Schiedam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0419;Westfrankelandsestraat 106;;Schiedam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0420;Kethelweg 60;;Vlaardingen;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0421;Knuttelstraat 17;;Delft;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0422;Broekweg 166B;;Rotterdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0423;Schalkeroord 16;;Rotterdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0431;1e Verdeligsweg 6 - 537;;Putte;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0432;1e Verdeligsweg 6 - 821;;Putte;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0433;1e Verdeligsweg 6 - 822;;Putte;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0436;de Lus 16 ap28;;Schagen;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0437;Dorpstraat 27;;Moordrecht;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0438;Franselaan 273-B;;;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0440;Genestestraat 32;;Terneuzen;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0441;Grimbergen 19;;;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0443;Ida Gerhardtplein 10;;Spijkenisse;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0444;J. van Lennepstraat 13A;;Schiedam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0445;J. van Lennepstraat 13B;;Schiedam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0446;J. van Lennepstraat 34;;Schiedam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0447;Kerklaan 74;;Nieuwerkerk aan den IJssel;Homeflex B.V.;info@homeflex.nl;0184-820082;24397918;NL69 RABO 0111 5509 47;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0448;Kerklaan 80;;Nieuwerkerk aan den IJssel;Homeflex B.V.;info@homeflex.nl;0184-820082;24397918;NL69 RABO 0111 5509 47;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0449;Korhaanstraat 6;;Rotterdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0450;Laan van Zuid 949;;;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0451;Leidinglaan 64+66;;Sluiskil;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0452;Nic. Beetsstraat 29;;Vlaardingen;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0453;Nijverheidstraat 26a, Studio 201;;Vlaardingen;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0454;Oostene 23;;;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0455;Papsouwselaan 30;;Delft;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0456;Papsouwselaan 32;;Delft;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0457;Papsouwselaan 34;;Delft;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0458;Papsouwselaan 44;;Delft;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0459;Papsouwselaan 52;;Delft;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0460;Papsouwselaan 58;;Delft;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0461;Papsouwselaan 68;;Delft;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0462;Papsouwselaan 86;;Delft;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0463;Papsouwselaan 138;;Delft;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0464;Papsouwselaan 178;;Delft;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0466;Singelweg 95;;Axel;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0467;St. Annalandstraat 116;;Rotterdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0468;Sweelinckstraat 32;;Vlaardingen;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0469;Tulpenstraat 45;;Rozenburg;Homeflex B.V.;info@homeflex.nl;0184-820082;24397918;NL69 RABO 0111 5509 47;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0470;v.d. Waalstraat 16;;Vlaardingen;Tradiro Housing BV;;;63681552;NL84 RABO 0306 8492 16;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0471;W.M. Bakkerslaan 34;;Maasluis;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0472;Westlandse Langeweg 14;;;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0473;Wouwsestraat 65;;;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0474;Honselaarsdijk 27;;Monster;Homeflex B.V.;info@homeflex.nl;0184-820082;24397918;NL69 RABO 0111 5509 47;;;;;
+0475;Broekweg 26;2691 RN;'s-Gravenzande;FULL-TIME Holding BV;;;24263084;;;;;;
+0476;Stuifkenszand 2c-4e;;Unknown;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0477;Hotel de Sluiskop;;Rotterdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0478;Admiraliteitskade 80-02;;Rotterdam;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0488;Van Goghlaan 36;;Roosendaal;;;;;;Tradiro Services B.V.;facturen@tradiro.nl;null;59979135.0;NL05 RABO 0154 0739 89
+0489;Woudseweg 146;;;IN STONES;huisvesting@tradiro.nl;010-2341441;61924644;NL12 RABO 0300786654;;;;;
