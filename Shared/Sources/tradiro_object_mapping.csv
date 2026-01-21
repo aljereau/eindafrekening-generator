@@ -1,0 +1,185 @@
+object_id,tradiro_adres,matched
+0002,Allard Piersonlaan 142 Den Haag,YES
+0004,Broekweg 25 Vlaardingen,YES
+0010,Kethelweg 1B Vlaardingen,YES
+0011,Kethelweg 1C Vlaardingen,YES
+0015,Maasdijk 69,YES
+0016,van Scorelstraat 73 Maassluis,YES
+0017,G.A. Brederolaan 75B Maassluis,YES
+0020,Mr. Troelstrastraat 37 Vlaardingen,YES
+0021,Vaartweg 106C Vlaardingen,YES
+0025,Groenelaan 30B Schiedam,YES
+0026,Chopinstraat 39C Vlaardingen,YES
+0027,Buizerdstraat 210 Maassluis,YES
+0028,Lange Kruisweg 12 Maasdijk,YES
+0030,Curacaolaan 88 Vlaardingen,YES
+0031,Hogenbanweg 331 Schiedam,YES
+0033,Kethelweg 66C,YES
+0034,Kethelweg 68A,YES
+0035,"Messchaertplein 39, Vlaardingen",YES
+0036,"Messchaertplein 40, Vlaardingen",YES
+0042,Parallelweg 110A Vlaardingen,YES
+0057,"Markt 5 Bovenwoning, Massluis",YES
+0067,"Franz Liszstraat 5, Terneuzen",YES
+0079,"Ploegstraat 2a, Schiedam",YES
+0080,"Voorstraat 25, Vlaardingen",YES
+0084,Kerkdreef 42 Axel,YES
+0088,"Kethelweg 66A, Vlaardingen",YES
+0095,Engelsestraat 16L01 Rotterdam,YES
+0095,"Engelsestraat 16L3, Rotterdam",YES
+0097,"Burchstraat 16A, Oostburg",YES
+0099,"Steenen Dijck 87, Maassluis",YES
+0103,Narcissenstraat 23 Rozenburg,YES
+0106,"Prinses Wilhelminastraat 9, Hekendorp",YES
+0111,Oosterstraat 89 Vlaardingen,YES
+0120,"Plaats 10, Montfoort",YES
+0122,"Kethelweg 66B, Vlaardingen",YES
+0131,"Chopinstraat 35A, Vlaardingen",YES
+0133,"Herenpad 20A, Schiedam",YES
+0135,"Amperestraat 36A, Schiedam",YES
+0154,Rubensplein 6B3 Schiedam,YES
+0160,Chopinstraat 33c Vlaardingen,YES
+0162,Coornhertstraat 95 Vlaardingen,YES
+0163,Curacaolaan 24 Vlaardingen,YES
+0165,De Driesprong 17 Kwintsheul,YES
+0170,Goudestein 30 Rotterdam,YES
+0172,Groeneweg 127 's Gravenzande,YES
+0173,Groeneweg 71 's Granzande,YES
+0174,Groeneweg 74 's Gravenzande,YES
+0175,Hagastraat 8 Schiedam,YES
+0176,Herautpad 22 Schiedam,YES
+0177,Hoge Noordweg 27B Naaldwijk,YES
+0178,Hoge Noordweg 28 Naaldwijk,YES
+0180,Liesveld 100 Vlaardingen,YES
+0181,Hontenissestraat 124A Rotterdam,YES
+0183,Hugo de Vriesstraat 54 Vlaardingen,YES
+0184,"Mathenesserdijk 261-C03, Rotterdam",YES
+0186,Woutersweg 20,YES
+0191,Jan van Arkelstraat 118 Vlaardingen,YES
+0192,Kaapsebos 11 Maasdijk,YES
+0193,Kapershoek 11 Rotterdam,YES
+0194,Keesomstraat 22 Vlaardingen,YES
+0195,Keesomstraat 50 Vlaardingen,YES
+0196,Keesomstraat 54 Vlaardingen,YES
+0199,Kerstendijk 125 Rotterdam,YES
+0202,Kimbrenoord 15 Rotterdam,YES
+0203,Dorpstraat 48 Lopik,YES
+0203,"Dorpstraat 48, Aarlanderveen",YES
+0205,Kreekrug 1 De Lier,YES
+0206,Kruiningenstraat 152 Rotterdam,YES
+0207,Kwikstaartweg 45,YES
+0208,L.A. Kesperweg 31a Vlaardingen,YES
+0210,Lorentzstraat 73 Vlaardingen,YES
+0211,Maasdijk 206 's Gravenzande,YES
+0213,Mr. Troelstrastraat 11 Vlaardingen,YES
+0214,Mendelssohnplein 13D Vlaardingen,YES
+0215,Mendelssohnplein 10C Vlaardingen,YES
+0216,Mendelssohnplein 46A Vlaardingen,YES
+0217,Middelrode 8 Rotterdam,YES
+0219,Miltonstraat 55 Rotterdam,YES
+0221,Molenstraat 10 Naaldwijk,YES
+0222,Molenstraat 23 Naaldwijk,YES
+0223,Acacialaan 9 Pijnacker,YES
+0225,Kerkwervesingel 127 Rotterdam,YES
+0227,Oostlaan 3 De Lier,YES
+0228,Parallelweg 122a Vlaardingen,YES
+0229,Parallelweg 98B Vlaardingen,YES
+0230,Pasteursingel 61B Rotterdam,YES
+0231,Platostraat 80 Rotterdam,YES
+0232,Zuidhoek 209D Rotterdam,YES
+0233,Rembrandtstraat 20B Naaldwijk,YES
+0234,Rotterdamsedijk 154b Schiedam,YES
+0236,Schalkeroord 389 Rotterdam,YES
+0237,Schere 238 Rotterdam,YES
+0238,Van der Werffstraat 370 Vlaardingen,YES
+0239,Schoonegge 110 Rotterdam,YES
+0240,Schoonegge 84 Rotterdam,YES
+0241,"Van der Werffstraat 166, Vlaardingen",YES
+0242,Sint Liduinastraat 76A Schiedam,YES
+0243,Sint Liduinastraat 80 A B Schiedam,YES
+0245,Van der Werffstraat 240 Vlaardingen,YES
+0246,Socratesstraat 168 Rotterdam,YES
+0247,"Spoorsingel 154B, Vlaardingen",YES
+0249,Tholenstraat 114 Rotterdam,YES
+0250,Van der Waalsstraat 70 Vlaardingen,YES
+0273,"Fenacoliuslaan 56b, Maassluis",YES
+0277,Gerberalaan 113,YES
+0279,Haagkamp 11,YES
+0291,Koperwerf 28,YES
+0292,"Burgemeester Stulemeijerlaan 71, Schiedam",YES
+0333,"Kethelweg 66D, Vlaardingen",YES
+0336,"Ofwegen 1A, Woubrugge",YES
+0337,"Kruisweg 16, Wobrugge",YES
+0340,Professor Poelslaan 58c Rotterdam,YES
+0345,"Compierekade 15, Alphen a/d Rijn",YES
+0347,"Van Ruijsdaellaan 72A, Schiedam",YES
+0348,"Wagenstraat 70, Wagenberg",YES
+0351,"Van Ruijsdaellaan 72B, Schiedam",YES
+0352,"Van Ruijsdaellaan 72C, Schiedam",YES
+0353,"Archimedesstraat 6B, Schiedam",YES
+0358,Monsterseweg 26A,YES
+0359,"Kimbrenoord 49, Rotterdam",YES
+0361,Putsebocht 136 B01,YES
+0366,"Lekdijk 14, Krimpen aan den IJsel",YES
+0370,"Cloosterstraat 23A, Kloosterzande",YES
+0371,Zwingel 8B,YES
+0375,Cubalaan 25 Poeldijk,YES
+0376,"Zwethkade Zuid 30A, Den Hoorn",YES
+0380,Parallelweg 114C,YES
+0381,Parallelweg 134B,YES
+0382,"Kwekerslaan 7, 's-Gravenzande",YES
+0390,"Roerdompstraat 4B, Alblasserdam",YES
+0402,Broersveld 150B Schiedam,YES
+0404,"Europalaan 50, Sas van Gent",YES
+0408,"Lauwersmeer 4, Barendrecht",YES
+0409,"Noordstraat 26, Walsoorden",YES
+0411,Homeflex Park Honselersdijk,YES
+0412,Hontenissestraat 162 Rotterdam,YES
+0416,Jacob van Ruijsdaelstraat 28 Roosendaal,YES
+0431,"1e Verdeligsweg 6 - 537, Putte",YES
+0432,"1e Verdeligsweg 6 - 821, Putte",YES
+0433,"1e Verdeligsweg 6 - 822, Putte",YES
+0435,Broersvest 74c Schiedam,YES
+0436,"de Lus 16 ap28, Schagen",YES
+0437,"Dorpstraat 27, Moordrecht",YES
+0438,Franselaan 273-B,YES
+0439,"Galgeweg 48A, 's-Gravenzande",YES
+0440,Genestestraat 32 Terneuzen,YES
+0441,Grimbergen 19,YES
+0442,"Herenpad 20B, Schiedam",YES
+0443,Ida Gerhardtplein 10 Spijkenisse,YES
+0444,J. van Lennepstraat 13A Schiedam,YES
+0445,J. van Lennepstraat 13B Schiedam,YES
+0446,J. van Lennepstraat 34 Schiedam,YES
+0447,"Kerklaan 74, Nieuwerkerk aan den IJssel",YES
+0448,Kerklaan 80 Nieuwerkerk aan de IJssel,YES
+0449,Korhaanstraat 6 Rotterdam,YES
+0450,Laan van Zuid 949,YES
+0451,"Leidinglaan 64+66, Sluiskil",YES
+0452,Nic. Beetsstraat 29 Vlaardingen,YES
+0453,"Nijverheidstraat 26a, Studio 201, Vlaardingen",YES
+0454,Oostene 23,YES
+0455,"Papsouwselaan 30, Delft",YES
+0456,"Papsouwselaan 32, Delft",YES
+0457,"Papsouwselaan 34, Delft",YES
+0458,"Papsouwselaan 44, Delft",YES
+0459,"Papsouwselaan 52, Delft",YES
+0460,"Papsouwselaan 58, Delft",YES
+0461,"Papsouwselaan 68, Delft",YES
+0462,"Papsouwselaan 86, Delft",YES
+0463,"Papsouwselaan 138, Delft",YES
+0464,"Papsouwselaan 178, Delft",YES
+0465,Rubensplein 3b Schiedam,YES
+0466,"Singelweg 95, Axel",YES
+0467,St. Annalandstraat 116 Rotterdam,YES
+0468,Sweelinckstraat 32 Vlaardingen,YES
+0469,Tulpenstraat 45 Rozenburg,YES
+0470,v.d. Waalstraat 16 Vlaardingen,YES
+0471,"W.M. Bakkerslaan 34, Maasluis",YES
+0472,Westlandse Langeweg 14,YES
+0473,Wouwsestraat 65,YES
+,2e Maasbosstraat 2A Vlaardingen,NO
+,2e Maasbosstraat 2B Vlaardingen,NO
+,2e Maasbosstraat 2C Vlaardingen,NO
+,"2e van Leyden Gaelstraat 6, Vlaardingen",NO
+,Stuifkenszand apart. 2c t/m 4e,NO

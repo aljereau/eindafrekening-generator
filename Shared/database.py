@@ -19,7 +19,7 @@ from pathlib import Path
 class Database:
     """SQLite database manager for RyanRent Core"""
 
-    DEFAULT_DB_PATH = "database/ryanrent_mock.db"
+    DEFAULT_DB_PATH = "database/ryanrent_v2.db"
     
     def __init__(self, db_path: str = None):
         """
@@ -41,20 +41,19 @@ class Database:
             current_dir = os.path.dirname(os.path.abspath(__file__))
             project_root = os.path.dirname(current_dir)
         
-        # Default path is ALWAYS [ProjectRoot]/database/ryanrent_mock.db
-        default_db_path = os.path.join(project_root, "database", "ryanrent_mock.db")
+        # Default path is ALWAYS [ProjectRoot]/database/ryanrent_v2.db
+        default_db_path = os.path.join(project_root, "database", "ryanrent_v2.db")
         
         self.db_path = db_path or default_db_path
         
-        # Migrations are in Shared/migrations
-        # If frozen, they are bundled in _MEIxxxx/Shared/migrations
+        # Migrations are in database/migrations_v2
+        # If frozen, they are bundled in _MEIxxxx/database/migrations_v2
         if getattr(sys, 'frozen', False):
              # In PyInstaller --onefile/--onedir, data is in sys._MEIPASS
              base_path = sys._MEIPASS
-             self.migrations_dir = os.path.join(base_path, "Shared", "migrations")
+             self.migrations_dir = os.path.join(base_path, "database", "migrations_v2")
         else:
-             current_dir = os.path.dirname(os.path.abspath(__file__))
-             self.migrations_dir = os.path.join(current_dir, "migrations")
+             self.migrations_dir = os.path.join(project_root, "database", "migrations_v2")
 
         # Ensure database directory exists
         os.makedirs(os.path.dirname(self.db_path), exist_ok=True)

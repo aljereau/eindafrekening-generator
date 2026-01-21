@@ -28,8 +28,8 @@ from calculator import Calculator
 class MasterReader:
     def __init__(self, filepath: str):
         self.filepath = filepath
-        # Use abs path to ryanrent_mock.db
-        db_path = os.path.join(root_dir, 'database', 'ryanrent_mock.db')
+        # Use abs path to ryanrent_v2.db
+        db_path = os.path.join(root_dir, 'database', 'ryanrent_v2.db')
         self.db = Database(db_path)
         
     def read_all(self) -> List[Dict[str, Any]]:

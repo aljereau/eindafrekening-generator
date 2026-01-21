@@ -19,7 +19,7 @@ def create_master_template(output_path=None):
         inputs_folder = os.path.join(eindafrekening_dir, "Eindafrekening Inputs")
         os.makedirs(inputs_folder, exist_ok=True)
         
-        timestamp = datetime.now().strftime("%Y-%m-%d")
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M")
         output_path = os.path.join(inputs_folder, f"input_master_{timestamp}.xlsx")
 
     wb = openpyxl.Workbook()
@@ -200,9 +200,10 @@ def create_master_template(output_path=None):
         ws[f'N{r}'].number_format = '€ #,##0.00'
         ws[f'N{r}'].fill = grey_fill
 
-        # O: Totaal Voorschot = IF(GWE Beheer="Eigen Beheer", 0, YEARFRAC(Checkin, Checkout, 4) * 12 * MonthlyPrice)
-        # K = GWE Beheer, N = Voorschot GWE (Incl), I = Checkout, H = Checkin, 4 = European 30/360
-        ws[f'O{r}'] = f'=IF(K{r}="Eigen Beheer",0,IF(AND(ISNUMBER(N{r}),I{r}<>"",H{r}<>""),YEARFRAC(H{r},I{r},4)*12*N{r},0))'
+        # O: Totaal Voorschot = IF(GWE Beheer="Eigen Beheer", 0, MONTHS * MonthlyPrice)
+        # K = GWE Beheer, N = Voorschot GWE (Incl), I = Checkout, H = Checkin
+        # Months calculated as calendar months (any month touched by the period)
+        ws[f'O{r}'] = f'=IF(K{r}="Eigen Beheer",0,IF(AND(ISNUMBER(N{r}),I{r}<>"",H{r}<>""),((YEAR(I{r})-YEAR(H{r}))*12+MONTH(I{r})-MONTH(H{r})+1)*N{r},0))'
         ws[f'O{r}'].number_format = '€ #,##0.00'
         ws[f'O{r}'].fill = grey_fill
 
@@ -355,9 +356,9 @@ def create_lists_sheet(wb):
         
         # Houses with GWE info and Borg
         cursor = conn.execute("""
-            SELECT adres, object_id, voorschot_gwe, borg
+            SELECT adres, object_id, voorschot_gwe_standaard, borg_standaard
             FROM huizen 
-            WHERE status='active' AND object_id IS NOT NULL AND object_id != ''
+            WHERE object_id IS NOT NULL AND object_id != ''
             ORDER BY adres
         """)
         houses = cursor.fetchall()
@@ -414,6 +415,11 @@ def create_lists_sheet(wb):
         ws['O1'].font = Font(bold=True)
         for idx, val in enumerate(item_types, 2):
             ws[f'O{idx}'] = val
+        
+        # Q: Constants (Calculation Parameters)
+        ws['Q1'] = "Dagen per Maand"
+        ws['Q1'].font = Font(bold=True)
+        ws['Q2'] = "=365.25/12"  # Average days per month (transparent formula)
             
         print(f"📊 Added {len(houses)} houses, {len(clients)} clients, {len(suppliers)} suppliers to lists")
             
