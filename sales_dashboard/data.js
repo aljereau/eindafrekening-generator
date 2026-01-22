@@ -1,7 +1,7 @@
 // Auto-generated sales data
-// Generated: 2026-01-22 13:04
+// Generated: 2026-01-22 14:34
 const SALES_DATA = {
-  "generated": "2026-01-22T13:04:27.347963",
+  "generated": "2026-01-22T14:34:21.462718",
   "stats": {
     "total": 490,
     "active": 475,
