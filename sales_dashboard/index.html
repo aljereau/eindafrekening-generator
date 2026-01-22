@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RyanRent Sales Dashboard</title>
+    <style>
+        :root {
+            --primary: #2ba306;
+            --primary-light: #f6f2e0;
+            --success: #228B22;
+            --warning: #FF8C00;
+            --danger: #DC3545;
+            --gray: #6c757d;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Barlow, sans-serif;
+            background: linear-gradient(135deg, #f6f2e0 0%, #e8e4d3 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #2C5F8E 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        header .subtitle {
+            opacity: 0.8;
+            font-size: 0.85rem;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .kpi-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .kpi-card .value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .kpi-card .value.money {
+            color: var(--success);
+        }
+
+        .kpi-card .label {
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab {
+            padding: 0.6rem 1.25rem;
+            background: var(--white);
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray);
+            box-shadow: var(--shadow);
+        }
+
+        .tab:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Search & Filters */
+        .toolbar {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 0.75rem 1rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .toolbar input[type="text"] {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.5rem 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+        }
+
+        .toolbar input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .toolbar select {
+            padding: 0.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+        }
+
+        .toolbar .btn {
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .toolbar .btn:hover {
+            background: #163d5f;
+        }
+
+        /* Panels */
+        .panel {
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        /* Data Table */
+        .data-table-wrapper {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .data-table th {
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 0.75rem;
+            text-align: left;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+        }
+
+        .data-table th:hover {
+            background: #163d5f;
+        }
+
+        .data-table th .sort-icon {
+            margin-left: 0.25rem;
+            opacity: 0.7;
+        }
+
+        .data-table td {
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid #eee;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .data-table tr:hover td {
+            background: var(--primary-light);
+        }
+
+        .data-table tr {
+            cursor: pointer;
+        }
+
+        .data-table .money {
+            font-weight: 500;
+        }
+
+        .data-table .money.positive {
+            color: var(--success);
+        }
+
+        .data-table .money.negative {
+            color: var(--danger);
+        }
+
+        .data-table .status-badge {
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-badge.available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-badge.rented {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .status-badge.leegstand {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-badge.badge-danger {
+            background: #f8d7da;
+            color: #721c24;
+            font-weight: 600;
+        }
+
+        .status-badge.badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-badge.badge-info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        /* Detail Panel (side panel) */
+        .detail-panel {
+            position: fixed;
+            top: 0;
+            right: -500px;
+            width: 480px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .detail-panel.open {
+            right: 0;
+        }
+
+        .detail-panel-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+        }
+
+        .detail-panel-header h2 {
+            font-size: 1.1rem;
+        }
+
+        .detail-panel-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .detail-panel-body {
+            padding: 1rem;
+        }
+
+        .detail-section {
+            margin-bottom: 1.25rem;
+        }
+
+        .detail-section h3 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.35rem 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .detail-item {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .detail-item .label {
+            color: var(--gray);
+            min-width: 80px;
+        }
+
+        .detail-item .value {
+            font-weight: 500;
+        }
+
+        .detail-item .value.money {
+            color: var(--success);
+        }
+
+        .detail-item .value a {
+            color: var(--primary);
+        }
+
+        /* Property mini-cards in detail panel */
+        .property-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .property-mini {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 0.6rem 0.75rem;
+            border-left: 3px solid var(--primary);
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .property-mini:hover {
+            background: var(--primary-light);
+        }
+
+        .property-mini .addr {
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .property-mini .meta {
+            color: var(--gray);
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+        }
+
+        /* Results count */
+        .results-info {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Overlay for panel */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Print */
+        /* Sales Prep */
+        .sales-prep {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .calc-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            box-shadow: var(--shadow);
+        }
+
+        .calc-card h3 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .calc-row .label {
+            color: var(--gray);
+        }
+
+        .calc-row .value {
+            font-weight: 600;
+        }
+
+        .calc-row .value.positive {
+            color: var(--success);
+        }
+
+        .calc-row .value.negative {
+            color: var(--danger);
+        }
+
+        .calc-input {
+            width: 100px;
+            padding: 0.4rem;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius);
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        .calc-input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .margin-bar {
+            height: 20px;
+            background: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .margin-bar .fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success), #2ed573);
+            transition: width 0.3s;
+        }
+
+        .toggle-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .toggle-btn {
+            padding: 0.35rem 0.75rem;
+            background: var(--light);
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .toggle-btn.active {
+            background: var(--primary-light);
+            border-color: var(--primary);
+        }
+
+        /* Searchable Dropdown */
+        .search-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-select input {
+            width: 100%;
+            padding: 0.6rem 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+        }
+
+        .search-select input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .search-select .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-select .dropdown.open {
+            display: block;
+        }
+
+        .search-select .dropdown-item {
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-select .dropdown-item:hover {
+            background: var(--primary-light);
+        }
+
+        .search-select .dropdown-item.selected {
+            background: var(--primary);
+            color: white;
+        }
+
+        .search-select .dropdown-item .pppw {
+            float: right;
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        .search-select .dropdown-item:hover .pppw {
+            color: var(--primary);
+        }
+
+        /* Client Matcher */
+        .matcher-results {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 0.75rem;
+        }
+
+        .matcher-item {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 0.6rem 0.75rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            border-left: 3px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .matcher-item:hover {
+            background: var(--primary-light);
+        }
+
+        .matcher-item.in-budget {
+            border-left-color: var(--success);
+            background: #d4edda;
+        }
+
+        .matcher-item .info {
+            flex: 1;
+        }
+
+        .matcher-item .addr {
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .matcher-item .meta {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .matcher-item .pppw-badge {
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius);
+            background: var(--white);
+        }
+
+        .matcher-item.in-budget .pppw-badge {
+            background: var(--success);
+            color: white;
+        }
+
+        .budget-inputs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .budget-inputs input {
+            flex: 1;
+            padding: 0.4rem;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+        }
+
+        .budget-inputs input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        /* Back button */
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-right: 0.75rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media print {
+            body>*:not(.detail-panel) {
+                display: none !important;
+            }
+
+            .detail-panel {
+                position: static !important;
+                width: 100% !important;
+                box-shadow: none !important;
+            }
+
+            .detail-panel-close,
+            .btn {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .kpi-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .sales-prep {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .detail-panel {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>
+            <h1>🏠 RyanRent Sales Dashboard</h1>
+            <div class="subtitle" id="lastUpdate">Laden...</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- KPIs -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="value" id="kpiTotal">-</div>
+                <div class="label">Woningen</div>
+            </div>
+            <div class="kpi-card">
+                <div class="value" id="kpiAvailable">-</div>
+                <div class="label">Beschikbaar</div>
+            </div>
+            <div class="kpi-card">
+                <div class="value" id="kpiRented">-</div>
+                <div class="label">Verhuurd</div>
+            </div>
+            <div class="kpi-card">
+                <div class="value" id="kpiLeegstand">-</div>
+                <div class="label">Leegstand</div>
+            </div>
+            <div class="kpi-card">
+                <div class="value money" id="kpiMarge">-</div>
+                <div class="label">Marge/Maand</div>
+            </div>
+            <div class="kpi-card">
+                <div class="value money" id="kpiMargeJaar">-</div>
+                <div class="label">Marge/Jaar</div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" data-tab="woningen">🏠 Woningen</button>
+            <button class="tab" data-tab="binnenkort">📅 Binnenkort Vrij</button>
+            <button class="tab" data-tab="eigenaren">👤 Eigenaren</button>
+            <button class="tab" data-tab="huurders">👥 Huurders</button>
+            <button class="tab" data-tab="financieel">💰 Financieel</button>
+            <button class="tab" data-tab="salesprep"
+                style="background: linear-gradient(135deg, #FF6B6B, #FF8E53); color: white;">🎯 Sales Prep</button>
+        </div>
+
+        <!-- Woningen Panel -->
+        <div class="panel active" id="panel-woningen">
+            <div class="toolbar">
+                <input type="text" id="searchWoningen" placeholder="🔍 Zoek adres, eigenaar, huurder, plaats...">
+                <select id="filterStatus">
+                    <option value="">Alle status</option>
+                    <option value="Beschikbaar">Beschikbaar</option>
+                    <option value="Verhuurd">Verhuurd</option>
+                    <option value="Leegstand">Leegstand</option>
+                </select>
+                <select id="filterStad">
+                    <option value="">Alle steden</option>
+                </select>
+            </div>
+            <div class="results-info"><span id="resultsCount"></span></div>
+            <div class="data-table-wrapper" style="max-height: 600px; overflow-y: auto;">
+                <table class="data-table" id="woningenTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="object_id">Object</th>
+                            <th data-sort="adres">Adres</th>
+                            <th data-sort="plaats">Plaats</th>
+                            <th data-sort="eigenaar_naam">Eigenaar</th>
+                            <th data-sort="huurder_naam">Huurder</th>
+                            <th data-sort="marge_maand_excl_btw">Marge</th>
+                            <th data-sort="beschikbaarheid_status">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Binnenkort Beschikbaar Panel -->
+        <div class="panel" id="panel-binnenkort">
+            <div class="toolbar">
+                <select id="filterBinnenkortDays" style="min-width:150px;">
+                    <option value="30">Binnen 30 dagen</option>
+                    <option value="60">Binnen 60 dagen</option>
+                    <option value="90" selected>Binnen 90 dagen</option>
+                    <option value="180">Binnen 6 maanden</option>
+                </select>
+                <input type="text" id="searchBinnenkort" placeholder="🔍 Zoek adres, huurder...">
+            </div>
+            <div class="results-info"><span id="binnenkortCount"></span></div>
+            <div class="data-table-wrapper" style="max-height: 600px; overflow-y: auto;">
+                <table class="data-table" id="binnenkortTable">
+                    <thead>
+                        <tr>
+                            <th>Object</th>
+                            <th>Adres</th>
+                            <th>Plaats</th>
+                            <th>Huurder</th>
+                            <th>Einddatum</th>
+                            <th>Dagen</th>
+                            <th>Marge</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Eigenaren Panel -->
+        <div class="panel" id="panel-eigenaren">
+            <div class="toolbar">
+                <input type="text" id="searchEigenaren" placeholder="🔍 Zoek eigenaar...">
+            </div>
+            <div class="results-info"><span id="eigenarenCount"></span></div>
+            <div class="data-table-wrapper" style="max-height: 600px; overflow-y: auto;">
+                <table class="data-table" id="eigenarenTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="naam">Naam</th>
+                            <th data-sort="email">Email</th>
+                            <th data-sort="telefoon">Telefoon</th>
+                            <th data-sort="plaats">Plaats</th>
+                            <th data-sort="count">Woningen</th>
+                            <th data-sort="totalInhuur">Totaal Inhuur</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Huurders Panel -->
+        <div class="panel" id="panel-huurders">
+            <div class="toolbar">
+                <input type="text" id="searchHuurders" placeholder="🔍 Zoek huurder...">
+            </div>
+            <div class="results-info"><span id="huurdersCount"></span></div>
+            <div class="data-table-wrapper" style="max-height: 600px; overflow-y: auto;">
+                <table class="data-table" id="huurdersTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="naam">Naam</th>
+                            <th data-sort="type">Type</th>
+                            <th data-sort="email">Email</th>
+                            <th data-sort="telefoon">Telefoon</th>
+                            <th data-sort="count">Woningen</th>
+                            <th data-sort="totalVerhuur">Totaal Verhuur</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Financieel Panel -->
+        <div class="panel" id="panel-financieel">
+            <div class="toolbar">
+                <input type="text" id="searchFinancieel" placeholder="🔍 Zoek...">
+                <select id="filterFinStatus">
+                    <option value="">Alle status</option>
+                    <option value="Beschikbaar">Beschikbaar</option>
+                    <option value="Verhuurd">Verhuurd</option>
+                    <option value="Leegstand">Leegstand</option>
+                </select>
+                <select id="sortFinancieel">
+                    <option value="marge_desc">Hoogste marge</option>
+                    <option value="marge_asc">Laagste marge</option>
+                    <option value="inhuur_desc">Hoogste inhuur</option>
+                    <option value="verhuur_desc">Hoogste verhuur</option>
+                </select>
+            </div>
+            <div class="data-table-wrapper" style="max-height: 600px; overflow-y: auto;">
+                <table class="data-table" id="financieelTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="object_id">Object</th>
+                            <th data-sort="adres">Adres</th>
+                            <th data-sort="plaats">Plaats</th>
+                            <th data-sort="inhuur_totaal_excl_btw">Inhuur</th>
+                            <th data-sort="verhuur_totaal_excl_btw">Verhuur</th>
+                            <th data-sort="marge_maand_excl_btw">Marge</th>
+                            <th data-sort="marge_percentage">%</th>
+                            <th data-sort="beschikbaarheid_status">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Sales Prep Panel -->
+        <div class="panel" id="panel-salesprep">
+            <div class="sales-prep">
+                <div class="calc-card">
+                    <h3>🏠 Selecteer Woning</h3>
+                    <div class="search-select" id="propertySearchSelect">
+                        <input type="text" id="salesPropSearch" placeholder="🔍 Zoek object, adres, plaats...">
+                        <div class="dropdown" id="salesPropDropdown"></div>
+                    </div>
+                    <div id="salesPropInfo" style="margin-top:1rem;"></div>
+                </div>
+
+                <div class="calc-card">
+                    <h3>💰 Prijs Calculator</h3>
+                    <div class="calc-row">
+                        <span class="label">Inhuur (kostprijs)</span>
+                        <span class="value" id="calcInhuur">€ 0</span>
+                    </div>
+                    <div class="calc-row">
+                        <span class="label">Target marge %</span>
+                        <input type="number" class="calc-input" id="calcMargeTarget" value="15" min="0" max="100">
+                    </div>
+                    <div class="calc-row">
+                        <span class="label">Min. verhuurprijs (kaal)</span>
+                        <span class="value positive" id="calcMinVerhuur">€ 0</span>
+                    </div>
+                    <div class="margin-bar">
+                        <div class="fill" id="marginFill" style="width: 0%"></div>
+                    </div>
+
+                    <h3 style="margin-top:1.5rem">📦 Maandelijkse Services (PPPW)</h3>
+                    <p style="font-size:0.75rem; color:var(--gray); margin-bottom:0.5rem;">Per persoon per week ×
+                        capaciteit × 4.33 weken</p>
+                    <div class="toggle-row" id="serviceToggles">
+                        <button class="toggle-btn" data-service="gwe" data-type="fixed">💡 GWE</button>
+                        <button class="toggle-btn" data-service="meubilering" data-pppw="15" data-type="pppw">🛋️
+                            Meubilering €15</button>
+                        <button class="toggle-btn" data-service="stoffering" data-pppw="10" data-type="pppw">🪑
+                            Stoffering €10</button>
+                        <button class="toggle-btn" data-service="internet" data-pppw="5" data-type="pppw">📶 Internet
+                            €5</button>
+                        <button class="toggle-btn" data-service="bedlinnen" data-pppw="3" data-type="pppw">🛏️ Bedlinnen
+                            €3</button>
+                        <button class="toggle-btn" data-service="tuinonderhoud" data-pppw="2.5" data-type="pppw">🌿 Tuin
+                            €2.50</button>
+                        <button class="toggle-btn" data-service="afvalverwerking" data-pppw="2" data-type="pppw">🗑️
+                            Afval €2</button>
+                    </div>
+
+                    <div id="servicesBreakdown"
+                        style="margin-top:0.75rem; padding:0.75rem; background:#f8f9fa; border-radius:var(--radius); font-size:0.85rem;">
+                        <div id="servicesDetails"></div>
+                    </div>
+
+                    <h3 style="margin-top:1.5rem">🧹 Eenmalige Kosten (bij start contract)</h3>
+                    <div class="toggle-row" id="onetimeToggles">
+                        <button class="toggle-btn" data-service="schoonmaak" data-onetime="250">Schoonmaak €250</button>
+                        <button class="toggle-btn" data-service="schoonmaak_int" data-onetime="375">Schoonmaak Intensief
+                            €375</button>
+                    </div>
+                    <div class="calc-row" style="margin-top:0.5rem;">
+                        <span class="label" style="color:var(--gray);">Eenmalige kosten</span>
+                        <span class="value" id="calcOnetime" style="color:var(--gray);">€ 0</span>
+                    </div>
+
+                    <div style="margin-top:1.5rem; padding-top:1rem; border-top: 2px solid var(--primary-light);">
+                        <div class="calc-row">
+                            <span class="label"><strong>Totaal verhuur/maand</strong></span>
+                            <span class="value positive" id="calcTotalAdvice" style="font-size:1.25rem">€ 0</span>
+                        </div>
+                        <div class="calc-row" style="margin-top:0.5rem;">
+                            <span class="label">PPPW (met services)</span>
+                            <span class="value positive" id="calcPppwWithServices">€ 0</span>
+                        </div>
+                        <div class="calc-row">
+                            <span class="label">PPPW (kale huur)</span>
+                            <span class="value" id="calcPppwBase">€ 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calc-card">
+                    <h3>📊 Scenario Vergelijking</h3>
+                    <div class="calc-row">
+                        <span class="label">Huidige verhuur</span>
+                        <span class="value" id="calcHuidigeVerhuur">€ 0</span>
+                    </div>
+                    <div class="calc-row">
+                        <span class="label">Huidige marge</span>
+                        <span class="value" id="calcHuidigeMarge">€ 0</span>
+                    </div>
+                    <div class="calc-row">
+                        <span class="label">Nieuwe verhuur (invoer)</span>
+                        <input type="number" class="calc-input" id="calcNieuweVerhuur" value="0" step="50">
+                    </div>
+                    <div class="calc-row">
+                        <span class="label">Nieuwe marge</span>
+                        <span class="value" id="calcNieuweMarge">€ 0</span>
+                    </div>
+                    <div class="calc-row">
+                        <span class="label">Verschil/maand</span>
+                        <span class="value" id="calcVerschil">€ 0</span>
+                    </div>
+                    <div class="calc-row" style="border-top:2px solid var(--primary-light);">
+                        <span class="label"><strong>Verschil/jaar</strong></span>
+                        <span class="value" id="calcVerschilJaar" style="font-size:1.1rem">€ 0</span>
+                    </div>
+                </div>
+
+                <div class="calc-card">
+                    <h3>👥 Quick Info</h3>
+                    <div id="quickInfo">
+                        <p style="color: var(--gray)">Selecteer een woning om eigenaar en huurder info te zien.</p>
+                    </div>
+                </div>
+
+                <div class="calc-card" style="grid-column: span 2;">
+                    <h3>🎯 Klant Budget Matcher</h3>
+                    <p style="color: var(--gray); font-size: 0.85rem; margin-bottom: 0.75rem;">Vind woningen binnen
+                        budget en afstand van de klant</p>
+                    <div class="budget-inputs">
+                        <input type="text" id="targetPostcode" placeholder="📍 Postcode klant (bijv. 3012)"
+                            style="flex:0.8;">
+                        <input type="number" id="maxDistance" placeholder="Max km" value="15" style="flex:0.5;">
+                        <input type="number" id="budgetMin" placeholder="Min € PPPW" value="175" style="flex:0.6;">
+                        <input type="number" id="budgetMax" placeholder="Max € PPPW" value="195" style="flex:0.6;">
+                    </div>
+                    <div class="budget-inputs" style="margin-top:0.5rem;">
+                        <input type="number" id="budgetRooms" placeholder="Min kamers" value="" style="flex:0.5;">
+                        <select id="budgetCity"
+                            style="flex:1; padding:0.4rem; border:2px solid #e0e0e0; border-radius: var(--radius);">
+                            <option value="">Alle steden</option>
+                        </select>
+                        <button class="btn" onclick="runBudgetMatcher()" style="flex:0 0 auto;">🔍 Zoeken</button>
+                    </div>
+                    <div id="matcherStatus" style="color: var(--gray); font-size: 0.8rem; margin-top: 0.5rem;"></div>
+                    <div id="matcherResults" class="matcher-results">
+                        <p style="color: var(--gray); text-align: center;">Vul postcode klant in en klik Zoeken</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Detail Panel -->
+    <div class="detail-panel" id="detailPanel">
+        <div class="detail-panel-header">
+            <div style="display: flex; align-items: center;">
+                <button class="back-btn" id="panelBackBtn" onclick="goBackPanel()" style="display:none;">←
+                    Terug</button>
+                <h2 id="panelTitle">Details</h2>
+            </div>
+            <button class="detail-panel-close" onclick="closePanel()">&times;</button>
+        </div>
+        <div class="detail-panel-body" id="panelBody"></div>
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+        let allProperties = [];
+        let allOwners = [];
+        let allTenants = [];
+        let currentSort = { column: null, asc: true };
+
+        document.addEventListener('DOMContentLoaded', init);
+
+        function init() {
+            if (typeof SALES_DATA === 'undefined') {
+                document.getElementById('lastUpdate').textContent = 'Fout: data.js niet gevonden';
+                return;
+            }
+
+            allProperties = SALES_DATA.properties;
+            buildOwnersList();
+            buildTenantsList();
+
+            // Update header
+            const genDate = new Date(SALES_DATA.generated);
+            document.getElementById('lastUpdate').textContent =
+                `Data: ${genDate.toLocaleDateString('nl-NL')} ${genDate.toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' })}`;
+
+            // Update KPIs
+            document.getElementById('kpiTotal').textContent = SALES_DATA.stats.total;
+            document.getElementById('kpiAvailable').textContent = SALES_DATA.stats.available;
+            document.getElementById('kpiRented').textContent = SALES_DATA.stats.rented;
+            document.getElementById('kpiLeegstand').textContent = SALES_DATA.stats.leegstand || 0;
+            document.getElementById('kpiMarge').textContent = formatMoney(SALES_DATA.stats.total_marge_maand);
+            document.getElementById('kpiMargeJaar').textContent = formatMoney(SALES_DATA.stats.total_marge_jaar);
+
+            // Populate city filter
+            const cities = [...new Set(allProperties.map(p => p.plaats).filter(Boolean))].sort();
+            const citySelect = document.getElementById('filterStad');
+            cities.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c; opt.textContent = c;
+                citySelect.appendChild(opt);
+            });
+
+            // Initial renders
+            renderWoningen();
+            renderBinnenkort();
+            renderEigenaren();
+            renderHuurders();
+            renderFinancieel();
+
+            // Setup tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function () {
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                    this.classList.add('active');
+                    document.getElementById('panel-' + this.dataset.tab).classList.add('active');
+                });
+            });
+
+            // Filters
+            document.getElementById('searchWoningen').addEventListener('input', renderWoningen);
+            document.getElementById('filterStatus').addEventListener('change', renderWoningen);
+            document.getElementById('filterStad').addEventListener('change', renderWoningen);
+            document.getElementById('searchBinnenkort').addEventListener('input', renderBinnenkort);
+            document.getElementById('filterBinnenkortDays').addEventListener('change', renderBinnenkort);
+            document.getElementById('searchEigenaren').addEventListener('input', renderEigenaren);
+            document.getElementById('searchHuurders').addEventListener('input', renderHuurders);
+            document.getElementById('searchFinancieel').addEventListener('input', renderFinancieel);
+            document.getElementById('filterFinStatus').addEventListener('change', renderFinancieel);
+            document.getElementById('sortFinancieel').addEventListener('change', renderFinancieel);
+
+            // Overlay close
+            document.getElementById('overlay').addEventListener('click', closePanel);
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+        }
+
+        function formatMoney(amount) {
+            if (amount == null || isNaN(amount)) return '-';
+            return '€ ' + Math.round(amount).toLocaleString('nl-NL');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function buildOwnersList() {
+            const map = {};
+            allProperties.forEach(p => {
+                if (!p.eigenaar_naam) return;
+                if (!map[p.eigenaar_naam]) {
+                    map[p.eigenaar_naam] = {
+                        naam: p.eigenaar_naam,
+                        email: p.eigenaar_email,
+                        telefoon: p.eigenaar_telefoon,
+                        adres: p.eigenaar_adres,
+                        postcode: p.eigenaar_postcode,
+                        plaats: p.eigenaar_plaats,
+                        iban: p.eigenaar_iban,
+                        properties: [],
+                        totalInhuur: 0
+                    };
+                }
+                map[p.eigenaar_naam].properties.push(p);
+                map[p.eigenaar_naam].totalInhuur += (p.inhuur_totaal_excl_btw || 0);
+            });
+            allOwners = Object.values(map).sort((a, b) => b.properties.length - a.properties.length);
+        }
+
+        function buildTenantsList() {
+            const map = {};
+            allProperties.forEach(p => {
+                if (!p.huurder_naam) return;
+                if (!map[p.huurder_naam]) {
+                    map[p.huurder_naam] = {
+                        naam: p.huurder_naam,
+                        type: p.huurder_type,
+                        email: p.huurder_email,
+                        telefoon: p.huurder_telefoon,
+                        adres: p.huurder_adres,
+                        plaats: p.huurder_plaats,
+                        properties: [],
+                        totalVerhuur: 0
+                    };
+                }
+                map[p.huurder_naam].properties.push(p);
+                map[p.huurder_naam].totalVerhuur += (p.verhuur_totaal_excl_btw || 0);
+            });
+            allTenants = Object.values(map).sort((a, b) => b.properties.length - a.properties.length);
+        }
+
+        function getStatusBadge(status) {
+            const cls = status === 'Beschikbaar' ? 'available' :
+                status === 'Leegstand' ? 'leegstand' : 'rented';
+            return `<span class="status-badge ${cls}">${status || '-'}</span>`;
+        }
+
+        function getMoneyClass(val) {
+            if (val == null) return 'money';
+            return val >= 0 ? 'money positive' : 'money negative';
+        }
+
+        // ========== WONINGEN ==========
+        function renderWoningen() {
+            const search = document.getElementById('searchWoningen').value.toLowerCase();
+            const statusFilter = document.getElementById('filterStatus').value;
+            const stadFilter = document.getElementById('filterStad').value;
+
+            let filtered = allProperties.filter(p => {
+                const matchSearch = !search ||
+                    (p.adres || '').toLowerCase().includes(search) ||
+                    (p.plaats || '').toLowerCase().includes(search) ||
+                    (p.eigenaar_naam || '').toLowerCase().includes(search) ||
+                    (p.huurder_naam || '').toLowerCase().includes(search) ||
+                    (p.object_id || '').toLowerCase().includes(search);
+                const matchStatus = !statusFilter || (p.beschikbaarheid_status || '').includes(statusFilter);
+                const matchStad = !stadFilter || p.plaats === stadFilter;
+                return matchSearch && matchStatus && matchStad;
+            });
+
+            document.getElementById('resultsCount').textContent = `${filtered.length} woningen`;
+
+            const tbody = document.querySelector('#woningenTable tbody');
+            tbody.innerHTML = filtered.map(p => `
+                <tr onclick="showPropertyDetail('${p.object_id}')">
+                    <td>${p.object_id}</td>
+                    <td>${p.adres || '-'}</td>
+                    <td>${p.plaats || '-'}</td>
+                    <td>${p.eigenaar_naam || '-'}</td>
+                    <td>${p.huurder_naam || '-'}</td>
+                    <td class="${getMoneyClass(p.marge_maand_excl_btw)}">${formatMoney(p.marge_maand_excl_btw)}</td>
+                    <td>${getStatusBadge(p.beschikbaarheid_status)}</td>
+                </tr>
+            `).join('');
+        }
+
+        // ========== BINNENKORT BESCHIKBAAR ==========
+        function renderBinnenkort() {
+            const maxDays = parseInt(document.getElementById('filterBinnenkortDays').value) || 90;
+            const search = document.getElementById('searchBinnenkort').value.toLowerCase();
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // Filter properties with verhuur_eind in the future and within maxDays
+            let filtered = allProperties.filter(p => {
+                if (!p.verhuur_eind) return false;
+                const endDate = new Date(p.verhuur_eind);
+                if (isNaN(endDate.getTime())) return false;
+                const daysUntil = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+                if (daysUntil < 0 || daysUntil > maxDays) return false;
+
+                const matchSearch = !search ||
+                    (p.adres || '').toLowerCase().includes(search) ||
+                    (p.plaats || '').toLowerCase().includes(search) ||
+                    (p.huurder_naam || '').toLowerCase().includes(search) ||
+                    (p.object_id || '').toLowerCase().includes(search);
+                return matchSearch;
+            });
+
+            // Sort by days until expiry (most urgent first)
+            filtered.sort((a, b) => {
+                const daysA = Math.ceil((new Date(a.verhuur_eind) - today) / (1000 * 60 * 60 * 24));
+                const daysB = Math.ceil((new Date(b.verhuur_eind) - today) / (1000 * 60 * 60 * 24));
+                return daysA - daysB;
+            });
+
+            document.getElementById('binnenkortCount').textContent = `${filtered.length} woningen binnenkort beschikbaar`;
+
+            const tbody = document.querySelector('#binnenkortTable tbody');
+            tbody.innerHTML = filtered.map(p => {
+                const endDate = new Date(p.verhuur_eind);
+                const daysUntil = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+
+                // Color code the days badge
+                let daysBadgeClass = '';
+                if (daysUntil <= 14) daysBadgeClass = 'badge-danger';
+                else if (daysUntil <= 30) daysBadgeClass = 'badge-warning';
+                else daysBadgeClass = 'badge-info';
+
+                const formattedDate = endDate.toLocaleDateString('nl-NL', { day: '2-digit', month: 'short', year: 'numeric' });
+
+                return `
+                    <tr onclick="showPropertyDetail('${p.object_id}')" style="cursor:pointer;">
+                        <td>${p.object_id}</td>
+                        <td>${p.adres || '-'}</td>
+                        <td>${p.plaats || '-'}</td>
+                        <td>${p.huurder_naam || '-'}</td>
+                        <td>${formattedDate}</td>
+                        <td><span class="status-badge ${daysBadgeClass}">${daysUntil}d</span></td>
+                        <td class="${getMoneyClass(p.marge_maand_excl_btw)}">${formatMoney(p.marge_maand_excl_btw)}</td>
+                        <td>${getStatusBadge(p.beschikbaarheid_status)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // ========== EIGENAREN ==========
+        function renderEigenaren() {
+            const search = document.getElementById('searchEigenaren').value.toLowerCase();
+            let filtered = allOwners.filter(o => !search || o.naam.toLowerCase().includes(search));
+
+            document.getElementById('eigenarenCount').textContent = `${filtered.length} eigenaren`;
+
+            const tbody = document.querySelector('#eigenarenTable tbody');
+            tbody.innerHTML = filtered.map((o, idx) => `
+                <tr data-owner-idx="${idx}" style="cursor:pointer">
+                    <td><strong>${escapeHtml(o.naam)}</strong></td>
+                    <td>${escapeHtml(o.email || '-')}</td>
+                    <td>${escapeHtml(o.telefoon || '-')}</td>
+                    <td>${escapeHtml(o.plaats || '-')}</td>
+                    <td>${o.properties.length}</td>
+                    <td class="money">${formatMoney(o.totalInhuur)}/m</td>
+                </tr>
+            `).join('');
+
+            // Add click handlers
+            tbody.querySelectorAll('tr[data-owner-idx]').forEach(tr => {
+                tr.addEventListener('click', () => {
+                    const idx = parseInt(tr.dataset.ownerIdx);
+                    showOwnerDetail(filtered[idx].naam);
+                });
+            });
+        }
+
+        function showOwnerDetail(naam) {
+            const owner = allOwners.find(o => o.naam === naam);
+            if (!owner) return;
+
+            document.getElementById('panelTitle').textContent = `👤 ${owner.naam}`;
+
+            const propsHtml = owner.properties.map(p => `
+                <div class="property-mini" onclick="showPropertyDetail('${p.object_id}')">
+                    <div class="addr">${p.object_id} - ${p.adres}</div>
+                    <div class="meta">
+                        ${p.plaats || ''} | 
+                        Inhuur: ${formatMoney(p.inhuur_totaal_excl_btw)} | 
+                        Huurder: ${p.huurder_naam || 'Leeg'} |
+                        GWE: ${formatMoney(p.inhuur_voorschot_gwe || p.voorschot_gwe_standaard)}
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('panelBody').innerHTML = `
+                <div class="detail-section">
+                    <h3>Contact</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span class="label">Email:</span><span class="value">${owner.email ? `<a href="mailto:${owner.email}">${owner.email}</a>` : '-'}</span></div>
+                        <div class="detail-item"><span class="label">Telefoon:</span><span class="value">${owner.telefoon ? `<a href="tel:${owner.telefoon}">${owner.telefoon}</a>` : '-'}</span></div>
+                        <div class="detail-item"><span class="label">Adres:</span><span class="value">${owner.adres || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Postcode:</span><span class="value">${owner.postcode || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Plaats:</span><span class="value">${owner.plaats || '-'}</span></div>
+                        <div class="detail-item"><span class="label">IBAN:</span><span class="value">${owner.iban || '-'}</span></div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h3>Samenvatting</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span class="label">Woningen:</span><span class="value">${owner.properties.length}</span></div>
+                        <div class="detail-item"><span class="label">Tot. Inhuur:</span><span class="value money">${formatMoney(owner.totalInhuur)}/maand</span></div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h3>Woningen (${owner.properties.length})</h3>
+                    <div class="property-list">${propsHtml}</div>
+                </div>
+                <button class="btn" style="margin-top:1rem" onclick="window.print()">🖨️ Print</button>
+            `;
+
+            openPanel('owner', naam);
+        }
+
+        // ========== HUURDERS ==========
+        function renderHuurders() {
+            const search = document.getElementById('searchHuurders').value.toLowerCase();
+            let filtered = allTenants.filter(t => !search || t.naam.toLowerCase().includes(search));
+
+            document.getElementById('huurdersCount').textContent = `${filtered.length} huurders`;
+
+            const tbody = document.querySelector('#huurdersTable tbody');
+            tbody.innerHTML = filtered.map((t, idx) => `
+                <tr data-tenant-idx="${idx}" style="cursor:pointer">
+                    <td><strong>${escapeHtml(t.naam)}</strong></td>
+                    <td>${escapeHtml(t.type || '-')}</td>
+                    <td>${escapeHtml(t.email || '-')}</td>
+                    <td>${escapeHtml(t.telefoon || '-')}</td>
+                    <td>${t.properties.length}</td>
+                    <td class="money">${formatMoney(t.totalVerhuur)}/m</td>
+                </tr>
+            `).join('');
+
+            // Add click handlers
+            tbody.querySelectorAll('tr[data-tenant-idx]').forEach(tr => {
+                tr.addEventListener('click', () => {
+                    const idx = parseInt(tr.dataset.tenantIdx);
+                    showTenantDetail(filtered[idx].naam);
+                });
+            });
+        }
+
+        function showTenantDetail(naam) {
+            const tenant = allTenants.find(t => t.naam === naam);
+            if (!tenant) return;
+
+            document.getElementById('panelTitle').textContent = `👥 ${tenant.naam}`;
+
+            const propsHtml = tenant.properties.map(p => `
+                <div class="property-mini" onclick="showPropertyDetail('${p.object_id}')">
+                    <div class="addr">${p.object_id} - ${p.adres}</div>
+                    <div class="meta">
+                        ${p.plaats || ''} | 
+                        Verhuur: ${formatMoney(p.verhuur_totaal_excl_btw)} | 
+                        Eigenaar: ${p.eigenaar_naam || '-'} |
+                        GWE: ${formatMoney(p.verhuur_voorschot_gwe)}
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('panelBody').innerHTML = `
+                <div class="detail-section">
+                    <h3>Contact</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span class="label">Type:</span><span class="value">${tenant.type || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Email:</span><span class="value">${tenant.email ? `<a href="mailto:${tenant.email}">${tenant.email}</a>` : '-'}</span></div>
+                        <div class="detail-item"><span class="label">Telefoon:</span><span class="value">${tenant.telefoon ? `<a href="tel:${tenant.telefoon}">${tenant.telefoon}</a>` : '-'}</span></div>
+                        <div class="detail-item"><span class="label">Adres:</span><span class="value">${tenant.adres || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Plaats:</span><span class="value">${tenant.plaats || '-'}</span></div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h3>Samenvatting</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span class="label">Woningen:</span><span class="value">${tenant.properties.length}</span></div>
+                        <div class="detail-item"><span class="label">Tot. Verhuur:</span><span class="value money">${formatMoney(tenant.totalVerhuur)}/maand</span></div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h3>Gehuurde Woningen (${tenant.properties.length})</h3>
+                    <div class="property-list">${propsHtml}</div>
+                </div>
+                <button class="btn" style="margin-top:1rem" onclick="window.print()">🖨️ Print</button>
+            `;
+
+            openPanel('tenant', naam);
+        }
+
+        // ========== FINANCIEEL ==========
+        function renderFinancieel() {
+            const search = document.getElementById('searchFinancieel').value.toLowerCase();
+            const statusFilter = document.getElementById('filterFinStatus').value;
+            const sortMode = document.getElementById('sortFinancieel').value;
+
+            let filtered = allProperties.filter(p => {
+                const matchSearch = !search ||
+                    (p.adres || '').toLowerCase().includes(search) ||
+                    (p.object_id || '').toLowerCase().includes(search);
+                const matchStatus = !statusFilter || (p.beschikbaarheid_status || '').includes(statusFilter);
+                return matchSearch && matchStatus;
+            });
+
+            // Sort
+            filtered.sort((a, b) => {
+                switch (sortMode) {
+                    case 'marge_desc': return (b.marge_maand_excl_btw || 0) - (a.marge_maand_excl_btw || 0);
+                    case 'marge_asc': return (a.marge_maand_excl_btw || 0) - (b.marge_maand_excl_btw || 0);
+                    case 'inhuur_desc': return (b.inhuur_totaal_excl_btw || 0) - (a.inhuur_totaal_excl_btw || 0);
+                    case 'verhuur_desc': return (b.verhuur_totaal_excl_btw || 0) - (a.verhuur_totaal_excl_btw || 0);
+                    default: return 0;
+                }
+            });
+
+            const tbody = document.querySelector('#financieelTable tbody');
+            tbody.innerHTML = filtered.map(p => `
+                <tr onclick="showPropertyDetail('${p.object_id}')">
+                    <td>${p.object_id}</td>
+                    <td>${p.adres || '-'}</td>
+                    <td>${p.plaats || '-'}</td>
+                    <td class="money">${formatMoney(p.inhuur_totaal_excl_btw)}</td>
+                    <td class="money">${formatMoney(p.verhuur_totaal_excl_btw)}</td>
+                    <td class="${getMoneyClass(p.marge_maand_excl_btw)}">${formatMoney(p.marge_maand_excl_btw)}</td>
+                    <td>${p.marge_percentage ? p.marge_percentage.toFixed(1) + '%' : '-'}</td>
+                    <td>${getStatusBadge(p.beschikbaarheid_status)}</td>
+                </tr>
+            `).join('');
+        }
+
+        // ========== PROPERTY DETAIL ==========
+        function showPropertyDetail(objectId) {
+            const p = allProperties.find(prop => prop.object_id === objectId);
+            if (!p) return;
+
+            document.getElementById('panelTitle').textContent = `🏠 ${p.object_id} - ${p.adres}`;
+
+            document.getElementById('panelBody').innerHTML = `
+                <div class="detail-section">
+                    <h3>Woning</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span class="label">Object:</span><span class="value">${p.object_id}</span></div>
+                        <div class="detail-item"><span class="label">Adres:</span><span class="value">${p.adres || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Postcode:</span><span class="value">${p.postcode || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Plaats:</span><span class="value">${p.plaats || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Type:</span><span class="value">${p.woning_type || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Opp.:</span><span class="value">${p.oppervlakte_m2 ? p.oppervlakte_m2 + ' m²' : '-'}</span></div>
+                        <div class="detail-item"><span class="label">Slaapk.:</span><span class="value">${p.aantal_slaapkamers || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Capaciteit:</span><span class="value">${p.capaciteit_personen || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Status:</span><span class="value">${getStatusBadge(p.beschikbaarheid_status)}</span></div>
+                        <div class="detail-item"><span class="label">Kluis 1:</span><span class="value">${p.kluis_code_1 || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Kluis 2:</span><span class="value">${p.kluis_code_2 || '-'}</span></div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>👤 Eigenaar</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span class="label">Naam:</span><span class="value">${p.eigenaar_naam || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Email:</span><span class="value">${p.eigenaar_email ? `<a href="mailto:${p.eigenaar_email}">${p.eigenaar_email}</a>` : '-'}</span></div>
+                        <div class="detail-item"><span class="label">Telefoon:</span><span class="value">${p.eigenaar_telefoon ? `<a href="tel:${p.eigenaar_telefoon}">${p.eigenaar_telefoon}</a>` : '-'}</span></div>
+                        <div class="detail-item"><span class="label">IBAN:</span><span class="value">${p.eigenaar_iban || '-'}</span></div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>👥 Huurder</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span class="label">Naam:</span><span class="value">${p.huurder_naam || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Type:</span><span class="value">${p.huurder_type || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Email:</span><span class="value">${p.huurder_email ? `<a href="mailto:${p.huurder_email}">${p.huurder_email}</a>` : '-'}</span></div>
+                        <div class="detail-item"><span class="label">Telefoon:</span><span class="value">${p.huurder_telefoon ? `<a href="tel:${p.huurder_telefoon}">${p.huurder_telefoon}</a>` : '-'}</span></div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>💰 Inhuur (van eigenaar)</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span class="label">Bedrag:</span><span class="value money">${formatMoney(p.inhuur_totaal_excl_btw)}/m</span></div>
+                        <div class="detail-item"><span class="label">Borg:</span><span class="value">${formatMoney(p.inhuur_borg)}</span></div>
+                        <div class="detail-item"><span class="label">GWE:</span><span class="value">${formatMoney(p.inhuur_voorschot_gwe)}</span></div>
+                        <div class="detail-item"><span class="label">Start:</span><span class="value">${p.inhuur_start || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Eind:</span><span class="value">${p.inhuur_eind || '-'}</span></div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>💵 Verhuur (aan huurder)</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span class="label">Bedrag:</span><span class="value money">${formatMoney(p.verhuur_totaal_excl_btw)}/m</span></div>
+                        <div class="detail-item"><span class="label">Borg:</span><span class="value">${formatMoney(p.verhuur_borg)}</span></div>
+                        <div class="detail-item"><span class="label">GWE:</span><span class="value">${formatMoney(p.verhuur_voorschot_gwe)}</span></div>
+                        <div class="detail-item"><span class="label">Start:</span><span class="value">${p.verhuur_start || '-'}</span></div>
+                        <div class="detail-item"><span class="label">Eind:</span><span class="value">${p.verhuur_eind || '-'}</span></div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>📊 Marge</h3>
+                    <div class="detail-grid">
+                        <div class="detail-item"><span class="label">Maand:</span><span class="value ${getMoneyClass(p.marge_maand_excl_btw)}">${formatMoney(p.marge_maand_excl_btw)}</span></div>
+                        <div class="detail-item"><span class="label">Jaar:</span><span class="value ${getMoneyClass(p.marge_jaar_excl_btw)}">${formatMoney(p.marge_jaar_excl_btw)}</span></div>
+                        <div class="detail-item"><span class="label">Percentage:</span><span class="value">${p.marge_percentage ? p.marge_percentage.toFixed(1) + '%' : '-'}</span></div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>📁 Documenten</h3>
+                    <div class="detail-grid">
+                        ${p.sharepoint_folder ? `<div class="detail-item"><span class="label">Folder:</span><span class="value"><a href="${p.sharepoint_folder}" target="_blank">📂 Open</a></span></div>` : ''}
+                        ${p.sharepoint_inhuur ? `<div class="detail-item"><span class="label">Inhuur:</span><span class="value"><a href="${p.sharepoint_inhuur}" target="_blank">📂 Open</a></span></div>` : ''}
+                        ${p.sharepoint_verhuur ? `<div class="detail-item"><span class="label">Verhuur:</span><span class="value"><a href="${p.sharepoint_verhuur}" target="_blank">📂 Open</a></span></div>` : ''}
+                    </div>
+                </div>
+
+                <button class="btn" style="margin-top:1rem" onclick="window.print()">🖨️ Print</button>
+            `;
+
+            openPanel('property', objectId);
+        }
+
+        function openPanel(viewType, id) {
+            // Track history for back button
+            if (viewType && id) {
+                panelHistory.push({ type: viewType, id: id });
+            }
+            document.getElementById('detailPanel').classList.add('open');
+            document.getElementById('overlay').classList.add('active');
+            updateBackButton();
+        }
+
+        function closePanel() {
+            document.getElementById('detailPanel').classList.remove('open');
+            document.getElementById('overlay').classList.remove('active');
+            panelHistory = [];
+            updateBackButton();
+        }
+
+        // Panel navigation history
+        let panelHistory = [];
+
+        function updateBackButton() {
+            const backBtn = document.getElementById('panelBackBtn');
+            if (panelHistory.length > 1) {
+                backBtn.style.display = 'inline-block';
+            } else {
+                backBtn.style.display = 'none';
+            }
+        }
+
+        function goBackPanel() {
+            if (panelHistory.length > 1) {
+                panelHistory.pop(); // Remove current
+                const prev = panelHistory[panelHistory.length - 1];
+                // Re-render without adding to history
+                panelHistory.pop();
+                if (prev.type === 'owner') {
+                    showOwnerDetail(prev.id);
+                } else if (prev.type === 'tenant') {
+                    showTenantDetail(prev.id);
+                } else if (prev.type === 'property') {
+                    showPropertyDetail(prev.id);
+                }
+            }
+        }
+
+        // ========== SALES PREP CALCULATOR ==========
+        let salesSelectedProp = null;
+        let selectedServices = [];
+
+        function initSalesPrep() {
+            // Populate cities for budget matcher
+            const cities = [...new Set(allProperties.map(p => p.plaats).filter(Boolean))].sort();
+            const budgetCity = document.getElementById('budgetCity');
+            cities.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                budgetCity.appendChild(opt);
+            });
+
+            // Setup searchable dropdown
+            const searchInput = document.getElementById('salesPropSearch');
+            const dropdown = document.getElementById('salesPropDropdown');
+
+            searchInput.addEventListener('focus', () => {
+                renderPropertyDropdown('');
+                dropdown.classList.add('open');
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                renderPropertyDropdown(e.target.value);
+                dropdown.classList.add('open');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#propertySearchSelect')) {
+                    dropdown.classList.remove('open');
+                }
+            });
+
+            // Margin target change
+            document.getElementById('calcMargeTarget').addEventListener('input', updateSalesCalc);
+
+            // New verhuur input
+            document.getElementById('calcNieuweVerhuur').addEventListener('input', updateSalesCalc);
+
+            // Service toggles
+            document.querySelectorAll('#serviceToggles .toggle-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    this.classList.toggle('active');
+                    updateSalesCalc();
+                });
+            });
+        }
+
+        function renderPropertyDropdown(search) {
+            const dropdown = document.getElementById('salesPropDropdown');
+            const searchLower = search.toLowerCase();
+
+            const filtered = allProperties.filter(p => {
+                if (!search) return true;
+                return (p.object_id || '').toLowerCase().includes(searchLower) ||
+                    (p.adres || '').toLowerCase().includes(searchLower) ||
+                    (p.plaats || '').toLowerCase().includes(searchLower) ||
+                    (p.eigenaar_naam || '').toLowerCase().includes(searchLower) ||
+                    (p.huurder_naam || '').toLowerCase().includes(searchLower);
+            }).slice(0, 50); // Limit to 50 results
+
+            dropdown.innerHTML = filtered.map(p => {
+                const pppw = p.verhuur_pppw ? `€${p.verhuur_pppw.toFixed(0)}` : '-';
+                const isSelected = salesSelectedProp && salesSelectedProp.object_id === p.object_id;
+                return `
+                    <div class="dropdown-item ${isSelected ? 'selected' : ''}" data-id="${p.object_id}">
+                        <span><strong>${p.object_id}</strong> - ${p.adres}, ${p.plaats || ''}</span>
+                        <span class="pppw">${pppw}/pppw</span>
+                    </div>
+                `;
+            }).join('');
+
+            // Add click handlers
+            dropdown.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const id = item.dataset.id;
+                    salesSelectedProp = allProperties.find(p => p.object_id === id);
+                    document.getElementById('salesPropSearch').value =
+                        `${salesSelectedProp.object_id} - ${salesSelectedProp.adres}`;
+                    dropdown.classList.remove('open');
+                    updateSalesCalc();
+                });
+            });
+        }
+
+        function updateSalesCalc() {
+            if (!salesSelectedProp) {
+                return;
+            }
+
+            const p = salesSelectedProp;
+            const inhuur = p.inhuur_totaal_excl_btw || 0;
+            const verhuurHuidig = p.verhuur_totaal_excl_btw || 0;
+            const margeHuidig = p.marge_maand_excl_btw || 0;
+            const margeTarget = parseFloat(document.getElementById('calcMargeTarget').value) || 0;
+
+            // Propertyinfo with PPPW
+            const inhuurPppw = p.inhuur_pppw ? `€${p.inhuur_pppw.toFixed(2)}/pppw` : '-';
+            const verhuurPppw = p.verhuur_pppw ? `€${p.verhuur_pppw.toFixed(2)}/pppw` : '-';
+            document.getElementById('salesPropInfo').innerHTML = `
+                <div class="detail-grid" style="font-size:0.85rem">
+                    <div class="detail-item"><span class="label">Type:</span><span class="value">${p.woning_type || '-'}</span></div>
+                    <div class="detail-item"><span class="label">Capaciteit:</span><span class="value">${p.capaciteit_personen || '-'} pers</span></div>
+                    <div class="detail-item"><span class="label">Slaapkamers:</span><span class="value">${p.aantal_slaapkamers || '-'}</span></div>
+                    <div class="detail-item"><span class="label">Status:</span><span class="value">${p.beschikbaarheid_status || '-'}</span></div>
+                    <div class="detail-item"><span class="label">Inhuur PPPW:</span><span class="value" style="color:var(--gray)">${inhuurPppw}</span></div>
+                    <div class="detail-item"><span class="label">Verhuur PPPW:</span><span class="value positive">${verhuurPppw}</span></div>
+                </div>
+            `;
+
+            // Calculator
+            document.getElementById('calcInhuur').textContent = formatMoney(inhuur);
+
+            // Min verhuur = inhuur * (1 + margin%)
+            const minVerhuur = inhuur * (1 + margeTarget / 100);
+            document.getElementById('calcMinVerhuur').textContent = formatMoney(minVerhuur);
+
+            // Extra services - calculate based on capacity and weeks per month
+            const capacity = p.capaciteit_personen || 4;
+            const weeksPerMonth = SALES_DATA.config?.weken_per_maand || 4.33;
+            let servicesCost = 0;
+
+            document.querySelectorAll('#serviceToggles .toggle-btn.active').forEach(btn => {
+                if (btn.dataset.pppw) {
+                    // PPPW service: cost = pppw * persons * weeks/month
+                    const pppwCost = parseFloat(btn.dataset.pppw) || 0;
+                    if (btn.dataset.service === 'gwe') {
+                        // Use property's GWE or standard
+                        servicesCost += p.verhuur_voorschot_gwe || p.voorschot_gwe_standaard || 250;
+                    } else {
+                        servicesCost += pppwCost * capacity * weeksPerMonth;
+                    }
+                } else if (btn.dataset.onetime) {
+                    // One-time fee shown as note (not added to monthly)
+                    // Could add logic to amortize over contract length if needed
+                }
+            });
+
+            // Total advice = minVerhuur + services
+            const totalAdvice = minVerhuur + servicesCost;
+            document.getElementById('calcTotalAdvice').textContent = formatMoney(totalAdvice);
+
+            // Margin bar (visual)
+            const marginPct = Math.min(100, Math.max(0, margeTarget));
+            document.getElementById('marginFill').style.width = marginPct + '%';
+
+            // Scenario comparison
+            document.getElementById('calcHuidigeVerhuur').textContent = formatMoney(verhuurHuidig);
+            document.getElementById('calcHuidigeMarge').textContent = formatMoney(margeHuidig);
+
+            const nieuweVerhuur = parseFloat(document.getElementById('calcNieuweVerhuur').value) || 0;
+            const nieuweMarge = nieuweVerhuur - inhuur;
+            const verschil = nieuweMarge - margeHuidig;
+
+            document.getElementById('calcNieuweMarge').textContent = formatMoney(nieuweMarge);
+            document.getElementById('calcNieuweMarge').className = 'value ' + (nieuweMarge >= 0 ? 'positive' : 'negative');
+
+            document.getElementById('calcVerschil').textContent = (verschil >= 0 ? '+' : '') + formatMoney(verschil);
+            document.getElementById('calcVerschil').className = 'value ' + (verschil >= 0 ? 'positive' : 'negative');
+
+            document.getElementById('calcVerschilJaar').textContent = (verschil >= 0 ? '+' : '') + formatMoney(verschil * 12);
+            document.getElementById('calcVerschilJaar').className = 'value ' + (verschil >= 0 ? 'positive' : 'negative');
+
+            // Quick info with enhanced PPPW
+            const inhuurPppwQ = p.inhuur_pppw ? `€${p.inhuur_pppw.toFixed(2)}` : '-';
+            const verhuurPppwQ = p.verhuur_pppw ? `€${p.verhuur_pppw.toFixed(2)}` : '-';
+            document.getElementById('quickInfo').innerHTML = `
+                <div style="font-size:0.85rem">
+                    <p><strong>👤 Eigenaar:</strong> ${p.eigenaar_naam || 'Onbekend'}</p>
+                    <p style="color:var(--gray)">${p.eigenaar_telefoon || ''} | ${p.eigenaar_email || ''}</p>
+                    <hr style="margin:0.5rem 0; border:none; border-top:1px solid #eee">
+                    <p><strong>👥 Huurder:</strong> ${p.huurder_naam || 'Leeg'}</p>
+                    <p style="color:var(--gray)">${p.huurder_telefoon || ''} | ${p.huurder_email || ''}</p>
+                    <hr style="margin:0.5rem 0; border:none; border-top:1px solid #eee">
+                    <p><strong>💰 PPPW:</strong> <span style="color:var(--gray)">Inhuur ${inhuurPppwQ}</span> → <span style="color:var(--success); font-weight:600">Verhuur ${verhuurPppwQ}</span></p>
+                    <p><strong>📅 Contract:</strong> ${p.verhuur_start || '-'} → ${p.verhuur_eind || '-'}</p>
+                </div>
+            `;
+        }
+
+        // ========== BUDGET MATCHER WITH DISTANCE ==========
+
+        // Dutch city center coordinates (fallback for distance calc)
+        const CITY_COORDS = {
+            'Rotterdam': { lat: 51.9225, lng: 4.4792 },
+            'Den Haag': { lat: 52.0705, lng: 4.3007 },
+            'Amsterdam': { lat: 52.3676, lng: 4.9041 },
+            'Utrecht': { lat: 52.0893, lng: 5.1101 },
+            'Leiden': { lat: 52.1601, lng: 4.4970 },
+            'Delft': { lat: 52.0116, lng: 4.3571 },
+            'Dordrecht': { lat: 51.8133, lng: 4.6901 },
+            'Schiedam': { lat: 51.9194, lng: 4.3997 },
+            'Vlaardingen': { lat: 51.9117, lng: 4.3419 },
+            'Capelle aan den IJssel': { lat: 51.9292, lng: 4.5783 },
+            'Spijkenisse': { lat: 51.8450, lng: 4.3292 },
+            'Hoogvliet': { lat: 51.8625, lng: 4.3558 },
+            'Zoetermeer': { lat: 52.0575, lng: 4.4931 },
+            'Alphen aan den Rijn': { lat: 52.1292, lng: 4.6578 },
+            'Gouda': { lat: 52.0175, lng: 4.7056 },
+            'Hoek van Holland': { lat: 51.9792, lng: 4.1333 },
+            'Heerlen': { lat: 50.8833, lng: 5.9833 },
+            'Maastricht': { lat: 50.8514, lng: 5.6900 },
+            'Eindhoven': { lat: 51.4416, lng: 5.4697 },
+            'Tilburg': { lat: 51.5555, lng: 5.0913 },
+            'Breda': { lat: 51.5719, lng: 4.7683 },
+        };
+
+        // Haversine formula for distance in km
+        function haversineDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Earth's radius in km
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        // Geocode postcode using Nominatim (async)
+        async function geocodePostcode(postcode) {
+            const cleanPostcode = postcode.replace(/\s/g, '').toUpperCase();
+            const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(cleanPostcode + ', Netherlands')}&format=json&limit=1&countrycodes=nl`;
+
+            try {
+                const response = await fetch(url, {
+                    headers: { 'User-Agent': 'RyanRent-Dashboard/1.0' }
+                });
+                const data = await response.json();
+                if (data && data.length > 0) {
+                    return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+                }
+            } catch (e) {
+                console.error('Geocoding failed:', e);
+            }
+            return null;
+        }
+
+        // Get property coordinates (from city lookup)
+        function getPropertyCoords(property) {
+            // First try city lookup
+            if (property.plaats && CITY_COORDS[property.plaats]) {
+                return CITY_COORDS[property.plaats];
+            }
+            // Fallback to Rotterdam center
+            return CITY_COORDS['Rotterdam'];
+        }
+
+        async function runBudgetMatcher() {
+            const targetPostcode = document.getElementById('targetPostcode').value.trim();
+            const maxDistance = parseFloat(document.getElementById('maxDistance').value) || 999;
+            const minBudget = parseFloat(document.getElementById('budgetMin').value) || 0;
+            const maxBudget = parseFloat(document.getElementById('budgetMax').value) || 999999;
+            const minRooms = parseInt(document.getElementById('budgetRooms').value) || 0;
+            const cityFilter = document.getElementById('budgetCity').value;
+
+            const statusDiv = document.getElementById('matcherStatus');
+            const resultsDiv = document.getElementById('matcherResults');
+
+            // Geocode target postcode if provided
+            let targetCoords = null;
+            if (targetPostcode) {
+                statusDiv.textContent = '📍 Locatie opzoeken...';
+                targetCoords = await geocodePostcode(targetPostcode);
+                if (!targetCoords) {
+                    statusDiv.textContent = '⚠️ Postcode niet gevonden, tonen zonder afstandsfilter';
+                } else {
+                    statusDiv.textContent = `📍 Gevonden: ${targetCoords.lat.toFixed(4)}, ${targetCoords.lng.toFixed(4)}`;
+                }
+            } else {
+                statusDiv.textContent = '';
+            }
+
+            // Filter properties
+            let matches = allProperties.filter(p => {
+                const pppw = p.verhuur_pppw || 0;
+                const rooms = p.aantal_slaapkamers || 0;
+                const matchCity = !cityFilter || p.plaats === cityFilter;
+                const matchRooms = rooms >= minRooms;
+                const nearBudget = pppw >= (minBudget * 0.8) && pppw <= (maxBudget * 1.2);
+                return matchCity && matchRooms && nearBudget && pppw > 0;
+            });
+
+            // Calculate distances if we have target coordinates
+            if (targetCoords) {
+                matches = matches.map(p => {
+                    const propCoords = getPropertyCoords(p);
+                    const distance = haversineDistance(
+                        targetCoords.lat, targetCoords.lng,
+                        propCoords.lat, propCoords.lng
+                    );
+                    return { ...p, _distance: distance };
+                }).filter(p => p._distance <= maxDistance);
+
+                // Sort by distance first, then by in-budget
+                matches.sort((a, b) => {
+                    const aInBudget = a.verhuur_pppw >= minBudget && a.verhuur_pppw <= maxBudget;
+                    const bInBudget = b.verhuur_pppw >= minBudget && b.verhuur_pppw <= maxBudget;
+                    // Prioritize in-budget, then sort by distance
+                    if (aInBudget !== bInBudget) return bInBudget - aInBudget;
+                    return a._distance - b._distance;
+                });
+            } else {
+                // No distance: sort by budget fit
+                matches.sort((a, b) => {
+                    const aInBudget = a.verhuur_pppw >= minBudget && a.verhuur_pppw <= maxBudget;
+                    const bInBudget = b.verhuur_pppw >= minBudget && b.verhuur_pppw <= maxBudget;
+                    if (aInBudget && !bInBudget) return -1;
+                    if (!aInBudget && bInBudget) return 1;
+                    return a.verhuur_pppw - b.verhuur_pppw;
+                });
+            }
+
+            if (matches.length === 0) {
+                resultsDiv.innerHTML = `<p style="color: var(--gray); text-align: center;">Geen woningen gevonden</p>`;
+                return;
+            }
+
+            resultsDiv.innerHTML = `<p style="margin-bottom:0.5rem; color:var(--gray); font-size:0.8rem;">${matches.length} woningen gevonden</p>` +
+                matches.map(p => {
+                    const pppw = p.verhuur_pppw.toFixed(0);
+                    const inBudget = p.verhuur_pppw >= minBudget && p.verhuur_pppw <= maxBudget;
+                    const distanceText = p._distance !== undefined ? `${p._distance.toFixed(1)} km` : '';
+                    return `
+                        <div class="matcher-item ${inBudget ? 'in-budget' : ''}" onclick="selectMatcherProperty('${p.object_id}')">
+                            <div class="info">
+                                <div class="addr">${p.object_id} - ${p.adres}</div>
+                                <div class="meta">${p.plaats || ''} ${distanceText ? '| 📍 ' + distanceText : ''} | ${p.aantal_slaapkamers || '?'} slaapk. | ${p.capaciteit_personen || '?'} pers</div>
+                            </div>
+                            <div class="pppw-badge">€${pppw}</div>
+                        </div>
+                    `;
+                }).join('');
+        }
+
+        function selectMatcherProperty(objectId) {
+            salesSelectedProp = allProperties.find(p => p.object_id === objectId);
+            if (salesSelectedProp) {
+                document.getElementById('salesPropSearch').value =
+                    `${salesSelectedProp.object_id} - ${salesSelectedProp.adres}`;
+                updateSalesCalc();
+                // Scroll to top of sales prep
+                document.getElementById('panel-salesprep').scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(initSalesPrep, 100);
+        });
+    </script>
+</body>
+
+</html>
