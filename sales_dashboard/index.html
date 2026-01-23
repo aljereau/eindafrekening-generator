@@ -33,23 +33,57 @@
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary) 0%, #2C5F8E 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #1a5f2a 100%);
             color: white;
-            padding: 1rem 2rem;
-            box-shadow: var(--shadow);
+            padding: 0.75rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        header .brand {
+            display: flex;
+            flex-direction: column;
         }
 
         header h1 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
         }
 
         header .subtitle {
             opacity: 0.8;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
+        }
+
+        header .header-kpis {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        header .header-kpi {
+            text-align: center;
+            min-width: 70px;
+        }
+
+        header .header-kpi .value {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        header .header-kpi .value.money {
+            color: #90EE90;
+        }
+
+        header .header-kpi .label {
+            font-size: 0.65rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .container {
@@ -58,35 +92,9 @@
             padding: 1rem;
         }
 
-        /* KPI Cards */
+        /* KPI Cards - now hidden, using header version */
         .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .kpi-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 1rem;
-            box-shadow: var(--shadow);
-            text-align: center;
-        }
-
-        .kpi-card .value {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .kpi-card .value.money {
-            color: var(--success);
-        }
-
-        .kpi-card .label {
-            color: var(--gray);
-            font-size: 0.8rem;
+            display: none;
         }
 
         /* Tabs */
@@ -259,6 +267,197 @@
         .status-badge.leegstand {
             background: #fff3cd;
             color: #856404;
+        }
+
+        /* Card Layout CSS */
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+
+        .view-toggle button {
+            background: #e0e0e0;
+            border: none;
+            padding: 0.4rem 0.75rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .view-toggle button.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            max-height: 600px;
+            overflow-y: auto;
+            padding: 0.5rem;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 4px solid var(--gray);
+        }
+
+        .property-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .property-card.status-beschikbaar {
+            border-left-color: var(--success);
+        }
+
+        .property-card.status-verhuurd {
+            border-left-color: #2196F3;
+        }
+
+        .property-card.status-leegstand {
+            border-left-color: var(--warning);
+        }
+
+        .property-card .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .property-card .card-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .property-card .card-subtitle {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .property-card .card-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .property-card .card-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .property-card .card-label {
+            font-size: 0.7rem;
+            color: var(--gray);
+            text-transform: uppercase;
+        }
+
+        .property-card .card-value {
+            font-weight: 500;
+        }
+
+        .property-card .card-value.money {
+            color: var(--success);
+        }
+
+        .property-card .card-value.warning {
+            color: var(--warning);
+        }
+
+        .property-card .marge-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin-top: 0.75rem;
+            overflow: hidden;
+        }
+
+        .property-card .marge-bar .fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+
+        /* Countdown badge for Binnenkort vrij */
+        .countdown-badge {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-align: center;
+            min-width: 50px;
+        }
+
+        .countdown-badge.urgent {
+            background: linear-gradient(135deg, #dc3545, #ff6b6b);
+        }
+
+        .countdown-badge.soon {
+            background: linear-gradient(135deg, #FF8C00, #ffa726);
+        }
+
+        .countdown-badge.later {
+            background: linear-gradient(135deg, #28a745, #4caf50);
+        }
+
+        /* Contact card */
+        .contact-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-card .card-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-card .card-stats {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .contact-card .card-contact {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .contact-card .card-contact a {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            background: #f0f0f0;
+            border-radius: var(--radius);
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        .contact-card .card-contact a:hover {
+            background: var(--primary-light);
+            color: var(--primary);
         }
 
         .status-badge.badge-danger {
@@ -711,9 +910,31 @@
 
 <body>
     <header>
-        <div>
+        <div class="brand">
             <h1>🏠 RyanRent Sales Dashboard</h1>
             <div class="subtitle" id="lastUpdate">Laden...</div>
+        </div>
+        <div class="header-kpis">
+            <div class="header-kpi">
+                <div class="value" id="kpiTotal">-</div>
+                <div class="label">Woningen</div>
+            </div>
+            <div class="header-kpi">
+                <div class="value" id="kpiAvailable">-</div>
+                <div class="label">Vrij</div>
+            </div>
+            <div class="header-kpi">
+                <div class="value" id="kpiRented">-</div>
+                <div class="label">Verhuurd</div>
+            </div>
+            <div class="header-kpi">
+                <div class="value money" id="kpiMarge">-</div>
+                <div class="label">Marge/m</div>
+            </div>
+            <div class="header-kpi">
+                <div class="value money" id="kpiMargeJaar">-</div>
+                <div class="label">Marge/j</div>
+            </div>
         </div>
     </header>
 
@@ -753,6 +974,8 @@
             <button class="tab" data-tab="eigenaren">👤 Eigenaren</button>
             <button class="tab" data-tab="huurders">👥 Huurders</button>
             <button class="tab" data-tab="financieel">💰 Financieel</button>
+            <button class="tab" data-tab="relaties"
+                style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">📇 Relaties Zoeken</button>
             <button class="tab" data-tab="salesprep"
                 style="background: linear-gradient(135deg, #FF6B6B, #FF8E53); color: white;">🎯 Sales Prep</button>
         </div>
@@ -770,9 +993,14 @@
                 <select id="filterStad">
                     <option value="">Alle steden</option>
                 </select>
+                <div class="view-toggle">
+                    <button id="viewTableWoningen" title="Tabel">📋</button>
+                    <button id="viewCardsWoningen" class="active" title="Kaarten">🃏</button>
+                </div>
             </div>
             <div class="results-info"><span id="resultsCount"></span></div>
-            <div class="data-table-wrapper" style="max-height: 600px; overflow-y: auto;">
+            <div id="woningenTableView" class="data-table-wrapper"
+                style="max-height: 600px; overflow-y: auto; display:none;">
                 <table class="data-table" id="woningenTable">
                     <thead>
                         <tr>
@@ -788,6 +1016,7 @@
                     <tbody></tbody>
                 </table>
             </div>
+            <div id="woningenCardsView" class="cards-grid"></div>
         </div>
 
         <!-- Binnenkort Beschikbaar Panel -->
@@ -800,9 +1029,14 @@
                     <option value="180">Binnen 6 maanden</option>
                 </select>
                 <input type="text" id="searchBinnenkort" placeholder="🔍 Zoek adres, huurder...">
+                <div class="view-toggle">
+                    <button id="viewTableBinnenkort" title="Tabel">📋</button>
+                    <button id="viewCardsBinnenkort" class="active" title="Kaarten">🃏</button>
+                </div>
             </div>
             <div class="results-info"><span id="binnenkortCount"></span></div>
-            <div class="data-table-wrapper" style="max-height: 600px; overflow-y: auto;">
+            <div id="binnenkortTableView" class="data-table-wrapper"
+                style="max-height: 600px; overflow-y: auto; display:none;">
                 <table class="data-table" id="binnenkortTable">
                     <thead>
                         <tr>
@@ -819,15 +1053,21 @@
                     <tbody></tbody>
                 </table>
             </div>
+            <div id="binnenkortCardsView" class="cards-grid"></div>
         </div>
 
         <!-- Eigenaren Panel -->
         <div class="panel" id="panel-eigenaren">
             <div class="toolbar">
                 <input type="text" id="searchEigenaren" placeholder="🔍 Zoek eigenaar...">
+                <div class="view-toggle">
+                    <button id="viewTableEigenaren" title="Tabel">📋</button>
+                    <button id="viewCardsEigenaren" class="active" title="Kaarten">🃏</button>
+                </div>
             </div>
             <div class="results-info"><span id="eigenarenCount"></span></div>
-            <div class="data-table-wrapper" style="max-height: 600px; overflow-y: auto;">
+            <div id="eigenarenTableView" class="data-table-wrapper"
+                style="max-height: 600px; overflow-y: auto; display:none;">
                 <table class="data-table" id="eigenarenTable">
                     <thead>
                         <tr>
@@ -842,15 +1082,21 @@
                     <tbody></tbody>
                 </table>
             </div>
+            <div id="eigenarenCardsView" class="cards-grid"></div>
         </div>
 
         <!-- Huurders Panel -->
         <div class="panel" id="panel-huurders">
             <div class="toolbar">
                 <input type="text" id="searchHuurders" placeholder="🔍 Zoek huurder...">
+                <div class="view-toggle">
+                    <button id="viewTableHuurders" title="Tabel">📋</button>
+                    <button id="viewCardsHuurders" class="active" title="Kaarten">🃏</button>
+                </div>
             </div>
             <div class="results-info"><span id="huurdersCount"></span></div>
-            <div class="data-table-wrapper" style="max-height: 600px; overflow-y: auto;">
+            <div id="huurdersTableView" class="data-table-wrapper"
+                style="max-height: 600px; overflow-y: auto; display:none;">
                 <table class="data-table" id="huurdersTable">
                     <thead>
                         <tr>
@@ -860,6 +1106,37 @@
                             <th data-sort="telefoon">Telefoon</th>
                             <th data-sort="count">Woningen</th>
                             <th data-sort="totalVerhuur">Totaal Verhuur</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div id="huurdersCardsView" class="cards-grid"></div>
+        </div>
+
+        <!-- Relaties Panel (unified contacts) -->
+        <div class="panel" id="panel-relaties">
+            <div class="toolbar">
+                <input type="text" id="searchRelaties" placeholder="🔍 Zoek naam, email, telefoon, bedrijf...">
+                <select id="filterRelatieType">
+                    <option value="">Alle types</option>
+                    <option value="Eigenaar">👤 Eigenaren</option>
+                    <option value="Huurder">👥 Huurders</option>
+                    <option value="Leverancier">🔧 Leveranciers</option>
+                    <option value="Overig">📋 Overig</option>
+                </select>
+            </div>
+            <div class="results-info"><span id="relatiesCount"></span></div>
+            <div class="data-table-wrapper" style="max-height: 600px; overflow-y: auto;">
+                <table class="data-table" id="relatiesTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="type" style="width:80px;">Type</th>
+                            <th data-sort="naam">Naam</th>
+                            <th data-sort="email">Email</th>
+                            <th data-sort="telefoon">Telefoon</th>
+                            <th data-sort="plaats">Plaats</th>
+                            <th data-sort="info">Info</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -883,8 +1160,13 @@
                     <option value="inhuur_desc">Hoogste inhuur</option>
                     <option value="verhuur_desc">Hoogste verhuur</option>
                 </select>
+                <div class="view-toggle">
+                    <button id="viewTableFinancieel" title="Tabel">📋</button>
+                    <button id="viewCardsFinancieel" class="active" title="Kaarten">🃏</button>
+                </div>
             </div>
-            <div class="data-table-wrapper" style="max-height: 600px; overflow-y: auto;">
+            <div id="financieelTableView" class="data-table-wrapper"
+                style="max-height: 600px; overflow-y: auto; display:none;">
                 <table class="data-table" id="financieelTable">
                     <thead>
                         <tr>
@@ -901,6 +1183,7 @@
                     <tbody></tbody>
                 </table>
             </div>
+            <div id="financieelCardsView" class="cards-grid"></div>
         </div>
 
         <!-- Sales Prep Panel -->
@@ -1026,48 +1309,70 @@
 
                 <div class="calc-card">
                     <h3>📊 Scenario Vergelijking</h3>
+
+                    <!-- Cleaner comparison table -->
+                    <table style="width:100%; border-collapse:collapse; font-size:0.95rem; margin-bottom:1rem;">
+                        <thead>
+                            <tr style="border-bottom:2px solid var(--primary-light);">
+                                <th style="text-align:left; padding:0.5rem 0; color:var(--gray);"></th>
+                                <th style="text-align:right; padding:0.5rem; color:var(--gray); font-weight:600;">Huidig
+                                </th>
+                                <th style="text-align:right; padding:0.5rem; color:var(--primary); font-weight:600;">
+                                    Nieuw</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding:0.6rem 0; color:var(--gray);">Verhuur</td>
+                                <td style="text-align:right; padding:0.6rem; font-weight:600;" id="calcHuidigeVerhuur">€
+                                    0</td>
+                                <td style="text-align:right; padding:0.6rem;"><input type="number" class="calc-input"
+                                        id="calcNieuweVerhuur" value="0" step="50"
+                                        style="width:100%; text-align:right; font-size:1rem;"></td>
+                            </tr>
+                            <tr style="background:#f8f9fa;">
+                                <td style="padding:0.6rem 0; color:var(--gray);">− Inhuur</td>
+                                <td style="text-align:right; padding:0.6rem; color:var(--gray);" id="calcInhuurRef">€ 0
+                                </td>
+                                <td style="text-align:right; padding:0.6rem; color:var(--gray);" id="calcInhuurRef2">€ 0
+                                </td>
+                            </tr>
+                            <tr style="font-weight:600;">
+                                <td style="padding:0.6rem 0; color:var(--gray);">= Marge</td>
+                                <td style="text-align:right; padding:0.6rem;" id="calcHuidigeMarge">€ 0</td>
+                                <td style="text-align:right; padding:0.6rem;" id="calcNieuweMarge">€ 0</td>
+                            </tr>
+                            <tr style="background:#f8f9fa;">
+                                <td style="padding:0.6rem 0; color:var(--gray);">Marge %</td>
+                                <td style="text-align:right; padding:0.6rem;" id="calcHuidigeMargePct">0%</td>
+                                <td style="text-align:right; padding:0.6rem;" id="calcNieuweMargePct">0%</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:0.6rem 0; color:var(--gray);">PPPW</td>
+                                <td style="text-align:right; padding:0.6rem;" id="calcHuidigePppw">€0</td>
+                                <td style="text-align:right; padding:0.6rem;" id="calcNieuwePppw">€0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Result section -->
                     <div
-                        style="background:linear-gradient(135deg, #e3f2fd, #f3e5f5); padding:0.75rem; border-radius:var(--radius); margin-bottom:1rem; font-size:0.8rem;">
-                        <strong>📐 Berekening:</strong><br>
-                        <code
-                            style="background:#fff; padding:0.2rem 0.4rem; border-radius:4px;">Verhuur = Inhuur ÷ (1 − target%)</code><br>
-                        <code
-                            style="background:#fff; padding:0.2rem 0.4rem; border-radius:4px;">Marge = Verhuur − Inhuur</code><br>
-                        <code
-                            style="background:#fff; padding:0.2rem 0.4rem; border-radius:4px;">Marge % = (Marge ÷ Verhuur) × 100</code>
+                        style="background:linear-gradient(135deg, #e8f5e9, #c8e6c9); padding:1rem; border-radius:var(--radius); margin-bottom:1rem;">
+                        <div
+                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                            <span style="color:var(--gray);">Verschil/maand</span>
+                            <span style="font-size:1.2rem; font-weight:600;" id="calcVerschil">€ 0</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="color:var(--gray); font-weight:600;">Verschil/jaar</span>
+                            <span style="font-size:1.5rem; font-weight:700;" id="calcVerschilJaar">€ 0</span>
+                        </div>
                     </div>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.5rem 1rem; margin-bottom:1rem;">
-                        <div style="font-weight:600; color:var(--gray);">Huidig</div>
-                        <div style="font-weight:600; color:var(--gray);">Nieuw</div>
-                        <div><span style="font-size:0.8rem;">Verhuur</span><br><span id="calcHuidigeVerhuur">€ 0</span>
-                        </div>
-                        <div><input type="number" class="calc-input" id="calcNieuweVerhuur" value="0" step="50"
-                                style="width:100%;"></div>
-                        <div><span style="font-size:0.8rem;">− Inhuur</span><br><span id="calcInhuurRef"
-                                style="color:var(--gray);">€ 0</span>
-                        </div>
-                        <div><span style="color:var(--gray);" id="calcInhuurRef2">€ 0</span></div>
-                        <div><span style="font-size:0.8rem;">= Marge</span><br><span id="calcHuidigeMarge">€ 0</span>
-                        </div>
-                        <div><span id="calcNieuweMarge">€ 0</span></div>
-                        <div><span style="font-size:0.8rem;">Marge %</span><br><span id="calcHuidigeMargePct">0%</span>
-                        </div>
-                        <div><span id="calcNieuweMargePct">0%</span></div>
-                        <div><span style="font-size:0.8rem;">PPPW</span><br><span id="calcHuidigePppw">€ 0</span></div>
-                        <div><span id="calcNieuwePppw">€ 0</span></div>
-                    </div>
-                    <div class="calc-row" style="border-top:2px solid var(--primary-light); padding-top:0.5rem;">
-                        <span class="label">Verschil/maand</span>
-                        <span class="value" id="calcVerschil">€ 0</span>
-                    </div>
-                    <div class="calc-row">
-                        <span class="label"><strong>Verschil/jaar</strong></span>
-                        <span class="value" id="calcVerschilJaar" style="font-size:1.1rem">€ 0</span>
-                    </div>
-                    <div style="margin-top:1rem; padding-top:0.75rem; border-top:2px solid var(--primary-light);">
-                        <div id="quickInfo" style="font-size:0.85rem;">
-                            <p style="color: var(--gray)">Selecteer een woning om eigenaar en huurder info te zien.</p>
-                        </div>
+
+                    <!-- Contact info -->
+                    <div id="quickInfo"
+                        style="font-size:0.9rem; padding:0.75rem; background:#f8f9fa; border-radius:var(--radius);">
+                        <p style="color: var(--gray); margin:0;">Selecteer een woning om contact info te zien.</p>
                     </div>
                 </div>
 
@@ -1116,18 +1421,83 @@
             <div class="detail-panel-body" id="panelBody"></div>
         </div>
 
-        <script src="data.js"></script>
         <script>
             let allProperties = [];
             let allOwners = [];
             let allTenants = [];
             let currentSort = { column: null, asc: true };
+            let dataLoadAttempts = 0;
+            const maxAttempts = 10;
 
-            document.addEventListener('DOMContentLoaded', init);
+            document.addEventListener('DOMContentLoaded', loadDataAndInit);
+
+            function loadDataAndInit() {
+                // Show loading state
+                document.getElementById('lastUpdate').textContent = 'Data laden...';
+
+                // Check if already loaded (script tag fallback)
+                if (typeof SALES_DATA !== 'undefined') {
+                    init();
+                    return;
+                }
+
+                // Try dynamic loading
+                loadDataScript();
+            }
+
+            function loadDataScript() {
+                dataLoadAttempts++;
+
+                const script = document.createElement('script');
+                script.src = 'data.js?t=' + Date.now(); // Cache bust
+                script.onload = function () {
+                    // Small delay to ensure SALES_DATA is parsed
+                    setTimeout(function () {
+                        if (typeof SALES_DATA !== 'undefined') {
+                            init();
+                        } else if (dataLoadAttempts < maxAttempts) {
+                            document.getElementById('lastUpdate').textContent =
+                                'Data laden... poging ' + dataLoadAttempts + '/' + maxAttempts;
+                            setTimeout(loadDataScript, 1000);
+                        } else {
+                            showDataError();
+                        }
+                    }, 200);
+                };
+                script.onerror = function () {
+                    if (dataLoadAttempts < maxAttempts) {
+                        document.getElementById('lastUpdate').textContent =
+                            'Data laden... poging ' + dataLoadAttempts + '/' + maxAttempts;
+                        setTimeout(loadDataScript, 1500);
+                    } else {
+                        showDataError();
+                    }
+                };
+                document.head.appendChild(script);
+            }
+
+            function showDataError() {
+                document.getElementById('lastUpdate').innerHTML =
+                    '<span style="color:#dc3545">⚠️ data.js niet geladen</span>';
+                document.querySelector('.container').innerHTML = `
+                    <div style="background:white;padding:2rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);max-width:600px;margin:2rem auto;">
+                        <h2 style="color:#dc3545;margin-bottom:1rem;">⚠️ Data kon niet worden geladen</h2>
+                        <p style="margin-bottom:1rem;">Het bestand <strong>data.js</strong> is niet beschikbaar. Dit kan komen door:</p>
+                        <ul style="margin-bottom:1rem;padding-left:1.5rem;">
+                            <li>OneDrive synchronisatie nog bezig - wacht even en herlaad de pagina</li>
+                            <li>Bestand nog niet gedownload - klik rechts op data.js → "Altijd bewaren op dit apparaat"</li>
+                            <li>Browser blokkade - probeer Edge in plaats van Chrome</li>
+                        </ul>
+                        <button onclick="location.reload()" style="background:#2ba306;color:white;border:none;padding:0.75rem 1.5rem;border-radius:8px;cursor:pointer;font-size:1rem;">
+                            🔄 Pagina herladen
+                        </button>
+                    </div>
+                `;
+            }
 
             function init() {
                 if (typeof SALES_DATA === 'undefined') {
-                    document.getElementById('lastUpdate').textContent = 'Fout: data.js niet gevonden';
+                    showDataError();
                     return;
                 }
 
@@ -1162,6 +1532,7 @@
                 renderBinnenkort();
                 renderEigenaren();
                 renderHuurders();
+                renderRelaties();
                 renderFinancieel();
 
                 // Setup tabs
@@ -1182,9 +1553,81 @@
                 document.getElementById('filterBinnenkortDays').addEventListener('change', renderBinnenkort);
                 document.getElementById('searchEigenaren').addEventListener('input', renderEigenaren);
                 document.getElementById('searchHuurders').addEventListener('input', renderHuurders);
+                document.getElementById('searchRelaties').addEventListener('input', renderRelaties);
+                document.getElementById('filterRelatieType').addEventListener('change', renderRelaties);
                 document.getElementById('searchFinancieel').addEventListener('input', renderFinancieel);
                 document.getElementById('filterFinStatus').addEventListener('change', renderFinancieel);
                 document.getElementById('sortFinancieel').addEventListener('change', renderFinancieel);
+
+                // View toggle for Woningen
+                document.getElementById('viewTableWoningen').addEventListener('click', () => {
+                    document.getElementById('viewTableWoningen').classList.add('active');
+                    document.getElementById('viewCardsWoningen').classList.remove('active');
+                    document.getElementById('woningenTableView').style.display = 'block';
+                    document.getElementById('woningenCardsView').style.display = 'none';
+                });
+                document.getElementById('viewCardsWoningen').addEventListener('click', () => {
+                    document.getElementById('viewCardsWoningen').classList.add('active');
+                    document.getElementById('viewTableWoningen').classList.remove('active');
+                    document.getElementById('woningenCardsView').style.display = 'grid';
+                    document.getElementById('woningenTableView').style.display = 'none';
+                });
+
+                // View toggle for Binnenkort
+                document.getElementById('viewTableBinnenkort').addEventListener('click', () => {
+                    document.getElementById('viewTableBinnenkort').classList.add('active');
+                    document.getElementById('viewCardsBinnenkort').classList.remove('active');
+                    document.getElementById('binnenkortTableView').style.display = 'block';
+                    document.getElementById('binnenkortCardsView').style.display = 'none';
+                });
+                document.getElementById('viewCardsBinnenkort').addEventListener('click', () => {
+                    document.getElementById('viewCardsBinnenkort').classList.add('active');
+                    document.getElementById('viewTableBinnenkort').classList.remove('active');
+                    document.getElementById('binnenkortCardsView').style.display = 'grid';
+                    document.getElementById('binnenkortTableView').style.display = 'none';
+                });
+
+                // View toggle for Eigenaren
+                document.getElementById('viewTableEigenaren').addEventListener('click', () => {
+                    document.getElementById('viewTableEigenaren').classList.add('active');
+                    document.getElementById('viewCardsEigenaren').classList.remove('active');
+                    document.getElementById('eigenarenTableView').style.display = 'block';
+                    document.getElementById('eigenarenCardsView').style.display = 'none';
+                });
+                document.getElementById('viewCardsEigenaren').addEventListener('click', () => {
+                    document.getElementById('viewCardsEigenaren').classList.add('active');
+                    document.getElementById('viewTableEigenaren').classList.remove('active');
+                    document.getElementById('eigenarenCardsView').style.display = 'grid';
+                    document.getElementById('eigenarenTableView').style.display = 'none';
+                });
+
+                // View toggle for Huurders
+                document.getElementById('viewTableHuurders').addEventListener('click', () => {
+                    document.getElementById('viewTableHuurders').classList.add('active');
+                    document.getElementById('viewCardsHuurders').classList.remove('active');
+                    document.getElementById('huurdersTableView').style.display = 'block';
+                    document.getElementById('huurdersCardsView').style.display = 'none';
+                });
+                document.getElementById('viewCardsHuurders').addEventListener('click', () => {
+                    document.getElementById('viewCardsHuurders').classList.add('active');
+                    document.getElementById('viewTableHuurders').classList.remove('active');
+                    document.getElementById('huurdersCardsView').style.display = 'grid';
+                    document.getElementById('huurdersTableView').style.display = 'none';
+                });
+
+                // View toggle for Financieel
+                document.getElementById('viewTableFinancieel').addEventListener('click', () => {
+                    document.getElementById('viewTableFinancieel').classList.add('active');
+                    document.getElementById('viewCardsFinancieel').classList.remove('active');
+                    document.getElementById('financieelTableView').style.display = 'block';
+                    document.getElementById('financieelCardsView').style.display = 'none';
+                });
+                document.getElementById('viewCardsFinancieel').addEventListener('click', () => {
+                    document.getElementById('viewCardsFinancieel').classList.add('active');
+                    document.getElementById('viewTableFinancieel').classList.remove('active');
+                    document.getElementById('financieelCardsView').style.display = 'grid';
+                    document.getElementById('financieelTableView').style.display = 'none';
+                });
 
                 // Overlay close
                 document.getElementById('overlay').addEventListener('click', closePanel);
@@ -1263,6 +1706,8 @@
             }
 
             // ========== WONINGEN ==========
+            let currentViewWoningen = 'table';
+
             function renderWoningen() {
                 const search = document.getElementById('searchWoningen').value.toLowerCase();
                 const statusFilter = document.getElementById('filterStatus').value;
@@ -1282,6 +1727,7 @@
 
                 document.getElementById('resultsCount').textContent = `${filtered.length} woningen`;
 
+                // Table view
                 const tbody = document.querySelector('#woningenTable tbody');
                 tbody.innerHTML = filtered.map(p => `
                 <tr onclick="showPropertyDetail('${p.object_id}')">
@@ -1294,6 +1740,44 @@
                     <td>${getStatusBadge(p.beschikbaarheid_status)}</td>
                 </tr>
             `).join('');
+
+                // Card view
+                const cardsContainer = document.getElementById('woningenCardsView');
+                cardsContainer.innerHTML = filtered.map(p => {
+                    const statusClass = (p.beschikbaarheid_status || '').toLowerCase().includes('beschikbaar') ? 'status-beschikbaar' :
+                        (p.beschikbaarheid_status || '').toLowerCase().includes('verhuurd') ? 'status-verhuurd' : 'status-leegstand';
+                    const margePct = p.verhuur_totaal_excl_btw ? Math.round((p.marge_maand_excl_btw / p.verhuur_totaal_excl_btw) * 100) : 0;
+                    const margeColor = margePct >= 15 ? '#28a745' : margePct >= 10 ? '#ffc107' : '#dc3545';
+                    return `
+                    <div class="property-card ${statusClass}" onclick="showPropertyDetail('${p.object_id}')">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">${p.object_id} - ${escapeHtml(p.adres || '-')}</div>
+                                <div class="card-subtitle">${escapeHtml(p.plaats || '-')}</div>
+                            </div>
+                            ${getStatusBadge(p.beschikbaarheid_status)}
+                        </div>
+                        <div class="card-body">
+                            <div class="card-item">
+                                <span class="card-label">Eigenaar</span>
+                                <span class="card-value">${escapeHtml(p.eigenaar_naam || '-')}</span>
+                            </div>
+                            <div class="card-item">
+                                <span class="card-label">Huurder</span>
+                                <span class="card-value">${escapeHtml(p.huurder_naam || 'Leeg')}</span>
+                            </div>
+                            <div class="card-item">
+                                <span class="card-label">Marge/maand</span>
+                                <span class="card-value money">${formatMoney(p.marge_maand_excl_btw)}</span>
+                            </div>
+                            <div class="card-item">
+                                <span class="card-label">Marge %</span>
+                                <span class="card-value">${margePct}%</span>
+                            </div>
+                        </div>
+                        <div class="marge-bar"><div class="fill" style="width:${Math.min(margePct * 3, 100)}%; background:${margeColor};"></div></div>
+                    </div>
+                `}).join('');
             }
 
             // ========== BINNENKORT BESCHIKBAAR ==========
@@ -1328,19 +1812,13 @@
 
                 document.getElementById('binnenkortCount').textContent = `${filtered.length} woningen binnenkort beschikbaar`;
 
+                // Table view
                 const tbody = document.querySelector('#binnenkortTable tbody');
                 tbody.innerHTML = filtered.map(p => {
                     const endDate = new Date(p.verhuur_eind);
                     const daysUntil = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
-
-                    // Color code the days badge
-                    let daysBadgeClass = '';
-                    if (daysUntil <= 14) daysBadgeClass = 'badge-danger';
-                    else if (daysUntil <= 30) daysBadgeClass = 'badge-warning';
-                    else daysBadgeClass = 'badge-info';
-
+                    let daysBadgeClass = daysUntil <= 14 ? 'badge-danger' : daysUntil <= 30 ? 'badge-warning' : 'badge-info';
                     const formattedDate = endDate.toLocaleDateString('nl-NL', { day: '2-digit', month: 'short', year: 'numeric' });
-
                     return `
                     <tr onclick="showPropertyDetail('${p.object_id}')" style="cursor:pointer;">
                         <td>${p.object_id}</td>
@@ -1354,6 +1832,43 @@
                     </tr>
                 `;
                 }).join('');
+
+                // Card view
+                const cardsContainer = document.getElementById('binnenkortCardsView');
+                cardsContainer.innerHTML = filtered.map(p => {
+                    const endDate = new Date(p.verhuur_eind);
+                    const daysUntil = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+                    const urgencyClass = daysUntil <= 14 ? 'urgent' : daysUntil <= 30 ? 'soon' : 'later';
+                    const formattedDate = endDate.toLocaleDateString('nl-NL', { day: '2-digit', month: 'short' });
+                    return `
+                    <div class="property-card" onclick="showPropertyDetail('${p.object_id}')">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">${escapeHtml(p.adres || '-')}</div>
+                                <div class="card-subtitle">${escapeHtml(p.plaats || '-')}</div>
+                            </div>
+                            <div class="countdown-badge ${urgencyClass}">${daysUntil}d</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-item">
+                                <span class="card-label">Einddatum</span>
+                                <span class="card-value">${formattedDate}</span>
+                            </div>
+                            <div class="card-item">
+                                <span class="card-label">Huurder</span>
+                                <span class="card-value">${escapeHtml(p.huurder_naam || '-')}</span>
+                            </div>
+                            <div class="card-item">
+                                <span class="card-label">Marge</span>
+                                <span class="card-value money">${formatMoney(p.marge_maand_excl_btw)}</span>
+                            </div>
+                            <div class="card-item">
+                                <span class="card-label">Object</span>
+                                <span class="card-value">${p.object_id}</span>
+                            </div>
+                        </div>
+                    </div>
+                `}).join('');
             }
 
             // ========== EIGENAREN ==========
@@ -1363,6 +1878,7 @@
 
                 document.getElementById('eigenarenCount').textContent = `${filtered.length} eigenaren`;
 
+                // Table view
                 const tbody = document.querySelector('#eigenarenTable tbody');
                 tbody.innerHTML = filtered.map((o, idx) => `
                 <tr data-owner-idx="${idx}" style="cursor:pointer">
@@ -1375,13 +1891,27 @@
                 </tr>
             `).join('');
 
-                // Add click handlers
+                // Add click handlers for table
                 tbody.querySelectorAll('tr[data-owner-idx]').forEach(tr => {
                     tr.addEventListener('click', () => {
                         const idx = parseInt(tr.dataset.ownerIdx);
                         showOwnerDetail(filtered[idx].naam);
                     });
                 });
+
+                // Card view
+                const cardsContainer = document.getElementById('eigenarenCardsView');
+                cardsContainer.innerHTML = filtered.map(o => `
+                    <div class="contact-card" onclick="showOwnerDetail('${escapeHtml(o.naam)}')">
+                        <div class="card-name">👤 ${escapeHtml(o.naam)}</div>
+                        <div class="card-stats">${o.properties.length} woningen • ${formatMoney(o.totalInhuur)}/m</div>
+                        <div style="font-size:0.85rem; color:var(--gray);">${escapeHtml(o.plaats || '')}</div>
+                        <div class="card-contact">
+                            ${o.email ? `<a href="mailto:${o.email}" onclick="event.stopPropagation()">📧 Email</a>` : ''}
+                            ${o.telefoon ? `<a href="tel:${o.telefoon}" onclick="event.stopPropagation()">📞 ${escapeHtml(o.telefoon)}</a>` : ''}
+                        </div>
+                    </div>
+                `).join('');
             }
 
             function showOwnerDetail(naam) {
@@ -1438,6 +1968,7 @@
 
                 document.getElementById('huurdersCount').textContent = `${filtered.length} huurders`;
 
+                // Table view
                 const tbody = document.querySelector('#huurdersTable tbody');
                 tbody.innerHTML = filtered.map((t, idx) => `
                 <tr data-tenant-idx="${idx}" style="cursor:pointer">
@@ -1450,13 +1981,26 @@
                 </tr>
             `).join('');
 
-                // Add click handlers
+                // Add click handlers for table
                 tbody.querySelectorAll('tr[data-tenant-idx]').forEach(tr => {
                     tr.addEventListener('click', () => {
                         const idx = parseInt(tr.dataset.tenantIdx);
                         showTenantDetail(filtered[idx].naam);
                     });
                 });
+
+                // Card view
+                const cardsContainer = document.getElementById('huurdersCardsView');
+                cardsContainer.innerHTML = filtered.map(t => `
+                    <div class="contact-card" onclick="showTenantDetail('${escapeHtml(t.naam)}')">
+                        <div class="card-name">👥 ${escapeHtml(t.naam)}</div>
+                        <div class="card-stats">${escapeHtml(t.type || 'Particulier')} • ${t.properties.length} woningen • ${formatMoney(t.totalVerhuur)}/m</div>
+                        <div class="card-contact">
+                            ${t.email ? `<a href="mailto:${t.email}" onclick="event.stopPropagation()">📧 Email</a>` : ''}
+                            ${t.telefoon ? `<a href="tel:${t.telefoon}" onclick="event.stopPropagation()">📞 ${escapeHtml(t.telefoon)}</a>` : ''}
+                        </div>
+                    </div>
+                `).join('');
             }
 
             function showTenantDetail(naam) {
@@ -1505,6 +2049,70 @@
                 openPanel('tenant', naam);
             }
 
+            // ========== RELATIES (unified search) ==========
+            function renderRelaties() {
+                const search = document.getElementById('searchRelaties').value.toLowerCase();
+                const typeFilter = document.getElementById('filterRelatieType').value;
+
+                // Combine owners and tenants into relaties list
+                let relaties = [];
+
+                // Add owners as relaties
+                allOwners.forEach(o => {
+                    relaties.push({
+                        type: 'Eigenaar',
+                        typeIcon: '👤',
+                        naam: o.naam,
+                        email: o.email || '',
+                        telefoon: o.telefoon || '',
+                        plaats: o.plaats || '',
+                        info: `${o.properties.length} woningen | ${formatMoney(o.totalInhuur)}/m`
+                    });
+                });
+
+                // Add tenants as relaties
+                allTenants.forEach(t => {
+                    relaties.push({
+                        type: 'Huurder',
+                        typeIcon: '👥',
+                        naam: t.naam,
+                        email: t.email || '',
+                        telefoon: t.telefoon || '',
+                        plaats: '',
+                        info: `${t.type} | ${t.properties.length} woningen | ${formatMoney(t.totalVerhuur)}/m`
+                    });
+                });
+
+                // Filter by type
+                if (typeFilter) {
+                    relaties = relaties.filter(r => r.type === typeFilter);
+                }
+
+                // Filter by search
+                if (search) {
+                    relaties = relaties.filter(r =>
+                        r.naam.toLowerCase().includes(search) ||
+                        r.email.toLowerCase().includes(search) ||
+                        r.telefoon.toLowerCase().includes(search) ||
+                        r.plaats.toLowerCase().includes(search)
+                    );
+                }
+
+                document.getElementById('relatiesCount').textContent = `${relaties.length} relaties`;
+
+                const tbody = document.querySelector('#relatiesTable tbody');
+                tbody.innerHTML = relaties.map(r => `
+                    <tr>
+                        <td>${r.typeIcon}</td>
+                        <td><strong>${escapeHtml(r.naam)}</strong></td>
+                        <td>${r.email ? `<a href="mailto:${r.email}">${escapeHtml(r.email)}</a>` : '-'}</td>
+                        <td>${r.telefoon ? `<a href="tel:${r.telefoon}">${escapeHtml(r.telefoon)}</a>` : '-'}</td>
+                        <td>${escapeHtml(r.plaats)}</td>
+                        <td style="font-size:0.85rem; color:var(--gray);">${escapeHtml(r.info)}</td>
+                    </tr>
+                `).join('');
+            }
+
             // ========== FINANCIEEL ==========
             function renderFinancieel() {
                 const search = document.getElementById('searchFinancieel').value.toLowerCase();
@@ -1530,6 +2138,7 @@
                     }
                 });
 
+                // Table view
                 const tbody = document.querySelector('#financieelTable tbody');
                 tbody.innerHTML = filtered.map(p => `
                 <tr onclick="showPropertyDetail('${p.object_id}')">
@@ -1543,6 +2152,42 @@
                     <td>${getStatusBadge(p.beschikbaarheid_status)}</td>
                 </tr>
             `).join('');
+
+                // Card view
+                const cardsContainer = document.getElementById('financieelCardsView');
+                cardsContainer.innerHTML = filtered.map(p => {
+                    const margePct = p.marge_percentage || 0;
+                    const margeColor = margePct >= 15 ? '#28a745' : margePct >= 10 ? '#ffc107' : '#dc3545';
+                    const inhuur = p.inhuur_totaal_excl_btw || 0;
+                    const verhuur = p.verhuur_totaal_excl_btw || 0;
+                    const maxVal = Math.max(inhuur, verhuur, 1);
+                    return `
+                    <div class="property-card" onclick="showPropertyDetail('${p.object_id}')">
+                        <div class="card-header">
+                            <div>
+                                <div class="card-title">${escapeHtml(p.adres || '-')}</div>
+                                <div class="card-subtitle">${p.object_id} • ${escapeHtml(p.plaats || '-')}</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-size:1.2rem; font-weight:700; color:${margeColor};">${margePct.toFixed(1)}%</div>
+                                <div style="font-size:0.8rem; color:var(--gray);">marge</div>
+                            </div>
+                        </div>
+                        <div style="margin-top:0.75rem;">
+                            <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.25rem;">
+                                <span>Inhuur: ${formatMoney(inhuur)}</span>
+                                <span>Verhuur: ${formatMoney(verhuur)}</span>
+                            </div>
+                            <div style="display:flex; gap:4px; height:20px;">
+                                <div style="flex:${inhuur}; background:#e74c3c; border-radius:4px; display:flex; align-items:center; justify-content:center; color:white; font-size:0.7rem;">IN</div>
+                                <div style="flex:${verhuur}; background:#27ae60; border-radius:4px; display:flex; align-items:center; justify-content:center; color:white; font-size:0.7rem;">OUT</div>
+                            </div>
+                        </div>
+                        <div style="margin-top:0.5rem; font-size:0.9rem; font-weight:600; color:${margeColor};">
+                            Marge: ${formatMoney(p.marge_maand_excl_btw)}/m
+                        </div>
+                    </div>
+                `}).join('');
             }
 
             // ========== PROPERTY DETAIL ==========

@@ -1,0 +1,87 @@
+============================================================
+KOSTENPLAATSEN MIGRATION
+Started: 2026-01-23T10:07:05.334509
+============================================================
+
+============================================================
+PHASE 1: Migrating huizen object_ids (ryanrent_v2.db)
+============================================================
+
+Found 31 object_ids to update
+Skipped 165 (no CSV match found)
+
+Updates to apply:
+  [0308] → [A-00433]: Kerkweg 9a [huis 135] Hensbroek
+  [0314] → [A-00387]: Kerkweg 9a [huis 338] Hensbroek
+  [0029] → [A-00420]: Madeliefstraat 46C Rotterdam
+  [0049] → [A-00447]: Bornerbroeksestraat 129A Almelo
+  [0087] → [A-00353]: Jasmijnring 37 Zundert
+  [0096] → [A-00177]: Loggerstraat 3 Harlingen
+  [0157] → [A-00321]: Kuipers-Rietbergpad 15 Hoogvliet
+  [0184] → [0393]: Mathenesserdijk 261 C03 Rotterdam
+  [0251] → [A-00241]: Middenbaan Noord 18A Hoogvliet
+  [0391] → [0390]: Industriestraat 9 Dongen
+  [0404] → [0438]: Europalaan 50 Sas van Gent
+  [0408] → [0392]: Lauwersmeer 4 Barendrecht
+  [0409] → [0406]: Noordstraat 26 Walsoorden
+  [0419] → [0037]: Westfrankelandsestraat 106 Schiedam
+  [0430] → [0198]: Krabbendijkestraat 429 Rotterdam
+  [0393] → [0391]: Donze Visserstraat 13 Terneuzen
+  [0396] → [0395]: Haven 24 Maassluis
+  [0397] → [0394]: Boogertstraat 5A Maassluis
+  [0398] → [0396]: Boogertstraat 7A Maassluis
+  [0442] → [0133]: Herenpad 20B Schiedam
+  ...and 11 more
+
+Applying updates...
+  ERROR updating 0184 → 0393: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0391 → 0390: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0404 → 0438: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0408 → 0392: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0409 → 0406: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0419 → 0037: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0430 → 0198: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0393 → 0391: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0396 → 0395: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0397 → 0394: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0398 → 0396: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0442 → 0133: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0456 → 0433: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0457 → 0419: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0458 → 0427: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0459 → 0418: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0460 → 0423: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0461 → 0426: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0462 → 0422: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0463 → 0425: UNIQUE constraint failed: huizen.object_id
+  ERROR updating 0469 → 0435: UNIQUE constraint failed: huizen.object_id
+✅ Applied 31 updates to huizen
+
+============================================================
+PHASE 2: Normalizing A-codes in huizen_archief (ryanrent_mock.db)
+============================================================
+
+Found 193 A-codes to normalize
+
+Examples:
+  A-0001 → A-00001
+  A-0002 → A-00002
+  A-0003 → A-00003
+  A-0005 → A-00005
+  A-0006 → A-00006
+  A-0009 → A-00009
+  A-0010 → A-00010
+  A-0011 → A-00011
+  A-0012 → A-00012
+  A-0013 → A-00013
+
+Applying updates...
+✅ Normalized 193 A-codes
+
+============================================================
+MIGRATION COMPLETE
+============================================================
+  Huizen updated: 31
+  A-codes normalized: 193
+
+Log saved to: /Users/aljereaumarten/Library/CloudStorage/OneDrive-SharedLibraries-RyanRentB.V/RyanRent - General/01_RyanRent&Co/Aljereau/Eindafrekening Generator/migration_log_20260123_100705.txt
