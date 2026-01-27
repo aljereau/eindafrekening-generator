@@ -1,0 +1,399 @@
+OBJECT;Straat en huisnummer;Postcode;Plaats
+0001;Nunspeetlaan 14;2573 HG;Den Haag
+0002;Allard Piersonlaan 142;2522 MT;Den Haag
+0003;Acacia 2;3224EB;Hellevoetsluis
+0004;Broekweg 25;3131 HC;Vlaardingen
+0005;Ringbaan Oost 327;5014 GG;Tilburg
+0006;Enschotsestraat 163;5014 DD;Tilburg
+0007;Adriaan Baasstraat 34;7902HN;Hoogeveen
+0008;Arkelse Onderweg 24a;4206AH;Gorinchem
+0009;Galgeweg 48-A;2691MG;s-Gravenzande
+0010;Kethelweg 1B;3135 GA;Vlaardingen
+0011;Kethelweg 1C;3135 GA;Vlaardingen
+0012;Baarlelaan 27;7906GB;Hoogeveen
+0013;Baarsveen 197;3205 BB;Spijkenisse
+0014;Abelenlaan 143;3181WD;Rozenburg
+0015;Maasdijk 69;2691NZ;S-Gravenzande
+0016;van Scorelstraat 73;3141 TH;Maassluis
+0017;G.A. Brederolaan 75B;3141 CD;Maassluis
+0018;Meester G. Groen van Prinsterlaan 313;1181 TV;Amstelveen
+0019;Franselaan 273B;3028 AC;Rotterdam
+0020;Mr. Troelstrastraat 37;3131 HR;Vlaardingen
+0021;Vaartweg 106C;3131 HV;Vlaardingen
+0022;2e van Leydengaelstraat 6;3134 LL;Vlaardingen
+0023;Desiree Geeraertstraat 1 B;5111 CH;Baarle-Nassau
+0024;Desiree Geeraertstraat 1 C;5111 CH;Baarle-Nassau
+0025;Groenelaan 30B;3114 CH;Schiedam
+0026;Chopinstraat 39C;3131 DB;Vlaardingen
+0027;Buizerdstraat 210;3145 AD;Maassluis
+0028;Lange kruisweg 12;2676 BL;Maasdijk
+0029;Madeliefstraat 46c;3083TJ;Rotterdam
+0030;Curacaolaan 88;3131 XD;Vlaardingen
+0031;Hogenbanweg 331;3112 CK;Schiedam
+0032;Jacob van offwegenlaan 26;2282 HR;Rijswijk
+0033;Kethelweg 66C;3135 GM;Vlaardingen
+0034;Kethelweg 68A;3135 GM;Vlaardingen
+0035;Messchaertplein 39;3131 TG;Vlaardingen
+0036;Messchaertplein 40;3131 TG;Vlaardingen
+0037;Westfrankelandsestraat 106;3117 AW;Schiedam
+0038;Westfrankelandsestraat 108;3117 AW;Schiedam
+0039;Inundatiestraat 3;4551 VE;Sas van Gent
+0040;Beatrixstraat 3;3181 GA;Rozenburg
+0041;Nunspeetlaan 53;2573 HB;Den Haag
+0042;Parallelweg 110A;3131 DK;Vlaardingen
+0043;Amperelaan 23;8451 BW;Oudeschoot
+0044;Pleinweg 101 A;3081 JH;Rotterdam
+0045;Pleinweg 101 B;3081 JH;Rotterdam
+0046;Nieuwenhoornstraat 46B;3082 VJ;Rotterdam
+0047;Bisschopstraat 68;8325BD;Vollenhove
+0048;Bliek 41;3225XB;Hellevoetsluis
+0049;Bornerbroeksestraat 129A;7601BE;Almelo
+0050;Sint Josephstraat 61;5017GD;Tilburg
+0051;Coehoorn van Scheltingaweg 12;8442EX;Heerenveen
+0052;Coehoorn van Scheltingaweg 66;8442GA;Heerenveen
+0053;Curcumastraat 39;3193XA;Hoogvliet
+0054;De Gasperistraat 11;4463 KJ;Goes
+0055;Baanhoek 139;3361GC;Sliedrecht
+0056;De Hooidollen 606;8918JZ;Leeuwarden
+0057;Markt 5;3142 GE;Maassluis
+0058;Deugenweerd 18;7271XT;Borculo
+0059;Dieptol 63;8332BK;Steenwijk
+0060;Besterdring 6;5014 HG;Tilburg
+0061;Dwarsweg 44;3181HG;Rozenburg
+0062;Eendrachtstraat 22;3241CD;Middelharnis
+0063;Energieweg 40;3133EC;Vlaardingen
+0064;Enk 6;7621ES;Borne
+0065;Esdoornlaan 68;3181XD;Rozenburg
+0066;Dorpsstraat 73;2841 BH;Moordrecht
+0067;Franz Liszstraat 5;4536EA;Terneuzen
+0068;F.Erensstraat 21;6136JE;Sittard
+0069;Gaffelaar 3;8802NR;Franeker
+0070;Geleenstraat 1;6133XK;Sittard
+0071;H. Algraplein 25;8802RE;Franeker
+0072;Heemskerkstraat 19;9866AR;Lutjegast
+0073;Hendrik Deddenstraat 26;8395PX;Steggerda
+0074;Mgr. W.M. Bekkerslaan 34;3141 SK;Maassluis
+0075;Hoofdstraat 110;5473AT;Heeswijk-Dinther
+0076;Molendijk 4;3255AL;Oude-Tonge
+0077;Voorstraat 10;3255AX;Oude-Tonge
+0078;Hooizolder 6;9205 CA;Drachten
+0079;Ploegstraat 2a;3114 NP;Schiedam
+0080;Voorstraat 25;3135 HV;Vlaardingen
+0081;Patrijsstraat 39;3353 AZ;Papendrecht
+0082;Kanaal van Steenenhoek Z.Z. 10;4202LS;Gorinchem
+0083;Pastoriedijk 89;3195HA;Pernis
+0084;Kerkdreef 42;4571GJ;Axel
+0085;Kierkegaardhof 54;1277 AL;Huizen
+0086;Kleine Beer 60;7904 LV;Hoogeveen
+0087;Jasmijnring 37;4881 HT;Zundert
+0088;Kethelweg 66A;3135GM;Vlaardingen
+0089;Van Maanenstraat 14A;3038CZ;Rotterdam
+0090;Laan van Nieuw Blankenburg 278;3181AL;Rozenburg
+0091;Landsteinerhof 68;7908 BC;Hoogeveen
+0092;Lange Brink 3;8315AH;Luttelgeest
+0093;Fabristraat 34A;3117 ML;Schiedam
+0094;Fabristraat 34B;3117 ML;Schiedam
+0095;Engelsestraat 16L3;3028CG;Rotterdam
+0096;Loggerstraat 3;8862ZN;Harlingen
+0097;Burchstraat 16A;4501 BJ;Oostburg
+0098;Melis Stokezijde 94;2543GG;Den Haag
+0099;Steenen Dijck 87;3146 BX;Maassluis
+0100;Molenweg 135;3181AW;Rozenburg
+0101;Moureauveld 8;4702MA;Roosendaal
+0102;Narcissenstraat 9;3181WT;Rozenburg
+0103;Narcissenstraat 23;3181WT;Rozenburg
+0104;Narcissenstraat 37;3181WT;Rozenburg
+0105;Wieldraaierstraat 39;4204EW;Gorinchem
+0106;Prinses Wilhelminastraat 9;3467 PK;Hekendorp
+0107;Hoefslag 8;8391BJ;Noordwolde
+0108;Nieuwe Zeedijk 1K 308;3221LZ;Hellevoetsluis
+0109;Geldersestraat 91;4191BB;Geldermalsen
+0110;Opaal 9;4337MA;Middelburg
+0111;Oosterstraat 89;3134NN;Vlaardingen
+0112;Oudewefslaan 84;9675 EW;Winschoten
+0113;Peursumseweg 119A;3381 KV;Giessenburg
+0114;Piersonstraat 8;3119RG;Schiedam
+0115;Poppestraat 59;4711EW;St. Willebrord
+0116;Prins Bernhardstraat 40;9974 RV;Zoutkamp
+0117;Prunuslaan 36;9944AT;Nieuwolda
+0118;Marathonlaan 26;2807BB;Gouda
+0119;Koningin Julianastraat 27;3466LG;Waarder
+0120;De Plaats 10;3417EC;Montfoort
+0121;Rivierdijk 794;3371EM;Hardinxveld - Giessendam
+0122;Kethelweg 66B;3135GM;Vlaardingen
+0123;Snecanusstraat 12;8607BK;Sneek
+0124;Snoekenveen 242;3205CN;Spijkenisse
+0125;Korte Singelstraat 21-3;3112 GA;Schiedam
+0126;Korte Singelstraat 21-2;3112 GA;Schiedam
+0127;Struitenweg 19b;3082WP;Rotterdam
+0128;Tesselschadelaan 45;4707CJ;Roosendaal
+0129;Utrechtse straatweg 7;3421GL;Oudewater
+0130;Van Langedonckstraat 80;3076 SM;Rotterdam
+0131;Chopinstraat 35A;3131DB;Vlaardingen
+0132;Voeghoutenstraat 236;7891LJ;Klazienaveen
+0133;Herenpad 20 A;3111 LN;Schiedam
+0134;Herenpad 20 B;3111 LN;Schiedam
+0135;Ampèrestraat 36A;3112MD;Schiedam
+0136;Elisadonk 220;4707ER;Roosendaal
+0137;Venkelstraat 29A;;Brielle
+0138;Westercluft 134;8332AH;Steenwijk
+0139;Wilgensingel 63;3181XK;Rozenburg
+0140;Wilgenstraat 37;5038PB;Tilburg
+0141;Wilhelminastraat 8;4696 BS;Stavenisse
+0142;Wilhelmina Druckerstraat 68;7741 RM;Coevorden
+0143;Willem Lodewijkstraat 8;8801EL;Franeker
+0144;Scheepjesbrug 433;4231ZZ;Meerkerk
+0145;Wouwbaan 230;4703TA;Roosendaal
+0146;Johan Willem Frisostraat 36;8606CW;Sneek
+0147;Hugo de Grootstraat 72A & B;2518 EG;Den Haag
+0148;2e Maasbosstraat 2 a;3134XJ;VLAARDINGEN
+0149;2e Maasbosstraat 2 b;3134XJ;VLAARDINGEN
+0150;2e Maasbosstraat 2 c;3134XJ;VLAARDINGEN
+0151;Datheenstraat 255;3132PG;Vlaardingen
+0152;Beeklaan 294;2562AV;Den Haag
+0153;Deensestraat 6A2;3028GH;Rotterdam
+0154;Rubensplein 6B3;3117BK;Schiedam
+0155;Broersveld 150A;3111LK;SCHIEDAM
+0156;Broersvest 74 c;3112DG;SCHIEDAM
+0157;Kuipers-Rietbergpad 15;3191BP;Hoogvliet
+0158;Visartstraat 31;4541BA;Sluiskil
+0159;Kastanjelaan 232;4621HL;Bergen op Zoom
+0160;Chopinstraat 33C;3131DB;VLAARDINGEN
+0161;Willem de Rijkelaan 134;2741VL;Waddinxveen
+0162;Coornhertstraat 95;3132GB;VLAARDINGEN
+0163;Curacaolaan 24;3131XC;VLAARDINGEN
+0164;Sint-Annalandstraat 116;3086TG;Rotterdam
+0165;De Driesprong 17;2295LL;KWINTSHEUL
+0166;Nieuwkerstraat 78;3311 TK;Dordrecht
+0167;Vogelschorstraat 24;4541 AZ;Sluiskil
+0168;Engelsestraat 16L1;3028CG;ROTTERDAM
+0169;de Genestetstraat 32;4532GB;TERNEUZEN
+0170;Goudestein 30;3085DB;Rotterdam
+0171;Wijdstraat 13;3421 AJ;Oudewater
+0172;Groeneweg 127;2691ML;'S-GRAVENZANDE
+0173;Groeneweg 71;2691MK;S-GRAVENZANDE
+0174;Groeneweg 74;2691MR;'S-GRAVENZANDE
+0175;Hagastraat 8;3114ND;Schiedam
+0176;Herautpad 22;3119DL;SCHIEDAM
+0177;Hoge Noordweg 27B;2671DZ;NAALDWIJK
+0178;Hoge Noordweg 28;2671DZ;NAALDWIJK
+0179;Rooseveltlaan 185;4624 DM;Bergen op Zoom
+0180;Liesveld 100;3131CM;VLAARDINGEN
+0181;Hontenissestraat 124;3086KJ;ROTTERDAM
+0182;Malzwin 34;8223 XG;Lelystad
+0183;Hugo de Vriesstraat 54;3132TG;VLAARDINGEN
+0184;Mathenesserdijk 261-C03;3027 BN;Rotterdam
+0185;Laan van Nieuw Blankenburg 328;3181AM;Rozenburg
+0186;Woutersweg 20;2691 PR;'s-Gravenzande
+0187;Jacob van Lennepstraat 13 A;3117SH;SCHIEDAM
+0188;Jacob van Lennepstraat 13 b;3117SH;SCHIEDAM
+0189;Jacob van Lennepstraat 34;3117SK;SCHIEDAM
+0190;Achterdijk 47A;4243 TM;Nieuwland
+0191;Jan van Arkelstraat 118;3132VP;VLAARDINGEN
+0192;Kaapsebos 11;2676BX;MAASDIJK
+0193;Kapershoek 11;3085ED;ROTTERDAM
+0194;Keesomstraat 22;3132TJ;VLAARDINGEN
+0195;Keesomstraat 50;3132TJ;VLAARDINGEN
+0196;Keesomstraat 54;3132TJ;VLAARDINGEN
+0197;Scheepjesbrug 814;4231ZZ;Meerkerk
+0198;Krabbendijkestraat 456;3086 LV;Rotterdam
+0199;Kerstendijk 125;3079EV;ROTTERDAM
+0200;Stal 355;9205AN;Drachten
+0201;Amberberg 14;4707 NM;Roosendaal
+0202;Kimbrenoord 15;3079KC;ROTTERDAM
+0203;Dorpstraat 48;3411AG;Lopik
+0204;Punter 22 34;8242DT;Lelystad
+0205;Kreekrug 1;2678PR;DE LIER
+0206;Kruiningenstraat 152;3086KS;ROTTERDAM
+0207;Kwikstaartweg 45;3136JH;VLAARDINGEN
+0208;Mr. L.A. Kesperweg 31A;3135BS;VLAARDINGEN
+0209;Laan van Adrichem 12;2678CZ;DE LIER
+0210;Lorentzstraat 73;3132SP;VLAARDINGEN
+0211;Maasdijk 206;2691NZ;S-GRAVENZANDE
+0212;Wijngaard 66;8121CD;Lelystad
+0213;Mr. Troelstrastraat 11;3131HR;VLAARDINGEN
+0214;Mendelssohnplein 13D;3131RD;VLAARDINGEN
+0215;Mendelssohnplein 10C;3131RD;VLAARDINGEN
+0216;Mendelssohnplein 46a;3131RK;VLAARDINGEN
+0217;Middelrode 8;3085CR;ROTTERDAM
+0218;P.F. Catsstraat 8;8801VC;Franeker
+0219;Miltonstraat 55;3076TG;ROTTERDAM
+0220;Miltonstraat 85;3076TH;ROTTERDAM
+0221;Molenstraat 10;2671EX;NAALDWIJK
+0222;Molenstraat 23;2671EW;NAALDWIJK
+0223;Acacialaan 9;2641 aa;Pijnacker
+0224;Nicolaas Beetsstraat 29;3131GP;VLAARDINGEN
+0225;Kerkwerversingel 127;3086 HL;ROTTERDAM
+0226;Rivierdijk 793;3371 EM;Hardinxveld - Giessendam
+0227;Oostlaan 3;2678NK;DE LIER
+0228;Parallelweg 122A;3131DL;VLAARDINGEN
+0229;Parallelweg 98B;3131DJ;VLAARDINGEN
+0230;Pasteursingel 61B;3028EJ;ROTTERDAM
+0231;Platostraat 80;3076BP;ROTTERDAM
+0232;Zuidhoek 209D;3082PH;ROTTERDAM
+0233;Rembrandtstraat 20B;2671GD;NAALDWIJK
+0234;Rotterdamsedijk 154B;3112BJ;SCHIEDAM
+0235;Rubensplein 3 B;3117BK;SCHIEDAM
+0236;Schalkeroord 389;3079WH;ROTTERDAM
+0237;Schere 238;3085DZ;ROTTERDAM
+0238;Van der Werffstraat 370;3132WK;VLAARDINGEN
+0239;Schoonegge 110;3085CZ;ROTTERDAM
+0240;Schoonegge 84;3085CX;ROTTERDAM
+0241;van der Werffstraat 166;3132WG;VLAARDINGEN
+0242;Sint Liduinastraat 76 A;3117CV;SCHIEDAM
+0243;Sint Liduinastraat 80A;3117CV;SCHIEDAM
+0244;Sint Liduinastraat 80B;3117CV;SCHIEDAM
+0245;van der Werffstraat 240;3132WH;VLAARDINGEN
+0246;Socratesstraat 168;3076BZ;ROTTERDAM
+0247;Spoorsingel 154b;3134XW;VLAARDINGEN
+0248;van der Waalsstraat 16;3132TM;VLAARDINGEN
+0249;Tholenstraat 114;3086TP;ROTTERDAM
+0250;van der Waalsstraat 70;3132TN;VLAARDINGEN
+0251;Pasteursingel 61B;3191EM;Hoogvliet
+0252;Middenbaan Noord 18B;3191EM;Hoogvliet
+0253;Middenbaan Noord 18C;3191EM;Hoogvliet
+0254;Middenbaan Noord 20A;3191EM;Hoogvliet
+0255;Middenbaan Noord 20B;3191EM;Hoogvliet
+0256;Middenbaan Noord 20C;3191EM;Hoogvliet
+0257;Middenbaan Noord 22A;3191EM;Hoogvliet
+0258;Middenbaan Noord 22B;3191EM;Hoogvliet
+0259;Middenbaan Noord 22C;3191EM;Hoogvliet
+0260;Persoonsdam 176;3071EE;Rotterdam
+0261;Persoonsdam 177;3071EE;Rotterdam
+0262;Persoonsdam 178;3071EE;Rotterdam
+0263;Persoonsdam 179;3071EE;Rotterdam
+0264;Persoonsdam 180;3071EE;Rotterdam
+0265;Persoonsdam 181;3071EE;Rotterdam
+0266;Persoonsdam 182;3071EE;Rotterdam
+0267;Persoonsdam 194;3071EE;Rotterdam
+0268;Persoonsdam 198;3071EE;Rotterdam
+0269;Professor Kamerlingh Onneslaan 134 A;3112 VL;Schiedam
+0270;Professor Kamerlingh Onneslaan 134 B1;3112 VL;Schiedam
+0271;Professor Kamerlingh Onneslaan 134 B2;3112 VL;Schiedam
+0272;Professor Kamerlingh Onneslaan 134 B3;3112 VL;Schiedam
+0273;Fenacoliuslaan 56B;3143AE;Maassluis
+0274;Karel Doormanlaan 21A;2678EX;DE LIER
+0275;Burgemeester Crezeelaan 76;2678KZ;DE LIER
+0276;Burgemeester Cramerlaan 82;2678 AN;DE LIER
+0277;Gerberalaan 113;2671 KC;Naaldwijk
+0278;Lange Broekweg 46;2671 DV;Naaldwijk
+0279;Haagkamp 11;2675 SK;Honselersdijk
+0280;Bovendijk 59;2295 RW;Kwintsheul
+0281;Bovendijk 61;2295 RW;Kwintsheul
+0282;Madeweg 25C;2681 PJ;Monster
+0283;Madeweg 35A;2681 PK;Monster
+0284;Molenweg 3A;2681 RD;Monster
+0285;Poeldijkseweg 27;2681 LT;Monster
+0286;Waellandweg 12;2681 LV;Monster
+0287;Prins Willemweg 2;3151 HM;Hoek van Holland
+0288;De Haak, Zekkenstraat 31A;3151 XP;Hoek van Holland
+0289;De Haak, Zekkenstraat 31B;3151 XP;Hoek van Holland
+0290;De Haak, Zekkenstraat 56;3151 XP;Hoek van Holland
+0291;Koperwerf 28;2544EN;Den Haag
+0292;Burgemeester Stulemeijerlaan 71;3118BC;Schiedam
+0293;Akkerweg 41 [014];1779GJ;Den oever
+0294;Akkerweg 41 [015];1779GJ;Den Oever
+0295;Akkerweg 41 [018];1779GJ;Den oever
+0296;Akkerweg 41 [022];1779GJ;Den oever
+0297;Akkerweg 41 [026];1779GJ;Den oever
+0298;Akkerweg 41 [031];1779GJ;Den oever
+0299;Akkerweg 41 [037];1779GJ;Den Oever
+0300;Akkerweg 41 [040];1779GJ;Den oever
+0301;Akkerweg 41 [041];1779GJ;Den oever
+0302;Akkerweg 41 [042];1779GJ;Den oever
+0303;Akkerweg 41 [055];1779GJ;Den oever
+0304;Akkerweg 41 [056];1779GJ;Den oever
+0305;Akkerweg 41 [057];1779GJ;Den oever
+0306;Akkerweg 41 [059];1779GJ;Den oever
+0307;Akkerweg 41 [075];1779GJ;Den oever
+0308;Kerkweg 9a [135];1711 RR;Hensbroek
+0309;Kerkweg 9a [137];1711 RR;Hensbroek
+0310;Kerkweg 9a [210];1711 RR;Hensbroek
+0311;Kerkweg 9a [269];1711RR;Hensbroek
+0312;Kerkweg 9A [333];1711 RR;Hensbroek
+0313;Kerkweg 9A [334];1711 RR;Hensbroek
+0314;Kerkweg 9A [338];1711RR;Hensbroek
+0315;Kerkweg 9a [342];1711 RR;Hensbroek
+0316;Kerkweg 9a [346];1711 RR;Hensbroek
+0317;Kerkweg 9A [347];1711RR;Hensbroek
+0318;Kerkweg 9a [349];1711RR;Hensbroek
+0319;Kerkweg 9a [356];1711 RR;Hensbroek
+0320;Kerkweg 9a [359];1711RR;Hensbroek
+0321;Kerkweg 9a [453];1711 RR;Hensbroek
+0322;Bettingeslag 10;7824 HD;Emmen
+0323;Marnixstraat 32;7553 LC;Hengelo
+0324;Van Swinderenstraat 21;7741 VK;Coevorden
+0325;Hendriklaan 49;6043 BN;Roermond
+0326;Akkerweg 41 [068];1779GJ;Den oever
+0327;Putter 42;4872 PD;Etten-Leur
+0328;Noordmolenstraat 36a;3111PD;Schiedam
+0329;Noordmolenstraat 36b;3111PD;Schiedam
+0330;Noordmolenstraat 36c;3111PD;Schiedam
+0331;Flankstraat 11;4551 AR;Sas van Gent
+0332;Kerkweg 9a [340];1711 RR;Hensbroek
+0333;Kethelweg 66 D;3135 GM;Vlaardingen
+0334;Hof van zeeland 2;4451 RS;Heinkenszand
+0335;Molenweg 3B;2681 RD;Monster
+0336;Ofwegen 1A;2481 KA;Woubrugge
+0337;Kruisweg 16;2481 KA;Woubrugge
+0338;Kerkweg 9a [348];1711 RR;Hensbroek
+0339;Kerkweg 9a [357];1711 RR;Hensbroek
+0340;Professor Poelslaan 58C;3028ET;Rotterdam
+0341;Akkerweg 41 [010];1779GJ;Den oever
+0342;Akkerweg 41 [016];1779GJ;Den oever
+0343;Akkerweg 41 [019];1779GJ;Den oever
+0344;Pastoor Gillisstraat 81-A;5121 CC;Rijen
+0345;Compierekade 15;2404 NA;Alphen a/d Rijn
+0346;Beukenlaan 53;3181XA;Rozenburg
+0347;Van Ruijsdaellaan 72 A;3117XV;Schiedam
+0348;Wagenstraat 70;4845CW;Wagenberg
+0349;Persoonsdam 196;3071EE;Rotterdam
+0350;Akkerweg 41 [035];1779GJ;Den oever
+0351;Van Ruijsdaellaan 72 B;3117XV;Schiedam
+0352;Van Ruijsdaellaan 72 C;3117XV;Schiedam
+0353;Archimedesstraat 6 B;3112DB;Schiedam
+0354;Dorpsstraat 48;2445 AN;Aarlanderveen
+0355;Van Hoofsweg 4;4681SJ;Nieuw-Vossemeer
+0356;Akkerweg 41 [036];1779GJ;Den oever
+0357;Akkerweg 41 [038];1779GJ;Den oever
+0358;Monsterseweg 26A;2691JH;S-GRAVENZANDE
+0359;Kimbrenoord 49;3079 KC;Rotterdam
+0360;Kruiningenstraat 185;3086 KM;Rotterdam
+0361;Putsebocht 136 B01;3073 HS;Rotterdam
+0362;Ruigenhoek 69;3085 EM;Rotterdam
+0363;Rietdijkstraat 56A;3151 GJ;Hoek van Holland
+0364;Rietdijkstraat 56B;3151 GJ;Hoek van Holland
+0365;Laan op Zuid 949;3072 DB;Rotterdam
+0366;Lekdijk 14;2921 AD;Krimpen aan den Ijsel
+0367;Baanhoek 137;3361GC;Sliedrecht
+0368;Wedderweg 3;9699 RA;Vriescheloo
+0369;Oranjestraat 63;3111 AN;Schiedam
+0370;Cloosterstraat 23A;4587 CA;Kloosterzande
+0371;Zwingel 8B;4926 DC;Lage Zwaluwe
+0372;Akkerweg 41 [011];1779GJ;Den oever
+0373;Akkerweg 41 [017];1779GJ;Den oever
+0374;Vierambachtsstraat 32-B01;3023AN;Rotterdam
+0375;Cubalaan 25;2685 LA;Poeldijk
+0376;Zwethkade Zuid 30A;2635CV;Den Hoorn
+0377;Rijpstraat 24;3151BV;Hoek van Holland
+0378;Poeldijkseweg 29;2681 LT;Monster
+0379;Akkerweg 41 [074];1779 GJ;Den Oever
+0380;Parallelweg 114C;3131 DL;Vlaardingen
+0381;Parallelweg 134B;3131 DM;Vlaardingen
+0382;Kwekerslaan 7;2691 NP;S-GRAVENZANDE
+0383;Akkerweg 41 [020];1779GJ;Den oever
+0384;Akkerweg 41 [058];1779GJ;Den oever
+0385;Lavendelpad 6;3295RD;s-Gravendeel
+0386;Poolsestraat 29A;3028EN;Rotterdam
+0387;Verschansing 21;3181 NG;Rozenburg
+0388;1e Middellandstraat 104A;3021BH;Rotterdam
+0389;Kritostraat 54;3076 BH;Rotterdam
+0390;Roerdompstraat 4B;2953ER;Alblasserdam
+0391;Industriestraat 9;5107 NC;Dongen
+0392;Waterkant 54;1715 EA;Spanbroek
+0393;Donze Visserstraat 13;4531 BA;Terneuzen
+0394;Zegwaardseweg 54;2723 PB;Zoetermeer
+0395;Pastoriedijk 325;3195 HD;Pernis
+0396;Haven 24;3143 BC;Maassluis
+0397;Boogertstraat 5A;3141VN;Maassluis
+0398;Boogertstraat 7A;3141VN;Maassluis

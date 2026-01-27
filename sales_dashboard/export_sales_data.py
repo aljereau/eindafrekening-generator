@@ -55,10 +55,58 @@ def export_data():
     total_marge = sum(float(d.get('marge_maand_excl_btw') or 0) for d in data)
     avg_marge = total_marge / total_props if total_props > 0 else 0
     
-    # Get unique owners and tenants
-    owners = list(set(d.get('eigenaar_naam') for d in data if d.get('eigenaar_naam')))
-    tenants = list(set(d.get('huurder_naam') for d in data if d.get('huurder_naam')))
+    # Get unique owners and tenants from properties
+    owners_from_props = list(set(d.get('eigenaar_naam') for d in data if d.get('eigenaar_naam')))
+    tenants_from_props = list(set(d.get('huurder_naam') for d in data if d.get('huurder_naam')))
     cities = list(set(d.get('plaats') for d in data if d.get('plaats')))
+    
+    # Get ALL relaties from database (including orphans not connected to contracts)
+    relaties_cursor = conn.execute("""
+        SELECT 
+            r.id,
+            r.naam,
+            r.type,
+            r.contactpersoon,
+            r.email,
+            r.telefoonnummer,
+            r.adres,
+            r.postcode,
+            r.plaats,
+            r.land,
+            r.kvk_nummer,
+            r.btw_nummer,
+            r.iban,
+            r.marge_max,
+            -- Check if this relatie is an eigenaar (has inhuur contracts)
+            (SELECT COUNT(*) FROM inhuur_contracten ic WHERE ic.relatie_id = r.id) as inhuur_count,
+            -- Check if this relatie is a huurder (has verhuur contracts)
+            (SELECT COUNT(*) FROM verhuur_contracten vc WHERE vc.relatie_id = r.id) as verhuur_count
+        FROM relaties r
+        ORDER BY r.naam
+    """)
+    
+    all_relaties = []
+    for row in relaties_cursor.fetchall():
+        all_relaties.append({
+            "id": row[0],
+            "naam": row[1] or "",
+            "type": row[2] or "",
+            "contactpersoon": row[3] or "",
+            "email": row[4] or "",
+            "telefoon": row[5] or "",
+            "adres": row[6] or "",
+            "postcode": row[7] or "",
+            "plaats": row[8] or "",
+            "land": row[9] or "",
+            "kvk": row[10] or "",
+            "btw": row[11] or "",
+            "iban": row[12] or "",
+            "marge_max": row[13],
+            "inhuur_count": row[14] or 0,
+            "verhuur_count": row[15] or 0,
+            "is_eigenaar": (row[14] or 0) > 0,
+            "is_huurder": (row[15] or 0) > 0,
+        })
     
     # Get configuratie values
     config_cursor = conn.execute("SELECT key, value FROM configuratie")
@@ -78,14 +126,16 @@ def export_data():
             "total_marge_maand": round(total_marge, 2),
             "avg_marge": round(avg_marge, 2),
             "total_marge_jaar": round(total_marge * 12, 2),
-            "num_owners": len(owners),
-            "num_tenants": len(tenants),
+            "num_owners": len([r for r in all_relaties if r['is_eigenaar']]),
+            "num_tenants": len([r for r in all_relaties if r['is_huurder']]),
+            "num_relaties": len(all_relaties),
         },
         "config": config,
-        "owners": sorted(owners),
-        "tenants": sorted(tenants),
+        "owners": sorted(owners_from_props),
+        "tenants": sorted(tenants_from_props),
         "cities": sorted(cities),
         "properties": data,
+        "relaties": all_relaties,  # All relaties including orphans
     }
     
     # Write as JavaScript file (easier to load in HTML)
@@ -99,7 +149,7 @@ def export_data():
     print(f"✅ Exported {total_props} properties to: {OUTPUT_PATH}")
     print(f"   Stats: {active} active, {available} available, {rented} rented")
     print(f"   Marge: €{total_marge:,.0f}/maand (€{total_marge*12:,.0f}/jaar)")
-    print(f"   {len(owners)} eigenaren, {len(tenants)} huurders")
+    print(f"   {len(all_relaties)} relaties ({len([r for r in all_relaties if r['is_eigenaar']])} eigenaren, {len([r for r in all_relaties if r['is_huurder']])} huurders)")
     
     return export
 

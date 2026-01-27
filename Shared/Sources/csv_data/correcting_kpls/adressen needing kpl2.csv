@@ -1,0 +1,636 @@
+﻿Code;Omschrijving;;;;;;OBJECT;Straat en huisnummer;;;OBJECT;Straat en huisnummer;;;
+000;Internet;;;;;;0388;1e Middellandstraat 104A;;;0001;Nunspeetlaan 14;;;Adres
+0000;GWE;;;;;;0148;2e Maasbosstraat 2 a;;;0002;Allard Piersonlaan 142;;;1e Middellandstraat 104A
+00000;Algemeen;;;;;;0149;2e Maasbosstraat 2 b;;;0003;Acacia 2;;;2e Maasbosstraat 2 a
+0001;Nunspeetlaan 14 Den Haag;;;;;;0150;2e Maasbosstraat 2 c;;;0004;Broekweg 25;;;2e Maasbosstraat 2 b
+0002;Allard Piersonlaan 142 Den Haag;;;;;;0022;2e van Leydengaelstraat 6;;;0005;Ringbaan Oost 327;;;2e Maasbosstraat 2 c
+0003;Acacia 2 Hellevoetsluis;;;;;;0003;Acacia 2;;;0006;Enschotsestraat 163;;;2e van Leydengaelstraat 6
+0004;Broekweg 25 Vlaardingen;;;;;;0190;Achterdijk 47a;;;0007;Adriaan Baasstraat 34;;;Acacia 2
+0005;Ringbaan Oost 327 Tilburg;;;;;;0007;Adriaan Baasstraat 34;;;0008;Arkelse Onderweg 24a;;;Achterdijk 47a
+0006;Enschotsestraat 163 Tilburg;;;;;;0341;Akkerweg 41 [huis 10] ;;;0009;Galgeweg 48-A;;;Adriaan Baasstraat 34
+0007;Adriaan Baasstraat 34 Hoogeveen;;;;;;0372;Akkerweg 41 [huis 11] ;;;0010;Kethelweg 1B;;;Akkerweg 41 [huis 10] 
+0008;Arkelse onderweg 24a Gorichem;;;;;;0293;Akkerweg 41 [huis 14];;;0011;Kethelweg 1C;;;Akkerweg 41 [huis 11] 
+0009;Galgeweg 48-A, s-Gravenzande;;;;;;0294;Akkerweg 41 [huis 15] ;;;0012;Baarlelaan 27;;;Akkerweg 41 [huis 14]
+0010;Kethelweg 1B Vlaardingen;;;;;;0373;Akkerweg 41 [huis 17];;;0013;Baarsveen 197;;;Akkerweg 41 [huis 15] 
+0011;Kethelweg 1C, Vlaardingen;;;;;;0383;Akkerweg 41 [huis 20] ;;;0014;Abelenlaan 143;;;Akkerweg 41 [huis 17]
+0012;Baarlelaan 27 Hoogeveen;;;;;;0297;Akkerweg 41 [huis 26] ;;;0015;Maasdijk 69 ;;;Akkerweg 41 [huis 20] 
+0013;Baarsveen 197 Spijkenisse;;;;;;0350;Akkerweg 41 [huis 35] ;;;0016;van Scorelstraat 73;;;Akkerweg 41 [huis 26] 
+0014;Abelenlaan 143 Rozenburg;;;;;;0356;Akkerweg 41 [huis 36];;;0017;G.A. Brederolaan 75B;;;Akkerweg 41 [huis 35] 
+0015;Maasdijk 69, S-Gravenzande;;;;;;0299;Akkerweg 41 [huis 37] ;;;0018;Meester G. Groen van Prinsterlaan 313;;;Akkerweg 41 [huis 36]
+0016;van Scorelstraat 73 Maasluis;;;;;;0300;Akkerweg 41 [huis 40] ;;;0019;Franselaan 273B;;;Akkerweg 41 [huis 37] 
+0017;G.A. Brederolaan 75B Maassluis;;;;;;0301;Akkerweg 41 [huis 41] ;;;0020;Mr. Troelstrastraat 37;;;Akkerweg 41 [huis 40] 
+0018;Meester G. Groen van Prinsterlaan 313 Amstelveen;;;;;;0302;Akkerweg 41 [huis 42];;;0021;Vaartweg 106C;;;Akkerweg 41 [huis 41] 
+0019;Franselaan 273B Rotterdam;;;;;;0303;Akkerweg 41 [huis 55] ;;;0022;2e van Leydengaelstraat 6;;;Akkerweg 41 [huis 42]
+0020;Mr. Troelstrastraat 37 Vlaardingen;;;;;;0304;Akkerweg 41 [huis 56];;;0023;Desiree Geeraertstraat 1 B;;;Akkerweg 41 [huis 55] 
+0021;Vaartweg 106C Vlaardingen;;;;;;0305;Akkerweg 41 [huis 57];;;0024;Desiree Geeraertstraat 1 C;;;Akkerweg 41 [huis 56]
+0022;2e van Leydengaelstraat 6, Vlaardingen;;;;;;0384;Akkerweg 41 [huis 58];;;0025;Groenelaan 30B;;;Akkerweg 41 [huis 57]
+0023;Desiree Geeraerstraat 1b  Baarle-Nassau;;;;;;0327;Akkerweg 41 [huis 74];;;0026;Chopinstraat 39C;;;Akkerweg 41 [huis 58]
+0024;Desiree Geeraertstraat 1 C, Baarle-Nassau;;;;;;0307;Akkerweg 41 [huis 75];;;0027;Buizerdstraat 210;;;Akkerweg 41 [huis 74]
+0025;Groenelaan 30B Schiedam;;;;;;0002;Allard Piersonlaan 142;;;0028;Lange kruisweg 12;;;Akkerweg 41 [huis 75]
+0026;Chopinstraat 39C Vlaardingen;;;;;;0043;Amperelaan 23;;;0029;Madeliefstraat 46c;;;Allard Piersonlaan 142
+0027;Buizerdstraat 210 Maassluis;;;;;;0135;Amperestraat 36A;;;0030;Curacaolaan 88;;;Amperelaan 23
+0028;Lange kruisweg 12 Maasdijk;;;;;;0353;Archimedesstraat 6B;;;0031;Hogenbanweg 331;;;Amperestraat 36A
+0029;Maeliefstraat 46C Rotterdam;;;;;;0055;Baanhoek 139;;;0032;Jacob van offwegenlaan 26;;;Archimedesstraat 6B
+0030;Curacaolaan 88, Vlaardingen;;;;;;0012;Baarlelaan 27;;;0033;Kethelweg 66C;;;Baanhoek 139
+0031;Hogenbanweg 331 Schiedam;;;;;;0013;Baarsveen 197;;;0034;Kethelweg 68A;;;Baarlelaan 27
+0032;Jacob van Offwegenlaan 26 Rijswijk;;;;;;0040;Beatrixstraat 3;;;0035;Messchaertplein 39;;;Baarsveen 197
+0033;Kethelweg 66C Vlaardingen;;;;;;0152;Beeklaan 294;;;0036;Messchaertplein 40;;;Beatrixstraat 3
+0034;Kethelweg 68A Vlaardingen;;;;;;0322;Bettingeslag 10;;;0037;Westfrankelandsestraat 106;;;Beeklaan 294
+0035;Messchaertplein 39 Vlaardingen;;;;;;0346;Beukenlaan 53;;;0038;Westfrankelandsestraat 108;;;Bettingeslag 10
+0036;Messchaertplein 40 Vlaardingen;;;;;;0047;Bisschopstraat 68;;;0039;Inundatiestraat 3;;;Beukenlaan 53
+0037;Westfrankelandsestraat 106 Schiedam;;;;;;0048;Bliek 41;;;0040;Beatrixstraat 3;;;Bisschopstraat 68
+0038;Westfrankelandsestraat 108 Schiedam;;;;;;0397;Boogertstraat 5A;;;0041;Nunspeetlaan 53;;;Bliek 41
+0039;Inundatiestraat 3 Sas van Gent;;;;;;0398;Boogertstraat 7A;;;0042;Parallelweg 110A;;;Boogertstraat 5A
+0040;Beatrixstraat 3 Rozenburg;;;;;;0049;Bornerbroeksestraat 129A;;;0043;Amperelaan 23;;;Boogertstraat 7A
+0041;Nunspeetlaan 53 Den Haag;;;;;;0280;Bovendijk 59;;;0044;Pleinweg 101 A;;;Bornerbroeksestraat 129A
+0042;Parallelweg 110A Vlaardingen;;;;;;0281;Bovendijk 61;;;0045;Pleinweg 101 B;;;Bovendijk 59
+0043;Amperelaan 23 Oudeschoot;;;;;;0004;Broekweg 25;;;0046;Nieuwenhoornstraat 46B;;;Bovendijk 61
+0044;Pleinweg 101A Rotterdam;;;;;;0027;Buizerdstraat 210;;;0047;Bisschopstraat 68;;;Broekweg 25
+0045;Pleinweg 101 B, Rotterdam;;;;;;0097;Burchstraat 16A;;;0048;Bliek 41;;;Buizerdstraat 210
+0046;Nieuwenhoornstraat 46b Rotterdam;;;;;;0160;Chopinstraat 33C;;;0049;Bornerbroeksestraat 129A;;;Burchstraat 16A
+0047;Bisschopstraat 68 Vollehove;;;;;;0131;Chopinstraat 35A;;;0050;Sint Josephstraat 61;;;Chopinstraat 33C
+0048;Bliek 41 Hellevoetsluis;;;;;;0026;Chopinstraat 39C;;;0051;Coehoorn van Scheltingaweg 12;;;Chopinstraat 35A
+0049;Bornerbroekstraat 129A Almelo;;;;;;0370;Cloosterstraat 23a;;;0052;Coehoorn van Scheltingaweg 66;;;Chopinstraat 39C
+0050;Sint Josephstraat 61 Tilburg;;;;;;0051;Coehoorn van Scheltingaweg 12;;;0053;Curcumastraat 39 ;;;Cloosterstraat 23a
+0051;Coehoorn van Scheltingaweg 12, Heerenveen;;;;;;0052;Coehoorn van Scheltingaweg 66;;;0054;De Gasperistraat 11;;;Coehoorn van Scheltingaweg 12
+0052;Coehoorn van Scheltingaweg 66 Heereveen;;;;;;0375;Cubalaan 25;;;0055;Baanhoek 139;;;Coehoorn van Scheltingaweg 66
+0053;Curcumastraat 39 , Hoogvliet;;;;;;0053;Curcumastraat 39 ;;;0056;De Hooidollen 606;;;Cubalaan 25
+0054;De Gasperistraat 11 Goes;;;;;;0151;Datheenstraat 255;;;0057;Markt 5 ;;;Curcumastraat 39 
+0055;Baanhoek 19 Sliedrecht;;;;;;0165;De Driesprong 17;;;0058;Deugenweerd 18;;;Datheenstraat 255
+0056;De Hooidollen 606, Leeuwarden;;;;;;0056;De Hooidollen 606;;;0059;Dieptol 63;;;De Driesprong 17
+0057;Markt 5, Maassluis;;;;;;0371;De Zwingel 8B;;;0060;Besterdring 6;;;De Hooidollen 606
+0058;Deugenweerd 18 Borculo;;;;;;0153;Deensestraat 6A2;;;0061;Dwarsweg 44 ;;;De Zwingel 8B
+0059;Dieptol 63  Steenwijk;;;;;;0023;Desiree Geerartstraat 1B;;;0062;Eendrachtstraat 22;;;Deensestraat 6A2
+0060;Besterdring 6 Tilburg;;;;;;0024;Desiree Geerartstraat 1C;;;0063;Energieweg 40 ;;;Desiree Geerartstraat 1B
+0061;Dwarsweg 44 , Rozenburg;;;;;;0058;Deugenweerd 18;;;0064;Enk 6;;;Desiree Geerartstraat 1C
+0062;Eendrachtstraat 22 Middelharnis;;;;;;0059;Dieptol 63;;;0065;Esdoornlaan 68 ;;;Deugenweerd 18
+0063;Energieweg 40 Vlaardingen;;;;;;0393;Donze Visserstraat 13;;;0066;Dorpsstraat 73 ;;;Dieptol 63
+0064;Enk 6 Borne;;;;;;0354;Dorpsstraat 48;;;0067;Franz Liszstraat 5;;;Donze visserstraat 
+0065;Esdoornlaan 68 , Rozenburg;;;;;;0066;Dorpsstraat 73;;;0068;F.Erensstraat 21;;;Dorpsstraat 48
+0066;Dorpsstraat 73 Moordrecht;;;;;;0061;Dwarsweg 44 ;;;0069;Gaffelaar 3;;;Dorpsstraat 73
+0067;Franz Liszstraat 5, Terneuzen;;;;;;0136;Elisadonk 220;;;0070;Geleenstraat 1;;;Dwarsweg 44 
+0068;Frans Erensstraat 21 Sittard;;;;;;0063;Energieweg 40;;;0071;H. Algraplein 25;;;Elisadonk 220
+0069;Gaffelaar 3 Franeker;;;;;;0095;Engelsestraat 16L1;;;0072;Heemskerkstraat 19;;;Energieweg 40
+0070;Geleenstraat 1 Sittard;;;;;;0095;Engelsestraat 16L1;;;0073;Hendrik Deddenstraat 26;;;Engelsestraat 16L1
+0071;H. Algraplein 25 Franeker;;;;;;0064;Enk 6;;;0074;Mgr. W.M. Bekkerslaan 34;;;Engelsestraat 16L3
+0072;Heemskerkstraat 19 Lutjegast;;;;;;0006;Enschotsestraat 163;;;0075;Hoofdstraat 110;;;Enk 6
+0073;H Deddenstraat 26 Steggerda;;;;;;0065;Esdoornlaan 68 ;;;0076;Molendijk 4;;;Enschotsestraat 163
+0074;Monseigneur W.M. Bekkerslaan 34, Maassluis;;;;;;0,00;#N/A;;;0077;Voorstraat 10;;;Esdoornlaan 68 
+0075;Hoofdstraat 110, Heeswijk-Dinther;;;;;;0331;Flankstraat 11;;;0078;Hooizolder 6;;;Europalaan 50
+0076;Molendijk 4 Oude-Tonge;;;;;;0067;Franz Liszstraat 5;;;0079;Ploegstraat 2a;;;Flankstraat 11
+0077;Voorstraat 10 Oude Tonge;;;;;;0017;G.A. Brederolaan 75B;;;0080;Voorstraat 25;;;Franz Liszstraat 5
+0078;Hooizolder 6 Drachten;;;;;;0,00;#N/A;;;0081;Patrijsstraat 39;;;G.A. Brederolaan 75B
+0079;Ploegstraat 2A Schiedam;;;;;;0109;Geldersestraat 91;;;0082;Kanaal van Steenenhoek Z.Z. 10;;;Galgeweg 48A
+0080;Voorstraat 25 Vlaardingen;;;;;;0070;Geleenstraat 1;;;0083;Pastoriedijk 89;;;Geldersestraat 91
+0081;Patrijsstraat 39 Papendrecht;;;;;;0170;Goudestein 30;;;0084;Kerkdreef 42;;;Geleenstraat 1
+0082;Kanaal van Steenenhoek z z 10 Gorinchem;;;;;;0025;Groenelaan 30B;;;0085;Kierkegaardhof 54;;;Goudestein 30
+0083;Pastoriedijk 89 Pernis;;;;;;0071;H. Algraplein 25;;;0086;Kleine Beer 60;;;Groenelaan 30B
+0084;Kerkdreef 42, Axel;;;;;;0,00;#N/A;;;0087;Jasmijnring 37;;;H. Algraplein 25
+0085;Kierkegaardhof 54 Huizen;;;;;;0396;Haven 24;;;0088;Kethelweg 66A;;;Hagastraat 8
+0086;Kleine Beer 60 Hoogeveen;;;;;;0072;Heemskerkstraat 19;;;0089;Van Maanenstraat 14A;;;Haven 24
+0087;Jasmijnring 22, Zundert;;;;;;0073;Hendrik Deddenstraat 26;;;0090;Laan van Nieuw Blankenburg 278;;;Heemskerkstraat 19
+0088;Kethelweg 66A, Vlaardingen;;;;;;0325;Hendriklaan 49;;;0091;Landsteinerhof 68;;;Hendrik Deddenstraat 26
+0089;van Maanenstraat 14A Rotterdam;;;;;;0176;Herautpad 22 ;;;0092;Lange Brink 3;;;Hendriklaan 49
+0090;Laan van Nieuw Blankenburg 278, Rozenburg;;;;;;0133;Herenpad 20A;;;0093;Fabristraat 34A;;;Herautpad 22 
+0091;Landsteinerhof 68 Hoogeveen;;;;;;0107;Hoefslag 8;;;0094;Fabristraat 34B;;;Herenpad 20A
+0092;Lange Brink 3 Luttelgeest;;;;;;0031;Hogenbanweg 331;;;0095;Engelsestraat 16L3;;;Hoefslag 8
+0093;Fabristraat 34A Schiedam;;;;;;0181;Hontenissestraat 124;;;0096;Loggerstraat 3;;;Hogenbanweg 331
+0094;Fabristraat 34B, Schiedam;;;;;;0075;Hoofdstraat 110;;;0097;Burchstraat 16A;;;Hontenissestraat 124
+0095;Engelsestraat 16L3 Rotterdam;;;;;;0078;Hooizolder 6;;;0098;Melis Stokezijde 94;;;Hoofdstraat 110
+0096;Voorstraat 3, Harlingen;;;;;;0147;Hugo de Grootstraat 72A&B;;;0099;Steenen Dijck 87;;;Hooizolder 6
+0097;Burchtstraat 16a Oostburg;;;;;;0391;Industriestraat 9;;;0100;Molenweg 135;;;Hugo de Grootstraat 72A&B
+0098;Melis Stokezijde 94 Den Haag;;;;;;0039;Inundatiestraat 3;;;0101;Moureauveld 8;;;Industriestraat 9
+0099;Steenen Dijck 87 Maassluis;;;;;;0187;Jacob van Lennepstraat 13 A;;;0102;Narcissenstraat 9;;;Inundatiestraat 3
+0100;Molenweg 135 Rozenburg;;;;;;0188;Jacob van Lennepstraat 13 B;;;0103;Narcissenstraat 23 ;;;Jacob van Lennepstraat 13 A
+0101;Moureauveld 8 Roosendaal;;;;;;0087;Jasmijnring 37;;;0104;Narcissenstraat 37;;;Jacob van Lennepstraat 13 B
+0102;Narcissenstraat 9, Rozenburg;;;;;;0146;Johan Willen Frisostraat 36;;;0105;Wieldraaierstraat 39;;;Jasmijnring 37
+0103;Narcissenstraat 23 Rozenburg;;;;;;0082;Kanaal van Steenenhoek Z.Z. 10;;;0106;Prinses Wilhelminastraat 9;;;Johan Willen Frisostraat 36
+0104;Narcissenstraat 37, Rozenburg;;;;;;0193;Kapershoek 11;;;0107;Hoefslag 8;;;Kanaal van Steenenhoek Z.Z. 10
+0105;Wieldraaierstraat 39 Gorinchem;;;;;;0159;Kastanjelaan 232;;;0108;Nieuwe Zeedijk 1K 308;;;Kapershoek 11
+0106;Prinses Wilhelminastraat 9 Hekendorp;;;;;;0,00;#N/A;;;0109;Geldersestraat 91;;;Kastanjelaan 232
+0107;Hoefslag 8 Noordwolde;;;;;;0084;Kerkdreef 42;;;0110;Opaal 9;;;Keesomstraat 54
+0108;Nieuwe Zeedijk 1K 308 Hellevoetsluis;;;;;;0308;Kerkweg 9a [huis 135];;;0111;Oosterstraat 89;;;Kerkdreef 42
+0109;Geldersestraat 91 Geldermalsen;;;;;;0309;Kerkweg 9a [huis 137];;;0112;Oudewefslaan 84;;;Kerkweg 9a [huis 135]
+0110;Opaal 9, Middelburg;;;;;;0310;Kerkweg 9a [huis 210];;;0113;Peursumseweg 119A;;;Kerkweg 9a [huis 137]
+0111;Oosterstraat 89 Vlaardingen;;;;;;0311;Kerkweg 9a [huis 269];;;0114;Piersonstraat 8;;;Kerkweg 9a [huis 210]
+0112;Oudewerfslaan 84 Winschoten;;;;;;0312;Kerkweg 9a [huis 333];;;0115;Poppestraat 59;;;Kerkweg 9a [huis 269]
+0113;Peursumseweg 119 Giessenburg;;;;;;0313;Kerkweg 9a [huis 334];;;0116;Prins Bernhardstraat 40;;;Kerkweg 9a [huis 333]
+0114;Piersonstraat 8 , Schiedam;;;;;;0314;Kerkweg 9a [huis 338];;;0117;Prunuslaan 36;;;Kerkweg 9a [huis 334]
+0115;Poppestraat 59 St Willebrord;;;;;;0332;Kerkweg 9a [huis 340];;;0118;Marathonlaan 26;;;Kerkweg 9a [huis 338]
+0116;Prins Bernhardstraat 40 Zoutkamp;;;;;;0315;Kerkweg 9a [huis 342];;;0119;Koningin Julianastraat 27;;;Kerkweg 9a [huis 340]
+0117;Prunuslaan 36, Nieuwolda;;;;;;0316;Kerkweg 9a [huis 346];;;0120;De Plaats 10;;;Kerkweg 9a [huis 342]
+0118;Marathonlaan 26 Gouda;;;;;;0317;Kerkweg 9a [huis 347];;;0121;Rivierdijk 794;;;Kerkweg 9a [huis 346]
+0119;Koningin Julianalaan 27 Waarder;;;;;;0338;Kerkweg 9a [huis 348];;;0122;Kethelweg 66B ;;;Kerkweg 9a [huis 347]
+0120;Plaats 10 Montfoort;;;;;;0318;Kerkweg 9a [huis 349];;;0123;Snecanusstraat 12;;;Kerkweg 9a [huis 348]
+0121;Rivierdijk 794, Hardinxveld - Giessendam;;;;;;0319;Kerkweg 9a [huis 356];;;0124;Snoekenveen 242;;;Kerkweg 9a [huis 349]
+0122;Kethelweg 66B, Vlaardingen;;;;;;0339;Kerkweg 9a [huis 357];;;0125;Korte Singelstraat 21-3;;;Kerkweg 9a [huis 356]
+0123;Snecanusstraat 12 Sneek;;;;;;0320;Kerkweg 9a [huis 359];;;0126;Korte Singelstraat 21-2;;;Kerkweg 9a [huis 357]
+0124;Snoekenveen 242 Spijkenisse;;;;;;0321;Kerkweg 9a [huis 453];;;0127;Struitenweg 19b;;;Kerkweg 9a [huis 359]
+0125;Korte Singelstraat 21-3 Schiedam;;;;;;0225;Kerkwervesingel 127;;;0128;Tesselschadelaan 45;;;Kerkweg 9a [huis 453]
+0126;Korte Singelstraat 21-2, Schiedam;;;;;;0199;Kerstendijk 125;;;0129;Utrechtse straatweg 7 ;;;Kerkwervesingel 127
+0127;Struitenweg 19B Rotterdam;;;;;;0010;Kethelweg 1B;;;0130;Van Langedonckstraat 80;;;Kerstendijk 125
+0128;Tesselschadelaan 45, Roosendaal;;;;;;0011;Kethelweg 1C;;;0131;Chopinstraat 35A ;;;Kethelweg 1B
+0129;Utrechtse straatweg 7 , Oudewater;;;;;;0088;Kethelweg 66A;;;0132;Voeghoutenstraat 236;;;Kethelweg 1C
+0130;Van Langendonckstraat 80 Rotterdam;;;;;;0122;Kethelweg 66B;;;0133;Herenpad 20 A;;;Kethelweg 66A
+0131;Chopinstraat 35A Vlaardingen;;;;;;0033;Kethelweg 66C;;;0134;Herenpad 20 B;;;Kethelweg 66B
+0132;Voeghoutenstraat 23 Klazienaveen;;;;;;0333;Kethelweg 66D;;;0135;Ampèrestraat 36A;;;Kethelweg 66C
+0133;Herenpad 20B Schiedam;;;;;;0034;Kethelweg 68A;;;0136;Elisadonk 220;;;Kethelweg 66D
+0134;Herenpad 20 B, Schiedam;;;;;;0085;Kierkegaardhof 54;;;0137;Venkelstraat 29A;;;Kethelweg 68A
+0135;Amperestraat 36A Schiedam;;;;;;0202;Kimbrenoord 15;;;0138;Westercluft 134;;;Kierkegaardhof 54
+0136;Elisadonk 220 Roosendaal;;;;;;0359;Kimbrenoord 49;;;0139;Wilgensingel 63 ;;;Kimbrenoord 15
+0137;Venkelstraat 29a Brielle;;;;;;0086;Kleine Beer 60;;;0140;Wilgenstraat 37;;;Kimbrenoord 49
+0138;Westercluft 134 Steenwijk;;;;;;0119;Koningin Julianastraat 27;;;0141;Wilhelminastraat 8;;;Kleine Beer 60
+0139;Wilgensingel 63 , Rozenburg;;;;;;0126;Korte Singelstraat 21-2;;;0142;Wilhelmina Druckerstraat 68;;;Koningin Julianastraat 27
+0140;Wilgenstraat 37 Tilburg;;;;;;0125;Korte Singelstraat 21-3;;;0143;Willem Lodewijkstraat 8;;;Korte Singelstraat 21-2
+0141;Wilhelminastraat 8 Stavenisse;;;;;;0205;Kreekrug 1;;;0144;Scheepjesbrug 433;;;Korte Singelstraat 21-3
+0142;Wilhelmina Druckerstraat 68 Coevorden;;;;;;0389;Kritostraat 54;;;0145;Wouwbaan 230;;;Kreekrug 1
+0143;Willem Lodewijkstraat 8, Franeker;;;;;;0206;Kruiningenstraat 152;;;0146;Johan Willem Frisostraat 36;;;Kritostraat 54
+0144;Scheepjesbrug 433 Meerkerk;;;;;;0360;Kruiningenstraat 185;;;0147;Hugo de Grootstraat 72A & B;;;Kruiningenstraat 152
+0145;Wouwbaan 230 Roosendaal;;;;;;0337;Kruisweg 16;;;0148;2e Maasbosstraat 2 a;;;Kruiningenstraat 185
+0146;Johan Frisostraat 36 Sneek;;;;;;0382;Kwekerslaan 7 ;;;0149;2e Maasbosstraat 2 b;;;Kruisweg 16
+0147;Hugo de Grootstraat 72A & B, Den Haag;;;;;;0207;Kwikstaartweg 45;;;0150;2e Maasbosstraat 2 c;;;Kwekerslaan 7 
+0148;2e Maasbosstraat 2 a, VLAARDINGEN;;;;;;0365;Laan op zuid 949;;;0151;Datheenstraat 255;;;Kwikstaartweg 45
+0149;2e Maasbosstraat 2 b, VLAARDINGEN;;;;;;0090;Laan van Nieuw Blankenburg 278;;;0152;Beeklaan 294;;;Laan op zuid 949
+0150;2e Maasbosstraat 2 c, VLAARDINGEN;;;;;;0185;Laan van Nieuw Blankenburg 328;;;0153;Deensestraat 6A2;;;Laan van Nieuw Blankenburg 278
+0151;Datheenstraat 255 Vlaardingen;;;;;;0091;Landsteinerhof 68;;;0154;Rubensplein 6B3;;;Laan van Nieuw Blankenburg 328
+0152;Beeklaan 294 Den Haag;;;;;;0092;Lange Brink 3;;;0155;Broersveld 150A;;;Landsteinerhof 68
+0153;Deensestraat 6A2 Rotterdam;;;;;;0028;Lange kruisweg 12;;;0156;Broersvest 74 c;;;Lange Brink 3
+0154;Rubensplein 6B Schiedam;;;;;;0385;Lavendelpad 6;;;0157;Kuipers-Rietbergpad 15;;;Lange kruisweg 12
+0155;Broersveld 150A, SCHIEDAM;;;;;;0210;Lorentzstraat 73;;;0158;Visartstraat 31;;;Lavendelpad 6
+0156;Broersvest 74 c, SCHIEDAM;;;;;;0211;Maasdijk 206;;;0159;Kastanjelaan 232;;;Lorentzstraat 73
+0157;Kuiper-Rietbergpad 15 Hoogvliet;;;;;;0029;Madeliefstraat 46C;;;0160;Chopinstraat 33C;;;Maasdijk 206
+0158;Visstraat 31;;;;;;0118;Marathonlaan 26;;;0161;Willem de Rijkelaan 134;;;Madeliefstraat 46C
+0159;Kastanjelaan 232 Bergen op Zoom;;;;;;0323;Marnixstraat 32;;;0162;Coornhertstraat 95 ;;;Marathonlaan 26
+0160;Chopinstraat 33C, VLAARDINGEN;;;;;;0184;Mathenesserdijk 261 C03;;;0163;Curacaolaan 24;;;Marnixstraat 32
+0161;Willem de Rijkelaan 134, Waddinxveen;;;;;;0018;Meester G. Groen van Prinsterlaan 313;;;0164;Sint-Annalandstraat 116;;;Mathenesserdijk 261 C03
+0162;Coornhertstraat 95, VLAARDINGEN;;;;;;0098;Melis Stokezijde 94;;;0165;De Driesprong 17;;;Meester G. Groen van Prinsterlaan 313
+0163;Curacaolaan 24, VLAARDINGEN;;;;;;;Mendelsohnplein 46A;;;0166;Nieuwkerstraat 78;;;Melis Stokezijde 94
+0164;Sint Annalandstraat 116 Rotterdam;;;;;;0035;Messchaertplein 39;;;0167;Vogelschorstraat 24;;;Mendelsohnplein 46A
+0165;De Driesprong 17, KWINTSHEUL;;;;;;0036;Messchaertplein 40;;;0168;Engelsestraat 16L1;;;Messchaertplein 39
+0166;Nieuwkerkstraat 78 Dordrecht;;;;;;0074;Mgr. W.M. Bekkerslaan 34;;;0169;de Genestetstraat 32;;;Messchaertplein 40
+0167;Vogelschorstraat 24 Sluiskil;;;;;;0217;Middelrode 8;;;0170;Goudestein 30;;;Mgr. W.M. Bekkerslaan 34
+0168;Engelsestraat 16L1, ROTTERDAM;;;;;;;Mendelsohnplein 46A;;;0171;Wijdstraat 13;;;Middelrode 8
+0169;de Genestetstraat 32, TERNEUZEN;;;;;;0252;Middenbaan Noord 18B ;;;0172;Groeneweg 127;;;Middenbaan Noord 18A
+0170;Goudestein 30 Rotterdam;;;;;;0253;Middenbaan Noord 18C;;;0173;Groeneweg 71 ;;;Middenbaan Noord 18B 
+0171;Wijdstraat 13 Oudewater;;;;;;0254;Middenbaan Noord 20A;;;0174;Groeneweg 74;;;Middenbaan Noord 18C
+0172;Groeneweg 127, 'S-GRAVENZANDE;;;;;;0255;Middenbaan Noord 20B;;;0175;Hagastraat 8;;;Middenbaan Noord 20A
+0173;Groeneweg 71, S-GRAVENZANDE;;;;;;0256;Middenbaan Noord 20C;;;0176;Herautpad 22 ;;;Middenbaan Noord 20B
+0174;Groeneweg 74, 'S-GRAVENZANDE;;;;;;0257;Middenbaan Noord 22A;;;0177;Hoge Noordweg 27B;;;Middenbaan Noord 20C
+0175;Hagastraat 8, Schiedam;;;;;;0258;Middenbaan Noord 22B;;;0178;Hoge Noordweg 28;;;Middenbaan Noord 22A
+0176;Herautpad 22, SCHIEDAM;;;;;;0259;Middenbaan Noord 22C ;;;0179;Rooseveltlaan 185;;;Middenbaan Noord 22B
+0177;Hoge Noordweg 27B, NAALDWIJK;;;;;;0219;Miltonstraat 55;;;0180;Liesveld 100;;;Middenbaan Noord 22C 
+0178;Hoge Noordweg 28, NAALDWIJK;;;;;;0076;Molendijk 4;;;0181;Hontenissestraat 124;;;Miltonstraat 55
+0179;Rooseveltlaan 185 Bergen op Zoom;;;;;;0221;Molenstraat 10;;;0182;Malzwin 34;;;Molendijk 4
+0180;Liesveld 100, VLAARDINGEN;;;;;;0222;Molenstraat 23;;;0183;Hugo de Vriesstraat 54 ;;;Molenstraat 10
+0181;Hontenissestraat 124 Rotterdam;;;;;;0100;Molenweg 135;;;0184;Mathenesserdijk 261-C03;;;Molenstraat 23
+0182;Malzwin 34 Lelystad;;;;;;0101;Moureauveld 8;;;0185;Laan van Nieuw Blankenburg 328;;;Molenweg 135
+0183;Hugo de Vriesstraat 54;;;;;;0020;Mr. Troelstrastraat 37;;;0186;Woutersweg 20 ;;;Moureauveld 8
+0184;Mathenesserdijk 261A2 Rotterdam;;;;;;0103;Narcissenstraat 23;;;0187;Jacob van Lennepstraat 13 A;;;Mr. Troelstrastraat 37
+0185;Laan van Nieuw Blankenburg 328 Rozenburg;;;;;;0104;Narcissenstraat 37;;;0188;Jacob van Lennepstraat 13 b;;;Narcissenstraat 23
+0186;Woutersweg 20, 's-Gravenzande;;;;;;0102;Narcissenstraat 9;;;0189;Jacob van Lennepstraat 34;;;Narcissenstraat 37
+0187;Jacob van Lennepstraat 13 A, SCHIEDAM;;;;;;0046;Nieuwenhoornstraat 46B;;;0190;Achterdijk 47A;;;Narcissenstraat 9
+0188;Jacob van Lennepstraat 13 b, SCHIEDAM;;;;;;0166;Nieuwkerkstraat 78;;;0191;Jan van Arkelstraat 118;;;Nieuwenhoornstraat 46B
+0189;Jacob van Lennepstraat 34, SCHIEDAM;;;;;;0328;Noordmolenstraat 36A;;;0192;Kaapsebos 11 ;;;Nieuwkerkstraat 78
+0190;Achterdijk 47 Nieuwland;;;;;;0329;Noordmolenstraat 36B;;;0193;Kapershoek 11;;;Noordmolenstraat 36A
+0191;Jan van Arkelstraat 118, VLAARDINGEN;;;;;;0330;Noordmolenstraat 36C;;;0194;Keesomstraat 22;;;Noordmolenstraat 36B
+0192;Kaapsebos 11, MAASDIJK;;;;;;A-0076;Noordstraat 26;;;0195;Keesomstraat 50 ;;;Noordmolenstraat 36C
+0193;Kapershoek 11, ROTTERDAM;;;;;;0001;Nunspeetlaan 14;;;0196;Keesomstraat 54;;;Noordstraat 26
+0194;Keesomstraat 22, VLAARDINGEN;;;;;;0336;Ofwegen 1A;;;0197;Scheepjesbrug 814;;;Nunspeetlaan 14
+0195;Keesomstraat 50, VLAARDINGEN;;;;;;0227;Oostlaan 3 ;;;0198;Krabbendijkestraat 456;;;Ofwegen 1A
+0196;Keesomstraat 54, VLAARDINGEN;;;;;;0110;Opaal 9;;;0199;Kerstendijk 125;;;Oostlaan 3 
+0197;Scheepjesbrug 814 Meerkerk;;;;;;0369;Oranjestraat 63;;;0200;Stal 355;;;Opaal 9
+0198;Krabbendijkestraat 429 Rotterdam;;;;;;0112;Oudewerfslaan 84;;;0201;Amberberg 14;;;Oranjestraat 63
+0199;Kerstendijk 125 Rotterdam;;;;;;0042;Parallelweg 110A;;;0202;Kimbrenoord 15;;;Oudewerfslaan 84
+0200;Stal 355 Drachten;;;;;;0380;Parallelweg 114C;;;0203;Dorpstraat 48;;;Parallelweg 110A
+0201;Ambergweg 14 Rosendaal;;;;;;0381;Parallelweg 134B;;;0204;Punter 22 34 ;;;Parallelweg 114C
+0202;Kimbrenoord 15 Rotterdam;;;;;;0042;Parallelweg 110A;;;0205;Kreekrug 1 ;;;Parallelweg 134B
+0203;Dorpstraat 48 Lopik;;;;;;0230;Pasteursingel 61;;;0206;Kruiningenstraat 152;;;Parallelweg 98B
+0204;Punter 22 34 Lelystad;;;;;;0344;Pastoor Gilisstraat 81-A;;;0207;Kwikstaartweg 45;;;Pasteursingel 61
+0205;Kreekrug 1, DE LIER;;;;;;0081;Patrijsstraat 39;;;0208;Mr. L.A. Kesperweg 31A;;;Pastoor Gilisstraat 81-A
+0206;Kruiningenstraat 152 Rotterdam;;;;;;0260;Persoonsdam 176;;;0209;Laan van Adrichem 12;;;Patrijsstraat 39
+0207;Kwikstaartweg 45, VLAARDINGEN;;;;;;0261;Persoonsdam 177;;;0210;Lorentzstraat 73;;;Persoonsdam 176
+0208;Mr. L.A. Kesperweg 31A, VLAARDINGEN;;;;;;0262;Persoonsdam 178;;;0211;Maasdijk 206 ;;;Persoonsdam 177
+0209;Laan van Adrichem 12, DE LIER;;;;;;0263;Persoonsdam 179;;;0212;Wijngaard 66;;;Persoonsdam 178
+0210;Lorentzstraat 73, VLAARDINGEN;;;;;;0264;Persoonsdam 180;;;0213;Mr. Troelstrastraat 11;;;Persoonsdam 179
+0211;Maasdijk 206, S-GRAVENZANDE;;;;;;0265;Persoonsdam 181;;;0214;Mendelssohnplein 13D;;;Persoonsdam 180
+0212;Wijngaard 66 Lelystad;;;;;;0266;Persoonsdam 182;;;0215;Mendelssohnplein 10C;;;Persoonsdam 181
+0213;Mr. Troelstrastraat 11, VLAARDINGEN;;;;;;0267;Persoonsdam 194;;;0216;Mendelssohnplein 46a;;;Persoonsdam 182
+0214;Mendelsohnplein 30B Vlaardingen;;;;;;0349;Persoonsdam 196;;;0217;Middelrode 8;;;Persoonsdam 194
+0215;Mendelssohnplein 10C, VLAARDINGEN;;;;;;0268;Persoonsdam 198;;;0218;P.F. Catsstraat 8;;;Persoonsdam 196
+0216;Mendelssohnplein 46a, VLAARDINGEN;;;;;;0113;Peursumseweg 119A;;;0219;Miltonstraat 55;;;Persoonsdam 198
+0217;Middelrode 8, ROTTERDAM;;;;;;0114;Piersonstraat 8;;;0220;Miltonstraat 85;;;Peursumseweg 119A
+0218;P. F. Catsstraat 8 Franeker;;;;;;0120;Plaats 10;;;0221;Molenstraat 10;;;Piersonstraat 8
+0219;Miltonstraat 55, ROTTERDAM;;;;;;0231;Platostraat 80;;;0222;Molenstraat 23;;;Plaats 10
+0220;Miltonstraat 85, ROTTERDAM;;;;;;0044;Pleinweg 101a;;;0223;Acacialaan 9;;;Platostraat 80
+0221;Molenstraat 10, NAALDWIJK;;;;;;0045;Pleinweg 101b;;;0224;Nicolaas Beetsstraat 29;;;Pleinweg 101a
+0222;Molenstraat 23, NAALDWIJK;;;;;;0079;Ploegstraat 2a;;;0225;Kerkwerversingel 127;;;Pleinweg 101b
+0223;Acacialaan 9 Pijnacker;;;;;;0386;Poolsestraat 29a;;;0226;Rivierdijk 793;;;Ploegstraat 2a
+0224;Nicolaas Beetsstraat 29, VLAARDINGEN;;;;;;0115;Poppestraat 59;;;0227;Oostlaan 3 ;;;Poolsestraat 29a
+0225;Kerkwerversingel 127 Rotterdam;;;;;;0269;Professor Kamerlingh Onneslaan 134A;;;0228;Parallelweg 122A ;;;Poppestraat 59
+0226;Rivierdijk 793 Hardinxveld - Giessendam;;;;;;0270;Professor Kamerlingh Onneslaan 134B1;;;0229;Parallelweg 98B;;;Professor Kamerlingh Onneslaan 134A
+0227;Oostlaan 3, DE LIER;;;;;;0271;Professor Kamerlingh Onneslaan 134B2;;;0230;Pasteursingel 61B;;;Professor Kamerlingh Onneslaan 134B1
+0228;Parallelweg 122A, VLAARDINGEN;;;;;;0272;Professor Kamerlingh Onneslaan 134B3;;;0231;Platostraat 80;;;Professor Kamerlingh Onneslaan 134B2
+0229;Parallelweg 98B, VLAARDINGEN;;;;;;0340;Professor Poelslaan 58C;;;0232;Zuidhoek 209D;;;Professor Kamerlingh Onneslaan 134B3
+0230;Pasteursingel 61B, ROTTERDAM;;;;;;0117;Prunuslaan 36;;;0233;Rembrandtstraat 20B;;;Professor Poelslaan 58C
+0231;Platostraat 80 Rotterdam;;;;;;0204;Punter 22 34;;;0234;Rotterdamsedijk 154B;;;Prunuslaan 36
+0232;Zuidhoek 209D Rotterdam;;;;;;0327;Akkerweg 41 [huis 74];;;0235;Rubensplein 3 B;;;Punter 22 34
+0233;Rembrandtstraat 20B, NAALDWIJK;;;;;;0233;Rembrandtstraat 20B;;;0236;Schalkeroord 389 ;;;Putter 42
+0234;Rotterdamsedijk 154B, SCHIEDAM;;;;;;0005;Ringbaan Oost 327;;;0237;Schere 238;;;Rembrandtstraat 20B
+0235;Rubensplein 3 B, SCHIEDAM;;;;;;0226;Rivierdijk 793;;;0238;Van der Werffstraat 370 ;;;Ringbaan Oost 327
+0236;Schalkeroord 389, ROTTERDAM;;;;;;0121;Rivierdijk 794;;;0239;Schoonegge 110;;;Rivierdijk 793
+0237;Schere 238, ROTTERDAM;;;;;;0179;Rooseveltlaan 185;;;0240;Schoonegge 84;;;Rivierdijk 794
+0238;Van der Werffstraat 370, VLAARDINGEN;;;;;;0154;Rubensplein 6B3;;;0241;van der Werffstraat 166;;;Rooseveltlaan 185
+0239;Schoonegge 110 Rotterdam;;;;;;0362;Ruigenhoek 69;;;0242;Sint Liduinastraat 76 A;;;Rubensplein 6B3
+0240;Schoonegge 84, ROTTERDAM;;;;;;0236;Schalkeroord 389;;;0243;Sint Liduinastraat 80A;;;Ruigenhoek 69
+0241;van der Werffstraat 166, VLAARDINGEN;;;;;;0144;Scheepjesbrug 433;;;0244;Sint Liduinastraat 80B;;;Schalkeroord 389
+0242;Sint Liduinastraat 76 A, SCHIEDAM;;;;;;0197;Scheepjesbrug 814;;;0245;van der Werffstraat 240;;;Scheepjesbrug 433
+0243;Sint Liduinastraat 80A, SCHIEDAM;;;;;;0239;Schoonegge 110;;;0246;Socratesstraat 168;;;Scheepjesbrug 814
+0244;Sint Liduinastraat 80B, SCHIEDAM;;;;;;0050;Sint Josephstraat 61;;;0247;Spoorsingel 154b;;;Schoonegge 110
+0245;van der Werffstraat 240, VLAARDINGEN;;;;;;0243;Sint Liduinastraat 80A;;;248;van der Waalsstraat 16;;;Sint Josephstraat 61
+0246;Socratessstraat 168 Rotterdam;;;;;;0164;Sint-Annalandstraat 116;;;0249;Tholenstraat 114;;;Sint Liduinastraat 80A
+0247;Spoorsingel 154b, VLAARDINGEN;;;;;;0123;Snecanusstraat 12;;;0250;van der Waalsstraat 70;;;Sint-Annalandstraat 116
+0248;van der Waalsstraat 16, VLAARDINGEN;;;;;;0124;Snoekenveen 242;;;0251;Pasteursingel 61B;;;Snecanusstraat 12
+0249;Tholenstraat 114 Rotterdam;;;;;;0200;Stal 355;;;0252;Middenbaan Noord 18B ;;;Snoekenveen 242
+0250;van der Waalsstraat 70, VLAARDINGEN;;;;;;0099;Steenen Dijck 87;;;0253;Middenbaan Noord 18C;;;Stal 355
+0251;Middenbaan Noord 18-28 Hoogvliet;;;;;;0127;Struitenweg 19b;;;0254;Middenbaan Noord 20A;;;Steenen Dijck 87
+0252;Middenbaan Noord 18B, Hoogvliet;;;;;;0128;Tesselschadelaan 45;;;0255;Middenbaan Noord 20B;;;Struitenweg 19b
+0253;Middenbaan Noord 18C, Hoogvliet;;;;;;0249;Tholenstraat 114;;;0256;Middenbaan Noord 20C;;;Tesselschadelaan 45
+0255;Middenbaan Noord 20B, Hoogvliet;;;;;;0129;Utrechtse straatweg 7 ;;;0257;Middenbaan Noord 22A;;;Tholenstraat 114
+0256;Middenbaan Noord 20C, Hoogvliet;;;;;;0021;Vaartweg 106C;;;0258;Middenbaan Noord 22B;;;Utrechtse straatweg 7 
+0257;Middenbaan Noord 22a Hoogvliet;;;;;;0241;van der Werffstraat 166;;;0259;Middenbaan Noord 22C ;;;Vaartweg 106C
+0258;Middenbaan Noord 22B, Hoogvliet;;;;;;0130;Van Langedonckstraat 80;;;0260;Persoonsdam 176;;;van der Werffstraat 166
+0259;Middenbaan Noord 22C, Hoogvliet;;;;;;0089;Van Maanenstraat 14A;;;0261;Persoonsdam 177;;;Van Langedonckstraat 80
+0260;Persoonsdam 176, Rotterdam;;;;;;0347;Van Ruijsdaellaan 72A;;;0262;Persoonsdam 178;;;Van Maanenstraat 14A
+0261;Persoonsdam 177, Rotterdam;;;;;;0351;Van Ruijsdaellaan 72B;;;0263;Persoonsdam 179;;;Van Ruijsdaellaan 72A
+0262;Persoonsdam 178, Rotterdam;;;;;;0352;Van Ruijsdaellaan 72C;;;0264;Persoonsdam 180;;;Van Ruijsdaellaan 72B
+0263;Persoonsdam 179, Rotterdam;;;;;;0016;van Scorelstraat 73;;;0265;Persoonsdam 181;;;Van Ruijsdaellaan 72C
+0264;Persoonsdam 180, Rotterdam;;;;;;0324;Van Swinderenstraat 21;;;0266;Persoonsdam 182;;;van Scorelstraat 73
+0265;Persoonsdam 181, Rotterdam;;;;;;0387;Verschansing 21 ;;;0267;Persoonsdam 194;;;Van Swinderenstraat 21
+0266;Persoonsdam 182, Rotterdam;;;;;;0374;Vierambachtsstraat 32-B01;;;0268;Persoonsdam 198;;;Verschansing 21 
+0267;Persoonsdam 194, Rotterdam;;;;;;0158;Visartstraat 31;;;0269;Professor Kamerlingh Onneslaan 134 A;;;Vierambachtsstraat 32-B01
+0268;Persoonsdam 198, Rotterdam;;;;;;0167;Vogelschorstraat 24;;;0270;Professor Kamerlingh Onneslaan 134 B1;;;Visartstraat 31
+0269;Professor Kamerlingh Onneslaan 105 b2 Schiedam;;;;;;0077;Voorstraat 10;;;0271;Professor Kamerlingh Onneslaan 134 B2;;;Vogelschorstraat 24
+0270;Professor Kamerlingh Onneslaan 134 B1, Schiedam;;;;;;0080;Voorstraat 25;;;0272;Professor Kamerlingh Onneslaan 134 B3;;;Voorstraat 10
+0271;Professor Kamerlingh Onneslaan 134 B2, Schiedam;;;;;;A-0121;Waterstraat 4;;;0273;Fenacoliuslaan 56B;;;Voorstraat 25
+0272;Professor Kamerlingh Onneslaan 134 B3, Schiedam;;;;;;0368;Wedderweg 3A;;;0274;Karel Doormanlaan 21A;;;Waterstraat 4
+0273;Fenacoliuslaan 56B, Maassluis;;;;;;A-0108;Westendorpweg 13;;;0275;Burgemeester Crezeelaan 76;;;Wedderweg 3A
+0274;Karel Doormanlaan 21A, DE LIER;;;;;;0138;Westercluft;;;0276;Burgemeester Cramerlaan 82;;;Westendorpweg 13
+0275;Burgemeester Crezeelaan 76, DE LIER;;;;;;0139;Westfrankelandsestraat 106;;;0277;Gerberalaan 113;;;Westercluft
+0276;Burgemeester Cramerlaan 82, DE LIER;;;;;;0037;Westfrankelandsestraat 108B;;;0278;Lange Broekweg 46;;;Westfrankelandsestraat 106
+0277;Gerberalaan 113, Naaldwijk;;;;;;0105;Wieldraaierstraat 39;;;0279;Haagkamp 11;;;Westfrankelandsestraat 108B
+0278;Lange Broekweg 46, Naaldwijk;;;;;;0171;Wijdstraat 13;;;0280;Bovendijk 59;;;Wieldraaierstraat 39
+0279;Haagkamp 11, Honselersdijk;;;;;;0212;Wijngaard 66;;;0281;Bovendijk 61;;;Wijdstraat 13
+0280;Bovendijk 59, Kwintsheul;;;;;;0139;Westfrankelandsestraat 106;;;0282;Madeweg 25C;;;Wijngaard 66
+0281;Bovendijk 61, Kwintsheul;;;;;;0140;Wilgenstraat 37;;;0283;Madeweg 35A;;;Wilgensingel 63 
+0282;Madeweg 25C, Monster;;;;;;0142;Wilhelmina Druckerstraat 68;;;0284;Molenweg 3A;;;Wilgenstraat 37
+0283;Madeweg 35A, Monster;;;;;;0141;Wilhelminastraat 8;;;0285;Poeldijkseweg 27;;;Wilhelmina Druckerstraat 68
+0284;Molenweg 3A, Monster;;;;;;0143;Willem Lodewijkstraat 8;;;0286;Waellandweg 12;;;Wilhelminastraat 8
+0285;Poeldijkseweg 27, Monster;;;;;;0186;Woutersweg 20;;;0287;Prins Willemweg 2;;;Willem Lodewijkstraat 8
+0286;Waellandweg 12, Monster;;;;;;0145;Wouwbaan 230;;;0288;De Haak, Zekkenstraat 31A;;;Woutersweg 20
+0287;Prins Willemweg 2, Hoek van Holland;;;;;;0232;Zuidhoek 209D;;;0289;De Haak, Zekkenstraat 31B;;;Wouwbaan 230
+0288;De Haak, De Haa;;;;;;0376;Zwethkade Zuid 30A;;;0290;De Haak, Zekkenstraat 56;;;Zuidhoek 209D
+0289;De Haak, De Haa;;;;;;;;;;0291;Koperwerf 28;;;Zwethkade Zuid 30A
+0290;De Haak, De Haa;;;;;;;;;;0292;Burgemeester Stulemeijerlaan 71;;;
+0291;Koperwerf 28, Den Haag;;;;;;;;;;0293;Akkerweg 41 [014];;;
+0292;Burgemeester Stulemeijerlaan 71, Schiedam;;;;;;;;;;0294;Akkerweg 41 [015];;;
+0293;Akkerweg 41 [014], Den Oever;;;;;;;;;;0295;Akkerweg 41 [018];;;
+0294;Akkerweg 41 [015], Den Oever;;;;;;;;;;0296;Akkerweg 41 [022];;;
+0295;Akkerweg 41 [018], Den oever;;;;;;;;;;0297;Akkerweg 41 [026];;;
+0296;Akkerweg 41 [022], Den oever;;;;;;;;;;0298;Akkerweg 41 [031];;;
+0297;Akkerweg 41 [026], Den oever;;;;;;;;;;0299;Akkerweg 41 [037];;;
+0298;Akkerweg 41 [031], Den oever;;;;;;;;;;0300;Akkerweg 41 [040];;;
+0299;Akkerweg 41 [037], Den Oever;;;;;;;;;;0301;Akkerweg 41 [041];;;
+0300;Akkerweg 41 [040], Den oever;;;;;;;;;;0302;Akkerweg 41 [042];;;
+0301;Akkerweg 41 [041], Den oever;;;;;;;;;;0303;Akkerweg 41 [055];;;
+0302;Akkerweg 41 [042], Den oever;;;;;;;;;;0304;Akkerweg 41 [056];;;
+0303;Akkerweg 41 [055], Den oever;;;;;;;;;;0305;Akkerweg 41 [057];;;
+0304;Akkerweg 41 [056], Den oever;;;;;;;;;;0306;Akkerweg 41 [059];;;
+0305;Akkerweg 41 [057], Den oever;;;;;;;;;;0307;Akkerweg 41 [075];;;
+0306;Akkerweg 41 [059], Den oever;;;;;;;;;;0308;Kerkweg 9a [135];;;
+0307;Akkerweg 41 [075], Den oever;;;;;;;;;;0309;Kerkweg 9a [137] ;;;
+0308;Kerkweg 9a [huis 135] 1711 RR Hensbroek;;;;;;;;;;0310;Kerkweg 9a [210];;;
+0309;Kerkweg 9a [huis 137] Hensbroek;;;;;;;;;;0311;Kerkweg 9a [269];;;
+0310;Kerkweg 9a [huis 210] Hensbroek;;;;;;;;;;0312;Kerkweg 9A [333];;;
+0311;Kerkweg 9a (huis 269) Hensbroek;;;;;;;;;;0313;Kerkweg 9A [334];;;
+0312;Kerkweg 9a [huis 333] Hensbroek;;;;;;;;;;0314;Kerkweg 9A [338];;;
+0313;Kerkweg 9a [huis 334] Hensbroek;;;;;;;;;;0315;Kerkweg 9a [342];;;
+0314;Kerkweg 9a (huis 338) Hensbroek;;;;;;;;;;0316;Kerkweg 9a [346];;;
+0315;Kerkweg 9a (huis 342) Hensbroek;;;;;;;;;;0317;Kerkweg 9A [347];;;
+0316;Kerkweg 9a [huis 346] Hensbroek;;;;;;;;;;0318;Kerkweg 9a [349];;;
+0317;Kerkweg 9a [huis 347] Hensbroek;;;;;;;;;;0319;Kerkweg 9a [356];;;
+0318;Kerkweg 9a [huis 349] Hensbroek;;;;;;;;;;0320;Kerkweg 9a [359];;;
+0319;Kerkweg 9a [huis 356] Hensbroek;;;;;;;;;;0321;Kerkweg 9a [453];;;
+0320;Kerkweg 9a [huis 359] Hensbroek;;;;;;;;;;0322;Bettingeslag 10;;;
+0321;Kerkweg 9a [huis 453] Hensbroek;;;;;;;;;;0323;Marnixstraat 32;;;
+0322;Bettingeslag 10 Emmen;;;;;;;;;;0324;Van Swinderenstraat 21;;;
+0323;Marnixstraat 32 Hengelo;;;;;;;;;;0325;Hendriklaan 49;;;
+0324;Van Swinderenstraat 21 Coevorden;;;;;;;;;;0326;Akkerweg 41 [068];;;
+0325;Hendriklaan 49 Roermond;;;;;;;;;;0327;Putter 42;;;
+0326;Akkerweg 41 [068], Den oever;;;;;;;;;;0328;Noordmolenstraat 36a;;;
+0327;Putter 42 Etten-Leur;;;;;;;;;;0329;Noordmolenstraat 36b;;;
+0328;Noordmolenstraat 36a Schiedam;;;;;;;;;;0330;Noordmolenstraat 36c;;;
+0329;Noordmolenstraat 36b, Schiedam;;;;;;;;;;0331;Flankstraat 11;;;
+0330;Noordmolenstraat 36c, Schiedam;;;;;;;;;;0332;Kerkweg 9a [340];;;
+0331;Flankstraat 11 Sas van Gent;;;;;;;;;;0333;Kethelweg 66 D;;;
+0332;Kerkweg 9a (huis 340) Hensbroek;;;;;;;;;;0334;Hof van zeeland 2;;;
+0333;Kethelweg 66 D, Vlaardingen;;;;;;;;;;0335;Molenweg 3B;;;
+0334;Hof van Zeeland 2 Heinkenszand;;;;;;;;;;0336;Ofwegen 1A;;;
+0335;Molenweg 3B, Monster;;;;;;;;;;0337;Kruisweg 16;;;
+0336;Ofwegen 1A Woubrugge;;;;;;;;;;0338;Kerkweg 9a [348];;;
+0337;Kruisweg 16 Woubrugge;;;;;;;;;;0339;Kerkweg 9a [357];;;
+0338;Kerkweg 9a [huis 348] Hensbroek;;;;;;;;;;0340;Professor Poelslaan 58C;;;
+0339;Kerkweg 9a [huis 357] Hensbroek;;;;;;;;;;0341;Akkerweg 41 [010];;;
+0340;Prof Poelslaan 58 C Rotterdam;;;;;;;;;;0342;Akkerweg 41 [016];;;
+0341;Akkerweg 41 [010], Den oever;;;;;;;;;;0343;Akkerweg 41 [019];;;
+0342;Akkerweg 41 [016], Den oever;;;;;;;;;;0344;Pastoor Gillisstraat 81-A;;;
+0343;Akkerweg 41 [019], Den oever;;;;;;;;;;0345;Compierekade 15;;;
+0344;Pastoor Gilisstraat 81A;;;;;;;;;;0346;Beukenlaan 53;;;
+0345;Compierekade 15 Alphen a/d Rijn;;;;;;;;;;0347;Van Ruijsdaellaan 72 A;;;
+0346;Beukenlaan 53 Rozenburg;;;;;;;;;;0348;Wagenstraat 70;;;
+0347;Van Ruijsdaellaan 72A, Schiedam;;;;;;;;;;0349;Persoonsdam 196;;;
+0348;Wagenstraat 70 Wagenberg;;;;;;;;;;0350;Akkerweg 41 [035];;;
+0349;Persoonsdam 196, Rotterdam;;;;;;;;;;0351;Van Ruijsdaellaan 72 B;;;
+0350;Akkerweg 41 [035], Den oever;;;;;;;;;;0352;Van Ruijsdaellaan 72 C;;;
+0351;Van Ruijsdaellaan 72 B, Schiedam;;;;;;;;;;0353;Archimedesstraat 6 B;;;
+0352;Van Ruijsdaellaan 72 C, Schiedam;;;;;;;;;;0354;Dorpsstraat 48;;;
+0353;Archimedesstraat 6B Schiedam;;;;;;;;;;0355;Van Hoofsweg 4;;;
+0354;Dorpsstraat 48 Aarlanderveen;;;;;;;;;;0356;Akkerweg 41 [036];;;
+0355;Van Hoofsweg 4 Nieuw Vossemeer;;;;;;;;;;0357;Akkerweg 41 [038];;;
+0356;Akkerweg 41 [036], Den oever;;;;;;;;;;0358;Monsterseweg 26A;;;
+0357;Akkerweg 41 [038], Den oever;;;;;;;;;;0359;Kimbrenoord 49;;;
+0358;Monsterseweg 26A, S-GRAVENZANDE;;;;;;;;;;0360;Kruiningenstraat 185;;;
+0359;Kimbrenoord 49 Rotterdam;;;;;;;;;;0361;Putsebocht 136 B01;;;
+0360;Kruiningenstraat 185 Rotterdam;;;;;;;;;;0362;Ruigenhoek 69;;;
+0361;Putsebosch 136 B01 Rotterdam;;;;;;;;;;0363;Rietdijkstraat 56A;;;
+0362;Ruigenhoek 69 Rotterdam;;;;;;;;;;0364;Rietdijkstraat 56B;;;
+0363;Rietdijkstraat 56A, Hoek van Holland;;;;;;;;;;0365;Laan op Zuid 949;;;
+0364;Rietdijkstraat 56B, Hoek van Holland;;;;;;;;;;0366;Lekdijk 14;;;
+0365;Laan op Zuid 949 Rotterdam;;;;;;;;;;0367;Baanhoek 137;;;
+0366;Lekdijk 14 Krimpen aan de Ijsel;;;;;;;;;;0368;Wedderweg 3;;;
+0367;Baanhoek 137, Sliedrecht;;;;;;;;;;0369;Oranjestraat 63;;;
+0368;Wedderweg 3 Vriescheloo;;;;;;;;;;0370;Cloosterstraat 23A;;;
+0369;Oranjestraat 63 Schiedam;;;;;;;;;;0371;Zwingel 8B;;;
+0370;Cloosterstraat 23a Kloosterzande;;;;;;;;;;0372;Akkerweg 41 [011];;;
+0371;De Wingel 8B Lage Zwaluwe;;;;;;;;;;0373;Akkerweg 41 [017];;;
+0372;Akkerweg 41 [011], Den oever;;;;;;;;;;0374;Vierambachtsstraat 32-B01;;;
+0373;Akkerweg 41 [017], Den oever;;;;;;;;;;0375;Cubalaan 25 ;;;
+0374;Vierambachtsstraat 32-B01, Rotterdam;;;;;;;;;;0376;Zwethkade Zuid 30A;;;
+0375;Cubalaan 25 Poeldijk;;;;;;;;;;0377;Rijpstraat 24;;;
+0376;Zwethkade Zuid 30a Den Hoorn;;;;;;;;;;0378;Poeldijkseweg 29;;;
+0377;Rijpstraat 24, Hoek van Holland;;;;;;;;;;0379;Akkerweg 41 [074];;;
+0378;Poeldijkseweg 29, Monster;;;;;;;;;;0380;Parallelweg 114C;;;
+0379;Akkerweg 41 [074], Den Oever;;;;;;;;;;0381;Parallelweg 134B;;;
+0380;Parallelweg 114c Vlaardingen;;;;;;;;;;0382;Kwekerslaan 7 ;;;
+0381;Parallelweg 134b Vlaardingen;;;;;;;;;;0383;Akkerweg 41 [020];;;
+0382;Kwekerslaan 7;;;;;;;;;;0384;Akkerweg 41 [058];;;
+0383;Akkerweg 41 [huis 20];;;;;;;;;;0385;Lavendelpad 6;;;
+0384;Akkerweg 41 [huis 58];;;;;;;;;;0386;Poolsestraat 29A;;;
+0385;Lavendelpad 6;;;;;;;;;;0387;Verschansing 21 ;;;
+0386;Poolsestraat 29a Rotterdam;;;;;;;;;;0388;1e Middellandstraat 104A;;;
+0387;Verschansing 21 Rozenburg;;;;;;;;;;0389;Kritostraat 54;;;
+0388;1e Middellandstraat 104A;;;;;;;;;;0390;Roerdompstraat 4B;;;
+0389;Kritostraat 54, Rotterdam;;;;;;;;;;0391;Industriestraat 9;;;
+0390;Industriestraat 9, Dongen;;;;;;;;;;0392;Waterkant 54;;;
+0391;Donze Visserstraat 13 Terneuzen;;;;;;;;;;0393;Donze Visserstraat 13;;;
+0392;Lauwersmeer 4, Barendrecht;;;;;;;;;;0394;Zegwaardseweg 54;;;
+0393;Mathenesserdijk 261-C03, Rotterdam;;;;;;;;;;0395;Pastoriedijk 325;;;
+0394;Boogertstraat 5A Maassluis;;;;;;;;;;0396;Haven 24;;;
+0395;Haven 24 Maassluis;;;;;;;;;;0397;Boogertstraat 5A;;;
+0396;Boogertstraat 7A Maassluis;;;;;;;;;;0398;Boogertstraat 7A;;;
+0397;Industriestraat 7  Dongen;;;;;;;;;;;;;;
+0398;Korhaanstraat 6b Rotterdam;;;;;;;;;;;;;;
+0399;Boswoning 45 Honselersdijk;;;;;;;;;;;;;;
+0400;Boswoning 47 Honselersdijk;;;;;;;;;;;;;;
+0401;Boswoning 49 Honselersdijk;;;;;;;;;;;;;;
+0402;Boswoning 51 Honselersdijk;;;;;;;;;;;;;;
+0403;Boswoning 53 Honselersdijk;;;;;;;;;;;;;;
+0404;Boswoning 57 Honselersdijk;;;;;;;;;;;;;;
+0405;Boswoning 55 Honselersdijk;;;;;;;;;;;;;;
+0406;Noordstraat 26 Walsoorden;;;;;;;;;;;;;;
+0407;Boswoning 59 Honselersdijk;;;;;;;;;;;;;;
+0408;Boswoning 63 Honselersdijk;;;;;;;;;;;;;;
+0409;Boswoning 65 Honselersdijk;;;;;;;;;;;;;;
+0410;Boswoning 67 Honselersdijk;;;;;;;;;;;;;;
+0411;Boswoning 69 Honselersdijk;;;;;;;;;;;;;;
+0412;Boswoning 71 Honselersdijk;;;;;;;;;;;;;;
+0413;Boswoning 73 Honselersdijk;;;;;;;;;;;;;;
+0414;Boswoning 43 Honselersdijk;;;;;;;;;;;;;;
+0415;Boswoning 41 Honselersdijk;;;;;;;;;;;;;;
+0416;Boswoning 39 Honselersdijk;;;;;;;;;;;;;;
+0417;Boswoning 37 Honselersdijk;;;;;;;;;;;;;;
+0418;Papsouwselaan 52 Delft;;;;;;;;;;;;;;
+0419;Papsouwselaan 34 Delft;;;;;;;;;;;;;;
+0420;Dorpsstraat 27 Moordrecht;;;;;;;;;;;;;;
+0421;Papsouwselaan 34 Delft;;;;;;;;;;;;;;
+0422;Papsouwselaan 86 Delft;;;;;;;;;;;;;;
+0423;Papsouwselaan 58 Delft;;;;;;;;;;;;;;
+0424;Boswoning 75 Honselersdijk;;;;;;;;;;;;;;
+0425;Papsouwselaan 138 Delft;;;;;;;;;;;;;;
+0426;Papsouwselaan 68 Delft;;;;;;;;;;;;;;
+0427;Papsouwselaan 44 Delft;;;;;;;;;;;;;;
+0428;Boswoning 19 Honselersdijk;;;;;;;;;;;;;;
+0429;Boswoning 21 Honselersdijk;;;;;;;;;;;;;;
+0430;Boswoning 23 Honselersdijk;;;;;;;;;;;;;;
+0431;Boswoning 35 Honselersdijk;;;;;;;;;;;;;;
+0432;Boswoning 77 Honselersdijk;;;;;;;;;;;;;;
+0433;Papsouwselaan 32 Delft;;;;;;;;;;;;;;
+0434;Boswoning 79 Honselersdijk;;;;;;;;;;;;;;
+0435;Tulpenstraat 45 Rozenburg;;;;;;;;;;;;;;
+0436;Boswoning 81 Honselersdijk;;;;;;;;;;;;;;
+0437;Boswoning 61 Honselersdijk;;;;;;;;;;;;;;
+0438;Europalaan 50 Sas van Gent;;;;;;;;;;;;;;
+A-00001;Dag Hammarskjöldlaan 80, Hellevoetsluis;;;;;;;;;;;;;;
+A-00002;Energieweg 40 , Vlaardingen (Opgezegd per 28 februari 2023);;;;;;;;;;;;;;
+A-00003;Frans Halsstraat 16b, spijkenisse;;;;;;;;;;;;;;
+A-00005;Van der Fuyckstraat 66, Brielle;;;;;;;;;;;;;;
+A-00006;Van 't Hoffstraat 22 Vlaardingen;;;;;;;;;;;;;;
+A-00009;Cecilia Benninghastraat 19, Tzummarum;;;;;;;;;;;;;;
+A-00015;Orthen 66, 's-Hertogenbosch;;;;;;;;;;;;;;
+A-00010;Van Hogendorplaan 284;;;;;;;;;;;;;;
+A-00011;Voorstraat 86a, Harlingen;;;;;;;;;;;;;;
+A-00012;Winterakoniet 21, Leeuwarden;;;;;;;;;;;;;;
+A-00013;Groningerstraatweg 26, Leeuwarden;;;;;;;;;;;;;;
+A-00014;Van Viandenstraat 37 , Vlaardingen;;;;;;;;;;;;;;
+A-00016;Nieuwestad 8, Leeuwarden (Opgezegd per 31 aug 2021);;;;;;;;;;;;;;
+A-00017;Rijsstraatweg 80 Noardburgum;;;;;;;;;;;;;;
+A-00018;Burgemeerster van Haarenlaan 905;;;;;;;;;;;;;;
+A-00020;St. Willibrordusstraat 55, 's-Hertogenbosch;;;;;;;;;;;;;;
+A-00024;Hooilandseweg 46, Roodeschool;;;;;;;;;;;;;;
+A-00025;Bleeklaan 69, Leeuwarden;;;;;;;;;;;;;;
+A-00026;Willem Marisstraat 4, Dordrecht;;;;;;;;;;;;;;
+A-00027;Hooilandseweg 113, Roodeschool;;;;;;;;;;;;;;
+A-00028;Aerdberg 6, Steyl;;;;;;;;;;;;;;
+A-00029;Rhoonsestraat 18b, Schiedam (Opgezegd 30 april 2022);;;;;;;;;;;;;;
+A-00031;Kerkweg 25, Driebruggen (Opgezegd 31 jan 2021);;;;;;;;;;;;;;
+A-00033;Inialoane 2, Garyp;;;;;;;;;;;;;;
+A-00037;Scholeksterstraat 7 Hellevoetsluis;;;;;;;;;;;;;;
+A-00038;Winston Churchillaan 18a Spijkenisse;;;;;;;;;;;;;;
+A-00039;Ebenhaëzerstraat 38a, Rotterdam;;;;;;;;;;;;;;
+A-00040;Lauernessestraat 8, Hoogvliet;;;;;;;;;;;;;;
+A-00041;Beemd 55, Hoogvliet ( opgezegd per 31-10-2022);;;;;;;;;;;;;;
+A-00042;Eendrachtsweg 71b, Rotterdam;;;;;;;;;;;;;;
+A-00043;A.H. Verweijweg 6, Berkel en Rodenrijs (Opgez 21 april 2021);;;;;;;;;;;;;;
+A-00044;Eendrachtsweg 71h, Rotterdam;;;;;;;;;;;;;;
+A-00045;Damstraat 1, Roosendaal (Opgezegd 31 mei 2021);;;;;;;;;;;;;;
+A-00046;Damstraat 1b, Roosendaal (Opgezegd 31 mei 2021);;;;;;;;;;;;;;
+A-00048;Lange Reed 20;;;;;;;;;;;;;;
+A-00049;Lange Reed 20a;;;;;;;;;;;;;;
+A-00050;Lange Reed 20b;;;;;;;;;;;;;;
+A-00051;De Poon 30, Makkum (opgezegd 12 feb 2021);;;;;;;;;;;;;;
+A-00052;De Stad 1b, Oirschot;;;;;;;;;;;;;;
+A-00053;De Visserstraat 60, Dordrecht;;;;;;;;;;;;;;
+A-00054;Het Kerkehout 64, Wassenaar (Opgezegd 9 juni 2021);;;;;;;;;;;;;;
+A-00055;Hoofdstraat 32;;;;;;;;;;;;;;
+A-00057;Jordaensplein 30 Roosendaal;;;;;;;;;;;;;;
+A-00058;Kade 26, Roosendaal (Opgezegd 5 juni 2022);;;;;;;;;;;;;;
+A-00059;Kade 26a, Roosendaal (zie Kade 26);;;;;;;;;;;;;;
+A-00060;Kanaalweg 35, Harlingen (Opgezegd 14 feb 2021);;;;;;;;;;;;;;
+A-00062;Mark 10, Spijk;;;;;;;;;;;;;;
+A-00063;Menno ter Braakstraat 26b, Spijkenisse (opgezegd 01-06-22);;;;;;;;;;;;;;
+A-00064;Molenweg 1, Veghel (Opgezegd 30 juni 2021);;;;;;;;;;;;;;
+A-00065;Nispensestraat 2c, Roosendaal (Opgezegd 30 april 2021);;;;;;;;;;;;;;
+A-00067;Raadhuisplein 3;;;;;;;;;;;;;;
+A-00068;Spijksekweldijk 208, Spijk (Opgezegd per 31 januari 2021);;;;;;;;;;;;;;
+A-00070;Torenmolen 1, Amsterdam;;;;;;;;;;;;;;
+A-00071;Vliethorn 6, Farmsum (Opgezegd per 30 juni 2021);;;;;;;;;;;;;;
+A-00072;Hoofdweg 34 (Bungalow 8), Scharmer (Opg per 31 mei 2021);;;;;;;;;;;;;;
+A-00074;Kerkdreef 46;;;;;;;;;;;;;;
+A-00076;Noordstraat 55, Axel;;;;;;;;;;;;;;
+A-00077;Voorweg 1, Oostvoorne (Opgezegd per 31 juli 2021);;;;;;;;;;;;;;
+A-00078;De Veste 15-45, Lelystad(opgezegd per 30-06-22);;;;;;;;;;;;;;
+A-00079;Julianastraat 59, Axel;;;;;;;;;;;;;;
+A-00080;Hoofdweg 34 (Bungalow 101), Scharmer (Opg per 31 mei 2021);;;;;;;;;;;;;;
+A-00083;Mr Troelstrastraat 49;;;;;;;;;;;;;;
+A-00084;Akkersplein 90 Heerenveen (Opzegd per 31 okt 2020);;;;;;;;;;;;;;
+A-00085;Ceresweg 54c;;;;;;;;;;;;;;
+A-00086;Coehoorn van Scheltingaweg 82, Heerenveen (Opgezegd 31 jan);;;;;;;;;;;;;;
+A-00087;De Terp 25, Witmarsum;;;;;;;;;;;;;;
+A-00088;Jasmijnring 35, Zundert ( Opgezegd per 31-08-22);;;;;;;;;;;;;;
+A-00089;Dijkstraat 66, Terneuzen;;;;;;;;;;;;;;
+A-00091;Botter 33 - 6, Lelystad;;;;;;;;;;;;;;
+A-00092;Nibelungenhof 22, Hoogvliet;;;;;;;;;;;;;;
+A-00093;Julianalaan 4, Midlum;;;;;;;;;;;;;;
+A-00094;Marisstraat 9, Terneuzen;;;;;;;;;;;;;;
+A-00095;Parallelweg 96A, Vlaardingen;;;;;;;;;;;;;;
+A-00097;Ring 57, Pernis;;;;;;;;;;;;;;
+A-00098;Tramstraat 13, Terneuzen;;;;;;;;;;;;;;
+A-00099;Lauernessestraat 17, Hoogvliet;;;;;;;;;;;;;;
+A-00100;Dorpsstraat 9b, Gemonde;;;;;;;;;;;;;;
+A-00101;Populierenlaan 4 Velddriel;;;;;;;;;;;;;;
+A-00102;Van Renesselaan 32;;;;;;;;;;;;;;
+A-00105;Spijkesteeg 1, Spijk;;;;;;;;;;;;;;
+A-00106;Oudedijk 147 Odilliapeel;;;;;;;;;;;;;;
+A-00108;Westendorpweg 13 Losdorp;;;;;;;;;;;;;;
+A-00109;Broeksteeg 7 Tricht;;;;;;;;;;;;;;
+A-00111;Hooilandseweg 30 Roodenschol;;;;;;;;;;;;;;
+A-00112;Bazeldijk 26 Hoogblokland;;;;;;;;;;;;;;
+A-00113;Minckelersweg 24 Hoogerheide;;;;;;;;;;;;;;
+A-00114;Sonsbrug 50 Acquoy (Opgezegd per 31 mei 2023);;;;;;;;;;;;;;
+A-00116;Zakdragerstraat 15 Gorinchem (Opgezegd per 31 dec 2021);;;;;;;;;;;;;;
+A-00117;Westwagenstraat 55 Gorinchem (Opgezegd per 31 dec 2021);;;;;;;;;;;;;;
+A-00118;Lavendelpad 6 's'-Gravendeel;;;;;;;;;;;;;;
+A-00119;Grote Bredeplaats 18a Harlingen;;;;;;;;;;;;;;
+A-00120;Bergsestraat 56 Huijbergen (Opgezegd per 31 juli 2022);;;;;;;;;;;;;;
+A-00121;Waterstraat 4 Delfzijl;;;;;;;;;;;;;;
+A-00122;Grote Spuistraat 40 Dordrecht (Opgezegd per 31 dec 2022);;;;;;;;;;;;;;
+A-00123;Seringenstraat 5 Gennep;;;;;;;;;;;;;;
+A-00124;De Ruyterweg 33 Leeuwarden (Opgezegd 16 mei 2021);;;;;;;;;;;;;;
+A-00126;Vrieseweg 135 Dordrecht (Opgezegd per 31 dec 2022);;;;;;;;;;;;;;
+A-00127;Prins Willem-Alexandersingel 53 Beesd;;;;;;;;;;;;;;
+A-00129;Klaverweide 42 Delfzijl (Opgezegd per 31 aug 2022);;;;;;;;;;;;;;
+A-00130;Zuidstraat 12 Dreischor;;;;;;;;;;;;;;
+A-00132;Staringstraat 120 Oss (Opgezegd per 31 okt 2022);;;;;;;;;;;;;;
+A-00133;Nyckle Haismawei 11 Leeuwarden;;;;;;;;;;;;;;
+A-00135;Marowijnstraat 7 Leeuwarden (Opgezegd per 31 januari 2022);;;;;;;;;;;;;;
+A-00137;Park a/h Vossemeer 10A Nieuw-Vossemeer (Opgezegd 31 mrt 22);;;;;;;;;;;;;;
+A-00138;Park a/h Vossenmeer 22A Nieuw-Vossemeer;;;;;;;;;;;;;;
+A-00139;Bernhardweg 33 Oijen;;;;;;;;;;;;;;
+A-00140;Kleinzand 18 Drachten;;;;;;;;;;;;;;
+A-00141;Evert C. Slimstraat 4 Sint Annaparochie;;;;;;;;;;;;;;
+A-00144;Markt 19 Oudenbosch;;;;;;;;;;;;;;
+A-00148;Bellstraat 7 Oudeschoot;;;;;;;;;;;;;;
+A-00150;De Terp 27 Witmarsum;;;;;;;;;;;;;;
+A-00153;Kwartel 8 Dokkum;;;;;;;;;;;;;;
+A-00154;De Grouw 30 Leek;;;;;;;;;;;;;;
+A-00156;De Riede 10 Slagharen (Opgezegd per 31 maart 2023);;;;;;;;;;;;;;
+A-00159;Ambonstraat 96 Alphen a/d Rijn;;;;;;;;;;;;;;
+A-00160;Karel Doormanlaan 238 Hilversum;;;;;;;;;;;;;;
+A-00164;Voorstraat 53 Willemstad;;;;;;;;;;;;;;
+A-00165;Zuiderkruis 15 Klazienaveen;;;;;;;;;;;;;;
+A-00168;Hoofdstraat 266 Overdinkel;;;;;;;;;;;;;;
+A-00169;Roemer Visscherstraat 148 Vlaardingen;;;;;;;;;;;;;;
+A-00173;Leeg;;;;;;;;;;;;;;
+A-00177;Loggerstraat 3 Harlingen;;;;;;;;;;;;;;
+A-00179;Tulpenstraat 27 Meppel;;;;;;;;;;;;;;
+A-00181;Rijksweg Zuid 161 Sittard;;;;;;;;;;;;;;
+A-00182;Grote Buren 27 Pingjum;;;;;;;;;;;;;;
+A-00184;Leeg;;;;;;;;;;;;;;
+A-00185;Vossepol 39 Surhuisterveen;;;;;;;;;;;;;;
+A-00188;Nesserwei  2 Ternaard;;;;;;;;;;;;;;
+A-00192;Hooizolder 296 Drachten;;;;;;;;;;;;;;
+A-00194;Poststraat 4 Philippine (Opgezegd per 31 dec 2022);;;;;;;;;;;;;;
+A-00195;Meinardswei 74 Minnertsga (CB-Homes);;;;;;;;;;;;;;
+A-00196;Meinardswei 86 Minnertsga (CB-Homes);;;;;;;;;;;;;;
+A-00197;Schoutstraat 15 Heerlen;;;;;;;;;;;;;;
+A-00198;Berkstraat 37 Nieuwegein (CB-Homes);;;;;;;;;;;;;;
+A-00199;Leenheerstraat 16 Heerlen;;;;;;;;;;;;;;
+A-00200;Meinardswei 54-56 Minnertsga (CB-Homes);;;;;;;;;;;;;;
+A-00204;Hofmark 381 Almere;;;;;;;;;;;;;;
+A-00207;Kloosterstraat 18 Biervliet;;;;;;;;;;;;;;
+A-00208;Beethovenhof 78 Terneuzen;;;;;;;;;;;;;;
+A-00209;Frans Bekkenstraat 72e Rotterdam;;;;;;;;;;;;;;
+A-00211;Kuilenstraat 13 Meerssen;;;;;;;;;;;;;;
+A-00212;Robinsonstraat 203 Leeuwarden;;;;;;;;;;;;;;
+A-00213;Jan Snouckstraat 2 Schelluinen;;;;;;;;;;;;;;
+A-00214;Jericholaan 42B, Rotterdam;;;;;;;;;;;;;;
+A-00215;Willem van Arkellaan 25 Gorinchem;;;;;;;;;;;;;;
+A-00216;Benthuizerstraat 30B Rotterdam;;;;;;;;;;;;;;
+A-00219;Kapelstraat 5 Maurik;;;;;;;;;;;;;;
+A-00223;Harixmaweg 4 Franeker;;;;;;;;;;;;;;
+A-00224;Nieuwe Steeg 68 Herwijnen;;;;;;;;;;;;;;
+A-00226;Parkweg 21 Beesd;;;;;;;;;;;;;;
+A-00229;Aziëlaan 764 Utrecht;;;;;;;;;;;;;;
+A-00230;Bastion 117 Lelystad;;;;;;;;;;;;;;
+A-00231;Lavasweg 35 Hoogvliet;;;;;;;;;;;;;;
+A-00236;Aleidisstraat 6 Rotterdam;;;;;;;;;;;;;;
+A-00238;Acherdijk 47 Nieuwland;;;;;;;;;;;;;;
+A-00239;Rivierdijk 794 (onder) Hardinxveld - Giessendam;;;;;;;;;;;;;;
+A-00240;Rhodensteijnselaan 15 Langbroek;;;;;;;;;;;;;;
+A-00241;Middenbaan Noord 18a Hoogvliet;;;;;;;;;;;;;;
+A-00252;Azielaan 764 Utrecht;;;;;;;;;;;;;;
+A-00253;Lydsedyk 1 Bitgummole;;;;;;;;;;;;;;
+A-00254;Scheepjesbrug 406 Meerkerk;;;;;;;;;;;;;;
+A-00255;Baliendijk 7 Breda;;;;;;;;;;;;;;
+A-00259;P.F. Catstraat 8 Franeker;;;;;;;;;;;;;;
+A-00264;Steenovenstraat Belgie;;;;;;;;;;;;;;
+A-00271;Volkelseweg 19-21 Boekel;;;;;;;;;;;;;;
+A-00272;Adminiraliteitskade 80-02 Rotterdam;;;;;;;;;;;;;;
+A-00274;Kremerstraat 25 A Bergen op Zoom;;;;;;;;;;;;;;
+A-00275;Stuwwal 2 015 Den Oever;;;;;;;;;;;;;;
+A-00277;2e van Leydengaelstraat 6 Vlaardingen;;;;;;;;;;;;;;
+A-00289;Ingenier J.P. van Muijlwijkstraat 116 Arnhem;;;;;;;;;;;;;;
+A-00295;Laan van Spaland 11 Schiedam;;;;;;;;;;;;;;
+A-00297;Madoeralaan 82 Ede;;;;;;;;;;;;;;
+A-00304;Pieter Jelle Troelstraweg 2A Maasluis;;;;;;;;;;;;;;
+A-00306;Stroodorpe 1 Sluiskil;;;;;;;;;;;;;;
+A-00311;Goghlaan 36 Roosendaal;;;;;;;;;;;;;;
+A-00312;Irenestraat 99 Sint Willebrord;;;;;;;;;;;;;;
+A-00317;Maasdijk 28A Aalst;;;;;;;;;;;;;;
+A-00318;Bloklaan 22a Loosdrecht;;;;;;;;;;;;;;
+A-00320;Eikstraat 23 Bergen op Zoom;;;;;;;;;;;;;;
+A-00321;Rietbergpad 15;;;;;;;;;;;;;;
+A-00327;Verbindingsstraat 20 Essen;;;;;;;;;;;;;;
+A-00335;Korte Singelstraat 21C Schiedam;;;;;;;;;;;;;;
+A-00337;Nobelstraat 52 Brielle;;;;;;;;;;;;;;
+A-00338;Dorpsstraat 58 OUDE-NIEDORP;;;;;;;;;;;;;;
+A-00352;3e Industriestraat 11 Vlaardingen;;;;;;;;;;;;;;
+A-00353;Jasmijnring 37 Zundert;;;;;;;;;;;;;;
+A-00373;Professor Kamerlingh Onneslaan 134 A Schiedam;;;;;;;;;;;;;;
+A-00387;Kerkweg 9a [huis 338] Hensbroek;;;;;;;;;;;;;;
+A-00416;Utrechtsestraatweg 7 Oudewater;;;;;;;;;;;;;;
+A-00420;Madeliefstraat 46C Rotterdam;;;;;;;;;;;;;;
+A-00423;Kerkweg 9a [huisnummer 101]  Hensbroek;;;;;;;;;;;;;;
+A-00433;Kerkweg 9a [huis 135] Hensbroek;;;;;;;;;;;;;;
+A-00441;Aamberberg 232 Bergen op Zoom;;;;;;;;;;;;;;
+A-00445;De Zwingel 8B, Lange Zwaluwe;;;;;;;;;;;;;;
+A-00447;Bornerbroeksestraat 129A, Almelo;;;;;;;;;;;;;;

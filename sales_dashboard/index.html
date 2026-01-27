@@ -2054,38 +2054,55 @@
                 const search = document.getElementById('searchRelaties').value.toLowerCase();
                 const typeFilter = document.getElementById('filterRelatieType').value;
 
-                // Combine owners and tenants into relaties list
-                let relaties = [];
-
-                // Add owners as relaties
-                allOwners.forEach(o => {
-                    relaties.push({
-                        type: 'Eigenaar',
-                        typeIcon: '👤',
-                        naam: o.naam,
-                        email: o.email || '',
-                        telefoon: o.telefoon || '',
-                        plaats: o.plaats || '',
-                        info: `${o.properties.length} woningen | ${formatMoney(o.totalInhuur)}/m`
-                    });
-                });
-
-                // Add tenants as relaties
-                allTenants.forEach(t => {
-                    relaties.push({
-                        type: 'Huurder',
-                        typeIcon: '👥',
-                        naam: t.naam,
-                        email: t.email || '',
-                        telefoon: t.telefoon || '',
-                        plaats: '',
-                        info: `${t.type} | ${t.properties.length} woningen | ${formatMoney(t.totalVerhuur)}/m`
-                    });
+                // Use allRelaties directly (includes all 841 relaties from database)
+                let relaties = allRelaties.map(r => {
+                    // Determine type based on contract relationships
+                    let type = 'Overig';
+                    let typeIcon = '📋';
+                    
+                    if (r.is_eigenaar && r.is_huurder) {
+                        type = 'Eigenaar/Huurder';
+                        typeIcon = '👤👥';
+                    } else if (r.is_eigenaar) {
+                        type = 'Eigenaar';
+                        typeIcon = '👤';
+                    } else if (r.is_huurder) {
+                        type = 'Huurder';
+                        typeIcon = '👥';
+                    } else if (r.type === 'bedrijf') {
+                        type = 'Leverancier';
+                        typeIcon = '🔧';
+                    }
+                    
+                    // Build info string
+                    let info = r.type || 'particulier';
+                    if (r.inhuur_count > 0) info += ` | ${r.inhuur_count} inhuur`;
+                    if (r.verhuur_count > 0) info += ` | ${r.verhuur_count} verhuur`;
+                    if (r.marge_max) info += ` | max ${r.marge_max}%`;
+                    
+                    return {
+                        id: r.id,
+                        type: type,
+                        typeIcon: typeIcon,
+                        naam: r.naam,
+                        email: r.email || '',
+                        telefoon: r.telefoon || '',
+                        plaats: r.plaats || '',
+                        info: info,
+                        is_eigenaar: r.is_eigenaar,
+                        is_huurder: r.is_huurder
+                    };
                 });
 
                 // Filter by type
-                if (typeFilter) {
-                    relaties = relaties.filter(r => r.type === typeFilter);
+                if (typeFilter === 'Eigenaar') {
+                    relaties = relaties.filter(r => r.is_eigenaar);
+                } else if (typeFilter === 'Huurder') {
+                    relaties = relaties.filter(r => r.is_huurder);
+                } else if (typeFilter === 'Leverancier') {
+                    relaties = relaties.filter(r => r.type === 'Leverancier');
+                } else if (typeFilter === 'Overig') {
+                    relaties = relaties.filter(r => !r.is_eigenaar && !r.is_huurder && r.type !== 'Leverancier');
                 }
 
                 // Filter by search

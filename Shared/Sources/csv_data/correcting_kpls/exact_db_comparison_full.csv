@@ -1,0 +1,322 @@
+Type;Code;Exact;Database;Issue
+MISMATCH;0008;Arkelse onderweg 24a Gorichem;Arkelse Onderweg 24a Gorinchem;City name differs (Gorichem vs Gorinchem) -> typo = MISMATCH
+MISMATCH;0023;Desiree Geeraerstraat 1b  Baarle-Nassau;Desiree Geerartstraat 1B Baarle-Nassau;Street name differs (Geeraerstraat vs Geerartstraat) -> typo = MISMATCH
+MISMATCH;0024;Desiree Geeraertstraat 1 C, Baarle-Nassau;Desiree Geerartstraat 1C Baarle-Nassau;Street name differs (Geeraertstraat vs Geerartstraat) -> typo = MISMATCH
+MISMATCH;0029;Maeliefstraat 46C Rotterdam;Madeliefstraat 46C Rotterdam;Street name differs (Maeliefstraat vs Madeliefstraat) -> typo = MISMATCH
+MISMATCH;0038;Westfrankelandsestraat 108 Schiedam;Westfrankelandsestraat 108B Schiedam;House number/addition differs (108 vs 108B) -> critical MISMATCH
+MISMATCH;0049;Bornerbroekstraat 129A Almelo;Bornerbroeksestraat 129A Almelo;Street name differs (Bornerbroekstraat vs Bornerbroeksestraat) -> typo = MISMATCH
+MISMATCH;0052;Coehoorn van Scheltingaweg 66 Heereveen;Coehoorn van Scheltingaweg 66 Heerenveen;City name differs (Heereveen vs Heerenveen) -> typo = MISMATCH
+MISMATCH;0055;Baanhoek 19 Sliedrecht;Baanhoek 139 Sliedrecht;House number differs (19 vs 139) -> critical MISMATCH
+MISMATCH;0068;Frans Erensstraat 21 Sittard;F.Erensstraat 21 Sittard;Street name differs (Frans Erensstraat vs F.Erensstraat) -> typo/abbreviation not covered by rules -> MISMATCH
+MISMATCH;0073;H Deddenstraat 26 Steggerda;Hendrik Deddenstraat 26 Steggerda;Street name differs (H Deddenstraat vs Hendrik Deddenstraat) -> abbreviation not covered by rules -> MISMATCH
+MISMATCH;0087;Jasmijnring 22, Zundert;Jasmijnring 37 Zundert;House number differs (22 vs 37) -> critical MISMATCH
+MISMATCH;0097;Burchtstraat 16a Oostburg;Burchstraat 16A Maassluis;Different street/city (and likely different property) -> critical MISMATCH
+MISMATCH;0113;Peursumseweg 119 Giessenburg;Peursumseweg 119A Giessenburg;Different house number/addition (119 vs 119A) (critical)
+MISMATCH;0119;Koningin Julianalaan 27 Waarder;Koningin Julianastraat 27 Waarder;Street name differs (Julianalaan vs Julianastraat)
+MISMATCH;0130;Van Langendonckstraat 80 Rotterdam;Van Langedonckstraat 80 Rotterdam;Typo in street name (Langendonckstraat vs Langedonckstraat)
+MISMATCH;0132;Voeghoutenstraat 23 Klazienaveen;Voeghoutenstraat 236 Klazienaveen;Different house number (23 vs 236) (critical)
+MISMATCH;0133;Herenpad 20B Schiedam;Herenpad 20A Schiedam;Different house number/addition (20B vs 20A) (critical)
+MISMATCH;0138;Westercluft 134 Steenwijk;Westercluft Steenwijk;House number missing in DB (134)
+MISMATCH;0146;Johan Frisostraat 36 Sneek;Johan Willen Frisostraat 36 Sneek;Typo/extra word in street name (Johan Frisostraat vs Johan Willen Frisostraat)
+MISMATCH;0154;Rubensplein 6B Schiedam;Rubensplein 6B3 Schiedam;Different house number/addition (6B vs 6B3) (critical)
+MISMATCH;0158;Visstraat 31;Visartstraat 31 Sluiskil;"Street name differs and Exact is missing city (Visstraat vs Visartstraat; city missing in Exact)"
+MISMATCH;0183;Hugo de Vriesstraat 54;Hugo de Vriesstraat 54  VLAARDINGEN;City missing in Exact (cannot verify same property)
+MISMATCH;0184;Mathenesserdijk 261A2 Rotterdam;Mathenesserdijk 261 C03 Rotterdam;Different house number/addition (261A2 vs 261 C03) (critical)
+MISMATCH;0190;Achterdijk 47 Nieuwland;Achterdijk 47a Nieuwland;Different house number/addition (47 vs 47a) (critical)
+MISMATCH;0198;Krabbendijkestraat 429 Rotterdam;Krabbendijkestraat 456 Rotterdam;Different house number (429 vs 456) (critical)
+MISMATCH;0201;Ambergweg 14 Rosendaal;Amberberg 14 Roosendaal;"Street name differs (Ambergweg vs Amberberg) and city spelling differs (Rosendaal vs Roosendaal) -> likely different/typo; treat as mismatch"
+MISMATCH;0203;Dorpstraat 48 Lopik;Dorpsstraat 48 Aarlanderveen;Street name differs (Dorpstraat vs Dorpsstraat) and city differs (Lopik vs Aarlanderveen) -> mismatch
+MISMATCH;0210;Lorentzstraat 73, VLAARDINGEN;Lorentzstraat 73 Schiedam;City differs (Vlaardingen vs Schiedam) -> mismatch
+MISMATCH;0214;Mendelsohnplein 30B Vlaardingen;Mendelssohnplein 13D VLAARDINGEN;Different house number/addition (30B vs 13D) -> critical mismatch
+MISMATCH;0225;Kerkwerversingel 127 Rotterdam;Kerkwervesingel 127 Rotterdam;Street name typo (Kerkwerversingel vs Kerkwervesingel) -> mismatch
+MISMATCH;0230;Pasteursingel 61B, ROTTERDAM;Pasteursingel 61 Rotterdam;Different house number/addition (61B vs 61) -> critical mismatch
+MISMATCH;0246;Socratessstraat 168 Rotterdam;Socratesstraat 168 ROTTERDAM;Street name typo (Socratessstraat vs Socratesstraat) -> mismatch
+MISMATCH;0269;Professor Kamerlingh Onneslaan 105 b2 Schiedam;Professor Kamerlingh Onneslaan 134A Schiedam;Different house number/addition (105 b2 vs 134A) -> critical mismatch
+MISMATCH;0361;Putsebosch 136 B01 Rotterdam;Putsebocht 136 B01 Rotterdam;Street name typo/different (Putsebosch vs Putsebocht) => MISMATCH
+MISMATCH;0368;Wedderweg 3 Vriescheloo;Wedderweg 3A Vriescheloo;Different house number/addition (3 vs 3A) => CRITICAL MISMATCH
+MISMATCH;0371;De Wingel 8B Lage Zwaluwe;De Zwingel 8B Lage Zwaluwe;Street name typo/different (De Wingel vs De Zwingel) => MISMATCH
+MISMATCH;0390;Industriestraat 9, Dongen;Roerdompstraat 4B Alblasserdam;Completely different address (street/number/city) => CRITICAL MISMATCH
+MISMATCH;0391;Donze Visserstraat 13 Terneuzen;Industriestraat 9 Dongen;Completely different address (street/number/city) => CRITICAL MISMATCH
+MISMATCH;0392;Lauwersmeer 4, Barendrecht;Burgemeester Baumannlaan 175H Rotterdam;Completely different address (street/number/city) => CRITICAL MISMATCH
+MISMATCH;0393;Mathenesserdijk 261-C03, Rotterdam;Donze Visserstraat 13 Terneuzen;Completely different address (street/number/city) => CRITICAL MISMATCH
+MISMATCH;A-00311;Goghlaan 36 Roosendaal;Van Goghlaan 36 Roosendaal;"Street name differs (possible typo/omission in Exact: missing 'Van'); treat as mismatch per rules."
+MISMATCH;A-00321;Rietbergpad 15;Kuipers-Rietbergpad 15 Hoogvliet;"Street name differs (Rietbergpad vs Kuipers-Rietbergpad) and Exact is missing city; cannot confirm same property."
+MISMATCH;A-00433;Kerkweg 9a [huis 135] Hensbroek;Kerkweg 9a [huis 135] Hensbroek;"CODE points to different property in Exact vs DB: Exact A-00433 is [huis 135], but DB A-00433 is [huis 135] (this entry matches). However, DB is missing A-00423 and Exact has multiple sub-houses; verify code mapping consistency across sub-units."
+MISSING_IN_DB;0096;Voorstraat 3, Harlingen;;Not in database
+MISSING_IN_DB;0157;Kuiper-Rietbergpad 15 Hoogvliet;;Not in database
+MISSING_IN_DB;0251;Middenbaan Noord 18-28 Hoogvliet;;Not in database
+MISSING_IN_DB;0421;Papsouwselaan 34 Delft;;Not in database
+MISSING_IN_DB;A-00001;Dag Hammarskjöldlaan 80, Hellevoetsluis;;Not in database
+MISSING_IN_DB;A-00002;Energieweg 40 , Vlaardingen (Opgezegd per 28 februari 2023);;Not in database
+MISSING_IN_DB;A-00003;Frans Halsstraat 16b, spijkenisse;;Not in database
+MISSING_IN_DB;A-00005;Van der Fuyckstraat 66, Brielle;;Not in database
+MISSING_IN_DB;A-00006;Van 't Hoffstraat 22 Vlaardingen;;Not in database
+MISSING_IN_DB;A-00009;Cecilia Benninghastraat 19, Tzummarum;;Not in database
+MISSING_IN_DB;A-00010;Van Hogendorplaan 284;;Not in database
+MISSING_IN_DB;A-00011;Voorstraat 86a, Harlingen;;Not in database
+MISSING_IN_DB;A-00012;Winterakoniet 21, Leeuwarden;;Not in database
+MISSING_IN_DB;A-00013;Groningerstraatweg 26, Leeuwarden;;Not in database
+MISSING_IN_DB;A-00014;Van Viandenstraat 37 , Vlaardingen;;Not in database
+MISSING_IN_DB;A-00015;Orthen 66, 's-Hertogenbosch;;Not in database
+MISSING_IN_DB;A-00016;Nieuwestad 8, Leeuwarden (Opgezegd per 31 aug 2021);;Not in database
+MISSING_IN_DB;A-00017;Rijsstraatweg 80 Noardburgum;;Not in database
+MISSING_IN_DB;A-00018;Burgemeerster van Haarenlaan 905;;Not in database
+MISSING_IN_DB;A-00020;St. Willibrordusstraat 55, 's-Hertogenbosch;;Not in database
+MISSING_IN_DB;A-00024;Hooilandseweg 46, Roodeschool;;Not in database
+MISSING_IN_DB;A-00025;Bleeklaan 69, Leeuwarden;;Not in database
+MISSING_IN_DB;A-00026;Willem Marisstraat 4, Dordrecht;;Not in database
+MISSING_IN_DB;A-00027;Hooilandseweg 113, Roodeschool;;Not in database
+MISSING_IN_DB;A-00028;Aerdberg 6, Steyl;;Not in database
+MISSING_IN_DB;A-00029;Rhoonsestraat 18b, Schiedam (Opgezegd 30 april 2022);;Not in database
+MISSING_IN_DB;A-00031;Kerkweg 25, Driebruggen (Opgezegd 31 jan 2021);;Not in database
+MISSING_IN_DB;A-00033;Inialoane 2, Garyp;;Not in database
+MISSING_IN_DB;A-00037;Scholeksterstraat 7 Hellevoetsluis;;Not in database
+MISSING_IN_DB;A-00038;Winston Churchillaan 18a Spijkenisse;;Not in database
+MISSING_IN_DB;A-00039;Ebenhaëzerstraat 38a, Rotterdam;;Not in database
+MISSING_IN_DB;A-00040;Lauernessestraat 8, Hoogvliet;;Not in database
+MISSING_IN_DB;A-00041;Beemd 55, Hoogvliet ( opgezegd per 31-10-2022);;Not in database
+MISSING_IN_DB;A-00042;Eendrachtsweg 71b, Rotterdam;;Not in database
+MISSING_IN_DB;A-00043;A.H. Verweijweg 6, Berkel en Rodenrijs (Opgez 21 april 2021);;Not in database
+MISSING_IN_DB;A-00044;Eendrachtsweg 71h, Rotterdam;;Not in database
+MISSING_IN_DB;A-00045;Damstraat 1, Roosendaal (Opgezegd 31 mei 2021);;Not in database
+MISSING_IN_DB;A-00046;Damstraat 1b, Roosendaal (Opgezegd 31 mei 2021);;Not in database
+MISSING_IN_DB;A-00048;Lange Reed 20;;Not in database
+MISSING_IN_DB;A-00049;Lange Reed 20a;;Not in database
+MISSING_IN_DB;A-00050;Lange Reed 20b;;Not in database
+MISSING_IN_DB;A-00051;De Poon 30, Makkum (opgezegd 12 feb 2021);;Not in database
+MISSING_IN_DB;A-00052;De Stad 1b, Oirschot;;Not in database
+MISSING_IN_DB;A-00053;De Visserstraat 60, Dordrecht;;Not in database
+MISSING_IN_DB;A-00054;Het Kerkehout 64, Wassenaar (Opgezegd 9 juni 2021);;Not in database
+MISSING_IN_DB;A-00055;Hoofdstraat 32;;Not in database
+MISSING_IN_DB;A-00057;Jordaensplein 30 Roosendaal;;Not in database
+MISSING_IN_DB;A-00058;Kade 26, Roosendaal (Opgezegd 5 juni 2022);;Not in database
+MISSING_IN_DB;A-00059;Kade 26a, Roosendaal (zie Kade 26);;Not in database
+MISSING_IN_DB;A-00060;Kanaalweg 35, Harlingen (Opgezegd 14 feb 2021);;Not in database
+MISSING_IN_DB;A-00062;Mark 10, Spijk;;Not in database
+MISSING_IN_DB;A-00063;Menno ter Braakstraat 26b, Spijkenisse (opgezegd 01-06-22);;Not in database
+MISSING_IN_DB;A-00064;Molenweg 1, Veghel (Opgezegd 30 juni 2021);;Not in database
+MISSING_IN_DB;A-00065;Nispensestraat 2c, Roosendaal (Opgezegd 30 april 2021);;Not in database
+MISSING_IN_DB;A-00067;Raadhuisplein 3;;Not in database
+MISSING_IN_DB;A-00068;Spijksekweldijk 208, Spijk (Opgezegd per 31 januari 2021);;Not in database
+MISSING_IN_DB;A-00070;Torenmolen 1, Amsterdam;;Not in database
+MISSING_IN_DB;A-00071;Vliethorn 6, Farmsum (Opgezegd per 30 juni 2021);;Not in database
+MISSING_IN_DB;A-00072;Hoofdweg 34 (Bungalow 8), Scharmer (Opg per 31 mei 2021);;Not in database
+MISSING_IN_DB;A-00074;Kerkdreef 46;;Not in database
+MISSING_IN_DB;A-00076;Noordstraat 55, Axel;;Not in database
+MISSING_IN_DB;A-00077;Voorweg 1, Oostvoorne (Opgezegd per 31 juli 2021);;Not in database
+MISSING_IN_DB;A-00078;De Veste 15-45, Lelystad(opgezegd per 30-06-22);;Not in database
+MISSING_IN_DB;A-00079;Julianastraat 59, Axel;;Not in database
+MISSING_IN_DB;A-00080;Hoofdweg 34 (Bungalow 101), Scharmer (Opg per 31 mei 2021);;Not in database
+MISSING_IN_DB;A-00083;Mr Troelstrastraat 49;;Not in database
+MISSING_IN_DB;A-00084;Akkersplein 90 Heerenveen (Opzegd per 31 okt 2020);;Not in database
+MISSING_IN_DB;A-00085;Ceresweg 54c;;Not in database
+MISSING_IN_DB;A-00086;Coehoorn van Scheltingaweg 82, Heerenveen (Opgezegd 31 jan);;Not in database
+MISSING_IN_DB;A-00087;De Terp 25, Witmarsum;;Not in database
+MISSING_IN_DB;A-00088;Jasmijnring 35, Zundert ( Opgezegd per 31-08-22);;Not in database
+MISSING_IN_DB;A-00089;Dijkstraat 66, Terneuzen;;Not in database
+MISSING_IN_DB;A-00091;Botter 33 - 6, Lelystad;;Not in database
+MISSING_IN_DB;A-00092;Nibelungenhof 22, Hoogvliet;;Not in database
+MISSING_IN_DB;A-00093;Julianalaan 4, Midlum;;Not in database
+MISSING_IN_DB;A-00094;Marisstraat 9, Terneuzen;;Not in database
+MISSING_IN_DB;A-00095;Parallelweg 96A, Vlaardingen;;Not in database
+MISSING_IN_DB;A-00097;Ring 57, Pernis;;Not in database
+MISSING_IN_DB;A-00098;Tramstraat 13, Terneuzen;;Not in database
+MISSING_IN_DB;A-00099;Lauernessestraat 17, Hoogvliet;;Not in database
+MISSING_IN_DB;A-00100;Dorpsstraat 9b, Gemonde;;Not in database
+MISSING_IN_DB;A-00101;Populierenlaan 4 Velddriel;;Not in database
+MISSING_IN_DB;A-00102;Van Renesselaan 32;;Not in database
+MISSING_IN_DB;A-00105;Spijkesteeg 1, Spijk;;Not in database
+MISSING_IN_DB;A-00106;Oudedijk 147 Odilliapeel;;Not in database
+MISSING_IN_DB;A-00109;Broeksteeg 7 Tricht;;Not in database
+MISSING_IN_DB;A-00111;Hooilandseweg 30 Roodenschol;;Not in database
+MISSING_IN_DB;A-00112;Bazeldijk 26 Hoogblokland;;Not in database
+MISSING_IN_DB;A-00113;Minckelersweg 24 Hoogerheide;;Not in database
+MISSING_IN_DB;A-00114;Sonsbrug 50 Acquoy (Opgezegd per 31 mei 2023);;Not in database
+MISSING_IN_DB;A-00116;Zakdragerstraat 15 Gorinchem (Opgezegd per 31 dec 2021);;Not in database
+MISSING_IN_DB;A-00117;Westwagenstraat 55 Gorinchem (Opgezegd per 31 dec 2021);;Not in database
+MISSING_IN_DB;A-00118;Lavendelpad 6 's'-Gravendeel;;Not in database
+MISSING_IN_DB;A-00119;Grote Bredeplaats 18a Harlingen;;Not in database
+MISSING_IN_DB;A-00120;Bergsestraat 56 Huijbergen (Opgezegd per 31 juli 2022);;Not in database
+MISSING_IN_DB;A-00122;Grote Spuistraat 40 Dordrecht (Opgezegd per 31 dec 2022);;Not in database
+MISSING_IN_DB;A-00123;Seringenstraat 5 Gennep;;Not in database
+MISSING_IN_DB;A-00124;De Ruyterweg 33 Leeuwarden (Opgezegd 16 mei 2021);;Not in database
+MISSING_IN_DB;A-00126;Vrieseweg 135 Dordrecht (Opgezegd per 31 dec 2022);;Not in database
+MISSING_IN_DB;A-00127;Prins Willem-Alexandersingel 53 Beesd;;Not in database
+MISSING_IN_DB;A-00129;Klaverweide 42 Delfzijl (Opgezegd per 31 aug 2022);;Not in database
+MISSING_IN_DB;A-00130;Zuidstraat 12 Dreischor;;Not in database
+MISSING_IN_DB;A-00132;Staringstraat 120 Oss (Opgezegd per 31 okt 2022);;Not in database
+MISSING_IN_DB;A-00133;Nyckle Haismawei 11 Leeuwarden;;Not in database
+MISSING_IN_DB;A-00135;Marowijnstraat 7 Leeuwarden (Opgezegd per 31 januari 2022);;Not in database
+MISSING_IN_DB;A-00137;Park a/h Vossemeer 10A Nieuw-Vossemeer (Opgezegd 31 mrt 22);;Not in database
+MISSING_IN_DB;A-00138;Park a/h Vossenmeer 22A Nieuw-Vossemeer;;Not in database
+MISSING_IN_DB;A-00139;Bernhardweg 33 Oijen;;Not in database
+MISSING_IN_DB;A-00140;Kleinzand 18 Drachten;;Not in database
+MISSING_IN_DB;A-00141;Evert C. Slimstraat 4 Sint Annaparochie;;Not in database
+MISSING_IN_DB;A-00144;Markt 19 Oudenbosch;;Not in database
+MISSING_IN_DB;A-00148;Bellstraat 7 Oudeschoot;;Not in database
+MISSING_IN_DB;A-00150;De Terp 27 Witmarsum;;Not in database
+MISSING_IN_DB;A-00153;Kwartel 8 Dokkum;;Not in database
+MISSING_IN_DB;A-00154;De Grouw 30 Leek;;Not in database
+MISSING_IN_DB;A-00156;De Riede 10 Slagharen (Opgezegd per 31 maart 2023);;Not in database
+MISSING_IN_DB;A-00159;Ambonstraat 96 Alphen a/d Rijn;;Not in database
+MISSING_IN_DB;A-00160;Karel Doormanlaan 238 Hilversum;;Not in database
+MISSING_IN_DB;A-00164;Voorstraat 53 Willemstad;;Not in database
+MISSING_IN_DB;A-00165;Zuiderkruis 15 Klazienaveen;;Not in database
+MISSING_IN_DB;A-00168;Hoofdstraat 266 Overdinkel;;Not in database
+MISSING_IN_DB;A-00169;Roemer Visscherstraat 148 Vlaardingen;;Not in database
+MISSING_IN_DB;A-00173;Leeg;;Not in database
+MISSING_IN_DB;A-00179;Tulpenstraat 27 Meppel;;Not in database
+MISSING_IN_DB;A-00181;Rijksweg Zuid 161 Sittard;;Not in database
+MISSING_IN_DB;A-00182;Grote Buren 27 Pingjum;;Not in database
+MISSING_IN_DB;A-00184;Leeg;;Not in database
+MISSING_IN_DB;A-00185;Vossepol 39 Surhuisterveen;;Not in database
+MISSING_IN_DB;A-00188;Nesserwei  2 Ternaard;;Not in database
+MISSING_IN_DB;A-00192;Hooizolder 296 Drachten;;Not in database
+MISSING_IN_DB;A-00194;Poststraat 4 Philippine (Opgezegd per 31 dec 2022);;Not in database
+MISSING_IN_DB;A-00195;Meinardswei 74 Minnertsga (CB-Homes);;Not in database
+MISSING_IN_DB;A-00196;Meinardswei 86 Minnertsga (CB-Homes);;Not in database
+MISSING_IN_DB;A-00197;Schoutstraat 15 Heerlen;;Not in database
+MISSING_IN_DB;A-00198;Berkstraat 37 Nieuwegein (CB-Homes);;Not in database
+MISSING_IN_DB;A-00199;Leenheerstraat 16 Heerlen;;Not in database
+MISSING_IN_DB;A-00200;Meinardswei 54-56 Minnertsga (CB-Homes);;Not in database
+MISSING_IN_DB;A-00204;Hofmark 381 Almere;;Not in database
+MISSING_IN_DB;A-00207;Kloosterstraat 18 Biervliet;;Not in database
+MISSING_IN_DB;A-00208;Beethovenhof 78 Terneuzen;;Not in database
+MISSING_IN_DB;A-00209;Frans Bekkenstraat 72e Rotterdam;;Not in database
+MISSING_IN_DB;A-00211;Kuilenstraat 13 Meerssen;;Not in database
+MISSING_IN_DB;A-00212;Robinsonstraat 203 Leeuwarden;;Not in database
+MISSING_IN_DB;A-00213;Jan Snouckstraat 2 Schelluinen;;Not in database
+MISSING_IN_DB;A-00214;Jericholaan 42B, Rotterdam;;Not in database
+MISSING_IN_DB;A-00215;Willem van Arkellaan 25 Gorinchem;;Not in database
+MISSING_IN_DB;A-00216;Benthuizerstraat 30B Rotterdam;;Not in database
+MISSING_IN_DB;A-00219;Kapelstraat 5 Maurik;;Not in database
+MISSING_IN_DB;A-00223;Harixmaweg 4 Franeker;;Not in database
+MISSING_IN_DB;A-00224;Nieuwe Steeg 68 Herwijnen;;Not in database
+MISSING_IN_DB;A-00226;Parkweg 21 Beesd;;Not in database
+MISSING_IN_DB;A-00229;Aziëlaan 764 Utrecht;;Not in database
+MISSING_IN_DB;A-00230;Bastion 117 Lelystad;;Not in database
+MISSING_IN_DB;A-00231;Lavasweg 35 Hoogvliet;;Not in database
+MISSING_IN_DB;A-00236;Aleidisstraat 6 Rotterdam;;Not in database
+MISSING_IN_DB;A-00238;Acherdijk 47 Nieuwland;;Not in database
+MISSING_IN_DB;A-00239;Rivierdijk 794 (onder) Hardinxveld - Giessendam;;Not in database
+MISSING_IN_DB;A-00240;Rhodensteijnselaan 15 Langbroek;;Not in database
+MISSING_IN_DB;A-00252;Azielaan 764 Utrecht;;Not in database
+MISSING_IN_DB;A-00253;Lydsedyk 1 Bitgummole;;Not in database
+MISSING_IN_DB;A-00254;Scheepjesbrug 406 Meerkerk;;Not in database
+MISSING_IN_DB;A-00255;Baliendijk 7 Breda;;Not in database
+MISSING_IN_DB;A-00259;P.F. Catstraat 8 Franeker;;Not in database
+MISSING_IN_DB;A-00264;Steenovenstraat Belgie;;Not in database
+MISSING_IN_DB;A-00271;Volkelseweg 19-21 Boekel;;Not in database
+MISSING_IN_DB;A-00272;Adminiraliteitskade 80-02 Rotterdam;;Not in database
+MISSING_IN_DB;A-00274;Kremerstraat 25 A Bergen op Zoom;;Not in database
+MISSING_IN_DB;A-00275;Stuwwal 2 015 Den Oever;;Not in database
+MISSING_IN_DB;A-00277;2e van Leydengaelstraat 6 Vlaardingen;;Not in database
+MISSING_IN_DB;A-00289;Ingenier J.P. van Muijlwijkstraat 116 Arnhem;;Not in database
+MISSING_IN_DB;A-00295;Laan van Spaland 11 Schiedam;;Not in database
+MISSING_IN_DB;A-00297;Madoeralaan 82 Ede;;Not in database
+MISSING_IN_DB;A-00304;Pieter Jelle Troelstraweg 2A Maasluis;;Not in database
+MISSING_IN_DB;A-00312;Irenestraat 99 Sint Willebrord;;Not in database
+MISSING_IN_DB;A-00317;Maasdijk 28A Aalst;;Not in database
+MISSING_IN_DB;A-00318;Bloklaan 22a Loosdrecht;;Not in database
+MISSING_IN_DB;A-00320;Eikstraat 23 Bergen op Zoom;;Not in database
+MISSING_IN_DB;A-00327;Verbindingsstraat 20 Essen;;Not in database
+MISSING_IN_DB;A-00335;Korte Singelstraat 21C Schiedam;;Not in database
+MISSING_IN_DB;A-00337;Nobelstraat 52 Brielle;;Not in database
+MISSING_IN_DB;A-00338;Dorpsstraat 58 OUDE-NIEDORP;;Not in database
+MISSING_IN_DB;A-00352;3e Industriestraat 11 Vlaardingen;;Not in database
+MISSING_IN_DB;A-00373;Professor Kamerlingh Onneslaan 134 A Schiedam;;Not in database
+MISSING_IN_DB;A-00416;Utrechtsestraatweg 7 Oudewater;;Not in database
+MISSING_IN_DB;A-00423;Kerkweg 9a [huisnummer 101]  Hensbroek;;Not in database
+MISSING_IN_DB;A-00441;Aamberberg 232 Bergen op Zoom;;Not in database
+MISSING_IN_DB;A-00445;De Zwingel 8B, Lange Zwaluwe;;Not in database
+MISSING_IN_EXACT;0254;;Middenbaan Noord 20A Hoogvliet;Not in Exact
+MISSING_IN_EXACT;0492;;Maasdijk 67 's-Gravenzande;Not in Exact
+MISSING_IN_EXACT;0493;;Ranaholm 3 Schiedam;Not in Exact
+MISSING_IN_EXACT;0494;;Hoge Noordweg 26A Naaldwijk;Not in Exact
+MISSING_IN_EXACT;0495;;Broersveld 150B Schiedam;Not in Exact
+MISSING_IN_EXACT;0496;;Hontenissestraat 124A Rotterdam;Not in Exact
+MISSING_IN_EXACT;0498;;Oosthavenkade 39;Not in Exact
+MISSING_IN_EXACT;0499;;Hoge Noordweg 27A Naaldwijk;Not in Exact
+MISSING_IN_EXACT;0500;;Professor Kamerlingh Onneslaan 98A Schiedam;Not in Exact
+MISSING_IN_EXACT;0501;;Lauwersmeer 4 Barendrecht;Not in Exact
+MISSING_IN_EXACT;0502;;Noordstraat 26 Walsoorden;Not in Exact
+MISSING_IN_EXACT;0503;;Dorpstraat 46 Aarlanderveen;Not in Exact
+MISSING_IN_EXACT;0504;;Homeflex Park Honselersdijk;Not in Exact
+MISSING_IN_EXACT;0505;;Hontenissestraat 162 Rotterdam;Not in Exact
+MISSING_IN_EXACT;0506;;Groenelaan 35 Schiedam;Not in Exact
+MISSING_IN_EXACT;0507;;Platostraat 38 Rotterdam;Not in Exact
+MISSING_IN_EXACT;0508;;Rotterdamsedijk 104a2 Vlaardingen;Not in Exact
+MISSING_IN_EXACT;0509;;Jacob van Ruijsdaelstraat 28 Roosendaal;Not in Exact
+MISSING_IN_EXACT;0510;;Deensestraat 91A Rotterdam;Not in Exact
+MISSING_IN_EXACT;0511;;Burg. Knappertlaan 176A Schiedam;Not in Exact
+MISSING_IN_EXACT;0512;;Westfrankelandsestraat 106 Schiedam;Not in Exact
+MISSING_IN_EXACT;0513;;Kethelweg 60 Vlaardingen;Not in Exact
+MISSING_IN_EXACT;0514;;Knuttelstraat 17 Delft;Not in Exact
+MISSING_IN_EXACT;0515;;Broekweg 166B Rotterdam;Not in Exact
+MISSING_IN_EXACT;0516;;Schalkeroord 16 Rotterdam;Not in Exact
+MISSING_IN_EXACT;0517;;Oudcamp 14 Maasland;Not in Exact
+MISSING_IN_EXACT;0518;;Sint Jorispad 4 Naaldwijk;Not in Exact
+MISSING_IN_EXACT;0519;;Middenscheepvaartstraat 30 Hoek van Holland;Not in Exact
+MISSING_IN_EXACT;0520;;Schiedamseweg 260c;Not in Exact
+MISSING_IN_EXACT;0521;;Van Hogendorplaan 1641 Vlaardingen;Not in Exact
+MISSING_IN_EXACT;0522;;Messchaertplein 36 Bovenwoning Vlaardingen;Not in Exact
+MISSING_IN_EXACT;0523;;Krabbendijkestraat 429 Rotterdam;Not in Exact
+MISSING_IN_EXACT;0524;;Zegwaardseweg 54 Zoetermeer;Not in Exact
+MISSING_IN_EXACT;0525;;Pastoriedijk 325 Pernis;Not in Exact
+MISSING_IN_EXACT;0529;;1e Verdeligsweg 6 - 537 Putte;Not in Exact
+MISSING_IN_EXACT;0530;;1e Verdeligsweg 6 - 821 Putte;Not in Exact
+MISSING_IN_EXACT;0531;;1e Verdeligsweg 6 - 822 Putte;Not in Exact
+MISSING_IN_EXACT;0532;;Broersvest 74c Schiedam;Not in Exact
+MISSING_IN_EXACT;0533;;de Lus 16 ap28 Schagen;Not in Exact
+MISSING_IN_EXACT;0534;;Dorpstraat 27 Moordrecht;Not in Exact
+MISSING_IN_EXACT;0535;;Franselaan 273-B;Not in Exact
+MISSING_IN_EXACT;0439;;Galgeweg 48A 's-Gravenzande;Not in Exact
+MISSING_IN_EXACT;0440;;Genestestraat 32 Terneuzen;Not in Exact
+MISSING_IN_EXACT;0441;;Grimbergen 19;Not in Exact
+MISSING_IN_EXACT;0442;;Herenpad 20B Schiedam;Not in Exact
+MISSING_IN_EXACT;0443;;Ida Gerhardtplein 10 Spijkenisse;Not in Exact
+MISSING_IN_EXACT;0444;;J. van Lennepstraat 13A Schiedam;Not in Exact
+MISSING_IN_EXACT;0445;;J. van Lennepstraat 13B Schiedam;Not in Exact
+MISSING_IN_EXACT;0446;;J. van Lennepstraat 34 Schiedam;Not in Exact
+MISSING_IN_EXACT;0447;;Kerklaan 74 Nieuwerkerk aan den IJssel;Not in Exact
+MISSING_IN_EXACT;0448;;Kerklaan 80 Nieuwerkerk aan den IJssel;Not in Exact
+MISSING_IN_EXACT;0449;;Korhaanstraat 6 Rotterdam;Not in Exact
+MISSING_IN_EXACT;0451;;Leidinglaan 64+66 Sluiskil;Not in Exact
+MISSING_IN_EXACT;0452;;Nic. Beetsstraat 29 Vlaardingen;Not in Exact
+MISSING_IN_EXACT;0453;;Nijverheidstraat 26a, Studio 201 Vlaardingen;Not in Exact
+MISSING_IN_EXACT;0454;;Oostene 23;Not in Exact
+MISSING_IN_EXACT;0455;;Papsouwselaan 30 Delft;Not in Exact
+MISSING_IN_EXACT;0456;;Papsouwselaan 32 Delft;Not in Exact
+MISSING_IN_EXACT;0457;;Papsouwselaan 34 Delft;Not in Exact
+MISSING_IN_EXACT;0458;;Papsouwselaan 44 Delft;Not in Exact
+MISSING_IN_EXACT;0459;;Papsouwselaan 52 Delft;Not in Exact
+MISSING_IN_EXACT;0460;;Papsouwselaan 58 Delft;Not in Exact
+MISSING_IN_EXACT;0461;;Papsouwselaan 68 Delft;Not in Exact
+MISSING_IN_EXACT;0462;;Papsouwselaan 86 Delft;Not in Exact
+MISSING_IN_EXACT;0463;;Papsouwselaan 138 Delft;Not in Exact
+MISSING_IN_EXACT;0464;;Papsouwselaan 178 Delft;Not in Exact
+MISSING_IN_EXACT;0465;;Rubensplein 3b Schiedam;Not in Exact
+MISSING_IN_EXACT;0466;;Singelweg 95 Axel;Not in Exact
+MISSING_IN_EXACT;0467;;St. Annalandstraat 116 Rotterdam;Not in Exact
+MISSING_IN_EXACT;0468;;Sweelinckstraat 32 Vlaardingen;Not in Exact
+MISSING_IN_EXACT;0469;;Tulpenstraat 45 Rozenburg;Not in Exact
+MISSING_IN_EXACT;0470;;v.d. Waalstraat 16 Vlaardingen;Not in Exact
+MISSING_IN_EXACT;0472;;Westlandse Langeweg 14;Not in Exact
+MISSING_IN_EXACT;0473;;Wouwsestraat 65;Not in Exact
+MISSING_IN_EXACT;0474;;Honselaarsdijk 27 Monster;Not in Exact
+MISSING_IN_EXACT;0475;;Broekweg 26 's-Gravenzande;Not in Exact
+MISSING_IN_EXACT;0476;;Stuifkenszand 2c-4e Unknown;Not in Exact
+MISSING_IN_EXACT;0477;;Hotel de Sluiskop Rotterdam;Not in Exact
+MISSING_IN_EXACT;0478;;Admiraliteitskade 80-02 Rotterdam;Not in Exact
+MISSING_IN_EXACT;0479;;Parallelweg 112D Vlaardingen;Not in Exact
+MISSING_IN_EXACT;0480;;Noordmolenstraat 38A Schiedam;Not in Exact
+MISSING_IN_EXACT;0481;;Noordmolenstraat 38B Schiedam;Not in Exact
+MISSING_IN_EXACT;0482;;Noordmolenstraat 34 Schiedam;Not in Exact
+MISSING_IN_EXACT;0483;;Oostduinlaan 14 's-Gravenzande;Not in Exact
+MISSING_IN_EXACT;0484;;Dirk Schaferplein 140 Schiedam;Not in Exact
+MISSING_IN_EXACT;0485;;Grote Markt 41 Schiedam;Not in Exact
+MISSING_IN_EXACT;0486;;Kortlandstraat 8 Schiedam;Not in Exact
+MISSING_IN_EXACT;0487;;Parallelweg 132B Vlaardingen;Not in Exact
+MISSING_IN_EXACT;0489;;Woudseweg 146;Not in Exact
+MISSING_IN_EXACT;0490;;Boswoning 11 Honselersdijk;Not in Exact
+MISSING_IN_EXACT;0491;;P.J. Troelstraweg 2 a Maassluis;Not in Exact
